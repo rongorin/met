@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="433c006010954b4aa6709a19cd9bee3a" Name="Diagram1">
+        <EntityTypeShape EntityType="MetopeDbModel.Entity" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetopeDbModel.Portfolio" Width="1.5" PointX="4.875" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MetopeDbModel.User" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Entity" ManuallyRouted="false" />
+        <AssociationConnector Association="MetopeDbModel.FK_User_Entity" ManuallyRouted="false" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

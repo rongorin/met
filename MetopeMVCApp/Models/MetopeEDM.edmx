@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MetopeDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Entity">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+          </Key>
+          <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Entity_Code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Entity_Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Import_Folder" Type="varchar" MaxLength="150" />
+          <Property Name="Export_Folder" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Portfolio">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Portfolio_Code" />
+          </Key>
+          <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Portfolio_Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Portfolio_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Manager" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Portfolio_Type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Portfolio_Base_Currency" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="PortfolIo_Domicile" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Portfolio_Report_Currency" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Inception_Date" Type="date" />
+          <Property Name="Financial_Year_End" Type="date" />
+          <Property Name="Custodian_Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Active_Flag" Type="bit" Nullable="false" />
+          <Property Name="System_Locked" Type="bit" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="User_Code" />
+          </Key>
+          <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="User_Code" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="User_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="User_Initial" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Mobile_Number" Type="varchar" MaxLength="15" />
+          <Property Name="Email_Address" Type="varchar" MaxLength="100" />
+          <Property Name="Active_Indicator" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Export_Folder" Type="varchar" MaxLength="150" />
+          <Property Name="User_Type" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Password_Expire_Date" Type="datetime" />
+          <Property Name="Lock_Indicator" Type="char" MaxLength="1" />
+          <Property Name="Login_Fail_Count" Type="int" />
+          <Property Name="Login_Fail_Time" Type="datetime" />
+          <Property Name="Last_Login_Time" Type="datetime" />
+          <Property Name="System_Locked" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Portfolio_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MetopeDbModelStoreContainer">
+          <EntitySet Name="Entity" EntityType="Self.Entity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Portfolio" EntityType="Self.Portfolio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Portfolio_Entity" Association="Self.FK_Portfolio_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="Portfolio" EntitySet="Portfolio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_User" Association="Self.FK_Portfolio_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Portfolio" EntitySet="Portfolio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Entity" Association="Self.FK_User_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MetopeDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Entity">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+          </Key>
+          <Property Name="Entity_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Entity_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Entity_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Import_Folder" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Export_Folder" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Portfolios" Relationship="Self.FK_Portfolio_Entity" FromRole="Entity" ToRole="Portfolio" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Entity" FromRole="Entity" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Portfolio">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Portfolio_Code" />
+          </Key>
+          <Property Name="Entity_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Portfolio_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Portfolio_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Manager" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Portfolio_Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Portfolio_Base_Currency" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PortfolIo_Domicile" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Portfolio_Report_Currency" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Inception_Date" Type="DateTime" Precision="0" />
+          <Property Name="Financial_Year_End" Type="DateTime" Precision="0" />
+          <Property Name="Custodian_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active_Flag" Type="Boolean" Nullable="false" />
+          <Property Name="System_Locked" Type="Boolean" />
+          <NavigationProperty Name="Entity" Relationship="Self.FK_Portfolio_Entity" FromRole="Portfolio" ToRole="Entity" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Portfolio_User" FromRole="Portfolio" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="User_Code" />
+          </Key>
+          <Property Name="Entity_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="User_Code" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Initial" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mobile_Number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Active_Indicator" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Export_Folder" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="User_Type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password_Expire_Date" Type="DateTime" Precision="3" />
+          <Property Name="Lock_Indicator" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Login_Fail_Count" Type="Int32" />
+          <Property Name="Login_Fail_Time" Type="DateTime" Precision="3" />
+          <Property Name="Last_Login_Time" Type="DateTime" Precision="3" />
+          <Property Name="System_Locked" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Entity" Relationship="Self.FK_User_Entity" FromRole="User" ToRole="Entity" />
+          <NavigationProperty Name="Portfolios" Relationship="Self.FK_Portfolio_User" FromRole="User" ToRole="Portfolio" />
+        </EntityType>
+        <Association Name="FK_Portfolio_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MetopeDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Entities" EntityType="Self.Entity" />
+          <EntitySet Name="Portfolios" EntityType="Self.Portfolio" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Portfolio_Entity" Association="Self.FK_Portfolio_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Portfolio" EntitySet="Portfolios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Entity" Association="Self.FK_User_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_User" Association="Self.FK_Portfolio_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Portfolio" EntitySet="Portfolios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MetopeDbModelStoreContainer" CdmEntityContainer="MetopeDbEntities">
+          <EntitySetMapping Name="Entities">
+            <EntityTypeMapping TypeName="MetopeDbModel.Entity">
+              <MappingFragment StoreEntitySet="Entity">
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+                <ScalarProperty Name="Entity_Code" ColumnName="Entity_Code" />
+                <ScalarProperty Name="Entity_Name" ColumnName="Entity_Name" />
+                <ScalarProperty Name="Import_Folder" ColumnName="Import_Folder" />
+                <ScalarProperty Name="Export_Folder" ColumnName="Export_Folder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portfolios">
+            <EntityTypeMapping TypeName="MetopeDbModel.Portfolio">
+              <MappingFragment StoreEntitySet="Portfolio">
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+                <ScalarProperty Name="Portfolio_Code" ColumnName="Portfolio_Code" />
+                <ScalarProperty Name="Portfolio_Name" ColumnName="Portfolio_Name" />
+                <ScalarProperty Name="Manager" ColumnName="Manager" />
+                <ScalarProperty Name="Portfolio_Type" ColumnName="Portfolio_Type" />
+                <ScalarProperty Name="Portfolio_Base_Currency" ColumnName="Portfolio_Base_Currency" />
+                <ScalarProperty Name="PortfolIo_Domicile" ColumnName="PortfolIo_Domicile" />
+                <ScalarProperty Name="Portfolio_Report_Currency" ColumnName="Portfolio_Report_Currency" />
+                <ScalarProperty Name="Inception_Date" ColumnName="Inception_Date" />
+                <ScalarProperty Name="Financial_Year_End" ColumnName="Financial_Year_End" />
+                <ScalarProperty Name="Custodian_Code" ColumnName="Custodian_Code" />
+                <ScalarProperty Name="Active_Flag" ColumnName="Active_Flag" />
+                <ScalarProperty Name="System_Locked" ColumnName="System_Locked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MetopeDbModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+                <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="User_Initial" ColumnName="User_Initial" />
+                <ScalarProperty Name="Mobile_Number" ColumnName="Mobile_Number" />
+                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+                <ScalarProperty Name="Active_Indicator" ColumnName="Active_Indicator" />
+                <ScalarProperty Name="Export_Folder" ColumnName="Export_Folder" />
+                <ScalarProperty Name="User_Type" ColumnName="User_Type" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Password_Expire_Date" ColumnName="Password_Expire_Date" />
+                <ScalarProperty Name="Lock_Indicator" ColumnName="Lock_Indicator" />
+                <ScalarProperty Name="Login_Fail_Count" ColumnName="Login_Fail_Count" />
+                <ScalarProperty Name="Login_Fail_Time" ColumnName="Login_Fail_Time" />
+                <ScalarProperty Name="Last_Login_Time" ColumnName="Last_Login_Time" />
+                <ScalarProperty Name="System_Locked" ColumnName="System_Locked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
