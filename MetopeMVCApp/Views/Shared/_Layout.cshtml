@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <meta name="description" content="My ASP.NET Application" />
-    @Styles.Render("~/bundles/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/bundles/css") 
+    @Scripts.Render("~/bundles/modernizr")  
+    <link href="~/Content/Template/myCustom.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -18,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("METOPE", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -30,11 +31,16 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <!--my header-->
+     <header> 
+                <img src="~/Content/img/MetopeHome-Banner.jpg" class="img-responsive" style="width:100%" alt="Image">
+           
+    </header>
+    <div class="container body-content"> 
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Metope Asset Managers</p>
         </footer>
     </div>
 

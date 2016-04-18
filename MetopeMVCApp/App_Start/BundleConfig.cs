@@ -21,6 +21,12 @@ namespace ASP.MetopeNspace
             cssBundle.Orderer = nullOrderer;
             bundles.Add(cssBundle);
 
+            //var cssBundle2= new StyleBundle("~/bundles/cssCustom");
+            //cssBundle2.Include("~/Content/Site.less", "~/Content/Template/myCustom.css");
+            //cssBundle2.Transforms.Add(cssTransformer);
+            //cssBundle2.Orderer = nullOrderer;
+            //bundles.Add(cssBundle2);
+
             var jqueryBundle = new ScriptBundle("~/bundles/jquery");
             jqueryBundle.Include("~/Scripts/jquery-{version}.js");
             jqueryBundle.Transforms.Add(jsTransformer);

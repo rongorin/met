@@ -212,7 +212,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -246,7 +248,18 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Template\myCustom.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\bus-yellow-300px.png" />
+    <Content Include="Content\img\cabin.png" />
+    <Content Include="Content\img\cake.png" />
+    <Content Include="Content\img\circus.png" />
+    <Content Include="Content\img\do-you-like-doughnuts300px.png" />
+    <Content Include="Content\img\MetopeHome-Banner.jpg" />
+    <Content Include="Content\img\Nashorn-coloured-300px.png" />
+    <Content Include="Content\img\safe.png" />
+    <Content Include="Content\img\submarine.png" />
+    <Content Include="Content\img\windowwasher-300px.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.less" />
@@ -386,6 +399,16 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Entity\Create.cshtml" />
+    <Content Include="Views\Entity\Delete.cshtml" />
+    <Content Include="Views\Entity\Details.cshtml" />
+    <Content Include="Views\Entity\Edit.cshtml" />
+    <Content Include="Views\Entity\Index.cshtml" />
+    <Content Include="Views\Portfolio\Create.cshtml" />
+    <Content Include="Views\Portfolio\Delete.cshtml" />
+    <Content Include="Views\Portfolio\Details.cshtml" />
+    <Content Include="Views\Portfolio\Edit.cshtml" />
+    <Content Include="Views\Portfolio\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
