@@ -30,13 +30,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Manager, "Manager", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Manager", String.Empty)
+                @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.managers, String.Empty, new { @class = "form-control"})
+                @* @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.MyManagerList)
+                @Html.EditorFor(model => model.Manager) *@
                 @Html.ValidationMessageFor(model => model.Manager)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Portfolio_Type, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Portfolio_Type, new { @class = "control-labe  l col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Portfolio_Type)
                 @Html.ValidationMessageFor(model => model.Portfolio_Type)

@@ -11,6 +11,7 @@
         <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Entity" ManuallyRouted="false" />
         <AssociationConnector Association="MetopeDbModel.FK_User_Entity" ManuallyRouted="false" />
         <AssociationConnector Association="MetopeDbModel.FK_Portfolio_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MetopeDbModel.AspNetUser" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

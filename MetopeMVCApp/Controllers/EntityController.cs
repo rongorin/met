@@ -17,6 +17,7 @@ namespace MetopeMVCApp.Controllers
         // GET: /Entity/
         public ActionResult Index()
         {
+
             return View(db.Entities.ToList());
         }
 

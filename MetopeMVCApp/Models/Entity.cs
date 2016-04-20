@@ -11,7 +11,6 @@ namespace MetopeMVCApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Entity
     {
@@ -22,9 +21,7 @@ namespace MetopeMVCApp.Models
         }
     
         public decimal Entity_ID { get; set; }
-        [Required]
         public string Entity_Code { get; set; }
-          [Required] 
         public string Entity_Name { get; set; }
         public string Import_Folder { get; set; }
         public string Export_Folder { get; set; }

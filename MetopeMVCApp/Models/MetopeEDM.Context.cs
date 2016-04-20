@@ -28,5 +28,6 @@ namespace MetopeMVCApp.Models
         public virtual DbSet<Entity> Entities { get; set; }
         public virtual DbSet<Portfolio> Portfolios { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }
