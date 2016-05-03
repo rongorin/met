@@ -9,6 +9,13 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@if (TempData["ResultMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button class="close" data-dismiss="alert">&times;</button>
+        @TempData["ResultMessage"]
+    </div>
+}
 <table class="table">
     <tr>
         <th>

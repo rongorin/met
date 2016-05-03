@@ -9,20 +9,30 @@
 
 namespace MetopeMVCApp.Models
 {
+    using MetopeMVCApp.Models.MyMetaData;
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(PortfolioModelMetatData))]
     public partial class Portfolio
     {
         public decimal Entity_ID { get; set; }
+        //[Required]
+        //[StringLength(20)]
         public string Portfolio_Code { get; set; }
+       // [Required]
+        //[StringLength(100)]
         public string Portfolio_Name { get; set; }
-        public string Manager { get; set; }
+
+         public string Manager { get; set; }
         public string Portfolio_Type { get; set; }
         public string Portfolio_Base_Currency { get; set; }
         public string PortfolIo_Domicile { get; set; }
         public string Portfolio_Report_Currency { get; set; }
+      //    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Inception_Date { get; set; }
+      //    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Financial_Year_End { get; set; }
         public string Custodian_Code { get; set; }
         public bool Active_Flag { get; set; }

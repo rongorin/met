@@ -78,7 +78,8 @@ namespace ASP.MetopeNspace.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
+                //RG: IMPORTANT remove the model.EntityIdScope below from being posted  
+                var user = new ApplicationUser() { UserName = model.UserName, EntityIdScope = model.EntityIdScope };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

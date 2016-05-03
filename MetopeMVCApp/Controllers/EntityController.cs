@@ -53,7 +53,7 @@ namespace MetopeMVCApp.Controllers
             {
                 db.Entities.Add(entity);
                 db.SaveChanges();
-                TempData.Add("SuccessMessage", "new Entity \"" + entity.Entity_Name + "\" created successfully!");
+                TempData.Add("ResultMessage", "new Entity \"" + entity.Entity_Name + "\" created successfully!");
 
                 return RedirectToAction("Index");
             }
@@ -87,7 +87,7 @@ namespace MetopeMVCApp.Controllers
             {
                 db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData.Add("SuccessMessage", "Entity \"" + entity.Entity_Name + "\" edited successfully!");
+                TempData.Add("ResultMessage", "Entity \"" + entity.Entity_Name + "\" edited successfully!");
 
                 return RedirectToAction("Index");
             }
@@ -117,7 +117,7 @@ namespace MetopeMVCApp.Controllers
             Entity entity = db.Entities.Find(id);
             db.Entities.Remove(entity);
             db.SaveChanges();
-            TempData.Add("SuccessMessage", "Entity \"" + entity.Entity_Name + "\" Deleted successfully!");
+            TempData.Add("ResultMessage", "Entity \"" + entity.Entity_Name + "\" Deleted successfully!");
 
             return RedirectToAction("Index");
         }

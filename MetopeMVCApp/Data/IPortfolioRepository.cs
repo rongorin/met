@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using MetopeMVCApp.Models;
+
+namespace MetopeMVCApp.Data
+{
+    public interface IPortfolioRepository
+    {
+        IQueryable<Portfolio> GetPortfolios(decimal iEntityId);
+        IQueryable<User> GetUsers(decimal iEntityId);
+        Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode);
+        void DeletePortfolio(decimal EntityId, string PortfolioCode);
+        void UpdatePortfolio(Portfolio portfolio);
+        void CreatePortfolio(Portfolio portfolio);
+        void Save();
+        //IQueryable<Portfolio> GetTopicsIncludingReplies();
+
+        //IQueryable<Reply> GetRepliesByTopic(int topicId);
+
+        //bool Save();
+
+        //bool AddTopic(Topic newTopic);
+        //bool AddReply(Reply newReply);
+    }
+}
+ 
+ 

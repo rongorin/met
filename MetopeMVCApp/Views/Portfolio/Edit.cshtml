@@ -15,6 +15,8 @@
         <h4>Portfolio</h4>
         <hr />
         @Html.ValidationSummary(true)
+        @Html.ValidationMessage("Error")
+
         @Html.HiddenFor(model => model.Entity_ID)
 
         @Html.HiddenFor(model => model.Portfolio_Code)
