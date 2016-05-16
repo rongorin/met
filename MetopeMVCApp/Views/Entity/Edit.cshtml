@@ -17,7 +17,7 @@
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Entity_ID)
 
-        <div class="form-group">
+        <div class="form-group" >
             @Html.LabelFor(model => model.Entity_Code, new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
                 @Html.TextBoxFor(m => m.Entity_Code, new { @class = "form-control input-sm", placeholder = "Enter the Entity_Code here..." })

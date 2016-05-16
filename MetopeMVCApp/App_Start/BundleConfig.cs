@@ -16,10 +16,11 @@ namespace ASP.MetopeNspace
             var nullOrderer = new NullOrderer();
 
             var cssBundle = new StyleBundle("~/bundles/css");
-            cssBundle.Include("~/Content/Site.less", "~/Content/bootstrap/bootstrap.less");
+            cssBundle.Include("~/Content/Site.less", "~/Content/bootstrap/bootstrap.less", "~/Content/myCustom.css");
             cssBundle.Transforms.Add(cssTransformer);
             cssBundle.Orderer = nullOrderer;
             bundles.Add(cssBundle);
+             
 
             //var cssBundle2= new StyleBundle("~/bundles/cssCustom");
             //cssBundle2.Include("~/Content/Site.less", "~/Content/Template/myCustom.css");
@@ -53,6 +54,8 @@ namespace ASP.MetopeNspace
             bootstrapBundle.Transforms.Add(jsTransformer);
             bootstrapBundle.Orderer = nullOrderer;
             bundles.Add(bootstrapBundle);
+
+
         }
     }
 }

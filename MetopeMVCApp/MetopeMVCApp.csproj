@@ -215,6 +215,8 @@
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
+    <Compile Include="Controllers\SecurityDetailController.cs" />
+    <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\IPortfolioRepository.cs" />
     <Compile Include="Data\PortfolioRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -228,9 +230,34 @@
     <Compile Include="Migrations\201604210613221_EntityIdScope.Designer.cs">
       <DependentUpon>201604210613221_EntityIdScope.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605071034088_Init.cs" />
+    <Compile Include="Migrations\201605071034088_Init.Designer.cs">
+      <DependentUpon>201605071034088_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605071056297_Init1.cs" />
+    <Compile Include="Migrations\201605071056297_Init1.Designer.cs">
+      <DependentUpon>201605071056297_Init1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605071101262_Init2.cs" />
+    <Compile Include="Migrations\201605071101262_Init2.Designer.cs">
+      <DependentUpon>201605071101262_Init2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605071108389_Init3.cs" />
+    <Compile Include="Migrations\201605071108389_Init3.Designer.cs">
+      <DependentUpon>201605071108389_Init3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Country.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Currency.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Currency_Pair.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity.cs">
@@ -256,15 +283,27 @@
     <Compile Include="Models\Portfolio.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Portfolio_List.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Security_Detail.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Utitlity\Extensions\DropDownExtensions.cs" />
+    <Compile Include="Utitlity\Extensions\SessionExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Template\myCustom.css" />
+    <Content Include="Content\myCustom.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\bus-yellow-300px.png" />
     <Content Include="Content\img\cabin.png" />
@@ -372,6 +411,10 @@
       <DependentUpon>MetopeEDM.edmx</DependentUpon>
       <LastGenOutput>MetopeEDM.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
@@ -425,10 +468,14 @@
     <Content Include="Views\Portfolio\Details.cshtml" />
     <Content Include="Views\Portfolio\Edit.cshtml" />
     <Content Include="Views\Portfolio\Index.cshtml" />
+    <Content Include="Views\SecurityDetail\Create.cshtml" />
+    <Content Include="Views\SecurityDetail\Delete.cshtml" />
+    <Content Include="Views\SecurityDetail\Details.cshtml" />
+    <Content Include="Views\SecurityDetail\Edit.cshtml" />
+    <Content Include="Views\SecurityDetail\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -443,6 +490,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604210613221_EntityIdScope.resx">
       <DependentUpon>201604210613221_EntityIdScope.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605071034088_Init.resx">
+      <DependentUpon>201605071034088_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605071056297_Init1.resx">
+      <DependentUpon>201605071056297_Init1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605071101262_Init2.resx">
+      <DependentUpon>201605071101262_Init2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605071108389_Init3.resx">
+      <DependentUpon>201605071108389_Init3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

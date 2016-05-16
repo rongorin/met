@@ -12,25 +12,20 @@ namespace MetopeMVCApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Entity
+    public partial class Currency_Pair
     {
-        public Entity()
+        public Currency_Pair()
         {
-            this.Portfolios = new HashSet<Portfolio>();
-            this.Users = new HashSet<User>();
             this.Security_Detail = new HashSet<Security_Detail>();
-            this.Portfolio_List = new HashSet<Portfolio_List>();
         }
     
-        public decimal Entity_ID { get; set; }
-        public string Entity_Code { get; set; }
-        public string Entity_Name { get; set; }
-        public string Import_Folder { get; set; }
-        public string Export_Folder { get; set; }
+        public string Currency_Pair_Code { get; set; }
+        public string Base_Currency_Code { get; set; }
+        public string Counter_Currency_Code { get; set; }
+        public int Calculation_Precision { get; set; }
     
-        public virtual ICollection<Portfolio> Portfolios { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual Currency Currency { get; set; }
+        public virtual Currency Currency1 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail { get; set; }
-        public virtual ICollection<Portfolio_List> Portfolio_List { get; set; }
     }
 }

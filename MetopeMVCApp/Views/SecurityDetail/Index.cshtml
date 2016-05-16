@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MetopeMVCApp.Models.Security_Detail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ticker)
+        </th>
+        <th width="30%">
+            @Html.DisplayNameFor(model => model.Security_Name)
+        </th>
+    
+        <th>
+            @Html.DisplayNameFor(model => model.Security_Type_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Primary_Exch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Current_Market_Price)
+        </th>
+       
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ticker)
+        </td>
+        <td width="30%"> 
+            @Html.DisplayFor(modelItem => item.Security_Name)
+        </td>
+ 
+        <td>
+            @Html.DisplayFor(modelItem => item.Security_Type_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Primary_Exch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Current_Market_Price)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Security_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Security_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Security_ID })
+        </td>
+    </tr>
+}
+
+</table>

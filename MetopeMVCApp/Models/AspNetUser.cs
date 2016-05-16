@@ -27,5 +27,6 @@ namespace MetopeMVCApp.Models
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
         public string ApplicationUserId { get; set; }
+        public decimal EntityIdScope { get; set; }
     }
 }

@@ -12,7 +12,7 @@ using System.Diagnostics;
 using Microsoft.AspNet.Identity;
 using ASP.MetopeNspace.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
-using MetopeMVCApp.Data;
+using MetopeMVCApp.Data; 
 
 
 namespace MetopeMVCApp.Controllers
@@ -41,11 +41,15 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: /Portfolio/
-        public ActionResult Index()
-        {   
-
+        public ActionResult Index(string searchTerm=null)
+        {  
             var currentUser = manager.FindById(User.Identity.GetUserId());
-            var portfolios = _repo.GetPortfolios(currentUser.EntityIdScope); // db.Portfolios.Where(c => c.Entity_ID == currentUser.EntityIdScope).Include(p => p.Entity).Include(p => p.User);
+            var portfolios = _repo.GetPortfolios(currentUser.EntityIdScope, searchTerm); 
+            // db.Portfolios.Where(c => c.Entity_ID == currentUser.EntityIdScope).Include(p => p.Entity).Include(p => p.User);
+
+
+            ////return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId).Include(p => p.Entity).Include(p => p.User);
+            //// var security_detail = db.Security_Detail.Include(s => s.Country).Include(s => s.Country1).Include(s => s.Currency).Include(s => s.Currency1).Include(s => s.Currency2).Include(s => s.Currency3) ;
 
             //var userId = User.Identity.GetUserId();
            //var checkingAccountId = db.CheckingAccounts.Where(c => c.ApplicationUserId == userId).First().Id; 
@@ -84,6 +88,9 @@ namespace MetopeMVCApp.Controllers
 
             ViewBag.Entity_ID  =  new SelectList(db.Entities, "Entity_ID", "Entity_Code");
             ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name");
+            ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
+       
+
             ViewBag.entityId = currentUser.EntityIdScope;
             return View();
         }
@@ -148,9 +155,10 @@ namespace MetopeMVCApp.Controllers
             { 
                  return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
             }
-
     
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", portfolio.Entity_ID);
+            ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);
+
             ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name", portfolio.Manager);
 
             return View(portfolio);
@@ -161,7 +169,7 @@ namespace MetopeMVCApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken] 
-        public ActionResult Edit([Bind(Include="Entity_ID,Portfolio_Code,Portfolio_Name,Manager,Portfolio_Type,Portfolio_Base_Currency,PortfolIo_Domicile,Portfolio_Report_Currency,Inception_Date,Financial_Year_End,Custodian_Code,Active_Flag,System_Locked")] 
+        public ActionResult Edit([Bind(Include="Entity_ID,Portfolio_Code,Portfolio_Name,Manager,Portfolio_Type,Portfolio_Base_Currency,PortfolIo_Domicile,Portfolio_Report_Currency,Inception_Date,Financial_Year_End, Portfolio_Status ,Custodian_Code,Active_Flag,System_Locked")] 
                                     Portfolio portfolio)
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
@@ -224,10 +232,7 @@ namespace MetopeMVCApp.Controllers
         { 
             //return db.Users.Where(r => r.Entity_ID == iEntityId);
             return _repo.GetUsers(iEntityId);  
-
-            //return from t in db.Users
-            //       where t.Entity_ID == 1
-            //       select t;
+ 
         }
 
         protected override void Dispose(bool disposing)

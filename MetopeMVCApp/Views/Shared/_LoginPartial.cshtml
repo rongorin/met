@@ -6,22 +6,27 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li class="text-danger">blah @User.Identity.GetUserName()</li>
+        <li >
+            <a href="#" ><span class="text-danger">@Html.Action("EntityInScope", "Home") </span>  </a>
+
+        </li>
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-
-
+ 
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                Storage
+                Components
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
                 <li>@Html.ActionLink("Portfolios", "Index", "Portfolio")</li>
-                <li>@Html.ActionLink("Storage", "View", "Storage")</li>
+                <li>@Html.ActionLink("Securities", "Index", "SecurityDetail")</li>
+                <li class="divider"></li>
+                <li><a href="#">Other</a></li>
             </ul>
         </li>
+
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">EN<b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -45,3 +50,4 @@ else
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink"})</li>
     </ul>
 }
+ 

@@ -1,0 +1,432 @@
+﻿@model MetopeMVCApp.Models.Security_Detail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Security_Detail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Short_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Short_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Primary_Exch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Primary_Exch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Secondary_Exch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Secondary_Exch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Type_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Type_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price_Multiplier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price_Multiplier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Income_Frequency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Income_Frequency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issuer_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issuer_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ultimate_Issuer_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ultimate_Issuer_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Min_Lot_Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Min_Lot_Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Benchmark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Benchmark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Decimal_Precision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Decimal_Precision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvePrice_Rounding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvePrice_Rounding)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maturity_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maturity_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Coupon_Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Coupon_Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price_Exchange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price_Exchange)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Share_Class)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Share_Class)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Current_Market_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Current_Market_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Index_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Index_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clean_Price_Formula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clean_Price_Formula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Accrued_Income_Price_Formula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Accrued_Income_Price_Formula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Odd_First_Coupon_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Odd_First_Coupon_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Odd_Last_Coupon_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Odd_Last_Coupon_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Coupon_Anniversary_Indicator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Coupon_Anniversary_Indicator)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Track_EOM_Flag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Track_EOM_Flag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Next_Coupon_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Next_Coupon_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Previous_Coupon_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Previous_Coupon_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_Frequency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment_Frequency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Coupon_BusDay_Adjustment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Coupon_BusDay_Adjustment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Next_Ex_Div_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Next_Ex_Div_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ex_Div_BusDay_Adjustment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ex_Div_BusDay_Adjustment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ex_Div_Period)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ex_Div_Period)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticker)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ticker)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inet_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inet_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bloomberg_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bloomberg_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.External_Sec_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.External_Sec_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reuters_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reuters_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Call_Account_Flag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Call_Account_Flag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.System_Locked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.System_Locked)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Update_User)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Update_User)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Update_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Update_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Country_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Country_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country1.Country_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country1.Country_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency.ISO_Currency_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency.ISO_Currency_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency1.ISO_Currency_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency1.ISO_Currency_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency2.ISO_Currency_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency2.ISO_Currency_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency3.ISO_Currency_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency3.ISO_Currency_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency_Pair.Base_Currency_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency_Pair.Base_Currency_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entity.Entity_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entity.Entity_Code)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

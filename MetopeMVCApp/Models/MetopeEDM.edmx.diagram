@@ -4,14 +4,37 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="433c006010954b4aa6709a19cd9bee3a" Name="Diagram1">
-        <EntityTypeShape EntityType="MetopeDbModel.Entity" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+      <Diagram DiagramId="433c006010954b4aa6709a19cd9bee3a" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="MetopeDbModel.Entity" Width="1.5" PointX="1.875" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MetopeDbModel.Portfolio" Width="1.5" PointX="4.875" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MetopeDbModel.User" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
         <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Entity" ManuallyRouted="false" />
         <AssociationConnector Association="MetopeDbModel.FK_User_Entity" ManuallyRouted="false" />
         <AssociationConnector Association="MetopeDbModel.FK_Portfolio_User" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MetopeDbModel.AspNetUser" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MetopeDbModel.Country" Width="1.5" PointX="3.75" PointY="8.5" />
+        <EntityTypeShape EntityType="MetopeDbModel.Currency" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MetopeDbModel.Currency_Pair" Width="1.5" PointX="3.75" PointY="25.625" />
+        <EntityTypeShape EntityType="MetopeDbModel.Security_Detail" Width="1.5" PointX="6" PointY="20.5" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Country" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Country" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Country1" />
+        <AssociationConnector Association="MetopeDbModel.FK_Currency_Currency_Security_ID2" />
+        <AssociationConnector Association="MetopeDbModel.FK_Currency_Currency_Security_ID3" />
+        <AssociationConnector Association="MetopeDbModel.FK_Currency_Pair_Currency" />
+        <AssociationConnector Association="MetopeDbModel.FK_Currency_Pair_Currency1" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Currency" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Currency1" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Currency2" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency1" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency2" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency3" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency_Pair" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Entity" />
+        <EntityTypeShape EntityType="MetopeDbModel.Portfolio_List" Width="1.5" PointX="7.125" PointY="5.375" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_List_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_List_Portfolio" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

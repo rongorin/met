@@ -14,10 +14,14 @@ namespace MetopeMVCApp.Data
         { 
             _ctx = contxt;  //_ctx = new MetopeDbEntities();
         } 
-        public IQueryable<Portfolio> GetPortfolios(decimal iUserId)
+        public IQueryable<Portfolio> GetPortfolios(decimal iUserId, string searchTerm = null)
         {
-          return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId).Include(p => p.Entity).Include(p => p.User);
-            //return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) ; 
+          return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) 
+                  .Where(r => searchTerm == null || r.Portfolio_Name.StartsWith(searchTerm))
+                  .Include(p => p.Entity)
+
+                  .Include(p => p.User);
+              //return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) ; 
 
 
             //return _ctx.Replies.Where(r => r.TopicId == topicId);

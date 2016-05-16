@@ -15,11 +15,14 @@ namespace MetopeMVCApp.Models.MyMetaData
         public object Portfolio_Code { get; set; }
         [Required]
         [StringLength(100)]
+        [Display(Name = "Portfolio name")]
         public object Portfolio_Name { get; set; }
- 
+
+        [Display(Name ="Inception date")] 
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public object Inception_Date { get; set; }
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Fin Year End")]  
         public object Financial_Year_End { get; set; }
   
     }

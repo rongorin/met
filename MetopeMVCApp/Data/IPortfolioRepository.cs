@@ -8,7 +8,7 @@ namespace MetopeMVCApp.Data
 {
     public interface IPortfolioRepository
     {
-        IQueryable<Portfolio> GetPortfolios(decimal iEntityId);
+        IQueryable<Portfolio> GetPortfolios(decimal iEntityId, string iSearchTerm=null);
         IQueryable<User> GetUsers(decimal iEntityId);
         Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode);
         void DeletePortfolio(decimal EntityId, string PortfolioCode);

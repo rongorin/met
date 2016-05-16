@@ -12,25 +12,25 @@ namespace MetopeMVCApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Entity
+    public partial class Country
     {
-        public Entity()
+        public Country()
         {
             this.Portfolios = new HashSet<Portfolio>();
-            this.Users = new HashSet<User>();
             this.Security_Detail = new HashSet<Security_Detail>();
-            this.Portfolio_List = new HashSet<Portfolio_List>();
+            this.Security_Detail1 = new HashSet<Security_Detail>();
         }
     
-        public decimal Entity_ID { get; set; }
-        public string Entity_Code { get; set; }
-        public string Entity_Name { get; set; }
-        public string Import_Folder { get; set; }
-        public string Export_Folder { get; set; }
+        public string Country_Code { get; set; }
+        public string Country_Name { get; set; }
+        public int Weekend_Start { get; set; }
+        public int Weekend_End { get; set; }
+        public string ISO_Country_Code { get; set; }
+        public string BB_Country_Code { get; set; }
+        public Nullable<bool> system_locked { get; set; }
     
         public virtual ICollection<Portfolio> Portfolios { get; set; }
-        public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail { get; set; }
-        public virtual ICollection<Portfolio_List> Portfolio_List { get; set; }
+        public virtual ICollection<Security_Detail> Security_Detail1 { get; set; }
     }
 }

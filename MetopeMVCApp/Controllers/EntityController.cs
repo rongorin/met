@@ -10,8 +10,10 @@ using MetopeMVCApp.Models;
 
 namespace MetopeMVCApp.Controllers
 {
+     [Authorize(Roles = "Admin")]
     public class EntityController : Controller
     {
+
         private MetopeDbEntities db = new MetopeDbEntities();
 
         // GET: /Entity/
@@ -62,6 +64,7 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: /Entity/Edit/5
+
         public ActionResult Edit(decimal id)
         {
             if (id == null)
