@@ -12,7 +12,8 @@ using System.Diagnostics;
 using Microsoft.AspNet.Identity;
 using ASP.MetopeNspace.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
-using MetopeMVCApp.Data; 
+using MetopeMVCApp.Data;
+using PagedList;
 
 
 namespace MetopeMVCApp.Controllers
@@ -41,10 +42,11 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: /Portfolio/
-        public ActionResult Index(string searchTerm=null)
+        public ActionResult Index(int page=1, string searchTerm=null)
         {  
             var currentUser = manager.FindById(User.Identity.GetUserId());
-            var portfolios = _repo.GetPortfolios(currentUser.EntityIdScope, searchTerm); 
+            var portfolios = _repo.GetPortfolios(currentUser.EntityIdScope, page, searchTerm); 
+
             // db.Portfolios.Where(c => c.Entity_ID == currentUser.EntityIdScope).Include(p => p.Entity).Include(p => p.User);
 
 
@@ -54,9 +56,12 @@ namespace MetopeMVCApp.Controllers
             //var userId = User.Identity.GetUserId();
            //var checkingAccountId = db.CheckingAccounts.Where(c => c.ApplicationUserId == userId).First().Id; 
 
-
+            if(Request.IsAjaxRequest())
+            {
+                return PartialView("_Portfolios1", portfolios);
+            }
             manager.Dispose();
-            return View(portfolios.ToList());
+            return View(portfolios);
         }
 
         // GET: /Portfolio/Details/ 5,'abc'
@@ -78,6 +83,7 @@ namespace MetopeMVCApp.Controllers
             {
                 return HttpNotFound();
             }
+ 
             return View(portfolio);
         }
 

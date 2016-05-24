@@ -1,0 +1,24 @@
+﻿@model IEnumerable<MetopeMVCApp.Models.Portfolio>
+<div id="portfolioListing">
+    @if (!Model.Any())
+    {
+        <h3>Sorry!</h3>
+        <p>Looks like no results for that search text</p>
+    }
+    
+    @foreach (var item in Model)
+    {
+        <div>
+            <h4>@item.Portfolio_Name</h4>
+            @Html.ActionLink("Edit", "Edit", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
+            @Html.ActionLink("Details", "Details", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
+            @Html.ActionLink("Delete", "Delete", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })
+
+
+            <div>
+                @item.Portfolio_Type, @item.Financial_Year_End 
+            </div> 
+            <hr />
+        </div>
+    }
+</div>

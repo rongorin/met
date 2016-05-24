@@ -1,120 +1,64 @@
-﻿@model IEnumerable<MetopeMVCApp.Models.Portfolio>
-
+﻿@model IPagedList<MetopeMVCApp.Models.Portfolio>
+ 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-
 <div class="row">
     <div class="col-md-8">
-        @Html.ActionLink("Create New", "Create")
-     </div>
-        <div class="col-md-4">
-
-            <form method="get">
-                <input type="search" name="searchTerm" class="btn btn-default" />
-                <input type="submit" name="Search by Port name" class="btn btn-default" />
-            </form>
-
-        </div>
+        <h3>Index</h3>
     </div>
 
- 
-        @if (TempData["ResultMessage"] != null)
-        {
-            <div class="alert alert-success alert-dismissable">
-                <button class="close" data-dismiss="alert">&times;</button>
-                @TempData["ResultMessage"]
-            </div>
-        } 
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Portfolio_Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Portfolio_Type)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Portfolio_Base_Currency)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PortfolIo_Domicile)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Portfolio_Report_Currency)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Inception_Date)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Financial_Year_End)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Custodian_Code)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Active_Flag)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.System_Locked)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Entity.Entity_Code)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.User.User_Name)
-                </th>
-                <th></th>
-            </tr>
+    <div class="col-md-4 "> 
+        <form class='form-inline' role='form' id='SearchForm' style="margin-top: 15px">
+            <input type='text' class='form-control input-sm' id='search-text' placeholder='Enter search text'>
+            <button type='submit' class='btn btn-success btn-sm' id='search-btn'>Search</button>
+        </form>
+     
+            @*using (Ajax.BeginForm(
+             new AjaxOptions
+             {
+                 HttpMethod = "get",
+                 InsertionMode = InsertionMode.Replace,
 
-            @foreach (var item in Model)
+                 UpdateTargetId = "portfolioListing"
+             }))
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Portfolio_Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Portfolio_Type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Portfolio_Base_Currency)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PortfolIo_Domicile)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Portfolio_Report_Currency)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Inception_Date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Financial_Year_End)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Custodian_Code)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Active_Flag)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.System_Locked)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Entity.Entity_Code)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.User.User_Name)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
-                        @Html.ActionLink("Details", "Details", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
-                        @Html.ActionLink("Delete", "Delete", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })
-                    </td>
-                </tr>
-            }
 
-        </table>
+                <h3>
+                    <input type="search" name="searchTerm" class="btn btn-default" placeholder="Search" />
+                    <input type="submit" name="Search by Port name" value="Search" class="btn btn-default" />
+                </h3>
+
+            }
+            *@
+
+        </div>
+</div>
+@if (TempData["ResultMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button class="close" data-dismiss="alert">&times;</button>
+        @TempData["ResultMessage"]
+    </div>
+} 
+
+@Html.Partial("_Portfolios1", Model)
+
+@section Scripts {
+  <script type='text/javascript'>
+    $(function () {
+        $('#SearchForm').submit(function (event) {
+            event.preventDefault();
+            var form = $(this).parent("form");
+            console.log('test log' );
+            var mySearchTerm = $('#search-text').val();
+            $.get('/Portfolio/Index', { page: 1, searchTerm: mySearchTerm })
+                .success(function (data) {
+                    $('#portfolioListing').html(data);
+                });
+        });
+    });
+</script>
+
+}

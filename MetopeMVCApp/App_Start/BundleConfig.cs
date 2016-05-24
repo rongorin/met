@@ -16,7 +16,7 @@ namespace ASP.MetopeNspace
             var nullOrderer = new NullOrderer();
 
             var cssBundle = new StyleBundle("~/bundles/css");
-            cssBundle.Include("~/Content/Site.less", "~/Content/bootstrap/bootstrap.less", "~/Content/myCustom.css");
+            cssBundle.Include("~/Content/Site.less", "~/Content/bootstrap/bootstrap.less", "~/Content/PagedList.css,", "~/Content/myCustom.css");
             cssBundle.Transforms.Add(cssTransformer);
             cssBundle.Orderer = nullOrderer;
             bundles.Add(cssBundle);
@@ -28,8 +28,8 @@ namespace ASP.MetopeNspace
             //cssBundle2.Orderer = nullOrderer;
             //bundles.Add(cssBundle2);
 
-            var jqueryBundle = new ScriptBundle("~/bundles/jquery");
-            jqueryBundle.Include("~/Scripts/jquery-{version}.js");
+            var jqueryBundle = new ScriptBundle("~/bundles/jqueryThings");
+            jqueryBundle.Include("~/Scripts/jquery-{version}.js", "~/Scripts/jquery-ui-{version}.js", "~/Scripts/jquery.validate*");
             jqueryBundle.Transforms.Add(jsTransformer);
             jqueryBundle.Orderer = nullOrderer;
             bundles.Add(jqueryBundle);
