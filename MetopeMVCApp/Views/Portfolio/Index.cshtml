@@ -2,18 +2,21 @@
  
 @{
     ViewBag.Title = "Index";
+    
 }
 
 <div class="row">
     <div class="col-md-8">
-        <h3>Index</h3>
+        <h3>Portfolios Listing</h3>
     </div>
 
     <div class="col-md-4 "> 
         <form class='form-inline' role='form' id='SearchForm' style="margin-top: 15px">
             <input type='text' class='form-control input-sm' id='search-text' placeholder='Enter search text'>
             <button type='submit' class='btn btn-success btn-sm' id='search-btn'>Search</button>
+   
         </form>
+
      
             @*using (Ajax.BeginForm(
              new AjaxOptions
@@ -35,6 +38,7 @@
 
         </div>
 </div>
+
 @if (TempData["ResultMessage"] != null)
 {
     <div class="alert alert-success alert-dismissable">
@@ -43,22 +47,25 @@
     </div>
 } 
 
-@Html.Partial("_Portfolios1", Model)
+@Html.Partial("_Portfolios", Model)
 
 @section Scripts {
   <script type='text/javascript'>
+  
+    var mySearchingUrl = mtpApp.Urls.baseUrl + "Portfolio/Index";
     $(function () {
         $('#SearchForm').submit(function (event) {
             event.preventDefault();
             var form = $(this).parent("form");
             console.log('test log' );
             var mySearchTerm = $('#search-text').val();
-            $.get('/Portfolio/Index', { page: 1, searchTerm: mySearchTerm })
+            $.get(mySearchingUrl, { page: 1, searchTerm: mySearchTerm })
                 .success(function (data) {
                     $('#portfolioListing').html(data);
                 });
         });
     });
+
 </script>
 
 }

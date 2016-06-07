@@ -5,109 +5,110 @@
 }
 
 <h2>Details</h2>
-
-<div>
-    <h4>Portfolio</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Portfolio_Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Portfolio_Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Portfolio_Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Portfolio_Type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Portfolio_Base_Currency)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Portfolio_Base_Currency)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PortfolIo_Domicile)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PortfolIo_Domicile)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Portfolio_Report_Currency)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Portfolio_Report_Currency)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Inception_Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Inception_Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Financial_Year_End)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Financial_Year_End)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Custodian_Code)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Custodian_Code)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Active_Flag)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Active_Flag)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.System_Locked)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.System_Locked)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Entity.Entity_Code)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Entity.Entity_Code)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User.User_Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.User_Name)
-        </dd>
-
-    </dl>
+<div class="form-group row">
+    <div class="col-md-3 control-label">
+        @Html.LabelFor(model => model.Portfolio_Name)
+    </div>
+    <div class="col-md-9">
+        @Model.Portfolio_Name
+    </div>
 </div>
+<div class="form-group row">
+    <div class="col-md-3 control-label">
+        @Html.LabelFor(model => model.Portfolio_Type)
+    </div>
+    <div class="col-md-9">
+        @Model.Portfolio_Type
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-md-3 control-label">
+        @Html.LabelFor(model => model.Portfolio_Code)
+    </div>
+    <div class="col-md-9">
+        @Model.Portfolio_Code
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-3 control-label">
+        @Html.LabelFor(model => model.Portfolio_Base_Currency)
+    </div>
+    <div class="col-md-9">
+        @Model.Portfolio_Base_Currency
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-md-3 control-label">
+        @Html.LabelFor(model => model.PortfolIo_Domicile)
+    </div>
+    <div class="col-md-9">
+        @Model.PortfolIo_Domicile
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-3 control-label">
+        @Html.LabelFor(model => model.Portfolio_Report_Currency)
+    </div>
+    <div class="col-md-9">
+        @Model.Portfolio_Report_Currency
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-md-3 control-label">
+        @Html.LabelFor(model => model.Inception_Date)
+        @String.Format("{0:d MMM yyyy}", @Model.Financial_Year_End) 
+    </div>
+    <div class="col-md-9">
+        @Model.Inception_Date
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-3 control-label">
+        @Html.LabelFor(model => model.Portfolio_Type)
+    </div>
+    <div class="col-md-9">
+        @Model.Portfolio_Type
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-md-3 control-label">
+        @Html.LabelFor(model => model.Financial_Year_End)
+    </div>
+    <div class="col-md-9"> 
+        @String.Format("{0:d MMM yyyy}", @Model.Financial_Year_End) 
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-3 control-label">
+        @Html.LabelFor(model => model.Active_Flag)
+    </div>
+    <div class="col-md-9">
+        @Model.Active_Flag
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-md-3 control-label">
+        @Html.LabelFor(model => model.System_Locked)
+    </div>
+    <div class="col-md-9">
+        @Model.System_Locked
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-md-3 control-label">
+        @Html.LabelFor(model => model.User.User_Name)
+    </div>
+    <div class="col-md-9">
+        @Model.User.User_Name
+    </div>
+</div>
+  
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")

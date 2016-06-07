@@ -52,7 +52,10 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Security_ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.Security_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Security_ID })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Security_ID }) |
+            <a href="@Url.Action("Details", "SecurityDetail", new { id = item.Security_ID })" class="icon">
+                <span class="badge">Price history</span>
+            </a>
         </td>
     </tr>
 }

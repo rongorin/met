@@ -11,7 +11,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Portfolio</h4>
+        <h4>Portfolio <b>  @Model.Portfolio_Code </b> </h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.ValidationMessage("Error")
@@ -44,9 +44,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Portfolio_Type, new { @class = "control-label col-md-2 input-sm" })
+            @Html.LabelFor(model => model.Portfolio_Type, new { @class = "control-label col-md-2 " })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Portfolio_Type, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Portfolio_Type, new { @class = "form-control input-sm" })
                 @Html.ValidationMessageFor(model => model.Portfolio_Type)
             </div>
         </div>
@@ -55,7 +55,7 @@
             @Html.LabelFor(model => model.Portfolio_Base_Currency, new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
              
-                @Html.DropDownList("Portfolio_Base_Currency", null, string.Empty,  new { @class = "form-control"})
+                @Html.DropDownList("Portfolio_Base_Currency", null, string.Empty, new { @class = "form-control input-sm" })
 
                 @Html.ValidationMessageFor(model => model.Portfolio_Base_Currency)
 
@@ -64,8 +64,10 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.PortfolIo_Domicile, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.PortfolIo_Domicile, new { @class = "form-control  input-sm" })
+            <div class="col-md-10"> 
+                @Html.DropDownList("PortfolIo_Domicile", null, string.Empty, new { @class = "form-control input-sm" })
+
+
                 @Html.ValidationMessageFor(model => model.PortfolIo_Domicile)
             </div>
         </div>
@@ -73,7 +75,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Portfolio_Report_Currency, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Portfolio_Report_Currency, new { @class = "form-control  input-sm" })
+                @Html.DropDownList("Portfolio_Report_Currency", null, string.Empty, new { @class = "form-control input-sm" })
+          
                 @Html.ValidationMessageFor(model => model.Portfolio_Report_Currency)
             </div>
         </div>
@@ -81,7 +84,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Inception_Date, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Inception_Date, new { @class = "form-control  input-sm" })
+                @Html.TextBoxFor(model => model.Inception_Date , "{0:dd/MM/yyyy}", new { @class = "form-control  input-sm" })
                 @Html.ValidationMessageFor(model => model.Inception_Date)
             </div>
         </div>
@@ -89,7 +92,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Financial_Year_End, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Financial_Year_End, new { @class = "form-control  input-sm" })
+                @Html.TextBoxFor(model => model.Financial_Year_End, "{0:dd/MM/yyyy}", new { @class = "form-control  input-sm" })
                 @Html.ValidationMessageFor(model => model.Financial_Year_End)
             </div>
         </div>

@@ -8,6 +8,11 @@
     @Styles.Render("~/bundles/css") 
     @Scripts.Render("~/bundles/modernizr")   
 
+    <script type="text/javascript"> 
+        var mtpApp = mtpApp || {};
+        mtpApp.Urls = mtpApp.Urls || {};
+        mtpApp.Urls.baseUrl = '@Url.Content("~")'; 
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -46,5 +51,7 @@
     @Scripts.Render("~/bundles/jqueryThings")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+
 </body>
 </html>

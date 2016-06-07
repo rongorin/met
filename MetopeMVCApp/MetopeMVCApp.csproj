@@ -420,6 +420,8 @@
       <DependentUpon>MetopeEDM.edmx</DependentUpon>
       <LastGenOutput>MetopeEDM.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\Test.pubxml" />
+    <None Include="Properties\PublishProfiles\Web Localhost Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -486,6 +488,9 @@
     <Content Include="Views\SecurityDetail\Index.cshtml" />
     <Content Include="Views\Portfolio\_Portfolios1.cshtml" />
     <Content Include="Views\Portfolio\_Portfolios.cshtml" />
+    <None Include="Web.Test.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

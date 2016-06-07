@@ -58,7 +58,7 @@ namespace MetopeMVCApp.Controllers
 
             if(Request.IsAjaxRequest())
             {
-                return PartialView("_Portfolios1", portfolios);
+                return PartialView("_Portfolios", portfolios);
             }
             manager.Dispose();
             return View(portfolios);
@@ -83,7 +83,7 @@ namespace MetopeMVCApp.Controllers
             {
                 return HttpNotFound();
             }
- 
+    
             return View(portfolio);
         }
 
@@ -95,7 +95,9 @@ namespace MetopeMVCApp.Controllers
             ViewBag.Entity_ID  =  new SelectList(db.Entities, "Entity_ID", "Entity_Code");
             ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name");
             ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
-       
+            ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
+            ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name");
+             
 
             ViewBag.entityId = currentUser.EntityIdScope;
             return View();
@@ -164,6 +166,8 @@ namespace MetopeMVCApp.Controllers
     
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", portfolio.Entity_ID);
             ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);
+            ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Report_Currency);
+            ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", portfolio.PortfolIo_Domicile);
 
             ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name", portfolio.Manager);
 

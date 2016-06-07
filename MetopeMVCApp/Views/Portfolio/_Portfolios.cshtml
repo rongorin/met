@@ -1,24 +1,67 @@
-﻿@model IEnumerable<MetopeMVCApp.Models.Portfolio>
+﻿
+@model IPagedList<MetopeMVCApp.Models.Portfolio>
+
 <div id="portfolioListing">
-    @if (!Model.Any())
-    {
-        <h3>Sorry!</h3>
-        <p>Looks like no results for that search text</p>
-    }
-    
-    @foreach (var item in Model)
-    {
-        <div>
-            <h4>@item.Portfolio_Name</h4>
-            @Html.ActionLink("Edit", "Edit", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
-            @Html.ActionLink("Details", "Details", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
-            @Html.ActionLink("Delete", "Delete", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table table-condensed table-striped">
+     
+            @if (!Model.Any())
+            {
+                <h3>Sorry!</h3>
+                <p>Looks like no results for that search text</p>
+            }
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Portfolio_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Financial_Year_End)
+            </th>
+            
+            <th></th>
+        </tr> 
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td width="30%">
+                       @item.Portfolio_Name
+                    </td>
+                    <td>
+                        @String.Format("{0:d MMM yyyy}", item.Financial_Year_End)
+      
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
+                            <span class=" glyphicon glyphicon-zoom-in"></span>
+                        </a>&nbsp;&nbsp;
+
+                        
+                        <a href="@Url.Action("Edit", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>&nbsp;&nbsp;
+   
+                        
+                        <a href="@Url.Action("Delete", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
+                            <span class="glyphicon glyphicon-trash" ></span>
+                        </a> &nbsp;&nbsp; 
+                         
 
 
-            <div>
-                @item.Portfolio_Type, @item.Financial_Year_End 
-            </div> 
-            <hr />
-        </div>
-    }
+                         
+                    </td> 
+            </tr>
+            } 
+    </table>  
+    <div id="foot" >
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page }))
+        @*,PagedListRenderOptions.MinimalWithItemCountText*@
+    </div>
+
+
+   
+
+
 </div>

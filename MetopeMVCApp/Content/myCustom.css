@@ -14,4 +14,12 @@ select,
 textarea {
     max-width: 200px;
 }
- 
+ /*!   -- puts the paging at the bottom of the page fixed, so it doesnt scroll. not using.
+ #foot{
+    position:fixed !important;
+    width:100%;
+    bottom:0;
+    text-align:center;
+    padding:5px 0;
+    background:#f0f0f0; 
+}*/ 

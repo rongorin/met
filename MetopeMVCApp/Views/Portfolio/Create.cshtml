@@ -70,7 +70,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.PortfolIo_Domicile, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.PortfolIo_Domicile)
+                    @Html.DropDownList("PortfolIo_Domicile", String.Empty) 
                     @Html.ValidationMessageFor(model => model.PortfolIo_Domicile)
                 </div>
             </div>
@@ -78,7 +78,8 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Portfolio_Report_Currency, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Portfolio_Report_Currency)
+                    @Html.DropDownList("Portfolio_Report_Currency", String.Empty)
+                     
                     @Html.ValidationMessageFor(model => model.Portfolio_Report_Currency)
                 </div>
             </div>

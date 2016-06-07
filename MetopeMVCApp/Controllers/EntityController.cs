@@ -30,7 +30,9 @@ namespace MetopeMVCApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Entity entity = db.Entities.Find(id);
+
+
+            Entity entity = db.Entities.Find(id);  // or :   db.Entities.Single(r => r.Entity_ID == id);
             if (entity == null)
             {
                 return HttpNotFound();

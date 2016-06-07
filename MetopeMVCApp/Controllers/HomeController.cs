@@ -27,11 +27,9 @@ namespace ASP.MetopeNspace.Controllers
 
             var strEntityName = GetEntityName(User.Identity.GetUserId());
             if (strEntityName == "")
-                return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); 
-
-            Session["EntityInnScope"] = strEntityName;
-
-            //MetopeMVCApp.Data.Constants.EntityNameInScope = entity.Entity_Name; 
+                return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable);
+              
+            Session["EntityInnScope"] = strEntityName; 
 
             return View();
         }
@@ -42,6 +40,7 @@ namespace ASP.MetopeNspace.Controllers
            
             return View();
         }
+
        [AllowAnonymous]  
         public ActionResult Contact()
         {
@@ -49,6 +48,7 @@ namespace ASP.MetopeNspace.Controllers
 
             return View();
         }
+
        private string GetEntityName(string iUuserId)
        { 
            var currentUser = manager.FindById(iUuserId); 
@@ -69,6 +69,7 @@ namespace ASP.MetopeNspace.Controllers
                var strEntityName = GetEntityName(User.Identity.GetUserId());
                if (strEntityName == "")
                    return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable);
+
                Session["EntityInnScope"] = strEntityName;
 
            }
