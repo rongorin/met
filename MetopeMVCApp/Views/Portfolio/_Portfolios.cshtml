@@ -22,37 +22,39 @@
             
             <th></th>
         </tr> 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td width="30%">
-                       @item.Portfolio_Name
-                    </td>
-                    <td>
-                        @String.Format("{0:d MMM yyyy}", item.Financial_Year_End)
-      
-                    </td>
-                    <td>
-                        <a href="@Url.Action("Details", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
-                            <span class=" glyphicon glyphicon-zoom-in"></span>
-                        </a>&nbsp;&nbsp;
+        @foreach (var item in Model)
+        {
+            string RedStyle = item.Active_Flag == false ? "color:Red" : null; //will make the inactive portfolio show in Red
 
-                        
-                        <a href="@Url.Action("Edit", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </a>&nbsp;&nbsp;
-   
-                        
-                        <a href="@Url.Action("Delete", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
-                            <span class="glyphicon glyphicon-trash" ></span>
-                        </a> &nbsp;&nbsp; 
-                         
+        <tr>
+            <td width="30%" style="@RedStyle">
+                @item.Portfolio_Name
+            </td>
+            <td>
+                @String.Format("{0:d MMM yyyy}", item.Financial_Year_End)
+
+            </td>
+            <td>
+                <a href="@Url.Action("Details", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
+                    <span class=" glyphicon glyphicon-zoom-in"></span>
+                </a>&nbsp;&nbsp;
 
 
-                         
-                    </td> 
-            </tr>
-            } 
+                <a href="@Url.Action("Edit", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>&nbsp;&nbsp;
+
+
+                <a href="@Url.Action("Delete", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a> &nbsp;&nbsp;
+
+
+
+
+            </td>
+        </tr>
+        } 
     </table>  
     <div id="foot" >
         @Html.PagedListPager(Model, page => Url.Action("Index",

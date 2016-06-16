@@ -84,7 +84,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Inception_Date, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Inception_Date , "{0:dd/MM/yyyy}", new { @class = "form-control  input-sm" })
+                @Html.TextBoxFor(model => model.Inception_Date, "{0:dd MMM yyyy}", new { @class = "form-control  input-sm" })
                 @Html.ValidationMessageFor(model => model.Inception_Date)
             </div>
         </div>
@@ -92,7 +92,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Financial_Year_End, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Financial_Year_End, "{0:dd/MM/yyyy}", new { @class = "form-control  input-sm" })
+                @Html.TextBoxFor(model => model.Financial_Year_End, "{0:dd MMM yyyy}", new { @class = "form-control  input-sm" })
                 @Html.ValidationMessageFor(model => model.Financial_Year_End)
             </div>
         </div>
@@ -108,20 +108,27 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Active_Flag, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Active_Flag, new { @class = "form-control  input-sm" })
-                @Html.ValidationMessageFor(model => model.Active_Flag)
+               
+                @Html.DropDownList("Active_Flag", (SelectList)ViewBag.MyActiveFlagList, new { @class = "form-control input-sm" })
+                
+                @Html.ValidationMessageFor(model => model.Active_Flag) 
+                  
+
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.System_Locked, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.System_Locked, new { @class = "form-control  input-sm" })
+                @Html.DropDownList("System_Locked", (SelectList)ViewBag.MySysLockedList, new { @class = "form-control input-sm" })
+                 
                 @Html.ValidationMessageFor(model => model.System_Locked)
+
+
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.System_Locked, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Portfolio_Status, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Portfolio_Status, new { @class = "form-control  input-sm" })
                 @Html.ValidationMessageFor(model => model.Portfolio_Status)

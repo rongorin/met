@@ -40,6 +40,11 @@
          <img src="~/Content/img/MetopeHome-BannerFullThin.jpg" class="img-responsive" style="width:100%" alt="Image">
            
     </header>
+    <div id="sidebar">
+        @RenderSection("SideBar", required: false)
+
+
+    </div>
     <div class="container body-content"> 
         @RenderBody()
         <hr />

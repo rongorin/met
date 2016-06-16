@@ -169,6 +169,15 @@ namespace MetopeMVCApp.Controllers
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Report_Currency);
             ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", portfolio.PortfolIo_Domicile);
 
+
+            var selectListItems = new List<SelectListItem>();
+            selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
+            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
+
+            ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text", portfolio.Active_Flag);
+            ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", portfolio.System_Locked);
+
+
             ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name", portfolio.Manager);
 
             return View(portfolio);

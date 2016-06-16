@@ -23,3 +23,14 @@ textarea {
     padding:5px 0;
     background:#f0f0f0; 
 }*/ 
+
+
+ /* for adding the optional SideBar on right side for the Search  see http://weblogs.asp.net/scottgu/asp-net-mvc-3-layouts-and-sections-with-razor */
+ #body-content {
+     float: left;  
+ }
+ #sidebar {
+     float: right; 
+     width:255px;
+     margin:5px;
+ }
