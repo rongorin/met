@@ -59,10 +59,11 @@
 <div class="form-group row">
     <div class="col-md-3 control-label">
         @Html.LabelFor(model => model.Inception_Date)
-        @String.Format("{0:d MMM yyyy}", @Model.Financial_Year_End) 
+       
     </div>
-    <div class="col-md-9">
-        @Model.Inception_Date
+    <div class="col-md-9"> 
+        @String.Format("{0:d MMM yyyy}", @Model.Inception_Date)
+        
     </div>
 </div>
 <div class="form-group row">

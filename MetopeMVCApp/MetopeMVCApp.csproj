@@ -288,6 +288,7 @@
       <DependentUpon>MetopeEDM.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\MyMetaData\PortfolioModelMetatData.cs" />
+    <Compile Include="Models\MyMetaData\SecurityDetailModelMetaData.cs" />
     <Compile Include="Models\Portfolio.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
@@ -488,6 +489,7 @@
     <Content Include="Views\SecurityDetail\Index.cshtml" />
     <Content Include="Views\Portfolio\_Portfolios1.cshtml" />
     <Content Include="Views\Portfolio\_Portfolios.cshtml" />
+    <Content Include="Views\Shared\_SidebarSearch.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

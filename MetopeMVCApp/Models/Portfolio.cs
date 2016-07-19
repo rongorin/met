@@ -9,11 +9,9 @@
 
 namespace MetopeMVCApp.Models
 {
-    using MetopeMVCApp.Models.MyMetaData;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    [MetadataType(typeof(PortfolioModelMetatData))]
+    
     public partial class Portfolio
     {
         public Portfolio()

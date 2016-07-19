@@ -26,34 +26,34 @@
         {
             string RedStyle = item.Active_Flag == false ? "color:Red" : null; //will make the inactive portfolio show in Red
 
-        <tr>
-            <td width="30%" style="@RedStyle">
-                @item.Portfolio_Name
-            </td>
-            <td>
-                @String.Format("{0:d MMM yyyy}", item.Financial_Year_End)
+           <tr>
+                <td width="30%" style="@RedStyle">
+                    @item.Portfolio_Name
+                </td>
+                <td>
+                    @String.Format("{0:d MMM yyyy}", item.Financial_Year_End)
 
-            </td>
-            <td>
-                <a href="@Url.Action("Details", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
-                    <span class=" glyphicon glyphicon-zoom-in"></span>
-                </a>&nbsp;&nbsp;
-
-
-                <a href="@Url.Action("Edit", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </a>&nbsp;&nbsp;
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
+                        <span class=" glyphicon glyphicon-zoom-in"></span>
+                    </a>&nbsp;&nbsp;
 
 
-                <a href="@Url.Action("Delete", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
-                    <span class="glyphicon glyphicon-trash"></span>
-                </a> &nbsp;&nbsp;
+                    <a href="@Url.Action("Edit", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>&nbsp;&nbsp;
+
+
+                    <a href="@Url.Action("Delete", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a> &nbsp;&nbsp;
 
 
 
 
-            </td>
-        </tr>
+                </td>
+            </tr>
         } 
     </table>  
     <div id="foot" >

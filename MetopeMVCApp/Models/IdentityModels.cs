@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Diagnostics;
 namespace ASP.MetopeNspace.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
@@ -14,6 +15,8 @@ namespace ASP.MetopeNspace.Models
         public ApplicationDbContext()
             : base("MetopeSSFidentit")
         {
+
+            Database.Log = sql => Debug.Write(sql);
         }
     }
 }

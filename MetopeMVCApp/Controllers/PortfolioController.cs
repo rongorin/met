@@ -32,6 +32,9 @@ namespace MetopeMVCApp.Controllers
         //    : this(new PortfolioRepository())
         //{ 
         //}
+         
+
+
         public PortfolioController() 
         {
             this._repo = new PortfolioRepository(new MetopeDbEntities());
@@ -43,7 +46,7 @@ namespace MetopeMVCApp.Controllers
 
         // GET: /Portfolio/
         public ActionResult Index(int page=1, string searchTerm=null)
-        {  
+        { 
             var currentUser = manager.FindById(User.Identity.GetUserId());
             var portfolios = _repo.GetPortfolios(currentUser.EntityIdScope, page, searchTerm); 
 
@@ -66,16 +69,18 @@ namespace MetopeMVCApp.Controllers
 
         // GET: /Portfolio/Details/ 5,'abc'
         public ActionResult Details(decimal EntityId, string PortfolioCode)
-        {
+        { 
             var currentUser = manager.FindById(User.Identity.GetUserId());
              
             if (EntityId == null || PortfolioCode == null) 
-            {
+            { 
                  return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             } 
             if (currentUser.EntityIdScope != EntityId)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
+
+                throw new Exception("Not Acceptable");
+                //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
             } 
 
             Portfolio portfolio = _repo.GetPortfolioById(EntityId, PortfolioCode);
@@ -208,8 +213,19 @@ namespace MetopeMVCApp.Controllers
                     return RedirectToAction("Index");
                
                 }
-            } 
-            ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name", portfolio.Manager);
+            }
+            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", portfolio.Entity_ID);
+            ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);
+            ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Report_Currency);
+            ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", portfolio.PortfolIo_Domicile);
+
+            var selectListItems = new List<SelectListItem>();
+            selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
+            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
+
+            ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text", portfolio.Active_Flag);
+            ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", portfolio.System_Locked);
+             ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name", portfolio.Manager);
             return View(portfolio);
         }
 
