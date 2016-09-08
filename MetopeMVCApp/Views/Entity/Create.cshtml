@@ -18,8 +18,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Entity_Code, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Entity_Code)
+            <div class="col-md-10"> 
+                @Html.TextBoxFor(model => model.Entity_Code, new { @class = "form-control ", placeholder = "Enter the Code here..." })
                 @Html.ValidationMessageFor(model => model.Entity_Code)
             </div>
         </div>
@@ -27,7 +27,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Entity_Name, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Entity_Name)
+                @Html.TextBoxFor(model => model.Entity_Name, new { @class = "form-control ", placeholder = "Enter the Entity Name here..." })
+              
                 @Html.ValidationMessageFor(model => model.Entity_Name)
             </div>
         </div>
@@ -35,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Import_Folder, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Import_Folder)
+                @Html.TextBoxFor(model => model.Import_Folder, new { @class = "form-control " }) 
                 @Html.ValidationMessageFor(model => model.Import_Folder)
             </div>
         </div>
@@ -43,7 +44,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Export_Folder, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Export_Folder)
+                @Html.TextBoxFor(model => model.Export_Folder, new { @class = "form-control " }) 
                 @Html.ValidationMessageFor(model => model.Export_Folder)
             </div>
         </div>

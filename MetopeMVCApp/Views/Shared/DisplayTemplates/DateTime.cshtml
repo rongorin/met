@@ -1,0 +1,14 @@
+﻿@model System.DateTime?
+@{
+    /*string date = (Model.Ticks == 0 ? "" : Model.ToString("MM/dd/yyyy"));*/
+    string date;
+    if (!Model.HasValue || Model.Value.Ticks == 0)
+    {
+        date = "";
+    }
+    else
+    {
+        date = Model.Value.ToString("dd MMM yyyy"); /* with time part:  @Model.Value.ToString(" MM/dd/yyyy  @ hh : mm tt") */
+    }
+}
+@String.Format(date) 

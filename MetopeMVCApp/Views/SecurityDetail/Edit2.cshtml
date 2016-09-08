@@ -1,0 +1,208 @@
+﻿@model MetopeMVCApp.Models.Security_Detail
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit22</h2>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Security_Detail</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Security_ID) 
+
+        <div class="row">
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Entity_ID, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("Entity_ID", null, string.Empty, new { @class = "form-control input-sm" })
+                        @Html.ValidationMessageFor(model => model.Entity_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+               <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Short_Name, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Short_Name, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                        @Html.ValidationMessageFor(model => model.Short_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Security_Name, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Security_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Security_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div> 
+            @*-------------------------------------------------------------------------------*@
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Country_Of_Domicile, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("Country_Of_Domicile", null, string.Empty, new { @class = "form-control input-sm" })
+                        @Html.ValidationMessageFor(model => model.Country_Of_Domicile, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Primary_Exch, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Primary_Exch, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Primary_Exch, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Secondary_Exch, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Secondary_Exch, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Secondary_Exch, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div> 
+             
+            @*-------------------------------------------------------------------------------*@
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Country_Of_Risk, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("Country_Of_Risk", null, string.Empty, new { @class = "form-control input-sm" })
+                        @Html.ValidationMessageFor(model => model.Country_Of_Risk, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Security_Type_Code, htmlAttributes: new {  @class = "control-label col-md-4 input-sm input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Security_Type_Code, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Security_Type_Code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Price_Multiplier, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Price_Multiplier, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Price_Multiplier, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div> 
+            </div>
+            @*--------------Income_Frequency ------------Issuer_Code--------------Ultimate_Issuer_Code---------------------------------------*@
+        
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Income_Frequency, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Income_Frequency, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Income_Frequency, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Issuer_Code, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Issuer_Code, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Issuer_Code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Ultimate_Issuer_Code, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Ultimate_Issuer_Code, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Ultimate_Issuer_Code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Asset_Currency, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("Asset_Currency", null, string.Empty, new { @class = "form-control input-sm" })
+                        @Html.ValidationMessageFor(model => model.Asset_Currency, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Min_Lot_Size, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Min_Lot_Size, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Min_Lot_Size, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Benchmark_Portfolio, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Benchmark_Portfolio, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Benchmark_Portfolio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Decimal_Precision, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Decimal_Precision, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Decimal_Precision, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AvePrice_Rounding, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.AvePrice_Rounding, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AvePrice_Rounding, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Issue_Date, htmlAttributes: new {  @class = "control-label col-md-4 input-sm" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Issue_Date, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Issue_Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

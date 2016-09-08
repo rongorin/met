@@ -1,4 +1,5 @@
 ﻿@model IPagedList<MetopeMVCApp.Models.Portfolio>
+
  
 @{
     ViewBag.Title = "Index";
@@ -11,13 +12,17 @@
     </div>
 
     <div class="col-md-4 "> 
-        @section  Sidebar {
-            @Html.Partial("_SidebarSearch",null ) 
-        }
+        @* @section  Sidebar {     >> Not using this partial view as it isnt responsive when resizing browser
+           @Html.Partial("_SidebarSearch",null )
+        }*@
+        <div > 
+            <form class='form-inline' role='form' id='SearchForm' style="margin-top: 15px">
+                <input type='text' class='form-control input-sm' id='search-text' placeholder='Enter search text'>
+                <button type='submit' class='btn btn-success btn-sm' id='search-btn'>Search</button>
+            </form>
+        </div >
 
-         
-     
-            @*using (Ajax.BeginForm(
+                @*using (Ajax.BeginForm(
              new AjaxOptions
              {
                  HttpMethod = "get",
@@ -33,9 +38,9 @@
                 </h3>
 
             }
-            *@
+                *@
 
-        </div>
+     </div>
 </div>
 
 @if (TempData["ResultMessage"] != null)

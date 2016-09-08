@@ -1,4 +1,11 @@
 ﻿@model IEnumerable<MetopeMVCApp.Models.Security_Detail>
+@helper Truncate(string input, int length)
+{
+    if (input.Length <= length)
+        { @input}
+    else { @input.Substring(0, length)<text>...</text>
+    }
+}
 
 @{
     ViewBag.Title = "Index";
@@ -36,7 +43,7 @@
             @Html.DisplayFor(modelItem => item.Ticker)
         </td>
         <td width="30%"> 
-            @Html.DisplayFor(modelItem => item.Security_Name)
+            @Truncate(item.Security_Name, 40)
         </td>
  
         <td>

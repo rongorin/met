@@ -14,6 +14,7 @@ using ASP.MetopeNspace.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MetopeMVCApp.Data;
 using PagedList;
+using MetopeMVCApp.Filters;
 
 
 namespace MetopeMVCApp.Controllers
@@ -90,11 +91,12 @@ namespace MetopeMVCApp.Controllers
             }
     
             return View(portfolio);
-        }
-
-        // GET: /Portfolio/Create
+        } 
+        // GET: /Portfolio/Create 
+       
+        [LogAttribuite]
         public ActionResult Create()
-        {
+        {  
             var currentUser = manager.FindById(User.Identity.GetUserId());
 
             ViewBag.Entity_ID  =  new SelectList(db.Entities, "Entity_ID", "Entity_Code");
@@ -112,7 +114,7 @@ namespace MetopeMVCApp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] 
         public ActionResult Create([Bind(Exclude="Entity_ID")] Portfolio portfolio)
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());

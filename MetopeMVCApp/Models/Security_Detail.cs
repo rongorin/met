@@ -9,12 +9,13 @@
 
 namespace MetopeMVCApp.Models
 {
-    using MetopeMVCApp.Models.MyMetaData;
     using System;
-    using System.Collections.Generic;
+    using System.Collections.Generic; 
+    using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityDetailModelMetaData))]
-    
+
+
     public partial class Security_Detail
     {
         public Security_Detail()
@@ -38,7 +39,6 @@ namespace MetopeMVCApp.Models
         public string Ultimate_Issuer_Code { get; set; }
         public string Asset_Currency { get; set; }
         public Nullable<decimal> Min_Lot_Size { get; set; }
-        public Nullable<decimal> Benchmark { get; set; }
         public int Decimal_Precision { get; set; }
         public int AvePrice_Rounding { get; set; }
         public Nullable<System.DateTime> Issue_Date { get; set; }
@@ -75,6 +75,7 @@ namespace MetopeMVCApp.Models
         public string Last_Update_User { get; set; }
         public System.DateTime Last_Update_Date { get; set; }
         public string Security_Status { get; set; }
+        public string Benchmark_Portfolio { get; set; }
     
         public virtual Country Country { get; set; }
         public virtual Country Country1 { get; set; }

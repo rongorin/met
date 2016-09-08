@@ -36,18 +36,18 @@ namespace ASP.MetopeNspace.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "General stuff.";
            
             return View();
         }
 
-       [AllowAnonymous]  
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+       //[AllowAnonymous]  
+       // public ActionResult Contact()
+       // {
+       //     ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
+       //     return View();
+       // }
 
        private string GetEntityName(string iUuserId)
        { 

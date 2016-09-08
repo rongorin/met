@@ -18,8 +18,8 @@ namespace MetopeMVCApp.Models
         {
             this.Portfolios = new HashSet<Portfolio>();
             this.Users = new HashSet<User>();
-            this.Security_Detail = new HashSet<Security_Detail>();
             this.Portfolio_List = new HashSet<Portfolio_List>();
+            this.Security_Detail = new HashSet<Security_Detail>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -30,7 +30,7 @@ namespace MetopeMVCApp.Models
     
         public virtual ICollection<Portfolio> Portfolios { get; set; }
         public virtual ICollection<User> Users { get; set; }
-        public virtual ICollection<Security_Detail> Security_Detail { get; set; }
         public virtual ICollection<Portfolio_List> Portfolio_List { get; set; }
+        public virtual ICollection<Security_Detail> Security_Detail { get; set; }
     }
 }

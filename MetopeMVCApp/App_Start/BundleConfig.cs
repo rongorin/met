@@ -16,6 +16,7 @@ namespace ASP.MetopeNspace
             var nullOrderer = new NullOrderer();
 
             var cssBundle = new StyleBundle("~/bundles/css");
+            //cssBundle.Include("~/Content/Site.less", "~/Content/bootstrapSlate.css", "~/Content/PagedList.css,", "~/Content/myCustom.css");
             cssBundle.Include("~/Content/Site.less", "~/Content/bootstrap/bootstrap.less", "~/Content/PagedList.css,", "~/Content/myCustom.css");
             cssBundle.Transforms.Add(cssTransformer);
             cssBundle.Orderer = nullOrderer;

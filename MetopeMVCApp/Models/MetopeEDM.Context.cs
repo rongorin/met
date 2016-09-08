@@ -32,7 +32,7 @@ namespace MetopeMVCApp.Models
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }
         public virtual DbSet<Currency_Pair> Currency_Pair { get; set; }
-        public virtual DbSet<Security_Detail> Security_Detail { get; set; }
         public virtual DbSet<Portfolio_List> Portfolio_List { get; set; }
+        public virtual DbSet<Security_Detail> Security_Detail { get; set; }
     }
 }

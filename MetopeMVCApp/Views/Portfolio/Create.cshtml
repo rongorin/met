@@ -19,7 +19,8 @@
 
             @Html.LabelFor(model => model.Entity_ID, "Entity_ID", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Entity_ID", String.Empty)
+                @Html.EditorFor(model => model.Entity_ID, "DDLEntities") 
+          @* @Html.DropDownList("Entity_ID", String.Empty)*@ 
                 @Html.ValidationMessageFor(model => model.Entity_ID)
             </div>
         </div>
@@ -43,9 +44,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Manager, "Manager", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.managers, String.Empty, new { @class = "form-control"})
-                    @* @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.MyManagerList)
-                        @Html.EditorFor(model => model.Manager) *@
+                @Html.EditorFor(model => model.Manager, "DDLManagers")
+                @* @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.managers, String.Empty, new { @class = "form-control"})
+                        @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.MyManagerList)
+                             @Html.EditorFor(model => model.Manager) *@
                     @Html.ValidationMessageFor(model => model.Manager)
                 </div>
             </div>
@@ -61,9 +63,13 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Portfolio_Base_Currency, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("Portfolio_Base_Currency", String.Empty)
-                    @Html.ValidationMessageFor(model => model.Portfolio_Base_Currency)
- 
+                     @* @Html.DropDownListFor(n => n.Portfolio_Base_Currency,
+                         (SelectList)ViewBag.Portfolio_Base_Currency1 )
+                       @Html.EditorFor(model => model.Portfolio_Base_Currency, "DDLCurrency") *@ 
+
+                   @Html.DropDownList("Portfolio_Base_Currency", String.Empty) 
+                     @Html.ValidationMessageFor(model => model.Portfolio_Base_Currency)
+                     
                 </div>
             </div>
 
@@ -133,7 +139,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Create" class="btn btn-success " />
                 </div>
             </div>
         </div>

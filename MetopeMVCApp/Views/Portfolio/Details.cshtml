@@ -79,8 +79,8 @@
     <div class="col-md-3 control-label">
         @Html.LabelFor(model => model.Financial_Year_End)
     </div>
-    <div class="col-md-9"> 
-        @String.Format("{0:d MMM yyyy}", @Model.Financial_Year_End) 
+    <div class="col-md-9">  
+        @Html.DisplayFor(model => model.Financial_Year_End)
     </div>
 </div>
 <div class="form-group row">
