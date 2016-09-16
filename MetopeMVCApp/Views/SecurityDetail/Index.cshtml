@@ -10,61 +10,40 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table table-condensed table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Ticker)
-        </th>
-        <th width="30%">
-            @Html.DisplayNameFor(model => model.Security_Name)
-        </th>
-    
-        <th>
-            @Html.DisplayNameFor(model => model.Security_Type_Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Primary_Exch)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Current_Market_Price)
-        </th>
-       
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ticker)
-        </td>
-        <td width="30%"> 
-            @Truncate(item.Security_Name, 40)
-        </td>
  
-        <td>
-            @Html.DisplayFor(modelItem => item.Security_Type_Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Primary_Exch)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Current_Market_Price)
-        </td>
-        
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Security_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Security_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Security_ID }) |
-            <a href="@Url.Action("Details", "SecurityDetail", new { id = item.Security_ID })" class="icon">
-                <span class="badge">Price history</span>
-            </a>
-        </td>
-    </tr>
-}
+<div class="row">
+    <div class="col-md-8">
+        <h3>Portfolios Listing</h3>
+    </div>
 
-</table>
+    <div class="col-md-4 "> 
+        <div>
+            <form class='form-inline' role='form' id='SearchForm' style="margin-top: 15px">
+                <input type='text' class='form-control input-sm' id='search-text' placeholder='Enter search text'>
+                <button type='submit' class='btn btn-success btn-sm' id='search-btn'>Search</button>
+            </form>
+        </div> 
+
+    </div>
+</div> 
+ @Html.Partial("_Securities", Model)
+
+@section Scripts {
+    <script type='text/javascript'>
+
+        var mySearchingUrl = mtpApp.Urls.baseUrl + "SecurityDetail/Index";
+        $(function () {
+            $('#SearchForm').submit(function (event) {
+                event.preventDefault();
+                var form = $(this).parent("form");
+                console.log('test log');
+                var mySearchTerm = $('#search-text').val();
+                $.get(mySearchingUrl, { page: 1, searchTerm: mySearchTerm })
+                    .success(function (data) {
+                        $('#securitiesListing').html(data);
+                    });
+            });
+        });
+
+    </script>
+}

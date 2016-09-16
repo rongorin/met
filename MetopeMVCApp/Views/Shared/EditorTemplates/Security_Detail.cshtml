@@ -1,0 +1,218 @@
+﻿@model MetopeMVCApp.Models.Security_Detail
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Asset_Currency, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("Asset_Currency", null, string.Empty, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Asset_Currency, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    @Html.EditorFor(model => model.Short_Name, "BootstrapEditor")
+    @Html.EditorFor(model => model.Security_Name, "BootstrapEditor")
+
+
+    @*-------------------------------------------------------------------------------*@
+
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Country_Of_Domicile, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("Country_Of_Domicile", null, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Country_Of_Domicile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div> 
+  
+
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Primary_Exch, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("Primary_Exch", null, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Primary_Exch, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Secondary_Exch, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("Secondary_Exch", null, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Secondary_Exch, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+     
+
+    @*-------------------------------------------------------------------------------*@
+
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Country_Of_Risk, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("Country_Of_Risk", null, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Country_Of_Risk, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Security_Type_Code, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("Security_Type_Code", null, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Security_Type_Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div> 
+    @Html.EditorFor(model => model.Price_Multiplier, "BootstrapEditDecimal")
+</div>
+@*--------------Income_Frequency ------------Issuer_Code--------------Ultimate_Issuer_Code---------------------------------------*@
+
+<div class="row">
+    @Html.EditorFor(model => model.Income_Frequency, "BootstrapEditDecimal")
+
+
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Issuer_Code, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("Issuer_Code", null, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Issuer_Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ultimate_Issuer_Code, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("Ultimate_Issuer_Code", null, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Ultimate_Issuer_Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+@*--------------next  row: -------------------------------------*@
+
+<div class="row">
+    @Html.EditorFor(model => model.Min_Lot_Size, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Benchmark_Portfolio, "BootstrapEditor")
+    @Html.EditorFor(model => model.Decimal_Precision, "BootstrapEditInt")
+
+
+    @Html.EditorFor(model => model.AvePrice_Rounding, "BootstrapEditInt")
+    @Html.EditorFor(model => model.Issue_Date, "BootstrapEditDate")
+
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Trade_Currency, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("Trade_Currency", null, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Trade_Currency, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+@*--------------next 10 rows: -------------------------------------*@
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price_Curr, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("Price_Curr", null, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Price_Curr, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Currency_Pair_Code, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("Currency_Pair_Code", null, string.Empty, new { @class = "form-control  " })
+                @Html.ValidationMessageFor(model => model.Currency_Pair_Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    @Html.EditorFor(model => model.Maturity_Date, "BootstrapEditDate")
+    @Html.EditorFor(model => model.Coupon_Rate, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Price_Exchange, "BootstrapEditor")
+    @Html.EditorFor(model => model.Share_Class, "BootstrapEditor")
+    @Html.EditorFor(model => model.Current_Market_Price, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Index_Type, "BootstrapEditor")
+    @Html.EditorFor(model => model.Clean_Price_Formula, "BootstrapEditor")
+
+
+    @Html.EditorFor(model => model.Accrued_Income_Price_Formula, "BootstrapEditor")
+    @Html.EditorFor(model => model.Odd_First_Coupon_Date, "BootstrapEditDate")
+    @Html.EditorFor(model => model.Odd_Last_Coupon_Date, "BootstrapEditDate")
+
+    @Html.EditorFor(model => model.Coupon_Anniversary_Indicator, "BootstrapEditor")
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Track_EOM_Flag, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("Track_EOM_Flag", (SelectList)ViewBag.MyTrackEOMFlagList, string.Empty, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.Track_EOM_Flag, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    @Html.EditorFor(model => model.Next_Coupon_Date, "BootstrapEditDate")
+    @Html.EditorFor(model => model.Previous_Coupon_Date, "BootstrapEditDate")
+
+
+
+    @Html.EditorFor(model => model.Payment_Frequency, "BootstrapEditor")
+    @Html.EditorFor(model => model.Coupon_BusDay_Adjustment, "BootstrapEditor")
+    @Html.EditorFor(model => model.Next_Ex_Div_Date, "BootstrapEditDate")
+
+    @Html.EditorFor(model => model.Ex_Div_BusDay_Adjustment, "BootstrapEditor")
+    @Html.EditorFor(model => model.Ex_Div_Period, "BootstrapEditor")
+    @Html.EditorFor(model => model.Ticker, "BootstrapEditor")
+
+    @Html.EditorFor(model => model.Inet_ID, "BootstrapEditor")
+    @Html.EditorFor(model => model.Bloomberg_ID, "BootstrapEditor")
+    @Html.EditorFor(model => model.External_Sec_ID, "BootstrapEditor")
+
+    @Html.EditorFor(model => model.Reuters_ID, "BootstrapEditor")
+    @Html.EditorFor(model => model.ISIN, "BootstrapEditor")
+
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Call_Account_Flag, htmlAttributes: new { @class = "control-label col-md-5 input-sm " })
+            <div class="col-md-7">
+                @Html.DropDownList("Call_Account_Flag", (SelectList)ViewBag.MyCallAccountFgList, string.Empty, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.Call_Account_Flag, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.System_Locked, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("System_Locked", (SelectList)ViewBag.MySysLockedList, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.System_Locked, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+@*--------------Submit btn-------------------------------------*@
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-offset-1 col-md-11">
+            <input type="submit" value="Save" class="btn btn-primary " />
+        </div>
+    </div>
+</div>

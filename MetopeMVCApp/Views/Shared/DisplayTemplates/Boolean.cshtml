@@ -1,0 +1,22 @@
+﻿@model bool?
+
+@{
+    if (!Model.HasValue)
+    {
+        <span>Not set</span>
+
+    }
+    else
+    {
+
+        if (Model.Value)
+        {
+            <p>  <span class="glyphicon glyphicon-ok small" style="color:green"></span></p>
+        }
+        if (Model.Value == false)
+        {
+              <p>  <span class="glyphicon glyphicon-remove small" style="color:red"></span></p>
+
+        }
+    }
+}

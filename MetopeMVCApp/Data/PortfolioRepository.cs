@@ -22,8 +22,8 @@ namespace MetopeMVCApp.Data
                   .Include(p => p.Entity)
 
                   .Include(p => p.User)
-                  .OrderByDescending(s => s.Portfolio_Name)
-                  .ToPagedList(page, 3);
+                  .OrderBy(s => s.Portfolio_Name)
+                  .ToPagedList(page, 10);
               //return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) ; 
   
             //return _ctx.Replies.Where(r => r.TopicId == topicId);

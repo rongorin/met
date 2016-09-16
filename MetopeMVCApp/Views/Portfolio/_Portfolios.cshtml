@@ -18,10 +18,13 @@
 
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Portfolio_Code)
+                 
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Financial_Year_End)
             </th>
-            
-            <th></th>
+           
         </tr> 
         @foreach (var item in Model)
         {
@@ -31,29 +34,32 @@
                 <td width="30%" style="@RedStyle">
                     @item.Portfolio_Name
                 </td>
-                <td>
+               <td>
+                   @item.Portfolio_Code
+               </td>
+
+                <td> 
                     @String.Format("{0:d MMM yyyy}", item.Financial_Year_End)
 
                 </td>
-                <td>
-                    <a href="@Url.Action("Details", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
-                        <span class=" glyphicon glyphicon-zoom-in"></span>
-                    </a>&nbsp;&nbsp;
+              
+               <td width="5%">
+                   <a href="@Url.Action("Details", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
+                       <span class=" glyphicon glyphicon-zoom-in"></span>
+                  
+               </td>
+               <td width="5%">
 
-
-                    <a href="@Url.Action("Edit", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </a>&nbsp;&nbsp;
-
-
-                    <a href="@Url.Action("Delete", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </a> &nbsp;&nbsp;
-
-
-
-
-                </td>
+                   <a href="@Url.Action("Edit", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
+                       <span class="glyphicon glyphicon-pencil"></span>
+                  
+               </td>
+               <td width="5%"> 
+                   <a href="@Url.Action("Delete", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
+                       <span class="glyphicon glyphicon-trash"></span>
+                    
+               </td> 
+                
             </tr>
         } 
     </table>  
@@ -61,10 +67,6 @@
         @Html.PagedListPager(Model, page => Url.Action("Index",
             new { page }))
         @*,PagedListRenderOptions.MinimalWithItemCountText*@
-    </div>
-
-
-   
-
+    </div> 
 
 </div>

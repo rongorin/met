@@ -9,13 +9,11 @@
 
 namespace MetopeMVCApp.Models
 {
-    using System;
-    using System.Collections.Generic; 
     using MetopeMVCApp.Models.MyMetaData;
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityDetailModelMetaData))]
-
-
     public partial class Security_Detail
     {
         public Security_Detail()
@@ -87,5 +85,10 @@ namespace MetopeMVCApp.Models
         public virtual Currency Currency3 { get; set; }
         public virtual Currency_Pair Currency_Pair { get; set; }
         public virtual Entity Entity { get; set; }
+        public virtual Exchange Exchange { get; set; }
+        public virtual Exchange Exchange1 { get; set; }
+        public virtual Party Party { get; set; }
+        public virtual Party Party1 { get; set; }
+        public virtual Security_Type Security_Type { get; set; }
     }
 }

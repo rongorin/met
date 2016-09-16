@@ -7,11 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MetopeMVCApp.Models;
+
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using Microsoft.AspNet.Identity;
 using ASP.MetopeNspace.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+
 using MetopeMVCApp.Data;
 using PagedList;
 using MetopeMVCApp.Filters;
@@ -33,9 +35,7 @@ namespace MetopeMVCApp.Controllers
         //    : this(new PortfolioRepository())
         //{ 
         //}
-         
-
-
+          
         public PortfolioController() 
         {
             this._repo = new PortfolioRepository(new MetopeDbEntities());
@@ -104,6 +104,13 @@ namespace MetopeMVCApp.Controllers
             ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
             ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name");
+
+            var selectListItems = new List<SelectListItem>();
+            selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
+            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
+            ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text" );
+            ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text" );
+
              
 
             ViewBag.entityId = currentUser.EntityIdScope;
@@ -121,31 +128,42 @@ namespace MetopeMVCApp.Controllers
 
             portfolio.Entity_ID = currentUser.EntityIdScope;
 
-            if ( ModelState.IsValid)
-            {  
-                // first check if this PortfolioCode already used !
-                Portfolio checkPortf = _repo.GetPortfolioById(portfolio.Entity_ID, portfolio.Portfolio_Code);
-              
+            //var errors = ModelState.Values.SelectMany(v => v.Errors); 
+
+            /*----------------------------------------------
+            first check if this PortfolioCode already used ! 
+            ---------------------------------------------- */
+            Portfolio checkPortf = _repo.GetPortfolioById(portfolio.Entity_ID, portfolio.Portfolio_Code); 
+            if (ModelState.IsValid) {
                 if (checkPortf != null)
                 {
-                    TempData.Add("ResultMessage", "Failed to create portfolio \"" + portfolio.Portfolio_Name + "\" code:\"" + portfolio.Portfolio_Code + "\". Code already exists!"); 
+                    ModelState.AddModelError("Name", "FAILED to create Portfolio \"" + portfolio.Portfolio_Name + "\" code:\"" + portfolio.Portfolio_Code + "\". Code already exists!"); 
                 }
-                else
-                { 
+            }
 
-                    _repo.CreatePortfolio(portfolio);
-                    _repo.Save();
-                    TempData.Add("ResultMessage", "new portfolio \"" + portfolio.Portfolio_Name + "\" code:\"" + portfolio.Portfolio_Code + "\" created successfully!");
-                } 
-                return RedirectToAction("Index");
-
+            if ( ModelState.IsValid)
+            {   
+                _repo.CreatePortfolio(portfolio);
+                _repo.Save();
+                TempData.Add("ResultMessage", "new portfolio \"" + portfolio.Portfolio_Name + "\" code:\"" + portfolio.Portfolio_Code + "\" created successfully!");
+           
+                return RedirectToAction("Index"); 
             } 
 
             //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", portfolio.Entity_ID) 
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code");
             ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name");
+            ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
+            ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
+            ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name");
+
+            var selectListItems = new List<SelectListItem>();
+            selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
+            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
+            ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text");
+            ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text");
              
-         
+
             return View(portfolio);
         }
 
@@ -179,8 +197,7 @@ namespace MetopeMVCApp.Controllers
 
             var selectListItems = new List<SelectListItem>();
             selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
-            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
-
+            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString }); 
             ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text", portfolio.Active_Flag);
             ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", portfolio.System_Locked);
 
@@ -223,10 +240,10 @@ namespace MetopeMVCApp.Controllers
 
             var selectListItems = new List<SelectListItem>();
             selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
-            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
-
+            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString }); 
             ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text", portfolio.Active_Flag);
             ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", portfolio.System_Locked);
+
              ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name", portfolio.Manager);
             return View(portfolio);
         }

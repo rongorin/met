@@ -4,8 +4,14 @@ using System.Linq;
 using System.Web;
  
   using System.ComponentModel.DataAnnotations;
+
 namespace MetopeMVCApp.Models.MyMetaData
 {
+    using MetopeMVCApp.Models.MyMetaData;
+    using System.ComponentModel.DataAnnotations;
+    [MetadataType(typeof(PortfolioModelMetatData))]
+
+
     public class PortfolioModelMetatData
     {
         public object Entity_ID { get; set; }

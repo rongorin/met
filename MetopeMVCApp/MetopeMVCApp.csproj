@@ -274,6 +274,9 @@
     <Compile Include="Models\Entity.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Exchange.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MetopeEDM.Context.cs">
       <AutoGen>True</AutoGen>
@@ -292,6 +295,9 @@
     </Compile>
     <Compile Include="Models\MyMetaData\PortfolioModelMetatData.cs" />
     <Compile Include="Models\MyMetaData\SecurityDetailModelMetaData.cs" />
+    <Compile Include="Models\Party.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Portfolio.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
@@ -299,6 +305,9 @@
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Security_Detail.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Security_Type.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -312,6 +321,7 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Utitlity\Extensions\DropDownExtensions.cs" />
+    <Compile Include="Utitlity\Extensions\ExceptionExtensions.cs" />
     <Compile Include="Utitlity\Extensions\SessionExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -497,7 +507,7 @@
     <Content Include="Views\SecurityDetail\Create.cshtml" />
     <Content Include="Views\SecurityDetail\Delete.cshtml" />
     <Content Include="Views\SecurityDetail\Details.cshtml" />
-    <Content Include="Views\SecurityDetail\Edit.cshtml" />
+    <Content Include="Views\SecurityDetail\EditOld.cshtml" />
     <Content Include="Views\SecurityDetail\Index.cshtml" />
     <Content Include="Views\Portfolio\_Portfolios1.cshtml" />
     <Content Include="Views\Portfolio\_Portfolios.cshtml" />
@@ -506,7 +516,15 @@
     <Content Include="Views\Shared\DisplayTemplates\Int32.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DDLEntities.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DDLManagers.cshtml" />
-    <Content Include="Views\SecurityDetail\Edit2.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditor.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDate.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimal.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditInt.cshtml" />
+    <Content Include="Views\SecurityDetail\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Detail.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Portfolio.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Views\SecurityDetail\_Securities.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

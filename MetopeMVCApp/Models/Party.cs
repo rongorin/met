@@ -12,29 +12,27 @@ namespace MetopeMVCApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Country
+    public partial class Party
     {
-        public Country()
+        public Party()
         {
-            this.Portfolios = new HashSet<Portfolio>();
             this.Security_Detail = new HashSet<Security_Detail>();
             this.Security_Detail1 = new HashSet<Security_Detail>();
-            this.Exchanges = new HashSet<Exchange>();
-            this.Parties = new HashSet<Party>();
         }
     
+        public decimal Entity_ID { get; set; }
+        public string Party_Code { get; set; }
+        public string Party_Name { get; set; }
+        public string Party_Type { get; set; }
+        public Nullable<System.DateTime> Financial_Year_End { get; set; }
         public string Country_Code { get; set; }
-        public string Country_Name { get; set; }
-        public int Weekend_Start { get; set; }
-        public int Weekend_End { get; set; }
-        public string ISO_Country_Code { get; set; }
-        public string BB_Country_Code { get; set; }
-        public Nullable<bool> system_locked { get; set; }
+        public Nullable<bool> System_Locked { get; set; }
+        public string SWIFT_ID { get; set; }
+        public string BIC_Code { get; set; }
     
-        public virtual ICollection<Portfolio> Portfolios { get; set; }
+        public virtual Country Country { get; set; }
+        public virtual Entity Entity { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail1 { get; set; }
-        public virtual ICollection<Exchange> Exchanges { get; set; }
-        public virtual ICollection<Party> Parties { get; set; }
     }
 }

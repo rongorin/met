@@ -88,7 +88,7 @@
         @Html.LabelFor(model => model.Active_Flag)
     </div>
     <div class="col-md-9">
-        @Model.Active_Flag
+        @Html.DisplayFor(model => model.Active_Flag)
     </div>
 </div>
 
@@ -97,7 +97,7 @@
         @Html.LabelFor(model => model.System_Locked)
     </div>
     <div class="col-md-9">
-        @Model.System_Locked
+        @Html.DisplayFor(model => model.System_Locked )
     </div>
 </div>
 
@@ -107,6 +107,7 @@
     </div>
     <div class="col-md-9">
         @Model.User.User_Name
+
     </div>
 </div>
   

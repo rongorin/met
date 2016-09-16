@@ -1,0 +1,114 @@
+﻿@model MetopeMVCApp.Models.Portfolio
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Portfolio_Name, new { @class = "control-label col-md-2 " })
+    <div class="col-md-10  input-group-sm">
+        @Html.TextBoxFor(model => model.Portfolio_Name, new { @class = "form-control ", placeholder = "Enter the Portfolio name here..." })
+        @Html.ValidationMessageFor(model => model.Portfolio_Name)
+    </div>
+</div>
+
+<div class="form-group ">
+    @Html.LabelFor(model => model.Manager, "Manager", new { @class = "control-label col-md-2 input-sm" })
+    <div class="col-md-10">
+
+        @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.managers, String.Empty, new { @class = "form-control  input-sm" })
+        @* @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.MyManagerList)
+            @Html.EditorFor(model => model.Manager) *@
+        @Html.ValidationMessageFor(model => model.Manager)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Portfolio_Type, new { @class = "control-label col-md-2 " })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.Portfolio_Type, new { @class = "form-control input-sm" })
+        @Html.ValidationMessageFor(model => model.Portfolio_Type)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Portfolio_Base_Currency, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+
+        @Html.DropDownList("Portfolio_Base_Currency", null, string.Empty, new { @class = "form-control input-sm" })
+
+        @Html.ValidationMessageFor(model => model.Portfolio_Base_Currency)
+
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.PortfolIo_Domicile, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("PortfolIo_Domicile", null, string.Empty, new { @class = "form-control input-sm" })
+
+
+        @Html.ValidationMessageFor(model => model.PortfolIo_Domicile)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Portfolio_Report_Currency, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("Portfolio_Report_Currency", null, string.Empty, new { @class = "form-control input-sm" })
+
+        @Html.ValidationMessageFor(model => model.Portfolio_Report_Currency)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Inception_Date, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Inception_Date, new { htmlAttributes = new { @class = "form-control  input-sm" } })
+        @Html.ValidationMessageFor(model => model.Inception_Date)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Financial_Year_End, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Financial_Year_End, new { htmlAttributes = new { @class = "form-control  input-sm" } })
+        @Html.ValidationMessageFor(model => model.Financial_Year_End)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Custodian_Code, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.Custodian_Code, new { @class = "form-control  input-sm" })
+        @Html.ValidationMessageFor(model => model.Custodian_Code)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Active_Flag, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("Active_Flag", (SelectList)ViewBag.MyActiveFlagList, new { @class = "form-control input-sm" })
+        @Html.ValidationMessageFor(model => model.Active_Flag)
+
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.System_Locked, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("System_Locked", (SelectList)ViewBag.MySysLockedList, new { @class = "form-control input-sm" })
+
+        @Html.ValidationMessageFor(model => model.System_Locked)
+
+
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Portfolio_Status, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.Portfolio_Status, new { @class = "form-control  input-sm" })
+        @Html.ValidationMessageFor(model => model.Portfolio_Status)
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Save" class="btn btn-primary " />
+    </div>
+</div>

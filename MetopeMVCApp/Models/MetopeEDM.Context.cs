@@ -34,5 +34,8 @@ namespace MetopeMVCApp.Models
         public virtual DbSet<Currency_Pair> Currency_Pair { get; set; }
         public virtual DbSet<Portfolio_List> Portfolio_List { get; set; }
         public virtual DbSet<Security_Detail> Security_Detail { get; set; }
+        public virtual DbSet<Exchange> Exchanges { get; set; }
+        public virtual DbSet<Party> Parties { get; set; }
+        public virtual DbSet<Security_Type> Security_Type { get; set; }
     }
 }
