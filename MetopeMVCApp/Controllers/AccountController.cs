@@ -63,7 +63,8 @@ namespace ASP.MetopeNspace.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+       // [AllowAnonymous]
+        [Authorize(Roles = "Admin")] 
         public ActionResult Register()
         {
             return View();
@@ -72,7 +73,8 @@ namespace ASP.MetopeNspace.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous] Registering new users will be only by the administrators
+        [Authorize(Roles = "Admin")] 
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {

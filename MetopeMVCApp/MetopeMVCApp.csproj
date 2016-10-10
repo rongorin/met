@@ -223,16 +223,20 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EntityController.cs" />
+    <Compile Include="Controllers\ErrorpageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Port2Controller.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\SecurityDetailController.cs" />
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\IPortfolioRepository.cs" />
     <Compile Include="Data\PortfolioRepository.cs" />
+    <Compile Include="DecimalModelBinder.cs" />
     <Compile Include="Filters\LogAttribuite.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CustomTextBox.cs" />
     <Compile Include="Migrations\201604160908542_InitialCreate.cs" />
     <Compile Include="Migrations\201604160908542_InitialCreate.Designer.cs">
       <DependentUpon>201604160908542_InitialCreate.cs</DependentUpon>
@@ -435,6 +439,9 @@
       <DependentUpon>MetopeEDM.edmx</DependentUpon>
       <LastGenOutput>MetopeEDM.cs</LastGenOutput>
     </Content>
+    <Content Include="App_Start\CodeTemplates\EFModelFromDatabase\EntityType.cs.t4" />
+    <Content Include="App_Start\CodeTemplates\EFModelFromDatabase\Context.cs.t4" />
+    <None Include="Properties\PublishProfiles\Local IIS deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Properties\PublishProfiles\Web Localhost Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
@@ -525,6 +532,8 @@
     <Content Include="Views\Shared\EditorTemplates\Portfolio.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
     <Content Include="Views\SecurityDetail\_Securities.cshtml" />
+    <Content Include="Views\Port2\Create.cshtml" />
+    <Content Include="Views\SecurityDetail\HistoryUnderConstruction.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

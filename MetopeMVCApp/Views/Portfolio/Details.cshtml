@@ -112,6 +112,7 @@
 </div>
   
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { EntityId = Model.Entity_ID, PortfolioCode = Model.Portfolio_Code }) |
+    @Html.ActionLink("Back to List", "Index") 
+
 </p>

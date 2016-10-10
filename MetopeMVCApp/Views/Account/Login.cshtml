@@ -41,9 +41,13 @@
                         <input type="submit" value="Log in" class="btn btn-default" />
                     </div>
                 </div>
-                <p>
-                    @Html.ActionLink("Register", "Register") if you don't have a local account.
-                </p>
+                if (User.IsInRole("Admin"))
+                {
+                        <p>
+                            @Html.ActionLink("Register", "Register") register a new user.  
+                        </p>
+                }
+   
             }
         </section>
     </div>

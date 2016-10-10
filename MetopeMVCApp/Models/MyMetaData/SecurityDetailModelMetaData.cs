@@ -166,6 +166,7 @@ namespace MetopeMVCApp.Models.MyMetaData
       
         [Display(Name = "Last Update User ")]
         public string Last_Update_User { get; set; } 
+
         [Display(Name = "Last Update Date")]
         public System.DateTime Last_Update_Date { get; set; } 
 

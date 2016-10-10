@@ -52,6 +52,12 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: /SecurityDetail/Details/5
+
+        public ActionResult HistoryUnderConstruction(decimal id)
+        {
+            return View();
+
+        }
         public ActionResult Details(decimal id)
         { 
             if (id == null)
@@ -102,7 +108,7 @@ namespace MetopeMVCApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Security_ID,Entity_ID,Security_Name,Short_Name,Primary_Exch,Secondary_Exch,Country_Of_Domicile,Country_Of_Risk,Security_Type_Code,Price_Multiplier,Income_Frequency,Issuer_Code,Ultimate_Issuer_Code,Asset_Currency,Min_Lot_Size,Decimal_Precision,AvePrice_Rounding,Issue_Date,Maturity_Date,Coupon_Rate,Price_Exchange,Trade_Currency,Price_Curr,Currency_Pair_Code,Share_Class,Current_Market_Price,Index_Type,Clean_Price_Formula,Accrued_Income_Price_Formula,Odd_First_Coupon_Date,Odd_Last_Coupon_Date,Coupon_Anniversary_Indicator,Track_EOM_Flag,Next_Coupon_Date,Previous_Coupon_Date,Payment_Frequency,Coupon_BusDay_Adjustment,Next_Ex_Div_Date,Ex_Div_BusDay_Adjustment,Ex_Div_Period,Ticker,Inet_ID,Bloomberg_ID,External_Sec_ID,Reuters_ID,ISIN,Call_Account_Flag,System_Locked,Last_Update_User,Last_Update_Date")] Security_Detail security_detail)
+        public ActionResult Create([Bind(Include="Security_ID,Entity_ID,Security_Name,Short_Name,Primary_Exch,Secondary_Exch,Country_Of_Domicile,Country_Of_Risk,Security_Type_Code,Price_Multiplier,Income_Frequency,Issuer_Code,Ultimate_Issuer_Code,Asset_Currency,Min_Lot_Size,Decimal_Precision,AvePrice_Rounding,Issue_Date,Maturity_Date,Coupon_Rate,Price_Exchange,Trade_Currency,Price_Curr,Currency_Pair_Code,Share_Class,Current_Market_Price,Index_Type,Clean_Price_Formula,Accrued_Income_Price_Formula,Odd_First_Coupon_Date,Odd_Last_Coupon_Date,Coupon_Anniversary_Indicator,Track_EOM_Flag,Next_Coupon_Date,Previous_Coupon_Date,Payment_Frequency,Coupon_BusDay_Adjustment,Next_Ex_Div_Date,Ex_Div_BusDay_Adjustment,Ex_Div_Period,Ticker,Inet_ID,Bloomberg_ID,External_Sec_ID,Reuters_ID,ISIN,Call_Account_Flag,System_Locked")] Security_Detail security_detail)
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
 
@@ -115,8 +121,11 @@ namespace MetopeMVCApp.Controllers
 
                 db.Security_Detail.Add(security_detail);
                 db.SaveChanges();
+                TempData.Add("ResultMessage", "new Security \"" + security_detail.Security_Name + "\" created successfully!");
+
                 return RedirectToAction("Index");
             }
+            ModelState.AddModelError("Error", "An error occurred trying to add a Security");
 
             ViewBag.Country_Of_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Domicile);
             ViewBag.Country_Of_Risk = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Risk);
@@ -330,8 +339,12 @@ namespace MetopeMVCApp.Controllers
                 security_detail.Last_Update_Date = DateTime.Now;
                 security_detail.Last_Update_User = User.Identity.Name; 
                 db.SaveChanges();
+                TempData.Add("ResultMessage", "Security \"" + security_detail.Security_Name + "\" editied successfully!");
+
                 return RedirectToAction("Index");
             }
+            ModelState.AddModelError("Error", "An error occurred trying to edit the Security");
+
             ViewBag.Country_Of_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Domicile);
             ViewBag.Country_Of_Risk = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Risk);
             //ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_detail.Asset_Currency);

@@ -13,19 +13,34 @@
  
 <div class="row">
     <div class="col-md-8">
-        <h3>Portfolios Listing</h3>
+        <h3>Securities Listing</h3>
     </div>
 
     <div class="col-md-4 "> 
         <div>
             <form class='form-inline' role='form' id='SearchForm' style="margin-top: 15px">
                 <input type='text' class='form-control input-sm' id='search-text' placeholder='Enter search text'>
+        
                 <button type='submit' class='btn btn-success btn-sm' id='search-btn'>Search</button>
             </form>
         </div> 
 
     </div>
 </div> 
+@if (TempData["ResultMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button class="close" data-dismiss="alert">&times;</button>
+        @TempData["ResultMessage"]
+    </div>
+}
+@if (TempData["FailMsg"] != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button class="close" data-dismiss="alert">&times;</button>
+        @TempData["FailMsg"]
+    </div>
+} 
  @Html.Partial("_Securities", Model)
 
 @section Scripts {

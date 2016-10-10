@@ -2,18 +2,25 @@
     background-image: url("~/Content/img/MetopeHome-Banner.jpg");
     background-size:100%;
 
-}  */ 
+}  */  
+
+/* change font: 
+ body {
+  font-family: "Times New Roman", Times, serif; 
+}*/ 
+
 /* Set spacing around the text, text-input components in the form groups */
 .form-group  { 
      margin-bottom: 4px
 } 
- 
+
 /* Set width on the form input elements since they're 100% wide by default */ 
 input,
 select,
 textarea {
     max-width: 200px;
 }
+
  /*!   -- puts the paging at the bottom of the page fixed, so it doesnt scroll. not using.
  #foot{
     position:fixed !important;

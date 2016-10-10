@@ -30,18 +30,30 @@ namespace MetopeMVCApp.Controllers
         private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
         // need parameterless constructor. This is poor mans constructor Dependency Injection (DI)/ 
+        // so this just passes in an implementation of the IPortfolioRep interface (which is the parm required by the constructor)
+                // The MVC runtime can't instantiate your controller as it can't provide an implementation of IAccommodationService. You either need to do poor man's constructor injection like this:
+                //  public FeaturedAccommodationController()
+                //     : this(new AccommodationService())
+                //  {
+                //  }
+                //  public FeaturedAccommodationController(IAccommodationService accommodationService)
+                //  { 
+                //  }
+
         // Inversion of Control (IoC) like ninject or similar. http://stackoverflow.com/questions/12605445/mvc-no-parameterless-constructor-defined-for-this-object
-            //public PortfolioController()
-        //    : this(new PortfolioRepository())
-        //{ 
-        //}
-          
-        public PortfolioController() 
+        public PortfolioController()
+            : this(new PortfolioRepository(new MetopeDbEntities())) 
         {
-            this._repo = new PortfolioRepository(new MetopeDbEntities());
         }
-  
-        public PortfolioController(IPortfolioRepository repo) {
+          
+        //public PortfolioController() 
+        //{
+        //    this._repo = new PortfolioRepository(new MetopeDbEntities());
+        //}
+
+        //use this when doing the proper DI :
+        public PortfolioController(IPortfolioRepository repo)
+        {
             _repo = repo;
         }
 
@@ -71,7 +83,7 @@ namespace MetopeMVCApp.Controllers
         // GET: /Portfolio/Details/ 5,'abc'
         public ActionResult Details(decimal EntityId, string PortfolioCode)
         { 
-            var currentUser = manager.FindById(User.Identity.GetUserId());
+            var currentUser = manager.FindById(User.Identity.GetUserId()); 
              
             if (EntityId == null || PortfolioCode == null) 
             { 
@@ -176,21 +188,23 @@ namespace MetopeMVCApp.Controllers
             if (EntityId == null || PortfolioCode == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            } 
+
+            if (currentUser.EntityIdScope != EntityId)
+            {
+                throw new Exception("Forbidden");
+              //throw new HttpException((int)System.Net.HttpStatusCode.Forbidden, "Forbidden");
+                 //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
             }
             Portfolio portfolio = _repo.GetPortfolioById(EntityId, PortfolioCode);
-             
+
             if (portfolio == null)
             {
                 return HttpNotFound();
-            }
-
-            if (currentUser.EntityIdScope != EntityId)
-            { 
-                 return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-            }
-    
+            } 
+            
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", portfolio.Entity_ID);
-            ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);
+            ViewBag.PortfolioBaseCurrency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Report_Currency);
             ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", portfolio.PortfolIo_Domicile);
 
@@ -234,7 +248,7 @@ namespace MetopeMVCApp.Controllers
                 }
             }
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", portfolio.Entity_ID);
-            ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);
+            ViewBag.PortfolioBaseCurrency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Report_Currency);
             ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", portfolio.PortfolIo_Domicile);
 
