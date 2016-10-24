@@ -34,8 +34,20 @@ namespace MetopeMVCApp.Data
             return _ctx.Users.Where(r => r.Entity_ID == iEntityId);
             //return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) ; 
 
-
+                
             //return _ctx.Replies.Where(r => r.TopicId == topicId);
+        }
+
+        public IQueryable<Code_Miscellaneous> GetCodeMiscVals(string iCodeType)
+        {
+            return _ctx.Code_Miscellaneous.Where(r => r.MisCode_Type == iCodeType); 
+        }
+
+        public IQueryable<Party> GetPartyValues(decimal iEntity, string iType, decimal iGenericEntityId)
+        { 
+            return _ctx.Parties.Where(c => c.Party_Type == iType)
+                    .Where(r => r.Entity_ID == iGenericEntityId  || r.Entity_ID == iEntity )
+; 
         }
         public Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode)
         {
@@ -60,6 +72,14 @@ namespace MetopeMVCApp.Data
         public void Save()
         {
             _ctx.SaveChanges();
-        }
+        } 
+        //public void Dispose()
+        //{
+        //    if (!disposed)
+        //    {
+        //        _ctx.Dispose();
+        //        disposed = true;
+        //    }
+        //}
     }
 }

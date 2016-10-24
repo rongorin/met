@@ -40,15 +40,7 @@ namespace ASP.MetopeNspace.Controllers
            
             return View();
         }
-
-       //[AllowAnonymous]  
-       // public ActionResult Contact()
-       // {
-       //     ViewBag.Message = "Your contact page.";
-
-       //     return View();
-       // }
-
+ 
        private string GetEntityName(string iUuserId)
        { 
            var currentUser = manager.FindById(iUuserId); 

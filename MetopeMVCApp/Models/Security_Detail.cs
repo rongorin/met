@@ -14,8 +14,8 @@ namespace MetopeMVCApp.Models
     using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityDetailModelMetaData))]
-
-    public partial class Security_Detail   //: IValidatableObject
+    
+    public partial class Security_Detail
     {
         public Security_Detail()
         {
@@ -88,19 +88,6 @@ namespace MetopeMVCApp.Models
         public virtual Entity Entity { get; set; }
         public virtual Exchange Exchange { get; set; }
         public virtual Exchange Exchange1 { get; set; }
-        public virtual Party Party { get; set; }
-        public virtual Party Party1 { get; set; }
         public virtual Security_Type Security_Type { get; set; }
-
-        // example of a IValidatableObject : not this class must implement  :  IValidatableObject
-        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        //{
-        //    if (Security_Name.IndexOf(Short_Name, StringComparison.OrdinalIgnoreCase) == -1)
-        //        //We check the slug is derived from the Name
-        //        yield return new ValidationResult(
-        //            "The slug must be a portion of the Tag's Name.",
-        //            new[] { "Slug" });
-        //}
-
     }
 }

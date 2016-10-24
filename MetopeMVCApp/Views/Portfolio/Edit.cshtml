@@ -1,24 +1,28 @@
-﻿@model MetopeMVCApp.Models.Portfolio
+﻿ 
+@model MetopeMVCApp.Models.Portfolio
 
 @{
     ViewBag.Title = "Edit";
 }
+ @section Styles {
+    @Styles.Render("~/Content/datetime")
+}
  <h4></h4>
-<div class="panel panel-primary">
-    <div class="panel-heading panel-head">Editing : Portfolio Code <b>  @Model.Portfolio_Code </b></div>
-    <div class="panel-body">
-          
+<div class="panel panel-primary FullpanelHeight">
+    <div class="panel-heading panel-head ">Editing : Portfolio Code <b>  @Model.Portfolio_Code </b></div>
+    <div class="panel-body FullpanelHeight">
+
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-horizontal"> 
+            <div class="form-horizontal">
                 @Html.ValidationSummary(false)
                 @Html.ValidationMessage("Error")
 
-                @Html.HiddenFor(model => model.Entity_ID) 
+                @Html.HiddenFor(model => model.Entity_ID)
                 @Html.HiddenFor(model => model.Portfolio_Code)
-                @Html.EditorForModel() 
+                @Html.EditorForModel()
             </div>
         }
     </div>
@@ -30,4 +34,16 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+
+
+   @*<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('.date-picker').datepicker();
+    })
+</script>*@
+
+
 }
+

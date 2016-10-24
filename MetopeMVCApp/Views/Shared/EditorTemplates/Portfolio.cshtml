@@ -1,117 +1,153 @@
-﻿@model MetopeMVCApp.Models.Portfolio
+﻿@using MetopeMVCApp.Utitlity.Extensions 
+ 
+@model MetopeMVCApp.Models.Portfolio
+<div id="rootwizard">
+    <!-- Tabstrip -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
 
-<div class="form-group">
-    @Html.LabelFor(model => model.Portfolio_Name, new { @class = "control-label col-md-2 " })
-    <div class="col-md-10  input-group-sm">
-        @Html.TextBoxFor(model => model.Portfolio_Name, new { @class = "form-control ", placeholder = "Enter the Portfolio name here..." })
-        @Html.ValidationMessageFor(model => model.Portfolio_Name)
-    </div>
-</div> 
-
-<div class="form-group ">
-    @Html.LabelFor(model => model.Manager, "Manager", new { @class = "control-label col-md-2 input-sm" })
-    <div class="col-md-10">
-
-        @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.managers, String.Empty, new { @class = "form-control  input-sm" })
-        @* @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.MyManagerList)
-            @Html.EditorFor(model => model.Manager) *@
-        @Html.ValidationMessageFor(model => model.Manager)
-    </div>
-</div>
-
-<div class="form-group">
-    @Html.LabelFor(model => model.Portfolio_Type, new { @class = "control-label col-md-2 " })
-    <div class="col-md-10">
-        @Html.TextBoxFor(model => model.Portfolio_Type, new { @class = "form-control input-sm" })
-        @Html.ValidationMessageFor(model => model.Portfolio_Type)
-    </div>
-</div>
-
-<div class="form-group">
-    @Html.LabelFor(model => model.Portfolio_Base_Currency, new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.DropDownListFor(model => model.Portfolio_Base_Currency, (SelectList)ViewBag.PortfolioBaseCurrency,
-                                        String.Empty, new { @class = "form-control  input-sm" }) 
-
-       @*  @Html.DropDownList("Portfolio_Base_Currency", null, string.Empty, new { @class = "form-control input-sm" }) *@
-
-            @Html.ValidationMessageFor(model => model.Portfolio_Base_Currency)
-
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#personal" role="tab" data-toggle="tab">Yo1u</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#hobbies" role="tab" data-toggle="tab">Hobbies</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
+    <!-- Tab panes -->
+    <div class="tab-content">
+            <div class="tab-pane  active" id="personal">
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.PortfolIo_Domicile, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("PortfolIo_Domicile", null, string.Empty, new { @class = "form-control input-sm" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Portfolio_Name, new { @class = "control-label col-md-2 " })
+                    <div class="col-md-4  input-group-sm">  
+                        @Html.TextBoxFor(model => model.Portfolio_Name, new { @class = "form-control ", placeholder = "Enter the Portfolio name here..." })
+                        @Html.ValidationMessageFor(model => model.Portfolio_Name)
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Manager, new { @class = "control-label col-md-2 " })
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.managers, String.Empty, new { @class = "form-control  input-sm" })
+                        @Html.ValidationMessageFor(model => model.Manager)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Portfolio_Type, new { @class = "control-label col-md-2 " })
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(model => model.Portfolio_Type, (SelectList)ViewBag.Portfolio_Types, String.Empty, new { @class = "form-control  input-sm" })
+                        @Html.ValidationMessageFor(model => model.Portfolio_Type)
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="hobbies">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Portfolio_Base_Currency, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.Portfolio_Base_Currency, (SelectList)ViewBag.PortfolioBaseCurrency,
+                                        String.Empty, new { @class = "form-control  input-sm" })
+
+                    @*  @Html.DropDownList("Portfolio_Base_Currency", null, string.Empty, new { @class = "form-control input-sm" }) *@
+                    @Html.ValidationMessageFor(model => model.Portfolio_Base_Currency)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PortfolIo_Domicile, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("PortfolIo_Domicile", null, string.Empty, new { @class = "form-control input-sm" })
 
 
-            @Html.ValidationMessageFor(model => model.PortfolIo_Domicile)
+                    @Html.ValidationMessageFor(model => model.PortfolIo_Domicile)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Portfolio_Report_Currency, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("Portfolio_Report_Currency", null, string.Empty, new { @class = "form-control input-sm" })
+                    @Html.ValidationMessageFor(model => model.Portfolio_Report_Currency)
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Financial_Year_End, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+
+                    <div class='input-group date datetimepickerClass'>
+                        @Html.TextBox("Financial_Year_End", Model.Financial_Year_End.ToCustomDateString(), new { @class = "form-control input-sm" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Financial_Year_End)
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Custodian_Code, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.Custodian_Code, (SelectList)ViewBag.Custodians, new { @class = "form-control  input-sm" })
+                    @Html.ValidationMessageFor(model => model.Custodian_Code)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Active_Flag, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("Active_Flag", (SelectList)ViewBag.MyActiveFlagList, new { @class = "form-control input-sm" })
+                    @Html.ValidationMessageFor(model => model.Active_Flag)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.System_Locked, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("System_Locked", (SelectList)ViewBag.MySysLockedList, new { @class = "form-control input-sm" })
+                    @Html.ValidationMessageFor(model => model.System_Locked)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Portfolio_Status, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.Portfolio_Status, (SelectList)ViewBag.PortfolioStatus, new { @class = "form-control  input-sm" })
+                    @Html.ValidationMessageFor(model => model.Portfolio_Status)
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Inception_Date, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+
+                    <div class='input-group date datetimepickerClass'>
+                        @Html.TextBox("Inception_Date", Model.Inception_Date.ToCustomDateString(), new { @class = "form-control input-sm" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Inception_Date)
+
+                </div>
+            </div>
+        </div> 
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Portfolio_Report_Currency, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("Portfolio_Report_Currency", null, string.Empty, new { @class = "form-control input-sm" })
-
-            @Html.ValidationMessageFor(model => model.Portfolio_Report_Currency)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Inception_Date, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Inception_Date, new { htmlAttributes = new { @class = "form-control  input-sm" } })
-            @Html.ValidationMessageFor(model => model.Inception_Date)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Financial_Year_End, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Financial_Year_End, new { htmlAttributes = new { @class = "form-control  input-sm" } })
-            @Html.ValidationMessageFor(model => model.Financial_Year_End)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Custodian_Code, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Custodian_Code, new { @class = "form-control  input-sm" })
-            @Html.ValidationMessageFor(model => model.Custodian_Code)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Active_Flag, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("Active_Flag", (SelectList)ViewBag.MyActiveFlagList, new { @class = "form-control input-sm" })
-            @Html.ValidationMessageFor(model => model.Active_Flag)
-
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.System_Locked, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("System_Locked", (SelectList)ViewBag.MySysLockedList, new { @class = "form-control input-sm" })
-
-            @Html.ValidationMessageFor(model => model.System_Locked)
-
-
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Portfolio_Status, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Portfolio_Status, new { @class = "form-control  input-sm" })
-            @Html.ValidationMessageFor(model => model.Portfolio_Status)
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-primary " />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-4">
+                <input type="submit" value="Save" class="btn btn-primary " />
+            </div>
         </div>
     </div>

@@ -22,7 +22,8 @@ namespace MetopeMVCApp.Models
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            modelBuilder.Entity<Portfolio>().HasKey(t => t.Portfolio_Code);
+            //throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<Entity> Entities { get; set; }
@@ -35,7 +36,8 @@ namespace MetopeMVCApp.Models
         public virtual DbSet<Portfolio_List> Portfolio_List { get; set; }
         public virtual DbSet<Security_Detail> Security_Detail { get; set; }
         public virtual DbSet<Exchange> Exchanges { get; set; }
-        public virtual DbSet<Party> Parties { get; set; }
         public virtual DbSet<Security_Type> Security_Type { get; set; }
+        public virtual DbSet<Code_Miscellaneous> Code_Miscellaneous { get; set; }
+        public virtual DbSet<Party> Parties { get; set; }
     }
 }

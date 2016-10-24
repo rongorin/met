@@ -7,12 +7,15 @@
     <meta name="description" content="My ASP.NET Application" />
     @Styles.Render("~/bundles/css") 
     @Scripts.Render("~/bundles/modernizr")   
+    @RenderSection("styles", false)
+
 
     <script type="text/javascript"> 
         var mtpApp = mtpApp || {};
         mtpApp.Urls = mtpApp.Urls || {};
-        mtpApp.Urls.baseUrl = '@Url.Content("~")'; 
+        mtpApp.Urls.baseUrl = '@Url.Content("~")';  
     </script>
+  
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -51,8 +54,7 @@
 
     @Scripts.Render("~/bundles/jqueryThings")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-
+    @RenderSection("scripts", required: false) 
 
 </body>
 </html>

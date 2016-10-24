@@ -5,7 +5,9 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 
 namespace MetopeMVCApp.Models.MyMetaData 
-{ 
+{
+ 
+
     public class SecurityDetailModelMetaData
     {
         [Required]

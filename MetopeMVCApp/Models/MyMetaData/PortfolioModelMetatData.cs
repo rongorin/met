@@ -6,10 +6,7 @@ using System.Web;
   using System.ComponentModel.DataAnnotations;
 
 namespace MetopeMVCApp.Models.MyMetaData
-{
-    using MetopeMVCApp.Models.MyMetaData;
-    using System.ComponentModel.DataAnnotations;
-    [MetadataType(typeof(PortfolioModelMetatData))]
+{ 
 
 
     public class PortfolioModelMetatData
@@ -59,6 +56,11 @@ namespace MetopeMVCApp.Models.MyMetaData
         //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fin Year End")]  
         public object Financial_Year_End { get; set; }
-  
+
+        [Display(Name = "System Locked?")]
+        public object System_Locked { get; set; }
+
+        [Display(Name = "Active?")]
+        public object Active_Flag { get; set; }
     }
 }

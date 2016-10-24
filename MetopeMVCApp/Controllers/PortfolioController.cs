@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MetopeMVCApp.Models;
+using System.Configuration;
 
 using System.Data.Entity.Validation;
 using System.Diagnostics;
@@ -116,6 +117,9 @@ namespace MetopeMVCApp.Controllers
             ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
             ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name");
+            ViewBag.Portfolio_Types = new SelectList(GetCodeMiscellVals("PORTTYP"), "MisCode", "MisCode");
+            ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode");
+            ViewBag.Custodians = new SelectList(GetPartyValues(currentUser.EntityIdScope), "Party_Code", "Party_Name");
 
             var selectListItems = new List<SelectListItem>();
             selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
@@ -123,25 +127,26 @@ namespace MetopeMVCApp.Controllers
             ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text" );
             ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text" );
 
-             
+            var portfolio = new Portfolio
+            {
+                Inception_Date =  DateTime.Now 
+            };
 
             ViewBag.entityId = currentUser.EntityIdScope;
-            return View();
+            return View(portfolio);
         }
 
         // POST: /Portfolio/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken] 
-        public ActionResult Create([Bind(Exclude="Entity_ID")] Portfolio portfolio)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Portfolio_Code,Portfolio_Name,Manager,Portfolio_Type,Portfolio_Base_Currency,PortfolIo_Domicile,Portfolio_Report_Currency,Inception_Date,Financial_Year_End, Portfolio_Status ,Custodian_Code,Active_Flag,System_Locked")] Portfolio portfolio)
         {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-
+            var currentUser = manager.FindById(User.Identity.GetUserId()); 
             portfolio.Entity_ID = currentUser.EntityIdScope;
 
-            //var errors = ModelState.Values.SelectMany(v => v.Errors); 
-
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);  
             /*----------------------------------------------
             first check if this PortfolioCode already used ! 
             ---------------------------------------------- */
@@ -168,6 +173,10 @@ namespace MetopeMVCApp.Controllers
             ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
             ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name");
+            ViewBag.Portfolio_Types = new SelectList(GetCodeMiscellVals("PORTTYP"), "MisCode", "MisCode");
+            ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode");
+            ViewBag.Custodians = new SelectList(GetPartyValues(currentUser.EntityIdScope), "Party_Code", "Party_Name");
+
 
             var selectListItems = new List<SelectListItem>();
             selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
@@ -207,6 +216,9 @@ namespace MetopeMVCApp.Controllers
             ViewBag.PortfolioBaseCurrency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Report_Currency);
             ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", portfolio.PortfolIo_Domicile);
+            ViewBag.Portfolio_Types = new SelectList(GetCodeMiscellVals("PORTTYP"), "MisCode", "MisCode", portfolio.Portfolio_Type);
+            ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode", portfolio.Portfolio_Status); 
+            ViewBag.Custodians = new SelectList(GetPartyValues(currentUser.EntityIdScope), "Party_Code", "Party_Name", portfolio.Custodian_Code);
 
 
             var selectListItems = new List<SelectListItem>();
@@ -214,7 +226,6 @@ namespace MetopeMVCApp.Controllers
             selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString }); 
             ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text", portfolio.Active_Flag);
             ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", portfolio.System_Locked);
-
 
             ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name", portfolio.Manager);
 
@@ -251,7 +262,10 @@ namespace MetopeMVCApp.Controllers
             ViewBag.PortfolioBaseCurrency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Report_Currency);
             ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", portfolio.PortfolIo_Domicile);
-
+            ViewBag.Portfolio_Types = new SelectList(GetCodeMiscellVals("PORTTYP"), "MisCode", "MisCode", portfolio.Portfolio_Type);
+            ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode", portfolio.Portfolio_Status);
+            ViewBag.Custodians = new SelectList(GetPartyValues(currentUser.EntityIdScope), "Party_Code", "Party_Name", portfolio.Custodian_Code);
+             
             var selectListItems = new List<SelectListItem>();
             selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
             selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString }); 
@@ -302,7 +316,19 @@ namespace MetopeMVCApp.Controllers
             return _repo.GetUsers(iEntityId);  
  
         }
+        public IQueryable<Code_Miscellaneous> GetCodeMiscellVals(string iSettings)
+        {
+            //return db.Users.Where(r => r.Entity_ID == iEntityId);
+            return _repo.GetCodeMiscVals(iSettings);
 
+        }
+        public IQueryable<Party> GetPartyValues(decimal iEntityId)
+        {
+            decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]); 
+            //return db.Users.Where(r => r.Entity_ID == iEntityId);
+            return _repo.GetPartyValues(iEntityId, "CUSTODIAN", refGenericEntity);
+
+        } 
         protected override void Dispose(bool disposing)
         {
             if (disposing)

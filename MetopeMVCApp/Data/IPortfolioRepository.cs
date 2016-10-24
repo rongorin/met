@@ -14,9 +14,15 @@ namespace MetopeMVCApp.Data
         IQueryable<User> GetUsers(decimal iEntityId);
         Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode);
         void DeletePortfolio(decimal EntityId, string PortfolioCode);
-        void UpdatePortfolio(Portfolio portfolio);
+        void UpdatePortfolio(Portfolio portfolio);  
         void CreatePortfolio(Portfolio portfolio);
         void Save();
+
+        //dropDown data:
+        IQueryable<Code_Miscellaneous> GetCodeMiscVals(string iCodeType);
+        IQueryable<Party> GetPartyValues(decimal iEntity, string iType, decimal iGenericEntityId);
+
+
         //IQueryable<Portfolio> GetTopicsIncludingReplies();
 
         //IQueryable<Reply> GetRepliesByTopic(int topicId);

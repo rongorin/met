@@ -48,3 +48,11 @@ textarea {
     line-height:34px;
     text-align:left;
 }
+ /*  datepicker: it has a glyphicon as a  group-addon. this will avoid the splitting of the glyphicon*/
+  .datetimepickerClass{
+    width : 200px;
+   }
+
+  .FullpanelHeight {
+     height: 100vh; 
+    }

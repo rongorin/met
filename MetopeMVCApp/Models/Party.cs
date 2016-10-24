@@ -14,12 +14,6 @@ namespace MetopeMVCApp.Models
     
     public partial class Party
     {
-        public Party()
-        {
-            this.Security_Detail = new HashSet<Security_Detail>();
-            this.Security_Detail1 = new HashSet<Security_Detail>();
-        }
-    
         public decimal Entity_ID { get; set; }
         public string Party_Code { get; set; }
         public string Party_Name { get; set; }
@@ -32,7 +26,5 @@ namespace MetopeMVCApp.Models
     
         public virtual Country Country { get; set; }
         public virtual Entity Entity { get; set; }
-        public virtual ICollection<Security_Detail> Security_Detail { get; set; }
-        public virtual ICollection<Security_Detail> Security_Detail1 { get; set; }
     }
 }

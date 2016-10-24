@@ -21,7 +21,9 @@ namespace ASP.MetopeNspace
             cssBundle.Transforms.Add(cssTransformer);
             cssBundle.Orderer = nullOrderer;
             bundles.Add(cssBundle);
-             
+
+            bundles.Add(new StyleBundle("~/Content/datetime").Include(
+            "~/Content/bootstrap-datetimepicker*"));
 
             //var cssBundle2= new StyleBundle("~/bundles/cssCustom");
             //cssBundle2.Include("~/Content/Site.less", "~/Content/Template/myCustom.css");
@@ -49,6 +51,18 @@ namespace ASP.MetopeNspace
             modernizrBundle.Transforms.Add(jsTransformer);
             modernizrBundle.Orderer = nullOrderer;
             bundles.Add(modernizrBundle);
+
+
+            bundles.Add(new ScriptBundle("~/bundles/datetime").Include(
+            "~/Scripts/moment*",
+            "~/Scripts/bootstrap-datetimepicker*",
+            "~/Scripts/common/datetimepicker-init.js")); 
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrapWizard").Include(
+            "~/Scripts/jquery.bootstrap.wizard*",
+            "~/Scripts/common/wizard-init.js")); 
+             
+
 
             var bootstrapBundle = new ScriptBundle("~/bundles/bootstrap");
             bootstrapBundle.Include("~/Scripts/bootstrap.js", "~/Scripts/respond.js");

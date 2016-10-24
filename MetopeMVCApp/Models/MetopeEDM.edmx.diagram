@@ -36,18 +36,18 @@
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency_Pair" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Entity" />
         <EntityTypeShape EntityType="MetopeDbModel.Exchange" Width="1.5" PointX="10.5" PointY="3.75" />
-        <EntityTypeShape EntityType="MetopeDbModel.Party" Width="1.5" PointX="11" PointY="9.5" />
         <EntityTypeShape EntityType="MetopeDbModel.Security_Type" Width="1.5" PointX="4.125" PointY="0.75" />
         <AssociationConnector Association="MetopeDbModel.FK_Exchange_Country" />
-        <AssociationConnector Association="MetopeDbModel.FK_Party_Country" />
         <AssociationConnector Association="MetopeDbModel.FK_Exchange_Entity" />
-        <AssociationConnector Association="MetopeDbModel.FK_Party_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Type_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Exchange" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Exchange1" />
-        <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Party1" />
-        <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Party2" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Security_Type" />
+        <EntityTypeShape EntityType="MetopeDbModel.Code_Miscellaneous" Width="1.5" PointX="4.125" PointY="12.625" />
+        <AssociationConnector Association="MetopeDbModel.FK_Code_Miscellaneous_Entity" />
+        <EntityTypeShape EntityType="MetopeDbModel.Party" Width="1.5" PointX="13" PointY="7.25" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Country" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Entity" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

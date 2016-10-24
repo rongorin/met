@@ -33,6 +33,7 @@ namespace MetopeMVCApp.Controllers
         // GET: /SecurityDetail/ 
         public ActionResult Index(int page=1, string searchTerm=null)  
         {  
+
             var security_detail = db.Security_Detail
                      .Where(r => searchTerm == null || r.Security_Name.Contains(searchTerm))
                     .Include(s => s.Country)
