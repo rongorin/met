@@ -37,11 +37,11 @@ namespace MetopeMVCApp.Models
     
         public virtual ICollection<Currency_Pair> Currency_Pair { get; set; }
         public virtual ICollection<Currency_Pair> Currency_Pair1 { get; set; }
+        public virtual Security_Detail Security_Detail { get; set; }
+        public virtual Security_Detail Security_Detail1 { get; set; }
         public virtual ICollection<Portfolio> Portfolios { get; set; }
         public virtual ICollection<Portfolio> Portfolios1 { get; set; }
         public virtual ICollection<Portfolio> Portfolios2 { get; set; }
-        public virtual Security_Detail Security_Detail { get; set; }
-        public virtual Security_Detail Security_Detail1 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail2 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail3 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail4 { get; set; }

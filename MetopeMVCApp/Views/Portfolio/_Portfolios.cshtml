@@ -43,7 +43,15 @@
 
                 </td>
               
-               <td width="5%">
+               <td>
+                   @Html.ActionLink("Edit", "Edit", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
+                   @Html.ActionLink("Details", "Details", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
+                   @Html.ActionLink("Delete", "Delete", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
+                 
+               </td>
+
+
+               @*<td width="5%">
                    <a href="@Url.Action("Details", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
                        <span class=" glyphicon glyphicon-zoom-in"></span>
                   
@@ -58,7 +66,7 @@
                    <a href="@Url.Action("Delete", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
                        <span class="glyphicon glyphicon-trash"></span>
                     
-               </td> 
+               </td>*@ 
                 
             </tr>
         } 

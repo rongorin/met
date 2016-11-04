@@ -14,11 +14,6 @@ namespace MetopeMVCApp.Models
     
     public partial class Security_Type
     {
-        public Security_Type()
-        {
-            this.Security_Detail = new HashSet<Security_Detail>();
-        }
-    
         public decimal Entity_ID { get; set; }
         public string Security_Type_Code { get; set; }
         public string Name { get; set; }
@@ -33,6 +28,5 @@ namespace MetopeMVCApp.Models
         public bool System_Locked { get; set; }
     
         public virtual Entity Entity { get; set; }
-        public virtual ICollection<Security_Detail> Security_Detail { get; set; }
     }
 }

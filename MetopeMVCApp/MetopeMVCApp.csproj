@@ -218,7 +218,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="bin\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -233,6 +233,7 @@
     <Compile Include="Data\IPortfolioRepository.cs" />
     <Compile Include="Data\PartyRepository.cs" />
     <Compile Include="Data\PortfolioRepository.cs" />
+    <Compile Include="Data\PortfolioQueryableExtensions.cs" />
     <Compile Include="DecimalModelBinder.cs" />
     <Compile Include="Filters\LogAttribuite.cs" />
     <Compile Include="Global.asax.cs">
@@ -520,6 +521,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -596,6 +601,8 @@
     <Content Include="Views\SecurityDetail\HistoryUnderConstruction.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Security_Detail2.cshtml" />
     <Content Include="Views\PortfolioTestPanel\Edit.cshtml" />
+    <Content Include="Views\SecurityDetail\EditBup.cshtml" />
+    <Content Include="Views\Home\Support.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

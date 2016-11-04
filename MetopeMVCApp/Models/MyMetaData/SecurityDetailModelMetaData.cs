@@ -117,6 +117,7 @@ namespace MetopeMVCApp.Models.MyMetaData
         public Nullable<System.DateTime> Odd_Last_Coupon_Date { get; set; }
          
         [Display(Name = "Coupon Anniversary")]
+        [MaxLength(1)]
         public string Coupon_Anniversary_Indicator { get; set; }
          
         [Display(Name = "Track EOM Flag ")]
@@ -129,9 +130,11 @@ namespace MetopeMVCApp.Models.MyMetaData
         public Nullable<System.DateTime> Previous_Coupon_Date { get; set; }
          
         [Display(Name = "Payment Frequency ")]
+        [MaxLength(1)]
         public string Payment_Frequency { get; set; }
          
         [Display(Name = "Coupon BusDay Adjust")]
+        [MaxLength(1)]
         public string Coupon_BusDay_Adjustment { get; set; }
          
         [Display(Name = "Next Ex Div Date")]

@@ -60,9 +60,7 @@ namespace ASP.MetopeNspace
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrapWizard").Include(
             "~/Scripts/jquery.bootstrap.wizard*",
-            "~/Scripts/common/wizard-init.js")); 
-             
-
+            "~/Scripts/common/wizard-init.js"));  
 
             var bootstrapBundle = new ScriptBundle("~/bundles/bootstrap");
             bootstrapBundle.Include("~/Scripts/bootstrap.js", "~/Scripts/respond.js");

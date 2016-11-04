@@ -33,7 +33,12 @@ namespace ASP.MetopeNspace.Controllers
 
             return View();
         }
+        public ActionResult Support()
+        {
+            ViewBag.Message = "24 Hour Support";
 
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "General stuff.";

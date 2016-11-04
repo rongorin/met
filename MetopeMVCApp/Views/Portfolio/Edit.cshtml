@@ -7,10 +7,13 @@
  @section Styles {
     @Styles.Render("~/Content/datetime")
 }
- <h4></h4>
-<div class="panel panel-primary FullpanelHeight">
-    <div class="panel-heading panel-head ">Editing : Portfolio Code <b>  @Model.Portfolio_Code </b></div>
-    <div class="panel-body FullpanelHeight">
+<h4></h4>
+<h3>Editing  Security <b>  @Model.Portfolio_Name </b></h3>
+<hr />
+
+@*<div class="panel panel-primary ">
+    @*<div class="panel-heading panel-head ">Editing : Portfolio Code <b>  @Model.Portfolio_Code </b></div>
+    <div class="panel-body  ">*@
 
         @using (Html.BeginForm())
         {
@@ -25,17 +28,17 @@
                 @Html.EditorForModel()
             </div>
         }
-    </div>
-</div>
+   
+ 
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
+ 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+ 
     @Scripts.Render("~/bundles/datetime")
-
+}
 
    @*<script type="text/javascript">
     $(function () {
@@ -44,6 +47,5 @@
     })
 </script>*@
 
-
-}
+ 
 

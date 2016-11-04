@@ -14,10 +14,10 @@
                                     <a href="#main" role="tab" data-toggle="tab">Main</a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#identifiers" role="tab" data-toggle="tab">Identifiers</a>
+                                    <a href="#fixedincome" role="tab" data-toggle="tab">Fixed Income</a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#fixedincome" role="tab" data-toggle="tab">Fixed Income</a>
+                                    <a href="#identifiers" role="tab" data-toggle="tab">identifiers</a>
                                 </li>
                             </ul>
                         </div>
@@ -25,12 +25,9 @@
                 </div>
             </div>
 
-            <div class="col-sm-1">
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-4">
-                        <input type="submit" value="Save" class="btn btn-danger " />
-                    </div>
+            <div class="col-sm-1"> 
+                <div class="form-group"> 
+                    <input type="submit" value="Save" class="btn  btn-primary " /> 
                 </div>
             </div>
 
@@ -139,8 +136,16 @@
                     @*--------------next  row: -------------------------------------*@
 
                     <div class="row">
-                        @Html.EditorFor(model => model.Min_Lot_Size, "BootstrapEditDecimal")
-                        @Html.EditorFor(model => model.Benchmark_Portfolio, "BootstrapEditor")
+                        @Html.EditorFor(model => model.Min_Lot_Size, "BootstrapEditDecimal")  
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Benchmark_Portfolio, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+                                <div class="col-md-7">
+                                    @Html.DropDownList("Benchmark_Portfolio", null, string.Empty, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Benchmark_Portfolio, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div> 
                         @Html.EditorFor(model => model.Decimal_Precision, "BootstrapEditInt")
 
 
@@ -180,11 +185,27 @@
                         </div>
 
 
-                        @Html.EditorFor(model => model.Price_Exchange, "BootstrapEditor")
-                        @Html.EditorFor(model => model.Share_Class, "BootstrapEditor")
+                        @Html.EditorFor(model => model.Price_Exchange, "BootstrapEditor") 
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Share_Class, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+                                <div class="col-md-7">
+                                    @Html.DropDownList("Share_Class", null, string.Empty, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Share_Class, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div> 
                         @Html.EditorFor(model => model.Current_Market_Price, "BootstrapEditDecimal")
-                        @Html.EditorFor(model => model.Index_Type, "BootstrapEditor")
-                        @Html.EditorFor(model => model.Clean_Price_Formula, "BootstrapEditor")
+                        @Html.EditorFor(model => model.Index_Type, "BootstrapEditor") 
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Clean_Price_Formula, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+                                <div class="col-md-7">
+                                    @Html.DropDownList("Clean_Price_Formula", null, string.Empty, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Clean_Price_Formula, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div> 
                         <div class="col-sm-4">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Call_Account_Flag, htmlAttributes: new { @class = "control-label col-md-5 input-sm " })
@@ -207,20 +228,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane" id="identifiers">
-
+                @*---------------------------------------------next TAB: ----------------------------------- AccruedIncomePriceFormula --*@
+                <div class="tab-pane" id="fixedincome">
                     <div class="row">
 
-                        @*---------------------------------------------next TAB: -------------------------------------*@
-
                         @Html.EditorFor(model => model.Maturity_Date, "BootstrapEditDate")
-                        @Html.EditorFor(model => model.Coupon_Rate, "BootstrapEditDecimal")
+                        @Html.EditorFor(model => model.Coupon_Rate, "BootstrapEditDecimal") 
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Accrued_Income_Price_Formula, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+                                <div class="col-md-7">
+                                    @Html.DropDownList("Accrued_Income_Price_Formula", null, string.Empty, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Accrued_Income_Price_Formula, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
                         @Html.EditorFor(model => model.Issue_Date, "BootstrapEditDate")
-
-                        @Html.EditorFor(model => model.Accrued_Income_Price_Formula, "BootstrapEditor")
-                        @Html.EditorFor(model => model.Odd_First_Coupon_Date, "BootstrapEditDate")
-                        @Html.EditorFor(model => model.Odd_Last_Coupon_Date, "BootstrapEditDate")
-
                         @Html.EditorFor(model => model.Coupon_Anniversary_Indicator, "BootstrapEditor")
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -232,21 +257,39 @@
                                 </div>
                             </div>
                         </div>
+
+                        @Html.EditorFor(model => model.Odd_First_Coupon_Date, "BootstrapEditDate")
+                        @Html.EditorFor(model => model.Payment_Frequency, "BootstrapEditor") 
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Coupon_BusDay_Adjustment, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+                                <div class="col-md-7">
+                                    @Html.DropDownList("Coupon_BusDay_Adjustment", null, string.Empty, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Coupon_BusDay_Adjustment, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div> 
+
+                        @Html.EditorFor(model => model.Odd_Last_Coupon_Date, "BootstrapEditDate")
+                        @Html.EditorFor(model => model.Ex_Div_BusDay_Adjustment, "BootstrapEditor") 
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Ex_Div_Period, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+                                <div class="col-md-7">
+                                    @Html.DropDownList("Ex_Div_Period", null, string.Empty, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Ex_Div_Period, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div> 
+
                         @Html.EditorFor(model => model.Next_Coupon_Date, "BootstrapEditDate")
                         @Html.EditorFor(model => model.Previous_Coupon_Date, "BootstrapEditDate")
-
-
-
-                        @Html.EditorFor(model => model.Payment_Frequency, "BootstrapEditor")
-                        @Html.EditorFor(model => model.Coupon_BusDay_Adjustment, "BootstrapEditor")
                         @Html.EditorFor(model => model.Next_Ex_Div_Date, "BootstrapEditDate")
 
-                        @Html.EditorFor(model => model.Ex_Div_BusDay_Adjustment, "BootstrapEditor")
-                        @Html.EditorFor(model => model.Ex_Div_Period, "BootstrapEditor")
                     </div>
                 </div>
                 @*------------------------------------3rd TAB:-------------------------------------*@
-                <div class="tab-pane" id="fixedincome">
+                <div class="tab-pane" id="identifiers">
 
                     <div class="row">
 
@@ -260,16 +303,9 @@
                         @Html.EditorFor(model => model.ISIN, "BootstrapEditor")
 
                     </div> @* ---end tab row- --*@
-                </div>
+                </div> 
 
-
-
-
-            </div> @*--------------end tab Content------------------------------------*@
-
-            @*--------------Submit btn-------------------------------------*@
-            <div class="row">
-
-            </div>
+            </div> @*--------------end tab Content------------------------------------*@ 
+ 
         </div>
  

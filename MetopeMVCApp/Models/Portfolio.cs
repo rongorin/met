@@ -20,6 +20,7 @@ namespace MetopeMVCApp.Models
         public Portfolio()
         {
             this.Portfolio_List = new HashSet<Portfolio_List>();
+            this.Security_Detail = new HashSet<Security_Detail>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -37,12 +38,13 @@ namespace MetopeMVCApp.Models
         public Nullable<bool> System_Locked { get; set; }
         public string Portfolio_Status { get; set; }
     
-        public virtual Entity Entity { get; set; }
-        public virtual User User { get; set; }
         public virtual Country Country { get; set; }
         public virtual Currency Currency { get; set; }
         public virtual Currency Currency1 { get; set; }
         public virtual Currency Currency2 { get; set; }
+        public virtual Entity Entity { get; set; }
         public virtual ICollection<Portfolio_List> Portfolio_List { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<Security_Detail> Security_Detail { get; set; }
     }
 }

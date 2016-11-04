@@ -88,6 +88,6 @@ namespace MetopeMVCApp.Models
         public virtual Entity Entity { get; set; }
         public virtual Exchange Exchange { get; set; }
         public virtual Exchange Exchange1 { get; set; }
-        public virtual Security_Type Security_Type { get; set; }
+        public virtual Portfolio Portfolio { get; set; }
     }
 }

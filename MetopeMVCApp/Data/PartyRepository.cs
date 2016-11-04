@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace MetopeMVCApp.Data
 {
-    public class PartyRepository
+    public class PartyRepository 
     {
         MetopeDbEntities _ctx;
 
@@ -16,14 +16,14 @@ namespace MetopeMVCApp.Data
         { 
             _ctx = contxt;  //_ctx = new MetopeDbEntities();
         }
-
-        //public IList<Party> GetPartyValues(int iEntity , string iType)
-        //{
-
-        //    return _ctx.Parties.Where(c => c.Party_Type == iType)
-        //            .Where(r => r.Entity_ID == 1 || r.Entity_ID == iEntity).ToList();
-                    
-        //}
-
+ 
+        public IQueryable<Party> GetPartyValues(decimal iEntity, string iType, decimal iGenericEntityId)
+        {
+            return _ctx.Parties.Where(c => c.Party_Type == iType)
+                    .Where(r => r.Entity_ID == iGenericEntityId || r.Entity_ID == iEntity);
+             
+            
+        }
+ 
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MetopeDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MetopeDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetUsers">
           <Key>
             <PropertyRef Name="Id" />
@@ -562,6 +562,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Security_Detail_Portfolio_Benchmark">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="0..1" />
+          <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Principal>
+            <Dependent Role="Security_Detail">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Benchmark_Portfolio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Security_Type_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
           <End Role="Security_Type" Type="Self.Security_Type" Multiplicity="*" />
@@ -708,6 +722,10 @@
             <End Role="Exchange" EntitySet="Exchange" />
             <End Role="Security_Detail" EntitySet="Security_Detail" />
           </AssociationSet>
+          <AssociationSet Name="FK_Security_Detail_Portfolio_Benchmark" Association="Self.FK_Security_Detail_Portfolio_Benchmark">
+            <End Role="Portfolio" EntitySet="Portfolio" />
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+          </AssociationSet>
           <AssociationSet Name="FK_Security_Type_Entity" Association="Self.FK_Security_Type_Entity">
             <End Role="Entity" EntitySet="Entity" />
             <End Role="Security_Type" EntitySet="Security_Type" />
@@ -730,41 +748,14 @@
           <Property Name="Entity_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Import_Folder" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Export_Folder" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Portfolios" Relationship="Self.FK_Portfolio_Entity" FromRole="Entity" ToRole="Portfolio" />
           <NavigationProperty Name="Users" Relationship="Self.FK_User_Entity" FromRole="Entity" ToRole="User" />
           <NavigationProperty Name="Portfolio_List" Relationship="MetopeDbModel.FK_Portfolio_List_Entity" FromRole="Entity" ToRole="Portfolio_List" />
-          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Entity" FromRole="Entity" ToRole="Security_Detail" />
           <NavigationProperty Name="Exchanges" Relationship="MetopeDbModel.FK_Exchange_Entity" FromRole="Entity" ToRole="Exchange" />
           <NavigationProperty Name="Security_Type" Relationship="MetopeDbModel.FK_Security_Type_Entity" FromRole="Entity" ToRole="Security_Type" />
           <NavigationProperty Name="Code_Miscellaneous" Relationship="MetopeDbModel.FK_Code_Miscellaneous_Entity" FromRole="Entity" ToRole="Code_Miscellaneous" />
           <NavigationProperty Name="Parties" Relationship="MetopeDbModel.FK_Party_Entity" FromRole="Entity" ToRole="Party" />
-        </EntityType>
-        <EntityType Name="Portfolio">
-          <Key>
-            <PropertyRef Name="Entity_ID" />
-            <PropertyRef Name="Portfolio_Code" />
-          </Key>
-          <Property Name="Entity_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Portfolio_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Portfolio_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Manager" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Portfolio_Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Portfolio_Base_Currency" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PortfolIo_Domicile" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Portfolio_Report_Currency" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Inception_Date" Type="DateTime" Precision="0" />
-          <Property Name="Financial_Year_End" Type="DateTime" Precision="0" />
-          <Property Name="Custodian_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Active_Flag" Type="Boolean" Nullable="false" />
-          <Property Name="System_Locked" Type="Boolean" />
-          <NavigationProperty Name="Entity" Relationship="Self.FK_Portfolio_Entity" FromRole="Portfolio" ToRole="Entity" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Portfolio_User" FromRole="Portfolio" ToRole="User" />
-          <NavigationProperty Name="Country" Relationship="MetopeDbModel.FK_Portfolio_Country" FromRole="Portfolio" ToRole="Country" />
-          <NavigationProperty Name="Currency" Relationship="MetopeDbModel.FK_Portfolio_Currency" FromRole="Portfolio" ToRole="Currency" />
-          <NavigationProperty Name="Currency1" Relationship="MetopeDbModel.FK_Portfolio_Currency1" FromRole="Portfolio" ToRole="Currency" />
-          <NavigationProperty Name="Currency2" Relationship="MetopeDbModel.FK_Portfolio_Currency2" FromRole="Portfolio" ToRole="Currency" />
-          <Property Name="Portfolio_Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Portfolio_List" Relationship="MetopeDbModel.FK_Portfolio_List_Portfolio" FromRole="Portfolio" ToRole="Portfolio_List" />
+          <NavigationProperty Name="Portfolios" Relationship="MetopeDbModel.FK_Portfolio_Entity" FromRole="Entity" ToRole="Portfolio" />
+          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Entity" FromRole="Entity" ToRole="Security_Detail" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -788,20 +779,8 @@
           <Property Name="Last_Login_Time" Type="DateTime" Precision="3" />
           <Property Name="System_Locked" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Entity" Relationship="Self.FK_User_Entity" FromRole="User" ToRole="Entity" />
-          <NavigationProperty Name="Portfolios" Relationship="Self.FK_Portfolio_User" FromRole="User" ToRole="Portfolio" />
+          <NavigationProperty Name="Portfolios" Relationship="MetopeDbModel.FK_Portfolio_User" FromRole="User" ToRole="Portfolio" />
         </EntityType>
-        <Association Name="FK_Portfolio_Entity">
-          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
-          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Entity">
-              <PropertyRef Name="Entity_ID" />
-            </Principal>
-            <Dependent Role="Portfolio">
-              <PropertyRef Name="Entity_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_User_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -814,44 +793,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Portfolio_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Entity_ID" />
-              <PropertyRef Name="User_Code" />
-            </Principal>
-            <Dependent Role="Portfolio">
-              <PropertyRef Name="Entity_ID" />
-              <PropertyRef Name="Manager" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="MetopeDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Entities" EntityType="Self.Entity" />
-          <EntitySet Name="Portfolios" EntityType="Self.Portfolio" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_Portfolio_Entity" Association="Self.FK_Portfolio_Entity">
-            <End Role="Entity" EntitySet="Entities" />
-            <End Role="Portfolio" EntitySet="Portfolios" />
-          </AssociationSet>
           <AssociationSet Name="FK_User_Entity" Association="Self.FK_User_Entity">
             <End Role="Entity" EntitySet="Entities" />
             <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Portfolio_User" Association="Self.FK_Portfolio_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Portfolio" EntitySet="Portfolios" />
           </AssociationSet>
           <EntitySet Name="AspNetUsers" EntityType="MetopeDbModel.AspNetUser" />
           <EntitySet Name="Countries" EntityType="MetopeDbModel.Country" />
           <EntitySet Name="Currencies" EntityType="MetopeDbModel.Currency" />
           <EntitySet Name="Currency_Pair" EntityType="MetopeDbModel.Currency_Pair" />
-          <AssociationSet Name="FK_Portfolio_Country" Association="MetopeDbModel.FK_Portfolio_Country">
-            <End Role="Country" EntitySet="Countries" />
-            <End Role="Portfolio" EntitySet="Portfolios" />
-          </AssociationSet>
           <AssociationSet Name="FK_Currency_Pair_Currency" Association="MetopeDbModel.FK_Currency_Pair_Currency">
             <End Role="Currency" EntitySet="Currencies" />
             <End Role="Currency_Pair" EntitySet="Currency_Pair" />
@@ -860,28 +812,45 @@
             <End Role="Currency" EntitySet="Currencies" />
             <End Role="Currency_Pair" EntitySet="Currency_Pair" />
           </AssociationSet>
-          <AssociationSet Name="FK_Portfolio_Currency" Association="MetopeDbModel.FK_Portfolio_Currency">
-            <End Role="Currency" EntitySet="Currencies" />
-            <End Role="Portfolio" EntitySet="Portfolios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Portfolio_Currency1" Association="MetopeDbModel.FK_Portfolio_Currency1">
-            <End Role="Currency" EntitySet="Currencies" />
-            <End Role="Portfolio" EntitySet="Portfolios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Portfolio_Currency2" Association="MetopeDbModel.FK_Portfolio_Currency2">
-            <End Role="Currency" EntitySet="Currencies" />
-            <End Role="Portfolio" EntitySet="Portfolios" />
-          </AssociationSet>
           <EntitySet Name="Portfolio_List" EntityType="MetopeDbModel.Portfolio_List" />
           <AssociationSet Name="FK_Portfolio_List_Entity" Association="MetopeDbModel.FK_Portfolio_List_Entity">
             <End Role="Entity" EntitySet="Entities" />
             <End Role="Portfolio_List" EntitySet="Portfolio_List" />
           </AssociationSet>
-          <AssociationSet Name="FK_Portfolio_List_Portfolio" Association="MetopeDbModel.FK_Portfolio_List_Portfolio">
-            <End Role="Portfolio" EntitySet="Portfolios" />
-            <End Role="Portfolio_List" EntitySet="Portfolio_List" />
+          <EntitySet Name="Exchanges" EntityType="MetopeDbModel.Exchange" />
+          <EntitySet Name="Security_Type" EntityType="MetopeDbModel.Security_Type" />
+          <AssociationSet Name="FK_Exchange_Country" Association="MetopeDbModel.FK_Exchange_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Exchange" EntitySet="Exchanges" />
           </AssociationSet>
+          <AssociationSet Name="FK_Exchange_Entity" Association="MetopeDbModel.FK_Exchange_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Exchange" EntitySet="Exchanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Type_Entity" Association="MetopeDbModel.FK_Security_Type_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Security_Type" EntitySet="Security_Type" />
+          </AssociationSet>
+          <EntitySet Name="Code_Miscellaneous" EntityType="MetopeDbModel.Code_Miscellaneous" />
+          <AssociationSet Name="FK_Code_Miscellaneous_Entity" Association="MetopeDbModel.FK_Code_Miscellaneous_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Code_Miscellaneous" EntitySet="Code_Miscellaneous" />
+          </AssociationSet>
+          <EntitySet Name="Parties" EntityType="MetopeDbModel.Party" />
+          <AssociationSet Name="FK_Party_Country" Association="MetopeDbModel.FK_Party_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Party" EntitySet="Parties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Party_Entity" Association="MetopeDbModel.FK_Party_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Party" EntitySet="Parties" />
+          </AssociationSet>
+          <EntitySet Name="Portfolios" EntityType="MetopeDbModel.Portfolio" />
           <EntitySet Name="Security_Detail" EntityType="MetopeDbModel.Security_Detail" />
+          <AssociationSet Name="FK_Portfolio_Country" Association="MetopeDbModel.FK_Portfolio_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Portfolio" EntitySet="Portfolios" />
+          </AssociationSet>
           <AssociationSet Name="FK_Security_Detail_Country" Association="MetopeDbModel.FK_Security_Detail_Country">
             <End Role="Country" EntitySet="Countries" />
             <End Role="Security_Detail" EntitySet="Security_Detail" />
@@ -897,6 +866,18 @@
           <AssociationSet Name="FK_Currency_Currency_Security_ID3" Association="MetopeDbModel.FK_Currency_Currency_Security_ID3">
             <End Role="Security_Detail" EntitySet="Security_Detail" />
             <End Role="Currency" EntitySet="Currencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Currency" Association="MetopeDbModel.FK_Portfolio_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Portfolio" EntitySet="Portfolios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Currency1" Association="MetopeDbModel.FK_Portfolio_Currency1">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Portfolio" EntitySet="Portfolios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Currency2" Association="MetopeDbModel.FK_Portfolio_Currency2">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Portfolio" EntitySet="Portfolios" />
           </AssociationSet>
           <AssociationSet Name="FK_Security_Detail_Currency" Association="MetopeDbModel.FK_Security_Detail_Currency">
             <End Role="Currency" EntitySet="Currencies" />
@@ -918,23 +899,13 @@
             <End Role="Currency_Pair" EntitySet="Currency_Pair" />
             <End Role="Security_Detail" EntitySet="Security_Detail" />
           </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Entity" Association="MetopeDbModel.FK_Portfolio_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Portfolio" EntitySet="Portfolios" />
+          </AssociationSet>
           <AssociationSet Name="FK_Security_Detail_Entity" Association="MetopeDbModel.FK_Security_Detail_Entity">
             <End Role="Entity" EntitySet="Entities" />
             <End Role="Security_Detail" EntitySet="Security_Detail" />
-          </AssociationSet>
-          <EntitySet Name="Exchanges" EntityType="MetopeDbModel.Exchange" />
-          <EntitySet Name="Security_Type" EntityType="MetopeDbModel.Security_Type" />
-          <AssociationSet Name="FK_Exchange_Country" Association="MetopeDbModel.FK_Exchange_Country">
-            <End Role="Country" EntitySet="Countries" />
-            <End Role="Exchange" EntitySet="Exchanges" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Exchange_Entity" Association="MetopeDbModel.FK_Exchange_Entity">
-            <End Role="Entity" EntitySet="Entities" />
-            <End Role="Exchange" EntitySet="Exchanges" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Security_Type_Entity" Association="MetopeDbModel.FK_Security_Type_Entity">
-            <End Role="Entity" EntitySet="Entities" />
-            <End Role="Security_Type" EntitySet="Security_Type" />
           </AssociationSet>
           <AssociationSet Name="FK_Security_Detail_Exchange" Association="MetopeDbModel.FK_Security_Detail_Exchange">
             <End Role="Exchange" EntitySet="Exchanges" />
@@ -944,23 +915,17 @@
             <End Role="Exchange" EntitySet="Exchanges" />
             <End Role="Security_Detail" EntitySet="Security_Detail" />
           </AssociationSet>
-          <AssociationSet Name="FK_Security_Detail_Security_Type" Association="MetopeDbModel.FK_Security_Detail_Security_Type">
-            <End Role="Security_Type" EntitySet="Security_Type" />
+          <AssociationSet Name="FK_Portfolio_List_Portfolio" Association="MetopeDbModel.FK_Portfolio_List_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolios" />
+            <End Role="Portfolio_List" EntitySet="Portfolio_List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_User" Association="MetopeDbModel.FK_Portfolio_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Portfolio" EntitySet="Portfolios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Detail_Portfolio_Benchmark" Association="MetopeDbModel.FK_Security_Detail_Portfolio_Benchmark">
+            <End Role="Portfolio" EntitySet="Portfolios" />
             <End Role="Security_Detail" EntitySet="Security_Detail" />
-          </AssociationSet>
-          <EntitySet Name="Code_Miscellaneous" EntityType="MetopeDbModel.Code_Miscellaneous" />
-          <AssociationSet Name="FK_Code_Miscellaneous_Entity" Association="MetopeDbModel.FK_Code_Miscellaneous_Entity">
-            <End Role="Entity" EntitySet="Entities" />
-            <End Role="Code_Miscellaneous" EntitySet="Code_Miscellaneous" />
-          </AssociationSet>
-          <EntitySet Name="Parties" EntityType="MetopeDbModel.Party" />
-          <AssociationSet Name="FK_Party_Country" Association="MetopeDbModel.FK_Party_Country">
-            <End Role="Country" EntitySet="Countries" />
-            <End Role="Party" EntitySet="Parties" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Party_Entity" Association="MetopeDbModel.FK_Party_Entity">
-            <End Role="Entity" EntitySet="Entities" />
-            <End Role="Party" EntitySet="Parties" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="AspNetUser">
@@ -993,11 +958,11 @@
           <Property Name="ISO_Country_Code" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="BB_Country_Code" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="system_locked" Type="Boolean" />
+          <NavigationProperty Name="Exchanges" Relationship="MetopeDbModel.FK_Exchange_Country" FromRole="Country" ToRole="Exchange" />
+          <NavigationProperty Name="Parties" Relationship="MetopeDbModel.FK_Party_Country" FromRole="Country" ToRole="Party" />
           <NavigationProperty Name="Portfolios" Relationship="MetopeDbModel.FK_Portfolio_Country" FromRole="Country" ToRole="Portfolio" />
           <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Country" FromRole="Country" ToRole="Security_Detail" />
           <NavigationProperty Name="Security_Detail1" Relationship="MetopeDbModel.FK_Security_Detail_Country1" FromRole="Country" ToRole="Security_Detail" />
-          <NavigationProperty Name="Exchanges" Relationship="MetopeDbModel.FK_Exchange_Country" FromRole="Country" ToRole="Exchange" />
-          <NavigationProperty Name="Parties" Relationship="MetopeDbModel.FK_Party_Country" FromRole="Country" ToRole="Party" />
           </EntityType>
         <EntityType Name="Currency">
           <Key>
@@ -1012,11 +977,11 @@
           <Property Name="Synthetic_Security_ID" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="Currency_Pair" Relationship="MetopeDbModel.FK_Currency_Pair_Currency" FromRole="Currency" ToRole="Currency_Pair" />
           <NavigationProperty Name="Currency_Pair1" Relationship="MetopeDbModel.FK_Currency_Pair_Currency1" FromRole="Currency" ToRole="Currency_Pair" />
+          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Currency_Currency_Security_ID2" FromRole="Currency" ToRole="Security_Detail" />
+          <NavigationProperty Name="Security_Detail1" Relationship="MetopeDbModel.FK_Currency_Currency_Security_ID3" FromRole="Currency" ToRole="Security_Detail" />
           <NavigationProperty Name="Portfolios" Relationship="MetopeDbModel.FK_Portfolio_Currency" FromRole="Currency" ToRole="Portfolio" />
           <NavigationProperty Name="Portfolios1" Relationship="MetopeDbModel.FK_Portfolio_Currency1" FromRole="Currency" ToRole="Portfolio" />
           <NavigationProperty Name="Portfolios2" Relationship="MetopeDbModel.FK_Portfolio_Currency2" FromRole="Currency" ToRole="Portfolio" />
-          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Currency_Currency_Security_ID2" FromRole="Currency" ToRole="Security_Detail" />
-          <NavigationProperty Name="Security_Detail1" Relationship="MetopeDbModel.FK_Currency_Currency_Security_ID3" FromRole="Currency" ToRole="Security_Detail" />
           <NavigationProperty Name="Security_Detail2" Relationship="MetopeDbModel.FK_Security_Detail_Currency" FromRole="Currency" ToRole="Security_Detail" />
           <NavigationProperty Name="Security_Detail3" Relationship="MetopeDbModel.FK_Security_Detail_Currency1" FromRole="Currency" ToRole="Security_Detail" />
           <NavigationProperty Name="Security_Detail4" Relationship="MetopeDbModel.FK_Security_Detail_Currency2" FromRole="Currency" ToRole="Security_Detail" />
@@ -1034,18 +999,6 @@
           <NavigationProperty Name="Currency1" Relationship="MetopeDbModel.FK_Currency_Pair_Currency1" FromRole="Currency_Pair" ToRole="Currency" />
           <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Currency_Pair" FromRole="Currency_Pair" ToRole="Security_Detail" />
         </EntityType>
-        <Association Name="FK_Portfolio_Country">
-          <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
-          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="Country_Code" />
-            </Principal>
-            <Dependent Role="Portfolio">
-              <PropertyRef Name="PortfolIo_Domicile" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Currency_Pair_Currency">
           <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
           <End Type="MetopeDbModel.Currency_Pair" Role="Currency_Pair" Multiplicity="*" />
@@ -1067,42 +1020,6 @@
             </Principal>
             <Dependent Role="Currency_Pair">
               <PropertyRef Name="Counter_Currency_Code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Portfolio_Currency">
-          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
-          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currency">
-              <PropertyRef Name="Currency_Code" />
-            </Principal>
-            <Dependent Role="Portfolio">
-              <PropertyRef Name="Portfolio_Base_Currency" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Portfolio_Currency1">
-          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
-          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currency">
-              <PropertyRef Name="Currency_Code" />
-            </Principal>
-            <Dependent Role="Portfolio">
-              <PropertyRef Name="Portfolio_Report_Currency" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Portfolio_Currency2">
-          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
-          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currency">
-              <PropertyRef Name="Currency_Code" />
-            </Principal>
-            <Dependent Role="Portfolio">
-              <PropertyRef Name="Portfolio_Report_Currency" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1130,210 +1047,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Portfolio_List_Portfolio">
-          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="1" />
-          <End Type="MetopeDbModel.Portfolio_List" Role="Portfolio_List" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Portfolio">
-              <PropertyRef Name="Entity_ID" />
-              <PropertyRef Name="Portfolio_Code" />
-            </Principal>
-            <Dependent Role="Portfolio_List">
-              <PropertyRef Name="Entity_ID" />
-              <PropertyRef Name="Portfolio_Code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Security_Detail">
-          <Key>
-            <PropertyRef Name="Security_ID" />
-          </Key>
-          <Property Name="Security_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Security_Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Short_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Primary_Exch" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="Secondary_Exch" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="Country_Of_Domicile" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="Country_Of_Risk" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="Security_Type_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Price_Multiplier" Type="Decimal" Nullable="false" Precision="12" Scale="6" />
-          <Property Name="Income_Frequency" Type="Decimal" Precision="3" Scale="0" />
-          <Property Name="Issuer_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Ultimate_Issuer_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Asset_Currency" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="Min_Lot_Size" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="Decimal_Precision" Type="Int32" Nullable="false" />
-          <Property Name="AvePrice_Rounding" Type="Int32" Nullable="false" />
-          <Property Name="Issue_Date" Type="DateTime" Precision="0" />
-          <Property Name="Maturity_Date" Type="DateTime" Precision="0" />
-          <Property Name="Coupon_Rate" Type="Decimal" Precision="15" Scale="10" />
-          <Property Name="Price_Exchange" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="Trade_Currency" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="Price_Curr" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="Currency_Pair_Code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="Share_Class" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="Current_Market_Price" Type="Decimal" Nullable="false" Precision="20" Scale="9" />
-          <Property Name="Index_Type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Clean_Price_Formula" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Accrued_Income_Price_Formula" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Odd_First_Coupon_Date" Type="DateTime" Precision="0" />
-          <Property Name="Odd_Last_Coupon_Date" Type="DateTime" Precision="0" />
-          <Property Name="Coupon_Anniversary_Indicator" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="Track_EOM_Flag" Type="Boolean" />
-          <Property Name="Next_Coupon_Date" Type="DateTime" Precision="0" />
-          <Property Name="Previous_Coupon_Date" Type="DateTime" Precision="0" />
-          <Property Name="Payment_Frequency" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="Coupon_BusDay_Adjustment" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Next_Ex_Div_Date" Type="DateTime" Precision="0" />
-          <Property Name="Ex_Div_BusDay_Adjustment" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Ex_Div_Period" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Ticker" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Inet_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Bloomberg_ID" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="External_Sec_ID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Reuters_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ISIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Call_Account_Flag" Type="Boolean" />
-          <Property Name="System_Locked" Type="Boolean" Nullable="false" />
-          <Property Name="Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Security_Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Benchmark_Portfolio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Country" Relationship="MetopeDbModel.FK_Security_Detail_Country" FromRole="Security_Detail" ToRole="Country" />
-          <NavigationProperty Name="Country1" Relationship="MetopeDbModel.FK_Security_Detail_Country1" FromRole="Security_Detail" ToRole="Country" />
-          <NavigationProperty Name="Currencies" Relationship="MetopeDbModel.FK_Currency_Currency_Security_ID2" FromRole="Security_Detail" ToRole="Currency" />
-          <NavigationProperty Name="Currencies1" Relationship="MetopeDbModel.FK_Currency_Currency_Security_ID3" FromRole="Security_Detail" ToRole="Currency" />
-          <NavigationProperty Name="Currency" Relationship="MetopeDbModel.FK_Security_Detail_Currency" FromRole="Security_Detail" ToRole="Currency" />
-          <NavigationProperty Name="Currency1" Relationship="MetopeDbModel.FK_Security_Detail_Currency1" FromRole="Security_Detail" ToRole="Currency" />
-          <NavigationProperty Name="Currency2" Relationship="MetopeDbModel.FK_Security_Detail_Currency2" FromRole="Security_Detail" ToRole="Currency" />
-          <NavigationProperty Name="Currency3" Relationship="MetopeDbModel.FK_Security_Detail_Currency3" FromRole="Security_Detail" ToRole="Currency" />
-          <NavigationProperty Name="Currency_Pair" Relationship="MetopeDbModel.FK_Security_Detail_Currency_Pair" FromRole="Security_Detail" ToRole="Currency_Pair" />
-          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Security_Detail_Entity" FromRole="Security_Detail" ToRole="Entity" />
-          <NavigationProperty Name="Exchange" Relationship="MetopeDbModel.FK_Security_Detail_Exchange" FromRole="Security_Detail" ToRole="Exchange" />
-          <NavigationProperty Name="Exchange1" Relationship="MetopeDbModel.FK_Security_Detail_Exchange1" FromRole="Security_Detail" ToRole="Exchange" />
-          <NavigationProperty Name="Security_Type" Relationship="MetopeDbModel.FK_Security_Detail_Security_Type" FromRole="Security_Detail" ToRole="Security_Type" />
-        </EntityType>
-        <Association Name="FK_Security_Detail_Country">
-          <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="Country_Code" />
-            </Principal>
-            <Dependent Role="Security_Detail">
-              <PropertyRef Name="Country_Of_Domicile" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Security_Detail_Country1">
-          <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="Country_Code" />
-            </Principal>
-            <Dependent Role="Security_Detail">
-              <PropertyRef Name="Country_Of_Risk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Currency_Currency_Security_ID2">
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="0..1" />
-          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Security_Detail">
-              <PropertyRef Name="Security_ID" />
-            </Principal>
-            <Dependent Role="Currency">
-              <PropertyRef Name="Currency_Security_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Currency_Currency_Security_ID3">
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="0..1" />
-          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Security_Detail">
-              <PropertyRef Name="Security_ID" />
-            </Principal>
-            <Dependent Role="Currency">
-              <PropertyRef Name="Synthetic_Security_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Security_Detail_Currency">
-          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currency">
-              <PropertyRef Name="Currency_Code" />
-            </Principal>
-            <Dependent Role="Security_Detail">
-              <PropertyRef Name="Asset_Currency" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Security_Detail_Currency1">
-          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currency">
-              <PropertyRef Name="Currency_Code" />
-            </Principal>
-            <Dependent Role="Security_Detail">
-              <PropertyRef Name="Price_Curr" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Security_Detail_Currency2">
-          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currency">
-              <PropertyRef Name="Currency_Code" />
-            </Principal>
-            <Dependent Role="Security_Detail">
-              <PropertyRef Name="Asset_Currency" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Security_Detail_Currency3">
-          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currency">
-              <PropertyRef Name="Currency_Code" />
-            </Principal>
-            <Dependent Role="Security_Detail">
-              <PropertyRef Name="Trade_Currency" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Security_Detail_Currency_Pair">
-          <End Type="MetopeDbModel.Currency_Pair" Role="Currency_Pair" Multiplicity="0..1" />
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currency_Pair">
-              <PropertyRef Name="Currency_Pair_Code" />
-            </Principal>
-            <Dependent Role="Security_Detail">
-              <PropertyRef Name="Currency_Pair_Code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Security_Detail_Entity">
-          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Entity">
-              <PropertyRef Name="Entity_ID" />
-            </Principal>
-            <Dependent Role="Security_Detail">
-              <PropertyRef Name="Entity_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Exchange">
           <Key>
             <PropertyRef Name="Exchange_Code" />
@@ -1349,7 +1062,7 @@
           <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Exchange_Entity" FromRole="Exchange" ToRole="Entity" />
           <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Exchange" FromRole="Exchange" ToRole="Security_Detail" />
           <NavigationProperty Name="Security_Detail1" Relationship="MetopeDbModel.FK_Security_Detail_Exchange1" FromRole="Exchange" ToRole="Security_Detail" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Security_Type">
           <Key>
             <PropertyRef Name="Entity_ID" />
@@ -1368,7 +1081,6 @@
           <Property Name="Min_Lot_Size" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="System_Locked" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Security_Type_Entity" FromRole="Security_Type" ToRole="Entity" />
-          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Security_Type" FromRole="Security_Type" ToRole="Security_Detail" />
         </EntityType>
         <Association Name="FK_Exchange_Country">
           <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
@@ -1403,44 +1115,6 @@
             </Principal>
             <Dependent Role="Security_Type">
               <PropertyRef Name="Entity_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Security_Detail_Exchange">
-          <End Type="MetopeDbModel.Exchange" Role="Exchange" Multiplicity="1" />
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Exchange">
-              <PropertyRef Name="Exchange_Code" />
-            </Principal>
-            <Dependent Role="Security_Detail">
-              <PropertyRef Name="Primary_Exch" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Security_Detail_Exchange1">
-          <End Type="MetopeDbModel.Exchange" Role="Exchange" Multiplicity="0..1" />
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Exchange">
-              <PropertyRef Name="Exchange_Code" />
-            </Principal>
-            <Dependent Role="Security_Detail">
-              <PropertyRef Name="Secondary_Exch" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Security_Detail_Security_Type">
-          <End Type="MetopeDbModel.Security_Type" Role="Security_Type" Multiplicity="1" />
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Security_Type">
-              <PropertyRef Name="Entity_ID" />
-              <PropertyRef Name="Security_Type_Code" />
-            </Principal>
-            <Dependent Role="Security_Detail">
-              <PropertyRef Name="Entity_ID" />
-              <PropertyRef Name="Security_Type_Code" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1511,6 +1185,350 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Portfolio">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Portfolio_Code" />
+          </Key>
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Portfolio_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Portfolio_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Manager" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Portfolio_Type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Portfolio_Base_Currency" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="PortfolIo_Domicile" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Portfolio_Report_Currency" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Inception_Date" Type="DateTime" Precision="0" />
+          <Property Name="Financial_Year_End" Type="DateTime" Precision="0" />
+          <Property Name="Custodian_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Active_Flag" Type="Boolean" Nullable="false" />
+          <Property Name="System_Locked" Type="Boolean" />
+          <Property Name="Portfolio_Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Country" Relationship="MetopeDbModel.FK_Portfolio_Country" FromRole="Portfolio" ToRole="Country" />
+          <NavigationProperty Name="Currency" Relationship="MetopeDbModel.FK_Portfolio_Currency" FromRole="Portfolio" ToRole="Currency" />
+          <NavigationProperty Name="Currency1" Relationship="MetopeDbModel.FK_Portfolio_Currency1" FromRole="Portfolio" ToRole="Currency" />
+          <NavigationProperty Name="Currency2" Relationship="MetopeDbModel.FK_Portfolio_Currency2" FromRole="Portfolio" ToRole="Currency" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Portfolio_Entity" FromRole="Portfolio" ToRole="Entity" />
+          <NavigationProperty Name="Portfolio_List" Relationship="MetopeDbModel.FK_Portfolio_List_Portfolio" FromRole="Portfolio" ToRole="Portfolio_List" />
+          <NavigationProperty Name="User" Relationship="MetopeDbModel.FK_Portfolio_User" FromRole="Portfolio" ToRole="User" />
+          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Portfolio_Benchmark" FromRole="Portfolio" ToRole="Security_Detail" />
+        </EntityType>
+        <EntityType Name="Security_Detail">
+          <Key>
+            <PropertyRef Name="Security_ID" />
+          </Key>
+          <Property Name="Security_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Security_Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Short_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Primary_Exch" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Secondary_Exch" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Country_Of_Domicile" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Country_Of_Risk" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Security_Type_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Price_Multiplier" Type="Decimal" Nullable="false" Precision="12" Scale="6" />
+          <Property Name="Income_Frequency" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="Issuer_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Ultimate_Issuer_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Asset_Currency" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Min_Lot_Size" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Decimal_Precision" Type="Int32" Nullable="false" />
+          <Property Name="AvePrice_Rounding" Type="Int32" Nullable="false" />
+          <Property Name="Issue_Date" Type="DateTime" Precision="0" />
+          <Property Name="Maturity_Date" Type="DateTime" Precision="0" />
+          <Property Name="Coupon_Rate" Type="Decimal" Precision="15" Scale="10" />
+          <Property Name="Price_Exchange" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Trade_Currency" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Price_Curr" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Currency_Pair_Code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Share_Class" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Current_Market_Price" Type="Decimal" Nullable="false" Precision="20" Scale="9" />
+          <Property Name="Index_Type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Clean_Price_Formula" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Accrued_Income_Price_Formula" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Odd_First_Coupon_Date" Type="DateTime" Precision="0" />
+          <Property Name="Odd_Last_Coupon_Date" Type="DateTime" Precision="0" />
+          <Property Name="Coupon_Anniversary_Indicator" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Track_EOM_Flag" Type="Boolean" />
+          <Property Name="Next_Coupon_Date" Type="DateTime" Precision="0" />
+          <Property Name="Previous_Coupon_Date" Type="DateTime" Precision="0" />
+          <Property Name="Payment_Frequency" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Coupon_BusDay_Adjustment" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Next_Ex_Div_Date" Type="DateTime" Precision="0" />
+          <Property Name="Ex_Div_BusDay_Adjustment" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Ex_Div_Period" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Ticker" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Inet_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Bloomberg_ID" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="External_Sec_ID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Reuters_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ISIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Call_Account_Flag" Type="Boolean" />
+          <Property Name="System_Locked" Type="Boolean" Nullable="false" />
+          <Property Name="Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Security_Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Benchmark_Portfolio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Country" Relationship="MetopeDbModel.FK_Security_Detail_Country" FromRole="Security_Detail" ToRole="Country" />
+          <NavigationProperty Name="Country1" Relationship="MetopeDbModel.FK_Security_Detail_Country1" FromRole="Security_Detail" ToRole="Country" />
+          <NavigationProperty Name="Currencies" Relationship="MetopeDbModel.FK_Currency_Currency_Security_ID2" FromRole="Security_Detail" ToRole="Currency" />
+          <NavigationProperty Name="Currencies1" Relationship="MetopeDbModel.FK_Currency_Currency_Security_ID3" FromRole="Security_Detail" ToRole="Currency" />
+          <NavigationProperty Name="Currency" Relationship="MetopeDbModel.FK_Security_Detail_Currency" FromRole="Security_Detail" ToRole="Currency" />
+          <NavigationProperty Name="Currency1" Relationship="MetopeDbModel.FK_Security_Detail_Currency1" FromRole="Security_Detail" ToRole="Currency" />
+          <NavigationProperty Name="Currency2" Relationship="MetopeDbModel.FK_Security_Detail_Currency2" FromRole="Security_Detail" ToRole="Currency" />
+          <NavigationProperty Name="Currency3" Relationship="MetopeDbModel.FK_Security_Detail_Currency3" FromRole="Security_Detail" ToRole="Currency" />
+          <NavigationProperty Name="Currency_Pair" Relationship="MetopeDbModel.FK_Security_Detail_Currency_Pair" FromRole="Security_Detail" ToRole="Currency_Pair" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Security_Detail_Entity" FromRole="Security_Detail" ToRole="Entity" />
+          <NavigationProperty Name="Exchange" Relationship="MetopeDbModel.FK_Security_Detail_Exchange" FromRole="Security_Detail" ToRole="Exchange" />
+          <NavigationProperty Name="Exchange1" Relationship="MetopeDbModel.FK_Security_Detail_Exchange1" FromRole="Security_Detail" ToRole="Exchange" />
+          <NavigationProperty Name="Portfolio" Relationship="MetopeDbModel.FK_Security_Detail_Portfolio_Benchmark" FromRole="Security_Detail" ToRole="Portfolio" />
+        </EntityType>
+        <Association Name="FK_Portfolio_Country">
+          <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_Code" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="PortfolIo_Domicile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Detail_Country">
+          <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_Code" />
+            </Principal>
+            <Dependent Role="Security_Detail">
+              <PropertyRef Name="Country_Of_Domicile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Detail_Country1">
+          <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_Code" />
+            </Principal>
+            <Dependent Role="Security_Detail">
+              <PropertyRef Name="Country_Of_Risk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Currency_Currency_Security_ID2">
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Currency">
+              <PropertyRef Name="Currency_Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Currency_Currency_Security_ID3">
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Currency">
+              <PropertyRef Name="Synthetic_Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Currency">
+          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="Portfolio_Base_Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Currency1">
+          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="Portfolio_Report_Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Currency2">
+          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="Portfolio_Report_Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Detail_Currency">
+          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Security_Detail">
+              <PropertyRef Name="Asset_Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Detail_Currency1">
+          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Security_Detail">
+              <PropertyRef Name="Price_Curr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Detail_Currency2">
+          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Security_Detail">
+              <PropertyRef Name="Asset_Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Detail_Currency3">
+          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Security_Detail">
+              <PropertyRef Name="Trade_Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Detail_Currency_Pair">
+          <End Type="MetopeDbModel.Currency_Pair" Role="Currency_Pair" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency_Pair">
+              <PropertyRef Name="Currency_Pair_Code" />
+            </Principal>
+            <Dependent Role="Security_Detail">
+              <PropertyRef Name="Currency_Pair_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Entity">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Detail_Entity">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Security_Detail">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Detail_Exchange">
+          <End Type="MetopeDbModel.Exchange" Role="Exchange" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exchange">
+              <PropertyRef Name="Exchange_Code" />
+            </Principal>
+            <Dependent Role="Security_Detail">
+              <PropertyRef Name="Primary_Exch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Detail_Exchange1">
+          <End Type="MetopeDbModel.Exchange" Role="Exchange" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exchange">
+              <PropertyRef Name="Exchange_Code" />
+            </Principal>
+            <Dependent Role="Security_Detail">
+              <PropertyRef Name="Secondary_Exch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_List_Portfolio">
+          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="1" />
+          <End Type="MetopeDbModel.Portfolio_List" Role="Portfolio_List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Principal>
+            <Dependent Role="Portfolio_List">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_User">
+          <End Type="MetopeDbModel.User" Role="User" Multiplicity="1" />
+          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Detail_Portfolio_Benchmark">
+          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Principal>
+            <Dependent Role="Security_Detail">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Benchmark_Portfolio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1525,26 +1543,6 @@
                 <ScalarProperty Name="Entity_Name" ColumnName="Entity_Name" />
                 <ScalarProperty Name="Import_Folder" ColumnName="Import_Folder" />
                 <ScalarProperty Name="Export_Folder" ColumnName="Export_Folder" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Portfolios">
-            <EntityTypeMapping TypeName="MetopeDbModel.Portfolio">
-              <MappingFragment StoreEntitySet="Portfolio">
-                <ScalarProperty Name="Portfolio_Status" ColumnName="Portfolio_Status" />
-                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
-                <ScalarProperty Name="Portfolio_Code" ColumnName="Portfolio_Code" />
-                <ScalarProperty Name="Portfolio_Name" ColumnName="Portfolio_Name" />
-                <ScalarProperty Name="Manager" ColumnName="Manager" />
-                <ScalarProperty Name="Portfolio_Type" ColumnName="Portfolio_Type" />
-                <ScalarProperty Name="Portfolio_Base_Currency" ColumnName="Portfolio_Base_Currency" />
-                <ScalarProperty Name="PortfolIo_Domicile" ColumnName="PortfolIo_Domicile" />
-                <ScalarProperty Name="Portfolio_Report_Currency" ColumnName="Portfolio_Report_Currency" />
-                <ScalarProperty Name="Inception_Date" ColumnName="Inception_Date" />
-                <ScalarProperty Name="Financial_Year_End" ColumnName="Financial_Year_End" />
-                <ScalarProperty Name="Custodian_Code" ColumnName="Custodian_Code" />
-                <ScalarProperty Name="Active_Flag" ColumnName="Active_Flag" />
-                <ScalarProperty Name="System_Locked" ColumnName="System_Locked" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1635,64 +1633,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Security_Detail">
-            <EntityTypeMapping TypeName="MetopeDbModel.Security_Detail">
-              <MappingFragment StoreEntitySet="Security_Detail">
-                <ScalarProperty Name="Benchmark_Portfolio" ColumnName="Benchmark_Portfolio" />
-                <ScalarProperty Name="Security_Status" ColumnName="Security_Status" />
-                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
-                <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
-                <ScalarProperty Name="System_Locked" ColumnName="System_Locked" />
-                <ScalarProperty Name="Call_Account_Flag" ColumnName="Call_Account_Flag" />
-                <ScalarProperty Name="ISIN" ColumnName="ISIN" />
-                <ScalarProperty Name="Reuters_ID" ColumnName="Reuters_ID" />
-                <ScalarProperty Name="External_Sec_ID" ColumnName="External_Sec_ID" />
-                <ScalarProperty Name="Bloomberg_ID" ColumnName="Bloomberg_ID" />
-                <ScalarProperty Name="Inet_ID" ColumnName="Inet_ID" />
-                <ScalarProperty Name="Ticker" ColumnName="Ticker" />
-                <ScalarProperty Name="Ex_Div_Period" ColumnName="Ex_Div_Period" />
-                <ScalarProperty Name="Ex_Div_BusDay_Adjustment" ColumnName="Ex_Div_BusDay_Adjustment" />
-                <ScalarProperty Name="Next_Ex_Div_Date" ColumnName="Next_Ex_Div_Date" />
-                <ScalarProperty Name="Coupon_BusDay_Adjustment" ColumnName="Coupon_BusDay_Adjustment" />
-                <ScalarProperty Name="Payment_Frequency" ColumnName="Payment_Frequency" />
-                <ScalarProperty Name="Previous_Coupon_Date" ColumnName="Previous_Coupon_Date" />
-                <ScalarProperty Name="Next_Coupon_Date" ColumnName="Next_Coupon_Date" />
-                <ScalarProperty Name="Track_EOM_Flag" ColumnName="Track_EOM_Flag" />
-                <ScalarProperty Name="Coupon_Anniversary_Indicator" ColumnName="Coupon_Anniversary_Indicator" />
-                <ScalarProperty Name="Odd_Last_Coupon_Date" ColumnName="Odd_Last_Coupon_Date" />
-                <ScalarProperty Name="Odd_First_Coupon_Date" ColumnName="Odd_First_Coupon_Date" />
-                <ScalarProperty Name="Accrued_Income_Price_Formula" ColumnName="Accrued_Income_Price_Formula" />
-                <ScalarProperty Name="Clean_Price_Formula" ColumnName="Clean_Price_Formula" />
-                <ScalarProperty Name="Index_Type" ColumnName="Index_Type" />
-                <ScalarProperty Name="Current_Market_Price" ColumnName="Current_Market_Price" />
-                <ScalarProperty Name="Share_Class" ColumnName="Share_Class" />
-                <ScalarProperty Name="Currency_Pair_Code" ColumnName="Currency_Pair_Code" />
-                <ScalarProperty Name="Price_Curr" ColumnName="Price_Curr" />
-                <ScalarProperty Name="Trade_Currency" ColumnName="Trade_Currency" />
-                <ScalarProperty Name="Price_Exchange" ColumnName="Price_Exchange" />
-                <ScalarProperty Name="Coupon_Rate" ColumnName="Coupon_Rate" />
-                <ScalarProperty Name="Maturity_Date" ColumnName="Maturity_Date" />
-                <ScalarProperty Name="Issue_Date" ColumnName="Issue_Date" />
-                <ScalarProperty Name="AvePrice_Rounding" ColumnName="AvePrice_Rounding" />
-                <ScalarProperty Name="Decimal_Precision" ColumnName="Decimal_Precision" />
-                <ScalarProperty Name="Min_Lot_Size" ColumnName="Min_Lot_Size" />
-                <ScalarProperty Name="Asset_Currency" ColumnName="Asset_Currency" />
-                <ScalarProperty Name="Ultimate_Issuer_Code" ColumnName="Ultimate_Issuer_Code" />
-                <ScalarProperty Name="Issuer_Code" ColumnName="Issuer_Code" />
-                <ScalarProperty Name="Income_Frequency" ColumnName="Income_Frequency" />
-                <ScalarProperty Name="Price_Multiplier" ColumnName="Price_Multiplier" />
-                <ScalarProperty Name="Security_Type_Code" ColumnName="Security_Type_Code" />
-                <ScalarProperty Name="Country_Of_Risk" ColumnName="Country_Of_Risk" />
-                <ScalarProperty Name="Country_Of_Domicile" ColumnName="Country_Of_Domicile" />
-                <ScalarProperty Name="Secondary_Exch" ColumnName="Secondary_Exch" />
-                <ScalarProperty Name="Primary_Exch" ColumnName="Primary_Exch" />
-                <ScalarProperty Name="Short_Name" ColumnName="Short_Name" />
-                <ScalarProperty Name="Security_Name" ColumnName="Security_Name" />
-                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
-                <ScalarProperty Name="Security_ID" ColumnName="Security_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Exchanges">
             <EntityTypeMapping TypeName="MetopeDbModel.Exchange">
               <MappingFragment StoreEntitySet="Exchange">
@@ -1749,6 +1689,84 @@
                 <ScalarProperty Name="Party_Name" ColumnName="Party_Name" />
                 <ScalarProperty Name="Party_Code" ColumnName="Party_Code" />
                 <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portfolios">
+            <EntityTypeMapping TypeName="MetopeDbModel.Portfolio">
+              <MappingFragment StoreEntitySet="Portfolio">
+                <ScalarProperty Name="Portfolio_Status" ColumnName="Portfolio_Status" />
+                <ScalarProperty Name="System_Locked" ColumnName="System_Locked" />
+                <ScalarProperty Name="Active_Flag" ColumnName="Active_Flag" />
+                <ScalarProperty Name="Custodian_Code" ColumnName="Custodian_Code" />
+                <ScalarProperty Name="Financial_Year_End" ColumnName="Financial_Year_End" />
+                <ScalarProperty Name="Inception_Date" ColumnName="Inception_Date" />
+                <ScalarProperty Name="Portfolio_Report_Currency" ColumnName="Portfolio_Report_Currency" />
+                <ScalarProperty Name="PortfolIo_Domicile" ColumnName="PortfolIo_Domicile" />
+                <ScalarProperty Name="Portfolio_Base_Currency" ColumnName="Portfolio_Base_Currency" />
+                <ScalarProperty Name="Portfolio_Type" ColumnName="Portfolio_Type" />
+                <ScalarProperty Name="Manager" ColumnName="Manager" />
+                <ScalarProperty Name="Portfolio_Name" ColumnName="Portfolio_Name" />
+                <ScalarProperty Name="Portfolio_Code" ColumnName="Portfolio_Code" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Security_Detail">
+            <EntityTypeMapping TypeName="MetopeDbModel.Security_Detail">
+              <MappingFragment StoreEntitySet="Security_Detail">
+                <ScalarProperty Name="Benchmark_Portfolio" ColumnName="Benchmark_Portfolio" />
+                <ScalarProperty Name="Security_Status" ColumnName="Security_Status" />
+                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
+                <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
+                <ScalarProperty Name="System_Locked" ColumnName="System_Locked" />
+                <ScalarProperty Name="Call_Account_Flag" ColumnName="Call_Account_Flag" />
+                <ScalarProperty Name="ISIN" ColumnName="ISIN" />
+                <ScalarProperty Name="Reuters_ID" ColumnName="Reuters_ID" />
+                <ScalarProperty Name="External_Sec_ID" ColumnName="External_Sec_ID" />
+                <ScalarProperty Name="Bloomberg_ID" ColumnName="Bloomberg_ID" />
+                <ScalarProperty Name="Inet_ID" ColumnName="Inet_ID" />
+                <ScalarProperty Name="Ticker" ColumnName="Ticker" />
+                <ScalarProperty Name="Ex_Div_Period" ColumnName="Ex_Div_Period" />
+                <ScalarProperty Name="Ex_Div_BusDay_Adjustment" ColumnName="Ex_Div_BusDay_Adjustment" />
+                <ScalarProperty Name="Next_Ex_Div_Date" ColumnName="Next_Ex_Div_Date" />
+                <ScalarProperty Name="Coupon_BusDay_Adjustment" ColumnName="Coupon_BusDay_Adjustment" />
+                <ScalarProperty Name="Payment_Frequency" ColumnName="Payment_Frequency" />
+                <ScalarProperty Name="Previous_Coupon_Date" ColumnName="Previous_Coupon_Date" />
+                <ScalarProperty Name="Next_Coupon_Date" ColumnName="Next_Coupon_Date" />
+                <ScalarProperty Name="Track_EOM_Flag" ColumnName="Track_EOM_Flag" />
+                <ScalarProperty Name="Coupon_Anniversary_Indicator" ColumnName="Coupon_Anniversary_Indicator" />
+                <ScalarProperty Name="Odd_Last_Coupon_Date" ColumnName="Odd_Last_Coupon_Date" />
+                <ScalarProperty Name="Odd_First_Coupon_Date" ColumnName="Odd_First_Coupon_Date" />
+                <ScalarProperty Name="Accrued_Income_Price_Formula" ColumnName="Accrued_Income_Price_Formula" />
+                <ScalarProperty Name="Clean_Price_Formula" ColumnName="Clean_Price_Formula" />
+                <ScalarProperty Name="Index_Type" ColumnName="Index_Type" />
+                <ScalarProperty Name="Current_Market_Price" ColumnName="Current_Market_Price" />
+                <ScalarProperty Name="Share_Class" ColumnName="Share_Class" />
+                <ScalarProperty Name="Currency_Pair_Code" ColumnName="Currency_Pair_Code" />
+                <ScalarProperty Name="Price_Curr" ColumnName="Price_Curr" />
+                <ScalarProperty Name="Trade_Currency" ColumnName="Trade_Currency" />
+                <ScalarProperty Name="Price_Exchange" ColumnName="Price_Exchange" />
+                <ScalarProperty Name="Coupon_Rate" ColumnName="Coupon_Rate" />
+                <ScalarProperty Name="Maturity_Date" ColumnName="Maturity_Date" />
+                <ScalarProperty Name="Issue_Date" ColumnName="Issue_Date" />
+                <ScalarProperty Name="AvePrice_Rounding" ColumnName="AvePrice_Rounding" />
+                <ScalarProperty Name="Decimal_Precision" ColumnName="Decimal_Precision" />
+                <ScalarProperty Name="Min_Lot_Size" ColumnName="Min_Lot_Size" />
+                <ScalarProperty Name="Asset_Currency" ColumnName="Asset_Currency" />
+                <ScalarProperty Name="Ultimate_Issuer_Code" ColumnName="Ultimate_Issuer_Code" />
+                <ScalarProperty Name="Issuer_Code" ColumnName="Issuer_Code" />
+                <ScalarProperty Name="Income_Frequency" ColumnName="Income_Frequency" />
+                <ScalarProperty Name="Price_Multiplier" ColumnName="Price_Multiplier" />
+                <ScalarProperty Name="Security_Type_Code" ColumnName="Security_Type_Code" />
+                <ScalarProperty Name="Country_Of_Risk" ColumnName="Country_Of_Risk" />
+                <ScalarProperty Name="Country_Of_Domicile" ColumnName="Country_Of_Domicile" />
+                <ScalarProperty Name="Secondary_Exch" ColumnName="Secondary_Exch" />
+                <ScalarProperty Name="Primary_Exch" ColumnName="Primary_Exch" />
+                <ScalarProperty Name="Short_Name" ColumnName="Short_Name" />
+                <ScalarProperty Name="Security_Name" ColumnName="Security_Name" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+                <ScalarProperty Name="Security_ID" ColumnName="Security_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -31,7 +31,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("General", "About", "Home")</li> 
+                    <li>@Html.ActionLink("General", "About", "Home")</li>
+                    <li>@Html.ActionLink("Support", "Support", "Home")</li> 
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -48,7 +49,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Metope Asset Managers</p>
+            <p>&copy; @DateTime.Now.Year - Metope Investment Managers</p>
         </footer>
     </div>
 

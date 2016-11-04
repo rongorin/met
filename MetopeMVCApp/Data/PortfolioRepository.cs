@@ -7,7 +7,7 @@ using System.Data.Entity ;
 using PagedList;
 namespace MetopeMVCApp.Data
 {
-    public class PortfolioRepository : IPortfolioRepository
+    public class PortfolioRepository : IPortfolioRepository, IDisposable
     {
         MetopeDbEntities _ctx;
          
@@ -15,17 +15,23 @@ namespace MetopeMVCApp.Data
         { 
             _ctx = contxt;  //_ctx = new MetopeDbEntities();
         }
+        public IList<Portfolio> GetPortfolios(decimal iUserId )
+        {
+          return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) 
+                  .ToList(); 
+        }
         public IPagedList<Portfolio> GetPortfolios(decimal iUserId, int page = 1, string searchTerm = null)
         {
-          return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId)
-                  .Where(r => searchTerm == null || r.Portfolio_Name.Contains(searchTerm))
-                  .Include(p => p.Entity)
+            return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId)
+                    .SearchName(searchTerm)
+                    //.Where(r => searchTerm == null || r.Portfolio_Name.Contains(searchTerm))
+                    .Include(p => p.Entity)
 
-                  .Include(p => p.User)
-                  .OrderBy(s => s.Portfolio_Name)
-                  .ToPagedList(page, 10);
-              //return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) ; 
-  
+                    .Include(p => p.User)
+                    .OrderBy(s => s.Portfolio_Name)
+                    .ToPagedList(page, 10);
+            //return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) ; 
+
             //return _ctx.Replies.Where(r => r.TopicId == topicId);
         }
 
@@ -46,14 +52,19 @@ namespace MetopeMVCApp.Data
         public IQueryable<Party> GetPartyValues(decimal iEntity, string iType, decimal iGenericEntityId)
         { 
             return _ctx.Parties.Where(c => c.Party_Type == iType)
-                    .Where(r => r.Entity_ID == iGenericEntityId  || r.Entity_ID == iEntity )
-; 
+                    .Where(r => r.Entity_ID == iGenericEntityId  || r.Entity_ID == iEntity ); 
         }
-        public Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode)
+        public Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode )
         {
-            return _ctx.Portfolios.Find(EntityId, PortfolioCode);
+            return _ctx.Portfolios.Find(EntityId, PortfolioCode);     
         }
-
+        public Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode, bool IncludeUser)
+        {
+            Portfolio myPrt = _ctx.Portfolios.Find(EntityId, PortfolioCode); 
+           _ctx.Entry(myPrt).Reference(p => p.User).Load();
+            return myPrt;
+        }
+       
         public void DeletePortfolio(decimal EntityId, string PortfolioCode) 
         {
             Portfolio port = _ctx.Portfolios.Find( EntityId,   PortfolioCode);
@@ -72,14 +83,26 @@ namespace MetopeMVCApp.Data
         public void Save()
         {
             _ctx.SaveChanges();
-        } 
-        //public void Dispose()
-        //{
-        //    if (!disposed)
-        //    {
-        //        _ctx.Dispose();
-        //        disposed = true;
-        //    }
-        //}
+        }
+        private bool disposed = false;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    _ctx.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+        public void Dispose()
+        {
+            if (!disposed)
+            {
+                _ctx.Dispose();
+                disposed = true;
+            }
+        }
     }
 }
