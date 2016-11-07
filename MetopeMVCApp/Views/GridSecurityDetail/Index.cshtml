@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MetopeMVCApp.Models.Security_Detail>
+
+
+@using GridMvc.Html  
+@{
+    ViewBag.Title = "GridSecurityDetail";
+}
+@section Styles {
+    @Styles.Render("~/Content/GridMvc")
+} 
+<h3>Security Listing - Grid</h3>
+@Html.ActionLink("Create New", "Create")
+ 
+<div class="code-cut">
+  
+   
+    @Html.Grid(Model).Columns(columns =>
+         {  
+            columns.Add(c => c.Security_Name).Titled("Security name").Filterable(true);
+            columns.Add(c => c.Ticker).Titled("Ticker").Filterable(true).SetWidth(110);
+            columns.Add(c => c.Maturity_Date).Titled("Maturity Date").Filterable(true)
+                            .Format("{0:dd/MM/yyyy}")
+                            .SetWidth(130);
+                        
+              columns.Add(c => c.System_Locked)
+                  .Titled("Active").Filterable(true) 
+                    .SetWidth(70)   ;
+                        columns.Add()
+                        .Encoded(false)
+                        .Sanitized(false)
+                        .SetWidth(20)
+                        .RenderValueAs(c =>  @<u>
+                                @Html.ActionLink( "Edit", "Edit",  "SecurityDetail",  new { id = c.Security_ID }, null)
+                            </u>);
+ 
+                        columns.Add()
+                       .Encoded(false)
+                       .Sanitized(false)
+                       .SetWidth(20)
+                        .RenderValueAs(c =>  @<u>
+                                @Html.ActionLink("Delete", "Delete", "SecurityDetailx", new { id = c.Security_ID }, null)
+                            </u>);
+
+                    }).WithPaging(10).Sortable(true)
+</div> 
+
+<script type="text/javascript">
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/GridMvc")
+}
