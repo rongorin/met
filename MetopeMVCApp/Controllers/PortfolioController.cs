@@ -45,6 +45,7 @@ namespace MetopeMVCApp.Controllers
         public PortfolioController()
             : this(new PortfolioRepository(new MetopeDbEntities())) 
         {
+            GetUserId = () => User.Identity.GetUserId();
         }
           
         //public PortfolioController() 
@@ -57,11 +58,11 @@ namespace MetopeMVCApp.Controllers
         {
             _repo = repo;
         }
-
+        public Func<string> GetUserId; //For testing
         // GET: /Portfolio/
         public ActionResult Index(int page=1, string searchTerm=null)
-        { 
-            var currentUser = manager.FindById(User.Identity.GetUserId());
+        {
+            var currentUser = manager.FindById(GetUserId());
             var portfolios = _repo.GetPortfolios(currentUser.EntityIdScope, page, searchTerm); 
 
             // db.Portfolios.Where(c => c.Entity_ID == currentUser.EntityIdScope).Include(p => p.Entity).Include(p => p.User);
@@ -83,8 +84,8 @@ namespace MetopeMVCApp.Controllers
 
         // GET: /Portfolio/Details/ 5,'abc'
         public ActionResult Details(decimal EntityId, string PortfolioCode)
-        { 
-            var currentUser = manager.FindById(User.Identity.GetUserId()); 
+        {
+            var currentUser = manager.FindById(GetUserId()); 
              
             if (EntityId == null || PortfolioCode == null) 
             { 

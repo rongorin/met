@@ -27,7 +27,12 @@ namespace MetopeMVCApp.Models
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<Security_Detail>().HasOptional(t => t.Code_Miscellaneous ).WithRequired(t => t.)  Map(p => p.Requires("Type").HasValue("Car"));
+
+
+ 
             throw new UnintentionalCodeFirstException();
+
         }
     
         public virtual DbSet<Entity> Entities { get; set; }

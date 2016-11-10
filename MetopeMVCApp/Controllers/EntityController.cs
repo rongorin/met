@@ -10,13 +10,13 @@ using MetopeMVCApp.Models;
 
 namespace MetopeMVCApp.Controllers
 {
-     [Authorize(Roles = "Admin")]
+     [Authorize(Roles = "Admin")] 
     public class EntityController : Controller
     {
 
         private MetopeDbEntities db = new MetopeDbEntities();
 
-        // GET: /Entity/
+        // GET: /Entity/ 
         public ActionResult Index()
         {
 
