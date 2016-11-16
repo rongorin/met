@@ -13,15 +13,30 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using PagedList;
 using MetopeMVCApp.Data;
 using System.Configuration;
+using MetopeMVCApp.Data.Repositories;
+using MetopeMVCApp.Filters;
 namespace MetopeMVCApp.Controllers
 {
     public class SecurityDetailController : Controller
-    { 
-        private MetopeDbEntities db = new MetopeDbEntities();
+    {
+        //private IMetopeDbEntities db11;  
+
+        private readonly SecurityDetailRepository db11 = null;
+        private MetopeDbEntities db;
+        private MetopeMVCApp.Services.IServices svc;
         private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
         private IEnumerable<Code_Miscellaneous> AllCodeMisc;
-         
-                  
+
+        //public SecurityDetailController()
+        //{
+        //    db = new MetopeDbEntities();
+        //}
+        public SecurityDetailController(SecurityDetailRepository iDb,MetopeMVCApp.Services.IServices isvc)
+        {
+            db11 = iDb;
+            svc = isvc;
+        }
+           
         //public SecurityDetailController() 
         //{
         //    this._repo = new SecurityDetailController(new MetopeDbEntities());
@@ -38,8 +53,10 @@ namespace MetopeMVCApp.Controllers
         {
            // var security_detail = db.Security_Detail.Include(s => s.Country).Include(s => s.Country1).Include(s => s.Currency).Include(s => s.Currency1).Include(s => s.Currency2).Include(s => s.Currency3).Include(s => s.Currency_Pair).Include(s => s.Entity).Include(s => s.Exchange).Include(s => s.Exchange1).Include(s => s.Security_Type);
             //var security_detail = db.Security_Detail;
-            var security_detail = db.Security_Detail
-                     .Where(r => searchTerm == null || r.Security_Name.Contains(searchTerm))
+
+            //var security_detail = db11.Query<Security_Detail>() 
+            var security_detail = db11.GetAll()
+                     .SearchSecName(searchTerm) 
                      //.Include(s => s.Country).Include(s => s.Country1)  
                      .OrderBy(s => s.Security_Name)
                      .ToPagedList(page, 12); 
@@ -67,18 +84,17 @@ namespace MetopeMVCApp.Controllers
             }
             //Security_Detail security_detail = db.Security_Detail.Find(id);
 
-            Security_Detail security_detail = db.Security_Detail.Include(s => s.Currency).
+            Security_Detail security_detail = db11.GetAll().Include(s => s.Currency).
                                                 Include(s => s.Currency1).Include(s => s.Currency2).
                                                 Include(s => s.Currency3).
                                                 Include(s => s.Currency_Pair).Include(s => s.Country).
                                                 Include(s => s.Country1)
                      .Where(s => s.Security_ID == id)
-                     .FirstOrDefault<Security_Detail>();
+                     .FirstOrDefault<Security_Detail>(); 
 
-
-            db.Entry(security_detail).Reference(p => p.Country).Load();
-
-
+         //   db.Entry(security_detail).Reference(p => p.Country).Load();
+          //  db11.Entry(security_detail).Reference(p => p.Country).Load();
+             
             if (security_detail == null)
             {
                 return HttpNotFound();
@@ -87,19 +103,27 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: /SecurityDetail/Create
+        [CountriesFilter]
+        [SecurityTypesFilter]
+        [ExchangesFilter]
         public ActionResult Create()
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
 
-            PopulateAllCodeMisc();
+            PopulateAllCodeMisc(); 
+ 
+            MetopeDbEntities db = new MetopeDbEntities(); // FIX THIS we are using db11 not db. !!!  
+            //ViewBag.Primary_Exch = new SelectList(db11.Query<Exchange>(), "Exchange_Code", "Exchange_Name");
 
-            ViewBag.Country_Of_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name");
-            ViewBag.Country_Of_Risk = new SelectList(db.Countries, "Country_Code", "Country_Name");
-            ViewBag.Security_Type_Code = new SelectList(db.Security_Type, "Security_Type_Code", "Name");
-            //ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name");
+            //ViewBag.Country_Of_Domicile = new SelectList(svc.ListCountry(), "Country_Code", "Country_Name");
+           // ViewBag.Country_Of_Domicile = new SelectList(svc.List(), "Country_Code", "Country_Name");
+            //ViewBag.Country_Of_Risk = new SelectList(svc.ListCountry(), "Country_Code", "Country_Name");
+            //ViewBag.Country_Of_Risk = new SelectList(db.Countries, "Country_Code", "Country_Name");
 
-            ViewBag.Primary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name" );
-            ViewBag.Secondary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name");
+            //ViewBag.Security_Type_Code = new SelectList(db.Security_Type, "Security_Type_Code", "Name"); 
+
+            //ViewBag.Primary_Exch = new SelectList(svc.ListExchanges(), "Exchange_Code", "Exchange_Name");
+            //ViewBag.Secondary_Exch = new SelectList(svc.ListExchanges(), "Exchange_Code", "Exchange_Name");
 
             //all Misc types:
             ViewBag.Accrued_Income_Price_Formula = new SelectList(GetCodeMiscType("IPFORM"), "MisCode", "MisCode_Description");
@@ -108,17 +132,17 @@ namespace MetopeMVCApp.Controllers
             ViewBag.Ex_Div_Period = new SelectList(GetCodeMiscType("EXDPERIOD"), "MisCode", "MisCode_Description");
             ViewBag.Share_Class = new SelectList(GetCodeMiscType("SHRCLASS"), "MisCode", "MisCode_Description");
 
+             
             IPortfolioRepository PortfolioRepo = new PortfolioRepository(db);
             var portfolios = PortfolioRepo.GetPortfolios(currentUser.EntityIdScope);
-            ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name" ); 
+            ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name");
 
             decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
             PartyRepository myPartyRepos = new PartyRepository(db);
             var parties = myPartyRepos.GetPartyValues(currentUser.EntityIdScope, "CORPORATE", refGenericEntity);
-            ViewBag.Issuer_Code = new SelectList(parties, "Party_Code", "Party_Name" );
-            ViewBag.Ultimate_Issuer_Code = new SelectList(parties, "Party_Code", "Party_Name" );
-
-               
+            ViewBag.Issuer_Code = new SelectList(parties, "Party_Code", "Party_Name");
+            ViewBag.Ultimate_Issuer_Code = new SelectList(parties, "Party_Code", "Party_Name");
+             
             ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name");
             ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name");
             ViewBag.Trade_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name");
@@ -145,19 +169,19 @@ namespace MetopeMVCApp.Controllers
             var currentUser = manager.FindById(User.Identity.GetUserId());
 
             if (ModelState.IsValid)
-            {
-
+            { 
                 security_detail.Entity_ID = currentUser.EntityIdScope;
                 security_detail.Last_Update_Date = DateTime.Now;
                 security_detail.Last_Update_User = User.Identity.Name; 
 
-                db.Security_Detail.Add(security_detail);
-                db.SaveChanges();
+                db11.Add(security_detail);
+                db11.SaveChanges();
                 TempData.Add("ResultMessage", "new Security \"" + security_detail.Security_Name + "\" created successfully!");
 
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("Error", "An error occurred trying to add a Security");
+            MetopeDbEntities db = new MetopeDbEntities(); // FIX THIS we are using db11 not db. !!!  
 
             PopulateAllCodeMisc();
 
@@ -204,17 +228,12 @@ namespace MetopeMVCApp.Controllers
         
             return View(security_detail);
         }
-
-
-        public IEnumerable<Code_Miscellaneous> GetCodeMiscellVals (string iCodeType)
-        {
-            //IEnumerable<Code_Miscellaneous> results= db.Code_Miscellaneous ; 
-            return db.Code_Miscellaneous.Where(r => r.MisCode_Type == iCodeType).ToList();
-        }
          
         private void PopulateAllCodeMisc()
         {
+            MetopeDbEntities db = new MetopeDbEntities(); // FIX THIS we are using db11 not db. !!!   
             AllCodeMisc = db.Code_Miscellaneous.ToList();
+            //AllCodeMisc = db11.GetAll().ToList()  ;
         }
 
         private IEnumerable<Code_Miscellaneous> GetCodeMiscType(string iCodeType)
@@ -291,21 +310,20 @@ namespace MetopeMVCApp.Controllers
 
         //}
         public ActionResult Edit(decimal id)
-        {
-             
+        { 
                 if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                Security_Detail security_detail = db.Security_Detail.Find(id);
+                Security_Detail security_detail = db11.Get(id);
                 if (security_detail == null)
                 {
                     return HttpNotFound();
                 }
                 var currentUser = manager.FindById(User.Identity.GetUserId());
-
-
+             
                 PopulateAllCodeMisc();
+                MetopeDbEntities db = new MetopeDbEntities(); // FIX THIS we are using db11 not db. !!!   
 
                 ViewBag.Country_Of_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Domicile);
                 ViewBag.Country_Of_Risk = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Risk);
@@ -355,18 +373,18 @@ namespace MetopeMVCApp.Controllers
     
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Security_ID,Entity_ID,Security_Name,Short_Name,Primary_Exch,Secondary_Exch,Country_Of_Domicile,Country_Of_Risk,Security_Type_Code,Price_Multiplier,Income_Frequency,Issuer_Code,Ultimate_Issuer_Code,Asset_Currency,Min_Lot_Size,Decimal_Precision,AvePrice_Rounding,Issue_Date,Maturity_Date,Coupon_Rate,Price_Exchange,Trade_Currency,Price_Curr,Currency_Pair_Code,Share_Class,Current_Market_Price,Index_Type,Clean_Price_Formula,Accrued_Income_Price_Formula,Odd_First_Coupon_Date,Odd_Last_Coupon_Date,Coupon_Anniversary_Indicator,Track_EOM_Flag,Next_Coupon_Date,Previous_Coupon_Date,Payment_Frequency,Coupon_BusDay_Adjustment,Next_Ex_Div_Date,Ex_Div_BusDay_Adjustment,Ex_Div_Period,Ticker,Inet_ID,Bloomberg_ID,External_Sec_ID,Reuters_ID,ISIN,Call_Account_Flag,System_Locked,Last_Update_User,Last_Update_Date,Benchmark_Portfolio")] Security_Detail security_detail)
+        public ActionResult Edit([Bind(Include = "Security_ID,Entity_ID,Security_Name,Short_Name,Primary_Exch,Secondary_Exch,Country_Of_Domicile,Country_Of_Risk,Security_Type_Code,Price_Multiplier,Income_Frequency,Issuer_Code,Ultimate_Issuer_Code,Asset_Currency,Min_Lot_Size,Decimal_Precision,AvePrice_Rounding,Issue_Date,Maturity_Date,Coupon_Rate,Price_Exchange,Trade_Currency,Price_Curr,Currency_Pair_Code,Share_Class,Current_Market_Price,Index_Type,Clean_Price_Formula,Accrued_Income_Price_Formula,Odd_First_Coupon_Date,Odd_Last_Coupon_Date,Coupon_Anniversary_Indicator,Track_EOM_Flag,Next_Coupon_Date,Previous_Coupon_Date,Payment_Frequency,Coupon_BusDay_Adjustment,Next_Ex_Div_Date,Ex_Div_BusDay_Adjustment,Ex_Div_Period,Ticker,Inet_ID,Bloomberg_ID,External_Sec_ID,Reuters_ID,ISIN,Call_Account_Flag,System_Locked,Last_Update_User,Last_Update_Date,Benchmark_Portfolio")] 
+                                Security_Detail security_detail)
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
             
             if (ModelState.IsValid)
             {
-                db.Entry(security_detail).State = EntityState.Modified;
-
+                db11.Update(security_detail); //sets the modified status
                 security_detail.Entity_ID = currentUser.EntityIdScope;
                 security_detail.Last_Update_Date = DateTime.Now;
                 security_detail.Last_Update_User = User.Identity.Name; 
-                db.SaveChanges();
+                db11.SaveChanges();
                 TempData.Add("ResultMessage", "Security \"" + security_detail.Security_Name + "\" editied successfully!");
 
                 return RedirectToAction("Index");
@@ -429,7 +447,7 @@ namespace MetopeMVCApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Security_Detail security_detail = db.Security_Detail.Find(id);
+            Security_Detail security_detail = db11.Get(id);
             if (security_detail == null)
             {
                 return HttpNotFound();
@@ -441,10 +459,9 @@ namespace MetopeMVCApp.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(decimal id)
-        {  
-            Security_Detail security_detail = db.Security_Detail.Find(id);
-            db.Security_Detail.Remove(security_detail);
-            db.SaveChanges();
+        { 
+             db11.Delete(id);
+             db11.SaveChanges(); 
             return RedirectToAction("Index");
         }
 
@@ -452,7 +469,7 @@ namespace MetopeMVCApp.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                db11.Dispose();
             }
             base.Dispose(disposing);
         }

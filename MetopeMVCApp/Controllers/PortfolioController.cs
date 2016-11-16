@@ -30,6 +30,12 @@ namespace MetopeMVCApp.Controllers
         private MetopeDbEntities db = new MetopeDbEntities(); //REMOVE this when done doing repository
         private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
+        //using  proper DI : only one constructor
+        public PortfolioController(IPortfolioRepository repo)
+        {
+            _repo = repo;
+        }
+
         // need parameterless constructor. This is poor mans constructor Dependency Injection (DI)/ 
         // so this just passes in an implementation of the IPortfolioRep interface (which is the parm required by the constructor)
                 // The MVC runtime can't instantiate your controller as it can't provide an implementation of IAccommodationService. You either need to do poor man's constructor injection like this:
@@ -39,30 +45,27 @@ namespace MetopeMVCApp.Controllers
                 //  }
                 //  public FeaturedAccommodationController(IAccommodationService accommodationService)
                 //  { 
-                //  }
-
+                //  } 
         // Inversion of Control (IoC) like ninject or similar. http://stackoverflow.com/questions/12605445/mvc-no-parameterless-constructor-defined-for-this-object
-        public PortfolioController()
-            : this(new PortfolioRepository(new MetopeDbEntities())) 
-        {
-            GetUserId = () => User.Identity.GetUserId();
-        }
+        //public PortfolioController()
+        //    : this(new PortfolioRepository(new MetopeDbEntities())) 
+        //{
+        //    GetUserId = () => User.Identity.GetUserId();
+        //}
           
         //public PortfolioController() 
         //{
         //    this._repo = new PortfolioRepository(new MetopeDbEntities());
         //}
 
-        //use this when doing the proper DI :
-        public PortfolioController(IPortfolioRepository repo)
-        {
-            _repo = repo;
-        }
+  
         public Func<string> GetUserId; //For testing
         // GET: /Portfolio/
         public ActionResult Index(int page=1, string searchTerm=null)
         {
-            var currentUser = manager.FindById(GetUserId());
+            //GetUserId = () => User.Identity.GetUserId();
+
+            var currentUser = manager.FindById(User.Identity.GetUserId());
             var portfolios = _repo.GetPortfolios(currentUser.EntityIdScope, page, searchTerm); 
 
             // db.Portfolios.Where(c => c.Entity_ID == currentUser.EntityIdScope).Include(p => p.Entity).Include(p => p.User);
@@ -85,15 +88,14 @@ namespace MetopeMVCApp.Controllers
         // GET: /Portfolio/Details/ 5,'abc'
         public ActionResult Details(decimal EntityId, string PortfolioCode)
         {
-            var currentUser = manager.FindById(GetUserId()); 
+            var currentUser = manager.FindById(User.Identity.GetUserId()); 
              
             if (EntityId == null || PortfolioCode == null) 
             { 
                  return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             } 
             if (currentUser.EntityIdScope != EntityId)
-            {
-
+            { 
                 throw new Exception("Not Acceptable");
                 //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
             } 

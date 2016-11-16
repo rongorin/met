@@ -20,12 +20,11 @@ namespace MetopeMVCApp.Test
 
             //var pc = new PortfolioController();
 
-            var controller = new PortfolioController()
-            {
-                GetUserId = () => "IdOfYourChoosing"
-            };
-
-            vr = (ViewResult)controller.Details(2, "MET");
+            //var controller = new PortfolioController()
+            //{
+            //    GetUserId = () => "IdOfYourChoosing"
+            //};
+             
 
             Assert.AreEqual("Details", vr.ViewName);
            

@@ -8,9 +8,14 @@ namespace MetopeMVCApp.Data
 {
     public static class PortfolioQueryableExtensions
     {
-        public static IQueryable<Portfolio> SearchName(this IQueryable<Portfolio> port, string searchname)
+        public static IQueryable<Portfolio> SearchPortfName(this IQueryable<Portfolio> port, string searchname)
         {
             return port.Where(r => searchname == null || r.Portfolio_Name.Contains(searchname));
+           
+        } 
+        public static IQueryable<Security_Detail> SearchSecName(this IQueryable<Security_Detail> port, string searchname)
+        {
+            return port.Where(r => searchname == null || r.Security_Name.Contains(searchname));
            
         }
         //--some other ones that can maybe use: -------------------

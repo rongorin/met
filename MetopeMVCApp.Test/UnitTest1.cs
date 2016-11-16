@@ -31,12 +31,12 @@ namespace MetopeMVCApp.Test
         }
         public Security_Detail CreateSecurity(string name)
         {
-            var security = new Security_Detail();
+            var security = new Security_Detail(); 
             security.Security_Name = name;
             security.Price_Curr = "ZAR"; 
             security.Portfolio =      new Portfolio { Portfolio_Name = "Port1" };
 
             return security;
+}
         }
     }
-}

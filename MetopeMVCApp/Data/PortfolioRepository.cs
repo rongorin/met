@@ -23,7 +23,7 @@ namespace MetopeMVCApp.Data
         public IPagedList<Portfolio> GetPortfolios(decimal iUserId, int page = 1, string searchTerm = null)
         {
             return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId)
-                    .SearchName(searchTerm)
+                    .SearchPortfName(searchTerm)
                     //.Where(r => searchTerm == null || r.Portfolio_Name.Contains(searchTerm))
                     .Include(p => p.Entity)
 
@@ -38,9 +38,7 @@ namespace MetopeMVCApp.Data
         public IQueryable<User> GetUsers(decimal iEntityId)
         {
             return _ctx.Users.Where(r => r.Entity_ID == iEntityId);
-            //return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) ; 
-
-                
+            //return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) ;   
             //return _ctx.Replies.Where(r => r.TopicId == topicId);
         }
 

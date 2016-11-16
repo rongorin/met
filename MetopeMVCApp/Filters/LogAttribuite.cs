@@ -8,9 +8,9 @@ using System.Web.Routing;
 
 namespace MetopeMVCApp.Filters
 {
+
     public class LogAttribuite : ActionFilterAttribute
-    {
-    
+    { 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         { //look at method before a Action has executed
  	         base.OnActionExecuting(filterContext);

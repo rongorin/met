@@ -13,28 +13,51 @@ namespace MetopeMVCApp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Diagnostics;
+    using System.Linq;
     
-    public partial class MetopeDbEntities : DbContext
+    public interface IMetopeDbEntities : IDisposable
     {
-        public MetopeDbEntities()
-            : base("name=MetopeDbEntities")
+         IQueryable<T> Query<T>() where T : class;
+          DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
+          T Add<T>(T entity) where T : class;
+          int SaveChanges();
+
+    }
+    public partial class MetopeDbEntities : DbContext, IMetopeDbEntities 
+    {
+        public MetopeDbEntities() : base("name=MetopeDbEntities")
         {
             #if DEBUG
                 Database.Log = s => Debug.Write(s);
                 //Database.Log = message => Trace.WriteLine(message);
              #endif
         }
-    
+        IQueryable<T> IMetopeDbEntities.Query<T>()
+        {
+            return Set<T>();
+        }
+        DbEntityEntry<TEntity> IMetopeDbEntities.Entry<TEntity>(TEntity entity)
+        { 
+            return Entry<TEntity>(entity) ; 
+        } 
+        T  IMetopeDbEntities.Add<T>( T entity)
+        {
+            return Set<T>().Add(entity); 
+        }
+        int IMetopeDbEntities.SaveChanges()
+        {
+            return SaveChanges();
+        } 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<Security_Detail>().HasOptional(t => t.Code_Miscellaneous ).WithRequired(t => t.)  Map(p => p.Requires("Type").HasValue("Car"));
-
-
- 
+             
             throw new UnintentionalCodeFirstException();
 
         }
-    
+
+ 
+
         public virtual DbSet<Entity> Entities { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
@@ -48,5 +71,8 @@ namespace MetopeMVCApp.Models
         public virtual DbSet<Party> Parties { get; set; }
         public virtual DbSet<Portfolio> Portfolios { get; set; }
         public virtual DbSet<Security_Detail> Security_Detail { get; set; }
+
+      
+    
     }
 }
