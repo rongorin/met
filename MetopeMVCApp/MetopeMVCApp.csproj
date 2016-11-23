@@ -255,6 +255,7 @@
     <Compile Include="Data\PartyRepository.cs" />
     <Compile Include="Data\PortfolioRepository.cs" />
     <Compile Include="Data\PortfolioQueryableExtensions.cs" />
+    <Compile Include="Data\Repositories\CountryRepository.cs" />
     <Compile Include="Data\Repositories\Repository.cs" />
     <Compile Include="Data\Repositories\SecurityDetailRepository.cs" />
     <Compile Include="DecimalModelBinder.cs" />
@@ -527,6 +528,7 @@
     </Content>
     <Content Include="App_Start\CodeTemplates\EFModelFromDatabase\EntityType.cs.t4" />
     <Content Include="App_Start\CodeTemplates\EFModelFromDatabase\Context.cs.t4" />
+    <Content Include="App_Code\RGHelpers.cshtml" />
     <None Include="Properties\PublishProfiles\Local IIS deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Properties\PublishProfiles\Web Localhost Deploy.pubxml" />

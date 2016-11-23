@@ -17,7 +17,7 @@ namespace MetopeMVCApp.Data
         }
         public IList<Portfolio> GetPortfolios(decimal iUserId )
         {
-          return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) 
+          return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId )
                   .ToList(); 
         }
         public IPagedList<Portfolio> GetPortfolios(decimal iUserId, int page = 1, string searchTerm = null)
@@ -25,8 +25,7 @@ namespace MetopeMVCApp.Data
             return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId)
                     .SearchPortfName(searchTerm)
                     //.Where(r => searchTerm == null || r.Portfolio_Name.Contains(searchTerm))
-                    .Include(p => p.Entity)
-
+                    .Include(p => p.Entity) 
                     .Include(p => p.User)
                     .OrderBy(s => s.Portfolio_Name)
                     .ToPagedList(page, 10);
@@ -56,6 +55,7 @@ namespace MetopeMVCApp.Data
         {
             return _ctx.Portfolios.Find(EntityId, PortfolioCode);     
         }
+
         public Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode, bool IncludeUser)
         {
             Portfolio myPrt = _ctx.Portfolios.Find(EntityId, PortfolioCode); 
