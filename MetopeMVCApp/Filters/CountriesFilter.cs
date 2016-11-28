@@ -23,64 +23,14 @@ namespace MetopeMVCApp.Filters
 
     //}
              
-
-    public class CountriesFilterAfter : ActionFilterAttribute
-    {
-
-        public IEnumerable<SelectListItem> AddDefaultOption(IEnumerable<SelectListItem> list, string dataTextField, string selectedValue)
-        {
-            var items = new List<SelectListItem>();
-            items.Add(new SelectListItem() { Text = dataTextField, Value = selectedValue });
-            items.AddRange(list);
-            return items;
-        }
-
-        public override void OnActionExecuted(ActionExecutedContext filterContext)
-        {
-            IEnumerable<SelectListItem> countries;
-            
-                MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services();
-                countries = svc.ListCountry();
-
-
-                //countries = AddDefaultOption(countries, "Select One...", "0"); 
- 
-
-                filterContext.HttpContext.Cache.Insert(GetType().FullName, countries);
-             
-                //var newItem = new SelectListItem { Text = "--Select--", Value = "0" };
-                //countries.ToList().Add(newItem);
-
-
-                filterContext.Controller.ViewBag.CountryOfRisk = countries;
-                filterContext.Controller.ViewBag.CountryOfDomicile = countries;
-
-            base.OnActionExecuted(filterContext);
-        }
-        //public override void OnActionExecuted(OnActionExecutedContext filterContext)
-        //{  
-        //      IEnumerable<SelectListItem> countries ;
-        //      if ((countries = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)) == null)
-        //      {
-        //            MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services();
-        //            countries = svc.ListCountry();
-        //            filterContext.HttpContext.Cache.Insert(GetType().FullName, countries);
-        //      }
-        //      filterContext.Controller.ViewBag.CountryOfRisk = countries;
-        //      filterContext.Controller.ViewBag.Country_Of_Domicile = countries;
-
-        //      base.OnActionExecuted(filterContext);
-        //}
-
-    }
-
-    public class CountriesFilterTEST : ActionFilterAttribute
+     
+    public class CountriesFilter : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
 
             IQueryable<Country> countries;
-            if ((countries = (filterContext.HttpContext.Cache.Get(GetType().FullName) as DbSet<Country>)) == null)
+            if ((countries = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Country>)) == null)
             {
                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services();
                 countries = svc.ListCountryxx();
@@ -98,51 +48,40 @@ namespace MetopeMVCApp.Filters
         }
 
     }
-    public class CountriesFilter : ActionFilterAttribute
+
+    public class CurrencyFilter : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            IEnumerable<SelectListItem> countries;
-            if ((countries = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)) == null)
+            IQueryable<Currency> currencies;
+            if ((currencies = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Currency>)) == null)
             {
                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services();
-                countries = svc.ListCountry();
-     
-                filterContext.HttpContext.Cache.Insert(GetType().FullName, countries);
+
+                currencies = svc.ListCurrencies();
+                filterContext.HttpContext.Cache.Insert(GetType().FullName, currencies);
             }
-            filterContext.Controller.ViewBag.CountryOfRisk = countries;
-            filterContext.Controller.ViewBag.CountryOfDomicile = countries;
+
+            filterContext.Controller.ViewBag.Price_Curr = new SelectList(currencies, "Currency_Code", "Currency_Name", filterContext.Controller.ViewBag.PriceCurr); // 
+            filterContext.Controller.ViewBag.Asset_Currency = new SelectList(currencies, "Currency_Code", "Currency_Name", filterContext.Controller.ViewBag.AssetCurrency); // 
+            filterContext.Controller.ViewBag.Trade_Currency = new SelectList(currencies, "Currency_Code", "Currency_Name", filterContext.Controller.ViewBag.TradeCurrency); // 
+
             base.OnActionExecuted(filterContext);
-        } 
-        //public override void OnActionExecuted(OnActionExecutedContext filterContext)
-        //{  
-        //      IEnumerable<SelectListItem> countries ;
-        //      if ((countries = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)) == null)
-        //      {
-        //            MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services();
-        //            countries = svc.ListCountry();
-        //            filterContext.HttpContext.Cache.Insert(GetType().FullName, countries);
-        //      }
-        //      filterContext.Controller.ViewBag.CountryOfRisk = countries;
-        //      filterContext.Controller.ViewBag.Country_Of_Domicile = countries;
-
-        //      base.OnActionExecuted(filterContext);
-        //}
-
+        }
     }
     public class SecurityTypesFilter : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
-        {
-
-            IEnumerable<SelectListItem> secTypeCodes;
-            if ((secTypeCodes = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)) == null)
+        { 
+            IQueryable<Security_Type> secTypeCodes;
+            if ((secTypeCodes = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Security_Type>)) == null)
             {
                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services();
                 secTypeCodes = svc.ListSecTypeCode();
                 filterContext.HttpContext.Cache.Insert(GetType().FullName, secTypeCodes);
             }
-            filterContext.Controller.ViewBag.Security_Type_Code = secTypeCodes;  
+            filterContext.Controller.ViewBag.Security_Type_Code = new SelectList(secTypeCodes, "Security_Type_Code", "Name", filterContext.Controller.ViewBag.SecurityTypeCode); // 
+
 
             base.OnActionExecuted(filterContext);
         }
@@ -245,25 +184,6 @@ namespace MetopeMVCApp.Filters
              base.OnActionExecuted(filterContext);
          }
 
-     }
-     public class CurrencyFilter : ActionFilterAttribute
-     {
-         public override void OnActionExecuted(ActionExecutedContext filterContext)
-         {
-             IEnumerable<SelectListItem> currencies;
-             if ((currencies = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)) == null)
-             {
-                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services();
-
-                 currencies = svc.ListCurrencies();
-                 filterContext.HttpContext.Cache.Insert(GetType().FullName, currencies);
-             }
-             filterContext.Controller.ViewBag.Price_Curr = currencies;
-             filterContext.Controller.ViewBag.Asset_Currency = currencies;
-             filterContext.Controller.ViewBag.Trade_Currency = currencies;
-
-             base.OnActionExecuted(filterContext);
-         }
      }
      public class CurrencyPairFilter : ActionFilterAttribute
      {

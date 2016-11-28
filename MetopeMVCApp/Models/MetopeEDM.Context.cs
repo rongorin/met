@@ -15,15 +15,15 @@ namespace MetopeMVCApp.Models
     using System.Diagnostics;
     using System.Linq;
     
-    public interface IMetopeDbEntities : IDisposable
-    {
-         IQueryable<T> Query<T>() where T : class;
-          DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
-          T Add<T>(T entity) where T : class;
-          int SaveChanges();
+    //public interface IMetopeDbEntities : IDisposable
+    //{
+    //     IQueryable<T> Query<T>() where T : class;
+    //      DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
+    //      T Add<T>(T entity) where T : class;
+    //      int SaveChanges();
 
-    }
-    public partial class MetopeDbEntities : DbContext, IMetopeDbEntities 
+    //}
+    public partial class MetopeDbEntities : DbContext  //, IMetopeDbEntities 
     {
         public MetopeDbEntities() : base("name=MetopeDbEntities")
         {
@@ -32,22 +32,22 @@ namespace MetopeMVCApp.Models
                 //Database.Log = message => Trace.WriteLine(message);
              #endif
         }
-        IQueryable<T> IMetopeDbEntities.Query<T>()
-        {
-            return Set<T>();
-        }
-        DbEntityEntry<TEntity> IMetopeDbEntities.Entry<TEntity>(TEntity entity)
-        { 
-            return Entry<TEntity>(entity) ; 
-        } 
-        T  IMetopeDbEntities.Add<T>( T entity)
-        {
-            return Set<T>().Add(entity); 
-        }
-        int IMetopeDbEntities.SaveChanges()
-        {
-            return SaveChanges();
-        } 
+        //IQueryable<T> IMetopeDbEntities.Query<T>()
+        //{
+        //    return Set<T>();
+        //}
+        //DbEntityEntry<TEntity> IMetopeDbEntities.Entry<TEntity>(TEntity entity)
+        //{ 
+        //    return Entry<TEntity>(entity) ; 
+        //} 
+        //T  IMetopeDbEntities.Add<T>( T entity)
+        //{
+        //    return Set<T>().Add(entity); 
+        //}
+        //int IMetopeDbEntities.SaveChanges()
+        //{
+        //    return SaveChanges();
+        //} 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<Security_Detail>().HasOptional(t => t.Code_Miscellaneous ).WithRequired(t => t.)  Map(p => p.Requires("Type").HasValue("Car"));

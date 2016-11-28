@@ -14,11 +14,14 @@ namespace MetopeMVCApp.Services
     public interface IServices
     {
         IQueryable<Country> ListCountryxx();
+        IQueryable<Currency> ListCurrencies();
+        IQueryable<Security_Type> ListSecTypeCode();
+
         IEnumerable<SelectListItem> ListCountry();
         IEnumerable<SelectListItem> ListExchanges();
-        IEnumerable<SelectListItem> ListSecTypeCode();
         IEnumerable<SelectListItem> ListMiscellanousTypes(string iCodeType);
         IEnumerable<SelectListItem> ListPortfolios(decimal iUser );
+
         IEnumerable<SelectListItem> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId);
         //IEnumerable<Country> List();
          
@@ -58,38 +61,25 @@ namespace MetopeMVCApp.Services
             //     });
               
         }
-
+        public IQueryable<Security_Type> ListSecTypeCode()
+        {
+            return _context.Security_Type;
+        } 
+   
+        public IQueryable<Currency> ListCurrencies()
+        {
+            return _context.Currencies
+                //.Select(x => new SelectListItem { Text = x.Currency_Name, Value = x.Currency_Code })
+                    .OrderBy(s => s.Currency_Name); 
+        } 
         public IEnumerable<SelectListItem> ListCountry()
         {
 
-           return
-                _context.Countries
-                .Select(x => new SelectListItem { Text = x.Country_Name, Value = x.Country_Code })
-                 .ToList();
-
-            //var newItem = new SelectListItem { Text = "a select me", Value = "01" };
-            //xxx.Add(newItem); 
-             
-
-            ////return   _context.Countries.ToList() ;
-            //return _context.Countries.OrderBy(album => album.Country_Name)
-            // .Select(album =>
-            //     new SelectListItem
-            //     { 
-            //         Text = album.Country_Name,
-            //         Value = album.Country_Code
-            //     });
-
-        }
-
-
-        public IEnumerable<SelectListItem> ListSecTypeCode()
-        {
-            return _context.Security_Type
-                 .Select(x => new SelectListItem { Text = x.Name, Value = x.Security_Type_Code })
-                 .ToList(); 
+            return
+                 _context.Countries
+                 .Select(x => new SelectListItem { Text = x.Country_Name, Value = x.Country_Code })
+                  .ToList();
         } 
-
         public IEnumerable<SelectListItem> ListExchanges()
         {
             return _context.Exchanges
@@ -121,14 +111,6 @@ namespace MetopeMVCApp.Services
                     .Where(r => r.Entity_ID == iGenericEntityId || r.Entity_ID == iEntity)
                     .Select(x => new SelectListItem { Text = x.Party_Name, Value = x.Party_Code }) ;
              
-        }
-        public IEnumerable<SelectListItem> ListCurrencies( )
-        {
-            return _context.Currencies
-                    .Select(x => new SelectListItem { Text = x.Currency_Name, Value = x.Currency_Code })
-                    .OrderBy(s => s.Text);
-
-
         }
         public IEnumerable<SelectListItem> ListCurrencyPairs()
         {

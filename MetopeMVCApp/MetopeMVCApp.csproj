@@ -348,6 +348,7 @@
     <Compile Include="Models\Portfolio_List.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SecurityDetailIndexModel.cs" />
     <Compile Include="Models\Security_Detail.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
