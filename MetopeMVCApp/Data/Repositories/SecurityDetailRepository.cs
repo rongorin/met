@@ -1,23 +1,29 @@
-﻿using MetopeMVCApp.Models;
+﻿using MetopeMVCApp.Data;
+using MetopeMVCApp.Data.GenericRepository;
+using MetopeMVCApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
+
+
 namespace MetopeMVCApp.Data.Repositories
 {
-    public class SecurityDetailRepository : Repository<Security_Detail>
+    public class SecurityDetailRepository : GenericRepository<MetopeDbEntities, Security_Detail>, 
+                                        ISecurityDetailRepository
     {
-        //possibly override the Update ..here override and update the Version property:
-
-        //public override void Update(Security_Detail entity)
-        //{
-        //    base.Update(entity);
-        //    SaveChanges();
-        //    entity.Version++;
-        //    base.Update(entity);
-        //    SaveChanges();
-        //}
-
+    
     }
-}
+    public class ExchangeRepository : GenericRepository<MetopeDbEntities, Exchange>,
+                                    IExchangeRepository
+    {
+        //possibly override the Update ..here override and update the Version property:  
+    } 
+    public class CountryRepository : GenericRepository<MetopeDbEntities, Country>,
+                                    ICountryRepository
+    {
+        //possibly override the Update ..here override and update the Version property:  
+    }
+}   

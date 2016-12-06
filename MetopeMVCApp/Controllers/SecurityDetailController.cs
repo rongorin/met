@@ -15,6 +15,7 @@ using MetopeMVCApp.Data;
 using System.Configuration;
 using MetopeMVCApp.Data.Repositories;
 using MetopeMVCApp.Filters;
+using MetopeMVCApp.Data.GenericRepository;
 namespace MetopeMVCApp.Controllers
 {
  
@@ -22,7 +23,7 @@ namespace MetopeMVCApp.Controllers
     {
         //private IMetopeDbEntities db11;  
 
-        private readonly SecurityDetailRepository db11 = null;
+        private readonly ISecurityDetailRepository db11 ;
         private MetopeDbEntities db;
         private MetopeMVCApp.Services.IServices svc;
         private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
@@ -32,7 +33,8 @@ namespace MetopeMVCApp.Controllers
         //{
         //    db = new MetopeDbEntities();
         //}
-        public SecurityDetailController(SecurityDetailRepository iDb  ,MetopeMVCApp.Services.IServices isvc)
+        public SecurityDetailController(ISecurityDetailRepository iDb  ,
+                                        MetopeMVCApp.Services.IServices isvc)
         {
             db11 = iDb;
             svc = isvc;
@@ -127,15 +129,14 @@ namespace MetopeMVCApp.Controllers
         [BenchmarkPortfolioFilter]
         [PartyFilter]
         [CurrencyPairFilter]
-       [TrueFalseFilter]
+        [TrueFalseFilter]
         public ActionResult Create()
         { 
             var currentUser = manager.FindById(User.Identity.GetUserId());
             ViewBag.EntityIdScope = currentUser.EntityIdScope;
             ViewBag.GenericEntityId = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
 
-
-
+             
 
             return View();
 
@@ -190,12 +191,18 @@ namespace MetopeMVCApp.Controllers
         // POST: /SecurityDetail/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [TrueFalseFilter]
         [CountriesFilter]
         [SecurityTypesFilter]
-        [CurrencyFilter]
+        [CurrencyFilter] 
+        [ExchangesFilter]
+        //[CodeMiscellaneousFilter]
+        //[BenchmarkPortfolioFilter]
+        //[PartyFilter]
+        //[CurrencyPairFilter] 
+        [TrueFalseFilter]
         public ActionResult Create([Bind(Include = "Security_ID,Entity_ID,Security_Name,Short_Name,Primary_Exch,Secondary_Exch,Country_Of_Domicile,Country_Of_Risk,Security_Type_Code,Price_Multiplier,Income_Frequency,Issuer_Code,Ultimate_Issuer_Code,Asset_Currency,Min_Lot_Size,Decimal_Precision,AvePrice_Rounding,Issue_Date,Maturity_Date,Coupon_Rate,Price_Exchange,Trade_Currency,Price_Curr,Currency_Pair_Code,Share_Class,Current_Market_Price,Index_Type,Clean_Price_Formula,Accrued_Income_Price_Formula,Odd_First_Coupon_Date,Odd_Last_Coupon_Date,Coupon_Anniversary_Indicator,Track_EOM_Flag,Next_Coupon_Date,Previous_Coupon_Date,Payment_Frequency,Coupon_BusDay_Adjustment,Next_Ex_Div_Date,Ex_Div_BusDay_Adjustment,Ex_Div_Period,Ticker,Inet_ID,Bloomberg_ID,External_Sec_ID,Reuters_ID,ISIN,Call_Account_Flag,System_Locked,Benchmark_Portfolio")] Security_Detail security_detail)
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
@@ -207,7 +214,7 @@ namespace MetopeMVCApp.Controllers
                 security_detail.Last_Update_User = User.Identity.Name; 
 
                 db11.Add(security_detail);
-                db11.SaveChanges();
+                db11.Save();
                 TempData.Add("ResultMessage", "new Security \"" + security_detail.Security_Name + "\" created successfully!");
 
                 return RedirectToAction("Index");
@@ -239,7 +246,11 @@ namespace MetopeMVCApp.Controllers
             ViewBag.Issuer_Code = new SelectList(parties, "Party_Code", "Party_Name", security_detail.Issuer_Code);
             ViewBag.Ultimate_Issuer_Code = new SelectList(parties, "Party_Code", "Party_Name", security_detail.Ultimate_Issuer_Code);
 
-            IPortfolioRepository PortfolioRepo = new PortfolioRepository(db);
+            //IPortfolioRepository PortfolioRepo = new PortfolioRepository(db);
+
+            IPortfolioRepository3 PortfolioRepo = new PortfolioRepository3();
+
+ 
             var portfolios = PortfolioRepo.GetPortfolios(currentUser.EntityIdScope);
             ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name",security_detail.Benchmark_Portfolio); 
              
@@ -340,10 +351,10 @@ namespace MetopeMVCApp.Controllers
         //    return View(security_detail);
 
         //}
-         [CountriesFilter]
-        //[CountriesFilter]
+         [CountriesFilter] 
         [TrueFalseFilter]
         [SecurityTypesFilter]
+        [ExchangesFilter]
         [CurrencyFilter]
         public ActionResult Edit(decimal id)
         { 
@@ -361,14 +372,18 @@ namespace MetopeMVCApp.Controllers
                 PopulateAllCodeMisc();
                 MetopeDbEntities db = new MetopeDbEntities(); // FIX THIS we are using db11 not db. !!!   
 
-
+                // [CountriesFilter] :
                 ViewBag.RecordCountryOfDomicile = security_detail.Country_Of_Domicile;
                 ViewBag.RecordCountryOfRisk = security_detail.Country_Of_Risk;
+                // [CurrencyFilter]:
                 ViewBag.PriceCurr = security_detail.Price_Curr;
                 ViewBag.AssetCurrency = security_detail.Asset_Currency;
                 ViewBag.TradeCurrency = security_detail.Trade_Currency;
+                // SecurityTypesFilter:
                 ViewBag.SecurityTypeCode = security_detail.Security_Type_Code; 
-             
+
+                ViewBag.PrimaryExch  = security_detail.Primary_Exch;
+                ViewBag.SecondaryExch = security_detail.Secondary_Exch; 
                 // IEnumerable<SelectListItem> countries;  
                     //MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(); 
                     //ViewBag.Country_Of_Risk = new SelectList(svc.ListCountryxx(), "Country_Code", "Country_Name", security_detail.Country_Of_Risk);// countries;
@@ -382,8 +397,8 @@ namespace MetopeMVCApp.Controllers
                // ViewBag.Country_Of_Risk = new SelectList(ViewBag.Country_Of_Risk, "Country_Code", "Country_Code", security_detail.Country_Of_Risk); 
 
              
-                ViewBag.Primary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name", security_detail.Primary_Exch);
-                ViewBag.Secondary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name", security_detail.Secondary_Exch);
+                //ViewBag.Primary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name", security_detail.Primary_Exch);
+                //ViewBag.Secondary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name", security_detail.Secondary_Exch);
                 
                // ViewBag.Security_Type_Code = new SelectList(db.Security_Type.ToList(), "Security_Type_Code", "Name", security_detail.Security_Type_Code);
 
@@ -400,7 +415,11 @@ namespace MetopeMVCApp.Controllers
                 ViewBag.Ex_Div_Period = new SelectList(GetCodeMiscType("EXDPERIOD"), "MisCode", "MisCode_Description", security_detail.Ex_Div_Period);
                 ViewBag.Share_Class = new SelectList(GetCodeMiscType("SHRCLASS"), "MisCode", "MisCode_Description", security_detail.Share_Class);
 
-                IPortfolioRepository PortfolioRepo = new PortfolioRepository(db);
+                //IPortfolioRepository PortfolioRepo = new PortfolioRepository(db);
+
+                IPortfolioRepository3 PortfolioRepo = new PortfolioRepository3();
+
+ 
                 var portfolios = PortfolioRepo.GetPortfolios(currentUser.EntityIdScope);
                 ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name", security_detail.Benchmark_Portfolio);
               
@@ -438,7 +457,7 @@ namespace MetopeMVCApp.Controllers
                 security_detail.Entity_ID = currentUser.EntityIdScope;
                 security_detail.Last_Update_Date = DateTime.Now;
                 security_detail.Last_Update_User = User.Identity.Name; 
-                db11.SaveChanges();
+                db11.Save();
                 TempData.Add("ResultMessage", "Security \"" + security_detail.Security_Name + "\" editied successfully!");
 
                 return RedirectToAction("Index");
@@ -470,7 +489,10 @@ namespace MetopeMVCApp.Controllers
             ViewBag.Ex_Div_Period = new SelectList(GetCodeMiscType("EXDPERIOD"), "MisCode", "MisCode_Description", security_detail.Ex_Div_Period);
             ViewBag.Share_Class = new SelectList(GetCodeMiscType("SHRCLASS"), "MisCode", "MisCode_Description", security_detail.Share_Class);
 
-            IPortfolioRepository PortfolioRepo = new PortfolioRepository(db);
+            //IPortfolioRepository PortfolioRepo = new PortfolioRepository(db);
+
+            IPortfolioRepository3 PortfolioRepo = new PortfolioRepository3();
+  
             var portfolios = PortfolioRepo.GetPortfolios(currentUser.EntityIdScope);
             ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name", security_detail.Benchmark_Portfolio);
 
@@ -513,8 +535,10 @@ namespace MetopeMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(decimal id)
         { 
-             db11.Delete(id);
-             db11.SaveChanges(); 
+            Security_Detail security_detail = db11.Get(id);
+
+            db11.Delete (security_detail);
+            db11.Save (); 
             return RedirectToAction("Index");
         }
 

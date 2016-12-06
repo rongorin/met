@@ -5,14 +5,15 @@ using System.Linq;
 using System.Web; 
 using System.Data.Entity ;
 using PagedList;
+using MetopeMVCApp.Data.Repositories;
 namespace MetopeMVCApp.Data
 {
-    public class PortfolioRepository : IPortfolioRepository, IDisposable
+    public class PortfolioRepository  :   IPortfolioRepository, IDisposable
     {
         MetopeDbEntities _ctx;
          
         public PortfolioRepository(MetopeDbEntities contxt) //created new consturctor
-        { 
+        {       
             _ctx = contxt;  //_ctx = new MetopeDbEntities();
         }
         public IList<Portfolio> GetPortfolios(decimal iUserId )
@@ -20,6 +21,7 @@ namespace MetopeMVCApp.Data
           return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId )
                   .ToList(); 
         }
+
         public IPagedList<Portfolio> GetPortfolios(decimal iUserId, int page = 1, string searchTerm = null)
         {
             return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId)

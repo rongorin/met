@@ -9,6 +9,7 @@
 
 namespace MetopeMVCApp.Models
 {
+    using MetopeMVCApp.Data.Repositories;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
@@ -23,7 +24,7 @@ namespace MetopeMVCApp.Models
     //      int SaveChanges();
 
     //}
-    public partial class MetopeDbEntities : DbContext  //, IMetopeDbEntities 
+    public partial class MetopeDbEntities : DbContext, IDisposedTracker  //, IMetopeDbEntities 
     {
         public MetopeDbEntities() : base("name=MetopeDbEntities")
         {
@@ -56,7 +57,11 @@ namespace MetopeMVCApp.Models
 
         }
 
- 
+        protected override void Dispose(bool disposing)
+        {
+            IsDisposed = true;
+            base.Dispose(disposing);
+        }
 
         public virtual DbSet<Entity> Entities { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -71,6 +76,7 @@ namespace MetopeMVCApp.Models
         public virtual DbSet<Party> Parties { get; set; }
         public virtual DbSet<Portfolio> Portfolios { get; set; }
         public virtual DbSet<Security_Detail> Security_Detail { get; set; }
+        public bool IsDisposed { get; set; }
 
       
     

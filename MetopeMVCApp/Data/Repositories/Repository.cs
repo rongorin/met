@@ -35,8 +35,7 @@ namespace MetopeMVCApp.Data.Repositories
         public IQueryable<T> GetAll()
         {
             //return DbSet.ToList(); 
-            return DbSet.AsQueryable(); 
-
+            return DbSet.AsQueryable();  
         }
  
         public T Get(decimal id)

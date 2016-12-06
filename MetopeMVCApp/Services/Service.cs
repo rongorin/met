@@ -1,4 +1,7 @@
-﻿using MetopeMVCApp.Data;
+﻿using MetopeMVCApp.Controllers;
+using MetopeMVCApp.Data;
+using MetopeMVCApp.Data.GenericRepository;
+using MetopeMVCApp.Data.Repositories;
 using MetopeMVCApp.Models;
 using System;
 using System.Collections.Generic;
@@ -13,44 +16,44 @@ namespace MetopeMVCApp.Services
              ------------------------------------------------------------*/ 
     public interface IServices
     {
-        IQueryable<Country> ListCountryxx();
+        IQueryable<Country> ListCountry();
         IQueryable<Currency> ListCurrencies();
         IQueryable<Security_Type> ListSecTypeCode();
-
-        IEnumerable<SelectListItem> ListCountry();
-        IEnumerable<SelectListItem> ListExchanges();
+         
+        IQueryable<Exchange> ListExchanges();
         IEnumerable<SelectListItem> ListMiscellanousTypes(string iCodeType);
         IEnumerable<SelectListItem> ListPortfolios(decimal iUser );
 
         IEnumerable<SelectListItem> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId);
         //IEnumerable<Country> List();
+        void Dispose();
          
     }
 
-    public class Services : IServices   
+    public class Services : IDisposable, IServices   
     {
         MetopeMVCApp.Services.IServices isvc;
 
         MetopeDbEntities _context;
+        private bool disposed = false;
 
-        public Services( )
+        public Services(bool createCntxt)
         {
-            _context = new MetopeDbEntities();
+            if (createCntxt)
+                 _context = new MetopeDbEntities();
         }
 
-        public IQueryable<Country> ListCountryxx()
+        public IQueryable<Country> ListCountry()
         {
 
-            var xxx =
+            return  
                 _context.Countries;
                      //.Select(x => new SelectListItem { Text = x.Country_Name, Value = x.Country_Code })
                     // .ToList();
              
                 //var newItem = new SelectListItem { Text = "a select me", Value = "01" };
                 //xxx.Add(newItem); 
-
-                return xxx;
-
+              
             ////return   _context.Countries.ToList() ;
             //return _context.Countries.OrderBy(album => album.Country_Name)
             // .Select(album =>
@@ -72,20 +75,24 @@ namespace MetopeMVCApp.Services
                 //.Select(x => new SelectListItem { Text = x.Currency_Name, Value = x.Currency_Code })
                     .OrderBy(s => s.Currency_Name); 
         } 
-        public IEnumerable<SelectListItem> ListCountry()
+        //public IEnumerable<SelectListItem> ListCountry()
+        //{ 
+        //    return
+        //         _context.Countries
+        //         .Select(x => new SelectListItem { Text = x.Country_Name, Value = x.Country_Code })
+        //          .ToList();
+        //}
+        public IQueryable<Exchange> ListExchanges()
         {
+          IExchangeRepository dbCntx = new  ExchangeRepository ();
 
-            return
-                 _context.Countries
-                 .Select(x => new SelectListItem { Text = x.Country_Name, Value = x.Country_Code })
-                  .ToList();
-        } 
-        public IEnumerable<SelectListItem> ListExchanges()
-        {
-            return _context.Exchanges
-                //.Where(p => p.Entity_ID == 1)
-                 .Select(x => new SelectListItem { Text = x.Exchange_Name, Value = x.Exchange_Code })
-                 .ToList();
+          return dbCntx.GetAll()
+                .OrderBy(s => s.Exchange_Name);
+
+            //return _context.Exchanges   
+            //    //.Where(p => p.Entity_ID == 1)
+            //    // .Select(x => new SelectListItem { Text = x.Exchange_Name, Value = x.Exchange_Code })
+            //     .OrderBy(s => s.Exchange_Name);
         }
         public IEnumerable<SelectListItem> ListMiscellanousTypes(string iCodeType)
         {
@@ -97,7 +104,7 @@ namespace MetopeMVCApp.Services
         public IEnumerable<SelectListItem> ListPortfolios(decimal iUser )
         {
 
-            IPortfolioRepository PortfolioRepo = new PortfolioRepository(_context);
+            IPortfolioRepository3 PortfolioRepo = new PortfolioRepository3();
 
             return PortfolioRepo.GetPortfolios(iUser )
                      .Select(x => new SelectListItem { Text = x.Portfolio_Name, Value = x.Portfolio_Code }) ; 
@@ -131,7 +138,14 @@ namespace MetopeMVCApp.Services
 
 
         }
-        
+        public void Dispose()
+        {
+            if (!disposed)
+            {
+                _context.Dispose();
+                disposed = true;
+            }
+        }
         //public IEnumerable<Country> List()
         //{
         //    return new List<Country>

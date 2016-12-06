@@ -16,7 +16,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace MetopeMVCApp.DependencyResolution {
+    using MetopeMVCApp.Controllers;
     using MetopeMVCApp.Data;
+    using MetopeMVCApp.Data.GenericRepository;
+    using MetopeMVCApp.Data.Repositories;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
 	
@@ -30,7 +33,9 @@ namespace MetopeMVCApp.DependencyResolution {
                     scan.WithDefaultConventions();
 					scan.With(new ControllerConvention());
                 });
-            //For<ISecurityDetailRepository>().Use<SecurityDetailRepository>();
+            For<IPortfolioRepository3>().Use<PortfolioRepository3>();
+            For<ISecurityDetailRepository>().Use<SecurityDetailRepository>();
+
         }
 
         #endregion

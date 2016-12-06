@@ -18,6 +18,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using MetopeMVCApp.Data;
 using PagedList;
 using MetopeMVCApp.Filters;
+using MetopeMVCApp.Data.GenericRepository;
 
 
 namespace MetopeMVCApp.Controllers
@@ -25,13 +26,15 @@ namespace MetopeMVCApp.Controllers
     public class PortfolioController : Controller
     { 
         //private PortfolioRepository _repo = new PortfolioRepository( );
-        private readonly IPortfolioRepository _repo; 
 
         private MetopeDbEntities db = new MetopeDbEntities(); //REMOVE this when done doing repository
         private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
-        //using  proper DI : only one constructor
-        public PortfolioController(IPortfolioRepository repo)
+        //using  proper DI : only one constructor 
+
+        private readonly IPortfolioRepository3 _repo;
+
+        public PortfolioController(IPortfolioRepository3 repo)
         {
             _repo = repo;
         }
@@ -167,9 +170,9 @@ namespace MetopeMVCApp.Controllers
             }
 
             if ( ModelState.IsValid)
-            {   
+            {
                 _repo.CreatePortfolio(portfolio);
-                _repo.Save();
+                _repo.Save ();
                 TempData.Add("ResultMessage", "new portfolio \"" + portfolio.Portfolio_Name + "\" code:\"" + portfolio.Portfolio_Code + "\" created successfully!");
            
                 return RedirectToAction("Index"); 
