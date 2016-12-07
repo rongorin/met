@@ -24,8 +24,8 @@ namespace MetopeMVCApp.Controllers
         //private IMetopeDbEntities db11;  
 
         private readonly ISecurityDetailRepository db11 ;
-        private MetopeDbEntities db;
-        private MetopeMVCApp.Services.IServices svc;
+        //private MetopeDbEntities db;
+        //private MetopeMVCApp.Services.IServices svc;
         private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
         private IEnumerable<Code_Miscellaneous> AllCodeMisc;
 
@@ -33,11 +33,9 @@ namespace MetopeMVCApp.Controllers
         //{
         //    db = new MetopeDbEntities();
         //}
-        public SecurityDetailController(ISecurityDetailRepository iDb  ,
-                                        MetopeMVCApp.Services.IServices isvc)
+        public SecurityDetailController(ISecurityDetailRepository iDb  )
         {
-            db11 = iDb;
-            svc = isvc;
+            db11 = iDb; 
         }
            
         //public SecurityDetailController() 

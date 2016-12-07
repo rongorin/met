@@ -32,7 +32,8 @@ namespace MetopeMVCApp.Filters
             IQueryable<Country> countries;
             if ((countries = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Country>)) == null)
             {
-                MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(true);
+
+                MetopeMVCApp.Services.IServices svc = new MetopeMVCApp.Services.Services(true);
                 countries = svc.ListCountry();
 
                 filterContext.HttpContext.Cache.Insert(GetType().FullName, countries);
