@@ -6,30 +6,30 @@
     <div class="tab-content">
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Portfolio_Name, new { @class = "control-label col-md-2 input-sm " })
+                    @Html.LabelFor(model => model.Portfolio_Name, new { @class = "control-label col-md-2 input-sm " }) 
                     <div class="col-md-4  input-group-sm">  
                         @Html.TextBoxFor(model => model.Portfolio_Name, new { @class = "form-control ", placeholder = "Enter the Portfolio name here..." })
                         @Html.ValidationMessageFor(model => model.Portfolio_Name)
                     </div>
                 </div> 
 
+
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Manager, new { @class = "control-label col-md-2 input-sm " })
+                    @Html.LabelFor(model => model.Manager, new { @class = "control-label col-md-2 input-sm" })
                     <div class="col-md-4">
                         @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.managers, String.Empty, new { @class = "form-control  input-sm" })
                         @Html.ValidationMessageFor(model => model.Manager)
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Portfolio_Type, new { @class = "control-label col-md-2 input-sm " })
+                    @Html.LabelFor(model => model.Portfolio_Type, new { @class = "control-label col-md-2 input-sm" })
                     <div class="col-md-4">
                         @Html.DropDownListFor(model => model.Portfolio_Type, (SelectList)ViewBag.Portfolio_Types, String.Empty, new { @class = "form-control  input-sm" })
                         @Html.ValidationMessageFor(model => model.Portfolio_Type)
                     </div>
                 </div>
             </div>
-
-            <div class="tab-pane" id="hobbies">
+ 
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Portfolio_Base_Currency, new { @class = "control-label col-md-2 input-sm" })
@@ -129,6 +129,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-4">
-                <input type="submit" value="Save" class="btn btn-primary " />
+                <input type="submit" value="Save" class="btn btn-primary  icon-save" />
+
             </div>
         </div>

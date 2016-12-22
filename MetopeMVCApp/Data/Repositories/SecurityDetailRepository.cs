@@ -17,13 +17,35 @@ namespace MetopeMVCApp.Data.Repositories
     
     }
     public class ExchangeRepository : GenericRepository<MetopeDbEntities, Exchange>,
-                                    IExchangeRepository
+                                     IExchangeRepository
     {
         //possibly override the Update ..here override and update the Version property:  
     } 
     public class CountryRepository : GenericRepository<MetopeDbEntities, Country>,
-                                    ICountryRepository
+                                     ICountryRepository
     {
+        //possibly override the Update ..here override and update the Version property:  
+    }
+    public class SecurityTypeRepository : GenericRepository<MetopeDbEntities, Security_Type>,
+                                         ISecurityTypesRepository
+    {
+        //possibly override the Update ..here override and update the Version property:  
+    }
+    public class CurrencyRepository : GenericRepository<MetopeDbEntities, Currency>,
+                                      ICurrencyRepository
+    {
+        //possibly override the Update ..here override and update the Version property:  
+    }
+    public class PartyRepository : GenericRepository<MetopeDbEntities, Party>,
+                          IPartyRepository
+    {
+
+        public IQueryable<Party> GetPartyValues(decimal iEntity, string iType, decimal iGenericEntityId)
+        {
+            return GetAll().Where(c => c.Party_Type == iType)
+                                .Where(r => r.Entity_ID == iGenericEntityId || r.Entity_ID == iEntity); 
+
+        }
         //possibly override the Update ..here override and update the Version property:  
     }
 }   

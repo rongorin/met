@@ -27,7 +27,7 @@ namespace MetopeMVCApp.Models
     public partial class MetopeDbEntities : DbContext, IDisposedTracker  //, IMetopeDbEntities 
     {
         public MetopeDbEntities() : base("name=MetopeDbEntities")
-        {
+        { 
             #if DEBUG
                 Database.Log = s => Debug.Write(s);
                 //Database.Log = message => Trace.WriteLine(message);
@@ -47,6 +47,7 @@ namespace MetopeMVCApp.Models
         //}
         //int IMetopeDbEntities.SaveChanges()
         //{
+
         //    return SaveChanges();
         //} 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

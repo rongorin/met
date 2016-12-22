@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using ASP.MetopeNspace.Models;
+using System.Collections;
+using System.Web.Caching;
 
 namespace ASP.MetopeNspace.Controllers
 {
@@ -67,6 +69,7 @@ namespace ASP.MetopeNspace.Controllers
         [Authorize(Roles = "Admin")] 
         public ActionResult Register()
         {
+
             return View();
         }
 
@@ -121,6 +124,7 @@ namespace ASP.MetopeNspace.Controllers
         // GET: /Account/Manage
         public ActionResult Manage(ManageMessageId? message)
         {
+  
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -290,12 +294,22 @@ namespace ASP.MetopeNspace.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public ActionResult LogOff( )
         {
-            AuthenticationManager.SignOut();
+            /*----------------------------------------------
+            on signing out , i remove all the cached dropdown items.
+            HttpContext oc = System.Web.HttpContext.Current;
+            ----------------------------------------------*/
+            HttpContext oc = System.Web.HttpContext.Current;
+            foreach (var c in oc.Cache)
+            { 
+                oc.Cache.Remove(((DictionaryEntry)c).Key.ToString());  
+            }
+
+            AuthenticationManager.SignOut(); 
             return RedirectToAction("Index", "Home");
         }
-
+    
         //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]

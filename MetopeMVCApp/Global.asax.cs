@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+using StackExchange.Profiling;
+using StackExchange.Profiling.EntityFramework6;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -21,17 +24,27 @@ namespace ASP.MetopeNspace
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ModelBinders.Binders.Add(typeof(decimal?), new MetopeMVCApp.DecimalModelBinder());
-
+            MiniProfilerEF6.Initialize();
         }
         protected void Application_BeginRequest()
         {
             var currentCulture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
             currentCulture.NumberFormat.NumberDecimalSeparator = ".";
             currentCulture.NumberFormat.NumberGroupSeparator = " ";
-            currentCulture.NumberFormat.CurrencyDecimalSeparator = ".";
-
+            currentCulture.NumberFormat.CurrencyDecimalSeparator = "."; 
             Thread.CurrentThread.CurrentCulture = currentCulture;
+
+            if (Request.IsLocal)
+            {
+                MiniProfiler.Start();
+            } 
+
             //Thread.CurrentThread.CurrentUICulture = currentCulture;
+        }
+
+        protected void Application_EndRequest()
+        {
+            MiniProfiler.Stop();
         }
         //protected  void Application_Error(object sender, EventArgs e) {
         //    Exception exc = Server.GetLastError(); 

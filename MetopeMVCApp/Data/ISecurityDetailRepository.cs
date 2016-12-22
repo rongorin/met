@@ -18,4 +18,15 @@ namespace MetopeMVCApp.Data
     public interface ICountryRepository : IGenericRepository<Country>
     {
     }
+    public interface ISecurityTypesRepository : IGenericRepository<Security_Type>
+    { 
+    } 
+    public interface ICurrencyRepository : IGenericRepository<Currency>
+    {
+
+    }
+    public interface IPartyRepository : IGenericRepository<Party>
+    {
+          IQueryable<Party> GetPartyValues(decimal iEntity, string iType, decimal iGenericEntityId);
+    }
 }

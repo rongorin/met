@@ -33,7 +33,7 @@ namespace MetopeMVCApp.Filters
             if ((countries = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Country>)) == null)
             {
 
-                MetopeMVCApp.Services.IServices svc = new MetopeMVCApp.Services.Services(true);
+                MetopeMVCApp.Services.IServices svc = new MetopeMVCApp.Services.Services(false);
                 countries = svc.ListCountry();
 
                 filterContext.HttpContext.Cache.Insert(GetType().FullName, countries);
@@ -57,8 +57,8 @@ namespace MetopeMVCApp.Filters
             IQueryable<Currency> currencies;
             if ((currencies = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Currency>)) == null)
             {
-                MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(true);
-
+                MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+                    
                 currencies = svc.ListCurrencies();
                 filterContext.HttpContext.Cache.Insert(GetType().FullName, currencies);
             }
@@ -77,7 +77,7 @@ namespace MetopeMVCApp.Filters
             IQueryable<Security_Type> secTypeCodes;
             if ((secTypeCodes = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Security_Type>)) == null)
             {
-                MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(true);
+                MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
                 secTypeCodes = svc.ListSecTypeCode();
                 filterContext.HttpContext.Cache.Insert(GetType().FullName, secTypeCodes);
             }
@@ -86,10 +86,12 @@ namespace MetopeMVCApp.Filters
             base.OnActionExecuted(filterContext);
         } 
      } 
+
      public class ExchangesFilter : ActionFilterAttribute
      {
         public override void OnActionExecuted(ActionExecutedContext  filterContext)
         {
+
             IQueryable<Exchange> exchanges;
             if ((exchanges = (filterContext.HttpContext.Cache.Get(GetType().FullName) as  IQueryable<Exchange>)) == null)
             {
@@ -97,8 +99,8 @@ namespace MetopeMVCApp.Filters
                 exchanges = svc.ListExchanges();
                 filterContext.HttpContext.Cache.Insert(GetType().FullName, exchanges);
             }
-            filterContext.Controller.ViewBag.Primary_Exch = new SelectList(exchanges, "Exchange_Code", "Exchange_Name", filterContext.Controller.ViewBag.PrimaryExch);//  ;;
-            filterContext.Controller.ViewBag.Secondary_Exch = new SelectList(exchanges, "Exchange_Code", "Exchange_Name", filterContext.Controller.ViewBag.SecondaryExch);//  ;;
+            filterContext.Controller.ViewBag.Primary_Exch = new SelectList(exchanges, "Exchange_Code", "Exchange_Name", filterContext.Controller.ViewBag.PrimaryExch); 
+            filterContext.Controller.ViewBag.Secondary_Exch = new SelectList(exchanges, "Exchange_Code", "Exchange_Name", filterContext.Controller.ViewBag.SecondaryExch); 
              
             base.OnActionExecuted(filterContext);
         }
@@ -145,12 +147,13 @@ namespace MetopeMVCApp.Filters
              base.OnActionExecuted(filterContext);
          } 
      }
+
      public class BenchmarkPortfolioFilter : ActionFilterAttribute
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
-         { 
-             IEnumerable<SelectListItem> portfolios;
-             if ((portfolios = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)) == null)
+         {
+             IQueryable<Portfolio> portfolios;
+             if ((portfolios = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Portfolio>)) == null)
              {  
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(true);
 
@@ -158,7 +161,7 @@ namespace MetopeMVCApp.Filters
                                                         //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, portfolios);
              }
-             filterContext.Controller.ViewBag.Benchmark_Portfolio = portfolios; 
+             filterContext.Controller.ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name", filterContext.Controller.ViewBag.BenchmarkPortfolio); 
 
              base.OnActionExecuted(filterContext);
          }
@@ -167,18 +170,21 @@ namespace MetopeMVCApp.Filters
      public class PartyFilter : ActionFilterAttribute
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
-         { 
-             IEnumerable<SelectListItem> parties;
-             if ((parties = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)) == null)
+         {   
+             IQueryable<Party> parties;
+             if ((parties = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Party>)) == null)
              {  
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(true);
 
-                 parties = svc.ListPartyValues("CORPORATE", filterContext.Controller.ViewBag.EntityIdScope ,
+                 parties = svc.ListPartyValues("CORPORATE", Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope),
                                                Convert.ToDecimal(filterContext.Controller.ViewBag.GenericEntityId));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, parties);
-             }
-             filterContext.Controller.ViewBag.Issuer_Code = parties; 
-             filterContext.Controller.ViewBag.Ultimate_Issuer_Code = parties; 
+             } 
+
+             filterContext.Controller.ViewBag.Ultimate_Issuer_Code =
+                            new SelectList(parties, "Party_Code", "Party_Name", filterContext.Controller.ViewBag.UltimateIssuerCode); 
+             filterContext.Controller.ViewBag.Issuer_Code = 
+                            new SelectList(parties, "Party_Code", "Party_Name", filterContext.Controller.ViewBag.IssuerCode); 
 
              base.OnActionExecuted(filterContext);
          }

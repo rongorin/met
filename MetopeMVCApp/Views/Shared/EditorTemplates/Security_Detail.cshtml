@@ -104,13 +104,9 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Country_Of_Risk, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
-                               <div class="col-md-7">@*
-                                    @Html.DropDownListFor(model => model.Country_Of_Risk,
-                                                ViewBag.CountryOfRisk as List<SelectListItem>, new { name = "Country_Name", id = "Country_Code" })*@
-
+                               <div class="col-md-7"> 
                                      @Html.DropDownList("Country_Of_Risk", null, string.Empty, new { @class = "form-control" })
-
-
+                                    
                                     @*@Html.DropDownList("Country_Of_Risk", (SelectList)ViewBag.CountryOfRisk, string.Empty, new { @class = "form-control" })*@
                                     @Html.ValidationMessageFor(model => model.Country_Of_Risk, "", new { @class = "text-danger" })
                                 </div>
@@ -149,9 +145,15 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Ultimate_Issuer_Code, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
                                 <div class="col-md-7">
-                                    @Html.DropDownList("Ultimate_Issuer_Code", null, string.Empty, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.Ultimate_Issuer_Code, "", new { @class = "text-danger" })
-                                </div>
+                                   @* @Html.DropDownListFor(model => model.Ultimate_Issuer_Code, new SelectList(ViewBag.Ultimate_Issuer_Code, "Party_Code", "Party_Name"))*@
+                                    @*@Html.DropDownListFor(model => model.Ultimate_Issuer_Code,
+                                            ViewBag.Ultimate_Issuer_Code as List<SelectListItem>
+                                                , new { name = "Party_Name", id = "Party_Code" })*@
+
+                     @Html.DropDownListFor(model => model.Ultimate_Issuer_Code, (SelectList)ViewBag.Ultimate_Issuer_Code, new {name="Party_Code", id="Party_Name"} )
+                                @*@Html.DropDownList("Ultimate_Issuer_Code", null, string.Empty, new { @class = "form-control" })*@ 
+                                        @Html.ValidationMessageFor(model => model.Ultimate_Issuer_Code, "", new { @class = "text-danger" })
+</div>
                             </div>
                         </div>
                     </div>
@@ -200,8 +202,9 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Currency_Pair_Code, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
                                 <div class="col-md-7">
-                                    @Html.DropDownList("Currency_Pair_Code", null, string.Empty, new { @class = "form-control  " })
-                                    @Html.ValidationMessageFor(model => model.Currency_Pair_Code, "", new { @class = "text-danger" })
+                                    @Html.DropDownList("Currency_Pair_Code",null, string.Empty, new { @class = "form-control  " })
+                                     
+                                      @Html.ValidationMessageFor(model => model.Currency_Pair_Code, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
