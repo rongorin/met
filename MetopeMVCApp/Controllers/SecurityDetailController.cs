@@ -119,7 +119,7 @@ namespace MetopeMVCApp.Controllers
 
 
         // GET: /SecurityDetail/Create
-        [CountriesFilter]  
+        [FiltersDropdownData]  
         [SecurityTypesFilter]
         [CurrencyFilter] 
         [ExchangesFilter]
@@ -190,14 +190,14 @@ namespace MetopeMVCApp.Controllers
          
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CountriesFilter]
+        [FiltersDropdownData]
         [SecurityTypesFilter]
         [CurrencyFilter] 
         [ExchangesFilter]
         [CodeMiscellaneousFilter]
-        //[BenchmarkPortfolioFilter]
+        [BenchmarkPortfolioFilter]
          [PartyFilter]
-        //[CurrencyPairFilter] 
+        [CurrencyPairFilter] 
         [TrueFalseFilter]
         public ActionResult Create([Bind(Include = "Security_ID,Entity_ID,Security_Name,Short_Name,Primary_Exch,Secondary_Exch,Country_Of_Domicile,Country_Of_Risk,Security_Type_Code,Price_Multiplier,Income_Frequency,Issuer_Code,Ultimate_Issuer_Code,Asset_Currency,Min_Lot_Size,Decimal_Precision,AvePrice_Rounding,Issue_Date,Maturity_Date,Coupon_Rate,Price_Exchange,Trade_Currency,Price_Curr,Currency_Pair_Code,Share_Class,Current_Market_Price,Index_Type,Clean_Price_Formula,Accrued_Income_Price_Formula,Odd_First_Coupon_Date,Odd_Last_Coupon_Date,Coupon_Anniversary_Indicator,Track_EOM_Flag,Next_Coupon_Date,Previous_Coupon_Date,Payment_Frequency,Coupon_BusDay_Adjustment,Next_Ex_Div_Date,Ex_Div_BusDay_Adjustment,Ex_Div_Period,Ticker,Inet_ID,Bloomberg_ID,External_Sec_ID,Reuters_ID,ISIN,Call_Account_Flag,System_Locked,Benchmark_Portfolio")] Security_Detail security_detail)
         {
@@ -219,7 +219,7 @@ namespace MetopeMVCApp.Controllers
             ViewBag.GenericEntityId = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
             ViewBag.EntityIdScope = currentUser.EntityIdScope; 
 
-            MetopeDbEntities db = new MetopeDbEntities(); // FIX THIS we are using db11 not db. !!!  
+           // MetopeDbEntities db = new MetopeDbEntities(); // FIX THIS we are using db11 not db. !!!  
 
             //PopulateAllCodeMisc();
 
@@ -228,12 +228,11 @@ namespace MetopeMVCApp.Controllers
             // ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Price_Curr);
             //ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Asset_Currency);
             //ViewBag.Trade_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Trade_Currency);
-            ViewBag.Currency_Pair_Code = new SelectList(db.Currency_Pair, "Currency_Pair_Code", "Base_Currency_Code", security_detail.Currency_Pair_Code);
+           // ViewBag.Currency_Pair_Code = new SelectList(db.Currency_Pair, "Currency_Pair_Code", "Base_Currency_Code", security_detail.Currency_Pair_Code);
           
-            IPortfolioRepository3 PortfolioRepo = new PortfolioRepository3();
-             
-            var portfolios = PortfolioRepo.GetPortfolios(currentUser.EntityIdScope);
-            ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name",security_detail.Benchmark_Portfolio); 
+            //IPortfolioRepository3 PortfolioRepo = new PortfolioRepository3(); 
+            //var portfolios = PortfolioRepo.GetPortfolios(currentUser.EntityIdScope);
+            //ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name",security_detail.Benchmark_Portfolio); 
              
             //ViewBag.Primary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name", security_detail.Primary_Exch);
             //ViewBag.Secondary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name", security_detail.Secondary_Exch);
@@ -326,7 +325,8 @@ namespace MetopeMVCApp.Controllers
         //    return View(security_detail);
 
         //}
-        [CountriesFilter] 
+
+        [FiltersDropdownData] 
         [TrueFalseFilter]
         [SecurityTypesFilter]
         [ExchangesFilter]
@@ -334,9 +334,7 @@ namespace MetopeMVCApp.Controllers
         [CodeMiscellaneousFilter]
         [BenchmarkPortfolioFilter]
         [PartyFilter]
-        //[CurrencyPairFilter] 
-       // [TrueFalseFilter]
-         
+        [CurrencyPairFilter]  
         public ActionResult Edit(decimal id)
         { 
                 if (id == null)
@@ -352,8 +350,7 @@ namespace MetopeMVCApp.Controllers
                 ViewBag.EntityIdScope = currentUser.EntityIdScope; 
                 ViewBag.GenericEntityId = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
              
-                PopulateAllCodeMisc();
-                MetopeDbEntities db = new MetopeDbEntities(); // FIX THIS we are using db11 not db. !!!   
+                //PopulateAllCodeMisc(); 
 
                 // [CountriesFilter] :
                 ViewBag.RecordCountryOfDomicile = security_detail.Country_Of_Domicile;
@@ -373,13 +370,22 @@ namespace MetopeMVCApp.Controllers
 
                 ViewBag.BenchmarkPortfolio = security_detail.Benchmark_Portfolio;
 
+                ViewBag.CurrencyPairCode = security_detail.Currency_Pair_Code;
+
+                ViewBag.MyTrackEOMFlagList =  security_detail.Track_EOM_Flag;
+                ViewBag.MyCallAccountFgList = security_detail.Call_Account_Flag;
+                ViewBag.MySysLockedList = security_detail.System_Locked;
+
+                return View(security_detail);
+                //MetopeDbEntities db = new MetopeDbEntities(); // FIX THIS we are using db11 not db. !!!   
+
                 //ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Price_Curr);
                 //ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Asset_Currency);
                 //ViewBag.Trade_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Trade_Currency);
-                ViewBag.Currency_Pair_Code = new SelectList(db.Currency_Pair, "Currency_Pair_Code", "Currency_Pair_Code", security_detail.Currency_Pair_Code);
-                ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_detail.Entity_ID);
+                //ViewBag.Currency_Pair_Code = new SelectList(db.Currency_Pair, "Currency_Pair_Code", "Currency_Pair_Code", security_detail.Currency_Pair_Code);
+               //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_detail.Entity_ID);
              
-                IPortfolioRepository3 PortfolioRepo = new PortfolioRepository3();
+                //IPortfolioRepository3 PortfolioRepo = new PortfolioRepository3();
               
                 // var portfolios = PortfolioRepo.GetPortfolios(currentUser.EntityIdScope);
                 //ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name", security_detail.Benchmark_Portfolio);
@@ -398,19 +404,19 @@ namespace MetopeMVCApp.Controllers
                 //ViewBag.MyCallAccountFgList = new SelectList(selectListItems, "Value", "Text", security_detail.Call_Account_Flag);
                 //ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", security_detail.System_Locked);
 
-                return View(security_detail);
 
-        }
-    
+        } 
          [HttpPost]
          [ValidateAntiForgeryToken]
-         [CountriesFilter]
+         [FiltersDropdownData]
          [SecurityTypesFilter]
          [PartyFilter]
          [CodeMiscellaneousFilter]
-        [BenchmarkPortfolioFilter]
-        [CurrencyFilter]
+         [BenchmarkPortfolioFilter]
+         [CurrencyFilter]               
+         [CurrencyPairFilter] 
          [ExchangesFilter] 
+        [TrueFalseFilter]
          public ActionResult Edit([Bind(Include = "Security_ID,Entity_ID,Security_Name,Short_Name,Primary_Exch,Secondary_Exch,Country_Of_Domicile,Country_Of_Risk,Security_Type_Code,Price_Multiplier,Income_Frequency,Issuer_Code,Ultimate_Issuer_Code,Asset_Currency,Min_Lot_Size,Decimal_Precision,AvePrice_Rounding,Issue_Date,Maturity_Date,Coupon_Rate,Price_Exchange,Trade_Currency,Price_Curr,Currency_Pair_Code,Share_Class,Current_Market_Price,Index_Type,Clean_Price_Formula,Accrued_Income_Price_Formula,Odd_First_Coupon_Date,Odd_Last_Coupon_Date,Coupon_Anniversary_Indicator,Track_EOM_Flag,Next_Coupon_Date,Previous_Coupon_Date,Payment_Frequency,Coupon_BusDay_Adjustment,Next_Ex_Div_Date,Ex_Div_BusDay_Adjustment,Ex_Div_Period,Ticker,Inet_ID,Bloomberg_ID,External_Sec_ID,Reuters_ID,ISIN,Call_Account_Flag,System_Locked,Last_Update_User,Last_Update_Date,Benchmark_Portfolio")] 
                                     Security_Detail security_detail)
          {
@@ -431,15 +437,14 @@ namespace MetopeMVCApp.Controllers
             ViewBag.GenericEntityId = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]); 
             ViewBag.EntityIdScope = currentUser.EntityIdScope; 
 
-            MetopeDbEntities db = new MetopeDbEntities(); // FIX THIS we are using db11 not db. !!!   
-
+            //MetopeDbEntities db = new MetopeDbEntities(); // FIX THIS we are using db11 not db. !!!    
            // PopulateAllCodeMisc(); 
             //ViewBag.Country_Of_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Domicile);
             //ViewBag.Country_Of_Risk = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Risk); 
             //ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Price_Curr);
             //ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Asset_Currency);
             //ViewBag.Trade_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Trade_Currency);
-            ViewBag.Currency_Pair_Code = new SelectList(db.Currency_Pair, "Currency_Pair_Code", "Base_Currency_Code", security_detail.Currency_Pair_Code);
+            //ViewBag.Currency_Pair_Code = new SelectList(db.Currency_Pair, "Currency_Pair_Code", "Base_Currency_Code", security_detail.Currency_Pair_Code);
                
             ViewBag.PrimaryExch  = security_detail.Primary_Exch;
             ViewBag.SecondaryExch = security_detail.Secondary_Exch;
@@ -447,22 +452,21 @@ namespace MetopeMVCApp.Controllers
          //   ViewBag.BenchmarkPortfolio = security_detail.Benchmark_Portfolio;
             //ViewBag.Security_Type_Code = new SelectList(db.Security_Type.ToList(), "Security_Type_Code", "Name", security_detail.Security_Type_Code);
 
-            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_detail.Entity_ID);
+         //   ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_detail.Entity_ID);
               
 
-            IPortfolioRepository3 PortfolioRepo = new PortfolioRepository3();
-  
+            //IPortfolioRepository3 PortfolioRepo = new PortfolioRepository3(); 
             //var portfolios = PortfolioRepo.GetPortfolios(currentUser.EntityIdScope);
             //ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name", security_detail.Benchmark_Portfolio);
 
               
-            var selectListItems = new List<SelectListItem>();
-            selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
-            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
-            ViewBag.MyTrackEOMFlagList = new SelectList(selectListItems, "Value", "Text", security_detail.Track_EOM_Flag);
-            ViewBag.MyCallAccountFgList = new SelectList(selectListItems, "Value", "Text", security_detail.Call_Account_Flag);
-            ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", security_detail.System_Locked);
-
+            //var selectListItems = new List<SelectListItem>();
+            //selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
+            //selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
+            //ViewBag.MyTrackEOMFlagList = new SelectList(selectListItems, "Value", "Text", security_detail.Track_EOM_Flag);
+            //ViewBag.MyCallAccountFgList = new SelectList(selectListItems, "Value", "Text", security_detail.Call_Account_Flag);
+            //ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", security_detail.System_Locked);
+            //ViewBag.CurrencyPairCode =  new SelectList(selectListItems, "Value", "Text", security_detail.Currency_Pair_Code);
             return View(security_detail);
          
        

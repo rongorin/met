@@ -20,7 +20,11 @@ namespace MetopeMVCApp.Data
     }
     public interface ISecurityTypesRepository : IGenericRepository<Security_Type>
     { 
-    } 
+    }
+    public interface ICurrencyPairRepository : IGenericRepository<Currency_Pair>
+    {
+
+    }
     public interface ICurrencyRepository : IGenericRepository<Currency>
     {
 
@@ -28,5 +32,8 @@ namespace MetopeMVCApp.Data
     public interface IPartyRepository : IGenericRepository<Party>
     {
           IQueryable<Party> GetPartyValues(decimal iEntity, string iType, decimal iGenericEntityId);
+    }
+    public interface ICodeMiscellaneous : IGenericRepository<Code_Miscellaneous>
+    {
     }
 }

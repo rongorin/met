@@ -33,8 +33,11 @@ namespace MetopeMVCApp.Data.Repositories
     }
     public class CurrencyRepository : GenericRepository<MetopeDbEntities, Currency>,
                                       ICurrencyRepository
-    {
-        //possibly override the Update ..here override and update the Version property:  
+    { 
+    }
+    public class CurrencyPairRepository : GenericRepository<MetopeDbEntities, Currency_Pair>,
+                                  ICurrencyPairRepository
+    { 
     }
     public class PartyRepository : GenericRepository<MetopeDbEntities, Party>,
                           IPartyRepository
@@ -45,7 +48,10 @@ namespace MetopeMVCApp.Data.Repositories
             return GetAll().Where(c => c.Party_Type == iType)
                                 .Where(r => r.Entity_ID == iGenericEntityId || r.Entity_ID == iEntity); 
 
-        }
-        //possibly override the Update ..here override and update the Version property:  
+        } 
     }
+    public class CodeMiscellaneousRepository : GenericRepository<MetopeDbEntities, Code_Miscellaneous>,
+                                  ICodeMiscellaneous
+    { 
+    } 
 }   

@@ -18,10 +18,11 @@ namespace MetopeMVCApp.Services
     {
         IQueryable<Country> ListCountry();
         IQueryable<Currency> ListCurrencies();
+        IQueryable<Currency_Pair> ListCurrencyPairs();
         IQueryable<Security_Type> ListSecTypeCode();
 
-        IQueryable<Exchange> ListExchanges(); 
-        IEnumerable<SelectListItem> ListMiscellanousTypes(string iCodeType);
+        IQueryable<Exchange> ListExchanges();
+        IQueryable<Code_Miscellaneous> ListMiscellanousTypes(string iCodeType);
         IQueryable<Portfolio> ListPortfolios(decimal iUser );
 
         IQueryable<Party> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId);
@@ -69,8 +70,8 @@ namespace MetopeMVCApp.Services
         }
         public IQueryable<Security_Type> ListSecTypeCode()
         {
-            ISecurityTypesRepository dbCntx = new SecurityTypeRepository();
-            return dbCntx.GetAll();
+            ISecurityTypesRepository dbCntx = new SecurityTypeRepository(); 
+            return dbCntx.GetAll(); 
         } 
    
         public IQueryable<Currency> ListCurrencies()
@@ -96,18 +97,17 @@ namespace MetopeMVCApp.Services
             //    // .Select(x => new SelectListItem { Text = x.Exchange_Name, Value = x.Exchange_Code })
             //     .OrderBy(s => s.Exchange_Name);
         }
-        
-        public IEnumerable<SelectListItem> ListMiscellanousTypes(string iCodeType)
+
+        public IQueryable<Code_Miscellaneous> ListMiscellanousTypes(string iCodeType)
         {
-            return _context.Code_Miscellaneous
-                 .Where(c => c.MisCode_Type == iCodeType)
-                 .Select(x => new SelectListItem { Text = x.MisCode_Description, Value = x.MisCode })
-                 .ToList();
+
+            ICodeMiscellaneous dbCntx = new CodeMiscellaneousRepository();  
+            return dbCntx.GetAll().Where(c => c.MisCode_Type == iCodeType); 
+         
         }
         public IQueryable<Portfolio> ListPortfolios(decimal iUser)
         {
-            IPortfolioRepository3 dbCntx = new PortfolioRepository3(); 
-             
+            IPortfolioRepository3 dbCntx = new PortfolioRepository3();  
             return dbCntx.GetAll().Where(c => c.Entity_ID == iUser);
              
         }
@@ -116,8 +116,7 @@ namespace MetopeMVCApp.Services
             IPartyRepository dbCntx = new PartyRepository();
 
             return dbCntx.GetPartyValues(iEntity, iType, iGenericEntityId)
-                      .OrderBy(s => s.Party_Name);
-                
+                      .OrderBy(s => s.Party_Name); 
 
         }
 
@@ -128,16 +127,14 @@ namespace MetopeMVCApp.Services
         //            .Select(x => new SelectListItem { Text = x.Party_Name, Value = x.Party_Code }) ;
              
         //}
-        public IEnumerable<SelectListItem> ListCurrencyPairs()
+        public IQueryable<Currency_Pair> ListCurrencyPairs()
         {
-            return _context.Currency_Pair
-                    .Select(x => new SelectListItem { Text = x.Currency_Pair_Code, Value = x.Currency_Pair_Code })
-                    .OrderBy(s => s.Text); 
+            ICurrencyPairRepository dbCntx = new CurrencyPairRepository();
+            return dbCntx.GetAll();
         }
 
         public List<SelectListItem> ListTrueFalse()
-        { 
-
+        {  
             return  new List<SelectListItem>
                     {
                         new SelectListItem { Text = "True", Value = bool.TrueString },

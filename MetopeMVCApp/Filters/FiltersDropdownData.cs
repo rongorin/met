@@ -24,7 +24,7 @@ namespace MetopeMVCApp.Filters
     //}
              
      
-    public class CountriesFilter : ActionFilterAttribute
+    public class FiltersDropdownData : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
@@ -111,25 +111,25 @@ namespace MetopeMVCApp.Filters
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          {
 
-             IEnumerable<SelectListItem> miscCodes;
-             IEnumerable<SelectListItem> miscCodesCP ;
-             IEnumerable<SelectListItem> miscCodesBD;
-             IEnumerable<SelectListItem> miscCodesEX ;
-             IEnumerable<SelectListItem> miscCodesSH ; 
+             IQueryable<Code_Miscellaneous> miscCodes;
+             IQueryable<Code_Miscellaneous> miscCodesCP;
+             IQueryable<Code_Miscellaneous> miscCodesBD;
+             IQueryable<Code_Miscellaneous> miscCodesEX;
+             IQueryable<Code_Miscellaneous> miscCodesSH; 
              if (
-                 (miscCodes = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)
+                 (miscCodes = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Code_Miscellaneous>)
                  ) == null  ||
-                  (miscCodesCP = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)
+                  (miscCodesCP = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Code_Miscellaneous>)
                  ) == null ||
-                  (miscCodesBD = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)
+                  (miscCodesBD = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Code_Miscellaneous>)
                  ) == null ||
-                  (miscCodesEX = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)
+                  (miscCodesEX = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Code_Miscellaneous>)
                  ) == null ||
-                  (miscCodesSH = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)
+                  (miscCodesSH = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Code_Miscellaneous>)
                  ) == null   
                  )  
              {
-                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(true);
+                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
                  miscCodes = svc.ListMiscellanousTypes("IPFORM");
                  miscCodesCP = svc.ListMiscellanousTypes("CPFORM");
                  miscCodesBD = svc.ListMiscellanousTypes("BDAYADJ");
@@ -137,12 +137,17 @@ namespace MetopeMVCApp.Filters
                  miscCodesSH = svc.ListMiscellanousTypes("SHRCLASS");
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, miscCodes);
              }
+             filterContext.Controller.ViewBag.Accrued_Income_Price_Formula = new SelectList(miscCodes, "MisCode", "MisCode_Description", filterContext.Controller.ViewBag.AccruedIncomePriceFormula);
+             filterContext.Controller.ViewBag.Clean_Price_Formula = new SelectList(miscCodes, "MisCode", "MisCode_Description", filterContext.Controller.ViewBag.CleanPriceFormula);
+             filterContext.Controller.ViewBag.Coupon_BusDay_Adjustment = new SelectList(miscCodes, "MisCode", "MisCode_Description", filterContext.Controller.ViewBag.CouponBusDayAdjustment);
+             filterContext.Controller.ViewBag.Ex_Div_Period = new SelectList(miscCodes, "MisCode", "MisCode_Description", filterContext.Controller.ViewBag.ExDivPeriod);
+             filterContext.Controller.ViewBag.Share_Class = new SelectList(miscCodesSH, "MisCode", "MisCode_Description", filterContext.Controller.ViewBag.ShareClass); 
              
-             filterContext.Controller.ViewBag.Accrued_Income_Price_Formula = miscCodes;
-             filterContext.Controller.ViewBag.Clean_Price_Formula = miscCodesCP;
-             filterContext.Controller.ViewBag.Coupon_BusDay_Adjustment = miscCodesBD;
-             filterContext.Controller.ViewBag.Ex_Div_Period = miscCodesEX;
-             filterContext.Controller.ViewBag.Share_Class = miscCodesSH;
+             //filterContext.Controller.ViewBag.Accrued_Income_Price_Formula = miscCodes;
+             //filterContext.Controller.ViewBag.Clean_Price_Formula = miscCodesCP;
+             //filterContext.Controller.ViewBag.Coupon_BusDay_Adjustment = miscCodesBD;
+             //filterContext.Controller.ViewBag.Ex_Div_Period = miscCodesEX;
+             //filterContext.Controller.ViewBag.Share_Class = miscCodesSH;
 
              base.OnActionExecuted(filterContext);
          } 
@@ -155,7 +160,7 @@ namespace MetopeMVCApp.Filters
              IQueryable<Portfolio> portfolios;
              if ((portfolios = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Portfolio>)) == null)
              {  
-                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(true);
+                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
                  portfolios = svc.ListPortfolios(filterContext.Controller.ViewBag.EntityIdScope );
                                                         //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
@@ -173,8 +178,8 @@ namespace MetopeMVCApp.Filters
          {   
              IQueryable<Party> parties;
              if ((parties = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Party>)) == null)
-             {  
-                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(true);
+             {
+                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
                  parties = svc.ListPartyValues("CORPORATE", Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope),
                                                Convert.ToDecimal(filterContext.Controller.ViewBag.GenericEntityId));
@@ -193,16 +198,17 @@ namespace MetopeMVCApp.Filters
      public class CurrencyPairFilter : ActionFilterAttribute
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
-         { 
-             IEnumerable<SelectListItem> currencyPairs;
-             if ((currencyPairs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)) == null)
+         {
+             //IEnumerable<SelectListItem> currencyPairs;
+             IQueryable<Currency_Pair> currencyPairs;
+             if ((currencyPairs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Currency_Pair>)) == null)
              {  
-                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(true);
+                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
                  currencyPairs = svc.ListCurrencyPairs();
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, currencyPairs);
-             }
-             filterContext.Controller.ViewBag.Currency_Pair_Code = currencyPairs; 
+             } 
+             filterContext.Controller.ViewBag.Currency_Pair_Code = new SelectList(currencyPairs, "Currency_Pair_Code", "Currency_Pair_Code", filterContext.Controller.ViewBag.CurrencyPairCode); 
 
              base.OnActionExecuted(filterContext);
          }
@@ -211,18 +217,13 @@ namespace MetopeMVCApp.Filters
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          { 
-             IEnumerable<SelectListItem> trueFalse;
-             if ((trueFalse = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<SelectListItem>)) == null)
-             {  
-                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+             var trueFalse = new List<SelectListItem>();
+             trueFalse.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
+             trueFalse.Add(new SelectListItem { Text = "False", Value = bool.FalseString });  
 
-                 trueFalse = svc.ListTrueFalse();
-                 filterContext.HttpContext.Cache.Insert(GetType().FullName, trueFalse);
-             }
-             filterContext.Controller.ViewBag.MyTrackEOMFlagList = new SelectList(trueFalse, "Value", "Text"); 
-             filterContext.Controller.ViewBag.MyCallAccountFgList = new SelectList(trueFalse, "Value", "Text");
-
-             filterContext.Controller.ViewBag.MySysLockedList = new SelectList(trueFalse, "Value", "Text"); 
+             filterContext.Controller.ViewBag.Track_EOM_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyTrackEOMFlagList);
+             filterContext.Controller.ViewBag.Call_Account_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyCallAccountFgList);
+             filterContext.Controller.ViewBag.System_Locked = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MySysLockedList); 
 
              base.OnActionExecuted(filterContext);
          }
