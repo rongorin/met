@@ -27,26 +27,26 @@
         <AssociationConnector Association="MetopeDbModel.FK_Party_Country" />
         <AssociationConnector Association="MetopeDbModel.FK_Party_Entity" />
         <EntityTypeShape EntityType="MetopeDbModel.Portfolio" Width="1.5" PointX="7" PointY="8.875" />
-        <EntityTypeShape EntityType="MetopeDbModel.Security_Detail" Width="1.5" PointX="12.75" PointY="11.75" />
         <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Country" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Currency" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Currency1" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Currency2" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_List_Portfolio" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_User" />
+        <EntityTypeShape EntityType="MetopeDbModel.Security_Detail" Width="1.5" PointX="12.75" PointY="11.75" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Country" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Country1" />
         <AssociationConnector Association="MetopeDbModel.FK_Currency_Currency_Security_ID2" />
         <AssociationConnector Association="MetopeDbModel.FK_Currency_Currency_Security_ID3" />
-        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Currency" />
-        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Currency1" />
-        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Currency2" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency1" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency2" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency3" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency_Pair" />
-        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Exchange" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Exchange1" />
-        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_List_Portfolio" />
-        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_User" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Portfolio_Benchmark" />
         </Diagram>
     </edmx:Diagrams>

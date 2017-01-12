@@ -59,7 +59,8 @@ namespace MetopeMVCApp.Controllers
             //var security_detail = db11.Query<Security_Detail>() 
 
 
-            var security_detail = db11.GetAll()
+            //var security_detailx = db11.GetAll(r => r.Call_Account_Flag == true) ;
+            var security_detail = db11.GetAllActive()
                      .SearchSecName(searchTerm) 
                      //.Include(s => s.Country).Include(s => s.Country1)  
                      .OrderBy(s => s.Security_Name)
@@ -72,8 +73,8 @@ namespace MetopeMVCApp.Controllers
                          Security_Name = g.Security_Name,
                          Current_Market_Price = g.Current_Market_Price,
                          Ticker = g.Ticker,
-                         Primary_Exch = g.Primary_Exch
-                     }).
+                         Primary_Exch = g.Primary_Exch 
+                     }).    
                      ToPagedList(page, 12);  
 
             if (Request.IsAjaxRequest())
@@ -99,7 +100,8 @@ namespace MetopeMVCApp.Controllers
             }
             //Security_Detail security_detail = db.Security_Detail.Find(id);
 
-            Security_Detail security_detail = db11.GetAll().Include(s => s.Currency).
+            Security_Detail security_detail = db11.GetAll().
+                                                Include(s => s.Currency).
                                                 Include(s => s.Currency1).Include(s => s.Currency2).
                                                 Include(s => s.Currency3).
                                                 Include(s => s.Currency_Pair).Include(s => s.Country).
@@ -340,8 +342,10 @@ namespace MetopeMVCApp.Controllers
                 if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
+                } 
+
                 Security_Detail security_detail = db11.Get(id);
+
                 if (security_detail == null)
                 {
                     return HttpNotFound();

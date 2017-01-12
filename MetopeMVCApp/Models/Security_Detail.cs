@@ -14,7 +14,6 @@ namespace MetopeMVCApp.Models
     using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityDetailModelMetaData))]
-    
     public partial class Security_Detail
     {
         public Security_Detail()
@@ -75,6 +74,7 @@ namespace MetopeMVCApp.Models
         public System.DateTime Last_Update_Date { get; set; }
         public string Security_Status { get; set; }
         public string Benchmark_Portfolio { get; set; }
+        public Nullable<bool> Active_Flag { get; set; }
     
         public virtual Country Country { get; set; }
         public virtual Country Country1 { get; set; }

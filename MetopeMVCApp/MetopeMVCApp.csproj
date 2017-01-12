@@ -260,7 +260,7 @@
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\GenericRepository\GenericRepository.cs" />
     <Compile Include="Data\GenericRepository\IGenericRepository.cs" />
-    <Compile Include="Data\GenericRepository\IPortfolioRepository3.cs" />
+    <Compile Include="Data\IPortfolioRepository3.cs" />
     <Compile Include="Data\ISecurityDetailRepository.cs" />
     <Compile Include="Data\PortfolioQueryableExtensions.cs" />
     <Compile Include="Data\Repositories\IDisposedTracker.cs" />

@@ -12,8 +12,7 @@ namespace MetopeMVCApp.Data.GenericRepository
         IGenericRepository<T>
         where T : class
         where C : DbContext, new()
-    {
-        private bool disposed = false;
+    { 
 
         private C _entities = new C();
         public C Context
@@ -24,8 +23,7 @@ namespace MetopeMVCApp.Data.GenericRepository
         }
 
         public virtual IQueryable<T> GetAll()
-        {
-
+        { 
             IQueryable<T> query = _entities.Set<T>();
             return query;
         }
@@ -34,7 +32,7 @@ namespace MetopeMVCApp.Data.GenericRepository
         {
             return  _entities.Set<T>().Find(id);
         }
- 
+
 
         public IQueryable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         { 
@@ -61,13 +59,24 @@ namespace MetopeMVCApp.Data.GenericRepository
         {
             _entities.SaveChanges();
         }
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+
+            if (!this.disposed)
+                if (disposing)
+                    _entities.Dispose();
+
+            this.disposed = true;
+        }
+
         public void Dispose()
         {
-            if (!disposed)
-            {
-                _entities.Dispose();
-                disposed = true;
-            }
+
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
+
     }
 }

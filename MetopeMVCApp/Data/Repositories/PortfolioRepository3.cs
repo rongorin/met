@@ -13,7 +13,7 @@ using MetopeMVCApp.Data.GenericRepository;
 namespace MetopeMVCApp.Controllers
 { 
     public class PortfolioRepository3 : GenericRepository<MetopeDbEntities, Portfolio>, 
-                                        IPortfolioRepository3
+                                        IPortfolioRepository3, IDisposable
     {
         // MetopeDbEntities _ctx; 
         //public PortfolioRepository2(MetopeDbEntities contxt) //created new consturctor
@@ -23,8 +23,13 @@ namespace MetopeMVCApp.Controllers
 
         public IList<Portfolio> GetPortfolios(decimal iUserId)
         {
-            return GetAll().ToList().Where(c => c.Entity_ID == iUserId).ToList();
+            List<Portfolio> portfs = null; 
+            using (Context)
+            { 
+                portfs = GetAll().ToList().Where(c => c.Entity_ID == iUserId).ToList();
+            }
 
+            return portfs; 
            
         } 
         public IPagedList<Portfolio> GetPortfolios(decimal iUserId, int page = 1, string searchTerm = null)
@@ -86,32 +91,10 @@ namespace MetopeMVCApp.Controllers
             Context.Portfolios.Add(portfolio);
         }
 
-        public void Save()
-        {
-            Context.SaveChanges();
-        }
+     
 
 
-        private bool disposed = false;
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    Context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-        public void Dispose()
-        {
-            if (!disposed)
-            {
-                Context.Dispose();
-                disposed = true;
-            }
-        }
+       
 
     }
 }

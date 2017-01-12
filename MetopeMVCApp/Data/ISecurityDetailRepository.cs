@@ -4,13 +4,17 @@ using MetopeMVCApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 // for this generic repository technique see http://www.tugberkugurlu.com/archive/generic-repository-pattern-entity-framework-asp-net-mvc-and-unit-testing-triangle
 
 namespace MetopeMVCApp.Data
 {
     public interface ISecurityDetailRepository : IGenericRepository<Security_Detail>
-    { 
+    {
+        IQueryable<Security_Detail> GetAll(Expression<Func<Security_Detail, bool>> predicate);
+        IQueryable<Security_Detail> GetAllActive( );
+
     }
     public interface IExchangeRepository : IGenericRepository<Exchange>
     {

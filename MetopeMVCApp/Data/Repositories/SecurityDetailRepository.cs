@@ -4,6 +4,7 @@ using MetopeMVCApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 
 
@@ -14,7 +15,19 @@ namespace MetopeMVCApp.Data.Repositories
     public class SecurityDetailRepository : GenericRepository<MetopeDbEntities, Security_Detail>, 
                                         ISecurityDetailRepository
     {
-    
+        public IQueryable<Security_Detail> GetAll(Expression<Func<Security_Detail, bool>> predicate)
+        {
+            IQueryable<Security_Detail> query = Context.Set<Security_Detail>().Where(predicate);
+            return query;
+        
+
+        }
+        public IQueryable<Security_Detail> GetAllActive( )
+        {
+            IQueryable<Security_Detail> query = Context.Set<Security_Detail>().Where(r => r.Active_Flag == true );
+            return query;
+             
+        } 
     }
     public class ExchangeRepository : GenericRepository<MetopeDbEntities, Exchange>,
                                      IExchangeRepository
@@ -41,8 +54,7 @@ namespace MetopeMVCApp.Data.Repositories
     }
     public class PartyRepository : GenericRepository<MetopeDbEntities, Party>,
                           IPartyRepository
-    {
-
+    { 
         public IQueryable<Party> GetPartyValues(decimal iEntity, string iType, decimal iGenericEntityId)
         {
             return GetAll().Where(c => c.Party_Type == iType)

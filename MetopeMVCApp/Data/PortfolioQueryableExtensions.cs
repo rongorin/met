@@ -12,7 +12,8 @@ namespace MetopeMVCApp.Data
         {
             return port.Where(r => searchname == null || r.Portfolio_Name.Contains(searchname));
            
-        } 
+        }
+ 
         public static IQueryable<Security_Detail> SearchSecName(this IQueryable<Security_Detail> port, string searchname)
         {
             return port.Where(r => searchname == null || r.Security_Name.Contains(searchname));
