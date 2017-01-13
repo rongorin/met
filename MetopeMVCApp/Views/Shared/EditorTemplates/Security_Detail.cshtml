@@ -233,6 +233,16 @@
                         </div> 
                         <div class="col-sm-4">
                             <div class="form-group">
+                                @Html.LabelFor(model => model.Active_Flag, htmlAttributes: new { @class = "control-label col-md-5 input-sm " })
+                                <div class="col-md-7">
+                                    @Html.DropDownList("Active_Flag", null, string.Empty, new { @class = "form-control" })
+
+                                    @Html.ValidationMessageFor(model => model.Active_Flag, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
                                 @Html.LabelFor(model => model.Call_Account_Flag, htmlAttributes: new { @class = "control-label col-md-5 input-sm " })
                                 <div class="col-md-7">
                                     @Html.DropDownList("Call_Account_Flag",null, string.Empty, new { @class = "form-control" })

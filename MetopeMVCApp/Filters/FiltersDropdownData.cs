@@ -223,7 +223,8 @@ namespace MetopeMVCApp.Filters
 
              filterContext.Controller.ViewBag.Track_EOM_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyTrackEOMFlagList);
              filterContext.Controller.ViewBag.Call_Account_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyCallAccountFgList);
-             filterContext.Controller.ViewBag.System_Locked = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MySysLockedList); 
+             filterContext.Controller.ViewBag.System_Locked = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MySysLockedList);
+             filterContext.Controller.ViewBag.Active_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyActiveFlag); 
 
              base.OnActionExecuted(filterContext);
          }
