@@ -134,6 +134,10 @@
       <HintPath>..\packages\MsieJavaScriptEngine.1.5.3\lib\net40\MsieJavaScriptEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MVCGrid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MVCGrid.Net.1.0.0.60\lib\net40\MVCGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -246,6 +250,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\MVCGridConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="bin\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -253,6 +258,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\ErrorpageController.cs" />
+    <Compile Include="Controllers\GridSecurityDetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Port2Controller.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
@@ -649,6 +655,8 @@
     <Content Include="Views\SecurityDetail\EditBup.cshtml" />
     <Content Include="Views\Home\Support.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\GridSecurityDetail\Edit.cshtml" />
+    <Content Include="Views\GridSecurityDetail\Index.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
