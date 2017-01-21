@@ -10,4 +10,6 @@
             $(element).parent().parent().removeClass("has-error");
         }
     }
+
+
 });

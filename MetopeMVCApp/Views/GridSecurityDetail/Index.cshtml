@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MetopeMVCApp.Models.Security_Detail>
+﻿@model IEnumerable<MetopeMVCApp.Models.SecurityDetailIndexModel>
 
 
 @using GridMvc.Html
@@ -9,20 +9,34 @@
     @Styles.Render("~/Content/GridMvc")
 } 
 <h3>Security Listing - Grid</h3>
+
 @Html.ActionLink("Create New", "Create")
- 
-<div class="code-cut">
-  
+
+ @if (TempData["ResultMessage"] != null)
+ {
+    <div class="alert alert-success alert-dismissable">
+        <button class="close" data-dismiss="alert">&times;</button>
+        @TempData["ResultMessage"]
+    </div>
+ }
+@if (TempData["FailMsg"] != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button class="close" data-dismiss="alert">&times;</button>
+        @TempData["FailMsg"]
+    </div>
+} 
+<div class="code-cut"> 
    
     @Html.Grid(Model).Columns(columns =>
          {  
             columns.Add(c => c.Security_Name).Titled("Security name").Filterable(true);
             columns.Add(c => c.Ticker).Titled("Ticker").Filterable(true).SetWidth(110);
-            columns.Add(c => c.Maturity_Date).Titled("Maturity Date").Filterable(true)
-                            .Format("{0:dd/MM/yyyy}")
+            columns.Add(c => c.Maturity_Date).Titled("Maturity Date").Filterable(false)
+                            .Format("{0:dd MMM yyyy}")
                             .SetWidth(130);
                         
-              columns.Add(c => c.System_Locked)
+              columns.Add(c => c.Active_Flag)
                   .Titled("Active").Filterable(true) 
                     .SetWidth(70)   ;
                         columns.Add()
@@ -30,16 +44,28 @@
                         .Sanitized(false)
                         .SetWidth(20)
                         .RenderValueAs(c =>  @<u>
-                                @Html.ActionLink( "Edit", "Edit",  "SecurityDetail",  new { id = c.Security_ID }, null)
-                            </u>);
- 
+                                 @Html.ActionLink("Edit", "Edit", new { id = c.Security_ID }, null)
+                            </u>); 
+
                         columns.Add()
                        .Encoded(false)
                        .Sanitized(false)
                        .SetWidth(20)
                         .RenderValueAs(c =>  @<u>
-                                @Html.ActionLink("Delete", "Delete", "SecurityDetailx", new { id = c.Security_ID }, null)
+                        @Html.ActionLink("Delete", "Details", "SecurityDetail", new { id = c.Security_ID }, null)
+                    </u>);
+                        columns.Add()
+                       .Encoded(false)
+                       .Sanitized(false)
+                       .SetWidth(20)
+                        .RenderValueAs(c =>  @<u>
+                                @Html.ActionLink("Delete", "Delete", "SecurityDetail", new { id = c.Security_ID }, null)
                             </u>);
+        
+   
+            
+            
+            
 
                     }).WithPaging(10).Sortable(true)
 </div> 

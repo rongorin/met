@@ -118,7 +118,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Security_Type_Code, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
                                 <div class="col-md-7">
-                                    @Html.DropDownList("Security_Type_Code", null, string.Empty, new { @class = "form-control" })
+                                    @Html.DropDownList("Security_Type_Code",null, string.Empty, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Security_Type_Code, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -233,11 +233,10 @@
                         </div> 
                         <div class="col-sm-4">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Active_Flag, htmlAttributes: new { @class = "control-label col-md-5 input-sm " })
+                                @Html.LabelFor(model => model.Security_Status, htmlAttributes: new { @class = "control-label col-md-5 input-sm " })
                                 <div class="col-md-7">
-                                    @Html.DropDownList("Active_Flag", null, string.Empty, new { @class = "form-control" })
-
-                                    @Html.ValidationMessageFor(model => model.Active_Flag, "", new { @class = "text-danger" })
+                                    @Html.DropDownList("Security_Status", null, string.Empty, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Security_Status, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>

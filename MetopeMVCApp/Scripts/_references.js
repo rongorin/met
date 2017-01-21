@@ -15,3 +15,5 @@
 /// <reference path="common/form.js" />
 /// <reference path="jquery.bootstrap.wizard.js" />
 /// <reference path="common/wizard-init.js" />
+/// <reference path="gridmvc.min.js" />
+/// <reference path="gridmvc.lang.ru.js" />

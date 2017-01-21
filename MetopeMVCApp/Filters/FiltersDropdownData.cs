@@ -216,7 +216,12 @@ namespace MetopeMVCApp.Filters
      public class TrueFalseFilter : ActionFilterAttribute
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
-         { 
+         {
+             List<SelectListItem> securityStati = new List<SelectListItem> {
+						new SelectListItem { Text = "ACTIVE", Value = "ACTIVE" },
+						new SelectListItem { Text = "SUSPENDED", Value = "SUSPENDED" },
+						new SelectListItem { Text = "INACTIVE", Value = "INACTIVE" }	 };
+
              var trueFalse = new List<SelectListItem>();
              trueFalse.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
              trueFalse.Add(new SelectListItem { Text = "False", Value = bool.FalseString });  
@@ -224,7 +229,7 @@ namespace MetopeMVCApp.Filters
              filterContext.Controller.ViewBag.Track_EOM_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyTrackEOMFlagList);
              filterContext.Controller.ViewBag.Call_Account_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyCallAccountFgList);
              filterContext.Controller.ViewBag.System_Locked = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MySysLockedList);
-             filterContext.Controller.ViewBag.Active_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyActiveFlag); 
+             filterContext.Controller.ViewBag.Security_Status = new SelectList(securityStati, "Value", "Text", filterContext.Controller.ViewBag.MySecurityStatus); 
 
              base.OnActionExecuted(filterContext);
          }
