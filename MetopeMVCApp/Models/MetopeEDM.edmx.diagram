@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="433c006010954b4aa6709a19cd9bee3a" Name="Diagram1" ZoomLevel="44">
+      <Diagram DiagramId="433c006010954b4aa6709a19cd9bee3a" Name="Diagram1" ZoomLevel="40">
         <EntityTypeShape EntityType="MetopeDbModel.Entity" Width="1.5" PointX="1.875" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MetopeDbModel.User" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
         <AssociationConnector Association="MetopeDbModel.FK_User_Entity" ManuallyRouted="false" />
@@ -23,9 +23,6 @@
         <AssociationConnector Association="MetopeDbModel.FK_Security_Type_Entity" />
         <EntityTypeShape EntityType="MetopeDbModel.Code_Miscellaneous" Width="1.5" PointX="4.125" PointY="12.625" />
         <AssociationConnector Association="MetopeDbModel.FK_Code_Miscellaneous_Entity" />
-        <EntityTypeShape EntityType="MetopeDbModel.Party" Width="1.5" PointX="13" PointY="7.25" />
-        <AssociationConnector Association="MetopeDbModel.FK_Party_Country" />
-        <AssociationConnector Association="MetopeDbModel.FK_Party_Entity" />
         <EntityTypeShape EntityType="MetopeDbModel.Portfolio" Width="1.5" PointX="7" PointY="8.875" />
         <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Country" />
         <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Currency" />
@@ -34,7 +31,10 @@
         <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Portfolio_List_Portfolio" />
         <AssociationConnector Association="MetopeDbModel.FK_Portfolio_User" />
-        <EntityTypeShape EntityType="MetopeDbModel.Security_Detail" Width="1.5" PointX="12.75" PointY="11.75" />
+        <EntityTypeShape EntityType="MetopeDbModel.Party" Width="1.5" PointX="10" PointY="7.875" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Country" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Entity" />
+        <EntityTypeShape EntityType="MetopeDbModel.Security_Detail" Width="1.5" PointX="12.75" PointY="8.75" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Country" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Country1" />
         <AssociationConnector Association="MetopeDbModel.FK_Currency_Currency_Security_ID2" />

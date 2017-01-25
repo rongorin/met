@@ -6,9 +6,7 @@ using System.Web;
   using System.ComponentModel.DataAnnotations;
 
 namespace MetopeMVCApp.Models.MyMetaData
-{ 
-
-
+{  
     public class PortfolioModelMetatData
     {
         public object Entity_ID { get; set; }

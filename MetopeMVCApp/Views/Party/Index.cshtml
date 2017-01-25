@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MetopeMVCApp.Models.Party>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Party_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Party_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Financial_Year_End)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.System_Locked)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SWIFT_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BIC_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country.Country_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Entity.Entity_Code)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Party_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Party_Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Financial_Year_End)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.System_Locked)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SWIFT_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BIC_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country.Country_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Entity.Entity_Code)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Party_Code }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Party_Code }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Party_Code })
+        </td>
+    </tr>
+}
+
+</table>

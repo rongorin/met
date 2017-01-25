@@ -17,8 +17,8 @@ namespace MetopeMVCApp.Models
         public Country()
         {
             this.Exchanges = new HashSet<Exchange>();
-            this.Parties = new HashSet<Party>();
             this.Portfolios = new HashSet<Portfolio>();
+            this.Parties = new HashSet<Party>();
             this.Security_Detail = new HashSet<Security_Detail>();
             this.Security_Detail1 = new HashSet<Security_Detail>();
         }
@@ -32,8 +32,8 @@ namespace MetopeMVCApp.Models
         public Nullable<bool> system_locked { get; set; }
     
         public virtual ICollection<Exchange> Exchanges { get; set; }
-        public virtual ICollection<Party> Parties { get; set; }
         public virtual ICollection<Portfolio> Portfolios { get; set; }
+        public virtual ICollection<Party> Parties { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail1 { get; set; }
     }

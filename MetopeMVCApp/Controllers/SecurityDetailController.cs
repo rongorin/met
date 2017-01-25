@@ -36,8 +36,7 @@ namespace MetopeMVCApp.Controllers
         public SecurityDetailController(ISecurityDetailRepository iDb  )
         {
             db11 = iDb; 
-        }
-           
+        } 
         //public SecurityDetailController() 
         //{
         //    this._repo = new SecurityDetailController(new MetopeDbEntities());
@@ -53,16 +52,18 @@ namespace MetopeMVCApp.Controllers
 						new SelectListItem { Text = "50", Value = "50" },
 						new SelectListItem { Text = "100", Value = "100" }
 			            };
-
-        // GET: /SecurityDetail/ 
+         
         [LogAttribuite]
-        public ActionResult Index(int numberOfRows=20, int page = 1, string searchTerm = null)  
+        public ActionResult Index(int? numberOfRows , int page = 1, string searchTerm = null)  
         {
            // var security_detail = db.Security_Detail.Include(s => s.Country).Include(s => s.Country1).Include(s => s.Currency).Include(s => s.Currency1).Include(s => s.Currency2).Include(s => s.Currency3).Include(s => s.Currency_Pair).Include(s => s.Entity).Include(s => s.Exchange).Include(s => s.Exchange1).Include(s => s.Security_Type);
             //var security_detail = db.Security_Detail;
 
-            //var security_detail = db11.Query<Security_Detail>() 
+            //var security_detail = db11.Query<Security_Detail>()  
 
+            if (numberOfRows == null) 
+                numberOfRows = 20;  
+            
             ViewBag.RowsPerPage = new SelectList(numOfRows, "Value", "Text", numberOfRows);
              
             //var security_detailx = db11.GetAll(r => r.Call_Account_Flag == true) ;
@@ -81,7 +82,8 @@ namespace MetopeMVCApp.Controllers
                          Ticker = g.Ticker,
                          Primary_Exch = g.Primary_Exch,
                          Maturity_Date = g.Maturity_Date,
-                         Security_Status = g.Security_Status
+                         Security_Status = g.Security_Status,
+                         NumberOfRows = numberOfRows
                      }).
                      ToList();
 

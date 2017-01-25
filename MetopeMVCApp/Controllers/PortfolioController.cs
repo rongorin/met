@@ -15,8 +15,7 @@ using Microsoft.AspNet.Identity;
 using ASP.MetopeNspace.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-using MetopeMVCApp.Data;
-using PagedList;
+using MetopeMVCApp.Data; 
 using MetopeMVCApp.Filters;
 using MetopeMVCApp.Data.GenericRepository;
 
@@ -122,8 +121,7 @@ namespace MetopeMVCApp.Controllers
         public ActionResult Create()
         {  
             var currentUser = manager.FindById(User.Identity.GetUserId());
-  
-            ViewBag.Entity_ID  =  new SelectList(db.Entities, "Entity_ID", "Entity_Code");
+   
             ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name");
             ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
@@ -142,8 +140,7 @@ namespace MetopeMVCApp.Controllers
             {
                 Inception_Date =  DateTime.Now 
             };
-
-            ViewBag.entityId = currentUser.EntityIdScope;
+             
             return View(portfolio);
         }
 
@@ -176,10 +173,8 @@ namespace MetopeMVCApp.Controllers
                 TempData.Add("ResultMessage", "new portfolio \"" + portfolio.Portfolio_Name + "\" code:\"" + portfolio.Portfolio_Code + "\" created successfully!");
            
                 return RedirectToAction("Index"); 
-            } 
-
-            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", portfolio.Entity_ID) 
-            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code");
+            }  
+  
             ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name");
             ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
@@ -187,15 +182,13 @@ namespace MetopeMVCApp.Controllers
             ViewBag.Portfolio_Types = new SelectList(GetCodeMiscellVals("PORTTYP"), "MisCode", "MisCode_Description");
             ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode_Description");
             ViewBag.Custodians = new SelectList(GetPartyValues(currentUser.EntityIdScope), "Party_Code", "Party_Name");
-
-
+             
             var selectListItems = new List<SelectListItem>();
             selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
             selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
             ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text");
             ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text");
-             
-
+              
             return View(portfolio);
         }
 
@@ -222,8 +215,7 @@ namespace MetopeMVCApp.Controllers
             {
                 return HttpNotFound();
             } 
-            
-            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", portfolio.Entity_ID);
+             
             ViewBag.PortfolioBaseCurrency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Report_Currency);
             ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", portfolio.PortfolIo_Domicile);

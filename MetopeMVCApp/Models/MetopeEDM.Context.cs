@@ -12,17 +12,12 @@ namespace MetopeMVCApp.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-using System.Diagnostics;
     
     public partial class MetopeDbEntities : DbContext
     {
- 
-        public MetopeDbEntities() : base("name=MetopeDbEntities")
-        { 
-            #if DEBUG
-                Database.Log = s => Debug.Write(s);
-                //Database.Log = message => Trace.WriteLine(message);
-             #endif
+        public MetopeDbEntities()
+            : base("name=MetopeDbEntities")
+        {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -40,8 +35,8 @@ using System.Diagnostics;
         public virtual DbSet<Exchange> Exchanges { get; set; }
         public virtual DbSet<Security_Type> Security_Type { get; set; }
         public virtual DbSet<Code_Miscellaneous> Code_Miscellaneous { get; set; }
-        public virtual DbSet<Party> Parties { get; set; }
         public virtual DbSet<Portfolio> Portfolios { get; set; }
+        public virtual DbSet<Party> Parties { get; set; }
         public virtual DbSet<Security_Detail> Security_Detail { get; set; }
     }
 }

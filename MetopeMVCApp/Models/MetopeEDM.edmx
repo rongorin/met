@@ -193,7 +193,7 @@
           <Property Name="Last_Update_Date" Type="datetime" Nullable="false" />
           <Property Name="Security_Status" Type="varchar" MaxLength="20" />
           <Property Name="Benchmark_Portfolio" Type="varchar" MaxLength="20" />
-          <Property Name="Active_Flag" Type="bit" />
+          <Property Name="Active_flag" Type="bit" />
         </EntityType>
         <EntityType Name="Security_Type">
           <Key>
@@ -754,8 +754,8 @@
           <NavigationProperty Name="Exchanges" Relationship="MetopeDbModel.FK_Exchange_Entity" FromRole="Entity" ToRole="Exchange" />
           <NavigationProperty Name="Security_Type" Relationship="MetopeDbModel.FK_Security_Type_Entity" FromRole="Entity" ToRole="Security_Type" />
           <NavigationProperty Name="Code_Miscellaneous" Relationship="MetopeDbModel.FK_Code_Miscellaneous_Entity" FromRole="Entity" ToRole="Code_Miscellaneous" />
-          <NavigationProperty Name="Parties" Relationship="MetopeDbModel.FK_Party_Entity" FromRole="Entity" ToRole="Party" />
           <NavigationProperty Name="Portfolios" Relationship="MetopeDbModel.FK_Portfolio_Entity" FromRole="Entity" ToRole="Portfolio" />
+          <NavigationProperty Name="Parties" Relationship="MetopeDbModel.FK_Party_Entity" FromRole="Entity" ToRole="Party" />
           <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Entity" FromRole="Entity" ToRole="Security_Detail" />
         </EntityType>
         <EntityType Name="User">
@@ -837,15 +837,6 @@
             <End Role="Entity" EntitySet="Entities" />
             <End Role="Code_Miscellaneous" EntitySet="Code_Miscellaneous" />
           </AssociationSet>
-          <EntitySet Name="Parties" EntityType="MetopeDbModel.Party" />
-          <AssociationSet Name="FK_Party_Country" Association="MetopeDbModel.FK_Party_Country">
-            <End Role="Country" EntitySet="Countries" />
-            <End Role="Party" EntitySet="Parties" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Party_Entity" Association="MetopeDbModel.FK_Party_Entity">
-            <End Role="Entity" EntitySet="Entities" />
-            <End Role="Party" EntitySet="Parties" />
-          </AssociationSet>
           <EntitySet Name="Portfolios" EntityType="MetopeDbModel.Portfolio" />
           <AssociationSet Name="FK_Portfolio_Country" Association="MetopeDbModel.FK_Portfolio_Country">
             <End Role="Country" EntitySet="Countries" />
@@ -874,6 +865,15 @@
           <AssociationSet Name="FK_Portfolio_User" Association="MetopeDbModel.FK_Portfolio_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Portfolio" EntitySet="Portfolios" />
+          </AssociationSet>
+          <EntitySet Name="Parties" EntityType="MetopeDbModel.Party" />
+          <AssociationSet Name="FK_Party_Country" Association="MetopeDbModel.FK_Party_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Party" EntitySet="Parties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Party_Entity" Association="MetopeDbModel.FK_Party_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Party" EntitySet="Parties" />
           </AssociationSet>
           <EntitySet Name="Security_Detail" EntityType="MetopeDbModel.Security_Detail" />
           <AssociationSet Name="FK_Security_Detail_Country" Association="MetopeDbModel.FK_Security_Detail_Country">
@@ -960,8 +960,8 @@
           <Property Name="BB_Country_Code" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="system_locked" Type="Boolean" />
           <NavigationProperty Name="Exchanges" Relationship="MetopeDbModel.FK_Exchange_Country" FromRole="Country" ToRole="Exchange" />
-          <NavigationProperty Name="Parties" Relationship="MetopeDbModel.FK_Party_Country" FromRole="Country" ToRole="Party" />
           <NavigationProperty Name="Portfolios" Relationship="MetopeDbModel.FK_Portfolio_Country" FromRole="Country" ToRole="Portfolio" />
+          <NavigationProperty Name="Parties" Relationship="MetopeDbModel.FK_Party_Country" FromRole="Country" ToRole="Party" />
           <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Country" FromRole="Country" ToRole="Security_Detail" />
           <NavigationProperty Name="Security_Detail1" Relationship="MetopeDbModel.FK_Security_Detail_Country1" FromRole="Country" ToRole="Security_Detail" />
           </EntityType>
@@ -1146,46 +1146,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Party">
-          <Key>
-            <PropertyRef Name="Party_Code" />
-          </Key>
-          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Party_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Party_Name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="Party_Type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Financial_Year_End" Type="DateTime" Precision="0" />
-          <Property Name="Country_Code" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="System_Locked" Type="Boolean" />
-          <Property Name="SWIFT_ID" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="BIC_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Country" Relationship="MetopeDbModel.FK_Party_Country" FromRole="Party" ToRole="Country" />
-          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Party_Entity" FromRole="Party" ToRole="Entity" />
-        </EntityType>
-        <Association Name="FK_Party_Country">
-          <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
-          <End Type="MetopeDbModel.Party" Role="Party" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="Country_Code" />
-            </Principal>
-            <Dependent Role="Party">
-              <PropertyRef Name="Country_Code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Party_Entity">
-          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
-          <End Type="MetopeDbModel.Party" Role="Party" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Entity">
-              <PropertyRef Name="Entity_ID" />
-            </Principal>
-            <Dependent Role="Party">
-              <PropertyRef Name="Entity_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Portfolio">
           <Key>
             <PropertyRef Name="Entity_ID" />
@@ -1302,6 +1262,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Party">
+          <Key>
+            <PropertyRef Name="Party_Code" />
+          </Key>
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Party_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Party_Name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Party_Type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Financial_Year_End" Type="DateTime" Precision="0" />
+          <Property Name="Country_Code" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="System_Locked" Type="Boolean" />
+          <Property Name="SWIFT_ID" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="BIC_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Country" Relationship="MetopeDbModel.FK_Party_Country" FromRole="Party" ToRole="Country" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Party_Entity" FromRole="Party" ToRole="Entity" />
+        </EntityType>
+        <Association Name="FK_Party_Country">
+          <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="MetopeDbModel.Party" Role="Party" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_Code" />
+            </Principal>
+            <Dependent Role="Party">
+              <PropertyRef Name="Country_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Party_Entity">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Party" Role="Party" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Party">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Security_Detail">
           <Key>
             <PropertyRef Name="Security_ID" />
@@ -1358,7 +1358,7 @@
           <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Security_Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Benchmark_Portfolio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Active_Flag" Type="Boolean" />
+          <Property Name="Active_flag" Type="Boolean" />
           <NavigationProperty Name="Country" Relationship="MetopeDbModel.FK_Security_Detail_Country" FromRole="Security_Detail" ToRole="Country" />
           <NavigationProperty Name="Country1" Relationship="MetopeDbModel.FK_Security_Detail_Country1" FromRole="Security_Detail" ToRole="Country" />
           <NavigationProperty Name="Currencies" Relationship="MetopeDbModel.FK_Currency_Currency_Security_ID2" FromRole="Security_Detail" ToRole="Currency" />
@@ -1679,21 +1679,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Parties">
-            <EntityTypeMapping TypeName="MetopeDbModel.Party">
-              <MappingFragment StoreEntitySet="Party">
-                <ScalarProperty Name="BIC_Code" ColumnName="BIC_Code" />
-                <ScalarProperty Name="SWIFT_ID" ColumnName="SWIFT_ID" />
-                <ScalarProperty Name="System_Locked" ColumnName="System_Locked" />
-                <ScalarProperty Name="Country_Code" ColumnName="Country_Code" />
-                <ScalarProperty Name="Financial_Year_End" ColumnName="Financial_Year_End" />
-                <ScalarProperty Name="Party_Type" ColumnName="Party_Type" />
-                <ScalarProperty Name="Party_Name" ColumnName="Party_Name" />
-                <ScalarProperty Name="Party_Code" ColumnName="Party_Code" />
-                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Portfolios">
             <EntityTypeMapping TypeName="MetopeDbModel.Portfolio">
               <MappingFragment StoreEntitySet="Portfolio">
@@ -1714,10 +1699,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Parties">
+            <EntityTypeMapping TypeName="MetopeDbModel.Party">
+              <MappingFragment StoreEntitySet="Party">
+                <ScalarProperty Name="BIC_Code" ColumnName="BIC_Code" />
+                <ScalarProperty Name="SWIFT_ID" ColumnName="SWIFT_ID" />
+                <ScalarProperty Name="System_Locked" ColumnName="System_Locked" />
+                <ScalarProperty Name="Country_Code" ColumnName="Country_Code" />
+                <ScalarProperty Name="Financial_Year_End" ColumnName="Financial_Year_End" />
+                <ScalarProperty Name="Party_Type" ColumnName="Party_Type" />
+                <ScalarProperty Name="Party_Name" ColumnName="Party_Name" />
+                <ScalarProperty Name="Party_Code" ColumnName="Party_Code" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Security_Detail">
             <EntityTypeMapping TypeName="MetopeDbModel.Security_Detail">
               <MappingFragment StoreEntitySet="Security_Detail">
-                <ScalarProperty Name="Active_Flag" ColumnName="Active_Flag" />
+                <ScalarProperty Name="Active_flag" ColumnName="Active_flag" />
                 <ScalarProperty Name="Benchmark_Portfolio" ColumnName="Benchmark_Portfolio" />
                 <ScalarProperty Name="Security_Status" ColumnName="Security_Status" />
                 <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
