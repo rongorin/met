@@ -35,7 +35,9 @@ namespace MetopeMVCApp.Data
     }
     public interface IPartyRepository : IGenericRepository<Party>
     {
-          IQueryable<Party> GetPartyValues(decimal iEntity, string iType, decimal iGenericEntityId);
+        IQueryable<Party> GetPartyValues(decimal iEntity, string iType, decimal iGenericEntityId);
+        IQueryable<Party> GetAllPartyValues(decimal iEntity,  decimal iGenericEntityId);
+        Party Get(string PartyCode);
     }
     public interface ICodeMiscellaneous : IGenericRepository<Code_Miscellaneous>
     {

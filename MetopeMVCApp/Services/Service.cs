@@ -32,8 +32,7 @@ namespace MetopeMVCApp.Services
     }
 
     public class Services : IDisposable, IServices   
-    {
-        MetopeMVCApp.Services.IServices isvc;
+    { 
 
         MetopeDbEntities _context;
         private bool disposed = false;

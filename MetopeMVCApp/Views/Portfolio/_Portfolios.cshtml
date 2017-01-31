@@ -5,6 +5,20 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
+ 
+
+
+    @*as can see here, start doing this table as a 'ul' to try make the whole row clickable. However not sure if can make the 'columns' in each row be inline . See problem in Summary notes appr pg 9.
+    <div id="tab_1" class="tab-pane">
+        <ul class="nav nav-pills nav-stacked">
+            @foreach (var post in Model.OrderByDescending(x => x.Portfolio_Name).Take(3))
+            {
+                <li><a href="/post/@post.Portfolio_Code"><span class="badge">@post.Inception_Date.ToString() </span> @post.Portfolio_Code</a></li>
+            }
+        </ul>
+    </div>*@
+
+
     <table class="table table-condensed table-striped">
      
             @if (!Model.Any())
@@ -14,17 +28,14 @@
             }
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Portfolio_Name)
-
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Portfolio_Name) 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Portfolio_Code)
-                 
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Portfolio_Code) 
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Financial_Year_End)
-            </th>
-           
+            </th> 
         </tr> 
         @foreach (var item in Model)
         {
@@ -36,20 +47,16 @@
                 </td>
                <td>
                    @item.Portfolio_Code
-               </td>
-
+               </td> 
                 <td> 
-                    @String.Format("{0:d MMM yyyy}", item.Financial_Year_End)
-
-                </td>
-              
+                    @String.Format("{0:d MMM yyyy}", item.Financial_Year_End) 
+                </td> 
                <td>
                    @Html.ActionLink("Edit", "Edit", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
                    @Html.ActionLink("Details", "Details", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
                    @Html.ActionLink("Delete", "Delete", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
                  
-               </td>
-
+               </td> 
 
                @*<td width="5%">
                    <a href="@Url.Action("Details", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
@@ -66,8 +73,7 @@
                    <a href="@Url.Action("Delete", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
                        <span class="glyphicon glyphicon-trash"></span>
                     
-               </td>*@ 
-                
+               </td>*@  
             </tr>
         } 
     </table>  
@@ -75,6 +81,5 @@
         @Html.PagedListPager(Model, page => Url.Action("Index",
             new { page }))
         @*,PagedListRenderOptions.MinimalWithItemCountText*@
-    </div> 
-
+    </div>  
 </div>

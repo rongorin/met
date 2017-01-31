@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MetopeMVCApp.Models.MyMetaData 
 {
+    [MetadataType(typeof(SecurityDetailModelMetaData))]
  
 
     public class SecurityDetailModelMetaData
@@ -28,8 +29,8 @@ namespace MetopeMVCApp.Models.MyMetaData
         [Display(Name = "Price Multiplier")]
         public object Price_Multiplier { get; set; }
 
-                [StringLength(4, ErrorMessage =
-                 "Secondary Exch should be max 4 characters ")]
+      [StringLength(4, ErrorMessage =
+        "Secondary Exch should be max 4 characters ")]
         [Display(Name = "Secondary Exchange")]
         public object Secondary_Exch { get; set; }
 

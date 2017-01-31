@@ -24,7 +24,8 @@ namespace MetopeMVCApp.Data.GenericRepository
 
         //dropDown data:
         IQueryable<Code_Miscellaneous> GetCodeMiscVals(string iCodeType);
-        IQueryable<Party> GetPartyValues(decimal iEntity, string iType, decimal iGenericEntityId);
+        IQueryable<Party> GetPartyValues(decimal iEntity, string  iType, decimal iGenericEntityId);
+
 
     }
 }

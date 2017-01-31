@@ -57,12 +57,8 @@
                                 @Html.LabelFor(model => model.Country_Of_Domicile, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
                                 <div class="col-md-7">
                                     @*@Html.DropDownList("Country_Of_Domicile", null, string.Empty, new { @class = "form-control" })*@
-
-                                      @*@Html.DropDownListFor(model => model.Country_Of_Domicile, null, new { @class = "form-control" })*@
-
+                                    @*@Html.DropDownListFor(model => model.Country_Of_Domicile, null, new { @class = "form-control" })*@
                                     @Html.DropDownList("Country_Of_Domicile", null, string.Empty, new { @class  = "form-control" })
-
-
                                     @Html.ValidationMessageFor(model => model.Country_Of_Domicile, "", new { @class = "text-danger" })
                                 </div>
                             </div>

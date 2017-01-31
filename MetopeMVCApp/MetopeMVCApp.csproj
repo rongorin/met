@@ -193,9 +193,9 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -245,7 +245,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -275,7 +275,7 @@
     <Compile Include="Data\PortfolioQueryableExtensions.cs" />
     <Compile Include="Data\Repositories\IDisposedTracker.cs" />
     <Compile Include="Data\Repositories\PortfolioRepository3.cs" />
-    <Compile Include="Data\Repositories\SecurityDetailRepository.cs" />
+    <Compile Include="Data\SecurityDetailRepository.cs" />
     <Compile Include="DecimalModelBinder.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs">
@@ -355,6 +355,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MetopeEDM.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\MyMetaData\PartyModelMetaData.cs" />
     <Compile Include="Models\MyMetaData\PortfolioModelMetatData.cs" />
     <Compile Include="Models\MyMetaData\SecurityDetailModelMetaData.cs" />
     <Compile Include="Models\Party.cs">
@@ -661,19 +662,20 @@
     <Content Include="Views\SecurityDetail\HistoryUnderConstruction.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Security_Detail2.cshtml" />
     <Content Include="Views\PortfolioTestPanel\Edit.cshtml" />
-    <Content Include="Views\SecurityDetail\EditBup.cshtml" />
     <Content Include="Views\Home\Support.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\GridSecurityDetail\Edit.cshtml" />
     <Content Include="Views\GridSecurityDetail\Index.cshtml" />
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
-    <Content Include="Views\SecurityDetail\IndexOld.cshtml" />
     <Content Include="Views\Party\Create.cshtml" />
     <Content Include="Views\Party\Delete.cshtml" />
     <Content Include="Views\Party\Details.cshtml" />
     <Content Include="Views\Party\Edit.cshtml" />
     <Content Include="Views\Party\Index.cshtml" />
+    <Content Include="Views\Shared\_MsgSuccesFail.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Party.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -24,27 +24,22 @@ namespace MetopeMVCApp.Filters
     //}
              
      
-    public class FiltersDropdownData : ActionFilterAttribute
+    public class CountryFilter : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
-        {
-
+        { 
             IQueryable<Country> countries;
             if ((countries = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Country>)) == null)
-            {
-
+            { 
                 MetopeMVCApp.Services.IServices svc = new MetopeMVCApp.Services.Services(false);
-                countries = svc.ListCountry();
-
+                countries = svc.ListCountry(); 
                 filterContext.HttpContext.Cache.Insert(GetType().FullName, countries);
             }
 
             filterContext.Controller.ViewBag.Country_Of_Domicile = new SelectList(countries, "Country_Code", "Country_Name", filterContext.Controller.ViewBag.RecordCountryOfDomicile);//  ;;
             filterContext.Controller.ViewBag.Country_Of_Risk = new SelectList(countries, "Country_Code", "Country_Name", filterContext.Controller.ViewBag.RecordCountryOfRisk);//  ;;
-
-
-            //filterContext.Controller.ViewBag.CountryOfRisk = countries;
-            //filterContext.Controller.ViewBag.CountryOfDomicile = countries;
+            filterContext.Controller.ViewBag.Country_Code = new SelectList(countries, "Country_Code", "Country_Name", filterContext.Controller.ViewBag.RecordCountryOfDomicile);//  ;;
+               
             base.OnActionExecuted(filterContext);
         }
 

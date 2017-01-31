@@ -1,19 +1,12 @@
-﻿@using MetopeMVCApp.Utitlity.Extensions 
- 
-@model MetopeMVCApp.Models.Portfolio
- 
-  
-    <div class="tab-content">
-
+﻿@using MetopeMVCApp.Utitlity.Extensions  
+@model MetopeMVCApp.Models.Portfolio     
                 <div class="form-group">
                     @Html.LabelFor(model => model.Portfolio_Name, new { @class = "control-label col-md-2 input-sm " }) 
                     <div class="col-md-4  input-group-sm">  
                         @Html.TextBoxFor(model => model.Portfolio_Name, new { @class = "form-control ", placeholder = "Enter the Portfolio name here..." })
                         @Html.ValidationMessageFor(model => model.Portfolio_Name)
                     </div>
-                </div> 
-
-
+                </div>   
                 <div class="form-group">
                     @Html.LabelFor(model => model.Manager, new { @class = "control-label col-md-2 input-sm" })
                     <div class="col-md-4">
@@ -27,10 +20,7 @@
                         @Html.DropDownListFor(model => model.Portfolio_Type, (SelectList)ViewBag.Portfolio_Types, String.Empty, new { @class = "form-control  input-sm" })
                         @Html.ValidationMessageFor(model => model.Portfolio_Type)
                     </div>
-                </div>
-            </div>
- 
-
+            </div> 
             <div class="form-group">
                 @Html.LabelFor(model => model.Portfolio_Base_Currency, new { @class = "control-label col-md-2 input-sm" })
                 <div class="col-md-4">
@@ -40,14 +30,12 @@
                     @*  @Html.DropDownList("Portfolio_Base_Currency", null, string.Empty, new { @class = "form-control input-sm" }) *@
                     @Html.ValidationMessageFor(model => model.Portfolio_Base_Currency)
                 </div>
-            </div>
-
+            </div> 
             <div class="form-group">
                 @Html.LabelFor(model => model.PortfolIo_Domicile, new { @class = "control-label col-md-2 input-sm" })
                 <div class="col-md-4">
                     @Html.DropDownList("PortfolIo_Domicile", null, string.Empty, new { @class = "form-control input-sm" })
-
-
+                     
                     @Html.ValidationMessageFor(model => model.PortfolIo_Domicile)
                 </div>
             </div>
@@ -59,9 +47,7 @@
                     @Html.ValidationMessageFor(model => model.Portfolio_Report_Currency)
                 </div>
             </div>
-
-
-
+ 
             <div class="form-group">
                 @Html.LabelFor(model => model.Financial_Year_End, new { @class = "control-label col-md-2 input-sm" })
                 <div class="col-md-4">
@@ -75,9 +61,7 @@
                     @Html.ValidationMessageFor(model => model.Financial_Year_End)
 
                 </div>
-            </div>
-
-
+            </div> 
             <div class="form-group">
                 @Html.LabelFor(model => model.Custodian_Code, new { @class = "control-label col-md-2 input-sm" })
                 <div class="col-md-4">
@@ -107,9 +91,7 @@
                     @Html.DropDownListFor(model => model.Portfolio_Status, (SelectList)ViewBag.PortfolioStatus, new { @class = "form-control  input-sm" })
                     @Html.ValidationMessageFor(model => model.Portfolio_Status)
                 </div>
-            </div>
-
-
+            </div> 
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Inception_Date, new { @class = "control-label col-md-2 input-sm" })
@@ -124,12 +106,11 @@
                     @Html.ValidationMessageFor(model => model.Inception_Date)
 
                 </div>
-            </div>
-        </div> 
+            </div> 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-4">
-                <input type="submit" value="Save" class="btn btn-primary  icon-save" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4">
+                    <input type="submit" value="Save" class="btn btn-primary  icon-save" />
 
-            </div>
-        </div>
+                </div>
+             </div>

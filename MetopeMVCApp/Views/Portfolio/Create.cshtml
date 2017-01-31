@@ -1,15 +1,13 @@
 ﻿@model MetopeMVCApp.Models.Portfolio
-@section Styles {
-    @Styles.Render("~/Content/datetime")
-}
+
 @{
     ViewBag.Title = "Create"; 
 }
-
-<h3>Create Portfolio </h3>
-
- <hr />
-
+@section Styles {
+    @Styles.Render("~/Content/datetime")
+}
+<h3>Create Portfolio </h3> 
+ <hr /> 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()

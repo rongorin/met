@@ -104,8 +104,7 @@ namespace MetopeMVCApp.Controllers
             Portfolio portfolio = null;
             try
             {
-                portfolio = _repo.GetPortfolioById(EntityId, PortfolioCode);
-          
+                portfolio = _repo.GetPortfolioById(EntityId, PortfolioCode); 
             }
             catch { 
             }
@@ -196,9 +195,8 @@ namespace MetopeMVCApp.Controllers
         public ActionResult Edit(decimal EntityId, string PortfolioCode)
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
-
-
-            if (EntityId == null || PortfolioCode == null)
+ 
+            if ( PortfolioCode == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             } 
@@ -326,13 +324,14 @@ namespace MetopeMVCApp.Controllers
             return _repo.GetCodeMiscVals(iSettings);
 
         }
-        public IQueryable<Party> GetPartyValues(decimal iEntityId)
+         public IQueryable<Party> GetPartyValues(decimal iEntityId)
         {
             decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]); 
             //return db.Users.Where(r => r.Entity_ID == iEntityId);
             return _repo.GetPartyValues(iEntityId, "CUSTODIAN", refGenericEntity);
 
         } 
+ 
         protected override void Dispose(bool disposing)
         {
             if (disposing)

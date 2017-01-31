@@ -131,7 +131,7 @@ namespace MetopeMVCApp.Controllers
 
 
         // GET: /SecurityDetail/Create
-        [FiltersDropdownData]  
+        [CountryFilter]  
         [SecurityTypesFilter]
         [CurrencyFilter] 
         [ExchangesFilter]
@@ -202,7 +202,7 @@ namespace MetopeMVCApp.Controllers
          
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FiltersDropdownData]
+        [CountryFilter]
         [SecurityTypesFilter]
         [CurrencyFilter] 
         [ExchangesFilter]
@@ -338,7 +338,7 @@ namespace MetopeMVCApp.Controllers
 
         //}
 
-        [FiltersDropdownData] 
+        [CountryFilter] 
         [TrueFalseFilter]
         [SecurityTypesFilter]
         [ExchangesFilter]
@@ -423,7 +423,7 @@ namespace MetopeMVCApp.Controllers
         } 
          [HttpPost]
          [ValidateAntiForgeryToken]
-         [FiltersDropdownData]
+         [CountryFilter]
          [SecurityTypesFilter]
          [PartyFilter]
          [CodeMiscellaneousFilter]

@@ -1,75 +1,53 @@
 ﻿@model IEnumerable<MetopeMVCApp.Models.Party>
 
+@*@model IEnumerable<MetopeMVCApp.Models.Security_Detail>*@
+@using GridMvc.Html
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "GridPartyDetail";
+  
 }
-
+@section Styles {
+    @Styles.Render("~/Content/GridMvc")
+    @Styles.Render("~/Content/datetime")
+}
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Party_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Party_Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Financial_Year_End)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.System_Locked)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SWIFT_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BIC_Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country.Country_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Entity.Entity_Code)
-        </th>
-        <th></th>
-    </tr>
+ 
+ @Html.Partial("_MsgSuccesFail", Model)
+<div class="code-cut">
+   @Html.Grid(Model).Columns(columns =>
+    { 
+        columns.Add(c => c.Party_Name)
+            .Titled("Party Name").Filterable(true) ;
+        columns.Add(c => c.Party_Type).Titled("Party Type").Filterable(true).SetWidth(150);
+        // columns.Add(c => c.Security_Type_Code ).Titled("Return").Encoded(false).Sanitized(false).RenderValueAs(c => @Html.ActionLink(" ", "../LendReturns/Create", new { id = c.NumberOfRows }, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Party_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Party_Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Financial_Year_End)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.System_Locked)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SWIFT_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BIC_Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country.Country_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Entity.Entity_Code)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Party_Code }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Party_Code }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Party_Code })
-        </td>
-    </tr>
+        //.RenderValueAs(, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
+
+        columns.Add(c => c.Financial_Year_End).Titled("Financial Year End").Filterable(false).SetWidth(200).Format("{0:dd MMM yyyy}");
+        
+        columns.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .SetWidth(20)
+                .RenderValueAs(c => @<u>
+                    @Html.ActionLink("Edit", "Edit", "Party", new { PartyCode = c.Party_Code, EntityId =c.Entity_ID}, null)
+                </u>);
+        columns.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .SetWidth(20)
+                .RenderValueAs(c => @<u>
+                    @Html.ActionLink("Delete", "Delete", "Party", new { PartyCode = c.Party_Code, EntityId = c.Entity_ID }, null)
+                </u>);
+    }).Sortable(true)
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/GridMvc")
+    @*@Scripts.Render("~/bundles/datetime")
+        @Scripts.Render("~/bundles/jqueryval")*@
 }
-
-</table>
+ 

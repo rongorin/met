@@ -54,12 +54,22 @@ namespace MetopeMVCApp.Data.Repositories
     public class PartyRepository : GenericRepository<MetopeDbEntities, Party>,
                           IPartyRepository
     {
+        public IQueryable<Party> GetAllPartyValues(decimal iEntity,  decimal iGenericEntityId)
+        {
+            return GetAll().Where(r => r.Entity_ID == iGenericEntityId || r.Entity_ID == iEntity);
+
+        }
         public IQueryable<Party> GetPartyValues(decimal iEntity, string iType, decimal iGenericEntityId)
         {
             return GetAll().Where(c => c.Party_Type == iType)
                                 .Where(r => r.Entity_ID == iGenericEntityId || r.Entity_ID == iEntity);
 
         }
+        public Party Get(string PartyCode)
+        {
+            return Context.Set<Party>().Find(PartyCode); 
+        }
+
     }
     public class CodeMiscellaneousRepository : GenericRepository<MetopeDbEntities, Code_Miscellaneous>,
                                   ICodeMiscellaneous
