@@ -1,0 +1,24 @@
+﻿Opened connection at 2/2/2017 2:42:54 PM +02:00
+Started transaction at 2/2/2017 2:42:54 PM +02:00
+UPDATE [dbo].[Security_Price]
+SET [All_In_Price] = @0, [Clean_Price] = @1, [Accrued_Income_Price] = @2, [Price_Source] = @3, [Yield_To_Maturity] = @4, [Discount_Rate] = @5, [Last_Update_User] = @6, [Last_Update_Date] = @7, [Issued_Amount] = @8, [Free_Float_Issued_Amount] = @9, [Record_Date] = @10
+WHERE ((([Entity_ID] = @11) AND ([Security_ID] = @12)) AND ([Price_Curr] = @13))
+-- @0: '1212.00' (Type = Decimal, Precision = 20, Scale = 9)
+-- @1: '1222.00' (Type = Decimal, Precision = 20, Scale = 9)
+-- @2: '22.00' (Type = Decimal, Precision = 20, Scale = 9)
+-- @3: '1' (Type = AnsiString, Size = 20)
+-- @4: '1.00' (Type = Decimal, Precision = 20, Scale = 9)
+-- @5: '1.00' (Type = Decimal, Precision = 20, Scale = 9)
+-- @6: 'aaaaaa' (Type = AnsiString, Size = 30)
+-- @7: '2/2/2017 2:42:54 PM' (Type = DateTime2)
+-- @8: '1.00' (Type = Decimal, Precision = 20)
+-- @9: '1.00' (Type = Decimal, Precision = 20)
+-- @10: '1/1/2017 12:00:00 AM' (Type = DateTime2)
+-- @11: '1' (Type = Decimal, Precision = 18)
+-- @12: '44' (Type = Decimal, Precision = 18)
+-- @13: 'ZAR' (Type = AnsiString, Size = 3)
+-- Executing at 2/2/2017 2:42:54 PM +02:00
+-- Completed in 4 ms with result: 1
+
+Committed transaction at 2/2/2017 2:42:54 PM +02:00
+Closed connection at 2/2/2017 2:42:54 PM +02:00

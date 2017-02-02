@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MetopeMVCApp.Models.Security_Price>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.All_In_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clean_Price)
+        </th> 
+        <th>
+            @Html.DisplayNameFor(model => model.Price_Source)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Yield_To_Maturity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount_Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_Update_Date)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Record_Date)
+        </th>
+ 
+        <th>
+            @Html.DisplayNameFor(model => model.Security_Detail.Security_Name)
+        </th>
+ 
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    string selectedRow = "";
+    if (item.Security_ID == ViewBag.InstructorID)
+    {
+        selectedRow = "success";
+    }
+    <tr class="@selectedRow">
+        <td>
+            @Html.DisplayFor(modelItem => item.All_In_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clean_Price)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Price_Source)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Yield_To_Maturity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount_Rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_Update_Date)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Record_Date)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Security_Detail.Security_Name)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { SecurityId = item.Security_ID, EntityId = item.Entity_ID, PriceCurr = item.Price_Curr }) |
+            @Html.ActionLink("Details", "Details", new { SecurityId = item.Security_ID, EntityId = item.Entity_ID, PriceCurr = item.Price_Curr }) |
+            @Html.ActionLink("Delete", "Delete", new { SecurityId = item.Security_ID, EntityId = item.Entity_ID, PriceCurr = item.Price_Curr })
+        </td>
+    </tr>
+}
+
+</table>

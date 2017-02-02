@@ -66,7 +66,7 @@ namespace MetopeMVCApp.Controllers
         }
         public Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode)
         {
-            return Context.Portfolios.Find(EntityId, PortfolioCode);
+            return Context.Portfolios.Find(EntityId,PortfolioCode);
         }
 
         public Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode, bool IncludeUser)

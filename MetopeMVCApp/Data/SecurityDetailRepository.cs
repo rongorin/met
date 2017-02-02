@@ -28,6 +28,16 @@ namespace MetopeMVCApp.Data.Repositories
              
         //} 
     }
+    public class SecurityPriceRepository : GenericRepository<MetopeDbEntities, Security_Price>,
+                          ISecurityPriceRepository
+    {
+        public IQueryable<Security_Price> GetAll(Expression<Func<Security_Price, bool>> predicate)
+        {
+            IQueryable<Security_Price> query = Context.Set<Security_Price>().Where(predicate);
+            return query; 
+        }
+
+    }
     public class ExchangeRepository : GenericRepository<MetopeDbEntities, Exchange>,
                                      IExchangeRepository
     {

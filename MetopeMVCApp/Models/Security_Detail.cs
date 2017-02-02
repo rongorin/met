@@ -20,6 +20,8 @@ namespace MetopeMVCApp.Models
         {
             this.Currencies = new HashSet<Currency>();
             this.Currencies1 = new HashSet<Currency>();
+            this.Security_Price_History = new HashSet<Security_Price_History>();
+            this.Security_Price = new HashSet<Security_Price>();
         }
     
         public decimal Security_ID { get; set; }
@@ -89,5 +91,7 @@ namespace MetopeMVCApp.Models
         public virtual Exchange Exchange { get; set; }
         public virtual Exchange Exchange1 { get; set; }
         public virtual Portfolio Portfolio { get; set; }
+        public virtual ICollection<Security_Price_History> Security_Price_History { get; set; }
+        public virtual ICollection<Security_Price> Security_Price { get; set; }
     }
 }

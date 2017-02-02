@@ -14,7 +14,6 @@ namespace MetopeMVCApp.Models
     using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(PortfolioModelMetatData))]
-
     public partial class Portfolio
     {
         public Portfolio()

@@ -195,6 +195,53 @@
           <Property Name="Benchmark_Portfolio" Type="varchar" MaxLength="20" />
           <Property Name="Active_flag" Type="bit" />
         </EntityType>
+        <EntityType Name="Security_Price">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Security_ID" />
+            <PropertyRef Name="Price_Curr" />
+          </Key>
+          <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Security_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Price_Curr" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="All_In_Price" Type="decimal" Precision="20" Scale="9" />
+          <Property Name="Clean_Price" Type="decimal" Precision="20" Scale="9" />
+          <Property Name="Accrued_Income_Price" Type="decimal" Precision="20" Scale="9" />
+          <Property Name="Price_Source" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Yield_To_Maturity" Type="decimal" Precision="20" Scale="9" />
+          <Property Name="Discount_Rate" Type="decimal" Precision="20" Scale="9" />
+          <Property Name="Last_Update_User" Type="varchar" MaxLength="30" />
+          <Property Name="Last_Update_Date" Type="datetime" Nullable="false" />
+          <Property Name="Issued_Amount" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="Free_Float_Issued_Amount" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="Record_Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Security_Price_History">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Security_ID" />
+            <PropertyRef Name="Price_Curr" />
+            <PropertyRef Name="Price_DateTime" />
+          </Key>
+          <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Security_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Price_Curr" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="All_In_Price" Type="decimal" Precision="20" Scale="9" />
+          <Property Name="Clean_Price" Type="decimal" Precision="20" Scale="9" />
+          <Property Name="Accrued_Income_Price" Type="decimal" Precision="20" Scale="9" />
+          <Property Name="Price_Source" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Yield_To_Maturity" Type="decimal" Precision="20" Scale="9" />
+          <Property Name="Discount_Rate" Type="decimal" Precision="20" Scale="9" />
+          <Property Name="Last_Update_User" Type="varchar" MaxLength="30" />
+          <Property Name="Last_Update_Date" Type="datetime" Nullable="false" />
+          <Property Name="Price_DateTime" Type="date" Nullable="false" />
+          <Property Name="Record_Date" Type="datetime" Nullable="false" />
+          <Property Name="Session_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Hist_Last_Update_Date" Type="datetime" />
+          <Property Name="Hist_Last_Update_User" Type="varchar" MaxLength="30" />
+          <Property Name="Issued_Amount" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="Free_Float_Issued_Amount" Type="decimal" Precision="20" Scale="0" />
+        </EntityType>
         <EntityType Name="Security_Type">
           <Key>
             <PropertyRef Name="Entity_ID" />
@@ -577,6 +624,106 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Security_Price_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="Security_Price" Type="Self.Security_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Security_Price">
+              <PropertyRef Name="Price_Curr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="Security_Price" Type="Self.Security_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Security_Price">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_History_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="Security_Price_History" Type="Self.Security_Price_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Security_Price_History">
+              <PropertyRef Name="Price_Curr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_History_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="Security_Price_History" Type="Self.Security_Price_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Security_Price_History">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_History_Security_Detail">
+          <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="1" />
+          <End Role="Security_Price_History" Type="Self.Security_Price_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Security_Price_History">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_History_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Security_Price_History" Type="Self.Security_Price_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Security_Price_History">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_Security_Detail">
+          <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="1" />
+          <End Role="Security_Price" Type="Self.Security_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Security_Price">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Security_Price" Type="Self.Security_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Security_Price">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Security_Type_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
           <End Role="Security_Type" Type="Self.Security_Type" Multiplicity="*" />
@@ -613,6 +760,8 @@
           <EntitySet Name="Portfolio" EntityType="Self.Portfolio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolio_List" EntityType="Self.Portfolio_List" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Detail" EntityType="Self.Security_Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Security_Price" EntityType="Self.Security_Price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Security_Price_History" EntityType="Self.Security_Price_History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Type" EntityType="Self.Security_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Code_Miscellaneous_Entity" Association="Self.FK_Code_Miscellaneous_Entity">
@@ -727,6 +876,38 @@
             <End Role="Portfolio" EntitySet="Portfolio" />
             <End Role="Security_Detail" EntitySet="Security_Detail" />
           </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_Currency" Association="Self.FK_Security_Price_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Security_Price" EntitySet="Security_Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_Entity" Association="Self.FK_Security_Price_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="Security_Price" EntitySet="Security_Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_History_Currency" Association="Self.FK_Security_Price_History_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Security_Price_History" EntitySet="Security_Price_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_History_Entity" Association="Self.FK_Security_Price_History_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="Security_Price_History" EntitySet="Security_Price_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_History_Security_Detail" Association="Self.FK_Security_Price_History_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Security_Price_History" EntitySet="Security_Price_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_History_User" Association="Self.FK_Security_Price_History_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Security_Price_History" EntitySet="Security_Price_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_Security_Detail" Association="Self.FK_Security_Price_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Security_Price" EntitySet="Security_Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_User" Association="Self.FK_Security_Price_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Security_Price" EntitySet="Security_Price" />
+          </AssociationSet>
           <AssociationSet Name="FK_Security_Type_Entity" Association="Self.FK_Security_Type_Entity">
             <End Role="Entity" EntitySet="Entity" />
             <End Role="Security_Type" EntitySet="Security_Type" />
@@ -757,6 +938,8 @@
           <NavigationProperty Name="Portfolios" Relationship="MetopeDbModel.FK_Portfolio_Entity" FromRole="Entity" ToRole="Portfolio" />
           <NavigationProperty Name="Parties" Relationship="MetopeDbModel.FK_Party_Entity" FromRole="Entity" ToRole="Party" />
           <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Entity" FromRole="Entity" ToRole="Security_Detail" />
+          <NavigationProperty Name="Security_Price" Relationship="MetopeDbModel.FK_Security_Price_Entity" FromRole="Entity" ToRole="Security_Price" />
+          <NavigationProperty Name="Security_Price_History" Relationship="MetopeDbModel.FK_Security_Price_History_Entity" FromRole="Entity" ToRole="Security_Price_History" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -781,6 +964,8 @@
           <Property Name="System_Locked" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Entity" Relationship="Self.FK_User_Entity" FromRole="User" ToRole="Entity" />
           <NavigationProperty Name="Portfolios" Relationship="MetopeDbModel.FK_Portfolio_User" FromRole="User" ToRole="Portfolio" />
+          <NavigationProperty Name="Security_Price" Relationship="MetopeDbModel.FK_Security_Price_User" FromRole="User" ToRole="Security_Price" />
+          <NavigationProperty Name="Security_Price_History" Relationship="MetopeDbModel.FK_Security_Price_History_User" FromRole="User" ToRole="Security_Price_History" />
         </EntityType>
         <Association Name="FK_User_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
@@ -928,6 +1113,40 @@
             <End Role="Portfolio" EntitySet="Portfolios" />
             <End Role="Security_Detail" EntitySet="Security_Detail" />
           </AssociationSet>
+          <EntitySet Name="Security_Price" EntityType="MetopeDbModel.Security_Price" />
+          <EntitySet Name="Security_Price_History" EntityType="MetopeDbModel.Security_Price_History" />
+          <AssociationSet Name="FK_Security_Price_Currency" Association="MetopeDbModel.FK_Security_Price_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Security_Price" EntitySet="Security_Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_History_Currency" Association="MetopeDbModel.FK_Security_Price_History_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Security_Price_History" EntitySet="Security_Price_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_Entity" Association="MetopeDbModel.FK_Security_Price_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Security_Price" EntitySet="Security_Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_History_Entity" Association="MetopeDbModel.FK_Security_Price_History_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Security_Price_History" EntitySet="Security_Price_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_History_Security_Detail" Association="MetopeDbModel.FK_Security_Price_History_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Security_Price_History" EntitySet="Security_Price_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_Security_Detail" Association="MetopeDbModel.FK_Security_Price_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Security_Price" EntitySet="Security_Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_User" Association="MetopeDbModel.FK_Security_Price_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Security_Price" EntitySet="Security_Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Price_History_User" Association="MetopeDbModel.FK_Security_Price_History_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Security_Price_History" EntitySet="Security_Price_History" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AspNetUser">
           <Key>
@@ -987,6 +1206,8 @@
           <NavigationProperty Name="Security_Detail3" Relationship="MetopeDbModel.FK_Security_Detail_Currency1" FromRole="Currency" ToRole="Security_Detail" />
           <NavigationProperty Name="Security_Detail4" Relationship="MetopeDbModel.FK_Security_Detail_Currency2" FromRole="Currency" ToRole="Security_Detail" />
           <NavigationProperty Name="Security_Detail5" Relationship="MetopeDbModel.FK_Security_Detail_Currency3" FromRole="Currency" ToRole="Security_Detail" />
+          <NavigationProperty Name="Security_Price" Relationship="MetopeDbModel.FK_Security_Price_Currency" FromRole="Currency" ToRole="Security_Price" />
+          <NavigationProperty Name="Security_Price_History" Relationship="MetopeDbModel.FK_Security_Price_History_Currency" FromRole="Currency" ToRole="Security_Price_History" />
           </EntityType>
         <EntityType Name="Currency_Pair">
           <Key>
@@ -1372,6 +1593,8 @@
           <NavigationProperty Name="Exchange" Relationship="MetopeDbModel.FK_Security_Detail_Exchange" FromRole="Security_Detail" ToRole="Exchange" />
           <NavigationProperty Name="Exchange1" Relationship="MetopeDbModel.FK_Security_Detail_Exchange1" FromRole="Security_Detail" ToRole="Exchange" />
           <NavigationProperty Name="Portfolio" Relationship="MetopeDbModel.FK_Security_Detail_Portfolio_Benchmark" FromRole="Security_Detail" ToRole="Portfolio" />
+          <NavigationProperty Name="Security_Price_History" Relationship="MetopeDbModel.FK_Security_Price_History_Security_Detail" FromRole="Security_Detail" ToRole="Security_Price_History" />
+          <NavigationProperty Name="Security_Price" Relationship="MetopeDbModel.FK_Security_Price_Security_Detail" FromRole="Security_Detail" ToRole="Security_Price" />
         </EntityType>
         <Association Name="FK_Security_Detail_Country">
           <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
@@ -1528,6 +1751,161 @@
             <Dependent Role="Security_Detail">
               <PropertyRef Name="Entity_ID" />
               <PropertyRef Name="Benchmark_Portfolio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Security_Price">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Security_ID" />
+            <PropertyRef Name="Price_Curr" />
+          </Key>
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Security_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Price_Curr" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="All_In_Price" Type="Decimal" Precision="20" Scale="9" />
+          <Property Name="Clean_Price" Type="Decimal" Precision="20" Scale="9" />
+          <Property Name="Accrued_Income_Price" Type="Decimal" Precision="20" Scale="9" />
+          <Property Name="Price_Source" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Yield_To_Maturity" Type="Decimal" Precision="20" Scale="9" />
+          <Property Name="Discount_Rate" Type="Decimal" Precision="20" Scale="9" />
+          <Property Name="Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Issued_Amount" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Free_Float_Issued_Amount" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Record_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Currency" Relationship="MetopeDbModel.FK_Security_Price_Currency" FromRole="Security_Price" ToRole="Currency" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Security_Price_Entity" FromRole="Security_Price" ToRole="Entity" />
+          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Price_Security_Detail" FromRole="Security_Price" ToRole="Security_Detail" />
+          <NavigationProperty Name="User" Relationship="MetopeDbModel.FK_Security_Price_User" FromRole="Security_Price" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Security_Price_History">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Security_ID" />
+            <PropertyRef Name="Price_Curr" />
+            <PropertyRef Name="Price_DateTime" />
+          </Key>
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Security_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Price_Curr" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="All_In_Price" Type="Decimal" Precision="20" Scale="9" />
+          <Property Name="Clean_Price" Type="Decimal" Precision="20" Scale="9" />
+          <Property Name="Accrued_Income_Price" Type="Decimal" Precision="20" Scale="9" />
+          <Property Name="Price_Source" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Yield_To_Maturity" Type="Decimal" Precision="20" Scale="9" />
+          <Property Name="Discount_Rate" Type="Decimal" Precision="20" Scale="9" />
+          <Property Name="Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Price_DateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Record_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Session_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Hist_Last_Update_Date" Type="DateTime" Precision="3" />
+          <Property Name="Hist_Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Issued_Amount" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Free_Float_Issued_Amount" Type="Decimal" Precision="20" Scale="0" />
+          <NavigationProperty Name="Currency" Relationship="MetopeDbModel.FK_Security_Price_History_Currency" FromRole="Security_Price_History" ToRole="Currency" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Security_Price_History_Entity" FromRole="Security_Price_History" ToRole="Entity" />
+          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Price_History_Security_Detail" FromRole="Security_Price_History" ToRole="Security_Detail" />
+          <NavigationProperty Name="User" Relationship="MetopeDbModel.FK_Security_Price_History_User" FromRole="Security_Price_History" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Security_Price_Currency">
+          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Price" Role="Security_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Security_Price">
+              <PropertyRef Name="Price_Curr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_History_Currency">
+          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Price_History" Role="Security_Price_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Security_Price_History">
+              <PropertyRef Name="Price_Curr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_Entity">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Price" Role="Security_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Security_Price">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_History_Entity">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Price_History" Role="Security_Price_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Security_Price_History">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_History_Security_Detail">
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Price_History" Role="Security_Price_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Security_Price_History">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_Security_Detail">
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Price" Role="Security_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Security_Price">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_User">
+          <End Type="MetopeDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Security_Price" Role="Security_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Security_Price">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Price_History_User">
+          <End Type="MetopeDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Security_Price_History" Role="Security_Price_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Security_Price_History">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1770,6 +2148,50 @@
                 <ScalarProperty Name="Security_Name" ColumnName="Security_Name" />
                 <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
                 <ScalarProperty Name="Security_ID" ColumnName="Security_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Security_Price">
+            <EntityTypeMapping TypeName="MetopeDbModel.Security_Price">
+              <MappingFragment StoreEntitySet="Security_Price">
+                <ScalarProperty Name="Record_Date" ColumnName="Record_Date" />
+                <ScalarProperty Name="Free_Float_Issued_Amount" ColumnName="Free_Float_Issued_Amount" />
+                <ScalarProperty Name="Issued_Amount" ColumnName="Issued_Amount" />
+                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
+                <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
+                <ScalarProperty Name="Discount_Rate" ColumnName="Discount_Rate" />
+                <ScalarProperty Name="Yield_To_Maturity" ColumnName="Yield_To_Maturity" />
+                <ScalarProperty Name="Price_Source" ColumnName="Price_Source" />
+                <ScalarProperty Name="Accrued_Income_Price" ColumnName="Accrued_Income_Price" />
+                <ScalarProperty Name="Clean_Price" ColumnName="Clean_Price" />
+                <ScalarProperty Name="All_In_Price" ColumnName="All_In_Price" />
+                <ScalarProperty Name="Price_Curr" ColumnName="Price_Curr" />
+                <ScalarProperty Name="Security_ID" ColumnName="Security_ID" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Security_Price_History">
+            <EntityTypeMapping TypeName="MetopeDbModel.Security_Price_History">
+              <MappingFragment StoreEntitySet="Security_Price_History">
+                <ScalarProperty Name="Free_Float_Issued_Amount" ColumnName="Free_Float_Issued_Amount" />
+                <ScalarProperty Name="Issued_Amount" ColumnName="Issued_Amount" />
+                <ScalarProperty Name="Hist_Last_Update_User" ColumnName="Hist_Last_Update_User" />
+                <ScalarProperty Name="Hist_Last_Update_Date" ColumnName="Hist_Last_Update_Date" />
+                <ScalarProperty Name="Session_ID" ColumnName="Session_ID" />
+                <ScalarProperty Name="Record_Date" ColumnName="Record_Date" />
+                <ScalarProperty Name="Price_DateTime" ColumnName="Price_DateTime" />
+                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
+                <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
+                <ScalarProperty Name="Discount_Rate" ColumnName="Discount_Rate" />
+                <ScalarProperty Name="Yield_To_Maturity" ColumnName="Yield_To_Maturity" />
+                <ScalarProperty Name="Price_Source" ColumnName="Price_Source" />
+                <ScalarProperty Name="Accrued_Income_Price" ColumnName="Accrued_Income_Price" />
+                <ScalarProperty Name="Clean_Price" ColumnName="Clean_Price" />
+                <ScalarProperty Name="All_In_Price" ColumnName="All_In_Price" />
+                <ScalarProperty Name="Price_Curr" ColumnName="Price_Curr" />
+                <ScalarProperty Name="Security_ID" ColumnName="Security_ID" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

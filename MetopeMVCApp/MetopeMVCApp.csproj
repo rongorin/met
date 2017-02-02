@@ -267,6 +267,7 @@
     <Compile Include="Controllers\Port2Controller.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\SecurityDetailController.cs" />
+    <Compile Include="Controllers\SecurityPriceController.cs" />
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\GenericRepository\GenericRepository.cs" />
     <Compile Include="Data\GenericRepository\IGenericRepository.cs" />
@@ -368,7 +369,14 @@
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SecurityDetailIndexModel.cs" />
+    <Compile Include="Models\SecurityPriceIndexViewModel.cs" />
     <Compile Include="Models\Security_Detail.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Security_Price.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Security_Price_History.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Security_Type.cs">
@@ -449,6 +457,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Data\Repositories\LoggerRepository\LoggerFile.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.less" />
@@ -676,12 +685,18 @@
     <Content Include="Views\Shared\_MsgSuccesFail.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Party.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Views\SecurityPrice\Create.cshtml" />
+    <Content Include="Views\SecurityPrice\Delete.cshtml" />
+    <Content Include="Views\SecurityPrice\Details.cshtml" />
+    <Content Include="Views\SecurityPrice\Edit.cshtml" />
+    <Content Include="Views\SecurityPrice\Index.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="NewFolder1\" />
     <Folder Include="Views\Contact\" />
   </ItemGroup>
   <ItemGroup>

@@ -48,6 +48,16 @@
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Exchange" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Exchange1" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Portfolio_Benchmark" />
+        <EntityTypeShape EntityType="MetopeDbModel.Security_Price" Width="1.5" PointX="15" PointY="10.75" />
+        <EntityTypeShape EntityType="MetopeDbModel.Security_Price_History" Width="1.5" PointX="18" PointY="8.375" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Price_Currency" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Price_History_Currency" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Price_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Price_History_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Price_History_Security_Detail" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Price_Security_Detail" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Price_User" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Price_History_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
