@@ -41,14 +41,18 @@ namespace MetopeMVCApp.Controllers
 
             //var security_Price = db.Security_Price.Include(s => s.Currency)
             //                        .Include(s => s.Entity).Include(s => s.Security_Detail).Include(s => s.User);
-            if (SecurityId != null) 
-                 ViewBag.SecurityID = SecurityId.Value;
+            var viewModel = new SecurityPriceIndexViewModel();
+            
+            if (SecurityId != null)
+            {
+                ViewBag.SecurityID = SecurityId.Value;
 
-            var viewModel = new SecurityPriceIndexViewModel(); 
-            viewModel.SecurityDetails = db.Security_Detail
-                .Where(c => (SecurityId != null) ? c.Security_ID >= SecurityId : c.Security_ID > 0) 
-                     .ToList().Take(3);    
-            //viewModel.SecurityDetails = db22.GetAll().Take(10); 
+                viewModel.SecurityDetails = db.Security_Detail
+                    .Where(c => c.Security_ID == SecurityId).FirstOrDefault<Security_Detail>(); 
+            }
+             //  .Where(c => (SecurityId != null) ? c.Security_ID >= SecurityId : c.Security_ID > 0).ToList();
+
+            //viewModel.SecurityDetails = db22.GetAll().Take(10);
 
              viewModel.SecurityPrices = db11.GetAll()
                                         .Include(s => s.Security_Detail)

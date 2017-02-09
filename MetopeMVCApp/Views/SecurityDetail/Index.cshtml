@@ -79,7 +79,7 @@
                 .Sanitized(false)
                 .SetWidth(60)
                 .RenderValueAs(c => @<u>
-                    @Html.ActionLink("Edit", "Edit", "SecurityDetail", new { SecurityId = c.Security_ID }, null)
+                    @Html.ActionLink("Edit", "Edit", "SecurityDetail", new { id = c.Security_ID }, null)
                 </u>); 
         columns.Add()
                 .Encoded(false)

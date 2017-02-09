@@ -5,18 +5,68 @@
 @{
     ViewBag.Title = "Index";
 } 
-<h2>Index</h2> 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<div id="tab_1" class="tab-pane">
-    <ul class="nav nav-pills nav-stacked">
-        @foreach (var post in Model.SecurityDetails.OrderByDescending(x => x.Ticker).Take(3))
-        {
-            <li class="list-group-item-success"><a href="/SecurityPrice?SecurityId=@post.Security_ID&EntityId=@post.Entity_ID"><span class="badge">@post.Ticker.ToString() </span> @post.Security_Name</a></li>
-        }
-    </ul>
-</div>
+<br />
+
+
+@if (Model.SecurityDetails != null)
+{
+    @*<h3>
+        Security <span><b>@Model.SecurityDetails.Security_Name</b> </span>
+    </h3>*@
+    <container>
+        <div class="   col-md-3">
+            <div class="panel panel-default ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Security Ticker  
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    @Model.SecurityDetails.Ticker
+                </div>
+            </div>
+        </div>
+          <div class="   col-md-3">
+                <div class="panel panel-default ">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> 
+                            Security Type 
+                            
+                        </h3>
+                    </div> 
+                    <div class="panel-body">
+                        @Model.SecurityDetails.Security_Type_Code
+                    </div>
+                </div>
+            </div>
+        <div class="   col-md-3">
+            <div class="panel panel-default ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                   
+                        Price Exchange  
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    @Model.SecurityDetails.Price_Exchange
+                </div>
+            </div>
+        </div>
+        <div class="   col-md-3">
+            <div class="panel panel-default ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                 
+                        Security ID 
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    @Model.SecurityDetails.Security_ID
+                </div>
+            </div>
+        </div>
+</container>
+}
 
 
 @*<table class="table">
@@ -62,6 +112,9 @@
 
 </table>*@ 
 @*-----------------------------------------SEUCRITY PRICES : -------------------------------------------*@
+  <h3>
+   Security Prices.
+</h3>
 <table class="table">
     <tr>
         <th>AllIn Price</th>

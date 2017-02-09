@@ -157,8 +157,8 @@ namespace MetopeMVCApp.Filters
              {  
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
-                 portfolios = svc.ListPortfolios(filterContext.Controller.ViewBag.EntityIdScope );
-                                                        //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
+                 portfolios = svc.ListPortfolios(filterContext.Controller.ViewBag.EntityIdScope);
+                                                 //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, portfolios);
              }
              filterContext.Controller.ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name", filterContext.Controller.ViewBag.BenchmarkPortfolio); 
