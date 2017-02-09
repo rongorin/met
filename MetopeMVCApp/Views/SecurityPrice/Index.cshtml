@@ -1,51 +1,84 @@
-﻿@model IEnumerable<MetopeMVCApp.Models.Security_Price>
+﻿@*@model IEnumerable<MetopeMVCApp.Models.Security_Price>*@
+@model  MetopeMVCApp.Models.SecurityPriceIndexViewModel
 
 
 @{
     ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
+} 
+<h2>Index</h2> 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<div id="tab_1" class="tab-pane">
+    <ul class="nav nav-pills nav-stacked">
+        @foreach (var post in Model.SecurityDetails.OrderByDescending(x => x.Ticker).Take(3))
+        {
+            <li class="list-group-item-success"><a href="/SecurityPrice?SecurityId=@post.Security_ID&EntityId=@post.Entity_ID"><span class="badge">@post.Ticker.ToString() </span> @post.Security_Name</a></li>
+        }
+    </ul>
+</div>
+
+
+@*<table class="table">
+    <tr>
+        <th>AllIn Price</th>
+        <th>Clean_Price</th>
+        <th>Price Sourc</th>
+        <th>Yield_To Maturity</th>
+        <th>Discount Rate</th>
+        <th>Last UpdateDate</th>
+        <th>Record Date</th>
+        <th>Security Name</th>
+        <th></th>
+
+    </tr>
+    @foreach (var item in Model.SecurityDetails)
+    {
+        string selectedRowSD = "";
+        if (item.Security_ID == ViewBag.SecurityID )
+        {
+            selectedRowSD = "success";
+        }
+        <tr class="@selectedRowSD">
+            <td>
+                @Html.DisplayFor(modelItem => item.Ticker)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Security_Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Current_Market_Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Security_ID)
+            </td> 
+
+            <td>
+                @Html.ActionLink("Select", "Index", new { SecurityId = item.Security_ID, iEntityId = item.Entity_ID  }) |
+            </td>
+        </tr>
+    }
+
+</table>*@ 
+@*-----------------------------------------SEUCRITY PRICES : -------------------------------------------*@
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.All_In_Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Clean_Price)
-        </th> 
-        <th>
-            @Html.DisplayNameFor(model => model.Price_Source)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Yield_To_Maturity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Discount_Rate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Last_Update_Date)
-        </th>
-       
-        <th>
-            @Html.DisplayNameFor(model => model.Record_Date)
-        </th>
- 
-        <th>
-            @Html.DisplayNameFor(model => model.Security_Detail.Security_Name)
-        </th>
- 
+        <th>AllIn Price</th>
+        <th>Clean_Price</th>
+        <th>Price Sourc</th>
+        <th>Yield_To Maturity</th>
+        <th>Discount Rate</th>
+        <th>Last UpdateDate</th>
+        <th>Record Date</th>
+        <th>Security Name</th>
         <th></th>
-    </tr>
-
-@foreach (var item in Model)
+          
+    </tr> 
+@foreach (var item in Model.SecurityPrices)
 {
     string selectedRow = "";
-    if (item.Security_ID == ViewBag.InstructorID)
+    if (item.Security_ID == ViewBag.SecurityID && item.Price_Curr == ViewBag.PriceCurr)
     {
         selectedRow = "success";
     }
@@ -78,12 +111,62 @@
             @Html.DisplayFor(modelItem => item.Security_Detail.Security_Name)
         </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { SecurityId = item.Security_ID, EntityId = item.Entity_ID, PriceCurr = item.Price_Curr }) |
-            @Html.ActionLink("Details", "Details", new { SecurityId = item.Security_ID, EntityId = item.Entity_ID, PriceCurr = item.Price_Curr }) |
-            @Html.ActionLink("Delete", "Delete", new { SecurityId = item.Security_ID, EntityId = item.Entity_ID, PriceCurr = item.Price_Curr })
+        <td> 
+            @Html.ActionLink("Select", "Index", new { SecurityId = item.Security_ID, iEntityId = item.Entity_ID, iPriceCurr = item.Price_Curr }) |
+            @Html.ActionLink("Edit", "Edit", new { SecurityId = item.Security_ID, iEntityId = item.Entity_ID, iPriceCurr = item.Price_Curr }) |
+            @Html.ActionLink("Details", "Details", new { SecurityId = item.Security_ID, iEntityId = item.Entity_ID, iPriceCurr = item.Price_Curr }) |
+            @Html.ActionLink("Delete", "Delete", new { SecurityId = item.Security_ID, iEntityId = item.Entity_ID, iPriceCurr = item.Price_Curr })
         </td>
     </tr>
 }
 
 </table>
+@if (Model.SecurityPriceHistory != null)
+{
+    <h3>
+        History for selected Security Price.
+    </h3>
+    if (!Model.SecurityPriceHistory.Any())
+    { 
+        <p>Looks like no History for that security!</p>
+    }
+    else
+    { 
+
+    <table class="table">
+        <tr>
+            <th>Date</th>
+            <th>Currency</th>
+            <th>All In Price</th>
+            <th>Clean Price</th>
+            <th>YTM</th>
+            <th>Currency</th>
+            <th>Discount Rate</th> 
+        </tr>
+        @foreach (var item in Model.SecurityPriceHistory)
+        {
+            <tr>
+                <td>
+                   @String.Format("{0:d MMM yyyy}", item.Price_DateTime) 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Currency.Currency_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.All_In_Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Clean_Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Yield_To_Maturity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount_Rate)
+                </td>
+            </tr>
+        }
+
+    </table>
+      }
+  }

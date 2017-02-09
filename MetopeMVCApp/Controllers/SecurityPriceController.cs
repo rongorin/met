@@ -18,15 +18,15 @@ namespace MetopeMVCApp.Controllers
     public class SecurityPriceController : Controller
     {
         private MetopeDbEntities db = new MetopeDbEntities();
-        private readonly ISecurityPriceRepository db11; 
+        private readonly ISecurityPriceRepository db11;
+        private readonly ISecurityDetailRepository db22; 
         private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
         
 
-        public SecurityPriceController(ISecurityPriceRepository iDb  )
+        public SecurityPriceController(ISecurityPriceRepository iDb   )
         {
             db11 = iDb; 
-        }
-
+        } 
 
         //this is an example of logging database functionaily:
         private void LogInfo(string logmessage)
@@ -38,21 +38,42 @@ namespace MetopeMVCApp.Controllers
         // GET: SecurityPrice
         public ActionResult Index(int? SecurityId, int? iEntityId, string iPriceCurr ="")
         {
+
             //var security_Price = db.Security_Price.Include(s => s.Currency)
             //                        .Include(s => s.Entity).Include(s => s.Security_Detail).Include(s => s.User);
+            if (SecurityId != null) 
+                 ViewBag.SecurityID = SecurityId.Value;
+
+            var viewModel = new SecurityPriceIndexViewModel(); 
+            viewModel.SecurityDetails = db.Security_Detail
+                .Where(c => (SecurityId != null) ? c.Security_ID >= SecurityId : c.Security_ID > 0) 
+                     .ToList().Take(3);    
+            //viewModel.SecurityDetails = db22.GetAll().Take(10); 
+
+             viewModel.SecurityPrices = db11.GetAll()
+                                        .Include(s => s.Security_Detail)
+                                        //.Include(s => s.Security_Detail.Security_Price_History) 
+                                        .OrderBy(s => s.Security_ID);
+
+             if (SecurityId != null && iPriceCurr != "")
+             {
+           
+                ViewBag.PriceCurr = iPriceCurr ;
+                   
+                viewModel.SecurityPriceHistory = db.Security_Price_History
+                    .Where(c => c.Security_ID == SecurityId && c.Price_Curr == iPriceCurr)
+                    .Include(c => c.Currency)
+                    .ToList();  
+               
+                //var security_Price = db.Security_Price.Include(s => s.Currency)
+                //                        .Include(s => s.Entity).Include(s => s.Security_Detail).Include(s => s.User);
 
 
-            var security_Price = db11.GetAll() //.Include(s => s.Security_Detail)
-                     .OrderBy(s => s.Security_ID).Take(10);
-
-            if (SecurityId != null)
-            {
-                ViewBag.SecurityID = SecurityId.Value;
                 //viewModel.Courses = viewModel.Instructors.Where(
                 //    i => i.ID == id.Value).Single().Courses;
 
             }
-            return View(security_Price.ToList());
+            return View(viewModel);
         }
 
         // GET: SecurityPrice/Details/5

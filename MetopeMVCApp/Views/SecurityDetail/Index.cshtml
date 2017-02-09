@@ -79,24 +79,23 @@
                 .Sanitized(false)
                 .SetWidth(60)
                 .RenderValueAs(c => @<u>
-                    @Html.ActionLink("Edit", "Edit", "SecurityDetail", new { id = c.Security_ID }, null)
+                    @Html.ActionLink("Edit", "Edit", "SecurityDetail", new { SecurityId = c.Security_ID }, null)
                 </u>); 
         columns.Add()
                 .Encoded(false)
                 .Sanitized(false)
                 .SetWidth(80)
                 .RenderValueAs(c => @<u>
-                    @Html.ActionLink("Delete", "Delete", "SecurityDetail", new { id = c.Security_ID }, null)
+                    @Html.ActionLink("Delete", "Delete", "SecurityDetail", new { SecurityId = c.Security_ID }, null)
                 </u>);
         
         columns.Add(c => c.Security_ID).Titled(" ").Encoded(false).Sanitized(false)
-                .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityPrice", new { id = c.Security_ID })">
+                .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityPrice", new { SecurityId = c.Security_ID })">
                                           <span class="badge">Price History</span>  
                                     </a>);
     }).WithPaging(Convert.ToInt16(ViewBag.RowsPgSelected)).Sortable(true)
   </div> 
-@section Scripts { 
+@section Scripts { @*@Scripts.Render("~/bundles/datetime")
     @Scripts.Render("~/bundles/GridMvc")
-    @*@Scripts.Render("~/bundles/datetime")
     @Scripts.Render("~/bundles/jqueryval")*@ 
 }

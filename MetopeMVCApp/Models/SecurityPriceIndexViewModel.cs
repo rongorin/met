@@ -7,6 +7,8 @@ namespace MetopeMVCApp.Models
 {
     public class SecurityPriceIndexViewModel
     {
+        public string Security_Name { get; set; }
+
         public IEnumerable<Security_Detail> SecurityDetails { get; set; }
         public IEnumerable<Security_Price> SecurityPrices { get; set; }
         public IEnumerable<Security_Price_History> SecurityPriceHistory { get; set; }
