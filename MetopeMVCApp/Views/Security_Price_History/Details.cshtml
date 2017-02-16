@@ -1,0 +1,154 @@
+﻿@model MetopeMVCApp.Models.Security_Price_History
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Security_Price_History</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.All_In_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.All_In_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clean_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clean_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Accrued_Income_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Accrued_Income_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price_Source)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price_Source)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Yield_To_Maturity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yield_To_Maturity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount_Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount_Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Update_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Update_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Record_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Record_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Session_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Session_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hist_Last_Update_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hist_Last_Update_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hist_Last_Update_User)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hist_Last_Update_User)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issued_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issued_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Free_Float_Issued_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Free_Float_Issued_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency.ISO_Currency_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency.ISO_Currency_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entity.Entity_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entity.Entity_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Detail.Security_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Detail.Security_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.User_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.User_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

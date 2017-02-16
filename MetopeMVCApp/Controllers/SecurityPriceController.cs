@@ -46,36 +46,29 @@ namespace MetopeMVCApp.Controllers
             if (SecurityId != null)
             {
                 ViewBag.SecurityID = SecurityId.Value;
+                viewModel.SecurityDetails = db.Security_Detail 
+                    .Where(c => c.Security_ID == SecurityId).FirstOrDefault<Security_Detail>() ; 
+            } 
 
-                viewModel.SecurityDetails = db.Security_Detail
-                    .Where(c => c.Security_ID == SecurityId).FirstOrDefault<Security_Detail>(); 
-            }
-             //  .Where(c => (SecurityId != null) ? c.Security_ID >= SecurityId : c.Security_ID > 0).ToList();
+            //viewModel.SecurityDetails = db22.GetAll().Take(10); 
 
-            //viewModel.SecurityDetails = db22.GetAll().Take(10);
+            viewModel.SecurityPrices = db11.GetAll()
+                                      .SearchPrices(SecurityId, iPriceCurr)
+                                      .Include(s => s.Currency)
+                                      .Include(s => s.Security_Detail)
+                                      .OrderBy(s => s.Security_Detail.Ticker )
+                                      .ToList();
+             
+            ViewBag.PriceCurr = iPriceCurr;  
 
-             viewModel.SecurityPrices = db11.GetAll()
-                                        .Include(s => s.Security_Detail)
-                                        //.Include(s => s.Security_Detail.Security_Price_History) 
-                                        .OrderBy(s => s.Security_ID);
-
+            //Show history:
+            //-----------------
              if (SecurityId != null && iPriceCurr != "")
-             {
-           
-                ViewBag.PriceCurr = iPriceCurr ;
-                   
+             {   
                 viewModel.SecurityPriceHistory = db.Security_Price_History
                     .Where(c => c.Security_ID == SecurityId && c.Price_Curr == iPriceCurr)
                     .Include(c => c.Currency)
-                    .ToList();  
-               
-                //var security_Price = db.Security_Price.Include(s => s.Currency)
-                //                        .Include(s => s.Entity).Include(s => s.Security_Detail).Include(s => s.User);
-
-
-                //viewModel.Courses = viewModel.Instructors.Where(
-                //    i => i.ID == id.Value).Single().Courses;
-
+                    .ToList();   
             }
             return View(viewModel);
         }
@@ -99,12 +92,11 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: SecurityPrice/Create
-        public ActionResult Create()
+        public ActionResult Create(int? SecurityId)
         {
-            ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
-            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code");
-            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name");
-            ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name");
+            ViewBag.SecurityID = SecurityId;
+            ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name");
+            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", SecurityId); 
             return View();
         }
 
@@ -113,17 +105,35 @@ namespace MetopeMVCApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Entity_ID,Security_ID,Price_Curr,All_In_Price,Clean_Price,Accrued_Income_Price,Price_Source,Yield_To_Maturity,Discount_Rate,Last_Update_User,Last_Update_Date,Issued_Amount,Free_Float_Issued_Amount,Record_Date")] Security_Price security_Price)
+        public ActionResult Create([Bind(Include = "Security_ID,Price_Curr,All_In_Price,Clean_Price,Accrued_Income_Price,Price_Source,Yield_To_Maturity,Discount_Rate,Last_Update_User,Last_Update_Date,Issued_Amount,Free_Float_Issued_Amount,Record_Date")] Security_Price security_Price)
         {
+            var currentUser = manager.FindById(User.Identity.GetUserId()); 
+            security_Price.Entity_ID = currentUser.EntityIdScope; 
+            /*------------------------------------------ 
+            first check if this party is already used ! 
+            ----------------------------------------*/ 
             if (ModelState.IsValid)
             {
-                db.Security_Price.Add(security_Price);
-                db.SaveChanges();
+                Security_Price check = db11.FindBy(r => r.Security_ID == security_Price.Security_ID && r.Price_Curr == security_Price.Price_Curr && r.Entity_ID == security_Price.Entity_ID)
+                           .FirstOrDefault();
+                if (check != null)
+                {
+                    ModelState.AddModelError("Name", "FAILED to create Security-Price for Security \"" + security_Price.Security_ID + "\" Currency:\"" + security_Price.Price_Curr + "\". Already exists!");
+                }
+            }
+
+            if (ModelState.IsValid)
+            { 
+                security_Price.Last_Update_Date = DateTime.Now;
+                security_Price.Last_Update_User = User.Identity.Name; 
+                db11.Add(security_Price);
+                db11.Save();
+                TempData.Add("ResultMessage", "new Security-Price for \"" + security_Price.Security_ID + "\" created successfully!");
+  
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Price.Price_Curr);
-            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Price.Entity_ID);
+            ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_Price.Price_Curr); 
             ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price.Security_ID);
             ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Price.Entity_ID);
             return View(security_Price);
@@ -136,18 +146,19 @@ namespace MetopeMVCApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Security_Price security_Price = db.Security_Price.Find(EntityId, SecurityId, PriceCurr);
-
-            if (security_Price == null)
+            Security_Price secPrice = db11.FindBy(r => r.Entity_ID == EntityId && r.Security_ID == SecurityId && 
+                                            r.Price_Curr == PriceCurr).Include(r => r.Security_Detail)
+                                            .FirstOrDefault(); 
+           if (secPrice == null)
             {
                 return HttpNotFound();
             }
+           return View(secPrice);
 
-            ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Price.Price_Curr);
-            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Price.Entity_ID);
-            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price.Security_ID);
-            ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_security_detail.Last_Update_User = User.Identity.Name; Name", security_Price.Entity_ID);
-            return View(security_Price);
+            //ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Price.Price_Curr);
+            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Price.Entity_ID);
+            //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price.Security_ID);
+            //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_security_detail.Last_Update_User = User.Identity.Name; Name", security_Price.Entity_ID);
         }
 
         // POST: SecurityPrice/Edit/5
@@ -158,31 +169,33 @@ namespace MetopeMVCApp.Controllers
         public ActionResult Edit([Bind(Include = "Entity_ID,Security_ID,Price_Curr,All_In_Price,Clean_Price,Accrued_Income_Price,Price_Source,Yield_To_Maturity,Discount_Rate,Last_Update_User,Last_Update_Date,Issued_Amount,Free_Float_Issued_Amount,Record_Date")] Security_Price security_Price)
         {
             if (ModelState.IsValid)
-            {
-                db.Entry(security_Price).State = EntityState.Modified;
-
+            {  
                 security_Price.Last_Update_Date = DateTime.Now;
                 security_Price.Last_Update_User = User.Identity.Name;
-                db.Database.Log = l => LogInfo(l);
-                db.SaveChanges();
+                //db11.Database.Log = l => LogInfo(l);
 
-                return RedirectToAction("Index");
+                db11.Update(security_Price);
+                db11.Save();
+                TempData.Add("ResultMessage", "Security Price \"" + security_Price.Security_ID + "\" edited successfully!");
+                //return RedirectToAction("Index"); 
+                return RedirectToAction("Index", "SecurityPrice", new {/* routeValues, for example: */ SecurityId = security_Price.Security_ID, iPriceCurr = security_Price.Price_Curr });
+                 
             }
-            ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Price.Price_Curr);
-            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Price.Entity_ID);
-            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price.Security_ID);
-            ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Price.Entity_ID);
+            //ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Price.Price_Curr);
+            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Price.Entity_ID);
+            //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price.Security_ID);
+            //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Price.Entity_ID);
             return View(security_Price);
         }
 
         // GET: SecurityPrice/Delete/5
-        public ActionResult Delete(decimal id)
+        public ActionResult Delete(decimal EntityId, decimal SecurityId, string PriceCurr)
         {
-            if (id == null)
+            if (SecurityId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Security_Price security_Price = db.Security_Price.Find(id);
+            Security_Price security_Price = db.Security_Price.Find(EntityId, SecurityId, PriceCurr);
             if (security_Price == null)
             {
                 return HttpNotFound();
@@ -193,13 +206,56 @@ namespace MetopeMVCApp.Controllers
         // POST: SecurityPrice/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(decimal id)
+        public ActionResult DeleteConfirmed(decimal EntityId, decimal SecurityId, string PriceCurr)
         {
-            Security_Price security_Price = db.Security_Price.Find(id);
+            Security_Price security_Price = db.Security_Price.Find(EntityId, SecurityId, PriceCurr);
             db.Security_Price.Remove(security_Price);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        // GET: Security_Price_History/Edit/5
+        public ActionResult EditHistory(decimal EntityId, decimal SecurityId, string PriceCurr, DateTime PriceDateTime)
+        {
+            if (SecurityId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //Security_Price_History security_Price_History = db.Security_Price_History
+            //                                                .Include(r => r.Security_Detail)
+            //                                                .Find(EntityId,SecurityId, PriceCurr, PriceDateTime);
+
+            Security_Price_History security_Price_History = db.Security_Price_History.Where(r => r.Entity_ID == EntityId && r.Security_ID == SecurityId &&
+                                r.Price_Curr == PriceCurr && r.Price_DateTime == PriceDateTime).Include(r => r.Security_Detail)
+                                .FirstOrDefault(); 
+
+
+            if (security_Price_History == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_Price_History.Price_Curr);
+             ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price_History.Security_ID);
+  
+            return View(security_Price_History);
+        } 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditHistory([Bind(Include = "Entity_ID,Security_ID,Price_Curr,All_In_Price,Clean_Price,Accrued_Income_Price,Price_Source,Yield_To_Maturity,Discount_Rate,Last_Update_User,Last_Update_Date,Price_DateTime,Record_Date,Session_ID,Hist_Last_Update_Date,Hist_Last_Update_User,Issued_Amount,Free_Float_Issued_Amount")] Security_Price_History security_Price_History)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(security_Price_History).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Price_History.Price_Curr);
+            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Price_History.Entity_ID);
+            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price_History.Security_ID);
+            ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Price_History.Entity_ID);
+            return View(security_Price_History);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

@@ -12,10 +12,8 @@
 {
     @Html.AntiForgeryToken()
     
-    @Html.EditorForModel(new { PreviousYearCount = 10, NextYearCount = 10 })
-
-}   
-
+    @Html.EditorForModel(new { PreviousYearCount = 10, NextYearCount = 10 }) 
+}    
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

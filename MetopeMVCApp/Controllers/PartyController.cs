@@ -48,29 +48,6 @@ namespace MetopeMVCApp.Controllers
             return View(parties.ToList());
         }
 
-        // GET: Party/Details/5
-        public ActionResult Details( string PartyCode,decimal EntityId  )
-        { 
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-
-            if (PartyCode == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            } 
-            if (currentUser.EntityIdScope != EntityId)
-            {
-                throw new Exception("Not Acceptable");
-                //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-            }
-
-            Party party = db11.FindBy(r => r.Party_Code == PartyCode).FirstOrDefault();
-
-            if (party == null)
-            {
-                return HttpNotFound();
-            }
-            return View(party);
-        }
 
         // GET: Party/Create
         [CountryFilter]
@@ -98,9 +75,9 @@ namespace MetopeMVCApp.Controllers
 
             /*------------------------------------------ 
             first check if this party is already used ! 
-            ----------------------------------------  */
+            ----------------------------------------*/
             Party check = db11.FindBy(r => r.Party_Code == party.Party_Code).FirstOrDefault();
-              //   Party check = db11.Get(party.Party_Code); 
+                     //   Party check = db11.Get(party.Party_Code); 
             if (ModelState.IsValid)
             {
                 if (check != null)
@@ -216,6 +193,29 @@ namespace MetopeMVCApp.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Party/Details/5
+        public ActionResult Details(string PartyCode, decimal EntityId)
+        {
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+
+            if (PartyCode == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (currentUser.EntityIdScope != EntityId)
+            {
+                throw new Exception("Not Acceptable");
+                //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
+            }
+
+            Party party = db11.FindBy(r => r.Party_Code == PartyCode).FirstOrDefault();
+
+            if (party == null)
+            {
+                return HttpNotFound();
+            }
+            return View(party);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

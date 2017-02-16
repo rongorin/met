@@ -1,0 +1,129 @@
+﻿@model IEnumerable<MetopeMVCApp.Models.Security_Price_History>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.All_In_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clean_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Accrued_Income_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price_Source)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Yield_To_Maturity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount_Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_Update_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Record_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Session_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hist_Last_Update_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hist_Last_Update_User)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Issued_Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Free_Float_Issued_Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Currency.ISO_Currency_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Entity.Entity_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Security_Detail.Security_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.User_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.All_In_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clean_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Accrued_Income_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price_Source)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Yield_To_Maturity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount_Rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_Update_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Record_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Session_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hist_Last_Update_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hist_Last_Update_User)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Issued_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Free_Float_Issued_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Currency.ISO_Currency_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Entity.Entity_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Security_Detail.Security_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.User_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

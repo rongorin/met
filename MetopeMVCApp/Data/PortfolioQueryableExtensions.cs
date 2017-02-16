@@ -19,6 +19,20 @@ namespace MetopeMVCApp.Data
             return port.Where(r => searchname == null || r.Security_Name.Contains(searchname));
            
         }
+        public static IQueryable<Security_Price> SearchPrices(this IQueryable<Security_Price> prices, int? SecurityId, string iPriceCurr = "")
+        {
+            var query1 = prices  
+                       .Where(c => (SecurityId != null) ? c.Security_ID == SecurityId : c.Security_ID > 0);
+
+            // -- removed as rather show ALL the PriceCurr records for the selected Security
+            //var filteredQuery = query1.
+            //                    Where(c => (iPriceCurr != "") ? c.Price_Curr == iPriceCurr : c.Price_Curr != "");
+
+            return query1;
+             
+        }
+
+      
         //--some other ones that can maybe use: -------------------
 
         //public static IQueryable<Person> InRegion(this IQueryable<Person> people, string region)

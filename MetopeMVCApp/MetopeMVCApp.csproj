@@ -359,6 +359,7 @@
     <Compile Include="Models\MyMetaData\PartyModelMetaData.cs" />
     <Compile Include="Models\MyMetaData\PortfolioModelMetatData.cs" />
     <Compile Include="Models\MyMetaData\SecurityDetailModelMetaData.cs" />
+    <Compile Include="Models\MyMetaData\SecurityPriceModelMetaData.cs" />
     <Compile Include="Models\Party.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
@@ -690,13 +691,19 @@
     <Content Include="Views\SecurityPrice\Details.cshtml" />
     <Content Include="Views\SecurityPrice\Edit.cshtml" />
     <Content Include="Views\SecurityPrice\Index.cshtml" />
+    <Content Include="Views\SecurityPrice\View.cshtml" />
+    <Content Include="Views\Security_Price_History\Create.cshtml" />
+    <Content Include="Views\Security_Price_History\Delete.cshtml" />
+    <Content Include="Views\Security_Price_History\Details.cshtml" />
+    <Content Include="Views\Security_Price_History\Edit.cshtml" />
+    <Content Include="Views\Security_Price_History\Index.cshtml" />
+    <Content Include="Views\SecurityPrice\EditHistory.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="NewFolder1\" />
     <Folder Include="Views\Contact\" />
   </ItemGroup>
   <ItemGroup>

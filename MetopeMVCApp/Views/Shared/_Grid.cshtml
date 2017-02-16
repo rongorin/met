@@ -36,12 +36,12 @@ else
     {
         foreach (object item in Model.ItemsToDisplay)
         {
-    <tr class="grid-row @Model.GetRowCssClasses(item)">
-        @foreach (IGridColumn column in Model.Columns)
-        {
-            @column.CellRenderer.Render(column, column.GetCell(item))
-        }
-    </tr>
+            <tr class="grid-row  @Model.GetRowCssClasses(item)">
+                @foreach (IGridColumn column in Model.Columns)
+                {
+                    @column.CellRenderer.Render(column, column.GetCell(item))
+                }
+            </tr>
         }
     }
 }
@@ -63,3 +63,5 @@ else
     </div>
     }
 }
+
+ 

@@ -3,6 +3,8 @@
 *   This file contains default styles for Grid.Mvc.
 */
 /* Grid */
+
+
 table.grid-table { margin: 0; }
     table.grid-table .grid-wrap { padding: 0; position: relative; }
     table.grid-table .grid-empty-text { color: #666; }
@@ -14,9 +16,10 @@ table.grid-table { margin: 0; }
         table.grid-table .grid-header > .grid-header-title { width: 100%; margin-right: 15px; white-space: nowrap; }
 
     /* Grid body */
-    table.grid-table tr.grid-row-selected td { background: #4888C2 !important; color: white; }
+    table.grid-table tr.grid-row-selected td {color: white;  background: #4888C2 !important }
     table.grid-table tr.grid-row-selected a { color: white; }
 
+ 
 /* Grid filtering */
 input.grid-filter-input { padding: 4px; font-size: 13px; }
 table.grid-table .grid-filter { position: relative; margin-top: 2px; float: right; width: 10px; height: 12px; }
@@ -37,3 +40,4 @@ table.grid-table .grid-popup-additional { padding: 3px 0 0 0; }
 .grid-dropdown ul.menu-list { list-style-type: none; margin: 3px 0 0 0; padding: 0; }
     .grid-dropdown ul.menu-list li a { text-decoration: none; background-position: 6px center; background-repeat: no-repeat; display: block; padding: 4px 5px; }
         .grid-dropdown ul.menu-list li a:hover { background-color: #EEE; text-decoration: none; }
+ 

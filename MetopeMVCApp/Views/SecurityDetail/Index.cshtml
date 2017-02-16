@@ -50,13 +50,14 @@
             @*@Html.DropDownList("numberOfRows", null, string.Empty, new { @class = "form-control" })*@ 
         </div>
     </div> 
-  </div>
-    <div class="row">
-        <div class="col-md-12 "> 
-                @Html.ActionLink("Create New", "Create") 
-        </div>
+</div>
+     
+<div class="row">
+    <div class="col-md-12 "> 
+            @Html.ActionLink("Create New", "Create") 
     </div>
- }
+</div>
+}
 @Html.Partial("_MsgSuccesFail", Model) 
   <div class="code-cut"> 
     @Html.Grid(Model).Columns(columns =>
@@ -86,7 +87,7 @@
                 .Sanitized(false)
                 .SetWidth(80)
                 .RenderValueAs(c => @<u>
-                    @Html.ActionLink("Delete", "Delete", "SecurityDetail", new { SecurityId = c.Security_ID }, null)
+                    @Html.ActionLink("Delete", "Delete", "SecurityDetail", new { id = c.Security_ID }, null)
                 </u>);
         
         columns.Add(c => c.Security_ID).Titled(" ").Encoded(false).Sanitized(false)
