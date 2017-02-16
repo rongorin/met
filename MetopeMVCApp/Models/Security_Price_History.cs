@@ -9,8 +9,11 @@
 
 namespace MetopeMVCApp.Models
 {
-    using System;
+    using MetopeMVCApp.Models.MyMetaData;
+    using System; 
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    [MetadataType(typeof(SecurityPriceHistoryModelMetaData))]
     
     public partial class Security_Price_History
     {

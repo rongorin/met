@@ -235,8 +235,8 @@ namespace MetopeMVCApp.Controllers
                 return HttpNotFound();
             }
             ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_Price_History.Price_Curr);
-             ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price_History.Security_ID);
-  
+            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price_History.Security_ID);
+             
             return View(security_Price_History);
         } 
         [HttpPost]
@@ -245,14 +245,23 @@ namespace MetopeMVCApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(security_Price_History).State = EntityState.Modified;
+                //db.Entry(security_Price_History).State = EntityState.Modified;
+                db.Security_Price_History.Attach(security_Price_History);
+                db.Entry(security_Price_History).Property(r => r.All_In_Price).IsModified = true;
+                db.Entry(security_Price_History).Property(r => r.Clean_Price).IsModified = true;
+                db.Entry(security_Price_History).Property(r => r.Discount_Rate).IsModified = true;
+                db.Entry(security_Price_History).Property(r => r.Accrued_Income_Price).IsModified = true;
+                db.Entry(security_Price_History).Property(r => r.Price_Source).IsModified = true;
+                db.Entry(security_Price_History).Property(r => r.Yield_To_Maturity).IsModified = true;
+                db.Entry(security_Price_History).Property(r => r.Issued_Amount).IsModified = true;
+                db.Entry(security_Price_History).Property(r => r.Free_Float_Issued_Amount).IsModified = true;   
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Price_History.Price_Curr);
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Price_History.Entity_ID);
             ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price_History.Security_ID);
-            ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Price_History.Entity_ID);
+       
             return View(security_Price_History);
         }
 
