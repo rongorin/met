@@ -405,6 +405,8 @@
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrapSlate.css" />
     <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\gridmvc.datepicker.css" />
+    <Content Include="Content\gridmvc.datepicker.min.css" />
     <Content Include="Content\myCustom.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\bus-yellow-300px.png" />
@@ -537,6 +539,7 @@
     <Content Include="Content\bootstrap\bootstrap.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -692,12 +695,8 @@
     <Content Include="Views\SecurityPrice\Details.cshtml" />
     <Content Include="Views\SecurityPrice\Edit.cshtml" />
     <Content Include="Views\SecurityPrice\Index.cshtml" />
-    <Content Include="Views\Security_Price_History\Create.cshtml" />
-    <Content Include="Views\Security_Price_History\Delete.cshtml" />
-    <Content Include="Views\Security_Price_History\Details.cshtml" />
-    <Content Include="Views\Security_Price_History\Edit.cshtml" />
-    <Content Include="Views\Security_Price_History\Index.cshtml" />
     <Content Include="Views\SecurityPrice\EditHistory.cshtml" />
+    <Content Include="Views\SecurityPrice\DeleteHistory.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

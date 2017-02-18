@@ -130,11 +130,10 @@
 </div>
 @*@if (ViewBag.SecurityID != null)
     {*@
-        <p>
-            @Html.ActionLink("Create New", "Create", new { SecurityId = ViewBag.SecurityID }, null)
-        </p>
- 
-    <div class="code-cut"> 
+<p>
+    @Html.ActionLink("Create New", "Create", new { SecurityId = ViewBag.SecurityID }, null)
+</p> 
+<div class="code-cut"> 
     @Html.Grid(Model.SecurityPrices).Named("ast").SetRowCssClasses(
                     item => item.Price_Curr == ViewBag.PriceCurr ? "grid-row-selected" : string.Empty).Columns(columns =>
     {
@@ -189,147 +188,85 @@
                
     }).WithPaging(10).Sortable(true)
 </div>
- 
-  @*<h3>
-   Security Prices.
-</h3>
-<table class="table">
-    <tr>
-        <th>AllIn Price</th>
-        <th>Clean_Price</th>
-        <th>Price Sourc</th>
-        <th>Yield_To Maturity</th>
-        <th>Discount Rate</th>
-        <th>Last UpdateDate</th>
-        <th>Record Date</th>
-        <th>Security Name</th>
-        <th></th>
-          
-    </tr>*@ 
-@*@foreach (var item in Model )
+  @*------------------------------------- HISTORY ------------------------------------------*@
+@if (Model.SecurityPriceHistory != null)
+{
+    <h4>
+        <b>
+            History for selected Security Price.
+        </b>
+    </h4>
+    if (!Model.SecurityPriceHistory.Any())
     {
-        string selectedRow = "";
-        if (item.Security_ID == ViewBag.SecurityID && item.Price_Curr == ViewBag.PriceCurr)
-        {
-            selectedRow = "success";
-        }
-        <tr class="@selectedRow">
-            <td>
-                @Html.DisplayFor(modelItem => item.All_In_Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Clean_Price)
-            </td>
+        <p>no price history for  @ViewBag.PriceCurr </p>
+    }
+    else
+    {
+        <div class="code-cut">
+            @Html.Grid(Model.SecurityPriceHistory).Named("ast").Columns(columns =>
+    {
+        //columns.Add(c => c.Price_DateTime).RenderValueAs(x => String.Format("<span >{0:d MMM yyyy}</span>", x.Price_DateTime)).Encoded(false)
+        //        .Sanitized(false)
+        //    .Titled("Historic Date").Filterable(true).SetWidth(230);
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Price_Source)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Yield_To_Maturity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Discount_Rate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Last_Update_Date)
-            </td>
+        columns.Add(c => c.Price_DateTime).Titled("Historic Date").Format("{0:d MMM yyyy}").SetWidth(230).Sortable(true).Filterable(true);
+         
+            
+        columns.Add(c => c.Price_Curr)
+        .Titled("Historic Price Currency").Filterable(false)
+        .SetWidth(190);
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Record_Date)
-            </td>
+        columns.Add(c => c.All_In_Price).Titled("Historic All in Price")
+                .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.All_In_Price)).Encoded(false)
+                 .Sanitized(false)
+                .Filterable(true).SetWidth(120);
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Security_Detail.Security_Name)
-            </td>
 
-            <td>
-                @Html.ActionLink("Select", "Index", new { SecurityId = item.Security_ID, iEntityId = item.Entity_ID, iPriceCurr = item.Price_Curr }) |
-                @Html.ActionLink("Edit", "Edit", new { SecurityId = item.Security_ID, iEntityId = item.Entity_ID, iPriceCurr = item.Price_Curr }) |
-                @Html.ActionLink("Details", "Details", new { SecurityId = item.Security_ID, iEntityId = item.Entity_ID, iPriceCurr = item.Price_Curr }) |
-                @Html.ActionLink("Delete", "Delete", new { SecurityId = item.Security_ID, iEntityId = item.Entity_ID, iPriceCurr = item.Price_Curr })
-            </td>
-        </tr>
+        // columns.Add(c => c.Security_Type_Code ).Titled("Return").Encoded(false).Sanitized(false).RenderValueAs(c => @Html.ActionLink(" ", "../LendReturns/Create", new { id = c.NumberOfRows }, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
+
+        //.RenderValueAs(, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
+
+        columns.Add(c => c.Clean_Price).Titled("Historic Clean Price").Filterable(false)
+                .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Clean_Price)).Encoded(false)
+                .Sanitized(false)
+                .SetWidth(130);
+
+        columns.Add(c => c.Price_Source)
+            .Titled("Price Source").Filterable(false)
+            .SetWidth(110);
+
+        columns.Add(c => c.Yield_To_Maturity).Filterable(false)
+        .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Yield_To_Maturity)).Encoded(false)
+            .Titled("YTM").Filterable(false)
+            .SetWidth(120);
+
+        columns.Add(c => c.Discount_Rate).Titled("Discount Rate").Filterable(false)
+        .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Discount_Rate)).Encoded(false)
+        .Sanitized(false)
+        .SetWidth(120);
+        columns.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .SetWidth(100)
+                .RenderValueAs(c => @<u>
+                    @Html.ActionLink("Delete", "DeleteHistory", "SecurityPrice", new { EntityId = c.Entity_ID, SecurityId = c.Security_ID, PriceCurr = c.Price_Curr, PriceDateTime = c.Price_DateTime }, null)
+                </u>);
+        columns.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .SetWidth(100)
+                .RenderValueAs(c => @<u>
+                    @Html.ActionLink("Edit", "EditHistory", "SecurityPrice", new { EntityId = c.Entity_ID, SecurityId = c.Security_ID, PriceCurr = c.Price_Curr, PriceDateTime = c.Price_DateTime }, null)
+
+                </u>);
+    }).WithPaging(10).Sortable(true)
+        </div>
+
     }
 
-    </table>
-    *@   
-    
-    @if (Model.SecurityPriceHistory != null)
-    {
-        <h4>
-            <b>
-                History for selected Security Price.
-            </b>
-        </h4>
-        if (!Model.SecurityPriceHistory.Any())
-        {
-            <p>no price history for  @ViewBag.PriceCurr </p>
-        }
-        else
-        {
-            <table class="table">
-                <tr>
-                    <th>Historic Date</th>
-                    <th>Currency</th>
-                    <th>All In Price</th>
-                    <th>Clean Price</th>
-                    <th>Price Source</th>
-                    <th>YTM</th> 
-                    <th>Discount Rate</th>
-                </tr>
-                @foreach (var item in Model.SecurityPriceHistory)
-                {
-                    <tr>
-                        <td>
-                            @String.Format("{0:d MMM yyyy}", item.Price_DateTime)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Currency.Currency_Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.All_In_Price)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Clean_Price)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Price_Source)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Yield_To_Maturity)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Discount_Rate)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "EditHistory", "SecurityPrice", new { EntityId = item.Entity_ID, SecurityId = item.Security_ID, PriceCurr = item.Price_Curr, PriceDateTime = item.Price_DateTime }, null)
+}
 
-
-                        </td>
-
-                    </tr>
-                }
-
-            </table>
-        }
-    }
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/GridMvc") 
- 
-        @*<script>
-            $(function () {
-                pageGrids.ast.onRowSelect(function (e) {
-                    //alert(e.row.Price_Curr);
-
-                    $.post("/SecurityPrice?SecurityId=" + e.row.Security_ID, function (data) {
-                        alert(data.Status);
-                        if (data.Status <= 0) {
-                            alert(data.Message);
-                            return;
-                        }
-                    });
-                });
-            });
-        </script*@>
+@section Scripts {
+    @Scripts.Render("~/bundles/GridMvc") 
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>     
 }

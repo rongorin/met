@@ -211,6 +211,8 @@ namespace MetopeMVCApp.Controllers
             Security_Price security_Price = db.Security_Price.Find(EntityId, SecurityId, PriceCurr);
             db.Security_Price.Remove(security_Price);
             db.SaveChanges();
+            TempData.Add("ResultMessage", "Security Price record for security \"" + security_Price.Security_ID + "\" Deleted successfully!");
+
             return RedirectToAction("Index");
         }
 
@@ -225,10 +227,13 @@ namespace MetopeMVCApp.Controllers
             //                                                .Include(r => r.Security_Detail)
             //                                                .Find(EntityId,SecurityId, PriceCurr, PriceDateTime);
 
-            Security_Price_History security_Price_History = db.Security_Price_History.Where(r => r.Entity_ID == EntityId && r.Security_ID == SecurityId &&
-                                r.Price_Curr == PriceCurr && r.Price_DateTime == PriceDateTime).Include(r => r.Security_Detail)
-                                .FirstOrDefault(); 
-
+            Security_Price_History security_Price_History = db.Security_Price_History.
+                                                             Where(r => r.Entity_ID == EntityId && 
+                                                                 r.Security_ID == SecurityId &&
+                                                                 r.Price_Curr == PriceCurr && 
+                                                                 r.Price_DateTime == PriceDateTime)
+                                                            .Include(r => r.Security_Detail)
+                                                            .FirstOrDefault();  
 
             if (security_Price_History == null)
             {
@@ -256,16 +261,44 @@ namespace MetopeMVCApp.Controllers
                 db.Entry(security_Price_History).Property(r => r.Issued_Amount).IsModified = true;
                 db.Entry(security_Price_History).Property(r => r.Free_Float_Issued_Amount).IsModified = true;   
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData.Add("ResultMessage", "Security Price History record for security \"" + security_Price_History.Security_ID + "\" Edited successfully!");
+
+                return RedirectToAction("Index", "SecurityPrice", new { SecurityId = security_Price_History.Security_ID, iPriceCurr = security_Price_History.Price_Curr});
             }
             ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Price_History.Price_Curr);
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Price_History.Entity_ID);
             ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price_History.Security_ID);
        
+            return View( security_Price_History);
+        }
+
+        public ActionResult DeleteHistory(decimal EntityId, decimal SecurityId, string PriceCurr, DateTime PriceDateTime)
+        {
+            if (SecurityId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Security_Price_History security_Price_History = db.Security_Price_History.Find(EntityId, SecurityId, PriceCurr, PriceDateTime);
+            if (security_Price_History == null)
+            {
+                return HttpNotFound();
+            }
             return View(security_Price_History);
         }
 
+        // POST: SecurityPrice/Delete/5
+        [HttpPost, ActionName("DeleteHistory")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteHistoryConfirmed(decimal EntityId, decimal SecurityId, string PriceCurr, DateTime PriceDateTime)
+        {
+            Security_Price_History security_Price_History = db.Security_Price_History.Find(EntityId, SecurityId, PriceCurr, PriceDateTime);
+            db.Security_Price_History.Remove(security_Price_History);
+            db.SaveChanges();
+            TempData.Add("ResultMessage", "Security-Price History record  \"" + security_Price_History.Security_ID + " Currency" + PriceCurr + "\" Deleted successfully!");
 
+            return RedirectToAction("Index", "SecurityPrice", new { SecurityId = security_Price_History.Security_ID, iPriceCurr = security_Price_History.Price_Curr });
+             
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

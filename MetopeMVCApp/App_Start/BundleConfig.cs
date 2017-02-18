@@ -65,7 +65,8 @@ namespace ASP.MetopeNspace
             "~/Scripts/common/wizard-init.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/GridMvc").Include(
-            "~/Scripts/gridmvc.min.js"));  
+            "~/Scripts/gridmvc.min.js",
+            "~/Scripts/bootstrap-datepicker.js"));  
               
             var bootstrapBundle = new ScriptBundle("~/bundles/bootstrap");
             bootstrapBundle.Include("~/Scripts/bootstrap.js", "~/Scripts/respond.js");

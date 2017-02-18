@@ -27,7 +27,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.All_In_Price, htmlAttributes: new { @class = "control-label col-md-3" })
             <div class="col-md-9">
-                @Html.EditorFor(model => model.All_In_Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.All_In_Price, "{0:0.##########}", new
+                {
+                    @class = "form-control col-md-3",
+                    placeholder = ViewData.ModelMetadata.Watermark
+                }) 
                 @Html.ValidationMessageFor(model => model.All_In_Price, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -35,7 +39,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Clean_Price, htmlAttributes: new { @class = "control-label col-md-3" })
             <div class="col-md-9">
-                @Html.EditorFor(model => model.Clean_Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Clean_Price, "{0:0.##########}", new
+                {
+                    @class = "form-control col-md-3",
+                    placeholder = ViewData.ModelMetadata.Watermark
+                }) 
+                 
                 @Html.ValidationMessageFor(model => model.Clean_Price, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -43,7 +52,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Accrued_Income_Price, htmlAttributes: new { @class = "control-label col-md-3" })
             <div class="col-md-9">
-                @Html.EditorFor(model => model.Accrued_Income_Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Accrued_Income_Price, "{0:0.##########}", new
+                {
+                    @class = "form-control col-md-3",
+                    placeholder = ViewData.ModelMetadata.Watermark
+                }) 
                 @Html.ValidationMessageFor(model => model.Accrued_Income_Price, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,7 +72,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Yield_To_Maturity, htmlAttributes: new { @class = "control-label col-md-3" })
             <div class="col-md-9">
-                @Html.EditorFor(model => model.Yield_To_Maturity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Yield_To_Maturity, "{0:0.##########}", new
+                {
+                    @class = "form-control col-md-3",
+                    placeholder = ViewData.ModelMetadata.Watermark
+                })
+                 
                 @Html.ValidationMessageFor(model => model.Yield_To_Maturity, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -67,7 +85,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Discount_Rate, htmlAttributes: new { @class = "control-label col-md-3" })
             <div class="col-md-9">
-                @Html.EditorFor(model => model.Discount_Rate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Discount_Rate, "{0:0.##########}", new
+                {
+                    @class = "form-control col-md-3",
+                    placeholder = ViewData.ModelMetadata.Watermark
+                }) 
                 @Html.ValidationMessageFor(model => model.Discount_Rate, "", new { @class = "text-danger" })
             </div>
         </div> 
@@ -96,7 +118,7 @@
     </div>
 }
 
-<div> 
+<div class="col-md-offset-1 "> 
     @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
 </div>
 @section Scripts {

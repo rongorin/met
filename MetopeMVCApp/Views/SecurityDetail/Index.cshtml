@@ -76,7 +76,7 @@
                 .Sanitized(false)
                 .SetWidth(140); 
         columns.Add()
-                .Encoded(false)
+                .Encoded(false) 
                 .Sanitized(false)
                 .SetWidth(60)
                 .RenderValueAs(c => @<u>
@@ -96,7 +96,6 @@
                                     </a>);
     }).WithPaging(Convert.ToInt16(ViewBag.RowsPgSelected)).Sortable(true)
   </div> 
-@section Scripts { @*@Scripts.Render("~/bundles/datetime")
-    @Scripts.Render("~/bundles/GridMvc")
-    @Scripts.Render("~/bundles/jqueryval")*@ 
+@section Scripts { @Scripts.Render("~/bundles/datetime")
+    @Scripts.Render("~/bundles/GridMvc") 
 }

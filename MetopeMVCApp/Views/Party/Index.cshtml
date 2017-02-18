@@ -27,7 +27,7 @@
 
         //.RenderValueAs(, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
 
-        columns.Add(c => c.Financial_Year_End).Titled("Financial Year End").Filterable(false).SetWidth(200).Format("{0:dd MMM yyyy}");
+        columns.Add(c => c.Financial_Year_End).Titled("Financial Year End").Filterable(true).SetWidth(200).Format("{0:dd MMM yyyy}");
         
         columns.Add()
                 .Encoded(false)
