@@ -176,7 +176,7 @@ namespace MetopeMVCApp.Controllers
 
                 db11.Update(security_Price);
                 db11.Save();
-                TempData.Add("ResultMessage", "Security Price \"" + security_Price.Security_ID + "\" edited successfully!");
+                TempData.Add("ResultMessage", "Security \"" + security_Price.Security_ID + "\" for Price Currency " + security_Price.Price_Curr + "\" edited successfully!");
                 //return RedirectToAction("Index"); 
                 return RedirectToAction("Index", "SecurityPrice", new {/* routeValues, for example: */ SecurityId = security_Price.Security_ID, iPriceCurr = security_Price.Price_Curr });
                  

@@ -210,8 +210,8 @@
         //    .Titled("Historic Date").Filterable(true).SetWidth(230);
 
         columns.Add(c => c.Price_DateTime).Titled("Historic Date").Format("{0:d MMM yyyy}").SetWidth(230).Sortable(true).Filterable(true);
-         
-            
+
+
         columns.Add(c => c.Price_Curr)
         .Titled("Historic Price Currency").Filterable(false)
         .SetWidth(190);
@@ -249,15 +249,15 @@
                 .Sanitized(false)
                 .SetWidth(100)
                 .RenderValueAs(c => @<u>
-                    @Html.ActionLink("Delete", "DeleteHistory", "SecurityPrice", new { EntityId = c.Entity_ID, SecurityId = c.Security_ID, PriceCurr = c.Price_Curr, PriceDateTime = c.Price_DateTime }, null)
+                    @Html.ActionLink("Edit", "EditHistory", "SecurityPrice", new { EntityId = c.Entity_ID, SecurityId = c.Security_ID, PriceCurr = c.Price_Curr, PriceDateTime = c.Price_DateTime }, null)
+
                 </u>);
         columns.Add()
                 .Encoded(false)
                 .Sanitized(false)
                 .SetWidth(100)
                 .RenderValueAs(c => @<u>
-                    @Html.ActionLink("Edit", "EditHistory", "SecurityPrice", new { EntityId = c.Entity_ID, SecurityId = c.Security_ID, PriceCurr = c.Price_Curr, PriceDateTime = c.Price_DateTime }, null)
-
+                    @Html.ActionLink("Delete", "DeleteHistory", "SecurityPrice", new { EntityId = c.Entity_ID, SecurityId = c.Security_ID, PriceCurr = c.Price_Curr, PriceDateTime = c.Price_DateTime }, null)
                 </u>);
     }).WithPaging(10).Sortable(true)
         </div>
@@ -268,5 +268,22 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/GridMvc") 
-    <script src="~/Scripts/bootstrap-datepicker.js"></script>     
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>      
+@*<script>
+        $(function () {
+            pageGrids.ast.onRowSelect(function (e) {
+                //alert(e.row.Price_Curr);
+
+                $.post("/SecurityPrice?SecurityId=" + e.row.Security_ID, function (data) {
+                    alert(data.Status);
+                    if (data.Status <= 0) {
+                        alert(data.Message);
+                        return;
+                    }
+                });
+            });
+        });
+    </script*@
+ 
+
 }
