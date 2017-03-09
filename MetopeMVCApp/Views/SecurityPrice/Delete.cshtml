@@ -8,7 +8,7 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Security_Price</h4>
+    <h4>Security Price</h4>
     <hr />
     <dl class="dl-horizontal"> 
 
@@ -48,7 +48,8 @@
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
+         
+        
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-danger" />  |  
             @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })

@@ -10,14 +10,12 @@ namespace MetopeMVCApp.Data
     {
         public static IQueryable<Portfolio> SearchPortfName(this IQueryable<Portfolio> port, string searchname)
         {
-            return port.Where(r => searchname == null || r.Portfolio_Name.Contains(searchname));
-           
+            return port.Where(r => searchname == null || r.Portfolio_Name.Contains(searchname)); 
         }
  
         public static IQueryable<Security_Detail> SearchSecName(this IQueryable<Security_Detail> port, string searchname)
         {
-            return port.Where(r => searchname == null || r.Security_Name.Contains(searchname));
-           
+            return port.Where(r => searchname == null || r.Security_Name.Contains(searchname)); 
         }
         public static IQueryable<Security_Price> SearchPrices(this IQueryable<Security_Price> prices, int? SecurityId, string iPriceCurr = "")
         {
@@ -31,17 +29,20 @@ namespace MetopeMVCApp.Data
             return query1;
              
         }
-
-      
-        //--some other ones that can maybe use: -------------------
+         //--some other ones that can maybe use: -------------------
 
         //public static IQueryable<Person> InRegion(this IQueryable<Person> people, string region)
         //{
         //    return people.Where(p => p.Addresses.Any(a => a.Region == region));
         //}
+
         //public static IOrderedQueryable<Person> OrderByName(this IQueryable<Person> people)
         //{
         //    return people.OrderBy(x => x.Name);
         //}
+ 
+   
+
+
     }
 }

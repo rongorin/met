@@ -6,9 +6,7 @@
 @section Styles {
     @Styles.Render("~/Content/datetime")
 }
-
-
-
+ 
 <h3>Create a Security Price</h3>  
 
 @using (Html.BeginForm()) 
@@ -22,8 +20,7 @@
 
         <div class="form-group">
             <div class="col-md-11 col-lg-offset-1">
-                @Html.EditorFor(model => model.Record_Date, "BootstrapEditDate")
-                @Html.ValidationMessageFor(model => model.Record_Date, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Record_Date, "BootstrapEditDate") 
             </div>
             </div>
          
@@ -125,13 +122,6 @@
 @section Scripts { 
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/datetime")
-    <script>
-        $(function () {
-            $(form).submit(function() {
-                alert('xxx');
-                $('#Types').removeAttr('disabled');
-            });
-        });
-    </script>
+    
 }
  

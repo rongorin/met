@@ -1,0 +1,2 @@
+﻿   table.grid-table tr td {border-right: none;}  
+   table.grid-table tr.grid-row-selected td {border-right: solid 1px #4888C2;}   

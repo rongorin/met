@@ -11,6 +11,9 @@ namespace MetopeMVCApp.Models.MyMetaData
 
     public class SecurityDetailModelMetaData
     {
+        [Display(Name = "Security ID")]
+        public object Security_ID { get; set; }
+
         [Required]
         [Display(Name = "Security Name")] 
         public object Security_Name { get; set; }

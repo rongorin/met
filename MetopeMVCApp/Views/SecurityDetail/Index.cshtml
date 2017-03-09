@@ -22,6 +22,7 @@
 @section Styles {
     @Styles.Render("~/Content/GridMvc")
     @Styles.Render("~/Content/datetime")
+    <link href="~/Content/cssNoLines.css" rel="stylesheet" />
 }
         
 @helper Truncate(string input, int length)
@@ -37,26 +38,26 @@
 }
  @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
  { 
-<div class="row">
-    <div class="col-md-7 "> 
-            <h3>Securities Listing</h3>  
-    </div>  
+    <div class="row">
+        <div class="col-md-7 "> 
+                <h3>Securities Listing</h3>  
+        </div>  
 
-    <div class="col-md-5 col-right">
-        <div class="pull-right"> 
-            <label  class=" control-label">show rows:</label> 
-            @Html.DropDownList("numberOfRows", (SelectList)ViewBag.RowsPerPage) 
-            <input type="submit" value="Update" class="btn btn-primary btn-xs" />
-            @*@Html.DropDownList("numberOfRows", null, string.Empty, new { @class = "form-control" })*@ 
-        </div>
-    </div> 
-</div>
-     
-<div class="row">
-    <div class="col-md-12 "> 
-            @Html.ActionLink("Create New", "Create") 
+        <div class="col-md-5 col-right">
+            <div class="pull-right"> 
+                <label  class=" control-label">show rows:</label> 
+                @Html.DropDownList("numberOfRows", (SelectList)ViewBag.RowsPerPage) 
+                <input type="submit" value="Update" class="btn btn-primary btn-xs" />
+                @*@Html.DropDownList("numberOfRows", null, string.Empty, new { @class = "form-control" })*@ 
+            </div>
+        </div> 
     </div>
-</div>
+     
+    <div class="row">
+        <div class="col-md-12 "> 
+                @Html.ActionLink("Create New", "Create") 
+        </div>
+    </div>
 }
 @Html.Partial("_MsgSuccesFail", Model) 
   <div class="code-cut"> 
@@ -98,4 +99,5 @@
   </div> 
 @section Scripts { @Scripts.Render("~/bundles/datetime")
     @Scripts.Render("~/bundles/GridMvc") 
+
 }

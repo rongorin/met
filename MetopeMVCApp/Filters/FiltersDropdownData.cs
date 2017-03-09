@@ -1,7 +1,8 @@
-﻿ 
+﻿
 using MetopeMVCApp.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -21,9 +22,8 @@ namespace MetopeMVCApp.Filters
     //        base.OnActionExecuted(filterContext);
     //    }
 
-    //}
-             
-     
+    //} 
+    
     public class CountryFilter : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)

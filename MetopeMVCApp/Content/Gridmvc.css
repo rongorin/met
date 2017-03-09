@@ -16,10 +16,15 @@ table.grid-table { margin: 0; }
         table.grid-table .grid-header > .grid-header-title { width: 100%; margin-right: 15px; white-space: nowrap; }
 
     /* Grid body */
-    table.grid-table tr.grid-row-selected td {color: white;  background: #4888C2 !important }
+    table.grid-table tr.grid-row-selected td {
+        color: white;
+        background: #4888C2 !important;
+    }
     table.grid-table tr.grid-row-selected a { color: white; }
-
- 
+     
+   table.grid-table tr td {border-right: solid 1px #4888C2;}  
+   table.grid-table tr.grid-row-selected td {border-right: solid 1px white;}   
+      
 /* Grid filtering */
 input.grid-filter-input { padding: 4px; font-size: 13px; }
 table.grid-table .grid-filter { position: relative; margin-top: 2px; float: right; width: 10px; height: 12px; }
@@ -40,4 +45,3 @@ table.grid-table .grid-popup-additional { padding: 3px 0 0 0; }
 .grid-dropdown ul.menu-list { list-style-type: none; margin: 3px 0 0 0; padding: 0; }
     .grid-dropdown ul.menu-list li a { text-decoration: none; background-position: 6px center; background-repeat: no-repeat; display: block; padding: 4px 5px; }
         .grid-dropdown ul.menu-list li a:hover { background-color: #EEE; text-decoration: none; }
- 
