@@ -3,47 +3,65 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
+ 
 <div>
-    <h4>Party</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Party_Name)
-        </dt>
+    <h2> 
+        Details
+    </h2>
+ 
+    <dl class="dl-vertical">
+        <dt><b>
+         @Html.DisplayNameFor(model => model.Party_Name)</b>
+    </dt>
 
-        <dd>
+        <dd> 
             @Html.DisplayFor(model => model.Party_Name)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Entity_ID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Entity_ID)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.BIC_Code)
+ 
+        <dt><b>
+            @Html.DisplayNameFor(model => model.BIC_Code)</b>
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.BIC_Code)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Country.Country_Name)
+        <dt><b>
+           Country Name</b>
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Country.Country_Name)
         </dd>
+        <dt>
+            <b>
+                @Html.DisplayNameFor(model => model.Financial_Year_End)
+            </b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Financial_Year_End)
+        </dd>
+        @if (!Model.SWIFT_ID.IsEmpty())
+        {
+
+            <dt>
+                <b>
+                    @Html.DisplayNameFor(model => model.SWIFT_ID)
+                </b>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SWIFT_ID)
+            </dd>
+
+        }
+        
+       
          
     </dl>
 </div>
- 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { EntityId = Model.Entity_ID, PartyCode = Model.Party_Code }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit Party", "Edit", new { EntityId = Model.Entity_ID, PartyCode = Model.Party_Code }, new { @class = "btn btn-primary" }) 
+ 
 </p>

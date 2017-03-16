@@ -61,6 +61,8 @@ namespace MetopeMVCApp.Data.Repositories
                                   ICurrencyPairRepository
     { 
     }
+
+
     public class PartyRepository : GenericRepository<MetopeDbEntities, Party>,
                           IPartyRepository
     {

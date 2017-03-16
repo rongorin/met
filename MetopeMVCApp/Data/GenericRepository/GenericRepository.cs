@@ -31,8 +31,7 @@ namespace MetopeMVCApp.Data.GenericRepository
         public virtual T Get(decimal id)
         {
             return  _entities.Set<T>().Find(id);
-        }
-
+        } 
 
         public IQueryable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         { 

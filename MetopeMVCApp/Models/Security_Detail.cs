@@ -11,9 +11,11 @@ namespace MetopeMVCApp.Models
 {
     using System;
     using System.Collections.Generic;
+
     using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityDetailModelMetaData))]
+
     public partial class Security_Detail
     {
         public Security_Detail()

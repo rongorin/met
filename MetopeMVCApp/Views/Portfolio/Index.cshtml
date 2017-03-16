@@ -1,8 +1,8 @@
 ﻿@model IPagedList<MetopeMVCApp.Models.Portfolio> 
-@{
+@{  
     ViewBag.Title = "Index"; 
 }
- 
+  
 <div class="row">
     <div class="col-md-8">
         <h3>Portfolios Listing</h3>
@@ -35,12 +35,10 @@
                 </h3>
 
             }
-                *@
-
+                *@ 
      </div>
-    </div>
-
- @Html.Partial("_MsgSuccesFail", Model)
+    </div> 
+@Html.Partial("_MsgSuccesFail", Model)
 
 @Html.Partial("_Portfolios", Model)
 
@@ -59,8 +57,7 @@
                     $('#portfolioListing').html(data);
                 });
         });
-    }); 
- 
+    });  
 
 </script>
 

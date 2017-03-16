@@ -114,29 +114,34 @@ namespace MetopeMVCApp.Filters
              if (
                  (miscCodes = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Code_Miscellaneous>)
                  ) == null  ||
-                  (miscCodesCP = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Code_Miscellaneous>)
+                  (miscCodesCP = (filterContext.HttpContext.Cache.Get(GetType().FullName + "CP") as IQueryable<Code_Miscellaneous>)
                  ) == null ||
-                  (miscCodesBD = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Code_Miscellaneous>)
+                  (miscCodesBD = (filterContext.HttpContext.Cache.Get(GetType().FullName + "BD") as IQueryable<Code_Miscellaneous>)
                  ) == null ||
-                  (miscCodesEX = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Code_Miscellaneous>)
+                  (miscCodesEX = (filterContext.HttpContext.Cache.Get(GetType().FullName + "EX") as IQueryable<Code_Miscellaneous>)
                  ) == null ||
-                  (miscCodesSH = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Code_Miscellaneous>)
+                  (miscCodesSH = (filterContext.HttpContext.Cache.Get(GetType().FullName + "SH") as IQueryable<Code_Miscellaneous>)
                  ) == null   
                  )  
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
-                 miscCodes = svc.ListMiscellanousTypes("IPFORM");
-                 miscCodesCP = svc.ListMiscellanousTypes("CPFORM");
-                 miscCodesBD = svc.ListMiscellanousTypes("BDAYADJ");
-                 miscCodesEX = svc.ListMiscellanousTypes("EXDPERIOD");
+                 miscCodes = svc.ListMiscellanousTypes("IPFORM");  
+                 miscCodesCP = svc.ListMiscellanousTypes("CPFORM"); 
+                 miscCodesBD = svc.ListMiscellanousTypes("BDAYADJ"); 
+                 miscCodesEX = svc.ListMiscellanousTypes("EXDPERIOD") ;
                  miscCodesSH = svc.ListMiscellanousTypes("SHRCLASS");
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, miscCodes);
+                 filterContext.HttpContext.Cache.Insert(GetType().FullName + "CP", miscCodesCP);
+                 filterContext.HttpContext.Cache.Insert(GetType().FullName + "BD", miscCodesBD);
+                 filterContext.HttpContext.Cache.Insert(GetType().FullName + "EX", miscCodesEX);
+                 filterContext.HttpContext.Cache.Insert(GetType().FullName + "SH", miscCodesSH);
              }
+             filterContext.Controller.ViewBag.Ex_Div_Period = new SelectList(miscCodesEX, "MisCode", "MisCode_Description", filterContext.Controller.ViewBag.ExDivPeriod);
+
              filterContext.Controller.ViewBag.Accrued_Income_Price_Formula = new SelectList(miscCodes, "MisCode", "MisCode_Description", filterContext.Controller.ViewBag.AccruedIncomePriceFormula);
-             filterContext.Controller.ViewBag.Clean_Price_Formula = new SelectList(miscCodes, "MisCode", "MisCode_Description", filterContext.Controller.ViewBag.CleanPriceFormula);
-             filterContext.Controller.ViewBag.Coupon_BusDay_Adjustment = new SelectList(miscCodes, "MisCode", "MisCode_Description", filterContext.Controller.ViewBag.CouponBusDayAdjustment);
-             filterContext.Controller.ViewBag.Ex_Div_Period = new SelectList(miscCodes, "MisCode", "MisCode_Description", filterContext.Controller.ViewBag.ExDivPeriod);
              filterContext.Controller.ViewBag.Share_Class = new SelectList(miscCodesSH, "MisCode", "MisCode_Description", filterContext.Controller.ViewBag.ShareClass); 
+             filterContext.Controller.ViewBag.Coupon_BusDay_Adjustment = new SelectList(miscCodesBD, "MisCode", "MisCode_Description", filterContext.Controller.ViewBag.CouponBusDayAdjustment);
+             filterContext.Controller.ViewBag.Clean_Price_Formula = new SelectList(miscCodesCP, "MisCode", "MisCode_Description", filterContext.Controller.ViewBag.CleanPriceFormula);
              
              //filterContext.Controller.ViewBag.Accrued_Income_Price_Formula = miscCodes;
              //filterContext.Controller.ViewBag.Clean_Price_Formula = miscCodesCP;

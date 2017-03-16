@@ -1,0 +1,12 @@
+﻿@model bool? 
+<div class="form-group"> 
+    @Html.LabelFor(model => model, htmlAttributes:
+                new
+                {
+                    @class = "control-label  input-sm" 
+                     
+                })  
+        @Html.CheckBox("", Model.GetValueOrDefault() ) 
+        @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" }) 
+</div> 
+

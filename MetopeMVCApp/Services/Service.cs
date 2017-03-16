@@ -101,7 +101,7 @@ namespace MetopeMVCApp.Services
         public IQueryable<Code_Miscellaneous> ListMiscellanousTypes(string iCodeType)
         {
 
-            ICodeMiscellaneous dbCntx = new CodeMiscellaneousRepository();  
+            ICodeMiscellaneous dbCntx = new CodeMiscellaneousRepository();
             return dbCntx.GetAll().Where(c => c.MisCode_Type == iCodeType); 
          
         }

@@ -655,7 +655,6 @@
     <Content Include="Views\SecurityDetail\Create.cshtml" />
     <Content Include="Views\SecurityDetail\Delete.cshtml" />
     <Content Include="Views\SecurityDetail\Details.cshtml" />
-    <Content Include="Views\SecurityDetail\EditOld.cshtml" />
     <Content Include="Views\SecurityDetail\Index.cshtml" />
     <Content Include="Views\Portfolio\_Portfolios1.cshtml" />
     <Content Include="Views\Portfolio\_Portfolios.cshtml" />
@@ -698,6 +697,11 @@
     <Content Include="Views\SecurityPrice\Index.cshtml" />
     <Content Include="Views\SecurityPrice\EditHistory.cshtml" />
     <Content Include="Views\SecurityPrice\DeleteHistory.cshtml" />
+    <Content Include="Views\Shared\_LayoutWithSidebar.cshtml" />
+    <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDateVertic.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditorVertic.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BooleanVertic.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

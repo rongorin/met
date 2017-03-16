@@ -6,14 +6,14 @@
 @section Styles {
     @Styles.Render("~/Content/datetime")
 }
-<h2>Edit</h2>
+<h3>Edit Party <b> @Model.Party_Code </b></h3>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Party</h4>
+  
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
        
@@ -22,9 +22,7 @@
         @Html.EditorForModel()
      </div> 
 } 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+ 
 @section Scripts {
     @Scripts.Render("~/bundles/datetime")
 

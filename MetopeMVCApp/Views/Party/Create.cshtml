@@ -1,32 +1,28 @@
 ﻿@model MetopeMVCApp.Models.Party
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Party";
 }
 @section Styles {
     @Styles.Render("~/Content/datetime")
 }
-<h2>Create</h2>
+<h3>Create</h3>
 
 @using (Html.BeginForm()) 
 {
-    @Html.AntiForgeryToken() 
+    @Html.AntiForgeryToken()
 
+    <div class="form-horizontal">
         @Html.ValidationSummary(false)
-        @Html.ValidationMessage("Error") 
+        @Html.ValidationMessage("Error")
 
         <div class="col-md-12">
-            @Html.EditorFor(model => model.Party_Code, "BootstrapEditor")
-        </div> 
-        @Html.EditorForModel() 
- 
-     
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/datetime")
-}
+            @Html.EditorFor(model => model.Party_Code, "BootstrapEditorVertic")
+        </div>
+        @Html.EditorForModel()
+    </div> 
+} 
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/datetime")
+        }

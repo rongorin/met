@@ -36,7 +36,7 @@ namespace MetopeMVCApp.Controllers
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
             decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
-
+            ViewBag.EntityId = currentUser.EntityIdScope;
             if (numberOfRows == null)
                 numberOfRows = 20;
 
@@ -93,9 +93,9 @@ namespace MetopeMVCApp.Controllers
             return View(party);
         }
 
-        // GET: Party/Edit/5
-        [CountryFilter]   
-        public ActionResult Edit(string PartyCode, decimal EntityId)
+        // GET: Party/Edit/5 
+        [CountryFilter]
+        public ActionResult Edit( string PartyCode,  decimal EntityId)
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
             decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
@@ -108,7 +108,7 @@ namespace MetopeMVCApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Party party = db11.FindBy(r => r.Party_Code == PartyCode).FirstOrDefault();
+            Party party = db11.FindBy(r => r.Party_Code == PartyCode).Include(p => p.Country).FirstOrDefault();
             if (party == null)
             {
                 return HttpNotFound();
@@ -117,6 +117,11 @@ namespace MetopeMVCApp.Controllers
 
             // [CountriesFilter] :
             ViewBag.RecordCountryOfDomicile = party.Country_Code;
+
+            //if (Request.IsAjaxRequest())
+            //{
+            //    return View(party);
+            //}
             return View(party);
         }
 
@@ -214,6 +219,8 @@ namespace MetopeMVCApp.Controllers
             {
                 return HttpNotFound();
             }
+ 
+
             return View(party);
         }
         protected override void Dispose(bool disposing)

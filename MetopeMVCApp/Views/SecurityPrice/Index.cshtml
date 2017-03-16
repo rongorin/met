@@ -18,10 +18,10 @@
 @if (Model.SecurityDetails != null)
 {
     <container>
-    <div class="col-sm-3" > 
-            @Html.LabelFor(model => model.SecurityDetails.Ticker, htmlAttributes: new { @class = "control-label" })
-            @Model.SecurityDetails.Ticker   
-    </div>
+        <div class="col-sm-3" > 
+                @Html.LabelFor(model => model.SecurityDetails.Ticker, htmlAttributes: new { @class = "control-label" })
+                @Model.SecurityDetails.Ticker   
+        </div>
 
     <div class="col-sm-3">
         <div class="form-group">
@@ -276,19 +276,18 @@
     @Scripts.Render("~/bundles/GridMvc") 
     <script src="~/Scripts/bootstrap-datepicker.js"></script>      
 <script>
-        $(function () {
-            pageGrids.ast.onRowSelect(function (e) {
-                //alert(e.row.Price_Curr);
-
-                $.post("/SecurityPrice?SecurityId=" + e.row.Security_ID, function (data) {
-                    alert(data.Status);
-                    if (data.Status <= 0) {
-                        alert(data.Message);
-                        return;
-                    }
-                });
-            });
-        });
+        //$(function () {
+        //    pageGrids.ast.onRowSelect(function (e) {  
+        //        $.post("/SecurityPrice?SecurityId=" + e.row.Security_ID,
+        //            function (data) {
+        //            alert("aaa");
+        //            if (data.Status <= 0) {
+        //                alert(data.Message);
+        //                return;
+        //            }
+        //        });
+        //    });
+        //});
     </script>
  
 

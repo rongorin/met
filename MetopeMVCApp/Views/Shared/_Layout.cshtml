@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <meta name="description" content="My ASP.NET Application" />
+    <title>@ViewBag.Title - Metope Application</title>
+    <meta name="description" content="Metope Application" />
     @Styles.Render("~/bundles/css") 
     @Scripts.Render("~/bundles/modernizr")   
     @RenderSection("styles", false)
@@ -43,15 +43,13 @@
     <div id="myHeader">
         @RenderSection("HeaderPhoto", required: false) 
 
-    </div>
-
- 
+    </div> 
     <div class="container body-content">  
-        @RenderBody()
-        <hr />
+        @RenderBody() 
         <footer>
+            <hr />
             <p>&copy; @DateTime.Now.Year - Metope Investment Managers</p>
-        </footer>
+        </footer> 
     </div>
 
     @Scripts.Render("~/bundles/jqueryThings")

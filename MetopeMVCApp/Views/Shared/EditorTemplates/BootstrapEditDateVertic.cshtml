@@ -1,0 +1,27 @@
+﻿@model DateTime? 
+
+    <div class="form-group">
+
+        @Html.LabelFor(model => model, htmlAttributes:
+                    new
+                    {
+                        @class = "control-label  input-sm" 
+                    })
+
+        <div class='input-group date datetimepickerClass'>
+
+                @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
+                    {
+                        @class = "form-control  input-sm",
+                        placeholder = ViewData.ModelMetadata.Watermark
+                })
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+
+
+        </div>
+        </div>
+ 
+ 
+ 

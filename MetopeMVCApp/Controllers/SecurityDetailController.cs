@@ -52,6 +52,13 @@ namespace MetopeMVCApp.Controllers
 						new SelectListItem { Text = "50", Value = "50" },
 						new SelectListItem { Text = "100", Value = "100" }
 			            };
+        //this is an example of logging database functionaily:
+        private void LogInfo(string logmessage)
+        {
+            string FilePath = HttpContext.Server.MapPath("~/Data/Repositories/LoggerRepository/LoggerFile.txt");
+            System.IO.File.AppendAllText(FilePath, logmessage);
+        }
+
          
         [LogAttribuite]
         public ActionResult Index(int? numberOfRows , int page = 1, string searchTerm = null)  
@@ -89,7 +96,8 @@ namespace MetopeMVCApp.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_Securities", security_detail);
+                return View(security_detail);
+                //return PartialView("_Securities", security_detail);
 
             }
             return View(security_detail);
@@ -348,8 +356,7 @@ namespace MetopeMVCApp.Controllers
                 if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                } 
-
+                }
                 Security_Detail security_detail = db11.Get(id);
 
                 if (security_detail == null)
@@ -386,6 +393,14 @@ namespace MetopeMVCApp.Controllers
                 ViewBag.MyCallAccountFgList = security_detail.Call_Account_Flag;
                 ViewBag.MySysLockedList = security_detail.System_Locked;
                 ViewBag.MySecurityStatus = security_detail.Security_Status;
+
+                ViewBag.ExDivPeriod = security_detail.Ex_Div_Period;
+                ViewBag.AccruedIncomePriceFormula = security_detail.Accrued_Income_Price_Formula;
+                ViewBag.ShareClass = security_detail.Share_Class;
+                ViewBag.CouponBusDayAdjustment = security_detail.Coupon_BusDay_Adjustment;
+                ViewBag.CleanPriceFormula = security_detail.Clean_Price_Formula;
+ 
+             
 
                 return View(security_detail);
                 //MetopeDbEntities db = new MetopeDbEntities(); // FIX THIS we are using db11 not db. !!!   
