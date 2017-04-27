@@ -273,7 +273,7 @@
     <Compile Include="Data\GenericRepository\IGenericRepository.cs" />
     <Compile Include="Data\IPortfolioRepository3.cs" />
     <Compile Include="Data\ISecurityDetailRepository.cs" />
-    <Compile Include="Data\PortfolioQueryableExtensions.cs" />
+    <Compile Include="Data\TablesQueryableExtensions.cs" />
     <Compile Include="Data\Repositories\IDisposedTracker.cs" />
     <Compile Include="Data\Repositories\PortfolioRepository3.cs" />
     <Compile Include="Data\SecurityDetailRepository.cs" />
@@ -334,6 +334,7 @@
     <Compile Include="Models\Currency_Pair.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Custom\Weather.cs" />
     <Compile Include="Models\Entity.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>

@@ -86,25 +86,13 @@
 
 
                         @*-------------------------------------------------------------------------------*@
-
-                        @*<div class="col-sm-4">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Country_Of_Risk, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
-                                <div class="col-md-7">
-                                    @Html.DropDownList("Country_Of_Risk", (SelectList)ViewBag.CountryOfRisk, string.Empty, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.Country_Of_Risk, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>*@
-
+                         
                         <div class="col-sm-4">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Country_Of_Risk, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
                                <div class="col-md-7"> 
                                      @Html.DropDownList("Country_Of_Risk", (SelectList)ViewBag.CountryOfRisk, string.Empty, new { @class = "form-control" })
-                                    
-                                    @*@Html.DropDownList("Country_Of_Risk", (SelectList)ViewBag.CountryOfRisk, string.Empty, new { @class = "form-control" })*@
-                                    @Html.ValidationMessageFor(model => model.Country_Of_Risk, "", new { @class = "text-danger" })
+                                     @Html.ValidationMessageFor(model => model.Country_Of_Risk, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>

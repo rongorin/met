@@ -140,12 +140,12 @@
         columns.Add(c => c.Currency.Currency_Name)
             .Titled("Current Price Currency").Filterable(true)
             .SetWidth(330);
-        
-        columns.Add(c => c.Price_Source)
+
+        columns.Add(c => c.Price_Source).Css("text-right")
             .Titled("Current Price Source").Filterable(true)
             .SetWidth(160);
 
-        columns.Add(c => c.All_In_Price).Titled("Current All in Price")
+        columns.Add(c => c.All_In_Price).Titled("Current All in Price").Css("text-right")
                 .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.All_In_Price)).Encoded(false)
                  .Sanitized(false)
                 .Filterable(false).SetWidth(180);
@@ -155,7 +155,7 @@
 
         //.RenderValueAs(, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
 
-        columns.Add(c => c.Clean_Price).Titled("Clean Price").Filterable(false)
+        columns.Add(c => c.Clean_Price).Titled("Clean Price").Css("text-right").Filterable(false)
                 .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Clean_Price)).Encoded(false)
                 .Sanitized(false)
                 .SetWidth(240);
@@ -223,7 +223,7 @@
         .Titled("Historic Price Currency").Filterable(false)
         .SetWidth(190);
 
-        columns.Add(c => c.All_In_Price).Titled("Historic All in Price")
+        columns.Add(c => c.All_In_Price).Titled("Historic All in Price").Css("text-right")
                 .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.All_In_Price)).Encoded(false)
                  .Sanitized(false)
                 .Filterable(false).SetWidth(120);
@@ -233,7 +233,7 @@
 
         //.RenderValueAs(, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
 
-        columns.Add(c => c.Clean_Price).Titled("Historic Clean Price").Filterable(false)
+        columns.Add(c => c.Clean_Price).Titled("Historic Clean Price").Css("text-right").Filterable(false)
                 .RenderValueAs(x => String.Format("<span  class=\"pull-right\">{0:0,0.00}</span>", x.Clean_Price)).Encoded(false)
                 .Sanitized(false)
                 .SetWidth(200);
@@ -247,7 +247,7 @@
             .Titled("YTM").Filterable(false)
             .SetWidth(120);
 
-        columns.Add(c => c.Discount_Rate).Titled("Discount Rate").Filterable(false)
+        columns.Add(c => c.Discount_Rate).Titled("Discount Rate").Css("text-right").Filterable(false)
         .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Discount_Rate)).Encoded(false)
         .Sanitized(false)
         .SetWidth(120);

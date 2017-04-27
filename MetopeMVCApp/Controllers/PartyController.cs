@@ -15,7 +15,8 @@ using System.Configuration;
 using MetopeMVCApp.Filters;
 
 namespace MetopeMVCApp.Controllers
-{
+{  
+    [AuthoriseGenericId]
     public class PartyController : Controller
     {
         private readonly IPartyRepository db11; 
@@ -34,32 +35,26 @@ namespace MetopeMVCApp.Controllers
         // GET: Party
         public ActionResult Index(int? numberOfRows)  
         {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
+            var currentUser = manager.FindById(User.Identity.GetUserId()); 
             ViewBag.EntityId = currentUser.EntityIdScope;
             if (numberOfRows == null)
                 numberOfRows = 20;
 
             ViewBag.RowsPerPage = new SelectList(numOfRows, "Value", "Text", numberOfRows);
 
-            var parties = db11.GetAllPartyValues(currentUser.EntityIdScope, refGenericEntity).
-                                                            Include(p => p.Country).Include(p => p.Entity);
-             
+            var parties = db11.GetAllPartyValues( currentUser.EntityIdScope, (decimal)ViewBag.genericEntity).
+                                                            Include(p => p.Country).Include(p => p.Entity); 
             return View(parties.ToList());
-        }
-
+        } 
 
         // GET: Party/Create
         [CountryFilter]
         public ActionResult Create()
         {
-            var currentUser = manager.FindById(User.Identity.GetUserId()); 
-
-            //ViewBag.Country_Code = new SelectList(db.Countries, "Country_Code", "Country_Name");
+            var currentUser = manager.FindById(User.Identity.GetUserId());  
           
             ViewBag.entityId = currentUser.EntityIdScope;
-            return View();
-             
+            return View(); 
         }
 
         // POST: Party/Create
@@ -98,7 +93,7 @@ namespace MetopeMVCApp.Controllers
         public ActionResult Edit( string PartyCode,  decimal EntityId)
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
-            decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
+            decimal refGenericEntity = (decimal)ViewBag.genericEntity;
 
             if (currentUser.EntityIdScope != EntityId && refGenericEntity != EntityId)
             {
@@ -107,8 +102,11 @@ namespace MetopeMVCApp.Controllers
             if (PartyCode == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+     
             }
-            Party party = db11.FindBy(r => r.Party_Code == PartyCode).Include(p => p.Country).FirstOrDefault();
+            Party party = db11.FindBy(r => r.Party_Code == PartyCode)
+                                    .MatchEntityID(c => c.Entity_ID == refGenericEntity || c.Entity_ID == currentUser.EntityIdScope)
+                                    .Include(p => p.Country).FirstOrDefault();
             if (party == null)
             {
                 return HttpNotFound();
@@ -133,12 +131,11 @@ namespace MetopeMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Entity_ID,Party_Code,Party_Name,Party_Type,Financial_Year_End,Country_Code,System_Locked,SWIFT_ID,BIC_Code")] Party party)
         {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
+            var currentUser = manager.FindById(User.Identity.GetUserId()); 
 
             if (ModelState.IsValid)
-            { 
-                if (currentUser.EntityIdScope != party.Entity_ID && refGenericEntity != party.Entity_ID) 
+            {
+                if (currentUser.EntityIdScope != party.Entity_ID && (decimal)ViewBag.genericEntity != party.Entity_ID) 
                 {
                     ModelState.AddModelError("Error", "An error occurred trying to edit. Party isnt in scope"); 
                 }  
@@ -156,7 +153,7 @@ namespace MetopeMVCApp.Controllers
         public ActionResult Delete(string PartyCode, decimal EntityId)
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
-            decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
+            decimal refGenericEntity = (decimal)ViewBag.genericEntity;
 
             if (EntityId == null || PartyCode == null)
             {
@@ -166,13 +163,11 @@ namespace MetopeMVCApp.Controllers
             {
                 throw new Exception("Not Acceptable");
                 //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-            } 
-            if (PartyCode == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Party party = db11.FindBy(r => r.Party_Code == PartyCode).FirstOrDefault();
-             
+            }   
+            Party party = db11.FindBy(r => r.Party_Code == PartyCode)
+                       .MatchEntityID(c => c.Entity_ID == refGenericEntity || c.Entity_ID == currentUser.EntityIdScope)
+                       .FirstOrDefault(); 
+
             if (party == null)
             {
                 return HttpNotFound();
@@ -186,7 +181,7 @@ namespace MetopeMVCApp.Controllers
         public ActionResult DeleteConfirmed(string PartyCode, decimal EntityId)
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
-            decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
+            decimal refGenericEntity = (decimal)ViewBag.genericEntity;
 
             if (currentUser.EntityIdScope != EntityId && refGenericEntity != EntityId)  
                 return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!

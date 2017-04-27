@@ -3,6 +3,7 @@ using MetopeMVCApp.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -23,7 +24,23 @@ namespace MetopeMVCApp.Filters
     //    }
 
     //} 
-    
+
+    public class AuthoriseGenericIdAttribute : ActionFilterAttribute
+    {  
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            string genEntityID;
+
+            if ((genEntityID = (filterContext.HttpContext.Cache.Get(GetType().FullName) as string)) == null)
+            {
+                 genEntityID  =  ConfigurationManager.AppSettings["GenericEntityId"]; 
+                filterContext.HttpContext.Cache.Insert(GetType().FullName, genEntityID);
+            }
+            filterContext.Controller.ViewBag.genericEntity = Convert.ToDecimal(genEntityID); 
+             
+        }
+    }
+
     public class CountryFilter : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)

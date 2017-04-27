@@ -7,7 +7,8 @@ using Microsoft.AspNet.Identity;
 using ASP.MetopeNspace.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MetopeMVCApp.Models;
-using System.Net; 
+using System.Net;
+using MetopeMVCApp.Models.Custom; 
 
 namespace ASP.MetopeNspace.Controllers
 {
@@ -62,6 +63,13 @@ namespace ASP.MetopeNspace.Controllers
               return entity.Entity_Name;      
 
        }
+       public JsonResult GetWeather()  // --> this is called by javascript Ajax call.
+       {
+           Weather weath = new Weather();
+          
+           return Json(weath.getWeatherForecast(), JsonRequestBehavior.AllowGet);
+       }
+
        public ActionResult EntityInScope()
        { 
            //return Content(MetopeMVCApp.Data.Constants.EntityNameInScope);
