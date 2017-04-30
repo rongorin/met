@@ -170,14 +170,14 @@ namespace MetopeMVCApp.Controllers
             //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price.Security_ID);
             //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_security_detail.Last_Update_User = User.Identity.Name; Name", security_Price.Entity_ID);
         }
-
-        // POST: SecurityPrice/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Entity_ID,Security_ID,Price_Curr,All_In_Price,Clean_Price,Accrued_Income_Price,Price_Source,Yield_To_Maturity,Discount_Rate,Last_Update_User,Last_Update_Date,Issued_Amount,Free_Float_Issued_Amount,Record_Date")] Security_Price security_Price)
+        public ActionResult Edit([Bind(Prefix = "Security_Price", Include = "Entity_ID,Security_ID,Price_Curr,All_In_Price,Clean_Price,Accrued_Income_Price,Price_Source,Yield_To_Maturity,Discount_Rate,Last_Update_User,Last_Update_Date,Issued_Amount,Free_Float_Issued_Amount,Record_Date")] Security_Price security_Price)
         {
+            ModelState.AddModelError("Name", "test FAILED ... xxists!"); 
+
+
             if (ModelState.IsValid)
             {  
                 security_Price.Last_Update_Date = DateTime.Now;

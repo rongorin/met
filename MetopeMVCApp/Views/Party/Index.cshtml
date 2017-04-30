@@ -56,12 +56,12 @@
         @Scripts.Render("~/bundles/jqueryval")*@
 
  <script>
- 
+
     $(function () {
-        pageGrids.PartGrd.onRowSelect(function (e) { 
-            //here rather do full page load instead of the Ajax partial:
-            var myUrl2 = "/Party/Edit?PartyCode="+e.row.Party_Code + "&EntityId="+ @ViewBag.EntityId ; 
-            window.location = myUrl2; 
+        pageGrids.PartGrd.onRowSelect(function (e) {
+            //here rather do full page load instead of the Ajax partial: 
+            var myUrl2 = mtpApp.Urls.baseUrl + "Party/Edit?PartyCode="+e.row.Party_Code + "&EntityId="+ @ViewBag.EntityId ;  
+            window.location = myUrl2;
 
             @*
              var myUrl = '@Url.Action("Edit", "Party" )';

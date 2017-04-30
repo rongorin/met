@@ -4,9 +4,7 @@
 } 
 @section Styles {
     @Styles.Render("~/Content/datetime")
-}
-
-
+} 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -121,4 +119,7 @@
 <div class="col-md-offset-1 "> 
     @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
 </div>
- 
+ @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+}

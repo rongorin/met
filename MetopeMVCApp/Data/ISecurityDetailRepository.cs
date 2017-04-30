@@ -46,5 +46,5 @@ namespace MetopeMVCApp.Data
     }
     public interface ICodeMiscellaneous : IGenericRepository<Code_Miscellaneous>
     {
-    }
+    } 
 }
