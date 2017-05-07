@@ -188,6 +188,25 @@ namespace MetopeMVCApp.Filters
              base.OnActionExecuted(filterContext);
          }
 
+     } 
+     public class SecuritiesFilter : ActionFilterAttribute
+     {
+         public override void OnActionExecuted(ActionExecutedContext filterContext)
+         {
+             IQueryable<Security_Detail> secs;
+             if ((secs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Security_Detail>)) == null)
+             {
+                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+
+                 secs = svc.ListSecurities(filterContext.Controller.ViewBag.EntityIdScope);
+                 //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
+                 filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
+             }
+             filterContext.Controller.ViewBag.Dividend_FX_Security_ID = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.DividendFXSecurityID);
+
+             base.OnActionExecuted(filterContext);
+         }
+
      }
      public class PartyFilter : ActionFilterAttribute
      {
@@ -199,7 +218,7 @@ namespace MetopeMVCApp.Filters
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
                  parties = svc.ListPartyValues("CORPORATE", Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope),
-                                               Convert.ToDecimal(filterContext.Controller.ViewBag.GenericEntityId));
+                                               Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, parties);
              } 
 

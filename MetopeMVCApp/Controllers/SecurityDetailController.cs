@@ -18,7 +18,7 @@ using MetopeMVCApp.Filters;
 using MetopeMVCApp.Data.GenericRepository;
 namespace MetopeMVCApp.Controllers
 {
- 
+    [AuthoriseGenericId] 
     public class SecurityDetailController : Controller
     {
         //private IMetopeDbEntities db11;  
@@ -126,7 +126,8 @@ namespace MetopeMVCApp.Controllers
             return View(security_detail);
         } 
          
-        [CountryFilter]  
+        [CountryFilter]     
+        [SecuritiesFilter]
         [SecurityTypesFilter]
         [CurrencyFilter] 
         [ExchangesFilter]
@@ -148,6 +149,7 @@ namespace MetopeMVCApp.Controllers
          
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SecuritiesFilter]
         [CountryFilter]
         [SecurityTypesFilter]
         [CurrencyFilter] 
@@ -176,7 +178,7 @@ namespace MetopeMVCApp.Controllers
             ViewBag.EntityIdScope = currentUser.EntityIdScope;  
             return View(security_detail);
         }  
-
+        [SecuritiesFilter]
         [CountryFilter] 
         [TrueFalseFilter]
         [SecurityTypesFilter]
@@ -186,6 +188,8 @@ namespace MetopeMVCApp.Controllers
         [BenchmarkPortfolioFilter]
         [PartyFilter]
         [CurrencyPairFilter]  
+
+
         public ActionResult Edit(decimal id)
         {  
                 if (id == null)
@@ -202,7 +206,9 @@ namespace MetopeMVCApp.Controllers
                     return HttpNotFound();
                 } 
                 // [CountriesFilter] :
+                ViewBag.DividendFXSecurityID = security_detail.Dividend_FX_Security_ID;
                 ViewBag.RecordCountryOfDomicile = security_detail.Country_Of_Domicile;
+
                 ViewBag.RecordCountryOfRisk = security_detail.Country_Of_Risk;
                 // [CurrencyFilter]:
                 ViewBag.PriceCurr = security_detail.Price_Curr;
@@ -235,6 +241,7 @@ namespace MetopeMVCApp.Controllers
                 return View(security_detail); 
         } 
          [HttpPost]
+         [SecuritiesFilter]
          [ValidateAntiForgeryToken]
          [CountryFilter]
          [SecurityTypesFilter]
@@ -242,10 +249,10 @@ namespace MetopeMVCApp.Controllers
          [CodeMiscellaneousFilter]
          [BenchmarkPortfolioFilter]
          [CurrencyFilter]               
-         [CurrencyPairFilter] 
+         [CurrencyPairFilter]  
          [ExchangesFilter] 
         [TrueFalseFilter]
-        public ActionResult Edit([Bind(Include = "Security_ID,Entity_ID,Security_Name,Short_Name,Primary_Exch,Secondary_Exch,Country_Of_Domicile,Country_Of_Risk,Security_Type_Code,Price_Multiplier,Income_Frequency,Issuer_Code,Ultimate_Issuer_Code,Asset_Currency,Min_Lot_Size,Decimal_Precision,AvePrice_Rounding,Issue_Date,Maturity_Date,Coupon_Rate,Price_Exchange,Trade_Currency,Price_Curr,Currency_Pair_Code,Share_Class,Current_Market_Price,Index_Type,Clean_Price_Formula,Accrued_Income_Price_Formula,Odd_First_Coupon_Date,Odd_Last_Coupon_Date,Coupon_Anniversary_Indicator,Track_EOM_Flag,Next_Coupon_Date,Previous_Coupon_Date,Payment_Frequency,Coupon_BusDay_Adjustment,Next_Ex_Div_Date,Ex_Div_BusDay_Adjustment,Ex_Div_Period,Ticker,Inet_ID,Bloomberg_ID,External_Sec_ID,Reuters_ID,ISIN,Call_Account_Flag,System_Locked,Security_Status,Last_Update_User,Last_Update_Date,Benchmark_Portfolio")] 
+        public ActionResult Edit([Bind(Include = "Security_ID,Entity_ID,Security_Name,Short_Name,Primary_Exch,Secondary_Exch,Country_Of_Domicile,Country_Of_Risk,Security_Type_Code,Price_Multiplier,Income_Frequency,Issuer_Code,Ultimate_Issuer_Code,Asset_Currency,Min_Lot_Size,Decimal_Precision,AvePrice_Rounding,Issue_Date,Maturity_Date,Coupon_Rate,Price_Exchange,Trade_Currency,Price_Curr,Currency_Pair_Code,Share_Class,Current_Market_Price,Index_Type,Clean_Price_Formula,Accrued_Income_Price_Formula,Odd_First_Coupon_Date,Odd_Last_Coupon_Date,Coupon_Anniversary_Indicator,Track_EOM_Flag,Next_Coupon_Date,Previous_Coupon_Date,Payment_Frequency,Coupon_BusDay_Adjustment,Next_Ex_Div_Date,Ex_Div_BusDay_Adjustment,Ex_Div_Period,Ticker,Inet_ID,Bloomberg_ID,External_Sec_ID,Reuters_ID,ISIN,Call_Account_Flag,System_Locked,Security_Status,Last_Update_User,Last_Update_Date,Benchmark_Portfolio,Dividend_FX_Security_ID")] 
                                     Security_Detail security_detail)
          {
             var currentUser = manager.FindById(User.Identity.GetUserId());
@@ -261,8 +268,7 @@ namespace MetopeMVCApp.Controllers
 
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("Error", "An error occurred trying to edit the Security");
-            ViewBag.GenericEntityId = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]); 
+            ModelState.AddModelError("Error", "An error occurred trying to edit the Security"); 
             ViewBag.EntityIdScope = currentUser.EntityIdScope; 
             return View(security_detail);
          

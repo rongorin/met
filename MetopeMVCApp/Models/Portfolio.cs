@@ -11,15 +11,11 @@ namespace MetopeMVCApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using MetopeMVCApp.Models.MyMetaData;
-    using System.ComponentModel.DataAnnotations;
-    [MetadataType(typeof(PortfolioModelMetatData))]
-
+    
     public partial class Portfolio
     {
         public Portfolio()
         {
-
             this.Portfolio_List = new HashSet<Portfolio_List>();
             this.Security_Detail = new HashSet<Security_Detail>();
         }

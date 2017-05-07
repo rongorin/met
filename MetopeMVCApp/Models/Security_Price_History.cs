@@ -11,8 +11,7 @@ namespace MetopeMVCApp.Models
 {
     using System;
     using System.Collections.Generic;
-
-    using MetopeMVCApp.Models.MyMetaData;
+       using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityPriceHistoryModelMetaData))]
 
@@ -39,7 +38,7 @@ namespace MetopeMVCApp.Models
     
         public virtual Currency Currency { get; set; }
         public virtual Entity Entity { get; set; }
-        public virtual Security_Detail Security_Detail { get; set; }
         public virtual User User { get; set; }
+        public virtual Security_Detail Security_Detail { get; set; }
     }
 }

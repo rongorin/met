@@ -245,6 +245,17 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Dividend_FX_Security_ID, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+                                <div class="col-md-7">
+                                    @Html.DropDownList("Dividend_FX_Security_ID", null, string.Empty, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Dividend_FX_Security_ID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div> 
+
                     </div>
                 </div>
                 @*---------------------------------------------next TAB: ----------------------------------- AccruedIncomePriceFormula --*@
@@ -263,7 +274,8 @@
                                 </div>
                             </div>
                         </div>
-
+                        </div>
+                    <div class="row">
                         @Html.EditorFor(model => model.Issue_Date, "BootstrapEditDate")
                         @Html.EditorFor(model => model.Coupon_Anniversary_Indicator, "BootstrapEditor")
                         <div class="col-sm-4">
@@ -276,9 +288,10 @@
                                 </div>
                             </div>
                         </div>
-
+                    </div>
+                    <div class="row">
                         @Html.EditorFor(model => model.Odd_First_Coupon_Date, "BootstrapEditDate")
-                        @Html.EditorFor(model => model.Payment_Frequency, "BootstrapEditor") 
+                        @Html.EditorFor(model => model.Payment_Frequency, "BootstrapEditor")
                         <div class="col-sm-4">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Coupon_BusDay_Adjustment, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
@@ -287,10 +300,11 @@
                                     @Html.ValidationMessageFor(model => model.Coupon_BusDay_Adjustment, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                        </div> 
-
+                        </div>
+                    </div>
+                    <div class="row">
                         @Html.EditorFor(model => model.Odd_Last_Coupon_Date, "BootstrapEditDate")
-                        @Html.EditorFor(model => model.Ex_Div_BusDay_Adjustment, "BootstrapEditor") 
+                        @Html.EditorFor(model => model.Ex_Div_BusDay_Adjustment, "BootstrapEditor")
                         <div class="col-sm-4">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Ex_Div_Period, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
@@ -299,8 +313,9 @@
                                     @Html.ValidationMessageFor(model => model.Ex_Div_Period, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                        </div> 
-
+                        </div>
+                    </div>
+                    <div class="row">
                         @Html.EditorFor(model => model.Next_Coupon_Date, "BootstrapEditDate")
                         @Html.EditorFor(model => model.Previous_Coupon_Date, "BootstrapEditDate")
                         @Html.EditorFor(model => model.Next_Ex_Div_Date, "BootstrapEditDate")

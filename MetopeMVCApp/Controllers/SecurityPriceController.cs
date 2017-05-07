@@ -15,6 +15,7 @@ using MetopeMVCApp.Data.GenericRepository;
 
 namespace MetopeMVCApp.Controllers
 {
+
     public class SecurityPriceController : Controller
     {
         private MetopeDbEntities db = new MetopeDbEntities();
@@ -42,6 +43,9 @@ namespace MetopeMVCApp.Controllers
         // GET: SecurityPrice
         public ActionResult Index(int? numberOfRows, int? SecurityId, int? iEntityId, string iPriceCurr ="")
         { 
+
+            var currentUser = manager.FindById(User.Identity.GetUserId());  
+
             //var security_Price = db.Security_Price.Include(s => s.Currency)
             //                        .Include(s => s.Entity).Include(s => s.Security_Detail).Include(s => s.User);
             var viewModel = new SecurityPriceIndexViewModel();
@@ -58,7 +62,7 @@ namespace MetopeMVCApp.Controllers
             }  
 
             viewModel.SecurityPrices = db11.GetAll()
-                                      .SearchPrices(SecurityId, iPriceCurr)
+                                      .SearchPrices(SecurityId , currentUser.EntityIdScope, iPriceCurr)
                                       .Include(s => s.Currency)
                                       .Include(s => s.Security_Detail)
                                       .OrderBy(s => s.Security_Detail.Ticker )
@@ -75,7 +79,7 @@ namespace MetopeMVCApp.Controllers
             if (SecurityId != null && iPriceCurr != "")
             { 
                 viewModel.SecurityPriceHistory = db.Security_Price_History
-                    .Where(c => c.Security_ID == SecurityId && c.Price_Curr == iPriceCurr)
+                    .Where(c => c.Security_ID == SecurityId && c.Price_Curr == iPriceCurr && currentUser.EntityIdScope == c.Entity_ID)
                     .Include(c => c.Currency)
                     .ToList(); 
 
@@ -86,11 +90,13 @@ namespace MetopeMVCApp.Controllers
         // GET: SecurityPrice/Details/5
         public ActionResult Details(decimal SecurityId)
         {
+            var currentUser = manager.FindById(User.Identity.GetUserId());  
+
             if (SecurityId == null) 
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
  
             Security_Price security_Price = db11.GetAll()
-                     .Where(s => s.Security_ID == SecurityId)
+                     .Where(s => s.Security_ID == SecurityId && currentUser.EntityIdScope == s.Entity_ID)
                      .FirstOrDefault<Security_Price>();   
 
             //Security_Price security_Price = db.Security_Price.Find(SecurityId, SecurityId);
@@ -150,52 +156,99 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: SecurityPrice/Edit/5
+        [HttpGet]
         public ActionResult Edit(decimal EntityId, decimal SecurityId, string PriceCurr)
         {
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+
             if (SecurityId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Security_Price secPrice = db11.FindBy(r => r.Entity_ID == EntityId && r.Security_ID == SecurityId && 
-                                            r.Price_Curr == PriceCurr).Include(r => r.Security_Detail)
-                                            .FirstOrDefault(); 
-           if (secPrice == null)
+            if (currentUser.EntityIdScope != EntityId)
+            {
+                throw new Exception("Forbidden");
+                //throw new HttpException((int)System.Net.HttpStatusCode.Forbidden, "Forbidden");
+                //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
+            }
+
+            Security_Price secPrice = db11.FindBy(r => r.Entity_ID == EntityId && r.Security_ID == SecurityId &&
+                                            r.Price_Curr == PriceCurr).Include(r => r.Security_Detail).FirstOrDefault();
+
+            SecurityPriceEditModel model; 
+             model = new SecurityPriceEditModel
+            {
+                Entity_ID = secPrice.Entity_ID,
+                Security_ID = secPrice.Security_ID,
+                Price_Curr = secPrice.Price_Curr,
+                All_In_Price = secPrice.All_In_Price,
+                Clean_Price = secPrice.Clean_Price,
+                Accrued_Income_Price = secPrice.Accrued_Income_Price,
+                Price_Source = secPrice.Price_Source,
+                Yield_To_Maturity = secPrice.Yield_To_Maturity,
+                Discount_Rate = secPrice.Discount_Rate, 
+                Issued_Amount = secPrice.Issued_Amount,
+                Free_Float_Issued_Amount = secPrice.Free_Float_Issued_Amount,
+                Record_Date = secPrice.Record_Date,
+                Security_Name = secPrice.Security_Detail.Short_Name
+             }; 
+         
+            //var secPrice = db11.FindBy(r => r.Entity_ID == EntityId && r.Security_ID == SecurityId &&
+            //                        r.Price_Curr == PriceCurr).Include(r => r.Security_Detail)
+            //                        .Select (g => new SecurityPriceEditModel
+            //                        { 
+            //                            Security_Name = g.Security_Detail.Security_Name,
+
+            //                            SecurityPrice = g.SecurityP
+
+            //                        })
+            //                        .FirstOrDefault (); 
+            if (secPrice == null)
             {
                 return HttpNotFound();
             }
-           return View(secPrice);
-
-            //ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Price.Price_Curr);
-            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Price.Entity_ID);
-            //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price.Security_ID);
-            //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_security_detail.Last_Update_User = User.Identity.Name; Name", security_Price.Entity_ID);
+            return View(model); 
         }
          
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Prefix = "Security_Price", Include = "Entity_ID,Security_ID,Price_Curr,All_In_Price,Clean_Price,Accrued_Income_Price,Price_Source,Yield_To_Maturity,Discount_Rate,Last_Update_User,Last_Update_Date,Issued_Amount,Free_Float_Issued_Amount,Record_Date")] Security_Price security_Price)
+        public ActionResult Edit([Bind( Include = "Entity_ID,Security_ID,Price_Curr,All_In_Price,Clean_Price,Accrued_Income_Price,Price_Source,Yield_To_Maturity,Discount_Rate,Last_Update_User,Last_Update_Date,Issued_Amount,Free_Float_Issued_Amount,Record_Date")] 
+                                        SecurityPriceEditModel secPrice)
         {
-            ModelState.AddModelError("Name", "test FAILED ... xxists!"); 
+            var currentUser = manager.FindById(User.Identity.GetUserId());
 
+            Security_Price security_Price = db11.FindBy(r => r.Entity_ID == currentUser.EntityIdScope && 
+                                                             r.Security_ID == secPrice.Security_ID &&
+                                                             r.Price_Curr == secPrice.Price_Curr).Include(r => r.Security_Detail).FirstOrDefault();
 
             if (ModelState.IsValid)
-            {  
+            {
                 security_Price.Last_Update_Date = DateTime.Now;
                 security_Price.Last_Update_User = User.Identity.Name;
+                security_Price.Price_Curr = secPrice.Price_Curr;
+                security_Price.All_In_Price = secPrice.All_In_Price;
+                security_Price.Clean_Price = secPrice.Clean_Price;
+                security_Price.Accrued_Income_Price = secPrice.Accrued_Income_Price;
+                security_Price.Price_Source = secPrice.Price_Source;
+                security_Price.Yield_To_Maturity = secPrice.Yield_To_Maturity;
+                security_Price.Discount_Rate = secPrice.Discount_Rate;
+                 
+                security_Price.Issued_Amount = secPrice.Issued_Amount;
+                security_Price.Free_Float_Issued_Amount = secPrice.Free_Float_Issued_Amount;
+                security_Price.Record_Date = secPrice.Record_Date; 
                 //db11.Database.Log = l => LogInfo(l);
 
                 db11.Update(security_Price);
                 db11.Save();
                 TempData.Add("ResultMessage", "Security \"" + security_Price.Security_ID + "\" for Price Currency " + security_Price.Price_Curr + "\" edited successfully!");
-                //return RedirectToAction("Index"); 
+  
                 return RedirectToAction("Index", "SecurityPrice", new {/* routeValues, for example: */ SecurityId = security_Price.Security_ID, iPriceCurr = security_Price.Price_Curr });
-                 
-            }
-            //ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Price.Price_Curr);
-            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Price.Entity_ID);
-            //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Price.Security_ID);
-            //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Price.Entity_ID);
-            return View(security_Price);
+
+            } 
+            //re-populate model:
+            secPrice.Security_Name = security_Price.Security_Detail.Security_Name; 
+ 
+            return View(secPrice);
         }
 
         // GET: SecurityPrice/Delete/5
@@ -205,6 +258,7 @@ namespace MetopeMVCApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+           
             Security_Price security_Price = db.Security_Price.Find(EntityId, SecurityId, PriceCurr);
             if (security_Price == null)
             {
@@ -218,6 +272,13 @@ namespace MetopeMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(decimal EntityId, decimal SecurityId, string PriceCurr)
         {
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+
+            if (currentUser.EntityIdScope != EntityId)
+            {
+                throw new Exception("Forbidden");
+            }
+
             Security_Price security_Price = db.Security_Price.Find(EntityId, SecurityId, PriceCurr);
             db.Security_Price.Remove(security_Price);
             db.SaveChanges();

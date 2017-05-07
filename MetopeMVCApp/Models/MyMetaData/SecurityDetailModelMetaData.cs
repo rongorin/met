@@ -184,6 +184,9 @@ namespace MetopeMVCApp.Models.MyMetaData
  
         [Display(Name = "Benchmark Portfolio ")]
         public string Benchmark_Portfolio { get; set; }
+        [Required]
+        [Display(Name = "Dividend FX Security")]
+        public decimal Dividend_FX_Security_ID { get; set; }
   
     }
 }

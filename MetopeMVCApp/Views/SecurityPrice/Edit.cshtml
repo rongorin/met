@@ -1,4 +1,4 @@
-﻿@model MetopeMVCApp.Models.Security_Price 
+﻿@model MetopeMVCApp.Models.SecurityPriceEditModel 
 @{
     ViewBag.Title = "Edit";
 } 
@@ -10,9 +10,10 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal"> 
-        <h3>Editing Security <b> @Model.Security_Detail.Short_Name </b>  Price Currency <b>  @Model.Price_Curr</b></h3>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h3>Editing Security <b> @Model.Security_Name </b>  Price Currency <b>  @Model.Price_Curr</b></h3>
+        <hr /> 
+
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Entity_ID) 
         @Html.HiddenFor(model => model.Security_ID) 
         @Html.HiddenFor(model => model.Price_Curr) 

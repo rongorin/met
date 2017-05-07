@@ -372,6 +372,7 @@
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SecurityDetailIndexModel.cs" />
+    <Compile Include="Models\SecurityPriceEditModel.cs" />
     <Compile Include="Models\SecurityPriceIndexViewModel.cs" />
     <Compile Include="Models\Security_Detail.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>

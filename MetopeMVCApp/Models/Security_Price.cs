@@ -8,8 +8,8 @@
 //------------------------------------------------------------------------------
 
 namespace MetopeMVCApp.Models
-{
-    using MetopeMVCApp.Models.MyMetaData;
+{ 
+       using MetopeMVCApp.Models.MyMetaData;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -34,7 +34,7 @@ namespace MetopeMVCApp.Models
     
         public virtual Currency Currency { get; set; }
         public virtual Entity Entity { get; set; }
-        public virtual Security_Detail Security_Detail { get; set; }
         public virtual User User { get; set; }
+        public virtual Security_Detail Security_Detail { get; set; }
     }
 }
