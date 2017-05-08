@@ -88,7 +88,7 @@ namespace MetopeMVCApp.Controllers
             return View(party);
         }
 
-        // GET: Party/Edit/5 
+        // GET: Party/Edit/5  
         [CountryFilter]
         public ActionResult Edit( string PartyCode,  decimal EntityId)
         {
@@ -111,9 +111,7 @@ namespace MetopeMVCApp.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.Country_Code = new SelectList(db.Countries, "Country_Code", "Country_Name", party.Country_Code);
-
-            // [CountriesFilter] :
+ 
             ViewBag.RecordCountryOfDomicile = party.Country_Code;
 
             //if (Request.IsAjaxRequest())
@@ -122,10 +120,7 @@ namespace MetopeMVCApp.Controllers
             //}
             return View(party);
         }
-
-        // POST: Party/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+ 
         [HttpPost] 
         [CountryFilter]  
         [ValidateAntiForgeryToken]
@@ -135,16 +130,18 @@ namespace MetopeMVCApp.Controllers
 
             if (ModelState.IsValid)
             {
-                if (currentUser.EntityIdScope != party.Entity_ID && (decimal)ViewBag.genericEntity != party.Entity_ID) 
+                if (currentUser.EntityIdScope != party.Entity_ID && (decimal)ViewBag.genericEntity != party.Entity_ID)
                 {
-                    ModelState.AddModelError("Error", "An error occurred trying to edit. Party isnt in scope"); 
-                }  
-                db11.Update(party);
-                db11.Save();
-                TempData.Add("ResultMessage", "Party \"" + party.Party_Name + "\" editied successfully!");
-                return RedirectToAction("Index");
-            }
-            //ViewBag.Country_Code = new SelectList(db.Countries, "Country_Code", "Country_Name", party.Country_Code);
+                    ModelState.AddModelError("Error", "An error occurred trying to edit. Party isnt in scope");
+                }
+                else
+                {
+                    db11.Update(party);
+                    db11.Save();
+                    TempData.Add("ResultMessage", "Party \"" + party.Party_Name + "\" editied successfully!");
+                    return RedirectToAction("Index");
+                }
+            } 
        
             return View(party);
         }

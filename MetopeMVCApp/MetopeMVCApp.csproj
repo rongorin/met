@@ -288,7 +288,9 @@
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
     <Compile Include="DependencyResolution\StructureMapScopeModule.cs" />
     <Compile Include="Filters\FiltersDropdownData.cs" />
+    <Compile Include="Filters\ImportModelStateFromTempDataAttribute.cs" />
     <Compile Include="Filters\LogAttribuite.cs" />
+    <Compile Include="Filters\ModelStateTempDataTransfer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

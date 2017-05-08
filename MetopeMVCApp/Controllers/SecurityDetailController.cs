@@ -56,8 +56,8 @@ namespace MetopeMVCApp.Controllers
         {
             string FilePath = HttpContext.Server.MapPath("~/Data/Repositories/LoggerRepository/LoggerFile.txt");
             System.IO.File.AppendAllText(FilePath, logmessage);
-        } 
-         
+        }
+        //[ImportModelStateFromTempData]
         [LogAttribuite]
         public ActionResult Index(int? numberOfRows , int page = 1, string searchTerm = null)
         {
@@ -177,7 +177,7 @@ namespace MetopeMVCApp.Controllers
             ModelState.AddModelError("Error", "An error occurred trying to add a Security"); 
             ViewBag.EntityIdScope = currentUser.EntityIdScope;  
             return View(security_detail);
-        }  
+        }
         [SecuritiesFilter]
         [CountryFilter] 
         [TrueFalseFilter]
@@ -187,8 +187,7 @@ namespace MetopeMVCApp.Controllers
         [CodeMiscellaneousFilter]
         [BenchmarkPortfolioFilter]
         [PartyFilter]
-        [CurrencyPairFilter]  
-
+        [CurrencyPairFilter]
 
         public ActionResult Edit(decimal id)
         {  
@@ -239,8 +238,8 @@ namespace MetopeMVCApp.Controllers
                 ViewBag.CleanPriceFormula = security_detail.Clean_Price_Formula;
    
                 return View(security_detail); 
-        } 
-         [HttpPost]
+        }
+        [HttpPost] 
          [SecuritiesFilter]
          [ValidateAntiForgeryToken]
          [CountryFilter]

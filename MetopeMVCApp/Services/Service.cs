@@ -111,12 +111,12 @@ namespace MetopeMVCApp.Services
             return dbCntx.GetAll().Where(c => c.Entity_ID == iUser);
              
         }
-        public IQueryable<Security_Detail> ListSecurities(decimal iEntity)
+        public IQueryable<Security_Detail> ListSecurities(decimal iEntity,decimal iGenericEntity)
         {
             ISecurityDetailRepository dbCntx  ;
             dbCntx = new  SecurityDetailRepository();
             return dbCntx.GetAll(r => r.Security_Type_Code =="FXRATE")
-                     .MatchEntityID(c => c.Entity_ID == iEntity);
+                     .MatchEntityID(c => c.Entity_ID == iEntity || c.Entity_ID == iGenericEntity);
 
             //return dbCntx.GetAll().Where(c => c.Entity_ID == iUser);
 

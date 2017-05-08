@@ -24,7 +24,27 @@ namespace MetopeMVCApp.Filters
     //    }
 
     //} 
+     
+    //Removed . Attempted this: http://benfoster.io/blog/automatic-modelstate-validation-in-aspnet-mvc
+    //   Also see the Filters ModelStateTempDataTransfer and ImportModelStateFromTempDataAttribute
+    //public class ValidateModelStateAttribute : ActionFilterAttribute
+    //{
+    //    public override void OnActionExecuting(ActionExecutingContext filterContext)
+    //    {
+    //        var viewData = filterContext.Controller.ViewData;
 
+    //        if (!viewData.ModelState.IsValid)
+    //        {
+    //            filterContext.Result = new ViewResult
+    //            {
+    //                ViewData = viewData,
+    //                TempData = filterContext.Controller.TempData
+    //            };
+    //        }
+
+    //        base.OnActionExecuting(filterContext);
+    //    }
+    //}
     public class AuthoriseGenericIdAttribute : ActionFilterAttribute
     {  
         public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -198,7 +218,7 @@ namespace MetopeMVCApp.Filters
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
-                 secs = svc.ListSecurities(filterContext.Controller.ViewBag.EntityIdScope);
+                 secs = svc.ListSecurities(filterContext.Controller.ViewBag.EntityIdScope, Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity));
                  //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
              }

@@ -211,7 +211,7 @@ namespace MetopeMVCApp.Controllers
         }
          
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]  
         public ActionResult Edit([Bind( Include = "Entity_ID,Security_ID,Price_Curr,All_In_Price,Clean_Price,Accrued_Income_Price,Price_Source,Yield_To_Maturity,Discount_Rate,Last_Update_User,Last_Update_Date,Issued_Amount,Free_Float_Issued_Amount,Record_Date")] 
                                         SecurityPriceEditModel secPrice)
         {
