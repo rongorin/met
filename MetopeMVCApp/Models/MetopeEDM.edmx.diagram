@@ -58,6 +58,15 @@
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Portfolio_Benchmark" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Price_History_Security_Detail" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Price_Security_Detail" />
+        <EntityTypeShape EntityType="MetopeDbModel.Party_Debt_Analysis" Width="1.5" PointX="4.125" PointY="16.75" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Debt_Analysis_Entity" />
+        <EntityTypeShape EntityType="MetopeDbModel.Party_Financials" Width="1.5" PointX="21" PointY="6.875" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_Security_Detail" />
+        <EntityTypeShape EntityType="MetopeDbModel.Debt_Expiry_Profile" Width="1.5" PointX="4.125" PointY="41.25" />
+        <EntityTypeShape EntityType="MetopeDbModel.Party_Financials_History" Width="1.5" PointX="4.125" PointY="29.75" />
+        <AssociationConnector Association="MetopeDbModel.FK_Debt_Expiry_Profile_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_History_Entity" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

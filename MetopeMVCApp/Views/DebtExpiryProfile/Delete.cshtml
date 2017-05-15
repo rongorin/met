@@ -1,0 +1,47 @@
+﻿@model MetopeMVCApp.Models.Debt_Expiry_Profile
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete confirmation</h2>
+<p>
+    Are you sure you want to delete this Debt Expiry Profile record?
+</p>
+<div> 
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Party_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Party_Code)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Record_Date)
+        </dt> 
+        <dd>
+            @Html.DisplayFor(model => model.Record_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Expiring_Debt_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Expiring_Debt_Amount)
+        </dd>
+          
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-danger" />  |
+        @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
+    </div>
+    }
+</div>

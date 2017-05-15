@@ -260,19 +260,26 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DebtExpiryProfileController.cs" />
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\ErrorpageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartyController.cs" />
+    <Compile Include="Controllers\PartyDebtAnalysisController.cs" />
+    <Compile Include="Controllers\PartyFinancialsController.cs" />
     <Compile Include="Controllers\Port2Controller.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\SecurityDetailController.cs" />
     <Compile Include="Controllers\SecurityPriceController.cs" />
     <Compile Include="Data\Constants.cs" />
+    <Compile Include="Data\DebtExpiryProfileRepository.cs" />
     <Compile Include="Data\GenericRepository\GenericRepository.cs" />
     <Compile Include="Data\GenericRepository\IGenericRepository.cs" />
     <Compile Include="Data\IPortfolioRepository3.cs" />
     <Compile Include="Data\ISecurityDetailRepository.cs" />
+    <Compile Include="Data\PartyDebtAnalysisRepository.cs" />
+    <Compile Include="Data\PartyFinancialsHistoryRepository.cs" />
+    <Compile Include="Data\PartyFinancialsRepository.cs" />
     <Compile Include="Data\TablesQueryableExtensions.cs" />
     <Compile Include="Data\Repositories\IDisposedTracker.cs" />
     <Compile Include="Data\Repositories\PortfolioRepository3.cs" />
@@ -337,6 +344,9 @@
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Custom\Weather.cs" />
+    <Compile Include="Models\Debt_Expiry_Profile.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entity.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
@@ -359,12 +369,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MetopeEDM.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\MyMetaData\DebtExpiryProfileModelMetaData.cs" />
+    <Compile Include="Models\MyMetaData\MyMetadataProvider.cs" />
     <Compile Include="Models\MyMetaData\PartyModelMetaData.cs" />
+    <Compile Include="Models\MyMetaData\PortfolioDebtAnalysisModelMetaData.cs" />
     <Compile Include="Models\MyMetaData\PortfolioModelMetatData.cs" />
     <Compile Include="Models\MyMetaData\SecurityDetailModelMetaData.cs" />
+    <Compile Include="Models\MyMetaData\PartyFinancialsModelMetaData.cs" />
     <Compile Include="Models\MyMetaData\SecurityPriceHistoryModelMetaData.cs" />
     <Compile Include="Models\MyMetaData\SecurityPriceModelMetaData.cs" />
     <Compile Include="Models\Party.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Party_Debt_Analysis.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Party_Financials.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Party_Financials_History.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Portfolio.cs">
@@ -706,6 +729,24 @@
     <Content Include="Views\Shared\EditorTemplates\BootstrapEditDateVertic.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BootstrapEditorVertic.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BooleanVertic.cshtml" />
+    <Content Include="Views\PartyDebtAnalysis\Create.cshtml" />
+    <Content Include="Views\PartyDebtAnalysis\Delete.cshtml" />
+    <Content Include="Views\PartyDebtAnalysis\Details.cshtml" />
+    <Content Include="Views\PartyDebtAnalysis\Edit.cshtml" />
+    <Content Include="Views\PartyDebtAnalysis\Index.cshtml" />
+    <Content Include="Views\PartyFinancials\Create.cshtml" />
+    <Content Include="Views\PartyFinancials\Delete.cshtml" />
+    <Content Include="Views\PartyFinancials\Details.cshtml" />
+    <Content Include="Views\PartyFinancials\Edit.cshtml" />
+    <Content Include="Views\PartyFinancials\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Party_Debt_Analysis.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Party_Financials.cshtml" />
+    <Content Include="Views\DebtExpiryProfile\Create.cshtml" />
+    <Content Include="Views\DebtExpiryProfile\Delete.cshtml" />
+    <Content Include="Views\DebtExpiryProfile\Details.cshtml" />
+    <Content Include="Views\DebtExpiryProfile\Edit.cshtml" />
+    <Content Include="Views\DebtExpiryProfile\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Debt_Expiry_Profile.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

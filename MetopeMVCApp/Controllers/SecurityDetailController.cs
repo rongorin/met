@@ -258,8 +258,7 @@ namespace MetopeMVCApp.Controllers
             
             if (ModelState.IsValid) 
             {
-                db11.Update(security_detail); //sets the modified status
-                security_detail.Entity_ID = currentUser.EntityIdScope;
+                db11.Update(security_detail); //sets the modified status 
                 security_detail.Last_Update_Date = DateTime.Now;
                 security_detail.Last_Update_User = User.Identity.Name; 
                 db11.Save();

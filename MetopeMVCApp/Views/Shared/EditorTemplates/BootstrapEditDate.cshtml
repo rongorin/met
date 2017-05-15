@@ -1,16 +1,13 @@
 ﻿ @model DateTime?
 <div class="col-sm-4">
-    <div class="form-group">
-
-        @Html.LabelFor(model => model, htmlAttributes:
+    <div class="form-group"> 
+        @Html.LabelFor(model => model,htmlAttributes:
                     new
                     {
                         @class = "control-label col-md-5 input-sm",
                         style = "max-width:100% ;text-align: right"
                     })
-        <div class="col-md-7">
- 
-
+        <div class="col-md-7"> 
             <div class='input-group date datetimepickerClass'>
 
                 @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
@@ -20,12 +17,9 @@
                     })
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-               
-
+                </span> 
             </div>
-            </div>
-
+            </div> 
     </div>
 </div>
 

@@ -223,11 +223,13 @@ namespace MetopeMVCApp.Filters
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
              }
              filterContext.Controller.ViewBag.Dividend_FX_Security_ID = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.DividendFXSecurityID);
+             filterContext.Controller.ViewBag.Securities_Select = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesSelect);
 
              base.OnActionExecuted(filterContext);
          }
 
      }
+     
      public class PartyFilter : ActionFilterAttribute
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -246,6 +248,29 @@ namespace MetopeMVCApp.Filters
                             new SelectList(parties, "Party_Code", "Party_Name", filterContext.Controller.ViewBag.UltimateIssuerCode); 
              filterContext.Controller.ViewBag.Issuer_Code = 
                             new SelectList(parties, "Party_Code", "Party_Name", filterContext.Controller.ViewBag.IssuerCode); 
+
+             base.OnActionExecuted(filterContext);
+         }
+
+     }
+
+     public class PartyFilterIssr : ActionFilterAttribute
+     {
+         public override void OnActionExecuted(ActionExecutedContext filterContext)
+         {
+             IQueryable<Party> parties;
+             if ((parties = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Party>)) == null)
+             {
+                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+
+                 parties = svc.ListPartyValues("ISSR", Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope),
+                                               Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity));
+                 filterContext.HttpContext.Cache.Insert(GetType().FullName, parties);
+             }
+
+             filterContext.Controller.ViewBag.Party_Code =
+                            new SelectList(parties, "Party_Code", "Party_Name", filterContext.Controller.ViewBag.PartyCode);
+ 
 
              base.OnActionExecuted(filterContext);
          }
@@ -280,12 +305,39 @@ namespace MetopeMVCApp.Filters
 
              var trueFalse = new List<SelectListItem>();
              trueFalse.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
-             trueFalse.Add(new SelectListItem { Text = "False", Value = bool.FalseString });  
+             trueFalse.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
 
              filterContext.Controller.ViewBag.Track_EOM_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyTrackEOMFlagList);
              filterContext.Controller.ViewBag.Call_Account_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyCallAccountFgList);
              filterContext.Controller.ViewBag.System_Locked = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MySysLockedList);
-             filterContext.Controller.ViewBag.Security_Status = new SelectList(securityStati, "Value", "Text", filterContext.Controller.ViewBag.MySecurityStatus); 
+             filterContext.Controller.ViewBag.Security_Status = new SelectList(securityStati, "Value", "Text", filterContext.Controller.ViewBag.MySecurityStatus);
+
+             base.OnActionExecuted(filterContext);
+         }
+     }
+     public class FinancialsType : ActionFilterAttribute
+     {
+         public override void OnActionExecuted(ActionExecutedContext filterContext)
+         {
+             List<SelectListItem> fType = new List<SelectListItem> {
+						new SelectListItem { Text = "Interim", Value = "I" },
+						new SelectListItem { Text = "Final", Value = "F" } }; 
+
+             filterContext.Controller.ViewBag.Financials_Type = new SelectList(fType, "Value", "Text", filterContext.Controller.ViewBag.FinancialsType); 
+
+             base.OnActionExecuted(filterContext);
+         }
+          
+     }
+     public class ActualForecastIndicatoreFilter : ActionFilterAttribute
+     {
+         public override void OnActionExecuted(ActionExecutedContext filterContext)
+         {
+             List<SelectListItem> fAIndicator = new List<SelectListItem> {
+						new SelectListItem { Text = "Actual", Value = "A" },
+						new SelectListItem { Text = "Forecast", Value = "F" } };
+
+             filterContext.Controller.ViewBag.Actual_Forecast_Indicator = new SelectList(fAIndicator, "Value", "Text", filterContext.Controller.ViewBag.ActualForecastIndicator); 
 
              base.OnActionExecuted(filterContext);
          }

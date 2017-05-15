@@ -13,22 +13,15 @@ namespace MetopeMVCApp.Models
     using System.Collections.Generic;
     using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
-    [MetadataType(typeof(PartyModelMetaData))]
-
-    
-    public partial class Party
+    [MetadataType(typeof(DebtExpiryProfileModelMetaData))]
+    public partial class Debt_Expiry_Profile
     {
-        public decimal Entity_ID { get; set; }
         public string Party_Code { get; set; }
-        public string Party_Name { get; set; }
-        public string Party_Type { get; set; }
-        public Nullable<System.DateTime> Financial_Year_End { get; set; }
-        public string Country_Code { get; set; }
-        public Nullable<bool> System_Locked { get; set; }
-        public string SWIFT_ID { get; set; }
-        public string BIC_Code { get; set; }
+        public decimal Entity_ID { get; set; }
+        public System.DateTime Record_Date { get; set; }
+        public System.DateTime Financial_Year_End { get; set; }
+        public Nullable<decimal> Expiring_Debt_Amount { get; set; }
     
-        public virtual Country Country { get; set; }
         public virtual Entity Entity { get; set; }
     }
 }

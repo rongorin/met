@@ -21,11 +21,24 @@
             </a>
             <ul class="dropdown-menu" role="menu">
                 <li>@Html.ActionLink("Portfolios", "Index", "Portfolio")</li>
-                <li>@Html.ActionLink("Parties", "Index", "Party")</li>
+                
                 <li>@Html.ActionLink("Securities", "Index", "SecurityDetail")</li>
                 <li>@Html.ActionLink("Security Prices", "Index", "SecurityPrice")</li>
                 <li class="divider"></li>
-                <li><a href="#">Other</a></li>
+                
+                <li class="dropdown-submenu">
+                    <a class="test" tabindex="-1" href="#">Party <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Parties", "Index", "Party")</li>
+                        <li>@Html.ActionLink("Party Financials", "Index", "PartyFinancials")</li>
+                        <li>@Html.ActionLink("Party Debt Analysis", "Index", "PartyDebtAnalysis")</li> 
+                        <li>@Html.ActionLink("Debt Expiry Profile", "Index", "DebtExpiryProfile")</li> 
+                        <li class="dropdown-submenu">
+                          
+                        </li>
+                    </ul>
+                </li>
+                @*<li><a href="#">Other</a></li>*@
             </ul>
         </li>
          
@@ -45,4 +58,6 @@ else
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink"})</li>
     </ul>
 }
+
+
  

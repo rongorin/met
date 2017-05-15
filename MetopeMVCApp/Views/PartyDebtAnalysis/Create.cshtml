@@ -1,0 +1,49 @@
+﻿@model MetopeMVCApp.Models.Party_Debt_Analysis
+
+@{
+    ViewBag.Title = "Create";
+}
+@section Styles {
+    @Styles.Render("~/Content/datetime")
+}
+
+<h2>Create Party Debt Analysis</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken() 
+    <div class="form-horizontal"> 
+        <hr />
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+        @Html.ValidationSummary(false)
+        @Html.ValidationMessage("Error")
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Party_Code, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9"> 
+                @Html.DropDownList("Party_Code", null, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Party_Code, "", new { @class = "text-danger" })
+            
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Financials_Type, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownList("Financials_Type", null, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Financials_Type, "", new { @class = "text-danger" })
+
+   
+            </div>
+        </div>  
+        @Html.EditorForModel() 
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+}

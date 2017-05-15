@@ -8,9 +8,7 @@
 }
 
  <h4></h4>
- <h3>Editing  Security  <b>  @Model.Short_Name </b></h3> 
-
-     
+ <h3>Editing  Security  <b>  @Model.Short_Name </b></h3>  
         @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
         {
             @Html.AntiForgeryToken()

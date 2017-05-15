@@ -1,0 +1,370 @@
+﻿@model MetopeMVCApp.Models.Party_Financials
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Party_Financials</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Financials_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Financials_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Full_Adjusted_Share_NAV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Full_Adjusted_Share_NAV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enterprise_Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enterprise_Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dividend_Yield)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dividend_Yield)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Net_Present_Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Net_Present_Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Net_Property_Income)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Net_Property_Income)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vacancies_Overall)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vacancies_Overall)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Portfolio_Leases_Expiring)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Portfolio_Leases_Expiring)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Assumed_Ave_Escalation_Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Assumed_Ave_Escalation_Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cap_Rate_Movemt_Assump)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cap_Rate_Movemt_Assump)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reversion_Exp_Rent_Reviews)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reversion_Exp_Rent_Reviews)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ungeared_Yield)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ungeared_Yield)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Net_Operating_Profit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Net_Operating_Profit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Revenue_Growth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Revenue_Growth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Net_Property_Income_Growth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Net_Property_Income_Growth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Net_Operating_Profit_Growth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Net_Operating_Profit_Growth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interest_Paid_Growth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interest_Paid_Growth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loan_To_Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loan_To_Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interest_Cover_Ratio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interest_Cover_Ratio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Revenue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Revenue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interest_Paid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interest_Paid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Property_Expenses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Property_Expenses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Property_Expenses_Growth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Property_Expenses_Growth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Investment_Income)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Investment_Income)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin_Expenses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin_Expenses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin_Expenses_Growth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin_Expenses_Growth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Taxation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Taxation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Other_Income)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Other_Income)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distributable_Earnings)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distributable_Earnings)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distributions_Growth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distributions_Growth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Linked_Units_Issued)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Linked_Units_Issued)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Borrowings)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Borrowings)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Units_Issued)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Units_Issued)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Purchases_And_Developments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Purchases_And_Developments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sales)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sales)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Assets)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Assets)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Current_Liabilities)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Current_Liabilities)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interest_Bearing_Borrowings)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interest_Bearing_Borrowings)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Update_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Update_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Update_User)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Update_User)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Distributions_Growth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Distributions_Growth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Property_Portfolio_Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Property_Portfolio_Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entity.Entity_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entity.Entity_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Detail.Security_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Detail.Security_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

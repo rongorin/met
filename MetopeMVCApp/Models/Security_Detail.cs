@@ -11,10 +11,10 @@ namespace MetopeMVCApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using MetopeMVCApp.Models.MyMetaData;
+      using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityDetailModelMetaData))]
-    
+  
     public partial class Security_Detail
     {
         public Security_Detail()
@@ -23,6 +23,7 @@ namespace MetopeMVCApp.Models
             this.Currencies1 = new HashSet<Currency>();
             this.Security_Price_History = new HashSet<Security_Price_History>();
             this.Security_Price = new HashSet<Security_Price>();
+            this.Party_Financials = new HashSet<Party_Financials>();
         }
     
         public decimal Security_ID { get; set; }
@@ -95,5 +96,6 @@ namespace MetopeMVCApp.Models
         public virtual Portfolio Portfolio { get; set; }
         public virtual ICollection<Security_Price_History> Security_Price_History { get; set; }
         public virtual ICollection<Security_Price> Security_Price { get; set; }
+        public virtual ICollection<Party_Financials> Party_Financials { get; set; }
     }
 }

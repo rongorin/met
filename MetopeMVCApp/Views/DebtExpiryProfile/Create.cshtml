@@ -1,0 +1,33 @@
+﻿@model MetopeMVCApp.Models.Debt_Expiry_Profile
+
+@{
+    ViewBag.Title = "Create";
+}
+@section Styles {
+    @Styles.Render("~/Content/datetime")
+}
+
+<h2>Create Debt Expiry Profile</h2> 
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Debt_Expiry_Profile</h4>
+        <hr />        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+        @Html.ValidationSummary(false)
+        @Html.ValidationMessage("Error") 
+
+        @Html.EditorForModel() 
+
+    </div>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+}

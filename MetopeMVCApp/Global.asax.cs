@@ -1,4 +1,5 @@
 ﻿
+using MetopeMVCApp.Models.MyMetaData;
 using StackExchange.Profiling;
 using StackExchange.Profiling.EntityFramework6;
 using System;
@@ -24,6 +25,7 @@ namespace ASP.MetopeNspace
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ModelBinders.Binders.Add(typeof(decimal?), new MetopeMVCApp.DecimalModelBinder());
+            ModelMetadataProviders.Current = new MyMetadataProvider();
             MiniProfilerEF6.Initialize();
         }
         protected void Application_BeginRequest()

@@ -1,0 +1,42 @@
+﻿@model MetopeMVCApp.Models.Debt_Expiry_Profile
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Debt_Expiry_Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Record_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Record_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Expiring_Debt_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Expiring_Debt_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entity.Entity_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entity.Entity_Code)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

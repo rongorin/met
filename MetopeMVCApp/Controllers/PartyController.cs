@@ -51,9 +51,7 @@ namespace MetopeMVCApp.Controllers
         [CountryFilter]
         public ActionResult Create()
         {
-            var currentUser = manager.FindById(User.Identity.GetUserId());  
-          
-            ViewBag.entityId = currentUser.EntityIdScope;
+            var currentUser = manager.FindById(User.Identity.GetUserId());   
             return View(); 
         }
 
@@ -69,7 +67,7 @@ namespace MetopeMVCApp.Controllers
             party.Entity_ID = currentUser.EntityIdScope;
 
             /*------------------------------------------ 
-            first check if this party is already used ! 
+            first check if this party code is already used ! 
             ----------------------------------------*/
             Party check = db11.FindBy(r => r.Party_Code == party.Party_Code).FirstOrDefault();
                      //   Party check = db11.Get(party.Party_Code); 
@@ -78,13 +76,16 @@ namespace MetopeMVCApp.Controllers
                 if (check != null)
                 {
                     ModelState.AddModelError("Name", "FAILED to create Party \"" + party.Party_Name + "\" code:\"" + party.Party_Code + "\". Already exists!");
-                } 
-                db11.Add(party);
-                db11.Save();
-                TempData.Add("ResultMessage", "new Party \"" + party.Party_Name + "\" created successfully!");
-                return RedirectToAction("Index");
+                }
+                else
+                {
+                    db11.Add(party);
+                    db11.Save();
+                    TempData.Add("ResultMessage", "new Party \"" + party.Party_Name + "\" created successfully!");
+                    return RedirectToAction("Index");
+                }
              }
-            //ViewBag.Country_Code = new SelectList(db.Countries, "Country_Code", "Country_Name", party.Country_Code); 
+                //ViewBag.Country_Code = new SelectList(db.Countries, "Country_Code", "Country_Name", party.Country_Code); 
             return View(party);
         }
 

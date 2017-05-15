@@ -1,0 +1,40 @@
+﻿@model MetopeMVCApp.Models.Party_Financials
+
+@{
+    ViewBag.Title = "Edit";
+}
+@section Styles {
+    @Styles.Render("~/Content/datetime")
+}
+
+<h3>
+    Editing Party Financials code<b> @Model.Party_Code </b>
+    @if (Model.Actual_Forecast_Indicator == "A")
+    {   <span>(Actual)</span>  }
+    else
+    {   <span>(Forecasted)</span>  }
+
+</h3> 
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal"> 
+        <hr />
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+        @Html.ValidationSummary(false)
+        @Html.ValidationMessage("Error")
+        @Html.HiddenFor(model => model.Party_Code) 
+        @Html.HiddenFor(model => model.Entity_ID) 
+        @Html.HiddenFor(model => model.Actual_Forecast_Indicator) 
+        @Html.EditorForModel()  
+    </div>
+} 
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+} 

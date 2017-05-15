@@ -1,0 +1,162 @@
+﻿@model MetopeMVCApp.Models.Party_Debt_Analysis
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Party_Debt_Analysis</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Financials_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Financials_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Investment_Properties)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Investment_Properties)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Other_Investments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Other_Investments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Investments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Investments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weighted_Investments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weighted_Investments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ST_Interest_Bearing_Debt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ST_Interest_Bearing_Debt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LT_Interest_Bearing_Debt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LT_Interest_Bearing_Debt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Interest_Bearing_Borrowings)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Interest_Bearing_Borrowings)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Debt_Hedged_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Debt_Hedged_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Debt_Hedged_Percent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Debt_Hedged_Percent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Floating_Debt_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Floating_Debt_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Floating_Debt_Percent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Floating_Debt_Percent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Weighted_Debt_Cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Weighted_Debt_Cost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Capital_Markets_Debt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Capital_Markets_Debt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Traditional_Bank_Debt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Traditional_Bank_Debt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Update_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Update_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Update_User)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Update_User)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entity.Entity_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entity.Entity_Code)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

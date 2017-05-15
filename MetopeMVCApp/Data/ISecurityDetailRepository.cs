@@ -44,6 +44,24 @@ namespace MetopeMVCApp.Data
         IQueryable<Party> GetAllPartyValues(decimal iEntity,  decimal iGenericEntityId);
         Party Get(string PartyCode);
     }
+
+
+    public interface IDebtExpiryProfileRepository : IGenericRepository<Debt_Expiry_Profile>
+    { 
+    }
+
+    public interface IPartyFinancialsRepository : IGenericRepository<Party_Financials>
+    {
+        //IQueryable<Security_Detail> GetAll(Expression<Func<Party_Financials, bool>> predicate);`
+        //IQueryable<Security_Detail> GetAllActive( ); 
+    }
+    public interface IPartyFinancialsHistoryRepository : IGenericRepository<Party_Financials_History>
+    { 
+    }
+    public interface IPartyDebtAnalysisRepository : IGenericRepository<Party_Debt_Analysis>
+    { 
+    }
+  
     public interface ICodeMiscellaneous : IGenericRepository<Code_Miscellaneous>
     {
     } 
