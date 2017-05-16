@@ -71,7 +71,7 @@ namespace MetopeMVCApp.Controllers
             //var security_detailx = db11.GetAll(r => r.Call_Account_Flag == true) ;
 
             var security_detail = db11.GetAll()
-                     .MatchEntityID(c => c.Entity_ID == currentUser.EntityIdScope) 
+                     .MatchCriteria(c => c.Entity_ID == currentUser.EntityIdScope) 
                      //SearchSecName(searchTerm)  
                      .OrderBy(s => s.Security_Name) 
                      .Select(g => new SecurityDetailIndexModel
@@ -199,7 +199,7 @@ namespace MetopeMVCApp.Controllers
                 ViewBag.EntityIdScope = currentUser.EntityIdScope;
 
                 Security_Detail security_detail = db11.FindBy(r => r.Security_ID == id)
-                                    .MatchEntityID(c => c.Entity_ID == currentUser.EntityIdScope).FirstOrDefault(); 
+                                    .MatchCriteria(c => c.Entity_ID == currentUser.EntityIdScope).FirstOrDefault(); 
                 if (security_detail == null)
                 {
                     return HttpNotFound();

@@ -35,7 +35,7 @@ namespace MetopeMVCApp.Controllers
             ViewBag.EntityId = currentUser.EntityIdScope;
 
             var pfin = db11.GetAll()
-                       .MatchEntityID(c => c.Entity_ID == currentUser.EntityIdScope);
+                       .MatchCriteria(c => c.Entity_ID == currentUser.EntityIdScope);
 
             return View(pfin.ToList()); 
         }

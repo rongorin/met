@@ -263,7 +263,7 @@ namespace MetopeMVCApp.Filters
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
-                 parties = svc.ListPartyValues("ISSR", Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope),
+                 parties = svc.ListPartyAllIssuers( Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope),
                                                Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, parties);
              }

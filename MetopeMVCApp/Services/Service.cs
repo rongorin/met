@@ -116,7 +116,7 @@ namespace MetopeMVCApp.Services
             ISecurityDetailRepository dbCntx  ;
             dbCntx = new  SecurityDetailRepository();
             return dbCntx.GetAll(r => r.Security_Type_Code =="FXRATE")
-                     .MatchEntityID(c => c.Entity_ID == iEntity || c.Entity_ID == iGenericEntity);
+                     .MatchCriteria(c => c.Entity_ID == iEntity || c.Entity_ID == iGenericEntity);
 
             //return dbCntx.GetAll().Where(c => c.Entity_ID == iUser);
 
@@ -128,6 +128,17 @@ namespace MetopeMVCApp.Services
             return dbCntx.GetPartyValues(iEntity, iType, iGenericEntityId)
                       .OrderBy(s => s.Party_Name);  
         }
+
+    
+        public IQueryable<Party> ListPartyAllIssuers(  decimal iEntity, decimal iGenericEntityId)
+        {
+            IPartyRepository dbCntx = new PartyRepository();
+
+            return dbCntx.GetAllPartyValues(iEntity, iGenericEntityId)    
+                        .MatchCriteria( o => o.Party_Type != "CUSTODIAN")
+                        .OrderBy(s => s.Party_Name);  
+        }
+
 
         //public IEnumerable<SelectListItem> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId)
         //{ 

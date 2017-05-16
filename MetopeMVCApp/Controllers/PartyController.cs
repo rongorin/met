@@ -106,7 +106,7 @@ namespace MetopeMVCApp.Controllers
      
             }
             Party party = db11.FindBy(r => r.Party_Code == PartyCode)
-                                    .MatchEntityID(c => c.Entity_ID == refGenericEntity || c.Entity_ID == currentUser.EntityIdScope)
+                                    .MatchCriteria(c => c.Entity_ID == refGenericEntity || c.Entity_ID == currentUser.EntityIdScope)
                                     .Include(p => p.Country).FirstOrDefault();
             if (party == null)
             {
@@ -163,7 +163,7 @@ namespace MetopeMVCApp.Controllers
                 //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
             }   
             Party party = db11.FindBy(r => r.Party_Code == PartyCode)
-                       .MatchEntityID(c => c.Entity_ID == refGenericEntity || c.Entity_ID == currentUser.EntityIdScope)
+                       .MatchCriteria(c => c.Entity_ID == refGenericEntity || c.Entity_ID == currentUser.EntityIdScope)
                        .FirstOrDefault(); 
 
             if (party == null)
