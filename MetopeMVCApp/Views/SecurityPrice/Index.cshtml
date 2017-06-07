@@ -21,29 +21,26 @@
         <div class="col-sm-3" > 
                 @Html.LabelFor(model => model.SecurityDetails.Ticker, htmlAttributes: new { @class = "control-label" })
                 @Model.SecurityDetails.Ticker   
+        </div> 
+        <div class="col-sm-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SecurityDetails.Security_Type_Code, htmlAttributes: new { @class = "control-label " })
+                  @Model.SecurityDetails.Security_Type_Code 
+            </div>
+        </div> 
+        <div class="col-sm-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SecurityDetails.Price_Exchange, htmlAttributes: new { @class = "control-label " })
+                @Model.SecurityDetails.Price_Exchange 
+            </div>
         </div>
-
-    <div class="col-sm-3">
-        <div class="form-group">
-            @Html.LabelFor(model => model.SecurityDetails.Security_Type_Code, htmlAttributes: new { @class = "control-label " })
-              @Model.SecurityDetails.Security_Type_Code 
+        <div class="col-sm-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SecurityDetails.Security_ID, htmlAttributes: new { @class = "control-label " })
+                  @Model.SecurityDetails.Security_ID
+            </div>
         </div>
-    </div>
-
-    <div class="col-sm-3">
-        <div class="form-group">
-            @Html.LabelFor(model => model.SecurityDetails.Price_Exchange, htmlAttributes: new { @class = "control-label " })
-            @Model.SecurityDetails.Price_Exchange 
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="form-group">
-            @Html.LabelFor(model => model.SecurityDetails.Security_ID, htmlAttributes: new { @class = "control-label " })
-              @Model.SecurityDetails.Security_ID
-        </div>
-    </div>
-    </container>
-
+    </container> 
     @*<h3>
             Security <span><b>@Model.SecurityDetails.Security_Name</b> </span>
         </h3>*@

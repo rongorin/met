@@ -47,7 +47,9 @@ namespace MetopeMVCApp.Data
 
 
     public interface IDebtExpiryProfileRepository : IGenericRepository<Debt_Expiry_Profile>
-    { 
+    {
+        IQueryable<Debt_Expiry_Profile> GetAllDebtExpiryValues(decimal iEntity, decimal iGenericEntityId);
+
     }
 
     public interface IPartyFinancialsRepository : IGenericRepository<Party_Financials>

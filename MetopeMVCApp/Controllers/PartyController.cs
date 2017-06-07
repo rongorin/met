@@ -15,8 +15,8 @@ using System.Configuration;
 using MetopeMVCApp.Filters;
 
 namespace MetopeMVCApp.Controllers
-{  
-    [AuthoriseGenericId]
+{
+    [SetAllowedEntityIdAttribute]
     public class PartyController : Controller
     {
         private readonly IPartyRepository db11; 
@@ -30,9 +30,8 @@ namespace MetopeMVCApp.Controllers
         public PartyController(IPartyRepository iDb)
         {
             db11 = iDb; 
-        } 
-
-        // GET: Party
+        }
+         
         public ActionResult Index(int? numberOfRows)  
         {
             var currentUser = manager.FindById(User.Identity.GetUserId()); 

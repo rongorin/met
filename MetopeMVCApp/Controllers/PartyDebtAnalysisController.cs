@@ -16,7 +16,7 @@ using MetopeMVCApp.Filters;
 
 namespace MetopeMVCApp.Controllers
 {
-    [AuthoriseGenericId]  
+    [SetAllowedEntityIdAttribute]
     public class PartyDebtAnalysisController : Controller
     { 
         private readonly IPartyDebtAnalysisRepository db11;
@@ -25,20 +25,26 @@ namespace MetopeMVCApp.Controllers
         public PartyDebtAnalysisController(IPartyDebtAnalysisRepository iDb)
         {
             db11 = iDb; 
-        }
- 
+        } 
       
-        // GET: PartyDebtAnalysis
-        public ActionResult Index()
+        // GET: PartyDebtAnalysis  
+        public ActionResult Index(string PartyCode = "")
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
             ViewBag.EntityId = currentUser.EntityIdScope;
 
             var pda = db11.GetAll()
-                       .MatchCriteria(c => c.Entity_ID == currentUser.EntityIdScope);
+                       .MatchCriteria(c => c.Entity_ID == currentUser.EntityIdScope)
+                       .MatchCriteria(c => ((PartyCode != "") ? c.Party_Code == PartyCode : c.Party_Code != ""))
+                     .OrderBy(r => r.Party_Code).ThenBy(n => n.Financials_Type);
+
+
+            if (PartyCode != "")
+                ViewBag.PartyCode = PartyCode;
 
             return View(pda.ToList()); 
-        }
+        } 
+         
         [FinancialsType]
         [PartyFilterIssr] 
         public ActionResult Create()
@@ -122,7 +128,9 @@ namespace MetopeMVCApp.Controllers
                     db11.Save();
                     TempData["ResultMessage"] = "PartyDebtAnalysis for party code \"" + party_Debt_Analysis.Party_Code + "\" edited successfully!";
                     //TempData.Add("ResultMessage", "PartyDebtAnalysis for party code \"" + party_Debt_Analysis.Party_Code + "\" edited successfully!");
-                    return RedirectToAction("Index");
+          
+                    return RedirectToAction("Index", "PartyDebtAnalysis", new {PartyCode = party_Debt_Analysis.Party_Code });
+
                 }
             } 
             return View(party_Debt_Analysis);

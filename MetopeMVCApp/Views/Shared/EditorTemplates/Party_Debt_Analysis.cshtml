@@ -1,10 +1,10 @@
-﻿@using MetopeMVCApp.Utitlity.Extensions
+﻿ 
 @model MetopeMVCApp.Models.Party_Debt_Analysis 
 <div class="form-group">
     <div class="   col-md-12">
         @Html.EditorFor(model => model.Financials_Date, "BootstrapEditDate")
-    </div> 
-</div> 
+    </div>   
+</div>
 @Html.EditorFor(model => model.Investment_Properties, "BootstrapEditDecimal")
 @Html.EditorFor(model => model.Other_Investments, "BootstrapEditDecimal")
 @Html.EditorFor(model => model.Total_Investments, "BootstrapEditDecimal")
@@ -20,9 +20,9 @@
 @Html.EditorFor(model => model.Capital_Markets_Debt, "BootstrapEditDecimal")
 @Html.EditorFor(model => model.Traditional_Bank_Debt, "BootstrapEditDecimal")
  
- <div class="form-group">
-    <div class="col-md-offset-1 col-md-9">
-        <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
+@Html.Partial("_SaveButtonShow", Model)
+
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
 </div>
- 

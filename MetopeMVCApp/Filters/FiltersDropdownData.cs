@@ -1,5 +1,8 @@
 ﻿
+using ASP.MetopeNspace.Models;
 using MetopeMVCApp.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +10,8 @@ using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc; 
+using System.Web.Mvc;
+using System.Web.Routing; 
  
 
 namespace MetopeMVCApp.Filters
@@ -45,7 +49,7 @@ namespace MetopeMVCApp.Filters
     //        base.OnActionExecuting(filterContext);
     //    }
     //}
-    public class AuthoriseGenericIdAttribute : ActionFilterAttribute
+    public class SetGenericEntityAttribute : ActionFilterAttribute
     {  
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -55,12 +59,78 @@ namespace MetopeMVCApp.Filters
             {
                  genEntityID  =  ConfigurationManager.AppSettings["GenericEntityId"]; 
                 filterContext.HttpContext.Cache.Insert(GetType().FullName, genEntityID);
+  
             }
-            filterContext.Controller.ViewBag.genericEntity = Convert.ToDecimal(genEntityID); 
-             
+            filterContext.Controller.ViewBag.genericEntity = Convert.ToDecimal(genEntityID);  
         }
     }
+    public class CustomEntityAuthoriseFilter : ActionFilterAttribute
+    {
+        private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        string userId = HttpContext.Current.User.Identity.GetUserId(); 
 
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            //get the Entity passed as parameter from the Uri
+            decimal ParmEntity = Convert.ToDecimal(filterContext.ActionParameters.SingleOrDefault(ap => ap.Key == "EntityId").Value);
+            //get generic Entity
+            decimal GenericEntity = (decimal)filterContext.Controller.ViewBag.genericEntity;
+            //get the Entity of user
+            decimal usersEntity = Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute"));
+
+            if (GenericEntity != ParmEntity &&
+                usersEntity   != ParmEntity)
+            {
+                filterContext.Result = new RedirectToRouteResult(
+                      new RouteValueDictionary{{ "controller", "Account" },
+                                                { "action", "Login" } 
+                                            });
+                //filterContext.Result = new RedirectToRouteResult(
+                //                new RouteValueDictionary { 
+                //                            { "action", "Index" }, 
+                //                            { "controller", "Unauthorised" } }); 
+            } 
+            //decimal refEntityIdScope = (decimal)filterContext.Controller.ViewBag.EntityIdScope;  
+            base.OnActionExecuting(filterContext);
+        } 
+    }
+
+    public class SetAllowedEntityIdAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            string myEntityID;  
+            if ((myEntityID = (filterContext.HttpContext.Cache.Get(GetType().FullName) as string)) == null)
+             {
+               UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(HttpContext.Current.User.Identity.GetUserId()); 
+
+                myEntityID = currentUser.EntityIdScope.ToString();
+                filterContext.HttpContext.Cache.Insert(GetType().FullName, myEntityID);
+                  
+            }
+            filterContext.Controller.ViewBag.EntityId = Convert.ToDecimal(myEntityID);
+
+            base.OnActionExecuting(filterContext);
+        } 
+        //public override void OnActionExecuted(ActionExecutedContext filterContext)
+        //{
+        //    string myEntityID;
+        //    var currentUser = manager.FindById(HttpContext.Current.User.Identity.GetUserId());
+
+        //    if ((myEntityID = (filterContext.HttpContext.Cache.Get(GetType().FullName) as string)) == null)
+        //    {
+        //        myEntityID = currentUser.EntityIdScope.ToString();
+        //        filterContext.HttpContext.Cache.Insert(GetType().FullName, myEntityID);
+
+        //    }
+        //    filterContext.Controller.ViewBag.mainEntity = Convert.ToDecimal(myEntityID);
+
+        //    base.OnActionExecuted(filterContext);
+        //}
+
+    }
+     
     public class CountryFilter : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -199,7 +269,7 @@ namespace MetopeMVCApp.Filters
              {  
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
-                 portfolios = svc.ListPortfolios(filterContext.Controller.ViewBag.EntityIdScope);
+                 portfolios = svc.ListPortfolios(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")));
                                                  //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, portfolios);
              }
@@ -218,7 +288,7 @@ namespace MetopeMVCApp.Filters
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
-                 secs = svc.ListSecurities(filterContext.Controller.ViewBag.EntityIdScope, Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity));
+                 secs = svc.ListSecurities(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")), Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity));
                  //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
              }
@@ -239,7 +309,7 @@ namespace MetopeMVCApp.Filters
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
-                 parties = svc.ListPartyValues("CORPORATE", Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope),
+                 parties = svc.ListPartyValues("CORPORATE", Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")),
                                                Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, parties);
              } 
@@ -263,7 +333,7 @@ namespace MetopeMVCApp.Filters
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
-                 parties = svc.ListPartyAllIssuers( Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope),
+                 parties = svc.ListPartyAllIssuers( Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")),
                                                Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, parties);
              }

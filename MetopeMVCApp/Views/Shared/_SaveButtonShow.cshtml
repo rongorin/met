@@ -1,0 +1,15 @@
+﻿<div class="form-group">
+    @if (Model == null)
+    {
+        <div class="col-md-offset-1 col-md-9">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    }
+    else if (Model.Entity_ID == ViewBag.EntityId)
+    {
+        <div class="col-md-offset-1 col-md-9">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    }
+
+</div>   

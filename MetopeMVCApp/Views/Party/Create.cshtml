@@ -6,7 +6,7 @@
 @section Styles {
     @Styles.Render("~/Content/datetime")
 }
-<h3>Create</h3>
+<h3>Create Party</h3>
 
 @using (Html.BeginForm()) 
 {
@@ -14,15 +14,14 @@
 
     <div class="form-horizontal">
         @Html.ValidationSummary(false)
-        @Html.ValidationMessage("Error")
-
-        <div class="col-md-12">
-            @Html.EditorFor(model => model.Party_Code, "BootstrapEditorVertic")
-        </div>
+        @Html.ValidationMessage("Error") 
+           
+         @Html.EditorFor(model => model.Party_Code, "BootstrapEditorVertic")
+ 
         @Html.EditorForModel()
     </div> 
 } 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
-            @Scripts.Render("~/bundles/datetime")
-        }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+}

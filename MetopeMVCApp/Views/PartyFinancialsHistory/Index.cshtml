@@ -1,7 +1,7 @@
-﻿@model IEnumerable<MetopeMVCApp.Models.Party_Financials>
+﻿@model IEnumerable<MetopeMVCApp.Models.Party_Financials_History> 
 @using GridMvc.Html
 @{
-    ViewBag.Title = "EditPartyFinancials";
+    ViewBag.Title = "EditPartyFinancialsHistory";
     List<string> _sizes = new List<string>() { "10", "20", "50", "100" };
 }
 
@@ -10,7 +10,7 @@
     @Styles.Render("~/Content/datetime")
     <link href="~/Content/cssNoLines.css" rel="stylesheet" />
 }
-@helper CustomRenderingOfColumn(MetopeMVCApp.Models.Party_Financials pf)
+@helper CustomRenderingOfColumn(MetopeMVCApp.Models.Party_Financials_History pf)
 {
     if (pf.Actual_Forecast_Indicator == "A")
     {
@@ -20,37 +20,50 @@
     {
         <text>Forecasted</text>
     }
-}  
-<h2>
-    Party Financials
+}
+ <h3>
+    Party Financials History
     @if (ViewBag.PartyCode != null)
     {
-        @: (for party code @ViewBag.PartyCode  )
+        @: (for Party @ViewBag.PartyCode
+         if (@ViewBag.ActualForecastInd == "F")
+         {
+            @: Forecast)
+        }
+         else
+         {
+            @: Actual)
+         } 
     }
-</h2> 
-<p>
-    @Html.ActionLink("Create New", "Create", new { Nav = @ViewBag.Nav }, null)
-</p>  
+</h3> 
+ 
 @Html.Partial("_MsgSuccesFail", Model)
 
+
 <div class="code-cut">
-    @Html.Grid(Model).Named("pfGrid").Columns(columns =>
+    @Html.Grid(Model).Named("pfHGrid").Columns(columns =>
     {
         columns.Add(c => c.Party_Code)
             .Titled("Party").Filterable(true)
             .SetWidth(100);
-         
+
+        columns.Add(c => c.Record_Date ).Titled("Historical Record Date").Filterable(true).SetWidth(250).Format("{0:dd MMM yyyy HH:mm:ss}");
+
+        // Hidden:
+        //  columns.Add(c => c.Record_Date ,true) ;
+        //Custom a column
+        //  columns.Add().RenderValueAs(model => "Item " + model.Party_Code  );
+
         //show the Indicator Type:
         columns.Add()
             .RenderValueAs(o => CustomRenderingOfColumn(o))
-            .SetWidth(220);
-        
-         //hides column, but use this in js:
+            .SetWidth(430);
+
+        //hides column, but use this in js:
         columns.Add(c => c.Actual_Forecast_Indicator, true);
-        columns.Add(c => c.Entity_ID, true);
 
         columns.Add(c => c.Financials_Date).Titled("Financials Date").Filterable(true).SetWidth(150).Format("{0:dd MMM yyyy}");
-      
+
         columns.Add(c => c.Property_Portfolio_Value).Titled("Property Portfolio Value").Css("text-right").Filterable(false)
         .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Property_Portfolio_Value)).Encoded(false)
         .Sanitized(false)
@@ -59,43 +72,38 @@
         columns.Add()
         .Encoded(false)
         .Sanitized(false)
-        .SetWidth(50)
+        .SetWidth(20)
         .RenderValueAs(c => @<u>
-            @Html.ActionLink("Edit", "Edit", "PartyFinancials", new { EntityId = c.Entity_ID, PartyCode = c.Party_Code, ActualForecastInd = c.Actual_Forecast_Indicator, Nav = @ViewBag.Nav }, null)
+            @Html.ActionLink("Edit", "Edit", "PartyFinancialsHistory", new { EntityId = c.Entity_ID, PartyCode = c.Party_Code, ActualForecastInd = c.Actual_Forecast_Indicator, RecordDate = c.Record_Date }, null)
         </u>);
         columns.Add()
      .Encoded(false)
      .Sanitized(false)
-     .SetWidth(50)
+     .SetWidth(20)
      .RenderValueAs(c => @<u>
-        @Html.ActionLink("Delete", "Delete", "PartyFinancials", new { EntityId = c.Entity_ID, PartyCode = c.Party_Code, ActualForecastInd = c.Actual_Forecast_Indicator, Nav = @ViewBag.Nav }, null)
-    </u>);
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(60)
-            .RenderValueAs(c => @<a href="@Url.Action("Index", "PartyFinancialsHistory", new { EntityId = c.Entity_ID, PartyCode = c.Party_Code, ActualForecastInd = c.Actual_Forecast_Indicator })">
-            <span class="badge"> Financials History </span>
-        </a>);
-    }).WithPaging(15).Sortable(true) 
+        @Html.ActionLink("Delete", "Delete", "PartyFinancialsHistory", new { EntityId = c.Entity_ID, PartyCode = c.Party_Code, ActualForecastInd = c.Actual_Forecast_Indicator, RecordDate = c.Record_Date }, null)
+    </u>); 
+         
+    }).WithPaging(15).Sortable(true)
 </div>
 <div>
     @if (ViewBag.PartyCode != null)
     {
-        <br />@Html.ActionLink("Back to Parties", "Index", "Party") 
+        <br />  @Html.ActionLink("Back to Financials", "Index", "PartyFinancials")  
     }
 </div>
-
-@section Scripts { @Scripts.Render("~/bundles/datetime")
-@Scripts.Render("~/bundles/GridMvc") 
+  
+@section Scripts { @Scripts.Render("~/bundles/datetime")    
+@Scripts.Render("~/bundles/GridMvc")
 <script>
-    $(function () {
-        pageGrids.pfGrid.onRowSelect(function (e) {
-            //here rather do full page load instead of the Ajax partial:
-            if ( "@ViewBag.Nav" != "")
-                myUrl2 = mtpApp.Urls.baseUrl + "PartyFinancials/Edit?PartyCode="+e.row.Party_Code + "&ActualForecastInd="+ e.row.Actual_Forecast_Indicator  + "&EntityId="+ e.row.Entity_ID  + "&Nav="+  "@ViewBag.Nav";
-            else
-                myUrl2 = mtpApp.Urls.baseUrl + "PartyFinancials/Edit?PartyCode=" + e.row.Party_Code + "&ActualForecastInd=" + e.row.Actual_Forecast_Indicator + "&EntityId=" + e.row.Entity_ID ;
-             
+
+    $(function () { 
+        pageGrids.pfHGrid.onRowSelect(function (e) {
+            //here rather do full page load instead of the Ajax partial: 
+            var myUrl2 = mtpApp.Urls.baseUrl + "PartyFinancialsHistory/Edit?PartyCode="+e.row.Party_Code + "&RecordDate="+   e.row.Record_Date  + "&ActualForecastInd="+ e.row.Actual_Forecast_Indicator  + "&EntityId="+ @ViewBag.EntityId ;
             window.location = myUrl2;
         });
+
         //not using this Ajax call anymore, rather server call to keep all consistent
         $( "#createNew" ).click(function() {
             event.preventDefault(); // To prevent following the link (optional)
@@ -116,6 +124,8 @@
                 async:true
             });
         });
+
+
     });
 </script>
 

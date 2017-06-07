@@ -20,8 +20,13 @@
     {
         <text>Final</text>
     }
-}
-<h2>Party Debt Analysis</h2> 
+} 
+<h2>Party Debt Analysis
+    @if (ViewBag.PartyCode != null)
+    {
+        @: (for party code @ViewBag.PartyCode  )
+    }
+</h2> 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -33,6 +38,8 @@
         columns.Add(c => c.Party_Code)
             .Titled("Party").Filterable(true)
             .SetWidth(100);
+        
+        columns.Add(c => c.Entity_ID, true);
 
         //hides column, but use this in js: 
         columns.Add(c => c.Financials_Type,true) ;
@@ -63,6 +70,14 @@
     }).WithPaging(15).Sortable(true)
 
 </div>
+<div>
+    @if (ViewBag.PartyCode != null)
+    {
+        <br />
+        @Html.ActionLink("Back to Parties", "Index", "Party") 
+    }
+</div>
+
 @section Scripts { @Scripts.Render("~/bundles/datetime")
     @Scripts.Render("~/bundles/GridMvc")  
 <script>
@@ -70,7 +85,7 @@
     $(function () {
         pageGrids.pdaGrid.onRowSelect(function (e) {
             //here rather do full page load instead of the Ajax partial:  
-            var myUrl2 = mtpApp.Urls.baseUrl + "PartyDebtAnalysis/Edit?PartyCode="+e.row.Party_Code + "&FinType="+ e.row.Financials_Type  + "&EntityId="+ @ViewBag.EntityId ;
+            var myUrl2 = mtpApp.Urls.baseUrl + "PartyDebtAnalysis/Edit?PartyCode=" + e.row.Party_Code + "&FinType=" + e.row.Financials_Type + "&iEntityId=" + e.row.Entity_ID;
             window.location = myUrl2;
         }); 
         //not using this Ajax call anymore, rather server call to keep all consistent

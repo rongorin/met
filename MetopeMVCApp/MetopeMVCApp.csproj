@@ -267,6 +267,7 @@
     <Compile Include="Controllers\PartyController.cs" />
     <Compile Include="Controllers\PartyDebtAnalysisController.cs" />
     <Compile Include="Controllers\PartyFinancialsController.cs" />
+    <Compile Include="Controllers\PartyFinancialsHistoryController.cs" />
     <Compile Include="Controllers\Port2Controller.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\SecurityDetailController.cs" />
@@ -294,6 +295,8 @@
     </Compile>
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
     <Compile Include="DependencyResolution\StructureMapScopeModule.cs" />
+    <Compile Include="Filters\CustomAuthoriseEntityFilter.cs" />
+    <Compile Include="Filters\CustomEntityAuthoriseFilter.cs" />
     <Compile Include="Filters\FiltersDropdownData.cs" />
     <Compile Include="Filters\ImportModelStateFromTempDataAttribute.cs" />
     <Compile Include="Filters\LogAttribuite.cs" />
@@ -700,8 +703,7 @@
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
     <Content Include="Views\SecurityDetail\_Securities.cshtml" />
     <Content Include="Views\Port2\Create.cshtml" />
-    <Content Include="Views\SecurityDetail\HistoryUnderConstruction.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Security_Detail2.cshtml" />
+    <Content Include="Views\PartyFinancials\HistoryUnderConstruction.cshtml" />
     <Content Include="Views\PortfolioTestPanel\Edit.cshtml" />
     <Content Include="Views\Home\Support.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -743,10 +745,17 @@
     <Content Include="Views\Shared\EditorTemplates\Party_Financials.cshtml" />
     <Content Include="Views\DebtExpiryProfile\Create.cshtml" />
     <Content Include="Views\DebtExpiryProfile\Delete.cshtml" />
-    <Content Include="Views\DebtExpiryProfile\Details.cshtml" />
     <Content Include="Views\DebtExpiryProfile\Edit.cshtml" />
     <Content Include="Views\DebtExpiryProfile\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Debt_Expiry_Profile.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimalVertic.cshtml" />
+    <Content Include="Views\PartyFinancialsHistory\Delete.cshtml" />
+    <Content Include="Views\PartyFinancialsHistory\Details.cshtml" />
+    <Content Include="Views\PartyFinancialsHistory\Edit.cshtml" />
+    <Content Include="Views\PartyFinancialsHistory\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Party_Financials_History.cshtml" />
+    <Content Include="Views\Shared\_SaveButtonShow.cshtml" />
+    <Content Include="Views\Shared\_DeleteButtonShow.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

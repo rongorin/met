@@ -7,21 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MetopeMVCApp.Models;
-using System.Configuration;
-
+using System.Configuration; 
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using Microsoft.AspNet.Identity;
 using ASP.MetopeNspace.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
-
+using Microsoft.AspNet.Identity.EntityFramework; 
 using MetopeMVCApp.Data; 
 using MetopeMVCApp.Filters;
 using MetopeMVCApp.Data.GenericRepository;
-
-
+ 
 namespace MetopeMVCApp.Controllers
 {
+    [SetAllowedEntityIdAttribute]
     public class PortfolioController : Controller
     { 
         //private PortfolioRepository _repo = new PortfolioRepository( );
@@ -61,15 +59,13 @@ namespace MetopeMVCApp.Controllers
         //}
 
   
-        public Func<string> GetUserId; //For testing
-        // GET: /Portfolio/
-        public ActionResult Index(int page=1, string searchTerm=null)
-        {
-            //GetUserId = () => User.Identity.GetUserId();
-
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            var portfolios = _repo.GetPortfolios(currentUser.EntityIdScope, page, searchTerm); 
-
+        public Func<string> GetUserId; //For testing 
+         
+        public ActionResult Index(int page = 1, string searchTerm = null)
+        { 
+            decimal EntityID = (decimal)ViewBag.EntityId;
+            var portfolios = _repo.GetPortfolios(EntityID, page, searchTerm);
+           
             // db.Portfolios.Where(c => c.Entity_ID == currentUser.EntityIdScope).Include(p => p.Entity).Include(p => p.User);
 
 
@@ -88,19 +84,9 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: /Portfolio/Details/ 5,'abc'
+        [CustomEntityAuthoriseFilter] 
         public ActionResult Details(decimal EntityId, string PortfolioCode)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId()); 
-             
-            if (EntityId == null || PortfolioCode == null) 
-            { 
-                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            } 
-            if (currentUser.EntityIdScope != EntityId)
-            { 
-                throw new Exception("Not Acceptable");
-                //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-            } 
+        {  
             Portfolio portfolio = null;
             try
             {
@@ -180,8 +166,7 @@ namespace MetopeMVCApp.Controllers
             ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name");
             ViewBag.Portfolio_Types = new SelectList(GetCodeMiscellVals("PORTTYP"), "MisCode", "MisCode_Description");
             ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode_Description");
-            ViewBag.Custodians = new SelectList(GetPartyValues(currentUser.EntityIdScope), "Party_Code", "Party_Name");
-             
+            ViewBag.Custodians = new SelectList(GetPartyValues(currentUser.EntityIdScope), "Party_Code", "Party_Name"); 
             var selectListItems = new List<SelectListItem>();
             selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
             selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
@@ -192,43 +177,29 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: /Portfolio/Edit/5
+        [CustomEntityAuthoriseFilter]
         public ActionResult Edit(decimal EntityId, string PortfolioCode)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
- 
-            if ( PortfolioCode == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            } 
-
-            if (currentUser.EntityIdScope != EntityId)
-            {
-                throw new Exception("Forbidden");
-              //throw new HttpException((int)System.Net.HttpStatusCode.Forbidden, "Forbidden");
-                 //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-            }
+        { 
             Portfolio portfolio = _repo.GetPortfolioById(EntityId, PortfolioCode);
 
             if (portfolio == null)
-            {
+            {~~~
                 return HttpNotFound();
-            } 
-             
+            }  
             ViewBag.PortfolioBaseCurrency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Report_Currency);
             ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", portfolio.PortfolIo_Domicile);
             ViewBag.Portfolio_Types = new SelectList(GetCodeMiscellVals("PORTTYP"), "MisCode", "MisCode_Description", portfolio.Portfolio_Type);
-            ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode_Description", portfolio.Portfolio_Status); 
-            ViewBag.Custodians = new SelectList(GetPartyValues(currentUser.EntityIdScope), "Party_Code", "Party_Name", portfolio.Custodian_Code);
-
-
+            ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode_Description", portfolio.Portfolio_Status);
+            ViewBag.Custodians = new SelectList(GetPartyValues(EntityId), "Party_Code", "Party_Name", portfolio.Custodian_Code);
+             
             var selectListItems = new List<SelectListItem>();
             selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
             selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString }); 
             ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text", portfolio.Active_Flag);
             ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", portfolio.System_Locked);
 
-            ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name", portfolio.Manager);
+            ViewBag.managers = new SelectList(LoadManagers(EntityId), "User_Code", "User_Name", portfolio.Manager);
 
             return View(portfolio);
         }
@@ -255,8 +226,7 @@ namespace MetopeMVCApp.Controllers
                     _repo.UpdatePortfolio(portfolio); // this is  EntityState.Modified;
                     _repo.Save();
                     TempData.Add("ResultMessage", "Portfolio \"" + portfolio.Portfolio_Name + "\" editied successfully!");
-                    return RedirectToAction("Index");
-               
+                    return RedirectToAction("Index"); 
                 }
             }
 
@@ -279,14 +249,9 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: /Portfolio/Delete/5
+        [CustomEntityAuthoriseFilter]
         public ActionResult Delete(decimal EntityId, string PortfolioCode)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-
-            if (EntityId == null || PortfolioCode == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+        { 
             Portfolio portfolio = _repo.GetPortfolioById(EntityId, PortfolioCode);  
             if (portfolio == null)
             {
@@ -298,13 +263,9 @@ namespace MetopeMVCApp.Controllers
         // POST: /Portfolio/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomEntityAuthoriseFilter]
         public ActionResult DeleteConfirmed(decimal EntityId, string PortfolioCode)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-             
-            if (currentUser.EntityIdScope != EntityId) 
-                return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-
+        {  
             Portfolio portfolio = _repo.GetPortfolioById(EntityId, PortfolioCode); //db.Portfolios.Find(EntityId, PortfolioCode);
          
             _repo.DeletePortfolio(EntityId, PortfolioCode);

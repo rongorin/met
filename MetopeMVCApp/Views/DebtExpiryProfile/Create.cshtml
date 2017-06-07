@@ -7,18 +7,18 @@
     @Styles.Render("~/Content/datetime")
 }
 
-<h2>Create Debt Expiry Profile</h2> 
+<h2>Create Debt Expiry Profile</h2> @ViewBag.Nav
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Debt_Expiry_Profile</h4>
+    <div class="form-horizontal"> 
         <hr />        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
         @Html.ValidationSummary(false)
         @Html.ValidationMessage("Error") 
-
+        <input type="hidden" id="navIndicator" name="navIndicator" value=@ViewBag.Nav />
+            
         @Html.EditorForModel() 
 
     </div>

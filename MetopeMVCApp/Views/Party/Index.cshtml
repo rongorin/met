@@ -47,6 +47,18 @@
             .RenderValueAs(c => @<u>
                 @Html.ActionLink("Delete", "Delete", "Party", new { PartyCode = c.Party_Code, EntityId = c.Entity_ID }, null)
             </u>);
+    columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
+            .RenderValueAs(c => @<a href="@Url.Action("Index", "DebtExpiryProfile", new { PartyCode = c.Party_Code, iEntityId = c.Entity_ID, Nav = 1 })">
+            <span class="badge"> Debt Profile </span>
+        </a>);
+    columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
+            .RenderValueAs(c => @<a href="@Url.Action("Index", "PartyDebtAnalysis", new { PartyCode = c.Party_Code, EntityId = c.Entity_ID, Nav = 1 })">
+            <span class="badge"> Debt Analysis </span>
+        </a>);
+    columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
+            .RenderValueAs(c => @<a href="@Url.Action("Index", "PartyFinancials", new { PartyCode = c.Party_Code, EntityId = c.Entity_ID, Nav = 1 })">
+            <span class="badge"> Financials </span>
+        </a>);
 }).Sortable(true)
   
 </div>

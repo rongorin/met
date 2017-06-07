@@ -1,21 +1,20 @@
 ﻿@model string 
-<div class="form-group">
 
-    @Html.LabelFor(model => model, htmlAttributes:
+<div class="form-group">
+    @Html.LabelFor(model => model     , htmlAttributes:
             new
             {
-                @class = "control-label  input-sm" 
-            })
-    <div  >
-        @Html.TextBoxFor(model => model, new
-            {
-                @class = "form-control  input-sm",
-                placeholder = ViewData.ModelMetadata.Watermark,
-                style = "max-width:30%;"
-            })
+            @class = "control-label   col-md-2 input-sm"
+            }) 
+    <div class="col-md-4  ">
+        @Html.TextBoxFor(model => model, new { @class = "form-control ", placeholder = ViewData.ModelMetadata.Watermark,
+                                               //style = "max-width:30%;"
+        })
         @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })
+    </div>
+</div> 
 
-    </div> 
-</div>
+
+
 
  

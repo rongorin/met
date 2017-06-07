@@ -2,9 +2,7 @@
 *   Grid.Mvc stylesheet http://gridmvc.codeplex.com/
 *   This file contains default styles for Grid.Mvc.
 */
-/* Grid */
-
-
+/* Grid */ 
 table.grid-table { margin: 0; }
     table.grid-table .grid-wrap { padding: 0; position: relative; }
     table.grid-table .grid-empty-text { color: #666; }
@@ -18,12 +16,13 @@ table.grid-table { margin: 0; }
     /* Grid body */
     table.grid-table tr.grid-row-selected td {
         color: white;
-        background: #4888C2 !important;
+        background: #4888C2 !important;    /*Dark blue*/ 
+        /*background: #5cb85c !important;*/    /* Green */ 
+
     }
-    table.grid-table tr.grid-row-selected a { color: white; }
-     
-   table.grid-table tr td {border-right: solid 1px #4888C2;}  
-   table.grid-table tr.grid-row-selected td {border-right: solid 1px white;}   
+    table.grid-table tr.grid-row-selected a { color: white; } 
+   table.grid-table tr td {border-right: solid 1px #d1e9fc;}   /*Light Blue*/
+   table.grid-table tr.grid-row-selected td {border-right: solid 1px #d1e9fc;}    /*Lightblue for selected row's gridlines*/
       
 /* Grid filtering */
 input.grid-filter-input { padding: 4px; font-size: 13px; }
@@ -44,4 +43,4 @@ table.grid-table .grid-popup-additional { padding: 3px 0 0 0; }
 .grid-dropdown-inner { padding: 5px 7px; }
 .grid-dropdown ul.menu-list { list-style-type: none; margin: 3px 0 0 0; padding: 0; }
     .grid-dropdown ul.menu-list li a { text-decoration: none; background-position: 6px center; background-repeat: no-repeat; display: block; padding: 4px 5px; }
-        .grid-dropdown ul.menu-list li a:hover { background-color: #EEE; text-decoration: none; }
+        .grid-dropdown ul.menu-list li a:hover { background-color: #EEE; text-decoration: none; } 

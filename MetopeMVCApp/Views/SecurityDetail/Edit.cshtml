@@ -14,7 +14,7 @@
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal"> 
-                @Html.ValidationSummary(true)
+                @Html.ValidationSummary(false)
                 @Html.HiddenFor(model => model.Security_ID)
                 @Html.HiddenFor(model => model.Entity_ID)
 

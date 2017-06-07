@@ -26,15 +26,11 @@
         @Html.HiddenFor(model => model.Party_Code) 
         @Html.HiddenFor(model => model.Financials_Type) 
         @Html.HiddenFor(model => model.Entity_ID)
-        @Html.EditorForModel()
-
+        @Html.EditorForModel(new {meDisabled = "readonly" }) 
 
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+ 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/datetime")

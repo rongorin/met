@@ -19,7 +19,7 @@ namespace MetopeMVCApp.Models
         public string Party_Code { get; set; }
         public decimal Entity_ID { get; set; }
         public System.DateTime Record_Date { get; set; }
-        public System.DateTime Financial_Year_End { get; set; }
+        public System.DateTime  Financial_Year_End { get; set; }
         public Nullable<decimal> Expiring_Debt_Amount { get; set; }
     
         public virtual Entity Entity { get; set; }

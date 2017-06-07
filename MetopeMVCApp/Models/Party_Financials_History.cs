@@ -11,6 +11,7 @@ namespace MetopeMVCApp.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
     //using MetopeMVCApp.Models.MyMetaData;
     //using System.ComponentModel.DataAnnotations;
     //[MetadataType(typeof(PartyFinancialsModelMetaData))]
@@ -62,12 +63,12 @@ namespace MetopeMVCApp.Models
         public System.DateTime Last_Update_Date { get; set; }
         public string Last_Update_User { get; set; }
         public Nullable<decimal> Forecast_Distributions_Growth { get; set; }
+ 
         public System.DateTime Record_Date { get; set; }
         public decimal Session_ID { get; set; }
         public Nullable<System.DateTime> Hist_Last_Update_Date { get; set; }
         public string Hist_Last_Update_User { get; set; }
-        public decimal Property_Portfolio_Value { get; set; }
-    
+        public decimal Property_Portfolio_Value { get; set; } 
         public virtual Entity Entity { get; set; }
     }
 }

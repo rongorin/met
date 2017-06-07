@@ -32,12 +32,11 @@
                  
             </div>
         </div>
-        @Html.EditorForModel()
-    </div>
+        @Html.EditorForModel()  
+
+        <input type="hidden" id="navIndicator" name="navIndicator" value=@ViewBag.Nav />
+      </div>
 } 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/datetime")

@@ -8,15 +8,16 @@ using ASP.MetopeNspace.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MetopeMVCApp.Models;
 using System.Net;
-using MetopeMVCApp.Models.Custom; 
+using MetopeMVCApp.Models.Custom;
+using MetopeMVCApp.Filters; 
 
 namespace ASP.MetopeNspace.Controllers
 {
+    [SetAllowedEntityIdAttribute]
     public class HomeController : Controller
     {
         private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-
-
+         
         public ActionResult Index()
         { 
 

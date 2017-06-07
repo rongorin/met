@@ -2,8 +2,7 @@
 
 @{
     ViewBag.Title = "Delete";
-}
-
+} 
 <h2>Delete confirmation</h2>
 <p>
     Are you sure you want to delete this Debt Expiry Profile record?
@@ -30,12 +29,15 @@
             @Html.DisplayFor(model => model.Expiring_Debt_Amount)
         </dd>  
     </dl>
-
-    @using (Html.BeginForm()) {
+   @*using (Html.BeginForm("Index", "DebtExpiryProfile", new { PartyCode = ViewBag.PartyCode }, FormMethod.Post, new { @class = "form-horizontal" }))*@
+    @using (Html.BeginForm()) 
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-danger" />  |
+         <input type="hidden" id="navIndicator" name="navIndicator" value=@ViewBag.Nav />
+
+     <div class="form-actions no-color">
+         @Html.Partial("_DeleteButtonShow", Model) | 
         @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
     </div>
     }

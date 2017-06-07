@@ -12,10 +12,12 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using MetopeMVCApp.Data;
 using MetopeMVCApp.Data.GenericRepository;
+using MetopeMVCApp.Filters;
 
 namespace MetopeMVCApp.Controllers
 {
 
+    [SetAllowedEntityIdAttribute]
     public class SecurityPriceController : Controller
     {
         private MetopeDbEntities db = new MetopeDbEntities();
@@ -40,14 +42,11 @@ namespace MetopeMVCApp.Controllers
             System.IO.File.AppendAllText(FilePath, logmessage);
         }
 
-        // GET: SecurityPrice
-        public ActionResult Index(int? numberOfRows, int? SecurityId, int? iEntityId, string iPriceCurr ="")
-        { 
-
-            var currentUser = manager.FindById(User.Identity.GetUserId());  
-
-            //var security_Price = db.Security_Price.Include(s => s.Currency)
-            //                        .Include(s => s.Entity).Include(s => s.Security_Detail).Include(s => s.User);
+        // GET: SecurityPrice  
+        public ActionResult Index(int? numberOfRows, int? SecurityId, int? EntityId, string iPriceCurr = "")
+        {
+            decimal EntityID = (decimal)ViewBag.EntityId;   
+             
             var viewModel = new SecurityPriceIndexViewModel();
 
             if (numberOfRows == null)
@@ -62,7 +61,7 @@ namespace MetopeMVCApp.Controllers
             }  
 
             viewModel.SecurityPrices = db11.GetAll()
-                                      .SearchPrices(SecurityId , currentUser.EntityIdScope, iPriceCurr)
+                                      .SearchPrices(SecurityId, EntityID)
                                       .Include(s => s.Currency)
                                       .Include(s => s.Security_Detail)
                                       .OrderBy(s => s.Security_Detail.Ticker )
@@ -79,34 +78,14 @@ namespace MetopeMVCApp.Controllers
             if (SecurityId != null && iPriceCurr != "")
             { 
                 viewModel.SecurityPriceHistory = db.Security_Price_History
-                    .Where(c => c.Security_ID == SecurityId && c.Price_Curr == iPriceCurr && currentUser.EntityIdScope == c.Entity_ID)
+                    .Where(c => c.Security_ID == SecurityId && c.Price_Curr == iPriceCurr && EntityID == c.Entity_ID)
                     .Include(c => c.Currency)
                     .ToList(); 
 
             }
             return View(viewModel);
         }
-
-        // GET: SecurityPrice/Details/5
-        public ActionResult Details(decimal SecurityId)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());  
-
-            if (SecurityId == null) 
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
  
-            Security_Price security_Price = db11.GetAll()
-                     .Where(s => s.Security_ID == SecurityId && currentUser.EntityIdScope == s.Entity_ID)
-                     .FirstOrDefault<Security_Price>();   
-
-            //Security_Price security_Price = db.Security_Price.Find(SecurityId, SecurityId);
-            if (security_Price == null)
-            {
-                return HttpNotFound();
-            }
-            return View(security_Price);
-        }
-
         // GET: SecurityPrice/Create
         public ActionResult Create(int? SecurityId)
         {
@@ -116,15 +95,14 @@ namespace MetopeMVCApp.Controllers
             return View();
         }
 
-        // POST: SecurityPrice/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: SecurityPrice/Create  
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Security_ID,Price_Curr,All_In_Price,Clean_Price,Accrued_Income_Price,Price_Source,Yield_To_Maturity,Discount_Rate,Last_Update_User,Last_Update_Date,Issued_Amount,Free_Float_Issued_Amount,Record_Date")] Security_Price security_Price)
         {
-            var currentUser = manager.FindById(User.Identity.GetUserId()); 
-            security_Price.Entity_ID = currentUser.EntityIdScope; 
+            decimal EntityID = (decimal)ViewBag.EntityId; 
+
+            security_Price.Entity_ID = EntityID; 
             /*------------------------------------------ 
             first check if this party is already used ! 
             ----------------------------------------*/ 
@@ -156,22 +134,10 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: SecurityPrice/Edit/5
-        [HttpGet]
+        [HttpGet] 
+        [CustomEntityAuthoriseFilter]
         public ActionResult Edit(decimal EntityId, decimal SecurityId, string PriceCurr)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-
-            if (SecurityId == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            if (currentUser.EntityIdScope != EntityId)
-            {
-                throw new Exception("Forbidden");
-                //throw new HttpException((int)System.Net.HttpStatusCode.Forbidden, "Forbidden");
-                //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-            }
-
+        {  
             Security_Price secPrice = db11.FindBy(r => r.Entity_ID == EntityId && r.Security_ID == SecurityId &&
                                             r.Price_Curr == PriceCurr).Include(r => r.Security_Detail).FirstOrDefault();
 
@@ -215,9 +181,9 @@ namespace MetopeMVCApp.Controllers
         public ActionResult Edit([Bind( Include = "Entity_ID,Security_ID,Price_Curr,All_In_Price,Clean_Price,Accrued_Income_Price,Price_Source,Yield_To_Maturity,Discount_Rate,Last_Update_User,Last_Update_Date,Issued_Amount,Free_Float_Issued_Amount,Record_Date")] 
                                         SecurityPriceEditModel secPrice)
         {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
+            decimal EntityID = (decimal)ViewBag.EntityId; 
 
-            Security_Price security_Price = db11.FindBy(r => r.Entity_ID == currentUser.EntityIdScope && 
+            Security_Price security_Price = db11.FindBy(r => r.Entity_ID == EntityID && 
                                                              r.Security_ID == secPrice.Security_ID &&
                                                              r.Price_Curr == secPrice.Price_Curr).Include(r => r.Security_Detail).FirstOrDefault();
 
@@ -242,7 +208,7 @@ namespace MetopeMVCApp.Controllers
                 db11.Save();
                 TempData.Add("ResultMessage", "Security \"" + security_Price.Security_ID + "\" for Price Currency " + security_Price.Price_Curr + "\" edited successfully!");
   
-                return RedirectToAction("Index", "SecurityPrice", new {/* routeValues, for example: */ SecurityId = security_Price.Security_ID, iPriceCurr = security_Price.Price_Curr });
+                return RedirectToAction("Index", "SecurityPrice", new {/* routeValues */ SecurityId = security_Price.Security_ID, iPriceCurr = security_Price.Price_Curr });
 
             } 
             //re-populate model:
@@ -251,14 +217,10 @@ namespace MetopeMVCApp.Controllers
             return View(secPrice);
         }
 
-        // GET: SecurityPrice/Delete/5
+        // GET: SecurityPrice/Delete/5 
+        [CustomEntityAuthoriseFilter]
         public ActionResult Delete(decimal EntityId, decimal SecurityId, string PriceCurr)
-        {
-            if (SecurityId == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-           
+        {  
             Security_Price security_Price = db.Security_Price.Find(EntityId, SecurityId, PriceCurr);
             if (security_Price == null)
             {
@@ -270,15 +232,9 @@ namespace MetopeMVCApp.Controllers
         // POST: SecurityPrice/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomEntityAuthoriseFilter]
         public ActionResult DeleteConfirmed(decimal EntityId, decimal SecurityId, string PriceCurr)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-
-            if (currentUser.EntityIdScope != EntityId)
-            {
-                throw new Exception("Forbidden");
-            }
-
+        { 
             Security_Price security_Price = db.Security_Price.Find(EntityId, SecurityId, PriceCurr);
             db.Security_Price.Remove(security_Price);
             db.SaveChanges();
@@ -287,17 +243,10 @@ namespace MetopeMVCApp.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Security_Price_History/Edit/5
+        // GET: Security_Price_History/Edit/5 
+        [CustomEntityAuthoriseFilter]
         public ActionResult EditHistory(decimal EntityId, decimal SecurityId, string PriceCurr, DateTime PriceDateTime)
-        {
-            if (SecurityId == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            //Security_Price_History security_Price_History = db.Security_Price_History
-            //                                                .Include(r => r.Security_Detail)
-            //                                                .Find(EntityId,SecurityId, PriceCurr, PriceDateTime);
-
+        { 
             Security_Price_History security_Price_History = db.Security_Price_History.
                                                              Where(r => r.Entity_ID == EntityId && 
                                                                  r.Security_ID == SecurityId &&
@@ -343,12 +292,9 @@ namespace MetopeMVCApp.Controllers
             return View( security_Price_History);
         }
 
+        [CustomEntityAuthoriseFilter]
         public ActionResult DeleteHistory(decimal EntityId, decimal SecurityId, string PriceCurr, DateTime PriceDateTime)
-        {
-            if (SecurityId == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+        { 
             Security_Price_History security_Price_History = db.Security_Price_History.Find(EntityId, SecurityId, PriceCurr, PriceDateTime);
             if (security_Price_History == null)
             {
@@ -360,6 +306,7 @@ namespace MetopeMVCApp.Controllers
         // POST: SecurityPrice/Delete/5
         [HttpPost, ActionName("DeleteHistory")]
         [ValidateAntiForgeryToken]
+        [CustomEntityAuthoriseFilter]
         public ActionResult DeleteHistoryConfirmed(decimal EntityId, decimal SecurityId, string PriceCurr, DateTime PriceDateTime)
         {
             Security_Price_History security_Price_History = db.Security_Price_History.Find(EntityId, SecurityId, PriceCurr, PriceDateTime);

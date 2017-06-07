@@ -1,27 +1,34 @@
 ﻿@model DateTime? 
-
-    <div class="form-group">
-
-        @Html.LabelFor(model => model, htmlAttributes:
-                    new
+<div class="form-group"> 
+    <div class="col-md-12">
+        <div class="form-group">
+            @Html.LabelFor(model => model, new { @class = "control-label col-md-2 input-sm" })
+            <div class="col-md-4"> 
+                <div class='input-group date datetimepickerClass'>
+                    @if (ViewBag.MeDisabled == "readonly")
                     {
-                        @class = "control-label  input-sm" 
-                    })
-
-        <div class='input-group date datetimepickerClass'>
-
-                @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
+                        @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
+                        {
+                            @class = "form-control ", 
+                            disabled = "disabled",
+                            placeholder = ViewData.ModelMetadata.Watermark
+                        })
+                    }
+                    else
                     {
-                        @class = "form-control  input-sm",
-                        placeholder = ViewData.ModelMetadata.Watermark
-                })
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-
-
+                        @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
+                        {
+                            @class = "form-control ", 
+                            placeholder = ViewData.ModelMetadata.Watermark
+                        })
+                    }  
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                @*    @Html.ValidationMessageFor(model => model.Inception_Date)*@ 
+            </div>
         </div>
-        </div>
- 
- 
+    </div>
+ </div>
  

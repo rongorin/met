@@ -25,16 +25,31 @@ namespace MetopeMVCApp.Data
             return qry.Where(predic);
         }
 
+        public static IQueryable<Debt_Expiry_Profile> SearchPartyCodes(this IQueryable<Debt_Expiry_Profile> dep, 
+                                                               string iPartyCode = "")
+        {
+            var query1 = dep.Where(c => (
+                                             (iPartyCode != "") ? c.Party_Code == iPartyCode : c.Party_Code != ""));
+            
+            /* -- removed as rather show ALL the PriceCurrency records for the selected Security
+              var filteredQuery = query1.
+                                Where(c => (iPriceCurr != "") ? c.Price_Curr == iPriceCurr : c.Price_Curr != ""); */
+
+            return query1;
+
+        }
+
         public static IQueryable<Security_Price> SearchPrices(this IQueryable<Security_Price> prices,
                                                                int? SecurityId, decimal EntityID,
                                                                string iPriceCurr = "")
         {
-            var query1 = prices  
-                       .Where(c => (SecurityId != null) ? c.Security_ID == SecurityId : c.Security_ID > 0 &&   c.Entity_ID == EntityID) ;
+            var query1 = prices.Where(c => (   
+                                             (SecurityId != null) ? c.Security_ID == SecurityId : c.Security_ID > 0) 
+                                      && c.Entity_ID == EntityID) ;
 
-            // -- removed as rather show ALL the PriceCurrency records for the selected Security
-            //var filteredQuery = query1.
-            //                    Where(c => (iPriceCurr != "") ? c.Price_Curr == iPriceCurr : c.Price_Curr != "");
+            /* -- removed as rather show ALL the PriceCurrency records for the selected Security
+              var filteredQuery = query1.
+                                Where(c => (iPriceCurr != "") ? c.Price_Curr == iPriceCurr : c.Price_Curr != ""); */
 
             return query1;
              
@@ -50,9 +65,5 @@ namespace MetopeMVCApp.Data
         //{
         //    return people.OrderBy(x => x.Name);
         //}
- 
-   
-
-
     }
 }

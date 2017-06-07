@@ -10,5 +10,11 @@ namespace MetopeMVCApp.Data
     public class DebtExpiryProfileRepository : GenericRepository<MetopeDbEntities, Debt_Expiry_Profile>,
                                         IDebtExpiryProfileRepository
     {
+
+        public IQueryable<Debt_Expiry_Profile> GetAllDebtExpiryValues(decimal iEntity, decimal iGenericEntityId)
+        {
+            return GetAll().Where(r => r.Entity_ID == iGenericEntityId || r.Entity_ID == iEntity);
+
+        }
     }
 }
