@@ -67,6 +67,11 @@
         <EntityTypeShape EntityType="MetopeDbModel.Party_Financials_History" Width="1.5" PointX="4.125" PointY="29.75" />
         <AssociationConnector Association="MetopeDbModel.FK_Debt_Expiry_Profile_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_History_Entity" />
+        <EntityTypeShape EntityType="MetopeDbModel.Security_Dividend_Detail" Width="1.5" PointX="18" PointY="15.125" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Currency_Code" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Security_Detail" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

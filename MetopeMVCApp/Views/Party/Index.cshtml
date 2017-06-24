@@ -25,7 +25,8 @@
         .Titled("Party Name").Filterable(true);
     columns.Add(c => c.Party_Code)
         .Titled("Code").Filterable(false);
-    columns.Add(c => c.Party_Type).Titled("Party Type").Filterable(true).SetWidth(150); 
+    columns.Add(c => c.Party_Type).Titled("Party Type").Filterable(true).SetWidth(150);
+    columns.Add(c => c.Entity_ID, true);
     // columns.Add(c => c.Security_Type_Code ).Titled("Return").Encoded(false).Sanitized(false).RenderValueAs(c => @Html.ActionLink(" ", "../LendReturns/Create", new { id = c.NumberOfRows }, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
 
     //.RenderValueAs(, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
@@ -48,15 +49,15 @@
                 @Html.ActionLink("Delete", "Delete", "Party", new { PartyCode = c.Party_Code, EntityId = c.Entity_ID }, null)
             </u>);
     columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
-            .RenderValueAs(c => @<a href="@Url.Action("Index", "DebtExpiryProfile", new { PartyCode = c.Party_Code, iEntityId = c.Entity_ID, Nav = 1 })">
+            .RenderValueAs(c => @<a href="@Url.Action("Index", "DebtExpiryProfile", new { PartyCode = c.Party_Code,  Nav = 1 })">
             <span class="badge"> Debt Profile </span>
         </a>);
     columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
-            .RenderValueAs(c => @<a href="@Url.Action("Index", "PartyDebtAnalysis", new { PartyCode = c.Party_Code, EntityId = c.Entity_ID, Nav = 1 })">
+            .RenderValueAs(c => @<a href="@Url.Action("Index", "PartyDebtAnalysis", new { PartyCode = c.Party_Code,  Nav = 1 })">
             <span class="badge"> Debt Analysis </span>
         </a>);
     columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
-            .RenderValueAs(c => @<a href="@Url.Action("Index", "PartyFinancials", new { PartyCode = c.Party_Code, EntityId = c.Entity_ID, Nav = 1 })">
+            .RenderValueAs(c => @<a href="@Url.Action("Index", "PartyFinancials", new { PartyCode = c.Party_Code, Nav = 1 })">
             <span class="badge"> Financials </span>
         </a>);
 }).Sortable(true)
@@ -72,7 +73,7 @@
     $(function () {
         pageGrids.PartGrd.onRowSelect(function (e) {
             //here rather do full page load instead of the Ajax partial: 
-            var myUrl2 = mtpApp.Urls.baseUrl + "Party/Edit?PartyCode="+e.row.Party_Code + "&EntityId="+ @ViewBag.EntityId ;  
+            var myUrl2 = mtpApp.Urls.baseUrl + "Party/Edit?PartyCode=" + e.row.Party_Code + "&EntityId=" + e.row.Entity_ID; 
             window.location = myUrl2;
 
             @*

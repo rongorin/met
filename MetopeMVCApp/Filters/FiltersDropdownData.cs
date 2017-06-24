@@ -168,6 +168,7 @@ namespace MetopeMVCApp.Filters
             filterContext.Controller.ViewBag.Price_Curr = new SelectList(currencies, "Currency_Code", "Currency_Name", filterContext.Controller.ViewBag.PriceCurr); // 
             filterContext.Controller.ViewBag.Asset_Currency = new SelectList(currencies, "Currency_Code", "Currency_Name", filterContext.Controller.ViewBag.AssetCurrency); // 
             filterContext.Controller.ViewBag.Trade_Currency = new SelectList(currencies, "Currency_Code", "Currency_Name", filterContext.Controller.ViewBag.TradeCurrency); // 
+            filterContext.Controller.ViewBag.Dividend_Currency_Code = new SelectList(currencies, "Currency_Code", "Currency_Name", filterContext.Controller.ViewBag.DividendCurrencyCode); // 
 
             base.OnActionExecuted(filterContext);
         }
@@ -288,7 +289,7 @@ namespace MetopeMVCApp.Filters
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
-                 secs = svc.ListSecurities(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")), Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity));
+                 secs = svc.ListSecurities(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")), Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity), "FXRATE");
                  //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
              }
@@ -299,7 +300,25 @@ namespace MetopeMVCApp.Filters
          }
 
      }
-     
+     public class AllSecuritiesFilter : ActionFilterAttribute
+     {
+         public override void OnActionExecuted(ActionExecutedContext filterContext)
+         {
+             IQueryable<Security_Detail> secs;
+             if ((secs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Security_Detail>)) == null)
+             {
+                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+
+                 secs = svc.ListSecurities(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")), Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity) );
+                 //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
+                 filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
+             } 
+             filterContext.Controller.ViewBag.Securities_All = new SelectList(secs,                               "Security_ID",   "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll);
+                                      //ViewBag.ActionStatusId = new SelectList(repository.GetAll<ActionStatus>(), "ActionStatusId", "Name", myAction.ActionStatusId);
+             base.OnActionExecuted(filterContext);
+         }
+
+     }
      public class PartyFilter : ActionFilterAttribute
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)

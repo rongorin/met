@@ -28,24 +28,18 @@ namespace MetopeMVCApp.Controllers
             db11 = iDb;
         }
 
-        public ActionResult Index(string PartyCode = "", int? iEntityId =null, string Nav = "" )
+        public ActionResult Index(string PartyCode = "" , string Nav = "" )
         {
-            var EntityID = (decimal)ViewBag.EntityId;
-            decimal refGenericEntity = (decimal)ViewBag.genericEntity;
-             
-
-            //var dep = db11.GetAllDebtExpiryValues( currentUser.EntityIdScope, (decimal)ViewBag.genericEntity).
-
+            decimal EntityID = (decimal)ViewBag.EntityId;    
+  
             var dep = db11.GetAll() 
                     .MatchCriteria(c => ( (PartyCode != "") ? c.Party_Code == PartyCode : c.Party_Code != "")
-                                  )
-                    .MatchCriteria(c => ((iEntityId != null) ? c.Entity_ID == iEntityId : (c.Entity_ID == EntityID || c.Entity_ID == refGenericEntity))
-                                  ) 
-                     .OrderBy(r => r.Party_Code).ThenByDescending(n => n.Financial_Year_End) ;
-                    //.SearchPartyCodes(PartyCode);
+                                        && c.Entity_ID == EntityID)  // .MatchCriteria(c => ((iEntityId != null) ? c.Entity_ID == iEntityId : (c.Entity_ID == EntityID || c.Entity_ID == refGenericEntity))
+         
+                     .OrderBy(r => r.Party_Code).ThenByDescending(n => n.Financial_Year_End);
 
             if (PartyCode != "")
-                ViewBag.PartyCode = PartyCode;
+               ViewBag.PartyCode = PartyCode;
 
             ViewBag.Nav = Nav;
 
@@ -94,8 +88,7 @@ namespace MetopeMVCApp.Controllers
                 }
             }
                 
-            return View(debtExpProfile); 
- 
+            return View(debtExpProfile);  
         }
 
         // GET: DebtExpiry_Profile/Edit/5
@@ -169,14 +162,9 @@ namespace MetopeMVCApp.Controllers
         // POST: DebtExpiry_Profile/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomEntityAuthoriseFilter]
         public ActionResult DeleteConfirmed(decimal EntityId, string PartyCode, DateTime FinYearEnd, string navIndicator = "")
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            decimal refGenericEntity = (decimal)ViewBag.genericEntity;
-
-            if (currentUser.EntityIdScope != EntityId)
-                return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-
+        {  
             Debt_Expiry_Profile debt_Expiry_Profile = db11.FindBy(r => r.Entity_ID == EntityId && r.Party_Code == PartyCode &&
                    r.Financial_Year_End == FinYearEnd).FirstOrDefault();
 

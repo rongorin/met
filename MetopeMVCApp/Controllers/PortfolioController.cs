@@ -25,7 +25,8 @@ namespace MetopeMVCApp.Controllers
         //private PortfolioRepository _repo = new PortfolioRepository( );
 
         private MetopeDbEntities db = new MetopeDbEntities(); //REMOVE this when done doing repository
-        private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        private UserManager<ApplicationUser> manager = 
+                    new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
         //using  proper DI : only one constructor 
 
@@ -183,7 +184,7 @@ namespace MetopeMVCApp.Controllers
             Portfolio portfolio = _repo.GetPortfolioById(EntityId, PortfolioCode);
 
             if (portfolio == null)
-            {~~~
+            { 
                 return HttpNotFound();
             }  
             ViewBag.PortfolioBaseCurrency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);

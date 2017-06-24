@@ -28,6 +28,7 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
+                <input type="hidden" id="navIndicator" name="navIndicator" value=@ViewBag.Nav />
 
             <div class="form-actions no-color">
                 @Html.Partial("_DeleteButtonShow", Model) | 

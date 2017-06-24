@@ -28,27 +28,28 @@ namespace MetopeMVCApp.Controllers
         } 
       
         // GET: PartyDebtAnalysis  
-        public ActionResult Index(string PartyCode = "")
+        public ActionResult Index(string PartyCode = "", string Nav = "")
         {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            ViewBag.EntityId = currentUser.EntityIdScope;
+            decimal EntityID = (decimal)ViewBag.EntityId;     
 
             var pda = db11.GetAll()
-                       .MatchCriteria(c => c.Entity_ID == currentUser.EntityIdScope)
+                       .MatchCriteria(c => c.Entity_ID == EntityID)
                        .MatchCriteria(c => ((PartyCode != "") ? c.Party_Code == PartyCode : c.Party_Code != ""))
                      .OrderBy(r => r.Party_Code).ThenBy(n => n.Financials_Type);
-
-
+             
             if (PartyCode != "")
                 ViewBag.PartyCode = PartyCode;
+
+            ViewBag.Nav = Nav;
 
             return View(pda.ToList()); 
         } 
          
         [FinancialsType]
-        [PartyFilterIssr] 
-        public ActionResult Create()
-        {    
+        [PartyFilterIssr]
+        public ActionResult Create(string Nav)
+        {
+            ViewBag.Nav = Nav; 
             return View();   
         }
          
@@ -56,7 +57,7 @@ namespace MetopeMVCApp.Controllers
         [PartyFilterIssr]
         [FinancialsType]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Party_Code,Financials_Type,Entity_ID,Financials_Date,Investment_Properties,Other_Investments,Total_Investments,Weighted_Investments,ST_Interest_Bearing_Debt,LT_Interest_Bearing_Debt,Total_Interest_Bearing_Borrowings,Debt_Hedged_Amount,Debt_Hedged_Percent,Floating_Debt_Amount,Floating_Debt_Percent,Total_Weighted_Debt_Cost,Capital_Markets_Debt,Traditional_Bank_Debt,Last_Update_Date,Last_Update_User")] Party_Debt_Analysis partyDebtAnalysis)
+        public ActionResult Create([Bind(Include = "Party_Code,Financials_Type,Entity_ID,Financials_Date,Investment_Properties,Other_Investments,Total_Investments,Weighted_Investments,ST_Interest_Bearing_Debt,LT_Interest_Bearing_Debt,Total_Interest_Bearing_Borrowings,Debt_Hedged_Amount,Debt_Hedged_Percent,Floating_Debt_Amount,Floating_Debt_Percent,Total_Weighted_Debt_Cost,Capital_Markets_Debt,Traditional_Bank_Debt,Last_Update_Date,Last_Update_User")] Party_Debt_Analysis partyDebtAnalysis, string navIndicator="")
         { 
             var currentUser = manager.FindById(User.Identity.GetUserId());
             partyDebtAnalysis.Entity_ID = currentUser.EntityIdScope;
@@ -79,29 +80,29 @@ namespace MetopeMVCApp.Controllers
                     db11.Add(partyDebtAnalysis);
                     db11.Save();
                     TempData.Add("ResultMessage", "new PartyDebtAnalysis \"" + partyDebtAnalysis.Party_Code + "\" created successfully!");
-                    return RedirectToAction("Index");
+                    if (navIndicator == "")
+                        return RedirectToAction("Index");
+                    else
+                        return RedirectToAction("Index", null, new { PartyCode = partyDebtAnalysis.Party_Code, Nav = navIndicator });
+
                 }
             }
            
             return View(partyDebtAnalysis);
         }
-         
-        public ActionResult Edit(decimal EntityId, string PartyCode, string FinType)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-
-            if (currentUser.EntityIdScope != EntityId)
-            {
-                throw new Exception("Forbidden"); 
-            } 
+        [CustomEntityAuthoriseFilter]
+        public ActionResult Edit(decimal EntityId, string PartyCode, string FinType, string Nav)
+        { 
             Party_Debt_Analysis pda = db11.FindBy(r => r.Entity_ID == EntityId && r.Party_Code == PartyCode &&
                                 r.Financials_Type == FinType).FirstOrDefault();
              
             if (pda == null)
             {
                 return HttpNotFound();
-            }  
-       
+            }
+
+            ViewBag.Nav = Nav;
+
             return View(pda);
         }
 
@@ -110,7 +111,8 @@ namespace MetopeMVCApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Party_Code,Financials_Type,Entity_ID,Financials_Date,Investment_Properties,Other_Investments,Total_Investments,Weighted_Investments,ST_Interest_Bearing_Debt,LT_Interest_Bearing_Debt,Total_Interest_Bearing_Borrowings,Debt_Hedged_Amount,Debt_Hedged_Percent,Floating_Debt_Amount,Floating_Debt_Percent,Total_Weighted_Debt_Cost,Capital_Markets_Debt,Traditional_Bank_Debt,Last_Update_Date,Last_Update_User")] Party_Debt_Analysis party_Debt_Analysis)
+        public ActionResult Edit([Bind(Include = "Party_Code,Financials_Type,Entity_ID,Financials_Date,Investment_Properties,Other_Investments,Total_Investments,Weighted_Investments,ST_Interest_Bearing_Debt,LT_Interest_Bearing_Debt,Total_Interest_Bearing_Borrowings,Debt_Hedged_Amount,Debt_Hedged_Percent,Floating_Debt_Amount,Floating_Debt_Percent,Total_Weighted_Debt_Cost,Capital_Markets_Debt,Traditional_Bank_Debt,Last_Update_Date,Last_Update_User")] Party_Debt_Analysis party_Debt_Analysis
+                                             , string navIndicator = "")
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
 
@@ -129,30 +131,21 @@ namespace MetopeMVCApp.Controllers
                     TempData["ResultMessage"] = "PartyDebtAnalysis for party code \"" + party_Debt_Analysis.Party_Code + "\" edited successfully!";
                     //TempData.Add("ResultMessage", "PartyDebtAnalysis for party code \"" + party_Debt_Analysis.Party_Code + "\" edited successfully!");
           
-                    return RedirectToAction("Index", "PartyDebtAnalysis", new {PartyCode = party_Debt_Analysis.Party_Code });
+                    //return RedirectToAction("Index", "PartyDebtAnalysis", new {PartyCode = party_Debt_Analysis.Party_Code });
 
+                    if (navIndicator == "")
+                        return RedirectToAction("Index");
+                    else
+                        return RedirectToAction("Index", null, new { PartyCode = party_Debt_Analysis.Party_Code, Nav = navIndicator });
                 }
             } 
             return View(party_Debt_Analysis);
         }
 
         // GET: PartyDebtAnalysis/Delete/5
-        public ActionResult Delete(string PartyCode, string FinType, decimal EntityId)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            decimal refGenericEntity = (decimal)ViewBag.genericEntity;
-
-
-            if (EntityId == null || PartyCode == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            if (currentUser.EntityIdScope != EntityId && refGenericEntity != EntityId)
-            {
-                throw new Exception("Not Acceptable");
-                //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-            }
-
+        [CustomEntityAuthoriseFilter]
+        public ActionResult Delete(string PartyCode, string FinType, decimal EntityId, string Nav)
+        { 
             Party_Debt_Analysis pda = db11.FindBy(r => r.Entity_ID == EntityId && r.Party_Code == PartyCode &&
                     r.Financials_Type == FinType).FirstOrDefault();
               
@@ -160,6 +153,7 @@ namespace MetopeMVCApp.Controllers
             {
                  return HttpNotFound();
             }
+            ViewBag.Nav = Nav; 
 
             return View(pda);
         }
@@ -167,22 +161,21 @@ namespace MetopeMVCApp.Controllers
         // POST: PartyDebtAnalysis/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string PartyCode, string FinType, decimal EntityId)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            decimal refGenericEntity = (decimal)ViewBag.genericEntity;
-
-            if (currentUser.EntityIdScope != EntityId )
-                return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-
+        [CustomEntityAuthoriseFilter]
+        public ActionResult DeleteConfirmed(string PartyCode, string FinType, decimal EntityId, string navIndicator = "")
+        {  
             Party_Debt_Analysis pda = db11.FindBy(r => r.Entity_ID == EntityId && r.Party_Code == PartyCode &&
                     r.Financials_Type == FinType).FirstOrDefault();
 
             db11.Delete(pda);
             db11.Save();
             TempData.Add("ResultMessage", "Party Debt Analysis  code \"" + pda.Party_Code + "\" deleted successfully!");
-              
-            return RedirectToAction("Index");
+             
+            if (navIndicator == "")
+                return RedirectToAction("Index");
+            else
+                return RedirectToAction("Index", null, new { PartyCode = pda.Party_Code, Nav = navIndicator });
+             
         }
 
         protected override void Dispose(bool disposing)

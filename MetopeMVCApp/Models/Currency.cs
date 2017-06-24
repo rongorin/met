@@ -27,6 +27,7 @@ namespace MetopeMVCApp.Models
             this.Security_Detail3 = new HashSet<Security_Detail>();
             this.Security_Detail4 = new HashSet<Security_Detail>();
             this.Security_Detail5 = new HashSet<Security_Detail>();
+            this.Security_Dividend_Detail = new HashSet<Security_Dividend_Detail>();
         }
     
         public string Currency_Code { get; set; }
@@ -50,5 +51,6 @@ namespace MetopeMVCApp.Models
         public virtual ICollection<Security_Detail> Security_Detail3 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail4 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail5 { get; set; }
+        public virtual ICollection<Security_Dividend_Detail> Security_Dividend_Detail { get; set; }
     }
 }

@@ -1,0 +1,38 @@
+﻿@model MetopeMVCApp.Models.Security_Dividend_Detail
+
+@{
+    ViewBag.Title = "Edit";
+}
+@section Styles {
+    @Styles.Render("~/Content/datetime")
+}
+ 
+<h3>
+    Edit Dividend Details for<b> @Model.Security_ID </b>
+    @if (Model.Security_Detail != null)  
+    {   <span>@Model.Security_Detail.Security_Name</span>  } 
+
+</h3> 
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Dividend Sequence: <b>@Model.Dividend_Seq_Number </b></h4>
+        <hr />
+        @Html.ValidationSummary(false)
+        @Html.HiddenFor(model => model.Entity_ID)
+
+        @Html.HiddenFor(model => model.Security_ID)
+
+        @Html.HiddenFor(model => model.Dividend_Seq_Number)
+          
+        @Html.EditorForModel("Security_Dividend_DetailVert")
+ 
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+} 

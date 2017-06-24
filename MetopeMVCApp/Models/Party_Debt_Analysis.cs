@@ -14,7 +14,7 @@ namespace MetopeMVCApp.Models
     using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(PartyDebtAnalysisModelMetaData))]
-  
+    
     public partial class Party_Debt_Analysis
     {
         public string Party_Code { get; set; }

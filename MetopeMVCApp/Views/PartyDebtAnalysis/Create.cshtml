@@ -17,6 +17,7 @@
         @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
         @Html.ValidationSummary(false)
         @Html.ValidationMessage("Error")
+        <input type="hidden" id="navIndicator" name="navIndicator" value=@ViewBag.Nav />
 
         <div class="form-group">
             @Html.LabelFor(model => model.Party_Code, htmlAttributes: new { @class = "control-label col-md-3" })
@@ -40,9 +41,7 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+ 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/datetime")

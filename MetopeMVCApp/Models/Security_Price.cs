@@ -9,13 +9,12 @@
 
 namespace MetopeMVCApp.Models
 {
+
     using MetopeMVCApp.Models.MyMetaData;
-    
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityPriceModelMetaData))]
-
     public partial class Security_Price
     {
         public decimal Entity_ID { get; set; }

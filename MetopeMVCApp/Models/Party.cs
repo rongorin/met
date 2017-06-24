@@ -14,7 +14,6 @@ namespace MetopeMVCApp.Models
     using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(PartyModelMetaData))]
-
     
     public partial class Party
     {

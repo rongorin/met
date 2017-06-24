@@ -26,15 +26,14 @@ namespace MetopeMVCApp.Controllers
             db11 = iDb; 
         } 
         // GET: PartyFinancials   
-        public ActionResult Index(string PartyCode = "",int? iEntityId =null, string Nav = "")
-        { 
-            decimal EntityID = (decimal)ViewBag.EntityId;
-            decimal refGenericEntity = (decimal)ViewBag.genericEntity;
+        public ActionResult Index(string PartyCode = "" , string Nav = "")
+        {
+            decimal EntityID = (decimal)ViewBag.EntityId;    
 
             var pfin = db11.GetAll()   
                     .MatchCriteria(c => ((PartyCode != "") ? c.Party_Code == PartyCode : c.Party_Code != ""))
-                    .MatchCriteria(c => ((iEntityId != null) ? c.Entity_ID == iEntityId : (c.Entity_ID == EntityID || c.Entity_ID == refGenericEntity))
-                                        ) 
+                    .MatchCriteria(c => ( c.Entity_ID == EntityID )
+                                   ) 
                     .OrderBy(r => r.Party_Code).ThenBy(n => n.Actual_Forecast_Indicator);
 
             if (PartyCode != "")

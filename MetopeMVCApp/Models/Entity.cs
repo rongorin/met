@@ -30,6 +30,7 @@ namespace MetopeMVCApp.Models
             this.Party_Financials = new HashSet<Party_Financials>();
             this.Debt_Expiry_Profile = new HashSet<Debt_Expiry_Profile>();
             this.Party_Financials_History = new HashSet<Party_Financials_History>();
+            this.Security_Dividend_Detail = new HashSet<Security_Dividend_Detail>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -52,5 +53,6 @@ namespace MetopeMVCApp.Models
         public virtual ICollection<Party_Financials> Party_Financials { get; set; }
         public virtual ICollection<Debt_Expiry_Profile> Debt_Expiry_Profile { get; set; }
         public virtual ICollection<Party_Financials_History> Party_Financials_History { get; set; }
+        public virtual ICollection<Security_Dividend_Detail> Security_Dividend_Detail { get; set; }
     }
 }

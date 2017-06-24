@@ -1,0 +1,53 @@
+﻿@model MetopeMVCApp.Models.Security_Dividend_Detail
+  
+@Html.EditorFor(model => model.Actual_Last_Date_To_Register, "BootstrapEditDate")
+
+@Html.EditorFor(model => model.Actual_Ex_Dividend_Date, "BootstrapEditDate")
+
+@Html.EditorFor(model => model.Forecast_Last_Date_to_Register, "BootstrapEditDate")
+
+@Html.EditorFor(model => model.Forecast_Ex_Dividend_Date, "BootstrapEditDate")
+
+@Html.EditorFor(model => model.Actual_Dividend_Payment_Date, "BootstrapEditDate")
+
+@Html.EditorFor(model => model.Dividend_Seq_Number, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Dividend_Annual_Number, "BootstrapEditDecimal")
+
+<div class="col-sm-4">
+    <div class="form-group ">
+        @Html.LabelFor(model => model.Dividend_Currency_Code, "Dividend_Currency_Code", htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+        <div class="col-md-7">
+            @Html.DropDownList("Price_Curr", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Dividend_Currency_Code, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+@Html.EditorFor(model => model.Forecast_Dividend_Payment_Date, "BootstrapEditDate")
+@Html.EditorFor(model => model.Dividend_Split, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Forecast_Dividend, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Actual_Dividend, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Dividend_Type, "BootstrapEditor")
+@Html.EditorFor(model => model.Financial_Year, "BootstrapEditSmallInt")
+
+@Html.EditorFor(model => model.Actual_FX_Rate, "BootstrapEditDecimal")
+ 
+<div class="col-sm-4">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Lock_Flag, htmlAttributes: new { @class = "control-label col-md-5 input-sm " })
+        <div class="col-md-7">
+            @Html.DropDownList("System_Locked", null, string.Empty, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(model => model.Lock_Flag, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+
+@Html.EditorFor(model => model.Actual_NonRecurring_Dividend, "BootstrapEditDecimal")
+  
+@Html.Partial("_SaveButtonShow", Model)
+
+<div>
+   
+    @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
+</div>

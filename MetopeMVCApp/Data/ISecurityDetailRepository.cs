@@ -16,6 +16,11 @@ namespace MetopeMVCApp.Data
         //IQueryable<Security_Detail> GetAllActive( );
 
     }
+    public interface ISecurityDividendDetailRepository : IGenericRepository<Security_Dividend_Detail>
+    {
+        IQueryable<Security_Dividend_Detail> GetAll(Expression<Func<Security_Dividend_Detail, bool>> predicate);
+ 
+    }
     public interface ISecurityPriceRepository : IGenericRepository<Security_Price>
     {
         IQueryable<Security_Price> GetAll(Expression<Func<Security_Price, bool>> predicate);

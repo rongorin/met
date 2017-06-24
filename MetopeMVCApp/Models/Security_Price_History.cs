@@ -11,10 +11,10 @@ namespace MetopeMVCApp.Models
 {
     using System;
     using System.Collections.Generic;
-        using MetopeMVCApp.Models.MyMetaData;
+    using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityPriceHistoryModelMetaData))]
-
+    
     public partial class Security_Price_History
     {
         public decimal Entity_ID { get; set; }

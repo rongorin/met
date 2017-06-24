@@ -10,18 +10,21 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using ASP.MetopeNspace.Models;
 using System.Collections;
-using System.Web.Caching; 
+using System.Web.Caching;
+using StructureMap; 
 
 namespace ASP.MetopeNspace.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+
+        private readonly UserManager<IdentityUser> _userManager;
+
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
         }
-
         public AccountController(UserManager<ApplicationUser> userManager)
         {
             UserManager = userManager;
@@ -59,10 +62,7 @@ namespace ASP.MetopeNspace.Controllers
                 {
                     ModelState.AddModelError("", "Invalid username or password.");
                 }
-            }
-
-
-            // If we got this far, something failed, redisplay form
+            }   
             return View(model);
         }
 

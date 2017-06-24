@@ -16,7 +16,8 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -271,6 +272,7 @@
     <Compile Include="Controllers\Port2Controller.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\SecurityDetailController.cs" />
+    <Compile Include="Controllers\SecurityDividendDetailController.cs" />
     <Compile Include="Controllers\SecurityPriceController.cs" />
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\DebtExpiryProfileRepository.cs" />
@@ -379,6 +381,7 @@
     <Compile Include="Models\MyMetaData\PortfolioModelMetatData.cs" />
     <Compile Include="Models\MyMetaData\SecurityDetailModelMetaData.cs" />
     <Compile Include="Models\MyMetaData\PartyFinancialsModelMetaData.cs" />
+    <Compile Include="Models\MyMetaData\SecurityDividendDetailModelMetaData.cs" />
     <Compile Include="Models\MyMetaData\SecurityPriceHistoryModelMetaData.cs" />
     <Compile Include="Models\MyMetaData\SecurityPriceModelMetaData.cs" />
     <Compile Include="Models\Party.cs">
@@ -400,9 +403,13 @@
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SecurityDetailIndexModel.cs" />
+    <Compile Include="Models\SecurityDividendDetailViewModel.cs" />
     <Compile Include="Models\SecurityPriceEditModel.cs" />
     <Compile Include="Models\SecurityPriceIndexViewModel.cs" />
     <Compile Include="Models\Security_Detail.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Security_Dividend_Detail.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Security_Price.cs">
@@ -756,6 +763,14 @@
     <Content Include="Views\Shared\EditorTemplates\Party_Financials_History.cshtml" />
     <Content Include="Views\Shared\_SaveButtonShow.cshtml" />
     <Content Include="Views\Shared\_DeleteButtonShow.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Create.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Delete.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Details.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Edit.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Dividend_Detail.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditSmallIntVert.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Dividend_DetailVert.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

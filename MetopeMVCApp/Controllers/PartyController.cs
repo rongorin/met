@@ -89,23 +89,12 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: Party/Edit/5  
+        [CustomEntityAuthoriseFilter]
         [CountryFilter]
-        public ActionResult Edit( string PartyCode,  decimal EntityId)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            decimal refGenericEntity = (decimal)ViewBag.genericEntity;
-
-            if (currentUser.EntityIdScope != EntityId && refGenericEntity != EntityId)
-            {
-                throw new Exception("Forbidden"); 
-            } 
-            if (PartyCode == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-     
-            }
+        public ActionResult Edit(string PartyCode, decimal EntityId)
+        {   
             Party party = db11.FindBy(r => r.Party_Code == PartyCode)
-                                    .MatchCriteria(c => c.Entity_ID == refGenericEntity || c.Entity_ID == currentUser.EntityIdScope)
+                                    .MatchCriteria(c => c.Entity_ID == EntityId )
                                     .Include(p => p.Country).FirstOrDefault();
             if (party == null)
             {
@@ -145,24 +134,12 @@ namespace MetopeMVCApp.Controllers
        
             return View(party);
         }
-
-        // GET: Party/Delete/5
+         
+        [CustomEntityAuthoriseFilter]
         public ActionResult Delete(string PartyCode, decimal EntityId)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            decimal refGenericEntity = (decimal)ViewBag.genericEntity;
-
-            if (EntityId == null || PartyCode == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            if (currentUser.EntityIdScope != EntityId && refGenericEntity != EntityId)  
-            {
-                throw new Exception("Not Acceptable");
-                //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-            }   
+        { 
             Party party = db11.FindBy(r => r.Party_Code == PartyCode)
-                       .MatchCriteria(c => c.Entity_ID == refGenericEntity || c.Entity_ID == currentUser.EntityIdScope)
+                       .MatchCriteria(c => c.Entity_ID == EntityId)
                        .FirstOrDefault(); 
 
             if (party == null)
@@ -175,46 +152,16 @@ namespace MetopeMVCApp.Controllers
         // POST: Party/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomEntityAuthoriseFilter]
         public ActionResult DeleteConfirmed(string PartyCode, decimal EntityId)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            decimal refGenericEntity = (decimal)ViewBag.genericEntity;
-
-            if (currentUser.EntityIdScope != EntityId && refGenericEntity != EntityId)  
-                return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-              
+        {  
             Party party = db11.FindBy(r => r.Party_Code == PartyCode).FirstOrDefault();
             db11.Delete(party);
             db11.Save();
             TempData.Add("ResultMessage", "Party \"" + party.Party_Name + "\" deleted successfully!");
             return RedirectToAction("Index");
-        }
-
-        // GET: Party/Details/5
-        public ActionResult Details(string PartyCode, decimal EntityId)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-
-            if (PartyCode == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            if (currentUser.EntityIdScope != EntityId)
-            {
-                throw new Exception("Not Acceptable");
-                //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-            }
-
-            Party party = db11.FindBy(r => r.Party_Code == PartyCode).FirstOrDefault();
-
-            if (party == null)
-            {
-                return HttpNotFound();
-            }
- 
-
-            return View(party);
-        }
+        } 
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

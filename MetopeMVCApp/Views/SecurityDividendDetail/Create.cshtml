@@ -1,0 +1,41 @@
+﻿@model MetopeMVCApp.Models.Security_Dividend_Detail
+
+@{
+    ViewBag.Title = "Create";
+}
+@section Styles {
+    @Styles.Render("~/Content/datetime")
+} 
+<h3>
+    Create Dividend Details for <b> @ViewBag.SecurityName  </b>
+  
+</h3>  
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal"> 
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" }) 
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Security_ID, htmlAttributes: new { @class = "control-label col-md-2 input-sm ", style = "text-align: right" })
+            <div class="col-md-10">
+                @Html.DropDownList("Security_ID", (SelectList)ViewBag.Securities_All, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Security_ID, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+        @Html.EditorFor(model => model.Dividend_Seq_Number, "BootstrapEditDecimalVertic") 
+        
+        @Html.EditorForModel("Security_Dividend_DetailVert")
+
+        <input type="hidden" id="navIndicator" name="navIndicator" value=@ViewBag.Nav />
+
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+}
+ 

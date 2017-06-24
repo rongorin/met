@@ -28,6 +28,18 @@ namespace MetopeMVCApp.Data.Repositories
              
         //} 
     }
+    public class SecurityDividendDetailRepository : GenericRepository<MetopeDbEntities, Security_Dividend_Detail>,
+                                        ISecurityDividendDetailRepository
+    {
+        public IQueryable<Security_Dividend_Detail> GetAll(Expression<Func<Security_Dividend_Detail, bool>> predicate)
+        {
+            IQueryable<Security_Dividend_Detail> query = Context.Set<Security_Dividend_Detail>().Where(predicate);
+            return query;
+
+
+        } 
+    }
+
     public class SecurityPriceRepository : GenericRepository<MetopeDbEntities, Security_Price>,
                           ISecurityPriceRepository
     {

@@ -17,11 +17,14 @@
 
 namespace MetopeMVCApp.DependencyResolution {
     using MetopeMVCApp.Controllers;
-    using MetopeMVCApp.Data;
-    using MetopeMVCApp.Data.GenericRepository;
-    using MetopeMVCApp.Data.Repositories;
-    using StructureMap.Configuration.DSL;
-    using StructureMap.Graph;
+using MetopeMVCApp.Data;
+using MetopeMVCApp.Data.GenericRepository;
+using MetopeMVCApp.Data.Repositories;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using StructureMap.Configuration.DSL;
+using StructureMap.Graph;
+    using System.Data.Entity;
 	
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
@@ -36,6 +39,19 @@ namespace MetopeMVCApp.DependencyResolution {
             For<IPortfolioRepository3>().Use<PortfolioRepository3>();
             For<ISecurityDetailRepository>().Use<SecurityDetailRepository>();
 
+           // For<IUserStore<IdentityUser>>()
+           //.Use<UserStore<IdentityUser>>()
+           //.Ctor<DbContext>()
+           //.Is<IdentityDbContext>(cfg => cfg.SelectConstructor(() => new IdentityDbContext("connection string")).Ctor<string>().Is("IdentitySetupWithStructureMap"));
+
+           // ForConcreteType<UserManager<IdentityUser>>()
+           //     .Configure
+           //     .SetProperty(userManager => userManager.PasswordValidator = new PasswordValidator
+           //     {
+           //         RequiredLength = 6
+           //     })
+           //     .SetProperty(userManager => userManager.UserValidator = new UserValidator<IdentityUser>(userManager));                
+     
         }
 
         #endregion
