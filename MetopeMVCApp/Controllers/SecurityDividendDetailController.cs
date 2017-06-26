@@ -83,42 +83,57 @@ namespace MetopeMVCApp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [AllSecuritiesFilter]
+        [CurrencyFilter]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Entity_ID,Security_ID,Dividend_Seq_Number,Dividend_Annual_Number,Forecast_Dividend_Payment_Date,Dividend_Currency_Code,Actual_Dividend_Payment_Date,Actual_Last_Date_To_Register,Actual_Ex_Dividend_Date,Dividend_Split,Forecast_Dividend,Actual_Dividend,Dividend_Type,Forecast_Last_Date_to_Register,Forecast_Ex_Dividend_Date,Last_Update_Date,Last_Update_User,Financial_Year,Actual_FX_Rate,Lock_Flag,Actual_NonRecurring_Dividend")] Security_Dividend_Detail sdd)
         {
-            decimal EntityID = (decimal)ViewBag.EntityId;    
+            decimal EntityID = (decimal)ViewBag.EntityId;
+            /*------------------------------------------ 
+             first check if this party code is already used ! 
+             ----------------------------------------*/
+            Security_Dividend_Detail check = db11.FindBy(r => r.Security_ID == sdd.Security_ID &&
+                                                        r.Dividend_Seq_Number == sdd.Dividend_Seq_Number) 
+                                                 .MatchCriteria(c => c.Entity_ID == EntityID).FirstOrDefault();
 
             if (ModelState.IsValid)
             {
-                sdd.Entity_ID = EntityID;
-                sdd.Last_Update_Date = DateTime.Now;
-                sdd.Last_Update_User = User.Identity.Name;
+                if (check != null)
+                {
+                    ModelState.AddModelError("Name", "FAILED to create Dividend  number " + sdd.Dividend_Seq_Number.ToString() + "  Already exists!");
+                }
+                else
+                {
+                    sdd.Entity_ID = EntityID;
+                    sdd.Last_Update_Date = DateTime.Now;
+                    sdd.Last_Update_User = User.Identity.Name;
 
-                db11.Add(sdd);
-                db11.Save();
-                TempData.Add("ResultMessage", "new Security Dividend for \"" + sdd.Security_ID + "\" created successfully!");
+                    db11.Add(sdd);
+                    db11.Save();
+                    TempData.Add("ResultMessage", "new Dividend number " + sdd.Dividend_Seq_Number.ToString() + " created successfully!");
 
-                return RedirectToAction("Index", new { SecurityId = sdd.Security_ID });
-
-                 
+                    return RedirectToAction("Index", new { SecurityId = sdd.Security_ID });
+                }
             }
 
             //ViewBag.Dividend_Currency_Code = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Dividend_Detail.Dividend_Currency_Code);
             //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Dividend_Detail.Entity_ID);
             //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Dividend_Detail.Security_ID);
             //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Dividend_Detail.Entity_ID);
+            ViewBag.EntityId = sdd.Entity_ID;
             return View(sdd);
         }
 
         // GET: SecurityDividendDetail/Edit/5
         [TrueFalseFilter]
-          [CurrencyFilter]
+        [CurrencyFilter]
         public ActionResult Edit(decimal SecurityId, decimal DivSeqNo)
         {
             var EntityID = (decimal)ViewBag.EntityId;
 
-            Security_Dividend_Detail sdd = db11.FindBy(r => r.Security_ID == SecurityId && r.Dividend_Seq_Number == DivSeqNo).Include(s => s.Security_Detail)
-                                     .MatchCriteria(c => c.Entity_ID == EntityID).FirstOrDefault();
+            Security_Dividend_Detail sdd = db11.FindBy(r => r.Security_ID == SecurityId &&
+                                                        r.Dividend_Seq_Number == DivSeqNo).Include(s => s.Security_Detail)
+                                                 .MatchCriteria(c => c.Entity_ID == EntityID).FirstOrDefault();
             if (sdd == null)
             {
                 return HttpNotFound();
@@ -133,9 +148,7 @@ namespace MetopeMVCApp.Controllers
             return View(sdd);
         }
 
-        // POST: SecurityDividendDetail/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [TrueFalseFilter]
@@ -150,14 +163,13 @@ namespace MetopeMVCApp.Controllers
                 security_Dividend_Detail.Last_Update_Date = DateTime.Now;
                 security_Dividend_Detail.Last_Update_User = User.Identity.Name;
                 db11.Save();
-                TempData["ResultMessage"] = "Dividend Detail for SecurityId \"" + security_Dividend_Detail.Security_ID + "\" edited successfully!";
-                 return RedirectToAction("Index", new { SecurityId = security_Dividend_Detail.Security_ID }); 
-                 
+                TempData["ResultMessage"] = "Dividend number " + security_Dividend_Detail.Dividend_Seq_Number.ToString() + " edited successfully!";
+                return RedirectToAction("Index", new { SecurityId = security_Dividend_Detail.Security_ID });     
             }
             ViewBag.DividendCurrencyCode = security_Dividend_Detail.Dividend_Currency_Code;
             ViewBag.MySysLockedList = security_Dividend_Detail.Lock_Flag;
 
-
+                
             //ViewBag.Dividend_Currency_Code = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Dividend_Detail.Dividend_Currency_Code);
             //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Dividend_Detail.Entity_ID);
             //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Dividend_Detail.Security_ID);
@@ -186,12 +198,13 @@ namespace MetopeMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(decimal SecurityId, decimal DivSeqNo, string navIndicator = "")
         {
-            Security_Dividend_Detail sdd = db11.FindBy(r => r.Security_ID == SecurityId && r.Dividend_Seq_Number == DivSeqNo
+            Security_Dividend_Detail sdd = db11.FindBy(r => r.Security_ID == SecurityId &&
+                                                            r.Dividend_Seq_Number == DivSeqNo
                              ).FirstOrDefault();
-
+            var Securityname = sdd.Security_Detail.Security_Name; 
             db11.Delete(sdd);
             db11.Save();
-            TempData.Add("ResultMessage", "Dividend for Security code \"" + sdd.Security_ID + "\" deleted successfully!");
+            TempData.Add("ResultMessage", "Dividend number " + DivSeqNo.ToString() + " for \"" + Securityname + "\" deleted successfully!");
 
             if (navIndicator == "")
                 return RedirectToAction("Index", null, new { SecurityId = sdd.Security_ID });

@@ -13,7 +13,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        @*@Html.ValidationSummary(false)*@
+        @Html.ValidationSummary(false)
         @Html.ValidationMessage("Error") 
            
          @Html.EditorFor(model => model.Party_Code, "BootstrapEditorVertic")
