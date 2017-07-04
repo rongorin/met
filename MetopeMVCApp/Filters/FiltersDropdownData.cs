@@ -170,6 +170,13 @@ namespace MetopeMVCApp.Filters
             filterContext.Controller.ViewBag.Trade_Currency = new SelectList(currencies, "Currency_Code", "Currency_Name", filterContext.Controller.ViewBag.TradeCurrency); // 
             filterContext.Controller.ViewBag.Dividend_Currency_Code = new SelectList(currencies, "Currency_Code", "Currency_Name", filterContext.Controller.ViewBag.DividendCurrencyCode); // 
 
+
+            //List<SelectListItem> IntsForDivSplit = new List<SelectListItem> {
+            //            new SelectListItem { Text = "ACTIVE", Value = "ACTIVE" },
+            //            new SelectListItem { Text = "SUSPENDED", Value = "SUSPENDED" },
+            //            new SelectListItem { Text = "INACTIVE", Value = "INACTIVE" }	 };
+
+            
             base.OnActionExecuted(filterContext);
         }
     }
@@ -289,7 +296,9 @@ namespace MetopeMVCApp.Filters
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
-                 secs = svc.ListSecurities(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")), Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity), "FXRATE");
+                 secs = svc.ListSecurities(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")), 
+                                           Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity),
+                                           "FXRATE");
                  //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
              }
@@ -302,18 +311,22 @@ namespace MetopeMVCApp.Filters
      }
      public class AllSecuritiesFilter : ActionFilterAttribute
      {
+         //This Action filter obtains all the securities for the inscope Entity only. 
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          {
              IQueryable<Security_Detail> secs;
              if ((secs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Security_Detail>)) == null)
              {
+                 bool getInScopeOnly = true;
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
-                 secs = svc.ListSecurities(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")), Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity) );
+                 secs = svc.ListSecurities(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")),
+                                           Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity),
+                                           "", getInScopeOnly);
                  //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
              } 
-             filterContext.Controller.ViewBag.Securities_All = new SelectList(secs,                               "Security_ID",   "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll);
+             filterContext.Controller.ViewBag.Securities_All = new SelectList(secs,     "Security_ID",   "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll);
                                       //ViewBag.ActionStatusId = new SelectList(repository.GetAll<ActionStatus>(), "ActionStatusId", "Name", myAction.ActionStatusId);
              base.OnActionExecuted(filterContext);
          }
@@ -384,6 +397,27 @@ namespace MetopeMVCApp.Filters
          }
      }
      public class TrueFalseFilter : ActionFilterAttribute
+     {
+         public override void OnActionExecuted(ActionExecutedContext filterContext)
+         {
+             List<SelectListItem> securityStati = new List<SelectListItem> {
+						new SelectListItem { Text = "ACTIVE", Value = "ACTIVE" },
+						new SelectListItem { Text = "SUSPENDED", Value = "SUSPENDED" },
+						new SelectListItem { Text = "INACTIVE", Value = "INACTIVE" }	 };
+
+             var trueFalse = new List<SelectListItem>();
+             trueFalse.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
+             trueFalse.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
+
+             filterContext.Controller.ViewBag.Track_EOM_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyTrackEOMFlagList);
+             filterContext.Controller.ViewBag.Call_Account_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyCallAccountFgList);
+             filterContext.Controller.ViewBag.System_Locked = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MySysLockedList);
+             filterContext.Controller.ViewBag.Security_Status = new SelectList(securityStati, "Value", "Text", filterContext.Controller.ViewBag.MySecurityStatus);
+
+             base.OnActionExecuted(filterContext);
+         }
+     }
+     public class IntValuesFilter : ActionFilterAttribute
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          {

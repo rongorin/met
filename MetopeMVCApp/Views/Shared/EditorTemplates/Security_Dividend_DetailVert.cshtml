@@ -18,7 +18,8 @@
         @Html.DropDownList("Dividend_Currency_Code", null, string.Empty, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Dividend_Currency_Code, "", new { @class = "text-danger" })
     </div>
-</div>
+</div> 
+  
 
 @Html.EditorFor(model => model.Forecast_Dividend_Payment_Date, "BootstrapEditDateVertic")
 @Html.EditorFor(model => model.Dividend_Split, "BootstrapEditDecimalVertic")

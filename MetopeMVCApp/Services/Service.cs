@@ -70,8 +70,8 @@ namespace MetopeMVCApp.Services
         }
         public IQueryable<Security_Type> ListSecTypeCode()
         {
-            ISecurityTypesRepository dbCntx = new SecurityTypeRepository(); 
-            return dbCntx.GetAll(); 
+            ISecurityTypesRepository dbCntx = new SecurityTypeRepository();
+            return dbCntx.GetAll().OrderBy(r => r.Security_Type_Code); ; 
         } 
    
         public IQueryable<Currency> ListCurrencies()
@@ -107,18 +107,25 @@ namespace MetopeMVCApp.Services
         }
         public IQueryable<Portfolio> ListPortfolios(decimal iUser)
         {
-            IPortfolioRepository3 dbCntx = new PortfolioRepository3();  
-            return dbCntx.GetAll().Where(c => c.Entity_ID == iUser);
+            IPortfolioRepository3 dbCntx = new PortfolioRepository3();
+            return dbCntx.GetAll().Where(c => c.Entity_ID == iUser).OrderBy(r => r.Portfolio_Name); ;
              
         }
-        public IQueryable<Security_Detail> ListSecurities(decimal iEntity,decimal iGenericEntity, string  iSecurityTypeCode= "")
+        public IQueryable<Security_Detail> ListSecurities(decimal iEntity,decimal iGenericEntity, string  iSecurityTypeCode= "", bool thisEntityOnly=false)
         {
             ISecurityDetailRepository dbCntx  ;
             dbCntx = new  SecurityDetailRepository();
-            return dbCntx.GetAll( )
-                     .MatchCriteria(c => c.Entity_ID == iEntity || c.Entity_ID == iGenericEntity)
-                     .MatchCriteria(c => ((iSecurityTypeCode != "") ? c.Security_Type_Code == iSecurityTypeCode : c.Security_Type_Code != ""));
+             var results =   dbCntx.GetAll()
+                 .MatchCriteria(c => c.Entity_ID == iEntity || c.Entity_ID == iGenericEntity)
+                 .MatchCriteria(c => ((iSecurityTypeCode != "") ?
+                            c.Security_Type_Code == iSecurityTypeCode : c.Security_Type_Code != ""))
+                 .OrderBy(r => r.Security_Name);
 
+             if (thisEntityOnly == true)
+                 return results.MatchCriteria(c => c.Entity_ID == iEntity);
+             else
+                 return results;
+                  
             //return dbCntx.GetAll().Where(c => c.Entity_ID == iUser);
                 
         }

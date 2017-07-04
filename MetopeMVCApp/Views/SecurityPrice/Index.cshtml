@@ -140,12 +140,12 @@
 
         columns.Add(c => c.Price_Source).Css("text-right")
             .Titled("Current Price Source").Filterable(true)
-            .SetWidth(160);
+            .SetWidth(200);
 
         columns.Add(c => c.All_In_Price).Titled("Current All in Price").Css("text-right")
                 .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.All_In_Price)).Encoded(false)
                  .Sanitized(false)
-                .Filterable(false).SetWidth(180);
+                .Filterable(false).SetWidth(200);
      
         
         // columns.Add(c => c.Security_Type_Code ).Titled("Return").Encoded(false).Sanitized(false).RenderValueAs(c => @Html.ActionLink(" ", "../LendReturns/Create", new { id = c.NumberOfRows }, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
@@ -155,7 +155,7 @@
         columns.Add(c => c.Clean_Price).Titled("Clean Price").Css("text-right").Filterable(false)
                 .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Clean_Price)).Encoded(false)
                 .Sanitized(false)
-                .SetWidth(240);
+                .SetWidth(210);
         columns.Add()
                 .Encoded(false)
                 .Sanitized(false)
@@ -180,8 +180,16 @@
     }).WithPaging(12).Sortable(true)
                 
 </div>
+@if (Model.SecurityPriceHistory == null)
+{ 
+ <div>
+    <br />
+    @Html.ActionLink("Back to Securities", "Index", "SecurityDetail")
+
+</div>
+}
   @*------------------------------------- HISTORY ------------------------------------------*@
-@if (Model.SecurityPriceHistory != null)
+else
 {
     using (Html.BeginForm("Index", "SecurityPrice", new { SecurityId = ViewBag.SecurityID, iPriceCurr = ViewBag.PriceCurr }, FormMethod.Post, new { @class = "form-horizontal" }))
     {

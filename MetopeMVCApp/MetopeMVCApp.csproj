@@ -771,6 +771,7 @@
     <Content Include="Views\Shared\EditorTemplates\Security_Dividend_Detail.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BootstrapEditSmallIntVert.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Security_Dividend_DetailVert.cshtml" />
+    <Content Include="Views\Shared\_CreateHyperLinkSDD.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

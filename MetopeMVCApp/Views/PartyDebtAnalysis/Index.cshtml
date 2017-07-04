@@ -45,8 +45,8 @@
         columns.Add(c => c.Financials_Type,true) ;
         
         //show the Financial Type:
-        columns.Add() 
-            .RenderValueAs(o => CustomRenderingOfColumn(o))
+        columns.Add()
+            .Titled("Financial Type").RenderValueAs(o => CustomRenderingOfColumn(o))
             .SetWidth(330);
          
         columns.Add(c => c.Financials_Date).Titled("Financials Date").Filterable(true).SetWidth(150).Format("{0:dd MMM yyyy}");

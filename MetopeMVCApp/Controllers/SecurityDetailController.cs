@@ -54,17 +54,15 @@ namespace MetopeMVCApp.Controllers
         [LogAttribuite]  
         public ActionResult Index(int? numberOfRows, int page = 1, string searchTerm = null)
         {
-            var EntityID = (decimal)ViewBag.EntityId;  
-
+            var EntityID = (decimal)ViewBag.EntityId;
+            var genericId = (decimal)ViewBag.genericEntity;
             if (numberOfRows == null) 
                 numberOfRows = 20;
 
             ViewBag.RowsPerPage = new SelectList(numOfRows, "Value", "Text", numberOfRows);
                
-            var security_detail = db11.GetAll()
-                     .MatchCriteria(c => c.Entity_ID == EntityID) 
-                     //SearchSecName(searchTerm)  
-                     .OrderBy(s => s.Security_Name) 
+            var security_detail = db11.GetAll() 
+                     .MatchCriteria(c => c.Entity_ID == EntityID || c.Entity_ID == genericId) 
                      .Select(g => new SecurityDetailIndexModel
                      {
                          Security_ID = g.Security_ID,
@@ -77,7 +75,8 @@ namespace MetopeMVCApp.Controllers
                          Maturity_Date = g.Maturity_Date,
                          Security_Status = g.Security_Status,
                          NumberOfRows = numberOfRows
-                     }).
+                     })
+                     .OrderBy(s => s.Security_Name).
                      ToList();
 
             if (Request.IsAjaxRequest())
@@ -158,7 +157,8 @@ namespace MetopeMVCApp.Controllers
                 ViewBag.EntityIdScope = ViewBag.EntityId;
 
                 Security_Detail security_detail = db11.FindBy(r => r.Security_ID == id)
-                                    .MatchCriteria(c => c.Entity_ID == EntityID).FirstOrDefault(); 
+                                    //.MatchCriteria(c => c.Entity_ID == EntityID)
+                                    .FirstOrDefault(); 
                 if (security_detail == null)
                 {
                     return HttpNotFound();

@@ -17,10 +17,12 @@ namespace MetopeMVCApp.Controllers
     {
         private MetopeDbEntities db = new MetopeDbEntities();
         private readonly ISecurityDividendDetailRepository db11;
+        private readonly ISecurityDetailRepository db2;
 
-        public SecurityDividendDetailController(ISecurityDividendDetailRepository iDb)
+        public SecurityDividendDetailController(ISecurityDividendDetailRepository iDb,ISecurityDetailRepository iDb2)
         {
-            db11 = iDb; 
+            db11 = iDb;
+            db2 = iDb2; 
         }
         private List<SelectListItem> numOfRows = new List<SelectListItem> {
 						new SelectListItem { Text = "10", Value = "10" },
@@ -33,16 +35,15 @@ namespace MetopeMVCApp.Controllers
         public ActionResult Index(int SecurityId,int? numberOfRows, int page = 1, string searchTerm = null)
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
-            var viewModel = new SecurityDividendDetailViewModel();
-
+            var viewModel = new SecurityDividendDetailViewModel(); 
 
             if (numberOfRows == null)
                 numberOfRows = 20; 
             ViewBag.RowsPerPage = new SelectList(numOfRows, "Value", "Text", numberOfRows);
-
-            viewModel.SecurityDetails = db.Security_Detail
-                 .Where(c => c.Security_ID == SecurityId).FirstOrDefault<Security_Detail>(); 
-            viewModel.SecurityDividendDetail = db11.GetAll()
+  
+            viewModel.SecurityDetails = db2.FindBy(r => r.Security_ID == SecurityId)
+                                                .FirstOrDefault();   
+            viewModel.SecurityDividendDetail = db11.GetAll().AsNoTracking()
                        .MatchCriteria(c => c.Entity_ID == EntityID)
                        .MatchCriteria(c => c.Security_ID == SecurityId)
                      .OrderByDescending(r => r.Dividend_Seq_Number).ThenBy(n => n.Dividend_Annual_Number);
@@ -61,8 +62,7 @@ namespace MetopeMVCApp.Controllers
         [CurrencyFilter]
         public ActionResult Create(decimal SecurityId)
         {
-            var EntityID = (decimal)ViewBag.EntityId;
-
+            var EntityID = (decimal)ViewBag.EntityId; 
         
             var securityDetail = db.Security_Detail
                  .Where(c => c.Security_ID == SecurityId && c.Entity_ID == EntityID).FirstOrDefault<Security_Detail>();
@@ -140,6 +140,7 @@ namespace MetopeMVCApp.Controllers
             }
             ViewBag.DividendCurrencyCode = sdd.Dividend_Currency_Code;
             ViewBag.MySysLockedList = sdd.Lock_Flag;
+            ViewBag.DividendSplit = sdd.Dividend_Split;
 
             //ViewBag.Dividend_Currency_Code = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Dividend_Detail.Dividend_Currency_Code);
             //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Dividend_Detail.Entity_ID);
@@ -168,6 +169,7 @@ namespace MetopeMVCApp.Controllers
             }
             ViewBag.DividendCurrencyCode = security_Dividend_Detail.Dividend_Currency_Code;
             ViewBag.MySysLockedList = security_Dividend_Detail.Lock_Flag;
+            //ViewBag.DividendSplit = security_Dividend_Detail.Dividend_Split;
 
                 
             //ViewBag.Dividend_Currency_Code = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Dividend_Detail.Dividend_Currency_Code);
@@ -199,8 +201,7 @@ namespace MetopeMVCApp.Controllers
         public ActionResult DeleteConfirmed(decimal SecurityId, decimal DivSeqNo, string navIndicator = "")
         {
             Security_Dividend_Detail sdd = db11.FindBy(r => r.Security_ID == SecurityId &&
-                                                            r.Dividend_Seq_Number == DivSeqNo
-                             ).FirstOrDefault();
+                                                            r.Dividend_Seq_Number == DivSeqNo ).FirstOrDefault();
             var Securityname = sdd.Security_Detail.Security_Name; 
             db11.Delete(sdd);
             db11.Save();

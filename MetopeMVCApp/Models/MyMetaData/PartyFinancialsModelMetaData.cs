@@ -12,5 +12,7 @@ namespace MetopeMVCApp.Models.MyMetaData
         public object Party_Code { get; set; }
         [Required]
         public object Actual_Forecast_Indicator { get; set; }
+
+ 
     }
 }

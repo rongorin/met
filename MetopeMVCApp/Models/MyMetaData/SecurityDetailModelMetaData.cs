@@ -101,9 +101,9 @@ namespace MetopeMVCApp.Models.MyMetaData
        
         [Display(Name = "Share Class")]
         public string Share_Class { get; set; }
-        [Required]
-        [Display(Name = "Current Market Price")]
-        public decimal Current_Market_Price { get; set; }
+        //[Required]
+        //[Display(Name = "Current Market Price")]
+        //public object Current_Market_Price { get; set; }
         
         [Display(Name = "Index Type ")]
         public string Index_Type { get; set; }

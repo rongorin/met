@@ -24,7 +24,9 @@ namespace ASP.MetopeNspace
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
             ModelBinders.Binders.Add(typeof(decimal?), new MetopeMVCApp.DecimalModelBinder());
+            ModelBinders.Binders.Add(typeof(decimal), new MetopeMVCApp.DecimalModelBinder());
             ModelMetadataProviders.Current = new MyMetadataProvider();
             MiniProfilerEF6.Initialize();
         }
@@ -32,7 +34,7 @@ namespace ASP.MetopeNspace
         {
             var currentCulture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
             currentCulture.NumberFormat.NumberDecimalSeparator = ".";
-            currentCulture.NumberFormat.NumberGroupSeparator = " ";
+            currentCulture.NumberFormat.NumberGroupSeparator = ",";
             currentCulture.NumberFormat.CurrencyDecimalSeparator = "."; 
             Thread.CurrentThread.CurrentCulture = currentCulture;
 

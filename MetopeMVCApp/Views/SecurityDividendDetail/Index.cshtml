@@ -25,12 +25,10 @@
     <link href="~/Content/cssNoLines.css" rel="stylesheet" />
 }
 <h2>
-   Security Dividend Details for @Model.SecurityDetails.Security_Name
- 
+   Security Dividend Details for @Model.SecurityDetails.Security_Name 
 </h2> 
-<p>
-    @Html.ActionLink("Create New", "Create", new { SecurityId =  Model.SecurityDetails.Security_ID , Nav = @ViewBag.Nav }, null)
-</p>  
+@Html.Partial("_CreateHyperLinkSDD", Model) 
+ 
 @Html.Partial("_MsgSuccesFail", Model)
 
 <div class="code-cut">
