@@ -8,9 +8,11 @@
 }
  
 <h3>
-    Edit Dividend Details for<b> @Model.Security_ID </b>
+    Edit Dividend Details for 
     @if (Model.Security_Detail != null)  
-    {   <span>@Model.Security_Detail.Security_Name</span>  } 
+    {   <span>@Model.Security_Detail.Security_Name</span>  }
+    else
+    {  <span><b> @Model.Security_ID </b></span> }                                                             
 
 </h3> 
 

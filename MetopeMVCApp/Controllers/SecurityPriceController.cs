@@ -45,7 +45,8 @@ namespace MetopeMVCApp.Controllers
         // GET: SecurityPrice  
         public ActionResult Index(int? numberOfRows, int? SecurityId, int? EntityId, string iPriceCurr = "")
         {
-            decimal EntityID = (decimal)ViewBag.EntityId;   
+            decimal EntityID = (decimal)ViewBag.EntityId;
+            decimal genericId = (decimal)ViewBag.genericEntity;
              
             var viewModel = new SecurityPriceIndexViewModel();
 
@@ -61,7 +62,7 @@ namespace MetopeMVCApp.Controllers
             }  
 
             viewModel.SecurityPrices = db11.GetAll()
-                                      .SearchPrices(SecurityId, EntityID)
+                                      .SearchPrices(SecurityId, EntityID, genericId)
                                       .Include(s => s.Currency)
                                       .Include(s => s.Security_Detail)
                                       .OrderBy(s => s.Security_Detail.Ticker )

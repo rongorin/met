@@ -6,8 +6,12 @@
     }
     else if (Model.Entity_ID == ViewBag.EntityId)
     { 
-            <input type="submit" value="Delete" class="btn btn-danger" />  
-       
+            <input type="submit" value="Delete" class="btn btn-danger" />
+
+    }
+    else
+    {
+        @:(Deleting not allowed)
     }
 
  

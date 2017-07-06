@@ -89,12 +89,6 @@ namespace MetopeMVCApp.Controllers
         public void CreatePortfolio(Portfolio portfolio)
         {
             Context.Portfolios.Add(portfolio);
-        }
-
-     
-
-
-       
-
+        } 
     }
 }

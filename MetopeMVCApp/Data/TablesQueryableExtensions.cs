@@ -40,12 +40,12 @@ namespace MetopeMVCApp.Data
         }
 
         public static IQueryable<Security_Price> SearchPrices(this IQueryable<Security_Price> prices,
-                                                               int? SecurityId, decimal EntityID,
+                                                               int? SecurityId, decimal EntityID,  decimal GenericEntityID, 
                                                                string iPriceCurr = "")
         {
             var query1 = prices.Where(c => (   
-                                             (SecurityId != null) ? c.Security_ID == SecurityId : c.Security_ID > 0) 
-                                      && c.Entity_ID == EntityID) ;
+                                             (SecurityId != null) ? c.Security_ID == SecurityId : c.Security_ID > 0)
+                                          && (c.Entity_ID == EntityID || c.Entity_ID == GenericEntityID));
 
             /* -- removed as rather show ALL the PriceCurrency records for the selected Security
               var filteredQuery = query1.

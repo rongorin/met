@@ -1,6 +1,6 @@
 ﻿@model MetopeMVCApp.Models.SecurityPriceEditModel 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit";  
 } 
 @section Styles {
     @Styles.Render("~/Content/datetime")
@@ -18,17 +18,17 @@
         @Html.HiddenFor(model => model.Security_ID) 
         @Html.HiddenFor(model => model.Price_Curr) 
 
-        <div class="col-md-11 col-lg-offset-1">
+        <div class="col-md-12 col-lg-offset-0">
             @Html.EditorFor(model => model.Record_Date, "BootstrapEditDate")
             @Html.ValidationMessageFor(model => model.Record_Date, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.All_In_Price, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.All_In_Price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-9">
                 @Html.TextBoxFor(model => model.All_In_Price, "{0:0.##########}", new
                 {
-                    @class = "form-control col-md-3",
+                    @class = "form-control col-md-2",
                     placeholder = ViewData.ModelMetadata.Watermark
                 }) 
                 @Html.ValidationMessageFor(model => model.All_In_Price, "", new { @class = "text-danger" })
@@ -36,11 +36,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Clean_Price, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.Clean_Price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-9">
                 @Html.TextBoxFor(model => model.Clean_Price, "{0:0.##########}", new
                 {
-                    @class = "form-control col-md-3",
+                    @class = "form-control col-md-2",
                     placeholder = ViewData.ModelMetadata.Watermark
                 }) 
                  
@@ -49,11 +49,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Accrued_Income_Price, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.Accrued_Income_Price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-9">
                 @Html.TextBoxFor(model => model.Accrued_Income_Price, "{0:0.##########}", new
                 {
-                    @class = "form-control col-md-3",
+                    @class = "form-control col-md-2",
                     placeholder = ViewData.ModelMetadata.Watermark
                 }) 
                 @Html.ValidationMessageFor(model => model.Accrued_Income_Price, "", new { @class = "text-danger" })
@@ -61,7 +61,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Price_Source, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.Price_Source, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-9">
                 @Html.EditorFor(model => model.Price_Source, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Price_Source, "", new { @class = "text-danger" })
@@ -69,11 +69,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Yield_To_Maturity, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.Yield_To_Maturity, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-9">
                 @Html.TextBoxFor(model => model.Yield_To_Maturity, "{0:0.##########}", new
                 {
-                    @class = "form-control col-md-3",
+                    @class = "form-control col-md-2",
                     placeholder = ViewData.ModelMetadata.Watermark
                 })
                  
@@ -82,11 +82,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Discount_Rate, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.Discount_Rate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-9">
                 @Html.TextBoxFor(model => model.Discount_Rate, "{0:0.##########}", new
                 {
-                    @class = "form-control col-md-3",
+                    @class = "form-control col-md-2",
                     placeholder = ViewData.ModelMetadata.Watermark
                 }) 
                 @Html.ValidationMessageFor(model => model.Discount_Rate, "", new { @class = "text-danger" })
@@ -94,7 +94,7 @@
         </div> 
  
         <div class="form-group">
-            @Html.LabelFor(model => model.Issued_Amount, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.Issued_Amount, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-9">
                 @Html.EditorFor(model => model.Issued_Amount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Issued_Amount, "", new { @class = "text-danger" })
@@ -102,22 +102,23 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Free_Float_Issued_Amount, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.Free_Float_Issued_Amount, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-9">
                 @Html.EditorFor(model => model.Free_Float_Issued_Amount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Free_Float_Issued_Amount, "", new { @class = "text-danger" })
             </div>
         </div>
+        @Html.Partial("_SaveButtonShow", Model)
           
-        <div class="form-group">
+        @*<div class="form-group">
             <div class="col-md-offset-3 col-md-9">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
-        </div>
+        </div>*@
     </div>
 }
 
-<div class="col-md-offset-1 "> 
+<div class="col-md-offset-0 "> 
     @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
 </div>
  @section Scripts {
