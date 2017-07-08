@@ -1,5 +1,4 @@
-﻿@model Decimal?
-
+﻿@model Int32? 
 <div class="form-group">
     @Html.LabelFor(model => model, htmlAttributes:
             new
@@ -8,16 +7,13 @@
                 style = "max-width:100% ;text-align: right"
             })
     <div class="col-md-4  ">
-   @Html.TextBoxFor(model => model, "{0:n}", new
+        @Html.TextBoxFor(model => model , new
    {
        @class = "form-control ",
        placeholder = ViewData.ModelMetadata.Watermark,
-       style = "  text-align: right"   
+       style = "  text-align: right"
    })
         @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })
     </div>
-</div>
-
-
-
+</div> 
 

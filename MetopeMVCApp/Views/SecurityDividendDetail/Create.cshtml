@@ -26,9 +26,26 @@
                 @Html.DropDownList("Security_ID", (SelectList)ViewBag.Securities_All, string.Empty, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Security_ID, "", new { @class = "text-danger" })
             </div>
-        </div> 
+        </div>   
 
-        @Html.EditorFor(model => model.Dividend_Seq_Number, "BootstrapEditDecimalVertic") 
+        <div class="form-group">
+            @Html.LabelFor(model => model.Dividend_Seq_Number, htmlAttributes:
+            new
+            {
+                @class = "control-label col-md-2 input-sm",
+                style = "max-width:100% ;text-align: right"
+            })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.Dividend_Seq_Number, "{0:n}", new
+               {
+                   @class = "form-control",
+                   placeholder = ViewData.ModelMetadata.Watermark,
+                   style = "  text-align: right",
+                   @Value = ViewBag.NextDivSeqNum  
+               })
+                @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })
+            </div>
+        </div>  
         
         @Html.EditorForModel("Security_Dividend_DetailVert")
 

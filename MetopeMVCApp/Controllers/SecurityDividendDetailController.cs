@@ -59,22 +59,26 @@ namespace MetopeMVCApp.Controllers
          
         // GET: SecurityDividendDetail/Create
         [AllSecuritiesFilter]
+        [FinancialsType]
         [CurrencyFilter]
         public ActionResult Create(decimal SecurityId)
         {
-            var EntityID = (decimal)ViewBag.EntityId; 
-        
-            var securityDetail = db.Security_Detail
-                 .Where(c => c.Security_ID == SecurityId && c.Entity_ID == EntityID).FirstOrDefault<Security_Detail>();
-             
-            if (securityDetail == null)
+            var EntityID = (decimal)ViewBag.EntityId;  
+            
+            var security = db2.FindBy(c => c.Security_ID == SecurityId && c.Entity_ID == EntityID)
+                                    //.MatchCriteria(c => c.Entity_ID == EntityID)
+                                    .FirstOrDefault();
+            var sddMaxNum = db11.GetMaxDividendSeqNo(EntityID, SecurityId) + 1;
+              
+            if (security == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.SecuritiesAll = securityDetail.Security_ID;
+            ViewBag.NextDivSeqNum = sddMaxNum;
 
-            ViewBag.SecurityID = securityDetail.Security_ID;
-            ViewBag.SecurityName = securityDetail.Security_Name;
+            ViewBag.SecuritiesAll = security.Security_ID; 
+            ViewBag.SecurityID = security.Security_ID;
+            ViewBag.SecurityName = security.Security_Name;
 
             return View();  
         }
@@ -84,6 +88,7 @@ namespace MetopeMVCApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [AllSecuritiesFilter]
+        [FinancialsType]
         [CurrencyFilter]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Entity_ID,Security_ID,Dividend_Seq_Number,Dividend_Annual_Number,Forecast_Dividend_Payment_Date,Dividend_Currency_Code,Actual_Dividend_Payment_Date,Actual_Last_Date_To_Register,Actual_Ex_Dividend_Date,Dividend_Split,Forecast_Dividend,Actual_Dividend,Dividend_Type,Forecast_Last_Date_to_Register,Forecast_Ex_Dividend_Date,Last_Update_Date,Last_Update_User,Financial_Year,Actual_FX_Rate,Lock_Flag,Actual_NonRecurring_Dividend")] Security_Dividend_Detail sdd)
@@ -94,8 +99,7 @@ namespace MetopeMVCApp.Controllers
              ----------------------------------------*/
             Security_Dividend_Detail check = db11.FindBy(r => r.Security_ID == sdd.Security_ID &&
                                                         r.Dividend_Seq_Number == sdd.Dividend_Seq_Number) 
-                                                 .MatchCriteria(c => c.Entity_ID == EntityID).FirstOrDefault();
-
+                                                 .MatchCriteria(c => c.Entity_ID == EntityID).FirstOrDefault(); 
             if (ModelState.IsValid)
             {
                 if (check != null)
@@ -114,18 +118,22 @@ namespace MetopeMVCApp.Controllers
 
                     return RedirectToAction("Index", new { SecurityId = sdd.Security_ID });
                 }
-            }
-
+            } 
             //ViewBag.Dividend_Currency_Code = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Dividend_Detail.Dividend_Currency_Code);
             //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Dividend_Detail.Entity_ID);
             //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Dividend_Detail.Security_ID);
             //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Dividend_Detail.Entity_ID);
             ViewBag.EntityId = sdd.Entity_ID;
+            var sddMaxNum = db11.GetMaxDividendSeqNo(EntityID, sdd.Security_ID) + 1;
+
+            ViewBag.NextDivSeqNum = sddMaxNum;
+
             return View(sdd);
         }
 
         // GET: SecurityDividendDetail/Edit/5
         [TrueFalseFilter]
+        [FinancialsType]
         [CurrencyFilter]
         public ActionResult Edit(decimal SecurityId, decimal DivSeqNo)
         {
@@ -141,6 +149,7 @@ namespace MetopeMVCApp.Controllers
             ViewBag.DividendCurrencyCode = sdd.Dividend_Currency_Code;
             ViewBag.MySysLockedList = sdd.Lock_Flag;
             ViewBag.DividendSplit = sdd.Dividend_Split;
+            ViewBag.DividendType = sdd.Dividend_Type;
 
             //ViewBag.Dividend_Currency_Code = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Dividend_Detail.Dividend_Currency_Code);
             //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Dividend_Detail.Entity_ID);
@@ -153,6 +162,7 @@ namespace MetopeMVCApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [TrueFalseFilter]
+        [FinancialsType]
         [CurrencyFilter]
         public ActionResult Edit([Bind(Include = "Entity_ID,Security_ID,Dividend_Seq_Number,Dividend_Annual_Number,Forecast_Dividend_Payment_Date,Dividend_Currency_Code,Actual_Dividend_Payment_Date,Actual_Last_Date_To_Register,Actual_Ex_Dividend_Date,Dividend_Split,Forecast_Dividend,Actual_Dividend,Dividend_Type,Forecast_Last_Date_to_Register,Forecast_Ex_Dividend_Date,Last_Update_Date,Last_Update_User,Financial_Year,Actual_FX_Rate,Lock_Flag,Actual_NonRecurring_Dividend")] Security_Dividend_Detail security_Dividend_Detail)
         {
@@ -180,6 +190,7 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: SecurityDividendDetail/Delete/5
+        [CustomEntityAuthoriseFilter]
         public ActionResult Delete(decimal SecurityId, decimal DivSeqNo)
         {
             Security_Dividend_Detail sdd = db11.FindBy(r => r.Security_ID == SecurityId && r.Dividend_Seq_Number == DivSeqNo  
@@ -198,9 +209,12 @@ namespace MetopeMVCApp.Controllers
         // POST: SecurityDividendDetail/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomEntityAuthoriseFilter]
         public ActionResult DeleteConfirmed(decimal SecurityId, decimal DivSeqNo, string navIndicator = "")
         {
-            Security_Dividend_Detail sdd = db11.FindBy(r => r.Security_ID == SecurityId &&
+            var EntityID = (decimal)ViewBag.EntityId;
+
+            Security_Dividend_Detail sdd = db11.FindBy(r => r.Security_ID == SecurityId && r.Entity_ID== EntityID &&
                                                             r.Dividend_Seq_Number == DivSeqNo ).FirstOrDefault();
             var Securityname = sdd.Security_Detail.Security_Name; 
             db11.Delete(sdd);
@@ -211,6 +225,9 @@ namespace MetopeMVCApp.Controllers
                 return RedirectToAction("Index", null, new { SecurityId = sdd.Security_ID });
             else
                 return RedirectToAction("Index", null, new { SecurityId = sdd.Security_ID });
+
+
+            
 
         }
  

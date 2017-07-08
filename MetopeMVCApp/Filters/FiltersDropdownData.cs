@@ -78,18 +78,21 @@ namespace MetopeMVCApp.Filters
             //get the Entity of user
             decimal usersEntity = Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute"));
 
-            if (GenericEntity != ParmEntity &&
-                usersEntity   != ParmEntity)
-            {
-                filterContext.Result = new RedirectToRouteResult(
-                      new RouteValueDictionary{{ "controller", "Account" },
-                                                { "action", "Login" } 
-                                            });
-                //filterContext.Result = new RedirectToRouteResult(
-                //                new RouteValueDictionary { 
-                //                            { "action", "Index" }, 
-                //                            { "controller", "Unauthorised" } }); 
-            } 
+            if (ParmEntity > 0)  
+            { 
+                if (GenericEntity != ParmEntity &&
+                    usersEntity   != ParmEntity)
+                {
+                    filterContext.Result = new RedirectToRouteResult(
+                          new RouteValueDictionary{{ "controller", "Account" },
+                                                    { "action", "Login" } 
+                                                });
+                    //filterContext.Result = new RedirectToRouteResult(
+                    //                new RouteValueDictionary { 
+                    //                            { "action", "Index" }, 
+                    //                            { "controller", "Unauthorised" } }); 
+                }
+            }
             //decimal refEntityIdScope = (decimal)filterContext.Controller.ViewBag.EntityIdScope;  
             base.OnActionExecuting(filterContext);
         } 
@@ -416,37 +419,20 @@ namespace MetopeMVCApp.Filters
 
              base.OnActionExecuted(filterContext);
          }
-     }
-     public class IntValuesFilter : ActionFilterAttribute
-     {
-         public override void OnActionExecuted(ActionExecutedContext filterContext)
-         {
-             List<SelectListItem> securityStati = new List<SelectListItem> {
-						new SelectListItem { Text = "ACTIVE", Value = "ACTIVE" },
-						new SelectListItem { Text = "SUSPENDED", Value = "SUSPENDED" },
-						new SelectListItem { Text = "INACTIVE", Value = "INACTIVE" }	 };
-
-             var trueFalse = new List<SelectListItem>();
-             trueFalse.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
-             trueFalse.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
-
-             filterContext.Controller.ViewBag.Track_EOM_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyTrackEOMFlagList);
-             filterContext.Controller.ViewBag.Call_Account_Flag = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MyCallAccountFgList);
-             filterContext.Controller.ViewBag.System_Locked = new SelectList(trueFalse, "Value", "Text", filterContext.Controller.ViewBag.MySysLockedList);
-             filterContext.Controller.ViewBag.Security_Status = new SelectList(securityStati, "Value", "Text", filterContext.Controller.ViewBag.MySecurityStatus);
-
-             base.OnActionExecuted(filterContext);
-         }
-     }
+     } 
      public class FinancialsType : ActionFilterAttribute
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          {
              List<SelectListItem> fType = new List<SelectListItem> {
 						new SelectListItem { Text = "Interim", Value = "I" },
-						new SelectListItem { Text = "Final", Value = "F" } }; 
+						new SelectListItem { Text = "Final", Value = "F" } ,
+						new SelectListItem { Text = "Special", Value = "S" },
+						new SelectListItem { Text = "Exceptional", Value = "E" } };
 
-             filterContext.Controller.ViewBag.Financials_Type = new SelectList(fType, "Value", "Text", filterContext.Controller.ViewBag.FinancialsType); 
+
+             filterContext.Controller.ViewBag.Financials_Type = new SelectList(fType, "Value", "Text", filterContext.Controller.ViewBag.FinancialsType);
+             filterContext.Controller.ViewBag.Dividend_Type = new SelectList(fType, "Value", "Text", filterContext.Controller.ViewBag.DividendType); 
 
              base.OnActionExecuted(filterContext);
          }

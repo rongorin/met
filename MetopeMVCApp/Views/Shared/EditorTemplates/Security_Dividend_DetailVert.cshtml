@@ -1,11 +1,11 @@
 ﻿@model MetopeMVCApp.Models.Security_Dividend_Detail
-
-@Html.EditorFor(model => model.Actual_Last_Date_To_Register, "BootstrapEditDateVertic")
-@Html.EditorFor(model => model.Actual_Ex_Dividend_Date, "BootstrapEditDateVertic")
-@Html.EditorFor(model => model.Forecast_Last_Date_to_Register, "BootstrapEditDateVertic")
 @Html.EditorFor(model => model.Forecast_Ex_Dividend_Date, "BootstrapEditDateVertic")
+@Html.EditorFor(model => model.Forecast_Last_Date_to_Register, "BootstrapEditDateVertic")
+@Html.EditorFor(model => model.Actual_Ex_Dividend_Date, "BootstrapEditDateVertic")
+@Html.EditorFor(model => model.Actual_Last_Date_To_Register, "BootstrapEditDateVertic")
+
 @Html.EditorFor(model => model.Actual_Dividend_Payment_Date, "BootstrapEditDateVertic") 
-@Html.EditorFor(model => model.Dividend_Annual_Number, "BootstrapEditDecimalVertic")
+@Html.EditorFor(model => model.Dividend_Annual_Number, "BootstrapEditIntVertic")
 
 <div class="form-group">
     @Html.LabelFor(model => model.Dividend_Currency_Code, htmlAttributes: new { @class = "control-label col-md-2 input-sm ", style = "text-align: right" })
@@ -18,8 +18,15 @@
 @Html.EditorFor(model => model.Forecast_Dividend_Payment_Date, "BootstrapEditDateVertic")
 @Html.EditorFor(model => model.Dividend_Split, "BootstrapEditDecimalVertic")
 @Html.EditorFor(model => model.Forecast_Dividend, "BootstrapEditDecimalVertic")
-@Html.EditorFor(model => model.Actual_Dividend, "BootstrapEditDecimalVertic")
-@Html.EditorFor(model => model.Dividend_Type, "BootstrapEditorVertic")
+@Html.EditorFor(model => model.Actual_Dividend, "BootstrapEditDecimalVertic") 
+<div class="form-group">
+    @Html.LabelFor(model => model.Dividend_Type, htmlAttributes: new { @class = "control-label col-md-2 input-sm" })
+    <div class="col-md-10">
+        @Html.DropDownList("Dividend_Type", null, string.Empty, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Dividend_Type, "", new { @class = "text-danger" }) 
+    </div>
+</div>  
+
 @Html.EditorFor(model => model.Financial_Year, "BootstrapEditSmallIntVert")
 
 @Html.EditorFor(model => model.Actual_FX_Rate, "BootstrapEditDecimalVertic")

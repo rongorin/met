@@ -16,18 +16,8 @@ namespace MetopeMVCApp.Data.Repositories
         public IQueryable<Security_Detail> GetAll(Expression<Func<Security_Detail, bool>> predicate)
         {
             IQueryable<Security_Detail> query = Context.Set<Security_Detail>().Where(predicate);
-            return query;
-        
-
-        }
-        //The Security Detail does not use Active_flag anymore, uses the Security_Status.
-        //public IQueryable<Security_Detail> GetAllActive( ) //superceded!
-        //{  
-           
-        //    IQueryable<Security_Detail> query = Context.Set<Security_Detail>().Where(r => r.Active_Flag == true );
-        //    return query;
-             
-        //} 
+            return query; 
+        } 
     }
     public class SecurityDividendDetailRepository : GenericRepository<MetopeDbEntities, Security_Dividend_Detail>,
                                         ISecurityDividendDetailRepository
@@ -35,10 +25,15 @@ namespace MetopeMVCApp.Data.Repositories
         public IQueryable<Security_Dividend_Detail> GetAll(Expression<Func<Security_Dividend_Detail, bool>> predicate)
         {
             IQueryable<Security_Dividend_Detail> query = Context.Set<Security_Dividend_Detail>().Where(predicate);
-            return query;
+            return query; 
 
-
-        } 
+        }
+        public decimal GetMaxDividendSeqNo(decimal iEntity, decimal iSecurityId)
+        {
+            return  Context.Set<Security_Dividend_Detail>().Where(o => o.Entity_ID == iEntity && o.Security_ID == iSecurityId )
+                               .Max(o => o.Dividend_Seq_Number);
+        }
+          
     }
 
     public class SecurityPriceRepository : GenericRepository<MetopeDbEntities, Security_Price>,
@@ -74,8 +69,7 @@ namespace MetopeMVCApp.Data.Repositories
                                   ICurrencyPairRepository
     { 
     }
-
-
+     
     public class PartyRepository : GenericRepository<MetopeDbEntities, Party>,
                           IPartyRepository
     {

@@ -45,7 +45,7 @@
         //hides column, but use this in js:
         columns.Add(c => c.Entity_ID, true);
 
-        columns.Add(c => c.Forecast_Dividend_Payment_Date).Titled("Financials Date").Filterable(true).SetWidth(150).Format("{0:dd MMM yyyy}");
+        columns.Add(c => c.Forecast_Ex_Dividend_Date).Titled("Forecast Ex Div Date").Filterable(true).SetWidth(150).Format("{0:dd MMM yyyy}");
 
         columns.Add(c => c.Financial_Year)
             .Titled("Financial Yr").Filterable(true)

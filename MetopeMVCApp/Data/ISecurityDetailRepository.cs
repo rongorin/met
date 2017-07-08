@@ -19,6 +19,8 @@ namespace MetopeMVCApp.Data
     public interface ISecurityDividendDetailRepository : IGenericRepository<Security_Dividend_Detail>
     {
         IQueryable<Security_Dividend_Detail> GetAll(Expression<Func<Security_Dividend_Detail, bool>> predicate);
+
+        decimal GetMaxDividendSeqNo(decimal iEntity, decimal iSecurityId);
  
     }
     public interface ISecurityPriceRepository : IGenericRepository<Security_Price>

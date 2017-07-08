@@ -21,7 +21,7 @@ namespace MetopeMVCApp.Models
         public decimal Entity_ID { get; set; }
         public decimal Security_ID { get; set; }
         public decimal Dividend_Seq_Number { get; set; }
-        public decimal Dividend_Annual_Number { get; set; }
+        public int Dividend_Annual_Number { get; set; }
         public Nullable<System.DateTime> Forecast_Dividend_Payment_Date { get; set; }
         public string Dividend_Currency_Code { get; set; }
         public Nullable<System.DateTime> Actual_Dividend_Payment_Date { get; set; }
