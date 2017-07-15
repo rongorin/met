@@ -11,11 +11,10 @@ namespace MetopeMVCApp.Models
 {
     using System;
     using System.Collections.Generic;
-
     using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityDividendDetailModelMetaData))]
-    
+
     public partial class Security_Dividend_Detail
     {
         public decimal Entity_ID { get; set; }

@@ -30,8 +30,13 @@ namespace MetopeMVCApp.Data.Repositories
         }
         public decimal GetMaxDividendSeqNo(decimal iEntity, decimal iSecurityId)
         {
-            return  Context.Set<Security_Dividend_Detail>().Where(o => o.Entity_ID == iEntity && o.Security_ID == iSecurityId )
-                               .Max(o => o.Dividend_Seq_Number);
+            decimal? maxNumber = Context.Set<Security_Dividend_Detail>().Where(o => o.Entity_ID == iEntity && o.Security_ID == iSecurityId)
+                    .Max(o => (decimal?)o.Dividend_Seq_Number) ;  
+             
+            if (maxNumber == null)
+               return 0;
+            else
+               return Convert.ToDecimal(maxNumber); 
         }
           
     }
