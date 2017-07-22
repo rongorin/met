@@ -102,17 +102,20 @@ namespace MetopeMVCApp.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            string myEntityID;  
+            string myEntityID;
+            string myUserName="";  
             if ((myEntityID = (filterContext.HttpContext.Cache.Get(GetType().FullName) as string)) == null)
              {
                UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-                var currentUser = manager.FindById(HttpContext.Current.User.Identity.GetUserId()); 
+                var currentUser = manager.FindById(HttpContext.Current.User.Identity.GetUserId());
 
                 myEntityID = currentUser.EntityIdScope.ToString();
+                myUserName = currentUser.UserName.ToString();
                 filterContext.HttpContext.Cache.Insert(GetType().FullName, myEntityID);
                   
             }
             filterContext.Controller.ViewBag.EntityId = Convert.ToDecimal(myEntityID);
+            filterContext.Controller.ViewBag.Username = myUserName;
 
             base.OnActionExecuting(filterContext);
         } 

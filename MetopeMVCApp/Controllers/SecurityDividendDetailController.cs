@@ -9,6 +9,9 @@ using System.Web.Mvc;
 using MetopeMVCApp.Models;
 using MetopeMVCApp.Filters;
 using MetopeMVCApp.Data;
+using ASP.MetopeNspace.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MetopeMVCApp.Controllers
 {
@@ -32,7 +35,7 @@ namespace MetopeMVCApp.Controllers
 			            };
 
         // GET: SecurityDividendDetail
-        public ActionResult Index(int SecurityId,int? numberOfRows, int page = 1, string searchTerm = null)
+        public ActionResult Index(int SecurityId, int? numberOfRows, int page = 1, string searchTerm = null)
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
             var viewModel = new SecurityDividendDetailViewModel(); 
@@ -179,8 +182,7 @@ namespace MetopeMVCApp.Controllers
             }
             ViewBag.DividendCurrencyCode = security_Dividend_Detail.Dividend_Currency_Code;
             ViewBag.MySysLockedList = security_Dividend_Detail.Lock_Flag;
-            //ViewBag.DividendSplit = security_Dividend_Detail.Dividend_Split;
-
+            //ViewBag.DividendSplit = security_Dividend_Detail.Dividend_Split; 
                 
             //ViewBag.Dividend_Currency_Code = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Dividend_Detail.Dividend_Currency_Code);
             //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Dividend_Detail.Entity_ID);
@@ -224,19 +226,41 @@ namespace MetopeMVCApp.Controllers
             if (navIndicator == "")
                 return RedirectToAction("Index", null, new { SecurityId = sdd.Security_ID });
             else
-                return RedirectToAction("Index", null, new { SecurityId = sdd.Security_ID });
-
-
-            
+                return RedirectToAction("Index", null, new { SecurityId = sdd.Security_ID }); 
 
         }
+        //Run stored procs
+        public ActionResult RunSp(decimal Security_Id, string command, string Security_name)
+        {
+            var spResult ="";
+            if (command == "Update Divnd Sched only (All Sec)")
+                 spResult = db11.RunGenerateDividendsSp((decimal)ViewBag.EntityId, Security_Id, null, null, GetTheUser().UserName);
+
+            if (command == "Update Sec Analytics (All Sec)")
+                spResult = db11.RunSecAnalyticBatchsetSp((decimal)ViewBag.EntityId, null, null, "DRSANAL", GetTheUser().UserName);
  
+            //(decimal iEntity, DateTime ieffectiveDate, int iSessionID, string iVfListcode, string iUserName
+
+            if (spResult == null)
+                spResult = "A critical error occurred running the process.";
+
+            TempData.Add("ResultMessage", String.Format("{0} for this Security (Id {1}) results: {2} ",command, Security_Id.ToString(), spResult.ToString()));
+            return RedirectToAction("Index", null, new { SecurityId = Security_Id });   
+        }
+
+        private ApplicationUser GetTheUser()
+        {
+            UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
+            return manager.FindById(User.Identity.GetUserId());    
+        }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                db11.Dispose();
+                db2.Dispose();
             }
             base.Dispose(disposing);
         }

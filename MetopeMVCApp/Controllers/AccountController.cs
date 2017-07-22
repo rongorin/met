@@ -369,7 +369,7 @@ namespace ASP.MetopeNspace.Controllers
                 oc.Cache.Remove(((DictionaryEntry)c).Key.ToString());
             } 
         }
-        private bool HasPassword()
+        private bool HasPassword() 
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
             if (user != null)

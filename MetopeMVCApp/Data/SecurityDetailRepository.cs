@@ -38,7 +38,21 @@ namespace MetopeMVCApp.Data.Repositories
             else
                return Convert.ToDecimal(maxNumber); 
         }
-          
+        public string RunGenerateDividendsSp(decimal iEntity ,decimal iSecurity, string iSecuritiesList,  string iSecurityType, string iUserName)
+        {
+            return Context.Database.SqlQuery<string>(
+                 "sp_GenerateUpdateDividendSchedule {0},{1},{2},{3},{4}", iEntity, iSecurity, iSecuritiesList, iSecurityType, iUserName).Single();
+  
+            //return Context.Database.ExecuteSqlCommand("sp_TestRun {0}", iEntity);
+            //return Context.sp_TestRun(iEntity);
+        }
+        public string RunSecAnalyticBatchsetSp(decimal iEntity, DateTime? ieffectiveDate, int? iSessionID, string iVfListcode, string iUserName )
+        {
+            return Context.Database.SqlQuery<string>(
+                 "sp_BatchSet {0},{1},{2},{3},{4},{5}", iEntity, ieffectiveDate, iSessionID,
+                            iVfListcode, iUserName, 1 ).Single(); 
+        }
+           
     }
 
     public class SecurityPriceRepository : GenericRepository<MetopeDbEntities, Security_Price>,

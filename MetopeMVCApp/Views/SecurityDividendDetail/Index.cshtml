@@ -23,6 +23,8 @@
     @Styles.Render("~/Content/GridMvc")
     @Styles.Render("~/Content/datetime")
     <link href="~/Content/cssNoLines.css" rel="stylesheet" />
+    <link href="~/Content/myButtons.css" rel="stylesheet" />
+
 }
 <h2>
    Security Dividend Details for @Model.SecurityDetails.Security_Name 
@@ -77,11 +79,28 @@
         @Html.ActionLink("Delete", "Delete", "SecurityDividendDetail", new { EntityId = c.Entity_ID, SecurityId = c.Security_ID, DivSeqNo = c.Dividend_Seq_Number, Nav = @ViewBag.Nav }, null)
     </u>); 
     }).Sortable(true)
-</div>
-<div>     
-    <br />
-    @Html.ActionLink("Back to Securities", "Index", "SecurityDetail"  )
-     
+</div> 
+@*@using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))*@
+<div class="container"> 
+ <div class="col-md-3   ">
+  </div>
 
-     
-</div>
+    <br />
+    @using (Html.BeginForm("RunSp", "SecurityDividendDetail", new { SecurityId = @Model.SecurityDetails.Security_ID }, FormMethod.Post, null))
+    {
+        @Html.ActionLink("Back to Securities", "Index", "SecurityDetail")
+
+        @Html.Hidden("Security_ID", Model.SecurityDetails.Security_ID);
+
+        <table>
+            row
+
+        </table>
+        <input type="submit" value="Update Divnd Sched only (All Sec)" name="command" class="  btn btn-primary customWidth pull-right" />
+
+        <input type="submit" value="Update Sec Analytics (All Sec)" name="command" class="btn btn-primary customWidth pull-right pull-left" />
+    </div>
+    }
+    </div>
+
+    @*  <div class="col-md-offset-3 pull-right ">  *@

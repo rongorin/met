@@ -499,6 +499,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\myButtons.css" />
     <Content Include="Data\Repositories\LoggerRepository\LoggerFile.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

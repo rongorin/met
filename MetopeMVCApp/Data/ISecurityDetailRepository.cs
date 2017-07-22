@@ -21,7 +21,8 @@ namespace MetopeMVCApp.Data
         IQueryable<Security_Dividend_Detail> GetAll(Expression<Func<Security_Dividend_Detail, bool>> predicate);
 
         decimal GetMaxDividendSeqNo(decimal iEntity, decimal iSecurityId);
- 
+        string RunGenerateDividendsSp(decimal iEntity, decimal iSecurity, string iSecuritiesList, string iSecurityType, string iUserName);
+        string RunSecAnalyticBatchsetSp(decimal iEntity, DateTime? ieffectiveDate, int? iSessionID, string iVfListcode, string iUserName);
     }
     public interface ISecurityPriceRepository : IGenericRepository<Security_Price>
     {

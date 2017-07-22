@@ -1049,6 +1049,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_BatchSet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="numeric" Mode="In" />
+          <Parameter Name="EffectiveDate" Type="date" Mode="In" />
+          <Parameter Name="SessionID" Type="numeric" Mode="In" />
+          <Parameter Name="VfListcode" Type="varchar" Mode="In" />
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="FromFrontend" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_GenerateUpdateDividendSchedule" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="numeric" Mode="In" />
+          <Parameter Name="Security" Type="numeric" Mode="In" />
+          <Parameter Name="SecuritiesList" Type="varchar" Mode="In" />
+          <Parameter Name="SecurityType" Type="varchar" Mode="In" />
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_TestRun" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="sp_TestRunNum2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="numeric" Mode="In" />
+          <Parameter Name="ATextvalue" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="MetopeDbModelStoreContainer">
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Code_Miscellaneous" EntityType="Self.Code_Miscellaneous" Schema="dbo" store:Type="Tables" />
@@ -1540,6 +1562,50 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Security_Dividend_Detail" EntitySet="Security_Dividend_Detail" />
           </AssociationSet>
+          <FunctionImport Name="sp_TestRun">
+          <Parameter Name="EntityID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TestRunNum2">
+            <Parameter Name="EntityID" Mode="In" Type="Decimal" />
+            <Parameter Name="ATextvalue" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GenerateUpdateDividendSchedule" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Decimal" />
+            <Parameter Name="Security" Mode="In" Type="Decimal" />
+            <Parameter Name="SecuritiesList" Mode="In" Type="String" />
+            <Parameter Name="SecurityType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TestRun1" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GenerateDividendSchedule">
+            <Parameter Name="EntityID" Mode="In" Type="Decimal" />
+            <Parameter Name="Security" Mode="In" Type="Decimal" />
+            <Parameter Name="SecuritiesList" Mode="In" Type="String" />
+            <Parameter Name="SecurityType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GenerateUpdateDividendSchedule1">
+            <Parameter Name="EntityID" Mode="In" Type="Decimal" />
+            <Parameter Name="Security" Mode="In" Type="Decimal" />
+            <Parameter Name="SecuritiesList" Mode="In" Type="String" />
+            <Parameter Name="SecurityType" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_BatchSet">
+            <Parameter Name="EntityID" Mode="In" Type="Decimal" />
+            <Parameter Name="EffectiveDate" Mode="In" Type="DateTime" />
+            <Parameter Name="SessionID" Mode="In" Type="Decimal" />
+            <Parameter Name="VfListcode" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="FromFrontend" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GenerateUpdateDividendSchedule2">
+            <Parameter Name="EntityID" Mode="In" Type="Decimal" />
+            <Parameter Name="Security" Mode="In" Type="Decimal" />
+            <Parameter Name="SecuritiesList" Mode="In" Type="String" />
+            <Parameter Name="SecurityType" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="AspNetUser">
           <Key>
@@ -3062,6 +3128,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_TestRunNum2" FunctionName="MetopeDbModel.Store.sp_TestRunNum2" />
+          <FunctionImportMapping FunctionImportName="sp_TestRun1" FunctionName="MetopeDbModel.Store.sp_TestRun" />
+          <FunctionImportMapping FunctionImportName="sp_BatchSet" FunctionName="MetopeDbModel.Store.sp_BatchSet" />
+          <FunctionImportMapping FunctionImportName="sp_GenerateUpdateDividendSchedule2" FunctionName="MetopeDbModel.Store.sp_GenerateUpdateDividendSchedule" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3076,8 +3146,8 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

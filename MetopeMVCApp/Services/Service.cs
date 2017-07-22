@@ -71,7 +71,7 @@ namespace MetopeMVCApp.Services
         public IQueryable<Security_Type> ListSecTypeCode()
         {
             ISecurityTypesRepository dbCntx = new SecurityTypeRepository();
-            return dbCntx.GetAll().OrderBy(r => r.Security_Type_Code); ; 
+            return dbCntx.GetAll().OrderBy(r => r.Security_Type_Code);  ; 
         } 
    
         public IQueryable<Currency> ListCurrencies()
