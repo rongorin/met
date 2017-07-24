@@ -17,7 +17,22 @@ namespace MetopeMVCApp.Data.Repositories
         {
             IQueryable<Security_Detail> query = Context.Set<Security_Detail>().Where(predicate);
             return query; 
+        }
+
+        public string RunGenerateDividendsSp(decimal iEntity, decimal? iSecurity, string iSecuritiesList, string iSecurityType, string iUserName)
+        {
+            return Context.Database.SqlQuery<string>(
+                 "sp_GenerateUpdateDividendSchedule {0},{1},{2},{3},{4}", iEntity, iSecurity, iSecuritiesList, iSecurityType, iUserName).Single();
+
+            //return Context.Database.ExecuteSqlCommand("sp_TestRun {0}", iEntity);
+            //return Context.sp_TestRun(iEntity);
         } 
+        public string RunSecAnalyticBatchsetSp(decimal iEntity, DateTime? ieffectiveDate, int? iSessionID, string iVfListcode, string iUserName)
+        {
+            return Context.Database.SqlQuery<string>(
+                 "sp_BatchSet {0},{1},{2},{3},{4},{5}", iEntity, ieffectiveDate, iSessionID,
+                            iVfListcode, iUserName, 1).Single();
+        }
     }
     public class SecurityDividendDetailRepository : GenericRepository<MetopeDbEntities, Security_Dividend_Detail>,
                                         ISecurityDividendDetailRepository
@@ -45,12 +60,6 @@ namespace MetopeMVCApp.Data.Repositories
   
             //return Context.Database.ExecuteSqlCommand("sp_TestRun {0}", iEntity);
             //return Context.sp_TestRun(iEntity);
-        }
-        public string RunSecAnalyticBatchsetSp(decimal iEntity, DateTime? ieffectiveDate, int? iSessionID, string iVfListcode, string iUserName )
-        {
-            return Context.Database.SqlQuery<string>(
-                 "sp_BatchSet {0},{1},{2},{3},{4},{5}", iEntity, ieffectiveDate, iSessionID,
-                            iVfListcode, iUserName, 1 ).Single(); 
         }
            
     }

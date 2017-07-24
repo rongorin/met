@@ -140,6 +140,7 @@ namespace MetopeMVCApp.Controllers
             ViewBag.EntityIdScope = EntityID;  
             return View(security_detail);
         }
+
         [SecuritiesFilter]
         [CountryFilter] 
         [TrueFalseFilter]
@@ -257,8 +258,27 @@ namespace MetopeMVCApp.Controllers
             db11.Save ();
             TempData.Add("ResultMessage", "Security \"" + security_detail.Security_Name + "\" Deleted successfully!");
             return RedirectToAction("Index");
-        } 
-         
+        }
+        //Run stored procs
+        public ActionResult RunSp( string command, string Security_name)
+        {
+            var spResult = "";
+            if (command == "Update Divnd Sched only (All Sec)")
+                spResult = db11.RunGenerateDividendsSp((decimal)ViewBag.EntityId, null, null, null, GetTheUser().UserName);
+
+            if (command == "Update Sec Analytics (All Sec)")
+                spResult = db11.RunSecAnalyticBatchsetSp((decimal)ViewBag.EntityId, null, null, "DRSANAL", GetTheUser().UserName);
+  
+            TempData.Add("ResultMessage", String.Format("{0} results: {1} ", command,   spResult.ToString()));
+            return RedirectToAction("Index" );
+        }
+        private ApplicationUser GetTheUser()
+        {
+            UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
+            return manager.FindById(User.Identity.GetUserId());
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

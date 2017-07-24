@@ -58,8 +58,30 @@ else
 {
     if (Model.EnablePaging && Model.Pager != null)
     {
-    <div class="grid-footer">
-        @Html.Partial(Model.Pager.TemplateName, Model.Pager)
+       
+    <div class="grid-footer"> 
+        @if (@Model.RenderOptions.GridName == "securityDetails")
+        {
+            //show storedproc buttons
+            using (Html.BeginForm("RunSp", "SecurityDetail" ))
+            {
+
+                <div class="row">
+                    <div class="col-md-6 ">
+                        @Html.Partial(Model.Pager.TemplateName, Model.Pager)
+                    </div>
+                    <div class="col-md-6 pull-right">
+                        @Html.Partial("_StoredProcButtons", new MetopeMVCApp.Models.SPNames { SPName1 = "Update Divnd Sched only (All Sec)", SPName2 = "Update Sec Analytics (All Sec)" })
+                    </div>
+                </div>
+            }
+
+        }
+        else
+        {
+            @Html.Partial(Model.Pager.TemplateName, Model.Pager)
+
+        }
     </div>
     }
 }

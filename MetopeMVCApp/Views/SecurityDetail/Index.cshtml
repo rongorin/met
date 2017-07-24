@@ -23,6 +23,7 @@
     @Styles.Render("~/Content/GridMvc")
     @Styles.Render("~/Content/datetime")
     <link href="~/Content/cssNoLines.css" rel="stylesheet" />
+    <link href="~/Content/myButtons.css" rel="stylesheet" />
 }
         
 @helper Truncate(string input, int length)
@@ -111,7 +112,7 @@
                 .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityDividendDetail", new { SecurityId = c.Security_ID })">
                 <span class="badge">Dividends</span>
             </a>);
-    }).WithPaging(Convert.ToInt16(ViewBag.RowsPgSelected)).Sortable(true)
+    }).WithPaging(Convert.ToInt16(ViewBag.RowsPgSelected),1,"ShowSp").Sortable(true)
     </div>
 </div>
 

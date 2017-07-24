@@ -9,7 +9,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using MetopeMVCApp.Models;
 using System.Net;
 using MetopeMVCApp.Models.Custom;
-using MetopeMVCApp.Filters; 
+using MetopeMVCApp.Filters;
+using System.Configuration; 
 
 namespace ASP.MetopeNspace.Controllers
 {
@@ -32,6 +33,8 @@ namespace ASP.MetopeNspace.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable);
               
             Session["EntityInnScope"] = strEntityName; 
+
+
 
             return View();
         }
@@ -83,14 +86,23 @@ namespace ASP.MetopeNspace.Controllers
 
                Session["EntityInnScope"] = strEntityName;
 
+
            }
-            
+           if (Session["EntityInnScope"] == null) 
+               Session["EntityInnScope"] = ConfigurationManager.AppSettings["TestMode"]; 
+
           return Content( Session["EntityInnScope"].ToString());
 
            // various return types: see the Response types that can be returned on microsoft website
            //return new HttpStatusCodeResult(403);
            //return Json(new { name = "serial",value = "737373" } , JsonRequestBehavior.AllowGet);
            //return ViewPartial();
+       }
+       public ActionResult ShowTestMode()
+       {
+            
+           return Content("TESTING MODE".ToString()); 
+            
        }
     }
 }

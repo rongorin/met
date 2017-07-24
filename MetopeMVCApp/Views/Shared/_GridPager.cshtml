@@ -4,7 +4,7 @@
     return;
 }
 <div class="grid-pager">
-    <ul class="pagination">
+    <ul class="pagination"> 
         @if (Model.CurrentPage > 1)
         {
             <li>
@@ -44,6 +44,8 @@
         @if (Model.CurrentPage < Model.PageCount)
         {
             <li><a href="@Model.GetLinkForPage(Model.CurrentPage + 1)">»</a></li>
-        }
+        } 
+        
     </ul>
+     
 </div>

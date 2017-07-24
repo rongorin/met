@@ -4,6 +4,7 @@ using StackExchange.Profiling;
 using StackExchange.Profiling.EntityFramework6;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -28,6 +29,7 @@ namespace ASP.MetopeNspace
             ModelBinders.Binders.Add(typeof(decimal?), new MetopeMVCApp.DecimalModelBinder());
             ModelBinders.Binders.Add(typeof(decimal), new MetopeMVCApp.DecimalModelBinder());
             ModelMetadataProviders.Current = new MyMetadataProvider();
+            Application["TestMode"] = ConfigurationManager.AppSettings["TestMode"]; 
             MiniProfilerEF6.Initialize();
         }
         protected void Application_BeginRequest()

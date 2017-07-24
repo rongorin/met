@@ -26,7 +26,7 @@
         @Html.HiddenFor(model => model.Party_Code) 
         @Html.HiddenFor(model => model.Financials_Type) 
         @Html.HiddenFor(model => model.Entity_ID)
-        @Html.EditorForModel(new {meDisabled = "readonly" }) 
+        @Html.EditorForModel() 
         <input type="hidden" id="navIndicator" name="navIndicator" value=@ViewBag.Nav />
 
     </div>

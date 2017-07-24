@@ -421,6 +421,7 @@
     <Compile Include="Models\Security_Type.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SPNamesViewModel.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
@@ -774,6 +775,7 @@
     <Content Include="Views\Shared\EditorTemplates\Security_Dividend_DetailVert.cshtml" />
     <Content Include="Views\Shared\_CreateHyperLinkSDD.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BootstrapEditIntVertic.cshtml" />
+    <Content Include="Views\Shared\_StoredProcButtons.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

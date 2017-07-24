@@ -81,26 +81,21 @@
     }).Sortable(true)
 </div> 
 @*@using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))*@
-<div class="container"> 
- <div class="col-md-3   ">
-  </div>
+<div class="container">
+    <div class="row">
+        <br />
+        @using (Html.BeginForm("RunSp", "SecurityDividendDetail", new { SecurityId = @Model.SecurityDetails.Security_ID }, FormMethod.Post, null))
+        {
+            <div class="col-md-6 ">
+                @Html.ActionLink("Back to Securities", "Index", "SecurityDetail")
+            </div>
+            @Html.Hidden("Security_ID", Model.SecurityDetails.Security_ID);
 
-    <br />
-    @using (Html.BeginForm("RunSp", "SecurityDividendDetail", new { SecurityId = @Model.SecurityDetails.Security_ID }, FormMethod.Post, null))
-    {
-        @Html.ActionLink("Back to Securities", "Index", "SecurityDetail")
+            <div class="col-md-6 pull-right "> 
+                @Html.Partial("_StoredProcButtons", new MetopeMVCApp.Models.SPNames { SPName1 = "Update Divnd Sched only"  } )
 
-        @Html.Hidden("Security_ID", Model.SecurityDetails.Security_ID);
 
-        <table>
-            row
-
-        </table>
-        <input type="submit" value="Update Divnd Sched only (All Sec)" name="command" class="  btn btn-primary customWidth pull-right" />
-
-        <input type="submit" value="Update Sec Analytics (All Sec)" name="command" class="btn btn-primary customWidth pull-right pull-left" />
-    </div>
-    }
-    </div>
-
+            </div>
+        }
+    </div></div>
     @*  <div class="col-md-offset-3 pull-right ">  *@

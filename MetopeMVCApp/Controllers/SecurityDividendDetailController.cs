@@ -233,17 +233,13 @@ namespace MetopeMVCApp.Controllers
         public ActionResult RunSp(decimal Security_Id, string command, string Security_name)
         {
             var spResult ="";
-            if (command == "Update Divnd Sched only (All Sec)")
+             
+             if (command == "Update Divnd Sched only")
                  spResult = db11.RunGenerateDividendsSp((decimal)ViewBag.EntityId, Security_Id, null, null, GetTheUser().UserName);
-
-            if (command == "Update Sec Analytics (All Sec)")
-                spResult = db11.RunSecAnalyticBatchsetSp((decimal)ViewBag.EntityId, null, null, "DRSANAL", GetTheUser().UserName);
- 
-            //(decimal iEntity, DateTime ieffectiveDate, int iSessionID, string iVfListcode, string iUserName
 
             if (spResult == null)
                 spResult = "A critical error occurred running the process.";
-
+ 
             TempData.Add("ResultMessage", String.Format("{0} for this Security (Id {1}) results: {2} ",command, Security_Id.ToString(), spResult.ToString()));
             return RedirectToAction("Index", null, new { SecurityId = Security_Id });   
         }
