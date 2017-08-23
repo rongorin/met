@@ -4,13 +4,15 @@ using System.Linq;
 using System.Web;
 
 using System.ComponentModel.DataAnnotations;
+using MetopeMVCApp.Validators;
 
 namespace MetopeMVCApp.Models.MyMetaData
 {
         [MetadataType(typeof(SecurityDividendDetailModelMetaData))]
     public class SecurityDividendDetailModelMetaData
     { 
-            [Required] 
+            [Required]
+            [ValidatePriceCurr]
             public object Dividend_Currency_Code { get; set; }
 
             [Required]
@@ -22,6 +24,8 @@ namespace MetopeMVCApp.Models.MyMetaData
 
            [RegularExpression("[0-9]{1,}", ErrorMessage = "Value for {0} must be an integer")]
             public object Dividend_Seq_Number { get; set; }
+             
+
   
     }
 }

@@ -437,6 +437,7 @@
     <Compile Include="Utitlity\Extensions\DropDownExtensions.cs" />
     <Compile Include="Utitlity\Extensions\ExceptionExtensions.cs" />
     <Compile Include="Utitlity\Extensions\SessionExtensions.cs" />
+    <Compile Include="Validators\ValidatePriceCurr.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-datetimepicker.css" />
@@ -776,6 +777,7 @@
     <Content Include="Views\Shared\_CreateHyperLinkSDD.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BootstrapEditIntVertic.cshtml" />
     <Content Include="Views\Shared\_StoredProcButtons.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimal4PlacesVertic.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

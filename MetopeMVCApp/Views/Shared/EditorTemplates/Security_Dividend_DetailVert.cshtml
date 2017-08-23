@@ -22,7 +22,7 @@
         @Html.DropDownList("Dividend_Type", null, string.Empty, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Dividend_Type, "", new { @class = "text-danger" })
     </div>
-</div>  @Html.EditorFor(model => model.Actual_Dividend, "BootstrapEditDecimalVertic")
+</div>  @Html.EditorFor(model => model.Actual_Dividend, "BootstrapEditDecimal4PlacesVertic")
  @Html.EditorFor(model => model.Actual_Ex_Dividend_Date, "BootstrapEditDateVertic")
 @Html.EditorFor(model => model.Actual_Last_Date_To_Register, "BootstrapEditDateVertic")
 

@@ -43,10 +43,10 @@ namespace MetopeMVCApp.Models
         public virtual DbSet<Security_Price_History> Security_Price_History { get; set; }
         public virtual DbSet<Security_Detail> Security_Detail { get; set; }
         public virtual DbSet<Party_Debt_Analysis> Party_Debt_Analysis { get; set; }
-        public virtual DbSet<Party_Financials> Party_Financials { get; set; }
         public virtual DbSet<Debt_Expiry_Profile> Debt_Expiry_Profile { get; set; }
-        public virtual DbSet<Party_Financials_History> Party_Financials_History { get; set; }
         public virtual DbSet<Security_Dividend_Detail> Security_Dividend_Detail { get; set; }
+        public virtual DbSet<Party_Financials> Party_Financials { get; set; }
+        public virtual DbSet<Party_Financials_History> Party_Financials_History { get; set; }
     
         public virtual int sp_TestRun(Nullable<decimal> entityID)
         {
@@ -100,8 +100,52 @@ namespace MetopeMVCApp.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_TestRun1", entityIDParameter);
         }
     
-       
-      
+        public virtual int sp_GenerateDividendSchedule(Nullable<decimal> entityID, Nullable<decimal> security, string securitiesList, string securityType)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(decimal));
+    
+            var securityParameter = security.HasValue ?
+                new ObjectParameter("Security", security) :
+                new ObjectParameter("Security", typeof(decimal));
+    
+            var securitiesListParameter = securitiesList != null ?
+                new ObjectParameter("SecuritiesList", securitiesList) :
+                new ObjectParameter("SecuritiesList", typeof(string));
+    
+            var securityTypeParameter = securityType != null ?
+                new ObjectParameter("SecurityType", securityType) :
+                new ObjectParameter("SecurityType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GenerateDividendSchedule", entityIDParameter, securityParameter, securitiesListParameter, securityTypeParameter);
+        }
+    
+        public virtual int sp_GenerateUpdateDividendSchedule1(Nullable<decimal> entityID, Nullable<decimal> security, string securitiesList, string securityType, string userName)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(decimal));
+    
+            var securityParameter = security.HasValue ?
+                new ObjectParameter("Security", security) :
+                new ObjectParameter("Security", typeof(decimal));
+    
+            var securitiesListParameter = securitiesList != null ?
+                new ObjectParameter("SecuritiesList", securitiesList) :
+                new ObjectParameter("SecuritiesList", typeof(string));
+    
+            var securityTypeParameter = securityType != null ?
+                new ObjectParameter("SecurityType", securityType) :
+                new ObjectParameter("SecurityType", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GenerateUpdateDividendSchedule1", entityIDParameter, securityParameter, securitiesListParameter, securityTypeParameter, userNameParameter);
+        }
+    
         public virtual int sp_BatchSet(Nullable<decimal> entityID, Nullable<System.DateTime> effectiveDate, Nullable<decimal> sessionID, string vfListcode, string userName, Nullable<bool> fromFrontend)
         {
             var entityIDParameter = entityID.HasValue ?
@@ -131,7 +175,7 @@ namespace MetopeMVCApp.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_BatchSet", entityIDParameter, effectiveDateParameter, sessionIDParameter, vfListcodeParameter, userNameParameter, fromFrontendParameter);
         }
     
-        public virtual int sp_GenerateUpdateDividendSchedule(Nullable<decimal> entityID, Nullable<decimal> security, string securitiesList, string securityType, string userName)
+        public virtual int sp_GenerateUpdateDividendSchedule2(Nullable<decimal> entityID, Nullable<decimal> security, string securitiesList, string securityType, string userName)
         {
             var entityIDParameter = entityID.HasValue ?
                 new ObjectParameter("EntityID", entityID) :
@@ -153,7 +197,7 @@ namespace MetopeMVCApp.Models
                 new ObjectParameter("UserName", userName) :
                 new ObjectParameter("UserName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GenerateUpdateDividendSchedule", entityIDParameter, securityParameter, securitiesListParameter, securityTypeParameter, userNameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GenerateUpdateDividendSchedule2", entityIDParameter, securityParameter, securitiesListParameter, securityTypeParameter, userNameParameter);
         }
     }
 }

@@ -140,7 +140,7 @@
           <Property Name="Debt_Hedged_Percent" Type="decimal" Precision="18" Scale="9" />
           <Property Name="Floating_Debt_Amount" Type="decimal" Precision="20" Scale="0" />
           <Property Name="Floating_Debt_Percent" Type="decimal" Precision="18" Scale="9" />
-          <Property Name="Total_Weighted_Debt_Cost" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="Total_Weighted_Debt_Cost" Type="decimal" Precision="12" Scale="6" />
           <Property Name="Capital_Markets_Debt" Type="decimal" Precision="20" Scale="0" />
           <Property Name="Traditional_Bank_Debt" Type="decimal" Precision="20" Scale="0" />
           <Property Name="Last_Update_Date" Type="datetime" Nullable="false" />
@@ -157,7 +157,7 @@
           <Property Name="Actual_Forecast_Indicator" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="Security_ID" Type="numeric" Precision="18" Scale="0" />
           <Property Name="Financials_Date" Type="date" Nullable="false" />
-          <Property Name="Full_Adjusted_Share_NAV" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="Full_Adjusted_Share_NAV" Type="decimal" Precision="12" Scale="2" />
           <Property Name="Enterprise_Value" Type="decimal" Precision="20" Scale="0" />
           <Property Name="Dividend_Yield" Type="decimal" Precision="18" Scale="9" />
           <Property Name="Net_Present_Value" Type="decimal" Precision="20" Scale="2" />
@@ -198,6 +198,19 @@
           <Property Name="Last_Update_User" Type="varchar" MaxLength="30" />
           <Property Name="Forecast_Distributions_Growth" Type="decimal" Precision="18" Scale="9" />
           <Property Name="Property_Portfolio_Value" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="OffshoreExposure_WesternEurope" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_CEE" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_US" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_UK" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_Australia" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_Africa" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_Other" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Retail" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Office" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Industrial" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Residential" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Other" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Offshore" Type="decimal" Precision="5" Scale="2" />
         </EntityType>
         <EntityType Name="Party_Financials_History">
           <Key>
@@ -256,6 +269,19 @@
           <Property Name="Hist_Last_Update_Date" Type="datetime" />
           <Property Name="Hist_Last_Update_User" Type="varchar" MaxLength="30" />
           <Property Name="Property_Portfolio_Value" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="OffshoreExposure_WesternEurope" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_CEE" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_US" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_UK" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_Australia" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_Africa" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_Other" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Retail" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Office" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Industrial" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Residential" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Other" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Offshore" Type="decimal" Precision="5" Scale="2" />
         </EntityType>
         <EntityType Name="Portfolio">
           <Key>
@@ -363,7 +389,7 @@
           <Property Name="Actual_Ex_Dividend_Date" Type="date" />
           <Property Name="Dividend_Split" Type="decimal" Precision="9" Scale="8" Nullable="false" />
           <Property Name="Forecast_Dividend" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Actual_Dividend" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Actual_Dividend" Type="decimal" Precision="18" Scale="6" />
           <Property Name="Dividend_Type" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="Forecast_Last_Date_to_Register" Type="date" />
           <Property Name="Forecast_Ex_Dividend_Date" Type="date" />
@@ -1309,10 +1335,11 @@
           <NavigationProperty Name="Security_Price_History" Relationship="MetopeDbModel.FK_Security_Price_History_Entity" FromRole="Entity" ToRole="Security_Price_History" />
           <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Entity" FromRole="Entity" ToRole="Security_Detail" />
           <NavigationProperty Name="Party_Debt_Analysis" Relationship="MetopeDbModel.FK_Party_Debt_Analysis_Entity" FromRole="Entity" ToRole="Party_Debt_Analysis" />
-          <NavigationProperty Name="Party_Financials" Relationship="MetopeDbModel.FK_Party_Financials_Entity" FromRole="Entity" ToRole="Party_Financials" />
           <NavigationProperty Name="Debt_Expiry_Profile" Relationship="MetopeDbModel.FK_Debt_Expiry_Profile_Entity" FromRole="Entity" ToRole="Debt_Expiry_Profile" />
-          <NavigationProperty Name="Party_Financials_History" Relationship="MetopeDbModel.FK_Party_Financials_History_Entity" FromRole="Entity" ToRole="Party_Financials_History" />
           <NavigationProperty Name="Security_Dividend_Detail" Relationship="MetopeDbModel.FK_Security_Dividend_Detail_Entity" FromRole="Entity" ToRole="Security_Dividend_Detail" />
+          <NavigationProperty Name="Party_Financials" Relationship="MetopeDbModel.FK_Party_Financials_Entity" FromRole="Entity" ToRole="Party_Financials" />
+          <NavigationProperty Name="Party_Financials_History" Relationship="MetopeDbModel.FK_Party_Financials_History_Entity" FromRole="Entity" ToRole="Party_Financials_History" />
+          <NavigationProperty Name="Party_Financials_History1" Relationship="MetopeDbModel.FK_Party_Financials_History_Entitytt" FromRole="Entity" ToRole="Party_Financials_History" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -1526,24 +1553,10 @@
             <End Role="Entity" EntitySet="Entities" />
             <End Role="Party_Debt_Analysis" EntitySet="Party_Debt_Analysis" />
           </AssociationSet>
-          <EntitySet Name="Party_Financials" EntityType="MetopeDbModel.Party_Financials" />
-          <AssociationSet Name="FK_Party_Financials_Entity" Association="MetopeDbModel.FK_Party_Financials_Entity">
-            <End Role="Entity" EntitySet="Entities" />
-            <End Role="Party_Financials" EntitySet="Party_Financials" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Party_Financials_Security_Detail" Association="MetopeDbModel.FK_Party_Financials_Security_Detail">
-            <End Role="Security_Detail" EntitySet="Security_Detail" />
-            <End Role="Party_Financials" EntitySet="Party_Financials" />
-          </AssociationSet>
           <EntitySet Name="Debt_Expiry_Profile" EntityType="MetopeDbModel.Debt_Expiry_Profile" />
-          <EntitySet Name="Party_Financials_History" EntityType="MetopeDbModel.Party_Financials_History" />
           <AssociationSet Name="FK_Debt_Expiry_Profile_Entity" Association="MetopeDbModel.FK_Debt_Expiry_Profile_Entity">
             <End Role="Entity" EntitySet="Entities" />
             <End Role="Debt_Expiry_Profile" EntitySet="Debt_Expiry_Profile" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Party_Financials_History_Entity" Association="MetopeDbModel.FK_Party_Financials_History_Entity">
-            <End Role="Entity" EntitySet="Entities" />
-            <End Role="Party_Financials_History" EntitySet="Party_Financials_History" />
           </AssociationSet>
           <EntitySet Name="Security_Dividend_Detail" EntityType="MetopeDbModel.Security_Dividend_Detail" />
           <AssociationSet Name="FK_Security_Dividend_Detail_Currency_Code" Association="MetopeDbModel.FK_Security_Dividend_Detail_Currency_Code">
@@ -1606,6 +1619,24 @@
             <Parameter Name="SecurityType" Mode="In" Type="String" />
             <Parameter Name="UserName" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Party_Financials" EntityType="MetopeDbModel.Party_Financials" />
+          <AssociationSet Name="FK_Party_Financials_Entity" Association="MetopeDbModel.FK_Party_Financials_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Party_Financials" EntitySet="Party_Financials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Party_Financials_Security_Detail" Association="MetopeDbModel.FK_Party_Financials_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Party_Financials" EntitySet="Party_Financials" />
+          </AssociationSet>
+          <EntitySet Name="Party_Financials_History" EntityType="MetopeDbModel.Party_Financials_History" />
+          <AssociationSet Name="FK_Party_Financials_History_Entity" Association="MetopeDbModel.FK_Party_Financials_History_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Party_Financials_History" EntitySet="Party_Financials_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Party_Financials_History_Entitytt" Association="MetopeDbModel.FK_Party_Financials_History_Entitytt">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Party_Financials_History" EntitySet="Party_Financials_History" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AspNetUser">
           <Key>
@@ -2187,8 +2218,8 @@
           <NavigationProperty Name="Portfolio" Relationship="MetopeDbModel.FK_Security_Detail_Portfolio_Benchmark" FromRole="Security_Detail" ToRole="Portfolio" />
           <NavigationProperty Name="Security_Price_History" Relationship="MetopeDbModel.FK_Security_Price_History_Security_Detail" FromRole="Security_Detail" ToRole="Security_Price_History" />
           <NavigationProperty Name="Security_Price" Relationship="MetopeDbModel.FK_Security_Price_Security_Detail" FromRole="Security_Detail" ToRole="Security_Price" />
-          <NavigationProperty Name="Party_Financials" Relationship="MetopeDbModel.FK_Party_Financials_Security_Detail" FromRole="Security_Detail" ToRole="Party_Financials" />
           <NavigationProperty Name="Security_Dividend_Detail" Relationship="MetopeDbModel.FK_Security_Dividend_Detail_Security_Detail" FromRole="Security_Detail" ToRole="Security_Dividend_Detail" />
+          <NavigationProperty Name="Party_Financials" Relationship="MetopeDbModel.FK_Party_Financials_Security_Detail" FromRole="Security_Detail" ToRole="Party_Financials" />
         </EntityType>
         <Association Name="FK_Security_Detail_Country">
           <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
@@ -2393,7 +2424,7 @@
           <Property Name="Debt_Hedged_Percent" Type="Decimal" Precision="18" Scale="9" />
           <Property Name="Floating_Debt_Amount" Type="Decimal" Precision="20" Scale="0" />
           <Property Name="Floating_Debt_Percent" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Total_Weighted_Debt_Cost" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Total_Weighted_Debt_Cost" Type="Decimal" Precision="12" Scale="6" />
           <Property Name="Capital_Markets_Debt" Type="Decimal" Precision="20" Scale="0" />
           <Property Name="Traditional_Bank_Debt" Type="Decimal" Precision="20" Scale="0" />
           <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
@@ -2412,85 +2443,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Party_Financials">
-          <Key>
-            <PropertyRef Name="Party_Code" />
-            <PropertyRef Name="Entity_ID" />
-            <PropertyRef Name="Actual_Forecast_Indicator" />
-          </Key>
-          <Property Name="Party_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Actual_Forecast_Indicator" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="Security_ID" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Financials_Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Full_Adjusted_Share_NAV" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Enterprise_Value" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Dividend_Yield" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Net_Present_Value" Type="Decimal" Precision="20" Scale="2" />
-          <Property Name="Net_Property_Income" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Vacancies_Overall" Type="Decimal" Precision="10" Scale="5" />
-          <Property Name="Portfolio_Leases_Expiring" Type="Decimal" Precision="10" Scale="5" />
-          <Property Name="Assumed_Ave_Escalation_Rate" Type="Decimal" Precision="10" Scale="5" />
-          <Property Name="Cap_Rate_Movemt_Assump" Type="Decimal" Precision="10" Scale="5" />
-          <Property Name="Reversion_Exp_Rent_Reviews" Type="Decimal" Precision="10" Scale="5" />
-          <Property Name="Ungeared_Yield" Type="Decimal" Precision="10" Scale="5" />
-          <Property Name="Net_Operating_Profit" Type="Decimal" Precision="20" Scale="5" />
-          <Property Name="Revenue_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Net_Property_Income_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Net_Operating_Profit_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Interest_Paid_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Loan_To_Value" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Interest_Cover_Ratio" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Revenue" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Interest_Paid" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Property_Expenses" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Property_Expenses_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Investment_Income" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Admin_Expenses" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Admin_Expenses_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Taxation" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Other_Income" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Distributable_Earnings" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Distributions_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Linked_Units_Issued" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Borrowings" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Units_Issued" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Purchases_And_Developments" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Sales" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Total_Assets" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Current_Liabilities" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Interest_Bearing_Borrowings" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Forecast_Distributions_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Property_Portfolio_Value" Type="Decimal" Nullable="false" Precision="20" Scale="0" />
-          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Party_Financials_Entity" FromRole="Party_Financials" ToRole="Entity" />
-          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Party_Financials_Security_Detail" FromRole="Party_Financials" ToRole="Security_Detail" />
-        </EntityType>
-        <Association Name="FK_Party_Financials_Entity">
-          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
-          <End Type="MetopeDbModel.Party_Financials" Role="Party_Financials" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Entity">
-              <PropertyRef Name="Entity_ID" />
-            </Principal>
-            <Dependent Role="Party_Financials">
-              <PropertyRef Name="Entity_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Party_Financials_Security_Detail">
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="0..1" />
-          <End Type="MetopeDbModel.Party_Financials" Role="Party_Financials" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Security_Detail">
-              <PropertyRef Name="Security_ID" />
-            </Principal>
-            <Dependent Role="Party_Financials">
-              <PropertyRef Name="Security_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Debt_Expiry_Profile">
           <Key>
             <PropertyRef Name="Party_Code" />
@@ -2504,65 +2456,6 @@
           <Property Name="Expiring_Debt_Amount" Type="Decimal" Precision="20" Scale="0" />
           <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Debt_Expiry_Profile_Entity" FromRole="Debt_Expiry_Profile" ToRole="Entity" />
         </EntityType>
-        <EntityType Name="Party_Financials_History">
-          <Key>
-            <PropertyRef Name="Party_Code" />
-            <PropertyRef Name="Entity_ID" />
-            <PropertyRef Name="Actual_Forecast_Indicator" />
-            <PropertyRef Name="Record_Date" />
-          </Key>
-          <Property Name="Party_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Actual_Forecast_Indicator" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="Security_ID" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Financials_Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Full_Adjusted_Share_NAV" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Enterprise_Value" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Dividend_Yield" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Net_Present_Value" Type="Decimal" Precision="20" Scale="2" />
-          <Property Name="Net_Property_Income" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Vacancies_Overall" Type="Decimal" Precision="10" Scale="5" />
-          <Property Name="Portfolio_Leases_Expiring" Type="Decimal" Precision="10" Scale="5" />
-          <Property Name="Assumed_Ave_Escalation_Rate" Type="Decimal" Precision="10" Scale="5" />
-          <Property Name="Cap_Rate_Movemt_Assump" Type="Decimal" Precision="10" Scale="5" />
-          <Property Name="Reversion_Exp_Rent_Reviews" Type="Decimal" Precision="10" Scale="5" />
-          <Property Name="Ungeared_Yield" Type="Decimal" Precision="10" Scale="5" />
-          <Property Name="Net_Operating_Profit" Type="Decimal" Precision="20" Scale="5" />
-          <Property Name="Revenue_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Net_Property_Income_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Net_Operating_Profit_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Interest_Paid_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Loan_To_Value" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Interest_Cover_Ratio" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Revenue" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Interest_Paid" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Property_Expenses" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Property_Expenses_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Investment_Income" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Admin_Expenses" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Admin_Expenses_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Taxation" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Other_Income" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Distributable_Earnings" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Distributions_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Linked_Units_Issued" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Borrowings" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Units_Issued" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Purchases_And_Developments" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Sales" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Total_Assets" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Current_Liabilities" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Interest_Bearing_Borrowings" Type="Decimal" Precision="20" Scale="0" />
-          <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Forecast_Distributions_Growth" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Record_Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Session_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Hist_Last_Update_Date" Type="DateTime" Precision="3" />
-          <Property Name="Hist_Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Property_Portfolio_Value" Type="Decimal" Nullable="false" Precision="20" Scale="0" />
-          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Party_Financials_History_Entity" FromRole="Party_Financials_History" ToRole="Entity" />
-        </EntityType>
         <Association Name="FK_Debt_Expiry_Profile_Entity">
           <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
           <End Type="MetopeDbModel.Debt_Expiry_Profile" Role="Debt_Expiry_Profile" Multiplicity="*" />
@@ -2571,18 +2464,6 @@
               <PropertyRef Name="Entity_ID" />
             </Principal>
             <Dependent Role="Debt_Expiry_Profile">
-              <PropertyRef Name="Entity_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Party_Financials_History_Entity">
-          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
-          <End Type="MetopeDbModel.Party_Financials_History" Role="Party_Financials_History" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Entity">
-              <PropertyRef Name="Entity_ID" />
-            </Principal>
-            <Dependent Role="Party_Financials_History">
               <PropertyRef Name="Entity_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2604,7 +2485,7 @@
           <Property Name="Actual_Ex_Dividend_Date" Type="DateTime" Precision="0" />
           <Property Name="Dividend_Split" Type="Decimal" Nullable="false" Precision="9" Scale="8" />
           <Property Name="Forecast_Dividend" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Actual_Dividend" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Actual_Dividend" Type="Decimal" Precision="18" Scale="6" />
           <Property Name="Dividend_Type" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Forecast_Last_Date_to_Register" Type="DateTime" Precision="0" />
           <Property Name="Forecast_Ex_Dividend_Date" Type="DateTime" Precision="0" />
@@ -2666,6 +2547,195 @@
             <Dependent Role="Security_Dividend_Detail">
               <PropertyRef Name="Entity_ID" />
               <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Party_Financials">
+          <Key>
+            <PropertyRef Name="Party_Code" />
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Actual_Forecast_Indicator" />
+          </Key>
+          <Property Name="Party_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Actual_Forecast_Indicator" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Security_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Financials_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Full_Adjusted_Share_NAV" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="Enterprise_Value" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Dividend_Yield" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Net_Present_Value" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="Net_Property_Income" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Vacancies_Overall" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Portfolio_Leases_Expiring" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Assumed_Ave_Escalation_Rate" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Cap_Rate_Movemt_Assump" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Reversion_Exp_Rent_Reviews" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Ungeared_Yield" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Net_Operating_Profit" Type="Decimal" Precision="20" Scale="5" />
+          <Property Name="Revenue_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Net_Property_Income_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Net_Operating_Profit_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Interest_Paid_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Loan_To_Value" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Interest_Cover_Ratio" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Revenue" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Interest_Paid" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Property_Expenses" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Property_Expenses_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Investment_Income" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Admin_Expenses" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Admin_Expenses_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Taxation" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Other_Income" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Distributable_Earnings" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Distributions_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Linked_Units_Issued" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Borrowings" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Units_Issued" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Purchases_And_Developments" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Sales" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Total_Assets" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Current_Liabilities" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Interest_Bearing_Borrowings" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Forecast_Distributions_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Property_Portfolio_Value" Type="Decimal" Nullable="false" Precision="20" Scale="0" />
+          <Property Name="OffshoreExposure_WesternEurope" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_CEE" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_US" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_UK" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_Australia" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_Africa" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_Other" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Retail" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Office" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Industrial" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Residential" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Other" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Offshore" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Party_Financials_Entity" FromRole="Party_Financials" ToRole="Entity" />
+          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Party_Financials_Security_Detail" FromRole="Party_Financials" ToRole="Security_Detail" />
+        </EntityType>
+        <Association Name="FK_Party_Financials_Entity">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Party_Financials" Role="Party_Financials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Party_Financials">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Party_Financials_Security_Detail">
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Party_Financials" Role="Party_Financials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Party_Financials">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Party_Financials_History">
+          <Key>
+            <PropertyRef Name="Party_Code" />
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Actual_Forecast_Indicator" />
+            <PropertyRef Name="Record_Date" />
+          </Key>
+          <Property Name="Party_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Actual_Forecast_Indicator" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Security_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Financials_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Full_Adjusted_Share_NAV" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Enterprise_Value" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Dividend_Yield" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Net_Present_Value" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="Net_Property_Income" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Vacancies_Overall" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Portfolio_Leases_Expiring" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Assumed_Ave_Escalation_Rate" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Cap_Rate_Movemt_Assump" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Reversion_Exp_Rent_Reviews" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Ungeared_Yield" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Net_Operating_Profit" Type="Decimal" Precision="20" Scale="5" />
+          <Property Name="Revenue_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Net_Property_Income_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Net_Operating_Profit_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Interest_Paid_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Loan_To_Value" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Interest_Cover_Ratio" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Revenue" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Interest_Paid" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Property_Expenses" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Property_Expenses_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Investment_Income" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Admin_Expenses" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Admin_Expenses_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Taxation" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Other_Income" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Distributable_Earnings" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Distributions_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Linked_Units_Issued" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Borrowings" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Units_Issued" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Purchases_And_Developments" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Sales" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Total_Assets" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Current_Liabilities" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Interest_Bearing_Borrowings" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Forecast_Distributions_Growth" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Record_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Session_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Hist_Last_Update_Date" Type="DateTime" Precision="3" />
+          <Property Name="Hist_Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Property_Portfolio_Value" Type="Decimal" Nullable="false" Precision="20" Scale="0" />
+          <Property Name="OffshoreExposure_WesternEurope" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_CEE" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_US" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_UK" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_Australia" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_Africa" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OffshoreExposure_Other" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Retail" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Office" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Industrial" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Residential" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Other" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Sector_Offshore" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Party_Financials_History_Entity" FromRole="Party_Financials_History" ToRole="Entity" />
+          <NavigationProperty Name="Entity1" Relationship="MetopeDbModel.FK_Party_Financials_History_Entitytt" FromRole="Party_Financials_History" ToRole="Entity" />
+        </EntityType>
+        <Association Name="FK_Party_Financials_History_Entity">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Party_Financials_History" Role="Party_Financials_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Party_Financials_History">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Party_Financials_History_Entitytt">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Party_Financials_History" Role="Party_Financials_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Party_Financials_History">
+              <PropertyRef Name="Entity_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2982,9 +3052,64 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Debt_Expiry_Profile">
+            <EntityTypeMapping TypeName="MetopeDbModel.Debt_Expiry_Profile">
+              <MappingFragment StoreEntitySet="Debt_Expiry_Profile">
+                <ScalarProperty Name="Expiring_Debt_Amount" ColumnName="Expiring_Debt_Amount" />
+                <ScalarProperty Name="Financial_Year_End" ColumnName="Financial_Year_End" />
+                <ScalarProperty Name="Record_Date" ColumnName="Record_Date" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+                <ScalarProperty Name="Party_Code" ColumnName="Party_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Security_Dividend_Detail">
+            <EntityTypeMapping TypeName="MetopeDbModel.Security_Dividend_Detail">
+              <MappingFragment StoreEntitySet="Security_Dividend_Detail">
+                <ScalarProperty Name="Actual_NonRecurring_Dividend" ColumnName="Actual_NonRecurring_Dividend" />
+                <ScalarProperty Name="Lock_Flag" ColumnName="Lock_Flag" />
+                <ScalarProperty Name="Actual_FX_Rate" ColumnName="Actual_FX_Rate" />
+                <ScalarProperty Name="Financial_Year" ColumnName="Financial_Year" />
+                <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
+                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
+                <ScalarProperty Name="Forecast_Ex_Dividend_Date" ColumnName="Forecast_Ex_Dividend_Date" />
+                <ScalarProperty Name="Forecast_Last_Date_to_Register" ColumnName="Forecast_Last_Date_to_Register" />
+                <ScalarProperty Name="Dividend_Type" ColumnName="Dividend_Type" />
+                <ScalarProperty Name="Actual_Dividend" ColumnName="Actual_Dividend" />
+                <ScalarProperty Name="Forecast_Dividend" ColumnName="Forecast_Dividend" />
+                <ScalarProperty Name="Dividend_Split" ColumnName="Dividend_Split" />
+                <ScalarProperty Name="Actual_Ex_Dividend_Date" ColumnName="Actual_Ex_Dividend_Date" />
+                <ScalarProperty Name="Actual_Last_Date_To_Register" ColumnName="Actual_Last_Date_To_Register" />
+                <ScalarProperty Name="Actual_Dividend_Payment_Date" ColumnName="Actual_Dividend_Payment_Date" />
+                <ScalarProperty Name="Dividend_Currency_Code" ColumnName="Dividend_Currency_Code" />
+                <ScalarProperty Name="Forecast_Dividend_Payment_Date" ColumnName="Forecast_Dividend_Payment_Date" />
+                <ScalarProperty Name="Dividend_Annual_Number" ColumnName="Dividend_Annual_Number" />
+                <ScalarProperty Name="Dividend_Seq_Number" ColumnName="Dividend_Seq_Number" />
+                <ScalarProperty Name="Security_ID" ColumnName="Security_ID" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_TestRunNum2" FunctionName="MetopeDbModel.Store.sp_TestRunNum2" />
+          <FunctionImportMapping FunctionImportName="sp_TestRun1" FunctionName="MetopeDbModel.Store.sp_TestRun" />
+          <FunctionImportMapping FunctionImportName="sp_BatchSet" FunctionName="MetopeDbModel.Store.sp_BatchSet" />
+          <FunctionImportMapping FunctionImportName="sp_GenerateUpdateDividendSchedule2" FunctionName="MetopeDbModel.Store.sp_GenerateUpdateDividendSchedule" />
           <EntitySetMapping Name="Party_Financials">
             <EntityTypeMapping TypeName="MetopeDbModel.Party_Financials">
               <MappingFragment StoreEntitySet="Party_Financials">
+                <ScalarProperty Name="Sector_Offshore" ColumnName="Sector_Offshore" />
+                <ScalarProperty Name="Sector_Other" ColumnName="Sector_Other" />
+                <ScalarProperty Name="Sector_Residential" ColumnName="Sector_Residential" />
+                <ScalarProperty Name="Sector_Industrial" ColumnName="Sector_Industrial" />
+                <ScalarProperty Name="Sector_Office" ColumnName="Sector_Office" />
+                <ScalarProperty Name="Sector_Retail" ColumnName="Sector_Retail" />
+                <ScalarProperty Name="OffshoreExposure_Other" ColumnName="OffshoreExposure_Other" />
+                <ScalarProperty Name="OffshoreExposure_Africa" ColumnName="OffshoreExposure_Africa" />
+                <ScalarProperty Name="OffshoreExposure_Australia" ColumnName="OffshoreExposure_Australia" />
+                <ScalarProperty Name="OffshoreExposure_UK" ColumnName="OffshoreExposure_UK" />
+                <ScalarProperty Name="OffshoreExposure_US" ColumnName="OffshoreExposure_US" />
+                <ScalarProperty Name="OffshoreExposure_CEE" ColumnName="OffshoreExposure_CEE" />
+                <ScalarProperty Name="OffshoreExposure_WesternEurope" ColumnName="OffshoreExposure_WesternEurope" />
                 <ScalarProperty Name="Property_Portfolio_Value" ColumnName="Property_Portfolio_Value" />
                 <ScalarProperty Name="Forecast_Distributions_Growth" ColumnName="Forecast_Distributions_Growth" />
                 <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
@@ -3034,20 +3159,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Debt_Expiry_Profile">
-            <EntityTypeMapping TypeName="MetopeDbModel.Debt_Expiry_Profile">
-              <MappingFragment StoreEntitySet="Debt_Expiry_Profile">
-                <ScalarProperty Name="Expiring_Debt_Amount" ColumnName="Expiring_Debt_Amount" />
-                <ScalarProperty Name="Financial_Year_End" ColumnName="Financial_Year_End" />
-                <ScalarProperty Name="Record_Date" ColumnName="Record_Date" />
-                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
-                <ScalarProperty Name="Party_Code" ColumnName="Party_Code" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Party_Financials_History">
             <EntityTypeMapping TypeName="MetopeDbModel.Party_Financials_History">
               <MappingFragment StoreEntitySet="Party_Financials_History">
+                <ScalarProperty Name="Sector_Offshore" ColumnName="Sector_Offshore" />
+                <ScalarProperty Name="Sector_Other" ColumnName="Sector_Other" />
+                <ScalarProperty Name="Sector_Residential" ColumnName="Sector_Residential" />
+                <ScalarProperty Name="Sector_Industrial" ColumnName="Sector_Industrial" />
+                <ScalarProperty Name="Sector_Office" ColumnName="Sector_Office" />
+                <ScalarProperty Name="Sector_Retail" ColumnName="Sector_Retail" />
+                <ScalarProperty Name="OffshoreExposure_Other" ColumnName="OffshoreExposure_Other" />
+                <ScalarProperty Name="OffshoreExposure_Africa" ColumnName="OffshoreExposure_Africa" />
+                <ScalarProperty Name="OffshoreExposure_Australia" ColumnName="OffshoreExposure_Australia" />
+                <ScalarProperty Name="OffshoreExposure_UK" ColumnName="OffshoreExposure_UK" />
+                <ScalarProperty Name="OffshoreExposure_US" ColumnName="OffshoreExposure_US" />
+                <ScalarProperty Name="OffshoreExposure_CEE" ColumnName="OffshoreExposure_CEE" />
+                <ScalarProperty Name="OffshoreExposure_WesternEurope" ColumnName="OffshoreExposure_WesternEurope" />
                 <ScalarProperty Name="Property_Portfolio_Value" ColumnName="Property_Portfolio_Value" />
                 <ScalarProperty Name="Hist_Last_Update_User" ColumnName="Hist_Last_Update_User" />
                 <ScalarProperty Name="Hist_Last_Update_Date" ColumnName="Hist_Last_Update_Date" />
@@ -3101,37 +3228,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Security_Dividend_Detail">
-            <EntityTypeMapping TypeName="MetopeDbModel.Security_Dividend_Detail">
-              <MappingFragment StoreEntitySet="Security_Dividend_Detail">
-                <ScalarProperty Name="Actual_NonRecurring_Dividend" ColumnName="Actual_NonRecurring_Dividend" />
-                <ScalarProperty Name="Lock_Flag" ColumnName="Lock_Flag" />
-                <ScalarProperty Name="Actual_FX_Rate" ColumnName="Actual_FX_Rate" />
-                <ScalarProperty Name="Financial_Year" ColumnName="Financial_Year" />
-                <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
-                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
-                <ScalarProperty Name="Forecast_Ex_Dividend_Date" ColumnName="Forecast_Ex_Dividend_Date" />
-                <ScalarProperty Name="Forecast_Last_Date_to_Register" ColumnName="Forecast_Last_Date_to_Register" />
-                <ScalarProperty Name="Dividend_Type" ColumnName="Dividend_Type" />
-                <ScalarProperty Name="Actual_Dividend" ColumnName="Actual_Dividend" />
-                <ScalarProperty Name="Forecast_Dividend" ColumnName="Forecast_Dividend" />
-                <ScalarProperty Name="Dividend_Split" ColumnName="Dividend_Split" />
-                <ScalarProperty Name="Actual_Ex_Dividend_Date" ColumnName="Actual_Ex_Dividend_Date" />
-                <ScalarProperty Name="Actual_Last_Date_To_Register" ColumnName="Actual_Last_Date_To_Register" />
-                <ScalarProperty Name="Actual_Dividend_Payment_Date" ColumnName="Actual_Dividend_Payment_Date" />
-                <ScalarProperty Name="Dividend_Currency_Code" ColumnName="Dividend_Currency_Code" />
-                <ScalarProperty Name="Forecast_Dividend_Payment_Date" ColumnName="Forecast_Dividend_Payment_Date" />
-                <ScalarProperty Name="Dividend_Annual_Number" ColumnName="Dividend_Annual_Number" />
-                <ScalarProperty Name="Dividend_Seq_Number" ColumnName="Dividend_Seq_Number" />
-                <ScalarProperty Name="Security_ID" ColumnName="Security_ID" />
-                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_TestRunNum2" FunctionName="MetopeDbModel.Store.sp_TestRunNum2" />
-          <FunctionImportMapping FunctionImportName="sp_TestRun1" FunctionName="MetopeDbModel.Store.sp_TestRun" />
-          <FunctionImportMapping FunctionImportName="sp_BatchSet" FunctionName="MetopeDbModel.Store.sp_BatchSet" />
-          <FunctionImportMapping FunctionImportName="sp_GenerateUpdateDividendSchedule2" FunctionName="MetopeDbModel.Store.sp_GenerateUpdateDividendSchedule" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

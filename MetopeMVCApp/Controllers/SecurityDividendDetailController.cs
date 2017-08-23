@@ -149,6 +149,7 @@ namespace MetopeMVCApp.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.PriceCurrency = sdd.Security_Detail.Price_Curr;
             ViewBag.DividendCurrencyCode = sdd.Dividend_Currency_Code;
             ViewBag.MySysLockedList = sdd.Lock_Flag;
             ViewBag.DividendSplit = sdd.Dividend_Split;

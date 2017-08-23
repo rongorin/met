@@ -11,7 +11,6 @@ namespace MetopeMVCApp.Models
 {
     using System;
     using System.Collections.Generic;
-
     using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(PartyFinancialsModelMetaData))]
@@ -63,6 +62,19 @@ namespace MetopeMVCApp.Models
         public string Last_Update_User { get; set; }
         public Nullable<decimal> Forecast_Distributions_Growth { get; set; }
         public decimal Property_Portfolio_Value { get; set; }
+        public Nullable<decimal> OffshoreExposure_WesternEurope { get; set; }
+        public Nullable<decimal> OffshoreExposure_CEE { get; set; }
+        public Nullable<decimal> OffshoreExposure_US { get; set; }
+        public Nullable<decimal> OffshoreExposure_UK { get; set; }
+        public Nullable<decimal> OffshoreExposure_Australia { get; set; }
+        public Nullable<decimal> OffshoreExposure_Africa { get; set; }
+        public Nullable<decimal> OffshoreExposure_Other { get; set; }
+        public Nullable<decimal> Sector_Retail { get; set; }
+        public Nullable<decimal> Sector_Office { get; set; }
+        public Nullable<decimal> Sector_Industrial { get; set; }
+        public Nullable<decimal> Sector_Residential { get; set; }
+        public Nullable<decimal> Sector_Other { get; set; }
+        public Nullable<decimal> Sector_Offshore { get; set; }
     
         public virtual Entity Entity { get; set; }
         public virtual Security_Detail Security_Detail { get; set; }

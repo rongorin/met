@@ -23,8 +23,7 @@
     @Styles.Render("~/Content/GridMvc")
     @Styles.Render("~/Content/datetime")
     <link href="~/Content/cssNoLines.css" rel="stylesheet" />
-    <link href="~/Content/myButtons.css" rel="stylesheet" />
-
+    <link href="~/Content/myButtons.css" rel="stylesheet" /> 
 }
 <h2>
    Security Dividend Details for @Model.SecurityDetails.Security_Name 
@@ -69,7 +68,7 @@
         .Sanitized(false)
         .SetWidth(50)
         .RenderValueAs(c => @<u>
-            @Html.ActionLink("Edit", "Edit", "SecurityDividendDetail", new { EntityId = c.Entity_ID, SecurityId = c.Security_ID,  DivSeqNo = c.Dividend_Seq_Number, Nav = @ViewBag.Nav }, null)
+            @Html.ActionLink("Edit", "Edit", "SecurityDividendDetail", new { EntityId = c.Entity_ID, SecurityId = c.Security_ID, DivSeqNo = c.Dividend_Seq_Number, PrCur = c.Security_Detail.Price_Curr, Nav = @ViewBag.Nav }, null)
         </u>);
         columns.Add()
      .Encoded(false)
@@ -92,9 +91,7 @@
             @Html.Hidden("Security_ID", Model.SecurityDetails.Security_ID);
 
             <div class="col-md-6 pull-right "> 
-                @Html.Partial("_StoredProcButtons", new MetopeMVCApp.Models.SPNames { SPName1 = "Update Divnd Sched only"  } )
-
-
+                @Html.Partial("_StoredProcButtons", new MetopeMVCApp.Models.SPNames { SPName1 = "Update Divnd Sched only"  } ) 
             </div>
         }
     </div></div>

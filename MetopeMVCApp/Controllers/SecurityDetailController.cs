@@ -259,6 +259,7 @@ namespace MetopeMVCApp.Controllers
             TempData.Add("ResultMessage", "Security \"" + security_detail.Security_Name + "\" Deleted successfully!");
             return RedirectToAction("Index");
         }
+
         //Run stored procs
         public ActionResult RunSp( string command, string Security_name)
         {

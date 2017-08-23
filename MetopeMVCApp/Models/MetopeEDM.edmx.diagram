@@ -60,18 +60,19 @@
         <AssociationConnector Association="MetopeDbModel.FK_Security_Price_Security_Detail" />
         <EntityTypeShape EntityType="MetopeDbModel.Party_Debt_Analysis" Width="1.5" PointX="4.125" PointY="16.75" />
         <AssociationConnector Association="MetopeDbModel.FK_Party_Debt_Analysis_Entity" />
-        <EntityTypeShape EntityType="MetopeDbModel.Party_Financials" Width="1.5" PointX="21" PointY="6.875" />
-        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_Entity" />
-        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_Security_Detail" />
         <EntityTypeShape EntityType="MetopeDbModel.Debt_Expiry_Profile" Width="1.5" PointX="4.125" PointY="41.25" />
-        <EntityTypeShape EntityType="MetopeDbModel.Party_Financials_History" Width="1.5" PointX="4.125" PointY="29.75" />
         <AssociationConnector Association="MetopeDbModel.FK_Debt_Expiry_Profile_Entity" />
-        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_History_Entity" />
         <EntityTypeShape EntityType="MetopeDbModel.Security_Dividend_Detail" Width="1.5" PointX="18" PointY="15.125" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Currency_Code" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Security_Detail" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_User" />
+        <EntityTypeShape EntityType="MetopeDbModel.Party_Financials" Width="1.5" PointX="21" PointY="5.75" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_Security_Detail" />
+        <EntityTypeShape EntityType="MetopeDbModel.Party_Financials_History" Width="1.5" PointX="4.125" PointY="44.875" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_History_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_History_Entitytt" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
