@@ -80,7 +80,6 @@ namespace MetopeMVCApp.Models
         public Nullable<decimal> Sector_Other { get; set; }
         public Nullable<decimal> Sector_Offshore { get; set; }
     
-        public virtual Entity Entity { get; set; }
-        public virtual Entity Entity1 { get; set; }
+        public virtual Entity Entity { get; set; } 
     }
 }
