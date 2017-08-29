@@ -20,6 +20,8 @@ namespace MetopeMVCApp.Models
             this.Security_Price = new HashSet<Security_Price>();
             this.Security_Price_History = new HashSet<Security_Price_History>();
             this.Security_Dividend_Detail = new HashSet<Security_Dividend_Detail>();
+            this.Security_Analytics = new HashSet<Security_Analytics>();
+            this.Security_Analytics_History = new HashSet<Security_Analytics_History>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -44,5 +46,7 @@ namespace MetopeMVCApp.Models
         public virtual ICollection<Security_Price> Security_Price { get; set; }
         public virtual ICollection<Security_Price_History> Security_Price_History { get; set; }
         public virtual ICollection<Security_Dividend_Detail> Security_Dividend_Detail { get; set; }
+        public virtual ICollection<Security_Analytics> Security_Analytics { get; set; }
+        public virtual ICollection<Security_Analytics_History> Security_Analytics_History { get; set; }
     }
 }
