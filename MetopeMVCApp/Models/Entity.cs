@@ -27,10 +27,11 @@ namespace MetopeMVCApp.Models
             this.Security_Price_History = new HashSet<Security_Price_History>();
             this.Security_Detail = new HashSet<Security_Detail>();
             this.Party_Debt_Analysis = new HashSet<Party_Debt_Analysis>();
-            this.Party_Financials = new HashSet<Party_Financials>();
             this.Debt_Expiry_Profile = new HashSet<Debt_Expiry_Profile>();
-            this.Party_Financials_History = new HashSet<Party_Financials_History>();
             this.Security_Dividend_Detail = new HashSet<Security_Dividend_Detail>();
+            this.Party_Financials = new HashSet<Party_Financials>();
+            this.Party_Financials_History = new HashSet<Party_Financials_History>();
+            this.Security_Analytics = new HashSet<Security_Analytics>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -50,9 +51,10 @@ namespace MetopeMVCApp.Models
         public virtual ICollection<Security_Price_History> Security_Price_History { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail { get; set; }
         public virtual ICollection<Party_Debt_Analysis> Party_Debt_Analysis { get; set; }
-        public virtual ICollection<Party_Financials> Party_Financials { get; set; }
         public virtual ICollection<Debt_Expiry_Profile> Debt_Expiry_Profile { get; set; }
-        public virtual ICollection<Party_Financials_History> Party_Financials_History { get; set; }
         public virtual ICollection<Security_Dividend_Detail> Security_Dividend_Detail { get; set; }
+        public virtual ICollection<Party_Financials> Party_Financials { get; set; }
+        public virtual ICollection<Party_Financials_History> Party_Financials_History { get; set; }
+        public virtual ICollection<Security_Analytics> Security_Analytics { get; set; }
     }
 }

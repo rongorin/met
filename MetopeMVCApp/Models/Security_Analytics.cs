@@ -16,7 +16,7 @@ namespace MetopeMVCApp.Models
     {
         public decimal Entity_ID { get; set; }
         public decimal Security_ID { get; set; }
-        public Nullable<decimal> Issued_Amount { get; set; }
+        public decimal Issued_Amount { get; set; }
         public Nullable<decimal> Market_Capitalisation { get; set; }
         public Nullable<decimal> Risk_Premium { get; set; }
         public Nullable<decimal> Exit_Price { get; set; }
