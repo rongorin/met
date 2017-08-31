@@ -313,6 +313,72 @@
           <Property Name="Portfolio_Code" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Portfolio_List_Code" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <EntityType Name="Security_Analytics">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Security_ID" />
+          </Key>
+          <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Security_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Issued_Amount" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="Market_Capitalisation" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="Risk_Premium" Type="decimal" Precision="8" Scale="6" />
+          <Property Name="Exit_Price" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Total_Return_ME_1YR" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Total_Return_ME_2YR" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Total_Return_ME_3YR" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Historic_Distribution" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Distribution_Growth_Forecast_Yr1" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="Distribution_Growth_Forecast_Yr2" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="Distribution_Growth_Forecast_Yr3" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="Forecast_Distribution_Yr1" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Distribution_Yr2" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Distribution_Yr3" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Earnings_Growth_Compounded" Type="decimal" Precision="9" Scale="8" />
+          <Property Name="Earnings_Forecast_Yr3" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="Historic_Dividend_Yield_FYE" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Forward_Dividend_Yield_FYE" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Yr3_Forward_Dividend_Yield" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Rolling_12M_Forward_Yield" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Historical_Earnings_FYE" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Earnings_Forecast_Yr1" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Earnings_Forecast_Yr2" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Historic_Dividend_Yield_Relative" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Rolling_12M_Historic_Distribution_PriceCurr" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Short_Term_Market_Rerate" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Forecast_12M_Total_Return" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Clean_Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Rolling_Dividend_Yield_Historic" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Last_Update_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Update_User" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Discount_Security_ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Net_Present_Value" Type="decimal" Precision="20" Scale="2" />
+          <Property Name="Forecast_Rolling_Custom_Income" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Custom_Period" Type="decimal" Precision="3" Scale="0" />
+          <Property Name="Rolling_12M_Historic_Distribution" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Rolling_12M_Forecast_Distribution" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Yr2_Forward_Dividend_Yield" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Exit_Yield" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Discount_Rate" Type="decimal" Precision="20" Scale="9" />
+          <Property Name="Distribution_Growth_Compounded" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Forecast_12MRolling_Income_Accrual" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Rolling_12_to_24M_Forecast_Distribution" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Rolling_24_to_36M_Forecast_Distribution" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Yr1_Dividend_Yield_Relative" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Market_Historic_Yield" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Market_Forward_Yield" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Historic_Distribution_PriceCurr" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Distribution_Yr1_PriceCurr" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Distribution_Yr2_PriceCurr" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Distribution_Yr3_PriceCurr" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Rolling_12M_Forecast_Distribution_PriceCurr" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Rolling_12_24M_Forecast_Distribution_PriceCurr" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Rolling_24_36M_Forecast_Distribution_PriceCurr" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Distribution_Growth_Forecast_Yr4" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Earnings_Forecast_Yr4" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Forecast_Distribution_Yr4" Type="decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Distribution_Yr4_PriceCurr" Type="decimal" Precision="12" Scale="3" />
+        </EntityType>
         <EntityType Name="Security_Detail">
           <Key>
             <PropertyRef Name="Security_ID" />
@@ -643,18 +709,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Party_Financials_History_Entitytt">
-          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
-          <End Role="Party_Financials_History" Type="Self.Party_Financials_History" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Entity">
-              <PropertyRef Name="Entity_ID" />
-            </Principal>
-            <Dependent Role="Party_Financials_History">
-              <PropertyRef Name="Entity_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Party_Financials_Security_Detail">
           <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="0..1" />
           <End Role="Party_Financials" Type="Self.Party_Financials" Multiplicity="*" />
@@ -764,6 +818,56 @@
             <Dependent Role="Portfolio">
               <PropertyRef Name="Entity_ID" />
               <PropertyRef Name="Manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Analytics_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="Security_Analytics" Type="Self.Security_Analytics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Security_Analytics">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Analytics_Security_Detail">
+          <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="1" />
+          <End Role="Security_Analytics" Type="Self.Security_Analytics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Security_Analytics">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Analytics_Security_Detail2">
+          <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="0..1" />
+          <End Role="Security_Analytics" Type="Self.Security_Analytics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Security_Analytics">
+              <PropertyRef Name="Discount_Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Analytics_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Security_Analytics" Type="Self.Security_Analytics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Security_Analytics">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1112,6 +1216,7 @@
           <EntitySet Name="Party_Financials_History" EntityType="Self.Party_Financials_History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolio" EntityType="Self.Portfolio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolio_List" EntityType="Self.Portfolio_List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Security_Analytics" EntityType="Self.Security_Analytics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Detail" EntityType="Self.Security_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Dividend_Detail" EntityType="Self.Security_Dividend_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Price" EntityType="Self.Security_Price" Schema="dbo" store:Type="Tables" />
@@ -1170,10 +1275,6 @@
             <End Role="Entity" EntitySet="Entity" />
             <End Role="Party_Financials_History" EntitySet="Party_Financials_History" />
           </AssociationSet>
-          <AssociationSet Name="FK_Party_Financials_History_Entitytt" Association="Self.FK_Party_Financials_History_Entitytt">
-            <End Role="Entity" EntitySet="Entity" />
-            <End Role="Party_Financials_History" EntitySet="Party_Financials_History" />
-          </AssociationSet>
           <AssociationSet Name="FK_Party_Financials_Security_Detail" Association="Self.FK_Party_Financials_Security_Detail">
             <End Role="Security_Detail" EntitySet="Security_Detail" />
             <End Role="Party_Financials" EntitySet="Party_Financials" />
@@ -1209,6 +1310,22 @@
           <AssociationSet Name="FK_Portfolio_User" Association="Self.FK_Portfolio_User">
             <End Role="User" EntitySet="User" />
             <End Role="Portfolio" EntitySet="Portfolio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Analytics_Entity" Association="Self.FK_Security_Analytics_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="Security_Analytics" EntitySet="Security_Analytics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Analytics_Security_Detail" Association="Self.FK_Security_Analytics_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Security_Analytics" EntitySet="Security_Analytics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Analytics_Security_Detail2" Association="Self.FK_Security_Analytics_Security_Detail2">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Security_Analytics" EntitySet="Security_Analytics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Analytics_User" Association="Self.FK_Security_Analytics_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Security_Analytics" EntitySet="Security_Analytics" />
           </AssociationSet>
           <AssociationSet Name="FK_Security_Detail_Country" Association="Self.FK_Security_Detail_Country">
             <End Role="Country" EntitySet="Country" />
@@ -1339,8 +1456,8 @@
           <NavigationProperty Name="Security_Dividend_Detail" Relationship="MetopeDbModel.FK_Security_Dividend_Detail_Entity" FromRole="Entity" ToRole="Security_Dividend_Detail" />
           <NavigationProperty Name="Party_Financials" Relationship="MetopeDbModel.FK_Party_Financials_Entity" FromRole="Entity" ToRole="Party_Financials" />
           <NavigationProperty Name="Party_Financials_History" Relationship="MetopeDbModel.FK_Party_Financials_History_Entity" FromRole="Entity" ToRole="Party_Financials_History" />
-          <NavigationProperty Name="Party_Financials_History1" Relationship="MetopeDbModel.FK_Party_Financials_History_Entitytt" FromRole="Entity" ToRole="Party_Financials_History" />
-        </EntityType>
+          <NavigationProperty Name="Security_Analytics" Relationship="MetopeDbModel.FK_Security_Analytics_Entity" FromRole="Entity" ToRole="Security_Analytics" />
+          </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Entity_ID" />
@@ -1367,6 +1484,7 @@
           <NavigationProperty Name="Security_Price" Relationship="MetopeDbModel.FK_Security_Price_User" FromRole="User" ToRole="Security_Price" />
           <NavigationProperty Name="Security_Price_History" Relationship="MetopeDbModel.FK_Security_Price_History_User" FromRole="User" ToRole="Security_Price_History" />
           <NavigationProperty Name="Security_Dividend_Detail" Relationship="MetopeDbModel.FK_Security_Dividend_Detail_User" FromRole="User" ToRole="Security_Dividend_Detail" />
+          <NavigationProperty Name="Security_Analytics" Relationship="MetopeDbModel.FK_Security_Analytics_User" FromRole="User" ToRole="Security_Analytics" />
         </EntityType>
         <Association Name="FK_User_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
@@ -1633,9 +1751,22 @@
             <End Role="Entity" EntitySet="Entities" />
             <End Role="Party_Financials_History" EntitySet="Party_Financials_History" />
           </AssociationSet>
-          <AssociationSet Name="FK_Party_Financials_History_Entitytt" Association="MetopeDbModel.FK_Party_Financials_History_Entitytt">
+          <EntitySet Name="Security_Analytics" EntityType="MetopeDbModel.Security_Analytics" />
+          <AssociationSet Name="FK_Security_Analytics_Entity" Association="MetopeDbModel.FK_Security_Analytics_Entity">
             <End Role="Entity" EntitySet="Entities" />
-            <End Role="Party_Financials_History" EntitySet="Party_Financials_History" />
+            <End Role="Security_Analytics" EntitySet="Security_Analytics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Analytics_Security_Detail" Association="MetopeDbModel.FK_Security_Analytics_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Security_Analytics" EntitySet="Security_Analytics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Analytics_Security_Detail2" Association="MetopeDbModel.FK_Security_Analytics_Security_Detail2">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Security_Analytics" EntitySet="Security_Analytics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Analytics_User" Association="MetopeDbModel.FK_Security_Analytics_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Security_Analytics" EntitySet="Security_Analytics" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="AspNetUser">
@@ -2220,7 +2351,9 @@
           <NavigationProperty Name="Security_Price" Relationship="MetopeDbModel.FK_Security_Price_Security_Detail" FromRole="Security_Detail" ToRole="Security_Price" />
           <NavigationProperty Name="Security_Dividend_Detail" Relationship="MetopeDbModel.FK_Security_Dividend_Detail_Security_Detail" FromRole="Security_Detail" ToRole="Security_Dividend_Detail" />
           <NavigationProperty Name="Party_Financials" Relationship="MetopeDbModel.FK_Party_Financials_Security_Detail" FromRole="Security_Detail" ToRole="Party_Financials" />
-        </EntityType>
+          <NavigationProperty Name="Security_Analytics" Relationship="MetopeDbModel.FK_Security_Analytics_Security_Detail" FromRole="Security_Detail" ToRole="Security_Analytics" />
+          <NavigationProperty Name="Security_Analytics1" Relationship="MetopeDbModel.FK_Security_Analytics_Security_Detail2" FromRole="Security_Detail" ToRole="Security_Analytics" />
+          </EntityType>
         <Association Name="FK_Security_Detail_Country">
           <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
           <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="*" />
@@ -2713,7 +2846,6 @@
           <Property Name="Sector_Other" Type="Decimal" Precision="5" Scale="2" />
           <Property Name="Sector_Offshore" Type="Decimal" Precision="5" Scale="2" />
           <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Party_Financials_History_Entity" FromRole="Party_Financials_History" ToRole="Entity" />
-          <NavigationProperty Name="Entity1" Relationship="MetopeDbModel.FK_Party_Financials_History_Entitytt" FromRole="Party_Financials_History" ToRole="Entity" />
         </EntityType>
         <Association Name="FK_Party_Financials_History_Entity">
           <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
@@ -2727,15 +2859,123 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Party_Financials_History_Entitytt">
+        <EntityType Name="Security_Analytics">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Security_ID" />
+          </Key>
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Security_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Issued_Amount" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Market_Capitalisation" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Risk_Premium" Type="Decimal" Precision="8" Scale="6" />
+          <Property Name="Exit_Price" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Total_Return_ME_1YR" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Total_Return_ME_2YR" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Total_Return_ME_3YR" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Historic_Distribution" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Distribution_Growth_Forecast_Yr1" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="Distribution_Growth_Forecast_Yr2" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="Distribution_Growth_Forecast_Yr3" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="Forecast_Distribution_Yr1" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Distribution_Yr2" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Distribution_Yr3" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Earnings_Growth_Compounded" Type="Decimal" Precision="9" Scale="8" />
+          <Property Name="Earnings_Forecast_Yr3" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Historic_Dividend_Yield_FYE" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Forward_Dividend_Yield_FYE" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Yr3_Forward_Dividend_Yield" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Rolling_12M_Forward_Yield" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Historical_Earnings_FYE" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Earnings_Forecast_Yr1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Earnings_Forecast_Yr2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Historic_Dividend_Yield_Relative" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Rolling_12M_Historic_Distribution_PriceCurr" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Short_Term_Market_Rerate" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Forecast_12M_Total_Return" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Clean_Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Rolling_Dividend_Yield_Historic" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Update_User" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Discount_Security_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Net_Present_Value" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="Forecast_Rolling_Custom_Income" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Custom_Period" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="Rolling_12M_Historic_Distribution" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Rolling_12M_Forecast_Distribution" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Yr2_Forward_Dividend_Yield" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Exit_Yield" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Discount_Rate" Type="Decimal" Precision="20" Scale="9" />
+          <Property Name="Distribution_Growth_Compounded" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Forecast_12MRolling_Income_Accrual" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Rolling_12_to_24M_Forecast_Distribution" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Rolling_24_to_36M_Forecast_Distribution" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Yr1_Dividend_Yield_Relative" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Market_Historic_Yield" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Market_Forward_Yield" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Historic_Distribution_PriceCurr" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Distribution_Yr1_PriceCurr" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Distribution_Yr2_PriceCurr" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Distribution_Yr3_PriceCurr" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Rolling_12M_Forecast_Distribution_PriceCurr" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Rolling_12_24M_Forecast_Distribution_PriceCurr" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Rolling_24_36M_Forecast_Distribution_PriceCurr" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Distribution_Growth_Forecast_Yr4" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Earnings_Forecast_Yr4" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Forecast_Distribution_Yr4" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="Forecast_Distribution_Yr4_PriceCurr" Type="Decimal" Precision="12" Scale="3" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Security_Analytics_Entity" FromRole="Security_Analytics" ToRole="Entity" />
+          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Analytics_Security_Detail" FromRole="Security_Analytics" ToRole="Security_Detail" />
+          <NavigationProperty Name="Security_Detail1" Relationship="MetopeDbModel.FK_Security_Analytics_Security_Detail2" FromRole="Security_Analytics" ToRole="Security_Detail" />
+          <NavigationProperty Name="User" Relationship="MetopeDbModel.FK_Security_Analytics_User" FromRole="Security_Analytics" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Security_Analytics_Entity">
           <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
-          <End Type="MetopeDbModel.Party_Financials_History" Role="Party_Financials_History" Multiplicity="*" />
+          <End Type="MetopeDbModel.Security_Analytics" Role="Security_Analytics" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entity">
               <PropertyRef Name="Entity_ID" />
             </Principal>
-            <Dependent Role="Party_Financials_History">
+            <Dependent Role="Security_Analytics">
               <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Analytics_Security_Detail">
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Analytics" Role="Security_Analytics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Security_Analytics">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Analytics_Security_Detail2">
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Security_Analytics" Role="Security_Analytics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Security_Analytics">
+              <PropertyRef Name="Discount_Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Analytics_User">
+          <End Type="MetopeDbModel.User" Role="User" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Analytics" Role="Security_Analytics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Security_Analytics">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3225,6 +3465,72 @@
                 <ScalarProperty Name="Actual_Forecast_Indicator" ColumnName="Actual_Forecast_Indicator" />
                 <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
                 <ScalarProperty Name="Party_Code" ColumnName="Party_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Security_Analytics">
+            <EntityTypeMapping TypeName="MetopeDbModel.Security_Analytics">
+              <MappingFragment StoreEntitySet="Security_Analytics">
+                <ScalarProperty Name="Forecast_Distribution_Yr4_PriceCurr" ColumnName="Forecast_Distribution_Yr4_PriceCurr" />
+                <ScalarProperty Name="Forecast_Distribution_Yr4" ColumnName="Forecast_Distribution_Yr4" />
+                <ScalarProperty Name="Earnings_Forecast_Yr4" ColumnName="Earnings_Forecast_Yr4" />
+                <ScalarProperty Name="Distribution_Growth_Forecast_Yr4" ColumnName="Distribution_Growth_Forecast_Yr4" />
+                <ScalarProperty Name="Rolling_24_36M_Forecast_Distribution_PriceCurr" ColumnName="Rolling_24_36M_Forecast_Distribution_PriceCurr" />
+                <ScalarProperty Name="Rolling_12_24M_Forecast_Distribution_PriceCurr" ColumnName="Rolling_12_24M_Forecast_Distribution_PriceCurr" />
+                <ScalarProperty Name="Rolling_12M_Forecast_Distribution_PriceCurr" ColumnName="Rolling_12M_Forecast_Distribution_PriceCurr" />
+                <ScalarProperty Name="Forecast_Distribution_Yr3_PriceCurr" ColumnName="Forecast_Distribution_Yr3_PriceCurr" />
+                <ScalarProperty Name="Forecast_Distribution_Yr2_PriceCurr" ColumnName="Forecast_Distribution_Yr2_PriceCurr" />
+                <ScalarProperty Name="Forecast_Distribution_Yr1_PriceCurr" ColumnName="Forecast_Distribution_Yr1_PriceCurr" />
+                <ScalarProperty Name="Historic_Distribution_PriceCurr" ColumnName="Historic_Distribution_PriceCurr" />
+                <ScalarProperty Name="Market_Forward_Yield" ColumnName="Market_Forward_Yield" />
+                <ScalarProperty Name="Market_Historic_Yield" ColumnName="Market_Historic_Yield" />
+                <ScalarProperty Name="Forecast_Yr1_Dividend_Yield_Relative" ColumnName="Forecast_Yr1_Dividend_Yield_Relative" />
+                <ScalarProperty Name="Rolling_24_to_36M_Forecast_Distribution" ColumnName="Rolling_24_to_36M_Forecast_Distribution" />
+                <ScalarProperty Name="Rolling_12_to_24M_Forecast_Distribution" ColumnName="Rolling_12_to_24M_Forecast_Distribution" />
+                <ScalarProperty Name="Forecast_12MRolling_Income_Accrual" ColumnName="Forecast_12MRolling_Income_Accrual" />
+                <ScalarProperty Name="Distribution_Growth_Compounded" ColumnName="Distribution_Growth_Compounded" />
+                <ScalarProperty Name="Discount_Rate" ColumnName="Discount_Rate" />
+                <ScalarProperty Name="Exit_Yield" ColumnName="Exit_Yield" />
+                <ScalarProperty Name="Yr2_Forward_Dividend_Yield" ColumnName="Yr2_Forward_Dividend_Yield" />
+                <ScalarProperty Name="Rolling_12M_Forecast_Distribution" ColumnName="Rolling_12M_Forecast_Distribution" />
+                <ScalarProperty Name="Rolling_12M_Historic_Distribution" ColumnName="Rolling_12M_Historic_Distribution" />
+                <ScalarProperty Name="Custom_Period" ColumnName="Custom_Period" />
+                <ScalarProperty Name="Forecast_Rolling_Custom_Income" ColumnName="Forecast_Rolling_Custom_Income" />
+                <ScalarProperty Name="Net_Present_Value" ColumnName="Net_Present_Value" />
+                <ScalarProperty Name="Discount_Security_ID" ColumnName="Discount_Security_ID" />
+                <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
+                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
+                <ScalarProperty Name="Rolling_Dividend_Yield_Historic" ColumnName="Rolling_Dividend_Yield_Historic" />
+                <ScalarProperty Name="Clean_Price" ColumnName="Clean_Price" />
+                <ScalarProperty Name="Forecast_12M_Total_Return" ColumnName="Forecast_12M_Total_Return" />
+                <ScalarProperty Name="Short_Term_Market_Rerate" ColumnName="Short_Term_Market_Rerate" />
+                <ScalarProperty Name="Rolling_12M_Historic_Distribution_PriceCurr" ColumnName="Rolling_12M_Historic_Distribution_PriceCurr" />
+                <ScalarProperty Name="Historic_Dividend_Yield_Relative" ColumnName="Historic_Dividend_Yield_Relative" />
+                <ScalarProperty Name="Earnings_Forecast_Yr2" ColumnName="Earnings_Forecast_Yr2" />
+                <ScalarProperty Name="Earnings_Forecast_Yr1" ColumnName="Earnings_Forecast_Yr1" />
+                <ScalarProperty Name="Historical_Earnings_FYE" ColumnName="Historical_Earnings_FYE" />
+                <ScalarProperty Name="Rolling_12M_Forward_Yield" ColumnName="Rolling_12M_Forward_Yield" />
+                <ScalarProperty Name="Yr3_Forward_Dividend_Yield" ColumnName="Yr3_Forward_Dividend_Yield" />
+                <ScalarProperty Name="Forward_Dividend_Yield_FYE" ColumnName="Forward_Dividend_Yield_FYE" />
+                <ScalarProperty Name="Historic_Dividend_Yield_FYE" ColumnName="Historic_Dividend_Yield_FYE" />
+                <ScalarProperty Name="Earnings_Forecast_Yr3" ColumnName="Earnings_Forecast_Yr3" />
+                <ScalarProperty Name="Earnings_Growth_Compounded" ColumnName="Earnings_Growth_Compounded" />
+                <ScalarProperty Name="Forecast_Distribution_Yr3" ColumnName="Forecast_Distribution_Yr3" />
+                <ScalarProperty Name="Forecast_Distribution_Yr2" ColumnName="Forecast_Distribution_Yr2" />
+                <ScalarProperty Name="Forecast_Distribution_Yr1" ColumnName="Forecast_Distribution_Yr1" />
+                <ScalarProperty Name="Distribution_Growth_Forecast_Yr3" ColumnName="Distribution_Growth_Forecast_Yr3" />
+                <ScalarProperty Name="Distribution_Growth_Forecast_Yr2" ColumnName="Distribution_Growth_Forecast_Yr2" />
+                <ScalarProperty Name="Distribution_Growth_Forecast_Yr1" ColumnName="Distribution_Growth_Forecast_Yr1" />
+                <ScalarProperty Name="Historic_Distribution" ColumnName="Historic_Distribution" />
+                <ScalarProperty Name="Total_Return_ME_3YR" ColumnName="Total_Return_ME_3YR" />
+                <ScalarProperty Name="Total_Return_ME_2YR" ColumnName="Total_Return_ME_2YR" />
+                <ScalarProperty Name="Total_Return_ME_1YR" ColumnName="Total_Return_ME_1YR" />
+                <ScalarProperty Name="Exit_Price" ColumnName="Exit_Price" />
+                <ScalarProperty Name="Risk_Premium" ColumnName="Risk_Premium" />
+                <ScalarProperty Name="Market_Capitalisation" ColumnName="Market_Capitalisation" />
+                <ScalarProperty Name="Issued_Amount" ColumnName="Issued_Amount" />
+                <ScalarProperty Name="Security_ID" ColumnName="Security_ID" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

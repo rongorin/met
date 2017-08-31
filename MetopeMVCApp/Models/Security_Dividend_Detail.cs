@@ -10,17 +10,17 @@
 namespace MetopeMVCApp.Models
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.Generic; 
     using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
-    [MetadataType(typeof(SecurityDividendDetailModelMetaData))]
-
+    [MetadataType(typeof(SecurityDividendDetailModelMetaData))] 
     public partial class Security_Dividend_Detail : IValidatableObject
+
     {
         public decimal Entity_ID { get; set; }
         public decimal Security_ID { get; set; }
         public decimal Dividend_Seq_Number { get; set; }
-        public int Dividend_Annual_Number { get; set; }
+        public Nullable<int> Dividend_Annual_Number { get; set; }
         public Nullable<System.DateTime> Forecast_Dividend_Payment_Date { get; set; }
         public string Dividend_Currency_Code { get; set; }
         public Nullable<System.DateTime> Actual_Dividend_Payment_Date { get; set; }
@@ -43,11 +43,10 @@ namespace MetopeMVCApp.Models
         public virtual Entity Entity { get; set; }
         public virtual Security_Detail Security_Detail { get; set; }
         public virtual User User { get; set; }
-
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {   //if any of the actual values are filled in, then all must be filled in, otherwise fail validation
             if (Actual_Dividend != null || Actual_Dividend_Payment_Date != null || Actual_Ex_Dividend_Date != null || Actual_Last_Date_To_Register != null)
-            { 
+            {
                 if (Actual_Dividend == null || Actual_Dividend_Payment_Date == null || Actual_Ex_Dividend_Date == null || Actual_Last_Date_To_Register == null)
                 {
                     yield return new ValidationResult("Must fill in all the Actual values");

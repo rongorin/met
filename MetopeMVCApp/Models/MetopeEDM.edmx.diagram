@@ -67,12 +67,16 @@
         <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Security_Detail" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_User" />
-        <EntityTypeShape EntityType="MetopeDbModel.Party_Financials" Width="1.5" PointX="21" PointY="5.75" />
+        <EntityTypeShape EntityType="MetopeDbModel.Party_Financials" Width="2.625" PointX="21" PointY="5.75" />
         <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_Security_Detail" />
         <EntityTypeShape EntityType="MetopeDbModel.Party_Financials_History" Width="1.5" PointX="4.125" PointY="44.875" />
         <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_History_Entity" />
-        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_History_Entitytt" />
+        <EntityTypeShape EntityType="MetopeDbModel.Security_Analytics" Width="1.5" PointX="15" PointY="0.75" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Analytics_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Analytics_Security_Detail" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Analytics_Security_Detail2" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Analytics_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
