@@ -80,6 +80,7 @@ namespace MetopeMVCApp.Controllers
                     db11.Add(partyDebtAnalysis);
                     db11.Save();
                     TempData.Add("ResultMessage", "new PartyDebtAnalysis \"" + partyDebtAnalysis.Party_Code + "\" created successfully!");
+               
                     if (navIndicator == "")
                         return RedirectToAction("Index");
                     else

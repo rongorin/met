@@ -332,8 +332,32 @@ namespace MetopeMVCApp.Filters
                  //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
              } 
-             filterContext.Controller.ViewBag.Securities_All = new SelectList(secs,     "Security_ID",   "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll);
+             filterContext.Controller.ViewBag.Securities_All = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll);
                                       //ViewBag.ActionStatusId = new SelectList(repository.GetAll<ActionStatus>(), "ActionStatusId", "Name", myAction.ActionStatusId);
+             base.OnActionExecuted(filterContext);
+         }
+
+     }
+
+     public class AllSecuritiesInclGenericFilter : ActionFilterAttribute
+     {
+         //This Action filter obtains all the securities for both inScope and Generic Entitys . 
+         public override void OnActionExecuted(ActionExecutedContext filterContext)
+         {
+             IQueryable<Security_Detail> secs;
+             if ((secs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Security_Detail>)) == null)
+             {
+                 bool getInScopeOnly = false;
+                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+
+                 secs = svc.ListSecurities(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")),
+                                           Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity),
+                                           "", getInScopeOnly);
+                 //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
+                 filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
+             }
+             filterContext.Controller.ViewBag.Securities_All = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll);
+             //ViewBag.ActionStatusId = new SelectList(repository.GetAll<ActionStatus>(), "ActionStatusId", "Name", myAction.ActionStatusId);
              base.OnActionExecuted(filterContext);
          }
 

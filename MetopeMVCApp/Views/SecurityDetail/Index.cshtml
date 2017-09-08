@@ -10,8 +10,7 @@
     //                   new SelectListItem { Text = "50", Value = "50" }		
     //                   new SelectListItem { Text = "50", Value = "100" }		
      //                   }; 
-    List<string> _sizes = new List<string>() { "10", "20", "50", "100" }; 
-    //ViewBag.SkipValue = ((SelectList)ViewBag.DogNames).SelectedValue ?? Convert.ToInt16(numOfRows.Skip(1).First().Value); 
+    List<string> _sizes = new List<string>() { "10", "20", "50", "100" };  
     
     ViewBag.RowsPgSelected = ((SelectList)ViewBag.RowsPerPage).SelectedValue ?? _sizes[1];
      
@@ -25,7 +24,26 @@
     <link href="~/Content/cssNoLines.css" rel="stylesheet" />
     <link href="~/Content/myButtons.css" rel="stylesheet" />
 }
-        
+@helper CustomRenderingOfColumn(MetopeMVCApp.Models.SecurityDetailIndexModel c)
+{
+    if (c.HasAnalystics > 0)
+    { 
+    <text>
+        <a href="@Url.Action("Edit", "SecurityAnalytics", new { SecurityId = c.Security_ID, EntityId = c.Entity_ID, Nav = 1 })">
+            <span class="badge">Analytics</span>
+        </a>
+    </text>
+    }
+    else
+    {
+    <text> 
+        <a href="@Url.Action("Create", "SecurityAnalytics", new { SecurityId = c.Security_ID, EntityId = c.Entity_ID, Nav = 1 })">
+            <span class="badge">Analytics (create)</span>
+        </a>
+    </text> 
+    }
+}
+ 
 @helper Truncate(string input, int length)
 {
     if (input.Length <= length)
@@ -73,17 +91,19 @@
     @Html.Partial("_MsgSuccesFail", Model)
     <div class="code-cut">
         @Html.Grid(Model).Named("securityDetails").Columns(columns =>
-    { 
+    {
 
+        //hides column, but use this in js:
+        columns.Add(c => c.Entity_ID, true);
+        columns.Add(c => c.HasAnalystics, true); 
+            
         columns.Add(c => c.Ticker)
             .Titled("Ticker").Filterable(true)
             .SetWidth(100);
         columns.Add(c => c.Security_Name).Titled("Security name").Filterable(true);
-        columns.Add(c => c.Security_ID).Titled("Security id").Filterable(true).SetWidth(0);  
+        columns.Add(c => c.Security_ID).Titled("Security id").Filterable(true).SetWidth(0);
         // columns.Add(c => c.Security_Type_Code ).Titled("Return").Encoded(false).Sanitized(false).RenderValueAs(c => @Html.ActionLink(" ", "../LendReturns/Create", new { id = c.NumberOfRows }, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
-
-        //.RenderValueAs(, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
- 
+  
         columns.Add(c => c.Current_Market_Price).Titled("Current Market Price").Filterable(false)
                 .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Current_Market_Price)).Encoded(false)
                 .Sanitized(false)
@@ -112,7 +132,14 @@
                 .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityDividendDetail", new { SecurityId = c.Security_ID })">
                 <span class="badge">Dividends</span>
             </a>);
-    }).WithPaging(Convert.ToInt16(ViewBag.RowsPgSelected),1,"ShowSp").Sortable(true)
+            
+        columns.Add().Encoded(false).Sanitized(false) 
+                .RenderValueAs( c => CustomRenderingOfColumn(c)); 
+         
+        @*columns.Add().Encoded(false).Sanitized(false)
+                .RenderValueAs(c => @<a class="label label-primary" data-popover-content="#popover-@c.Security_ID" href="/categories/@c.Security_ID">@c.HasAnalystics</a>);*@
+
+    }).WithPaging(Convert.ToInt16(ViewBag.RowsPgSelected), 1, "ShowSp").Sortable(true)
     </div>
 </div>
 

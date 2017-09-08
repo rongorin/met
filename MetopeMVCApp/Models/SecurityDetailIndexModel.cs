@@ -16,6 +16,8 @@ namespace MetopeMVCApp.Models
         public Nullable< DateTime> Maturity_Date { get; set; }
         public string Primary_Exch { get; set; }
         public string  Security_Status { get; set; }
-        public int? NumberOfRows { get; set; } 
+        public int? NumberOfRows { get; set; }
+        public int? HasAnalystics { get; set; } 
+        public Security_Analytics Analytics { get; set; }
     }
 }

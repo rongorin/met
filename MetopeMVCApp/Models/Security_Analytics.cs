@@ -10,11 +10,15 @@
 namespace MetopeMVCApp.Models
 {
     using System;
-    using System.Collections.Generic;
-    
+    using System.Collections.Generic; 
+    using MetopeMVCApp.Models.MyMetaData;
+    using System.ComponentModel.DataAnnotations;
+    [MetadataType(typeof(SecurityAnalyticsModelMetaData))]
+
     public partial class Security_Analytics
     {
         public decimal Entity_ID { get; set; }
+  
         public decimal Security_ID { get; set; }
         public decimal Issued_Amount { get; set; }
         public Nullable<decimal> Market_Capitalisation { get; set; }

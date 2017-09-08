@@ -1,0 +1,21 @@
+﻿@model MetopeMVCApp.Models.Security_Analytics
+
+@{
+    ViewBag.Title = "Delete";
+} 
+
+<h2>Are you sure you want to delete this Security Analytic record?</h2>
+<div>
+    <h3>for Security @Html.DisplayFor(model => model.Security_Detail.Security_Name)</h3>
+    <hr />
+ 
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

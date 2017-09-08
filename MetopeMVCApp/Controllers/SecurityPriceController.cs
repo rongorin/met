@@ -88,21 +88,25 @@ namespace MetopeMVCApp.Controllers
         }
  
         // GET: SecurityPrice/Create
+        [AllSecuritiesInclGenericFilter]
         public ActionResult Create(int? SecurityId)
-        {
-            var EntityID = (decimal)ViewBag.EntityId; 
+        { 
+            var EntityID = (decimal)ViewBag.EntityId;
+            ViewBag.SecuritiesAll = SecurityId;
 
-            ViewBag.SecurityID = SecurityId;
-            ViewBag.Price_Curr = new SelectList(db.Currencies.OrderBy(r => r.Currency_Name) ,     "Currency_Code", "Currency_Name");
-            ViewBag.Security_ID = new SelectList(db.Security_Detail
-                                                .Where(c => c.Entity_ID == EntityID)
-                                                .OrderBy(r => r.Security_Name),    "Security_ID", "Security_Name", SecurityId); 
+            ViewBag.Price_Curr = new SelectList(db.Currencies.OrderBy(r => r.Currency_Name) ,     "Currency_Code", "Currency_Name"); 
+
+            //ViewBag.SecurityID = SecurityId;
+            //ViewBag.Security_ID = new SelectList(db.Security_Detail
+            //                                    .Where(c => c.Entity_ID == EntityID)
+            //                                    .OrderBy(r => r.Security_Name),    "Security_ID", "Security_Name", SecurityId); 
             return View();
         }
 
         // POST: SecurityPrice/Create  
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllSecuritiesInclGenericFilter]
         public ActionResult Create([Bind(Include = "Security_ID,Price_Curr,All_In_Price,Clean_Price,Accrued_Income_Price,Price_Source,Yield_To_Maturity,Discount_Rate,Last_Update_User,Last_Update_Date,Issued_Amount,Free_Float_Issued_Amount,Record_Date")] Security_Price security_Price)
         {
             decimal EntityID = (decimal)ViewBag.EntityId; 
