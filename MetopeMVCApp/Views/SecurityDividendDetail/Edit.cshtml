@@ -30,11 +30,25 @@
 
         @Html.HiddenFor(model => model.Dividend_Seq_Number)
           
-        @Html.EditorForModel("Security_Dividend_DetailVert")
- 
+        @Html.EditorForModel("Security_Dividend_DetailVert") 
     </div>
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/datetime")
+    @Scripts.Render("~/bundles/datetime") 
+
+    <script> 
+        $(function () {
+            checkSelection();
+        });
+        function checkSelection() { 
+            var selectedItem = $('#Dividend_Type').val(); 
+            if (selectedItem == "S" || selectedItem == "E") {
+                $("#showDivtype").hide();
+            } else  {
+                $("#showDivtype").show();
+            }
+        }; 
+    </script> 
 } 
+ 

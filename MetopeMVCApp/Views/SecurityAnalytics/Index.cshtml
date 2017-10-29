@@ -40,11 +40,9 @@
     <div class="code-cut">
         @Html.Grid(Model).Named("securityAnalyticsGrd").Columns(columns =>
     {
-        columns.Add(c => c.Short_Name).Titled("Security").Filterable(true)
-                .SetWidth(200); 
         columns.Add(c => c.Ticker)
-               .Titled("Ticker").Filterable(true)
-               .SetWidth(100);
+               .Titled("Ticker").Filterable(true);
+        columns.Add(c => c.Short_Name).Titled("Security Name ").Filterable(true) ; 
         //hides column, but use this in js:
         columns.Add(c => c.Security_ID, true);
         columns.Add(c => c.Entity_ID, true);
@@ -52,29 +50,29 @@
         columns.Add(c => c.Total_Return_ME_1YR).Titled("Total return Yr1").Filterable(false)
                 .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Total_Return_ME_1YR)).Encoded(false)
                 .Sanitized(false)
-                .SetWidth(140);
+                .SetWidth(100);
         columns.Add(c => c.Total_Return_ME_2YR).Titled("Total return Yr2").Filterable(false)
                 .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Total_Return_ME_2YR)).Encoded(false)
                 .Sanitized(false)
-                .SetWidth(140);
+                .SetWidth(100);
         columns.Add(c => c.Total_Return_ME_3YR).Titled("Total return Yr3").Filterable(false)
                 .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Total_Return_ME_3YR)).Encoded(false)
                 .Sanitized(false)
-                .SetWidth(140);
+                .SetWidth(100);
 
-        columns.Add(c => c.Earnings_Forecast_Yr1).Titled("Earnings f/cast Yr1").Filterable(false)
+        columns.Add(c => c.Earnings_Forecast_Yr1).Titled("Earnings f/c Yr1").Filterable(false)
                 .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Earnings_Forecast_Yr1)).Encoded(false)
                 .Sanitized(false)
-                .SetWidth(140); 
-        columns.Add(c => c.Earnings_Forecast_Yr2).Titled("Earnings f/cast Yr2").Filterable(false)
+                .SetWidth(100); 
+        columns.Add(c => c.Earnings_Forecast_Yr2).Titled("Earnings f/c Yr2").Filterable(false)
                 .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Earnings_Forecast_Yr2)).Encoded(false)
                 .Sanitized(false)
-                .SetWidth(140);
+                .SetWidth(100);
 
-        columns.Add(c => c.Earnings_Forecast_Yr3).Titled("Earnings f/cast Yr3").Filterable(false)
+        columns.Add(c => c.Earnings_Forecast_Yr3).Titled("Earnings f/c Yr3").Filterable(false)
                 .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Earnings_Forecast_Yr3)).Encoded(false)
                 .Sanitized(false)
-                .SetWidth(140);   
+                .SetWidth(100);   
          
         columns.Add()
                 .Encoded(false)

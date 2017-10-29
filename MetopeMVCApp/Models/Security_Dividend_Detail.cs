@@ -52,6 +52,16 @@ namespace MetopeMVCApp.Models
                     yield return new ValidationResult("Must fill in all the Actual values");
                 }
             }
+            //this checks that the DividendType I and F do have an Annual Div Number filled in.
+            if (Dividend_Type == "F" || Dividend_Type == "I")
+            {
+                if (Dividend_Annual_Number == null)
+                {
+                    yield return new ValidationResult("The Dividend Annual Number must be supplied");
+
+                }
+            }
+
         }
     }
 }

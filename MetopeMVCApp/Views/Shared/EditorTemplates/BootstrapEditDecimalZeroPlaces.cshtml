@@ -1,0 +1,21 @@
+﻿@model Decimal?
+<div class="col-sm-4">
+    <div class="form-group">
+        @Html.LabelFor(model => model, htmlAttributes:
+                    new
+                    {
+                        @class = "control-label col-md-5 input-sm",
+                        style = "max-width:100% ;text-align: right"
+                    })
+        <div class="col-md-7">
+            @Html.TextBoxFor(model => model, "{0:0}", new
+                {
+                    @class = "form-control ",
+                    placeholder = ViewData.ModelMetadata.Watermark,
+                    style = "max-width:100%; text-align: right"
+                })
+            @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+</div>
