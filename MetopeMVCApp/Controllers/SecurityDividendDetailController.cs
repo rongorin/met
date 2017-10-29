@@ -17,8 +17,7 @@ namespace MetopeMVCApp.Controllers
 {
     [SetAllowedEntityIdAttribute]
     public class SecurityDividendDetailController : Controller
-    {
-        private MetopeDbEntities db = new MetopeDbEntities();
+    { 
         private readonly ISecurityDividendDetailRepository db11;
         private readonly ISecurityDetailRepository db2;
 
@@ -71,14 +70,15 @@ namespace MetopeMVCApp.Controllers
             var security = db2.FindBy(c => c.Security_ID == SecurityId && c.Entity_ID == EntityID)
                                     //.MatchCriteria(c => c.Entity_ID == EntityID)
                                     .FirstOrDefault();
-            var sddMaxNum = db11.GetMaxDividendSeqNo(EntityID, SecurityId) + 1;
-              
+
+            //setup of the Dividend Seq No to be ten plus the last one.  (but user can override this num if want to)
+            var sddMaxNum =   db11.GetMaxDividendSeqNo(EntityID, SecurityId) + 10;
+            sddMaxNum -= (sddMaxNum % 10);  
             if (security == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.NextDivSeqNum = sddMaxNum;
-
+            ViewBag.NextDivSeqNum = sddMaxNum; 
             ViewBag.SecuritiesAll = security.Security_ID; 
             ViewBag.SecurityID = security.Security_ID;
             ViewBag.SecurityName = security.Security_Name;
@@ -127,7 +127,8 @@ namespace MetopeMVCApp.Controllers
             //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Dividend_Detail.Security_ID);
             //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Dividend_Detail.Entity_ID);
             ViewBag.EntityId = sdd.Entity_ID;
-            var sddMaxNum = db11.GetMaxDividendSeqNo(EntityID, sdd.Security_ID) + 1;
+            var sddMaxNum = db11.GetMaxDividendSeqNo(EntityID, sdd.Security_ID) + 10;
+            sddMaxNum -= (sddMaxNum % 10);  
 
             ViewBag.NextDivSeqNum = sddMaxNum;
 
@@ -177,6 +178,8 @@ namespace MetopeMVCApp.Controllers
                 db11.Update(security_Dividend_Detail); //sets the modified status 
                 security_Dividend_Detail.Last_Update_Date = DateTime.Now;
                 security_Dividend_Detail.Last_Update_User = User.Identity.Name;
+                if (security_Dividend_Detail.Dividend_Type == "E" || security_Dividend_Detail.Dividend_Type == "S")
+                    security_Dividend_Detail.Dividend_Annual_Number = null; 
                 db11.Save();
                 TempData["ResultMessage"] = "Dividend number " + security_Dividend_Detail.Dividend_Seq_Number.ToString() + " edited successfully!";
                 return RedirectToAction("Index", new { SecurityId = security_Dividend_Detail.Security_ID });     

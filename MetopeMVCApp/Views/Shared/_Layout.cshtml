@@ -18,7 +18,7 @@
     </script>
   
 </head>
-<body>
+<body ng-app>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -33,8 +33,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("General", "About", "Home")</li>
-                    <li>@Html.ActionLink("Support", "Support", "Home")</li> 
-           
+                    <li>@Html.ActionLink("Support", "Support", "Home")</li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -42,20 +42,20 @@
     </div>
     <!--my header-->
     <div id="myHeader">
-        @RenderSection("HeaderPhoto", required: false) 
+        @RenderSection("HeaderPhoto", required: false)
 
-    </div> 
-    <div class="container body-content">  
-        @RenderBody() 
+    </div>
+    <div class="container body-content">
+        @RenderBody()
         <footer>
             <hr />
             <p>&copy; @DateTime.Now.Year - Metope Investment Managers</p>
-        </footer> 
+        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jqueryThings")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("Scripts", required: false) 
+    @RenderSection("Scripts", required: false)
     @MiniProfiler.RenderIncludes()
 
 </body>

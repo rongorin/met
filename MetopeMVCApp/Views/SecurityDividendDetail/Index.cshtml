@@ -19,12 +19,34 @@
     //SelectListItem selectedItem = items.FirstOrDefault(i => i.Value == "1")
     //    ?? items[0];
 }
+
 @section Styles {
     @Styles.Render("~/Content/GridMvc")
     @Styles.Render("~/Content/datetime")
     <link href="~/Content/cssNoLines.css" rel="stylesheet" />
     <link href="~/Content/myButtons.css" rel="stylesheet" /> 
 }
+@helper CustomRenderingOfColumn(MetopeMVCApp.Models.Security_Dividend_Detail sdd)
+{
+    if (sdd.Dividend_Type == "S")
+    {
+        <text>Special</text>
+    }
+    else if (sdd.Dividend_Type == "E")
+    {
+        <text>Exceptional</text>
+    }
+   else if  (sdd.Dividend_Type == "F")
+    { 
+       <text>F</text>
+    }
+    else 
+    {
+        <text>I</text>
+    }
+
+}
+ 
 <h2>
    Security Dividend Details for @Model.SecurityDetails.Security_Name 
 </h2> 
@@ -37,11 +59,12 @@
     {
         columns.Add(c => c.Dividend_Seq_Number)
             .Titled("Sequency No.").Filterable(true)
-            .SetWidth(80);
-
-        columns.Add(c => c.Dividend_Annual_Number)
-            .Titled("Annual No.").Filterable(false)
-            .SetWidth(80);
+            .SetWidth(80); 
+        
+        //show the dividend Type:
+        columns.Add()
+            .Titled("Dividend Type").RenderValueAs(o => CustomRenderingOfColumn(o))
+            .SetWidth(100); 
 
         columns.Add(c => c.Financial_Year)
             .Titled("Financial Year").Filterable(true)
@@ -96,3 +119,4 @@
         }
     </div></div>
     @*  <div class="col-md-offset-3 pull-right ">  *@
+ 

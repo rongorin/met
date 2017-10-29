@@ -23,7 +23,7 @@ namespace MetopeMVCApp.Controllers
     {
         //private IMetopeDbEntities db11;  
      
-        private readonly ISecurityDetailRepository db11 ;
+        private readonly ISecurityDetailRepository db11 ; 
   
  
         public SecurityDetailController(ISecurityDetailRepository iDb)
@@ -60,9 +60,11 @@ namespace MetopeMVCApp.Controllers
                 numberOfRows = 20;
 
             ViewBag.RowsPerPage = new SelectList(numOfRows, "Value", "Text", numberOfRows);
-               
-            var security_detail = db11.GetAll() 
-                     .MatchCriteria(c => c.Entity_ID == EntityID || c.Entity_ID == genericId) 
+
+
+                var security_detail = db11.GetAll().Include(c => c.Security_Analytics)
+                     .MatchCriteria(c => c.Entity_ID == EntityID || c.Entity_ID == genericId)
+
                      .Select(g => new SecurityDetailIndexModel
                      {
                          Security_ID = g.Security_ID,
@@ -74,11 +76,14 @@ namespace MetopeMVCApp.Controllers
                          Primary_Exch = g.Primary_Exch,
                          Maturity_Date = g.Maturity_Date,
                          Security_Status = g.Security_Status,
-                         NumberOfRows = numberOfRows
+                         NumberOfRows = numberOfRows,
+                         HasAnalystics = g.Security_Analytics.Count()
+                         //Analytics = g => g.Wh Select(g => new SecurityDetailIndexModel
                      })
                      .OrderBy(s => s.Security_Name).
                      ToList();
 
+           
             if (Request.IsAjaxRequest())
             {
                 return View(security_detail);
@@ -150,8 +155,7 @@ namespace MetopeMVCApp.Controllers
         [CodeMiscellaneousFilter]
         [BenchmarkPortfolioFilter]
         [PartyFilter]
-        [CurrencyPairFilter]
-
+        [CurrencyPairFilter] 
         public ActionResult Edit(decimal id)
         {
                 var EntityID = (decimal)ViewBag.EntityId;    

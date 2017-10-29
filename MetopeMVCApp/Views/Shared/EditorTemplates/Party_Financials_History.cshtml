@@ -43,13 +43,26 @@
 @Html.EditorFor(model => model.Borrowings, "BootstrapEditDecimal")
 @Html.EditorFor(model => model.Units_Issued, "BootstrapEditDecimal")
 @Html.EditorFor(model => model.Purchases_And_Developments, "BootstrapEditDecimal")
-@Html.EditorFor(model => model.Sales, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Interest_Bearing_Borrowings, "BootstrapEditDecimal")
 @Html.EditorFor(model => model.Total_Assets, "BootstrapEditDecimal")
 @Html.EditorFor(model => model.Current_Liabilities, "BootstrapEditDecimal")
-@Html.EditorFor(model => model.Interest_Bearing_Borrowings, "BootstrapEditDecimal")
-@Html.EditorFor(model => model.Property_Portfolio_Value, "BootstrapEditDecimal")
-@Html.EditorFor(model => model.Forecast_Distributions_Growth, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Sales, "BootstrapEditDecimal")
+ @Html.EditorFor(model => model.OffshoreExposure_WesternEurope, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.OffshoreExposure_CEE, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.OffshoreExposure_US, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.OffshoreExposure_UK, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.OffshoreExposure_Australia, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.OffshoreExposure_Africa, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.OffshoreExposure_Other, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Sector_Retail, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Sector_Office, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Sector_Industrial, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Sector_Residential, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Sector_Other, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Sector_Offshore, "BootstrapEditDecimal")
 
+ 
+ 
 @Html.Partial("_SaveButtonShow", Model)
 
 <div>

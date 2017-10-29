@@ -61,9 +61,17 @@ namespace MetopeMVCApp.Data.Repositories
             //return Context.Database.ExecuteSqlCommand("sp_TestRun {0}", iEntity);
             //return Context.sp_TestRun(iEntity);
         }
-           
-    }
 
+    }
+    public class SecurityAnalyticsRepository : GenericRepository<MetopeDbEntities, Security_Analytics>,
+                                       ISecurityAnalyticsRepository
+    {
+        public IQueryable<Security_Analytics> GetAll(Expression<Func<Security_Analytics, bool>> predicate)
+        {
+            IQueryable<Security_Analytics> query = Context.Set<Security_Analytics>().Where(predicate);
+            return query; 
+        } 
+    }
     public class SecurityPriceRepository : GenericRepository<MetopeDbEntities, Security_Price>,
                           ISecurityPriceRepository
     {

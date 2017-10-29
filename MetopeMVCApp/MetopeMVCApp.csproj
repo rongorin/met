@@ -271,8 +271,11 @@
     <Compile Include="Controllers\PartyFinancialsHistoryController.cs" />
     <Compile Include="Controllers\Port2Controller.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
+    <Compile Include="Controllers\SecurityAnalyticsController.cs" />
     <Compile Include="Controllers\SecurityDetailController.cs" />
-    <Compile Include="Controllers\SecurityDividendDetailController.cs" />
+    <Compile Include="Controllers\SecurityDividendDetailController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\SecurityPriceController.cs" />
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\DebtExpiryProfileRepository.cs" />
@@ -379,6 +382,7 @@
     <Compile Include="Models\MyMetaData\PartyModelMetaData.cs" />
     <Compile Include="Models\MyMetaData\PortfolioDebtAnalysisModelMetaData.cs" />
     <Compile Include="Models\MyMetaData\PortfolioModelMetatData.cs" />
+    <Compile Include="Models\MyMetaData\SecurityAnalyticsModelMetaData.cs" />
     <Compile Include="Models\MyMetaData\SecurityDetailModelMetaData.cs" />
     <Compile Include="Models\MyMetaData\PartyFinancialsModelMetaData.cs" />
     <Compile Include="Models\MyMetaData\SecurityDividendDetailModelMetaData.cs" />
@@ -402,10 +406,14 @@
     <Compile Include="Models\Portfolio_List.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SecurityAnalyticsIndexViewModel.cs" />
     <Compile Include="Models\SecurityDetailIndexModel.cs" />
     <Compile Include="Models\SecurityDividendDetailViewModel.cs" />
     <Compile Include="Models\SecurityPriceEditModel.cs" />
     <Compile Include="Models\SecurityPriceIndexViewModel.cs" />
+    <Compile Include="Models\Security_Analytics.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Security_Detail.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
@@ -646,6 +654,11 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\SecurityDividendDetail\Create.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Delete.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Details.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Edit.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -712,8 +725,7 @@
     <Content Include="Views\Shared\EditorTemplates\Portfolio.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
     <Content Include="Views\SecurityDetail\_Securities.cshtml" />
-    <Content Include="Views\Port2\Create.cshtml" />
-    <Content Include="Views\PartyFinancials\HistoryUnderConstruction.cshtml" />
+    <Content Include="Views\SecurityAnalytics\SecurityAnalyticsHistory.cshtml" />
     <Content Include="Views\PortfolioTestPanel\Edit.cshtml" />
     <Content Include="Views\Home\Support.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -766,11 +778,6 @@
     <Content Include="Views\Shared\EditorTemplates\Party_Financials_History.cshtml" />
     <Content Include="Views\Shared\_SaveButtonShow.cshtml" />
     <Content Include="Views\Shared\_DeleteButtonShow.cshtml" />
-    <Content Include="Views\SecurityDividendDetail\Create.cshtml" />
-    <Content Include="Views\SecurityDividendDetail\Delete.cshtml" />
-    <Content Include="Views\SecurityDividendDetail\Details.cshtml" />
-    <Content Include="Views\SecurityDividendDetail\Edit.cshtml" />
-    <Content Include="Views\SecurityDividendDetail\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Security_Dividend_Detail.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BootstrapEditSmallIntVert.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Security_Dividend_DetailVert.cshtml" />
@@ -778,6 +785,15 @@
     <Content Include="Views\Shared\EditorTemplates\BootstrapEditIntVertic.cshtml" />
     <Content Include="Views\Shared\_StoredProcButtons.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimal4PlacesVertic.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimal6Places.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Analytics.cshtml" />
+    <Content Include="Views\SecurityAnalytics\Create.cshtml" />
+    <Content Include="Views\SecurityAnalytics\Delete.cshtml" />
+    <Content Include="Views\SecurityAnalytics\Details.cshtml" />
+    <Content Include="Views\SecurityAnalytics\Edit.cshtml" />
+    <Content Include="Views\SecurityAnalytics\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimalZeroPlaces.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimal6PlacesVertic.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
