@@ -10,15 +10,14 @@
 namespace MetopeMVCApp.Models
 {
     using System;
-    using System.Collections.Generic; 
+    using System.Collections.Generic;
     using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityAnalyticsModelMetaData))]
-
+    
     public partial class Security_Analytics
     {
         public decimal Entity_ID { get; set; }
-  
         public decimal Security_ID { get; set; }
         public decimal Issued_Amount { get; set; }
         public Nullable<decimal> Market_Capitalisation { get; set; }
@@ -80,8 +79,8 @@ namespace MetopeMVCApp.Models
         public Nullable<decimal> Forecast_Distribution_Yr4_PriceCurr { get; set; }
     
         public virtual Entity Entity { get; set; }
+        public virtual User User { get; set; }
         public virtual Security_Detail Security_Detail { get; set; }
         public virtual Security_Detail Security_Detail1 { get; set; }
-        public virtual User User { get; set; }
     }
 }

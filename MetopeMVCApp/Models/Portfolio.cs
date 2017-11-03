@@ -21,6 +21,7 @@ namespace MetopeMVCApp.Models
         public Portfolio()
         {
             this.Portfolio_List = new HashSet<Portfolio_List>();
+            this.Portfolio_Valuation_History = new HashSet<Portfolio_Valuation_History>();
             this.Security_Detail = new HashSet<Security_Detail>();
         }
     
@@ -46,6 +47,8 @@ namespace MetopeMVCApp.Models
         public virtual Entity Entity { get; set; }
         public virtual ICollection<Portfolio_List> Portfolio_List { get; set; }
         public virtual User User { get; set; }
+        public virtual Portfolio_Valuation Portfolio_Valuation { get; set; }
+        public virtual ICollection<Portfolio_Valuation_History> Portfolio_Valuation_History { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail { get; set; }
     }
 }

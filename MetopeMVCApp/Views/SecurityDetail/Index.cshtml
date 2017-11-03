@@ -144,37 +144,6 @@
 </div>
 
 @section Scripts { @Scripts.Render("~/bundles/datetime")
-    @Scripts.Render("~/bundles/GridMvc") 
-<script>
-    var detailsUrl = '@Url.Action("Edit", "SecurityDetail")';
-    $(function () {
-        pageGrids.securityDetails.onRowSelect(function (e) {
-            var personId = e.row.Security_ID;
-            
-             //alert(personId);
-
-            //$.get(detailsUrl, { id: personId })
-            //    .success(function (data) {
-            //        $('#mainList').html(data);
-            //    });
-
-
-            //$.ajax({
-            //    url: detailsUrl,
-            //    dataType: 'html',
-            //    data: { SecurityID: e.row.SecurityID },
-            //    traditional: true,
-            //    type: 'GET',
-            //    success: function (content) {
-            //        success(content);
-            //    },
-            //    error: function (request, error) {
-            //        alert(request.status);
-            //        if (request.status == 522) window.location.href = request.statusText;
-            //    }
-            //})
-        });
-    });
-</script>
-
+                   @Scripts.Render("~/bundles/GridMvc") 
+     
 }

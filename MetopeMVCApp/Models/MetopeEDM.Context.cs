@@ -41,13 +41,17 @@ namespace MetopeMVCApp.Models
         public virtual DbSet<Party> Parties { get; set; }
         public virtual DbSet<Security_Price> Security_Price { get; set; }
         public virtual DbSet<Security_Price_History> Security_Price_History { get; set; }
-        public virtual DbSet<Security_Detail> Security_Detail { get; set; }
         public virtual DbSet<Party_Debt_Analysis> Party_Debt_Analysis { get; set; }
         public virtual DbSet<Debt_Expiry_Profile> Debt_Expiry_Profile { get; set; }
         public virtual DbSet<Security_Dividend_Detail> Security_Dividend_Detail { get; set; }
         public virtual DbSet<Party_Financials> Party_Financials { get; set; }
         public virtual DbSet<Party_Financials_History> Party_Financials_History { get; set; }
         public virtual DbSet<Security_Analytics> Security_Analytics { get; set; }
+        public virtual DbSet<Portfolio_Valuation> Portfolio_Valuation { get; set; }
+        public virtual DbSet<Portfolio_Valuation_History> Portfolio_Valuation_History { get; set; }
+        public virtual DbSet<Security_Detail> Security_Detail { get; set; }
+        public virtual DbSet<Security_Dividend_Split> Security_Dividend_Split { get; set; }
+        public virtual DbSet<Security_List> Security_List { get; set; }
     
         public virtual int sp_TestRun(Nullable<decimal> entityID)
         {

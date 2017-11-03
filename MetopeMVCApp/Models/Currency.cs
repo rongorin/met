@@ -23,11 +23,11 @@ namespace MetopeMVCApp.Models
             this.Portfolios2 = new HashSet<Portfolio>();
             this.Security_Price = new HashSet<Security_Price>();
             this.Security_Price_History = new HashSet<Security_Price_History>();
+            this.Security_Dividend_Detail = new HashSet<Security_Dividend_Detail>();
             this.Security_Detail2 = new HashSet<Security_Detail>();
             this.Security_Detail3 = new HashSet<Security_Detail>();
             this.Security_Detail4 = new HashSet<Security_Detail>();
             this.Security_Detail5 = new HashSet<Security_Detail>();
-            this.Security_Dividend_Detail = new HashSet<Security_Dividend_Detail>();
         }
     
         public string Currency_Code { get; set; }
@@ -45,12 +45,12 @@ namespace MetopeMVCApp.Models
         public virtual ICollection<Portfolio> Portfolios2 { get; set; }
         public virtual ICollection<Security_Price> Security_Price { get; set; }
         public virtual ICollection<Security_Price_History> Security_Price_History { get; set; }
+        public virtual ICollection<Security_Dividend_Detail> Security_Dividend_Detail { get; set; }
         public virtual Security_Detail Security_Detail { get; set; }
         public virtual Security_Detail Security_Detail1 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail2 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail3 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail4 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail5 { get; set; }
-        public virtual ICollection<Security_Dividend_Detail> Security_Dividend_Detail { get; set; }
     }
 }

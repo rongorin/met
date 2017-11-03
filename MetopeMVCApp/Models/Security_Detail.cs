@@ -21,12 +21,14 @@ namespace MetopeMVCApp.Models
         {
             this.Currencies = new HashSet<Currency>();
             this.Currencies1 = new HashSet<Currency>();
-            this.Security_Price_History = new HashSet<Security_Price_History>();
-            this.Security_Price = new HashSet<Security_Price>();
-            this.Security_Dividend_Detail = new HashSet<Security_Dividend_Detail>();
             this.Party_Financials = new HashSet<Party_Financials>();
             this.Security_Analytics = new HashSet<Security_Analytics>();
             this.Security_Analytics1 = new HashSet<Security_Analytics>();
+            this.Security_Dividend_Detail = new HashSet<Security_Dividend_Detail>();
+            this.Security_Dividend_Split = new HashSet<Security_Dividend_Split>();
+            this.Security_List = new HashSet<Security_List>();
+            this.Security_Price_History = new HashSet<Security_Price_History>();
+            this.Security_Price = new HashSet<Security_Price>();
         }
     
         public decimal Security_ID { get; set; }
@@ -54,7 +56,7 @@ namespace MetopeMVCApp.Models
         public string Price_Curr { get; set; }
         public string Currency_Pair_Code { get; set; }
         public string Share_Class { get; set; }
-        public decimal Current_Market_Price { get; set; }
+        public Nullable<decimal> Current_Market_Price { get; set; }
         public string Index_Type { get; set; }
         public string Clean_Price_Formula { get; set; }
         public string Accrued_Income_Price_Formula { get; set; }
@@ -96,12 +98,14 @@ namespace MetopeMVCApp.Models
         public virtual Entity Entity { get; set; }
         public virtual Exchange Exchange { get; set; }
         public virtual Exchange Exchange1 { get; set; }
-        public virtual Portfolio Portfolio { get; set; }
-        public virtual ICollection<Security_Price_History> Security_Price_History { get; set; }
-        public virtual ICollection<Security_Price> Security_Price { get; set; }
-        public virtual ICollection<Security_Dividend_Detail> Security_Dividend_Detail { get; set; }
         public virtual ICollection<Party_Financials> Party_Financials { get; set; }
+        public virtual Portfolio Portfolio { get; set; }
         public virtual ICollection<Security_Analytics> Security_Analytics { get; set; }
         public virtual ICollection<Security_Analytics> Security_Analytics1 { get; set; }
+        public virtual ICollection<Security_Dividend_Detail> Security_Dividend_Detail { get; set; }
+        public virtual ICollection<Security_Dividend_Split> Security_Dividend_Split { get; set; }
+        public virtual ICollection<Security_List> Security_List { get; set; }
+        public virtual ICollection<Security_Price_History> Security_Price_History { get; set; }
+        public virtual ICollection<Security_Price> Security_Price { get; set; }
     }
 }

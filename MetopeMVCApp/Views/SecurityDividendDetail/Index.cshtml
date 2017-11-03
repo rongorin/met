@@ -55,7 +55,7 @@
 @Html.Partial("_MsgSuccesFail", Model)
 
 <div class="code-cut">
-    @Html.Grid(Model.SecurityDividendDetail).Named("ast").Columns(columns =>
+    @Html.Grid(Model.SecurityDividendDetail).Named("sdd").Columns(columns =>
     {
         columns.Add(c => c.Dividend_Seq_Number)
             .Titled("Sequency No.").Filterable(true)
@@ -118,5 +118,41 @@
             </div>
         }
     </div></div>
-    @*  <div class="col-md-offset-3 pull-right ">  *@
+@section Scripts { @Scripts.Render("~/bundles/datetime")
+@Scripts.Render("~/bundles/GridMvc")
+<script>
+        var detailsUrl = '@Url.Action("Edit", "SecurityDetail")';
+        $(function () {
+            pageGrids.sdd.onRowSelect(function (e) {
+                var personId = e.row.Security_ID;
+
+             //alert(personId);
+
+            //$.get(detailsUrl, { id: personId })
+            //    .success(function (data) {
+            //        $('#mainList').html(data);
+            //    });
+
+
+            //$.ajax({
+            //    url: detailsUrl,
+            //    dataType: 'html',
+            //    data: { SecurityID: e.row.SecurityID },
+            //    traditional: true,
+            //    type: 'GET',
+            //    success: function (content) {
+            //        success(content);
+            //    },
+            //    error: function (request, error) {
+            //        alert(request.status);
+            //        if (request.status == 522) window.location.href = request.statusText;
+            //    }
+            //})
+        });
+    });
+</script>
+
+}
+
+
  

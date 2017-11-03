@@ -42,7 +42,26 @@
         <AssociationConnector Association="MetopeDbModel.FK_Security_Price_History_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Price_User" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Price_History_User" />
-        <EntityTypeShape EntityType="MetopeDbModel.Security_Detail" Width="1.5" PointX="12.75" PointY="8.375" />
+        <EntityTypeShape EntityType="MetopeDbModel.Party_Debt_Analysis" Width="1.5" PointX="4.125" PointY="16.75" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Debt_Analysis_Entity" />
+        <EntityTypeShape EntityType="MetopeDbModel.Debt_Expiry_Profile" Width="1.5" PointX="4.125" PointY="41.25" />
+        <AssociationConnector Association="MetopeDbModel.FK_Debt_Expiry_Profile_Entity" />
+        <EntityTypeShape EntityType="MetopeDbModel.Security_Dividend_Detail" Width="1.5" PointX="18" PointY="15.125" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Currency_Code" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_User" />
+        <EntityTypeShape EntityType="MetopeDbModel.Party_Financials" Width="2.625" PointX="21" PointY="5.75" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_Entity" />
+        <EntityTypeShape EntityType="MetopeDbModel.Party_Financials_History" Width="1.5" PointX="4.125" PointY="44.875" />
+        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_History_Entity" />
+        <EntityTypeShape EntityType="MetopeDbModel.Security_Analytics" Width="1.5" PointX="15" PointY="0.75" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Analytics_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Analytics_User" />
+        <EntityTypeShape EntityType="MetopeDbModel.Portfolio_Valuation" Width="1.5" PointX="12.25" PointY="7.875" />
+        <EntityTypeShape EntityType="MetopeDbModel.Portfolio_Valuation_History" Width="1.5" PointX="9.25" PointY="12.5" />
+        <EntityTypeShape EntityType="MetopeDbModel.Security_Detail" Width="1.5" PointX="12.75" PointY="12.875" />
+        <EntityTypeShape EntityType="MetopeDbModel.Security_Dividend_Split" Width="1.5" PointX="15" PointY="16.625" />
+        <EntityTypeShape EntityType="MetopeDbModel.Security_List" Width="1.5" PointX="15" PointY="22.625" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Country" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Country1" />
         <AssociationConnector Association="MetopeDbModel.FK_Currency_Currency_Security_ID2" />
@@ -52,31 +71,25 @@
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency2" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency3" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Currency_Pair" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Valuation_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Valuation_History_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Split_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Exchange" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Exchange1" />
-        <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Portfolio_Benchmark" />
-        <AssociationConnector Association="MetopeDbModel.FK_Security_Price_History_Security_Detail" />
-        <AssociationConnector Association="MetopeDbModel.FK_Security_Price_Security_Detail" />
-        <EntityTypeShape EntityType="MetopeDbModel.Party_Debt_Analysis" Width="1.5" PointX="4.125" PointY="16.75" />
-        <AssociationConnector Association="MetopeDbModel.FK_Party_Debt_Analysis_Entity" />
-        <EntityTypeShape EntityType="MetopeDbModel.Debt_Expiry_Profile" Width="1.5" PointX="4.125" PointY="41.25" />
-        <AssociationConnector Association="MetopeDbModel.FK_Debt_Expiry_Profile_Entity" />
-        <EntityTypeShape EntityType="MetopeDbModel.Security_Dividend_Detail" Width="1.5" PointX="18" PointY="15.125" />
-        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Currency_Code" />
-        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Entity" />
-        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Security_Detail" />
-        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_User" />
-        <EntityTypeShape EntityType="MetopeDbModel.Party_Financials" Width="2.625" PointX="21" PointY="5.75" />
-        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_Security_Detail" />
-        <EntityTypeShape EntityType="MetopeDbModel.Party_Financials_History" Width="1.5" PointX="4.125" PointY="44.875" />
-        <AssociationConnector Association="MetopeDbModel.FK_Party_Financials_History_Entity" />
-        <EntityTypeShape EntityType="MetopeDbModel.Security_Analytics" Width="1.5" PointX="15" PointY="0.75" />
-        <AssociationConnector Association="MetopeDbModel.FK_Security_Analytics_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Valuation" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Valuation_History" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Detail_Portfolio_Benchmark" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Valuation_User" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Valuation_History_User" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Analytics_Security_Detail" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Analytics_Security_Detail2" />
-        <AssociationConnector Association="MetopeDbModel.FK_Security_Analytics_User" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Detail_Security_Detail" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Dividend_Split_Security_Detail" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_List_Security_Detail" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Price_History_Security_Detail" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Price_Security_Detail" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
