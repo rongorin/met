@@ -8,11 +8,23 @@ namespace MetopeMVCApp.Controllers
 {
     public class ErrorpageController : Controller
     {
-        //
-        // GET: /Errorpage/
-        public ActionResult Errormessage()
+        public ActionResult Error(int statusCode, Exception exception)
         {
-            return View();
+            Response.StatusCode = statusCode;
+            var error = new Models.Custom.MyError
+            {
+                StatusCode = statusCode.ToString(),
+                StatusDescription = HttpWorkerRequest.GetStatusDescription(statusCode),
+                Message = exception.ToString(),
+                DateTime = DateTime.Now
+            };
+            return View(error);
         }
+
+        // GET: /Errorpage/
+        //public ActionResult Errormessage()
+        //{
+        //    return View();
+        //}
 	}
 }

@@ -9,7 +9,7 @@ namespace ASP.MetopeNspace
         {
             filters.Add(new AuthorizeAttribute());
             filters.Add(new HandleErrorAttribute());
-            filters.Add(new SetGenericEntityAttribute());
+            filters.Add(new SetGenericEntityAttribute()); 
         }
     }
 }

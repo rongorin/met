@@ -9,8 +9,7 @@
         @if (HttpContext.Current.Application["TestMode"].ToString() == "Y")
         {
             <li>
-                <a href="#"><span class="text-warning">@Html.Action("ShowTestMode", "Home") </span>  </a>
-
+                <a href="#"><span class="text-warning">@Html.Action("ShowTestMode", "Home") </span>  </a> 
             </li>
         }
         <li >
@@ -49,7 +48,7 @@
                 @*<li><a href="#">Other</a></li>*@
             </ul>
         </li>
-         
+
 
 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>

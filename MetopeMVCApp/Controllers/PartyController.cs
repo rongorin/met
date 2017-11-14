@@ -13,12 +13,14 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using MetopeMVCApp.Data;
 using System.Configuration;
 using MetopeMVCApp.Filters;
+using NLog;
 
 namespace MetopeMVCApp.Controllers
 {
     [SetAllowedEntityIdAttribute]
     public class PartyController : Controller
-    {
+    { 
+
         private readonly IPartyRepository db11; 
         private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
         private List<SelectListItem> numOfRows = new List<SelectListItem> {
@@ -34,6 +36,8 @@ namespace MetopeMVCApp.Controllers
          
         public ActionResult Index(int? numberOfRows)  
         {
+             
+
             var currentUser = manager.FindById(User.Identity.GetUserId()); 
             ViewBag.EntityId = currentUser.EntityIdScope;
             if (numberOfRows == null)
@@ -114,27 +118,35 @@ namespace MetopeMVCApp.Controllers
         [CountryFilter]  
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Entity_ID,Party_Code,Party_Name,Party_Type,Financial_Year_End,Country_Code,System_Locked,SWIFT_ID,BIC_Code")] Party party)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId()); 
-
-            if (ModelState.IsValid)
+        { 
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            try
             {
-                if (currentUser.EntityIdScope != party.Entity_ID && (decimal)ViewBag.genericEntity != party.Entity_ID)
+                if (ModelState.IsValid)
                 {
-                    ModelState.AddModelError("Error", "An error occurred trying to edit. Party isnt in scope");
+                    //int bb = 11 / aa;
+                    if (currentUser.EntityIdScope != party.Entity_ID && (decimal)ViewBag.genericEntity != party.Entity_ID)
+                    {
+                        ModelState.AddModelError("Error", "An error occurred trying to edit. Party isnt in scope");
+                    }
+                    else
+                    {
+                        db11.Update(party);
+
+                        db11.Save();
+                        TempData.Add("ResultMessage", "Party \"" + party.Party_Name + "\" editied successfully!");
+                        return RedirectToAction("Index");
+                    }
                 }
-                else
-                {
-                    db11.Update(party);
-                    db11.Save();
-                    TempData.Add("ResultMessage", "Party \"" + party.Party_Name + "\" editied successfully!");
-                    return RedirectToAction("Index");
-                }
-            } 
-       
-            return View(party);
-        }
-         
+
+                return View(party);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("error in the follow: {0}","throwing err div zero!"),
+                                    ex);
+            }
+        } 
         [CustomEntityAuthoriseFilter]
         public ActionResult Delete(string PartyCode, decimal EntityId)
         { 

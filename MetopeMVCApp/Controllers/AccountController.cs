@@ -71,8 +71,7 @@ namespace ASP.MetopeNspace.Controllers
        // [AllowAnonymous]
         [Authorize(Roles = "Admin")] 
         public ActionResult Register()
-        {
-
+        { 
             return View();
         }
 
