@@ -528,6 +528,17 @@
           <Property Name="Security_List_Code" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
+        <EntityType Name="Security_List_Detail">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Security_List_Code" />
+          </Key>
+          <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Security_List_Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Security_List_Name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" />
+          <Property Name="System_Locked" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Security_Price">
           <Key>
             <PropertyRef Name="Entity_ID" />
@@ -1221,6 +1232,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Security_List_Detail_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="Security_List_Detail" Type="Self.Security_List_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Security_List_Detail">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Security_List_Security_Detail">
           <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="1" />
           <End Role="Security_List" Type="Self.Security_List" Multiplicity="*" />
@@ -1401,6 +1424,7 @@
           <EntitySet Name="Security_Dividend_Detail" EntityType="Self.Security_Dividend_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Dividend_Split" EntityType="Self.Security_Dividend_Split" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_List" EntityType="Self.Security_List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Security_List_Detail" EntityType="Self.Security_List_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Price" EntityType="Self.Security_Price" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Price_History" EntityType="Self.Security_Price_History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Type" EntityType="Self.Security_Type" Schema="dbo" store:Type="Tables" />
@@ -1601,6 +1625,10 @@
             <End Role="Security_Detail" EntitySet="Security_Detail" />
             <End Role="Security_Dividend_Split" EntitySet="Security_Dividend_Split" />
           </AssociationSet>
+          <AssociationSet Name="FK_Security_List_Detail_Entity" Association="Self.FK_Security_List_Detail_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="Security_List_Detail" EntitySet="Security_List_Detail" />
+          </AssociationSet>
           <AssociationSet Name="FK_Security_List_Security_Detail" Association="Self.FK_Security_List_Security_Detail">
             <End Role="Security_Detail" EntitySet="Security_Detail" />
             <End Role="Security_List" EntitySet="Security_List" />
@@ -1678,6 +1706,7 @@
           <NavigationProperty Name="Portfolio_Valuation_History" Relationship="MetopeDbModel.FK_Portfolio_Valuation_History_Entity" FromRole="Entity" ToRole="Portfolio_Valuation_History" />
           <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Entity" FromRole="Entity" ToRole="Security_Detail" />
           <NavigationProperty Name="Security_Dividend_Split" Relationship="MetopeDbModel.FK_Security_Dividend_Split_Entity" FromRole="Entity" ToRole="Security_Dividend_Split" />
+          <NavigationProperty Name="Security_List_Detail" Relationship="MetopeDbModel.FK_Security_List_Detail_Entity" FromRole="Entity" ToRole="Security_List_Detail" />
           </EntityType>
         <EntityType Name="User">
           <Key>
@@ -1918,7 +1947,6 @@
           <EntitySet Name="Portfolio_Valuation_History" EntityType="MetopeDbModel.Portfolio_Valuation_History" />
           <EntitySet Name="Security_Detail" EntityType="MetopeDbModel.Security_Detail" />
           <EntitySet Name="Security_Dividend_Split" EntityType="MetopeDbModel.Security_Dividend_Split" />
-          <EntitySet Name="Security_List" EntityType="MetopeDbModel.Security_List" />
           <AssociationSet Name="FK_Security_Detail_Country" Association="MetopeDbModel.FK_Security_Detail_Country">
             <End Role="Country" EntitySet="Countries" />
             <End Role="Security_Detail" EntitySet="Security_Detail" />
@@ -2019,10 +2047,6 @@
             <End Role="Security_Detail" EntitySet="Security_Detail" />
             <End Role="Security_Dividend_Split" EntitySet="Security_Dividend_Split" />
           </AssociationSet>
-          <AssociationSet Name="FK_Security_List_Security_Detail" Association="MetopeDbModel.FK_Security_List_Security_Detail">
-            <End Role="Security_Detail" EntitySet="Security_Detail" />
-            <End Role="Security_List" EntitySet="Security_List" />
-          </AssociationSet>
           <AssociationSet Name="FK_Security_Price_History_Security_Detail" Association="MetopeDbModel.FK_Security_Price_History_Security_Detail">
             <End Role="Security_Detail" EntitySet="Security_Detail" />
             <End Role="Security_Price_History" EntitySet="Security_Price_History" />
@@ -2030,6 +2054,16 @@
           <AssociationSet Name="FK_Security_Price_Security_Detail" Association="MetopeDbModel.FK_Security_Price_Security_Detail">
             <End Role="Security_Detail" EntitySet="Security_Detail" />
             <End Role="Security_Price" EntitySet="Security_Price" />
+          </AssociationSet>
+          <EntitySet Name="Security_List_Detail" EntityType="MetopeDbModel.Security_List_Detail" />
+          <AssociationSet Name="FK_Security_List_Detail_Entity" Association="MetopeDbModel.FK_Security_List_Detail_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Security_List_Detail" EntitySet="Security_List_Detail" />
+          </AssociationSet>
+          <EntitySet Name="Security_List" EntityType="MetopeDbModel.Security_List" />
+          <AssociationSet Name="FK_Security_List_Security_Detail" Association="MetopeDbModel.FK_Security_List_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Security_List" EntitySet="Security_List" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="AspNetUser">
@@ -3059,9 +3093,9 @@
           <NavigationProperty Name="Security_Analytics1" Relationship="MetopeDbModel.FK_Security_Analytics_Security_Detail2" FromRole="Security_Detail" ToRole="Security_Analytics" />
           <NavigationProperty Name="Security_Dividend_Detail" Relationship="MetopeDbModel.FK_Security_Dividend_Detail_Security_Detail" FromRole="Security_Detail" ToRole="Security_Dividend_Detail" />
           <NavigationProperty Name="Security_Dividend_Split" Relationship="MetopeDbModel.FK_Security_Dividend_Split_Security_Detail" FromRole="Security_Detail" ToRole="Security_Dividend_Split" />
-          <NavigationProperty Name="Security_List" Relationship="MetopeDbModel.FK_Security_List_Security_Detail" FromRole="Security_Detail" ToRole="Security_List" />
           <NavigationProperty Name="Security_Price_History" Relationship="MetopeDbModel.FK_Security_Price_History_Security_Detail" FromRole="Security_Detail" ToRole="Security_Price_History" />
           <NavigationProperty Name="Security_Price" Relationship="MetopeDbModel.FK_Security_Price_Security_Detail" FromRole="Security_Detail" ToRole="Security_Price" />
+          <NavigationProperty Name="Security_List" Relationship="MetopeDbModel.FK_Security_List_Security_Detail" FromRole="Security_Detail" ToRole="Security_List" />
         </EntityType>
         <EntityType Name="Security_Dividend_Split">
           <Key>
@@ -3075,17 +3109,6 @@
           <Property Name="Security_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Security_Dividend_Split_Entity" FromRole="Security_Dividend_Split" ToRole="Entity" />
           <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Dividend_Split_Security_Detail" FromRole="Security_Dividend_Split" ToRole="Security_Detail" />
-        </EntityType>
-        <EntityType Name="Security_List">
-          <Key>
-            <PropertyRef Name="Security_ID" />
-            <PropertyRef Name="Security_List_Code" />
-            <PropertyRef Name="Entity_ID" />
-          </Key>
-          <Property Name="Security_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Security_List_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_List_Security_Detail" FromRole="Security_List" ToRole="Security_Detail" />
         </EntityType>
         <Association Name="FK_Security_Detail_Country">
           <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
@@ -3397,18 +3420,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Security_List_Security_Detail">
-          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="1" />
-          <End Type="MetopeDbModel.Security_List" Role="Security_List" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Security_Detail">
-              <PropertyRef Name="Security_ID" />
-            </Principal>
-            <Dependent Role="Security_List">
-              <PropertyRef Name="Security_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Security_Price_History_Security_Detail">
           <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="1" />
           <End Type="MetopeDbModel.Security_Price_History" Role="Security_Price_History" Multiplicity="*" />
@@ -3429,6 +3440,53 @@
               <PropertyRef Name="Security_ID" />
             </Principal>
             <Dependent Role="Security_Price">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Security_List_Detail">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Security_List_Code" />
+          </Key>
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Security_List_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Security_List_Name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="System_Locked" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Security_List_Detail_Entity" FromRole="Security_List_Detail" ToRole="Entity" />
+        </EntityType>
+        <Association Name="FK_Security_List_Detail_Entity">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_List_Detail" Role="Security_List_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Security_List_Detail">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Security_List">
+          <Key>
+            <PropertyRef Name="Security_ID" />
+            <PropertyRef Name="Security_List_Code" />
+            <PropertyRef Name="Entity_ID" />
+          </Key>
+          <Property Name="Security_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Security_List_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_List_Security_Detail" FromRole="Security_List" ToRole="Security_Detail" />
+        </EntityType>
+        <Association Name="FK_Security_List_Security_Detail">
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_List" Role="Security_List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Security_List">
               <PropertyRef Name="Security_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -4035,6 +4093,17 @@
                 <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
                 <ScalarProperty Name="Dividend_Split" ColumnName="Dividend_Split" />
                 <ScalarProperty Name="Dividend_Annual_Number" ColumnName="Dividend_Annual_Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Security_List_Detail">
+            <EntityTypeMapping TypeName="MetopeDbModel.Security_List_Detail">
+              <MappingFragment StoreEntitySet="Security_List_Detail">
+                <ScalarProperty Name="System_Locked" ColumnName="System_Locked" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Security_List_Name" ColumnName="Security_List_Name" />
+                <ScalarProperty Name="Security_List_Code" ColumnName="Security_List_Code" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

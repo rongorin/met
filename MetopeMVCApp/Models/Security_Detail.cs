@@ -14,6 +14,7 @@ namespace MetopeMVCApp.Models
     using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityDetailModelMetaData))]
+   
     
     public partial class Security_Detail
     {
@@ -26,9 +27,9 @@ namespace MetopeMVCApp.Models
             this.Security_Analytics1 = new HashSet<Security_Analytics>();
             this.Security_Dividend_Detail = new HashSet<Security_Dividend_Detail>();
             this.Security_Dividend_Split = new HashSet<Security_Dividend_Split>();
-            this.Security_List = new HashSet<Security_List>();
             this.Security_Price_History = new HashSet<Security_Price_History>();
             this.Security_Price = new HashSet<Security_Price>();
+            this.Security_List = new HashSet<Security_List>();
         }
     
         public decimal Security_ID { get; set; }
@@ -104,8 +105,8 @@ namespace MetopeMVCApp.Models
         public virtual ICollection<Security_Analytics> Security_Analytics1 { get; set; }
         public virtual ICollection<Security_Dividend_Detail> Security_Dividend_Detail { get; set; }
         public virtual ICollection<Security_Dividend_Split> Security_Dividend_Split { get; set; }
-        public virtual ICollection<Security_List> Security_List { get; set; }
         public virtual ICollection<Security_Price_History> Security_Price_History { get; set; }
         public virtual ICollection<Security_Price> Security_Price { get; set; }
+        public virtual ICollection<Security_List> Security_List { get; set; }
     }
 }

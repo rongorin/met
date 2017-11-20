@@ -35,6 +35,7 @@ namespace MetopeMVCApp.Models
             this.Portfolio_Valuation_History = new HashSet<Portfolio_Valuation_History>();
             this.Security_Detail = new HashSet<Security_Detail>();
             this.Security_Dividend_Split = new HashSet<Security_Dividend_Split>();
+            this.Security_List_Detail = new HashSet<Security_List_Detail>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -62,5 +63,6 @@ namespace MetopeMVCApp.Models
         public virtual ICollection<Portfolio_Valuation_History> Portfolio_Valuation_History { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail { get; set; }
         public virtual ICollection<Security_Dividend_Split> Security_Dividend_Split { get; set; }
+        public virtual ICollection<Security_List_Detail> Security_List_Detail { get; set; }
     }
 }

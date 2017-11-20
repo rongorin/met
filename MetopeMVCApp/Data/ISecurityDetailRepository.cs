@@ -78,6 +78,12 @@ namespace MetopeMVCApp.Data
     public interface IPartyDebtAnalysisRepository : IGenericRepository<Party_Debt_Analysis>
     { 
     }
+    public interface ISecurityListDetailRepository : IGenericRepository<Security_List_Detail>
+    { 
+    }
+    public interface ISecurityListRepository : IGenericRepository<Security_List>
+    {
+    }
   
     public interface ICodeMiscellaneous : IGenericRepository<Code_Miscellaneous>
     {

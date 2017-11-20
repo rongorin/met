@@ -290,6 +290,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\SecurityListController.cs" />
+    <Compile Include="Controllers\SecurityListDetailController.cs" />
     <Compile Include="Controllers\SecurityPriceController.cs" />
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\DebtExpiryProfileRepository.cs" />
@@ -354,6 +355,7 @@
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CheckBoxListItem.cs" />
     <Compile Include="Models\Code_Miscellaneous.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
@@ -431,6 +433,7 @@
     <Compile Include="Models\SecurityAnalyticsIndexViewModel.cs" />
     <Compile Include="Models\SecurityDetailIndexModel.cs" />
     <Compile Include="Models\SecurityDividendDetailViewModel.cs" />
+    <Compile Include="Models\SecurityListDetailIndexVM.cs" />
     <Compile Include="Models\SecurityPriceEditModel.cs" />
     <Compile Include="Models\SecurityPriceIndexViewModel.cs" />
     <Compile Include="Models\Security_Analytics.cs">
@@ -446,6 +449,9 @@
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Security_List.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Security_List_Detail.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Security_Price.cs">
@@ -633,6 +639,7 @@
     </Content>
     <Content Include="Models\MetopeEDM.edmx.diagram">
       <DependentUpon>MetopeEDM.edmx</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Models\MetopeEDM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -826,11 +833,22 @@
     <Content Include="Views\Party\Trouble.cshtml" />
     <Content Include="Views\Errorpage\Errormessage.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\PortfolioValuation\Create.cshtml" />
+    <Content Include="Views\PortfolioValuation\Delete.cshtml" />
+    <Content Include="Views\PortfolioValuation\Details.cshtml" />
+    <Content Include="Views\PortfolioValuation\Edit.cshtml" />
+    <Content Include="Views\PortfolioValuation\Index.cshtml" />
     <Content Include="Views\SecurityList\Create.cshtml" />
     <Content Include="Views\SecurityList\Delete.cshtml" />
     <Content Include="Views\SecurityList\Details.cshtml" />
     <Content Include="Views\SecurityList\Edit.cshtml" />
     <Content Include="Views\SecurityList\Index.cshtml" />
+    <Content Include="Views\SecurityListDetail\Create.cshtml" />
+    <Content Include="Views\SecurityListDetail\Delete.cshtml" />
+    <Content Include="Views\SecurityListDetail\Details.cshtml" />
+    <Content Include="Views\SecurityListDetail\Edit.cshtml" />
+    <Content Include="Views\SecurityListDetail\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CheckBoxListItem.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -839,6 +857,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Contact\" />
     <Folder Include="Views\Elmah\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

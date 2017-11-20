@@ -126,6 +126,16 @@ namespace MetopeMVCApp.Data.Repositories
         }
 
     }
+    public class SecurityListDetailRepository : GenericRepository<MetopeDbEntities, Security_List_Detail>,
+                                      ISecurityListDetailRepository
+    {
+        public IQueryable<Security_List_Detail> GetAll(Expression<Func<Security_List_Detail, bool>> predicate)
+        {
+            IQueryable<Security_List_Detail> query = Context.Set<Security_List_Detail>().Where(predicate);
+            return query;
+        } 
+    }
+
     public class CodeMiscellaneousRepository : GenericRepository<MetopeDbEntities, Code_Miscellaneous>,
                                   ICodeMiscellaneous
     { 

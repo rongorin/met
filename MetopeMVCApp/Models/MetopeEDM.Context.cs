@@ -51,6 +51,7 @@ namespace MetopeMVCApp.Models
         public virtual DbSet<Portfolio_Valuation_History> Portfolio_Valuation_History { get; set; }
         public virtual DbSet<Security_Detail> Security_Detail { get; set; }
         public virtual DbSet<Security_Dividend_Split> Security_Dividend_Split { get; set; }
+        public virtual DbSet<Security_List_Detail> Security_List_Detail { get; set; }
         public virtual DbSet<Security_List> Security_List { get; set; }
     
         public virtual int sp_TestRun(Nullable<decimal> entityID)
