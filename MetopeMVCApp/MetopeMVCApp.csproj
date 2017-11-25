@@ -188,6 +188,7 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -352,6 +353,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddSecurityListDetailVM.cs" />
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
@@ -373,6 +375,7 @@
     <Compile Include="Models\Debt_Expiry_Profile.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EditSecurityListDetailVM.cs" />
     <Compile Include="Models\Entity.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
@@ -849,6 +852,8 @@
     <Content Include="Views\SecurityListDetail\Edit.cshtml" />
     <Content Include="Views\SecurityListDetail\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CheckBoxListItem.cshtml" />
+    <Content Include="Views\Shared\_SecurityList.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_List_Detail.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

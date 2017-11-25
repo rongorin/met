@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Transactions;
 using System.Web;
 // for this using of generic repository technique see http://www.tugberkugurlu.com/archive/generic-repository-pattern-entity-framework-asp-net-mvc-and-unit-testing-triangle
 
@@ -122,20 +123,97 @@ namespace MetopeMVCApp.Data.Repositories
         }
         public Party Get(string PartyCode)
         {
-            return Context.Set<Party>().Find(PartyCode); 
-        }
 
+            return Context.Set<Party>().Find(PartyCode); 
+
+        } 
     }
     public class SecurityListDetailRepository : GenericRepository<MetopeDbEntities, Security_List_Detail>,
-                                      ISecurityListDetailRepository
+                                        ISecurityListDetailRepository
     {
         public IQueryable<Security_List_Detail> GetAll(Expression<Func<Security_List_Detail, bool>> predicate)
         {
             IQueryable<Security_List_Detail> query = Context.Set<Security_List_Detail>().Where(predicate);
             return query;
-        } 
-    }
+        }
 
+        //here, customise the Add to save parent, then each children (Security_list) recs
+        public void Add(decimal entityId, string securityListCode, string securityListName, string description, bool systemlocked, List<decimal> securitieslist)
+        {
+                //1. Load the SecurityListDetail
+            var sLD = new Security_List_Detail()
+            {
+               Entity_ID = entityId,
+               Security_List_Code = securityListCode,
+               Security_List_Name = securityListName,
+               Description = description,
+               System_Locked = systemlocked
+            };
+               //2. Load and Save each security from the secList to the Security_List 
+            foreach (var secID in securitieslist) 
+            {
+                var sl = new Security_List()
+                {
+                    Entity_ID = entityId,
+                    Security_ID = secID,
+                    Security_List_Code = securityListCode
+                };
+                Context.Set<Security_List>().Add(sl);  
+            }
+              //3. Save the SecurityListDetail 
+            Context.Set<Security_List_Detail>().Add(sLD); 
+        }
+
+        public void Delete(Security_List_Detail SecurityListDetail)
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                //1 delete all Security_List for this List_Code:  
+                Context.Set<Security_List>().RemoveRange(Context.Set<Security_List>()
+                                        .Where(c => c.Security_List_Code == SecurityListDetail.Security_List_Code &&
+                                                    c.Entity_ID == SecurityListDetail.Entity_ID));
+                base.Delete(SecurityListDetail);
+            }
+        }
+        public void Edit(decimal entityId, string securityListCode, string securityListName, string description,
+                                    bool systemlocked, List<decimal> securitieslist)
+        { 
+            using (TransactionScope scope = new TransactionScope())
+            {
+                //1. get and update the SecurityListDetail
+                Security_List_Detail sLD = FindBy(r => r.Security_List_Code == securityListCode && r.Entity_ID == entityId).FirstOrDefault();
+                sLD.Security_List_Code = securityListCode;
+                sLD.Security_List_Name = securityListName;
+                sLD.Description = description;
+                sLD.System_Locked = systemlocked;
+                // 2. delete all Security_List for this List_Code:  
+                Context.Set<Security_List>().RemoveRange(Context.Set<Security_List>()
+                                        .Where(c => c.Security_List_Code == securityListCode && c.Entity_ID == entityId));
+                //3. Load and Save each security from the secList to the Security_List  
+                foreach (var secID in securitieslist)
+                {
+                    var sl = new Security_List()
+                    {
+                        Entity_ID = entityId,
+                        Security_ID = secID,
+                        Security_List_Code = securityListCode
+                    };
+                    Context.Set<Security_List>().Add(sl);
+                }
+            }
+        }
+    } 
+ 
+
+    public class SecurityListRepository : GenericRepository<MetopeDbEntities, Security_List>,
+                                        ISecurityListRepository
+    {
+        public IQueryable<Security_List> GetAll(Expression<Func<Security_List, bool>> predicate)
+        {
+            IQueryable<Security_List> query = Context.Set<Security_List>().Where(predicate);
+            return query;
+        }
+    }
     public class CodeMiscellaneousRepository : GenericRepository<MetopeDbEntities, Code_Miscellaneous>,
                                   ICodeMiscellaneous
     { 

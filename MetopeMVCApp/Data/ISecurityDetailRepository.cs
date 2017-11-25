@@ -79,7 +79,14 @@ namespace MetopeMVCApp.Data
     { 
     }
     public interface ISecurityListDetailRepository : IGenericRepository<Security_List_Detail>
-    { 
+    {
+        void Add(decimal entityId, string securityListCode, string securityListName, string description, bool systemlocked,
+                    List<decimal> securitiesList);
+        void Edit(decimal entityId, string securityListCode, string securityListName, string description, bool systemlocked,
+                    List<decimal> securitiesList);
+        new void Delete(Security_List_Detail SecurityListDetail);   
+ 
+
     }
     public interface ISecurityListRepository : IGenericRepository<Security_List>
     {
