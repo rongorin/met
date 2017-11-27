@@ -54,8 +54,7 @@ namespace MetopeMVCApp.Controllers
               
             return View(sldVm );
         }
-     
-
+      
         // GET: SecurityListDetail/Create
         public ActionResult Create()
         {
@@ -109,6 +108,7 @@ namespace MetopeMVCApp.Controllers
 
                 return RedirectToAction("Index");
             }
+            ModelState.AddModelError("Error", "An error occurred trying to create the Securities List");
              
             return View(securityListDetailVm);
         }
@@ -137,7 +137,6 @@ namespace MetopeMVCApp.Controllers
              // Gets a list of ALL the securities:    //1. get all the Securities
              var allSecs = db3.GetAll()
                     .MatchCriteria(c => c.Entity_ID == EntityID).ToList();
-
 
             // Gets a List of only the secID's  :
              var secsInList = db2.GetAll().MatchCriteria(s2 => s2.Entity_ID == EntityID &&
@@ -200,7 +199,9 @@ namespace MetopeMVCApp.Controllers
                     TempData["FailMsg"] = "Failure saving List Code " + sldViewModel.Security_List_Code + ". something went wrong.";
                 }
                 return RedirectToAction("Index");
-            } 
+            }
+            ModelState.AddModelError("Error", "An error occurred trying to edit the Securities List");
+
             return View( sldViewModel); 
         }
 

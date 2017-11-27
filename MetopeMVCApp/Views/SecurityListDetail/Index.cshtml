@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MetopeMVCApp.Models.SecurityListDetailIndexVM>
 @using GridMvc.Html
 @{
-    ViewBag.Title = "DebtExpiryProfile";
+    ViewBag.Title = "Securities Listings";
     //List<string> _sizes = new List<string>() { "10", "20", "50", "100" };
 }
 @section Styles {
@@ -14,9 +14,8 @@
     
        @Html.Partial("_SecurityList", c.SecurityList.ToList()) 
 } 
-
  
-<h2>Index</h2>
+<h2>Securities Listings</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -32,11 +31,11 @@
         columns.Add(c => c.Entity_ID, true);
 
         columns.Add(c => c.Security_List_Name)
-            .Titled("Name").Filterable(true)
+            .Titled("List Name").Filterable(true)
             .SetWidth(170);
 
         columns.Add(c => c.Description)
-            .Titled("Description") 
+            .Titled("List Description") 
             .SetWidth(180);
 
         //show the securities for this list.

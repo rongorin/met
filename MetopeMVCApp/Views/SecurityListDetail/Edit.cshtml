@@ -7,12 +7,12 @@
 
 @using (Html.BeginForm())
 {
-    <h3> Edit the <b> @Model.Security_List_Name </b> Security Listing Details </h3>
+    <h3> Edit the Security Listing details code <b> @Model.Security_List_Code </b> </h3>
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Entity_ID)
 
         @Html.HiddenFor(model => model.Security_List_Code)
