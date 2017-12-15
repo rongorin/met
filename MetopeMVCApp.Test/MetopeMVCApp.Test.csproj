@@ -98,6 +98,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Metope.DAL\Metope.DAL.csproj">
+      <Project>{68c48d83-179f-4049-aaa8-a42991b04f5f}</Project>
+      <Name>Metope.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MetopeMVCApp\MetopeMVCApp.csproj">
       <Project>{2835fdba-96ba-4d5c-850d-a909bb12f4e3}</Project>
       <Name>MetopeMVCApp</Name>
