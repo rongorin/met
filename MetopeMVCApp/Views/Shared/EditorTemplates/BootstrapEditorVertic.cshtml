@@ -6,12 +6,32 @@
             {
             @class = "control-label col-md-2 input-sm"
             }) 
-    <div class="col-md-4  ">
-        @Html.TextBoxFor(model => model, new { @class = "form-control ", placeholder = ViewData.ModelMetadata.Watermark,
-                                               //style = "max-width:30%;"
+@if (ViewBag.setLength != "extraLong")
+{
+    <div class="col-md-4">
+        @Html.TextBoxFor(model => model, new
+        {
+            @class = "form-control ",
+            placeholder = ViewData.ModelMetadata.Watermark
+            //style = "max-width:30%;"
         })
+
         @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })
     </div>
+}
+else
+{
+    <div class="col-md-4">
+        @Html.TextBoxFor(model => model, new
+        {
+            @class = "form-control ",
+            placeholder = ViewData.ModelMetadata.Watermark,
+            style = "max-width:100%;"
+        })
+
+            @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })
+    </div>
+}
 </div> 
 
 

@@ -29,8 +29,8 @@ namespace MetopeMVCApp.Models
         //public decimal Entity_ID { get; set; }
         //public string  Security_List_Code { get; set; }
 
-        public decimal Security_ID { get; set; }
-        public string Security_Name { get; set; }   
+        public decimal Security_ID { get; set; } 
+        public string Security_Ticker { get; set; }   
 
     }
 }

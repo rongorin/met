@@ -290,7 +290,6 @@
     <Compile Include="Controllers\SecurityDividendDetailController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controllers\SecurityListController.cs" />
     <Compile Include="Controllers\SecurityListDetailController.cs" />
     <Compile Include="Controllers\SecurityPriceController.cs" />
     <Compile Include="Data\Constants.cs" />

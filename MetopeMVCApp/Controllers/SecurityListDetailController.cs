@@ -68,15 +68,11 @@ namespace MetopeMVCApp.Controllers
             var allSecs = db3.GetAll()
                     .MatchCriteria(c => c.Entity_ID == EntityID) .ToList();
 
-            //2. and load them in a CheckBoxListItem object :
+            //2. and load them in a CheckBoxListItem object : Add them to the CheckBoxList, mark as checked or notchecked 
+            //   As create new, will not have any existing SecurityList, therefore pass a new() :
             foreach (var sec in allSecs)
-            {
-                checkBoxListItems.Add(new CheckBoxListItem()
-                {
-                    ID = sec.Security_ID,
-                    Display = sec.Security_Name,
-                    IsChecked = false
-                });
+            { 
+                checkBoxListItems.Add(SecListFactory(sec, new List<Security_List>()));  
             }
 
             //3. and bind to the model:
@@ -147,12 +143,7 @@ namespace MetopeMVCApp.Controllers
              var checkBoxListItems = new List<CheckBoxListItem>();
              foreach (var sec in allSecs)
              {
-                 checkBoxListItems.Add(new CheckBoxListItem()
-                 {
-                     ID = sec.Security_ID,
-                     Display = sec.Security_Name,
-                     IsChecked = secsInList.Where(x => x.Security_ID == sec.Security_ID).Any()
-                 });
+                 checkBoxListItems.Add(SecListFactory(sec, secsInList));  
              } 
 
              //3. and bind to the model:
@@ -160,7 +151,15 @@ namespace MetopeMVCApp.Controllers
              
             return View(vmodel);
         }
-
+        public static CheckBoxListItem SecListFactory(Security_Detail security, List<Security_List> selSecs)
+        {
+            return new CheckBoxListItem()
+                           {
+                               ID = security.Security_ID,
+                               Display = security.Security_Name,
+                               IsChecked = selSecs.Where(x => x.Security_ID == security.Security_ID).Any()
+                           }  ;
+        }
 
         //Customised to take a ViewModel
         //see this concept at https://www.exceptionnotfound.net/simple-checkboxlist-in-asp-net-mvc/
@@ -250,14 +249,15 @@ namespace MetopeMVCApp.Controllers
                 //get all the Sec Lists for the ListDetail record:
                
                 var sls = db2.GetAll().MatchCriteria(s2 => s2.Entity_ID == s.Entity_ID &&
-                                                            s2.Security_List_Code == s.Security_List_Code)
-                                            .Include(s2 => s2.Security_Detail).ToList();  
+                                                            s2.Security_List_Code == s.Security_List_Code) 
+                                            .Include(s2 => s2.Security_Detail)
+                                            .OrderBy(s2 => s2.Security_Detail.Ticker).ToList(); 
                 foreach (var secList in sls)
                 {
                     s.SecurityList.Add(new SecurityListVM()
                     {
-                        Security_ID = secList.Security_ID,
-                        Security_Name = secList.Security_Detail.Security_Name
+                        Security_ID = secList.Security_ID, 
+                        Security_Ticker = secList.Security_Detail.Ticker
                     });
 
                     //var obj = new SecurityListVM()

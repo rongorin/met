@@ -1,7 +1,7 @@
 ﻿@model MetopeMVCApp.Models.AddSecurityListDetailVM
 
-@Html.EditorFor(model => model.Security_List_Name, "BootstrapEditorVertic")
-@Html.EditorFor(model => model.Description, "BootstrapEditorVertic") 
+@Html.EditorFor(model => model.Security_List_Name, "BootstrapEditorVertic", new { setLength = "extraLong" })
+@Html.EditorFor(model => model.Description, "BootstrapEditorVertic", new { setLength = "extraLong" }) 
 @Html.EditorFor(model => model.System_Locked, "BooleanVertic")
 <div class="form-group">
 

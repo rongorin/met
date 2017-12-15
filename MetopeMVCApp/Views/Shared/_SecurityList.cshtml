@@ -2,17 +2,17 @@
 @{
     var display = "";
     
-    for (int i = 0; i < 3 && i < Model.Count; i++)
+    for (int i = 0; i < 15 && i < Model.Count; i++)
     {
-        display += Model[i].Security_Name + ", ";
+        display += Model[i].Security_Ticker + ", ";
     }
     if (display.Contains(","))
     {
         display = display.Remove(display.LastIndexOf(","));
     }
-    if (Model.Count > 3)
+    if (Model.Count > 15)
     {
-        display = display + ", " + (Model.Count - 3).ToString() + " more.";
+        display = display + ", " + (Model.Count - 15).ToString() + " more.";
     }
 }
  @display  
