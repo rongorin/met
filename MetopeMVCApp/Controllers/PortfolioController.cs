@@ -16,7 +16,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using MetopeMVCApp.Data; 
 using MetopeMVCApp.Filters;
 using MetopeMVCApp.Data.GenericRepository;
- 
+using Metope.DAL;
 namespace MetopeMVCApp.Controllers
 {
     [SetAllowedEntityIdAttribute]
@@ -103,7 +103,7 @@ namespace MetopeMVCApp.Controllers
         } 
         // GET: /Portfolio/Create 
        
-        [LogAttribuite]
+        [LogAttribuite] 
         public ActionResult Create()
         {  
             var currentUser = manager.FindById(User.Identity.GetUserId());
@@ -124,7 +124,8 @@ namespace MetopeMVCApp.Controllers
 
             var portfolio = new Portfolio
             {
-                Inception_Date =  DateTime.Now 
+                Inception_Date =  DateTime.Now ,
+                Entity_ID =  currentUser.EntityIdScope    
             };
              
             return View(portfolio);
@@ -134,7 +135,7 @@ namespace MetopeMVCApp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] 
         public ActionResult Create([Bind(Include = "Portfolio_Code,Portfolio_Name,Manager,Portfolio_Type,Portfolio_Base_Currency,PortfolIo_Domicile,Portfolio_Report_Currency,Inception_Date,Financial_Year_End, Portfolio_Status ,Custodian_Code,Active_Flag,System_Locked")] Portfolio portfolio)
         {
             var currentUser = manager.FindById(User.Identity.GetUserId()); 
@@ -159,20 +160,20 @@ namespace MetopeMVCApp.Controllers
                 TempData.Add("ResultMessage", "new portfolio \"" + portfolio.Portfolio_Name + "\" code:\"" + portfolio.Portfolio_Code + "\" created successfully!");
            
                 return RedirectToAction("Index"); 
-            }  
-  
-            ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name");
-            ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
-            ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
-            ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name");
-            ViewBag.Portfolio_Types = new SelectList(GetCodeMiscellVals("PORTTYP"), "MisCode", "MisCode_Description");
-            ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode_Description");
-            ViewBag.Custodians = new SelectList(GetPartyValues(currentUser.EntityIdScope), "Party_Code", "Party_Name"); 
-            var selectListItems = new List<SelectListItem>();
-            selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
-            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
-            ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text");
-            ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text");
+            }
+
+            //ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name");
+            //ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
+            //ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
+            //ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name");
+            //ViewBag.Portfolio_Types = new SelectList(GetCodeMiscellVals("PORTTYP"), "MisCode", "MisCode_Description");
+            //ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode_Description");
+            //ViewBag.Custodians = new SelectList(GetPartyValues(currentUser.EntityIdScope), "Party_Code", "Party_Name");
+            //var selectListItems = new List<SelectListItem>();
+            //selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
+            //selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
+            //ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text");
+            //ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text");
               
             return View(portfolio);
         }

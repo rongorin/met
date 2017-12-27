@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MetopeMVCApp.Models;
-
+using Metope.DAL;
 
 //            this is to   try out using a few TABS in the View
 namespace MetopeMVCApp.Controllers

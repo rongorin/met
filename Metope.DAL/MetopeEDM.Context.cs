@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MetopeMVCApp.Models
+namespace Metope.DAL
 {
     using System;
     using System.Data.Entity;
@@ -20,6 +20,7 @@ namespace MetopeMVCApp.Models
         public MetopeDbEntities()
             : base("name=MetopeDbEntities")
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

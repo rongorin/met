@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MetopeMVCApp.Models.MyMetaData
+namespace Metope.DAL.MyMetaData
 {
     public class PartyFinancialsModelMetaData
     { 

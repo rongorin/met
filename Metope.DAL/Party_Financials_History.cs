@@ -7,12 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MetopeMVCApp.Models
+namespace Metope.DAL
 {
     using System;
-    using System.Collections.Generic;
-    using MetopeMVCApp.Models.MyMetaData;
+    using System.Collections.Generic; 
     using System.ComponentModel.DataAnnotations;
+    using Metope.DAL.MyMetaData;
     [MetadataType(typeof(PartyFinancialsModelMetaData))]
     public partial class Party_Financials_History
     {

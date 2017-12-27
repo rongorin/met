@@ -1,4 +1,4 @@
-﻿    @model IEnumerable<MetopeMVCApp.Models.Party_Debt_Analysis>
+﻿    @model IEnumerable<Metope.DAL.Party_Debt_Analysis>
 @using GridMvc.Html
 @{
     ViewBag.Title = "PartyDebtAnalysis";  
@@ -10,7 +10,7 @@
     @Styles.Render("~/Content/datetime")
     <link href="~/Content/cssNoLines.css" rel="stylesheet" />
 }
-  @helper CustomRenderingOfColumn(MetopeMVCApp.Models.Party_Debt_Analysis pd)
+  @helper CustomRenderingOfColumn(Metope.DAL.Party_Debt_Analysis pd)
 {
     if (pd.Financials_Type == "I")
     {

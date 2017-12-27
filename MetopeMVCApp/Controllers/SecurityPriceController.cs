@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity;
 using MetopeMVCApp.Data;
 using MetopeMVCApp.Data.GenericRepository;
 using MetopeMVCApp.Filters;
-
+using Metope.DAL;
 namespace MetopeMVCApp.Controllers
 {
 

@@ -14,6 +14,7 @@ using ASP.MetopeNspace.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MetopeMVCApp.Data.GenericRepository;
+using Metope.DAL;
 namespace MetopeMVCApp.Controllers
 {
     [SetAllowedEntityIdAttribute]

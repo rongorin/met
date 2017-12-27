@@ -8,6 +8,7 @@ using PagedList;
 using MetopeMVCApp.Data.Repositories;
 using MetopeMVCApp.Data;
 using MetopeMVCApp.Data.GenericRepository;
+using Metope.DAL;
 // for this using of generic repository technique see http://www.tugberkugurlu.com/archive/generic-repository-pattern-entity-framework-asp-net-mvc-and-unit-testing-triangle
 
 namespace MetopeMVCApp.Controllers

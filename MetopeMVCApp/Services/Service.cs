@@ -1,14 +1,15 @@
-﻿using MetopeMVCApp.Controllers;
+﻿
+using Metope.DAL;
+using MetopeMVCApp.Controllers;
 using MetopeMVCApp.Data;
 using MetopeMVCApp.Data.GenericRepository;
 using MetopeMVCApp.Data.Repositories;
-using MetopeMVCApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Mvc; 
 namespace MetopeMVCApp.Services
 {
             /*  -------------------------------------------------------------
@@ -16,25 +17,25 @@ namespace MetopeMVCApp.Services
              ------------------------------------------------------------*/ 
     public interface IServices
     {
-        IQueryable<Country> ListCountry();
-        IQueryable<Currency> ListCurrencies();
-        IQueryable<Currency_Pair> ListCurrencyPairs();
-        IQueryable<Security_Type> ListSecTypeCode();
+        IQueryable<Metope.DAL.Country> ListCountry();
+        IQueryable<Metope.DAL.Currency> ListCurrencies();
+        IQueryable<Metope.DAL.Currency_Pair> ListCurrencyPairs();
+        IQueryable<Metope.DAL.Security_Type> ListSecTypeCode();
 
-        IQueryable<Exchange> ListExchanges();
-        IQueryable<Code_Miscellaneous> ListMiscellanousTypes(string iCodeType);
-        IQueryable<Portfolio> ListPortfolios(decimal iUser );
+        IQueryable<Metope.DAL.Exchange> ListExchanges();
+        IQueryable<Metope.DAL.Code_Miscellaneous> ListMiscellanousTypes(string iCodeType);
+        IQueryable<Metope.DAL.Portfolio> ListPortfolios(decimal iUser);
 
-        IQueryable<Party> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId);
+        IQueryable<Metope.DAL.Party> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId);
         //IEnumerable<Country> List();
         void Dispose();
          
     }
 
     public class Services : IDisposable, IServices   
-    { 
+    {
 
-        MetopeDbEntities _context;
+        Metope.DAL.MetopeDbEntities _context;
         private bool disposed = false;
 
         public Services(bool createContxt)
@@ -43,7 +44,7 @@ namespace MetopeMVCApp.Services
                  _context = new MetopeDbEntities();
         }
 
-        public IQueryable<Country> ListCountry()
+        public IQueryable<Metope.DAL.Country> ListCountry()
         {
             ICountryRepository dbCntx = new CountryRepository();
               
@@ -68,13 +69,13 @@ namespace MetopeMVCApp.Services
             //     });
               
         }
-        public IQueryable<Security_Type> ListSecTypeCode()
+        public IQueryable<Metope.DAL.Security_Type> ListSecTypeCode()
         {
             ISecurityTypesRepository dbCntx = new SecurityTypeRepository();
             return dbCntx.GetAll().OrderBy(r => r.Security_Type_Code);  ; 
-        } 
-   
-        public IQueryable<Currency> ListCurrencies()
+        }
+
+        public IQueryable<Metope.DAL.Currency> ListCurrencies()
         {
             ICurrencyRepository dbCntx = new CurrencyRepository(); 
             return dbCntx.GetAll()
@@ -82,9 +83,9 @@ namespace MetopeMVCApp.Services
            // return _context.Currencies
                 //.Select(x => new SelectListItem { Text = x.Currency_Name, Value = x.Currency_Code })
                   
-        } 
- 
-        public IQueryable<Exchange> ListExchanges()
+        }
+
+        public IQueryable<Metope.DAL.Exchange> ListExchanges()
         {
           IExchangeRepository dbCntx = new  ExchangeRepository (); 
           //using (IExchangeRepository dbCntx = new  ExchangeRepository ())
@@ -98,20 +99,20 @@ namespace MetopeMVCApp.Services
             //     .OrderBy(s => s.Exchange_Name);
         }
 
-        public IQueryable<Code_Miscellaneous> ListMiscellanousTypes(string iCodeType)
+        public IQueryable<Metope.DAL.Code_Miscellaneous> ListMiscellanousTypes(string iCodeType)
         {
 
             ICodeMiscellaneous dbCntx = new CodeMiscellaneousRepository();
             return dbCntx.GetAll().Where(c => c.MisCode_Type == iCodeType); 
          
         }
-        public IQueryable<Portfolio> ListPortfolios(decimal iUser)
+        public IQueryable<Metope.DAL.Portfolio> ListPortfolios(decimal iUser)
         {
             IPortfolioRepository3 dbCntx = new PortfolioRepository3();
             return dbCntx.GetAll().Where(c => c.Entity_ID == iUser).OrderBy(r => r.Portfolio_Name); ;
              
         }
-        public IQueryable<Security_Detail> ListSecurities(decimal iEntity,decimal iGenericEntity, string  iSecurityTypeCode= "", bool thisEntityOnly=false)
+        public IQueryable<Metope.DAL.Security_Detail> ListSecurities(decimal iEntity, decimal iGenericEntity, string iSecurityTypeCode = "", bool thisEntityOnly = false)
         {
             ISecurityDetailRepository dbCntx  ;
             dbCntx = new  SecurityDetailRepository();
@@ -129,7 +130,7 @@ namespace MetopeMVCApp.Services
             //return dbCntx.GetAll().Where(c => c.Entity_ID == iUser);
                 
         }
-        public IQueryable<Party> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId)
+        public IQueryable<Metope.DAL.Party> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId)
         {
             IPartyRepository dbCntx = new PartyRepository();
 
@@ -137,8 +138,8 @@ namespace MetopeMVCApp.Services
                       .OrderBy(s => s.Party_Name);  
         }
 
-    
-        public IQueryable<Party> ListPartyAllIssuers(  decimal iEntity, decimal iGenericEntityId)
+
+        public IQueryable<Metope.DAL.Party> ListPartyAllIssuers(decimal iEntity, decimal iGenericEntityId)
         {
             IPartyRepository dbCntx = new PartyRepository();
 
@@ -155,7 +156,7 @@ namespace MetopeMVCApp.Services
         //            .Select(x => new SelectListItem { Text = x.Party_Name, Value = x.Party_Code }) ;
              
         //}
-        public IQueryable<Currency_Pair> ListCurrencyPairs()
+        public IQueryable<Metope.DAL.Currency_Pair> ListCurrencyPairs()
         {
             ICurrencyPairRepository dbCntx = new CurrencyPairRepository();
             return dbCntx.GetAll();

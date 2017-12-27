@@ -14,6 +14,7 @@ using MetopeMVCApp.Data;
 using System.Configuration;
 using MetopeMVCApp.Filters;
 using PagedList;
+using Metope.DAL;
 namespace MetopeMVCApp.Controllers
 
 { 

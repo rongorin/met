@@ -83,7 +83,6 @@
     <Compile Include="AspNetUser.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="Code_Miscellaneous.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>

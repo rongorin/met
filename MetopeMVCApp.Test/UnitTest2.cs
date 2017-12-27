@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Mvc;
 using MetopeMVCApp.Models;
 using MetopeMVCApp.Controllers;
+using Metope.DAL;
 
 namespace MetopeMVCApp.Test
 {

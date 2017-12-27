@@ -10,7 +10,8 @@ using MetopeMVCApp.Models;
 using System.Net;
 using MetopeMVCApp.Models.Custom;
 using MetopeMVCApp.Filters;
-using System.Configuration; 
+using System.Configuration;
+using Metope.DAL; 
 
 namespace ASP.MetopeNspace.Controllers
 {

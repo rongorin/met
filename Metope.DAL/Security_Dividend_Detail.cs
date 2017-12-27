@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MetopeMVCApp.Models
+namespace Metope.DAL
 {
+    using Metope.DAL.MyMetaData;
     using System;
-    using System.Collections.Generic; 
-    using MetopeMVCApp.Models.MyMetaData;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityDividendDetailModelMetaData))] 
     public partial class Security_Dividend_Detail : IValidatableObject

@@ -290,6 +290,7 @@
     <Compile Include="Controllers\SecurityDividendDetailController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\SecurityDividendSplitController.cs" />
     <Compile Include="Controllers\SecurityListDetailController.cs" />
     <Compile Include="Controllers\SecurityPriceController.cs" />
     <Compile Include="Data\Constants.cs" />
@@ -354,6 +355,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddSecurityListDetailVM.cs" />
     <Compile Include="Models\CheckBoxListItem.cs" />
+    <Compile Include="Models\Custom\ApiException.cs" />
     <Compile Include="Models\Custom\MyError.cs" />
     <Compile Include="Models\Custom\Weather.cs" />
     <Compile Include="Models\EditSecurityListDetailVM.cs" />
@@ -371,6 +373,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\ClientApiService.cs" />
     <Compile Include="Services\Service.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utitlity\Extensions\DateTimeExtensions.cs" />
@@ -726,6 +729,11 @@
     <Content Include="Views\Shared\EditorTemplates\CheckBoxListItem.cshtml" />
     <Content Include="Views\Shared\_SecurityList.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Security_List_Detail.cshtml" />
+    <Content Include="Views\SecurityDividendSplit\Create.cshtml" />
+    <Content Include="Views\SecurityDividendSplit\Delete.cshtml" />
+    <Content Include="Views\SecurityDividendSplit\Details.cshtml" />
+    <Content Include="Views\SecurityDividendSplit\Edit.cshtml" />
+    <Content Include="Views\SecurityDividendSplit\Index.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -735,7 +743,6 @@
     <Folder Include="Models\MyMetaData\" />
     <Folder Include="Views\Contact\" />
     <Folder Include="Views\Errorpage\" />
-    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

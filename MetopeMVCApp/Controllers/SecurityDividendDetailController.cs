@@ -5,14 +5,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
-using System.Web.Mvc;
-using MetopeMVCApp.Models;
+using System.Web.Mvc; 
 using MetopeMVCApp.Filters;
 using MetopeMVCApp.Data;
 using ASP.MetopeNspace.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-
+using Metope.DAL;
+using MetopeMVCApp.Models;
 namespace MetopeMVCApp.Controllers
 {
     [SetAllowedEntityIdAttribute]

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MetopeMVCApp.Models
+namespace Metope.DAL
 {
     using System;
     using System.Collections.Generic;

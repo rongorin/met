@@ -6,7 +6,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using MetopeMVCApp.Validators;
 
-namespace MetopeMVCApp.Models.MyMetaData
+namespace Metope.DAL.MyMetaData
 {
         [MetadataType(typeof(SecurityDividendDetailModelMetaData))]
     public class SecurityDividendDetailModelMetaData

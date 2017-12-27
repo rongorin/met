@@ -1,5 +1,6 @@
 ﻿
 using ASP.MetopeNspace.Models;
+using Metope.DAL;
 using MetopeMVCApp.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -479,7 +480,24 @@ namespace MetopeMVCApp.Filters
          }
           
      }
-    
-            
+     // get clever with loading the model in tempData http://benfoster.io/blog/automatic-modelstate-validation-in-aspnet-mvc
+     //public class ValidateModelStateAttribute : ActionFilterAttribute
+     //{
+     //    public override void OnActionExecuting(ActionExecutingContext filterContext)
+     //    {
+     //        var viewData = filterContext.Controller.ViewData;
+
+     //        if (!viewData.ModelState.IsValid)
+     //        {
+     //            filterContext.Result = new ViewResult
+     //            {
+     //                ViewData = viewData,
+     //                TempData = filterContext.Controller.TempData
+     //            };
+     //        }
+
+     //        base.OnActionExecuting(filterContext);
+     //    }
+     //}            
      
 }

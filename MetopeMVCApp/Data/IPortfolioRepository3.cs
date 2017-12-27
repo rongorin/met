@@ -1,4 +1,5 @@
-﻿using MetopeMVCApp.Models;
+﻿using Metope.DAL;
+using MetopeMVCApp.Models;
 using PagedList;
 using System;
 using System.Collections.Generic;

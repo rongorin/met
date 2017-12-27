@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Collections.Generic;
 using System.Text;
-namespace MetopeMVCApp.Models.MyMetaData
+namespace Metope.DAL.MyMetaData
 {
     public class MyMetadataProvider : DataAnnotationsModelMetadataProvider
     {

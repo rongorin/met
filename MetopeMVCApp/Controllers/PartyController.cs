@@ -14,6 +14,7 @@ using MetopeMVCApp.Data;
 using System.Configuration;
 using MetopeMVCApp.Filters;
 using NLog;
+using Metope.DAL;
 
 namespace MetopeMVCApp.Controllers
 {

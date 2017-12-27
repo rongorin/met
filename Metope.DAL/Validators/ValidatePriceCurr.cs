@@ -1,10 +1,11 @@
-﻿using MetopeMVCApp.Models;
+﻿using Metope.DAL;
+ 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-
+using Metope.DAL;
 namespace MetopeMVCApp.Validators
 {
     //Custom Validate .(see Scott Gu psight vid Mvc4)

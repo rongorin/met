@@ -19,6 +19,21 @@ namespace Metope.WebAPI
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            // WebApi Configuration to hook up formatters and message handlers
+            RegisterApis(GlobalConfiguration.Configuration);
+        }
+
+        public static void RegisterApis(HttpConfiguration config)
+        {
+            // remove default Xml handler
+            var matches = config.Formatters
+                                .Where(f => f.SupportedMediaTypes
+                                             .Where(m => m.MediaType.ToString() == "application/xml" ||
+                                                         m.MediaType.ToString() == "text/xml")
+                                             .Count() > 0)
+                                .ToList();
+            foreach (var match in matches)
+                config.Formatters.Remove(match);
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using MetopeMVCApp.Models;
 using MetopeMVCApp.Filters;
 using MetopeMVCApp.Data;
-
+using Metope.DAL;
 //Customised to take a ViewModel with a custom CheckBoxList to use checkboxes.
 //see this concept described at https://www.exceptionnotfound.net/simple-checkboxlist-in-asp-net-mvc/
 namespace MetopeMVCApp.Controllers

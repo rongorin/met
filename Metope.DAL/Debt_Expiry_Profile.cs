@@ -7,12 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MetopeMVCApp.Models
+namespace Metope.DAL
 {
+    using Metope.DAL.MyMetaData;
     using System;
     using System.Collections.Generic;
-
-    using MetopeMVCApp.Models.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(DebtExpiryProfileModelMetaData))]
     public partial class Debt_Expiry_Profile

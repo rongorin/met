@@ -5,13 +5,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
-using System.Web.Mvc;
-using MetopeMVCApp.Models;
+using System.Web.Mvc; 
 using MetopeMVCApp.Data;
 using Microsoft.AspNet.Identity;
 using ASP.MetopeNspace.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MetopeMVCApp.Filters;
+using Metope.DAL;
 
 namespace MetopeMVCApp.Controllers
 {

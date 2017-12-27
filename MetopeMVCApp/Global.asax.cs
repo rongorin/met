@@ -1,7 +1,7 @@
 ﻿
+using Metope.DAL.MyMetaData;
 using MetopeMVCApp.Controllers;
-using MetopeMVCApp.Filters.DbInterceptors;
-using MetopeMVCApp.Models.MyMetaData;
+using MetopeMVCApp.Filters.DbInterceptors; 
 using NLog;
 using StackExchange.Profiling;
 using StackExchange.Profiling.EntityFramework6;

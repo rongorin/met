@@ -1,4 +1,5 @@
-﻿using MetopeMVCApp.Data;
+﻿using Metope.DAL;
+using MetopeMVCApp.Data;
 using MetopeMVCApp.Data.GenericRepository;
 using MetopeMVCApp.Models;
 using System;

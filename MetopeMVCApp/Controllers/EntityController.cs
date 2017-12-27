@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MetopeMVCApp.Models;
+using Metope.DAL;
 
 namespace MetopeMVCApp.Controllers
 {

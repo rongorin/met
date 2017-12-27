@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MetopeMVCApp.Models;
+using Metope.DAL;
 
 namespace MetopeMVCApp.Test
 {

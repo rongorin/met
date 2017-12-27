@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MetopeMVCApp.Models.Party_Financials>
+﻿@model IEnumerable<Metope.DAL.Party_Financials>
 @using GridMvc.Html
 @{
     ViewBag.Title = "EditPartyFinancials";
@@ -10,7 +10,7 @@
     @Styles.Render("~/Content/datetime")
     <link href="~/Content/cssNoLines.css" rel="stylesheet" />
 }
-@helper CustomRenderingOfColumn(MetopeMVCApp.Models.Party_Financials pf)
+@helper CustomRenderingOfColumn(Metope.DAL.Party_Financials pf)
 {
     if (pf.Actual_Forecast_Indicator == "A")
     {
