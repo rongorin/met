@@ -26,10 +26,8 @@
         @Html.ValidationSummary(false)
         @Html.HiddenFor(model => model.Entity_ID)
 
-        @Html.HiddenFor(model => model.Security_ID)
-
-        @Html.HiddenFor(model => model.Dividend_Seq_Number)
-          
+        @Html.HiddenFor(model => model.Security_ID) 
+        @Html.HiddenFor(model => model.Dividend_Seq_Number) 
         @Html.EditorForModel("Security_Dividend_DetailVert") 
     </div>
 }

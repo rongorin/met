@@ -17,9 +17,13 @@ namespace Metope.WebAPI.Controllers
         private MetopeDbEntities db = new MetopeDbEntities();
 
         // GET: api/SecurityDividendSplit 
-        public IHttpActionResult GetSecurity_Dividend_Split()
+        public IHttpActionResult GetSecurity_Dividend_Split(string entityID)
         {
-            IEnumerable<Security_Dividend_Split> pvs = db.Security_Dividend_Split.Include(c => c.Security_Detail).ToList();
+            decimal EntityId = Convert.ToDecimal(entityID);
+            IEnumerable<Security_Dividend_Split> pvs = db.Security_Dividend_Split.Include(c => c.Security_Detail)
+                                                    .Where(c => c.Entity_ID == EntityId)
+                                                    .ToList();
+                               
             return Ok(pvs); 
         }
          

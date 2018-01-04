@@ -33,9 +33,7 @@ namespace ASP.MetopeNspace.Controllers
             if (strEntityName == "")
                 return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable);
               
-            Session["EntityInnScope"] = strEntityName; 
-
-
+            Session["EntityInnScope"] = strEntityName;   
 
             return View();
         }

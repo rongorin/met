@@ -67,11 +67,14 @@ namespace MetopeMVCApp.Data
         IQueryable<Debt_Expiry_Profile> GetAllDebtExpiryValues(decimal iEntity, decimal iGenericEntityId);
 
     }
-
+    
     public interface IPartyFinancialsRepository : IGenericRepository<Party_Financials>
     {
         //IQueryable<Security_Detail> GetAll(Expression<Func<Party_Financials, bool>> predicate);`
         //IQueryable<Security_Detail> GetAllActive( ); 
+    }
+    public interface IPortfolioValuationRepository : IGenericRepository<Portfolio_Valuation>
+    { 
     }
     public interface IPartyFinancialsHistoryRepository : IGenericRepository<Party_Financials_History>
     { 

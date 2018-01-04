@@ -285,6 +285,9 @@
     <Compile Include="Controllers\PartyFinancialsHistoryController.cs" />
     <Compile Include="Controllers\Port2Controller.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
+    <Compile Include="Controllers\PortfolioValuationController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\SecurityAnalyticsController.cs" />
     <Compile Include="Controllers\SecurityDetailController.cs" />
     <Compile Include="Controllers\SecurityDividendDetailController.cs">
@@ -573,6 +576,11 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\PortfolioValuation\Create.cshtml" />
+    <Content Include="Views\PortfolioValuation\Delete.cshtml" />
+    <Content Include="Views\PortfolioValuation\Details.cshtml" />
+    <Content Include="Views\PortfolioValuation\Edit.cshtml" />
+    <Content Include="Views\PortfolioValuation\Index.cshtml" />
     <Content Include="Views\SecurityDividendDetail\Create.cshtml" />
     <Content Include="Views\SecurityDividendDetail\Delete.cshtml" />
     <Content Include="Views\SecurityDividendDetail\Details.cshtml" />
@@ -716,11 +724,6 @@
     <Content Include="Views\Party\Trouble.cshtml" />
     <Content Include="Views\GridSecurityDetail\Errormessage.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\PortfolioValuation\Create.cshtml" />
-    <Content Include="Views\PortfolioValuation\Delete.cshtml" />
-    <Content Include="Views\PortfolioValuation\Details.cshtml" />
-    <Content Include="Views\PortfolioValuation\Edit.cshtml" />
-    <Content Include="Views\PortfolioValuation\Index.cshtml" />
     <Content Include="Views\SecurityListDetail\Create.cshtml" />
     <Content Include="Views\SecurityListDetail\Delete.cshtml" />
     <Content Include="Views\SecurityListDetail\Details.cshtml" />
@@ -734,6 +737,8 @@
     <Content Include="Views\SecurityDividendSplit\Details.cshtml" />
     <Content Include="Views\SecurityDividendSplit\Edit.cshtml" />
     <Content Include="Views\SecurityDividendSplit\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimalZeroPlacesVert.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Portfolio_Valuation.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

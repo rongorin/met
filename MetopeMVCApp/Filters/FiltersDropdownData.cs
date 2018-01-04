@@ -275,6 +275,25 @@ namespace MetopeMVCApp.Filters
          } 
      }
 
+     public class  PortfoliosFilter : ActionFilterAttribute
+     {
+         public override void OnActionExecuted(ActionExecutedContext filterContext)
+         {
+             IQueryable<Portfolio> portfolios;
+             if ((portfolios = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Portfolio>)) == null)
+             {
+                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+
+                 portfolios = svc.ListPortfolios(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")), "ACTIVE");
+                 //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
+                 filterContext.HttpContext.Cache.Insert(GetType().FullName, portfolios);
+             }
+             filterContext.Controller.ViewBag.Portfolio_Code = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name", filterContext.Controller.ViewBag.myPortfolioCode);
+
+             base.OnActionExecuted(filterContext);
+         }
+
+     } 
      public class BenchmarkPortfolioFilter : ActionFilterAttribute
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -284,7 +303,7 @@ namespace MetopeMVCApp.Filters
              {  
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
-                 portfolios = svc.ListPortfolios(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")));
+                 portfolios = svc.ListPortfolios(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")), "ACTIVE");
                                                  //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, portfolios);
              }

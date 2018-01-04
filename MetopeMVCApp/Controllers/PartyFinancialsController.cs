@@ -149,8 +149,7 @@ namespace MetopeMVCApp.Controllers
                         return RedirectToAction("Index", null, new { PartyCode = party_Financials.Party_Code, Nav = navIndicator });
 
                 }
-            }
-
+            } 
             return View(party_Financials); 
         }
 

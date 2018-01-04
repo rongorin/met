@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -11,10 +12,15 @@ namespace MetopeMVCApp.Services
 {
     public class ClientApiService<T>  
     {
-        private string BASE_URL = "http://localhost:54179/api/";
+       // private string BASE_URL = "http://localhost:54179/api/";
+
+        // ConfigurationManager.AppSettings["GenericEntityId"]) ; 
+
+        private string BASE_URL =   ConfigurationManager.AppSettings["MetopeWebApiAddr"];
+
 
         //Generic Get servie
-        public IEnumerable<T> findAll<T>(string svcEndPoint) 
+        public IEnumerable<T> findAll<t>(string svcEndPoint, string entityID) 
         {
             IEnumerable<T> pvs = null;
           
@@ -23,7 +29,7 @@ namespace MetopeMVCApp.Services
                 client.BaseAddress = new Uri(BASE_URL);
                 //HTTP GET
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var responseTask = client.GetAsync(svcEndPoint);
+                var responseTask = client.GetAsync(svcEndPoint + "?EntityID=" + entityID);
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -38,9 +44,9 @@ namespace MetopeMVCApp.Services
                 {
                     //log response status h ere..
 
-                    var ex = CreateApiException(result);
-                    throw ex;
-                    //pvs = Enumerable.Empty<T>(); 
+                    //var ex = CreateApiException(result);
+                    //throw ex;
+                    pvs = Enumerable.Empty<T>(); 
                 }
             }
             return pvs;
@@ -121,7 +127,7 @@ namespace MetopeMVCApp.Services
         {
             using (var client = new HttpClient())
             { 
-                 client.BaseAddress = new Uri(BASE_URL);
+                client.BaseAddress = new Uri(BASE_URL);
 
                 //HTTP POST
                 HttpResponseMessage resp = client.PostAsJsonAsync<T>(urlExtension, pv ).Result;
@@ -130,10 +136,9 @@ namespace MetopeMVCApp.Services
                 //if (result.IsSuccessStatusCode)
                 //{
                 //    return RedirectToAction("Index");
-                //}
-           
+                //} 
             }
-            return false;
+            //return false;
         }
         public bool edit(Metope.DAL.Security_Dividend_Split pv, string urlExtension)
         {
@@ -151,7 +156,7 @@ namespace MetopeMVCApp.Services
                 //}
 
             }
-            return false;
+            //return false;
         }
         public bool delete(string urlExtension, decimal entityId, decimal securityId, decimal dividendAnnNumber)
         {
@@ -169,7 +174,7 @@ namespace MetopeMVCApp.Services
                 //}
 
             }
-            return false;
+            //return false;
         }
 
       ///  

@@ -21,9 +21,13 @@
         @Html.ValidationMessage("Error")
         
         <div class="form-group">
-            @Html.LabelFor(model => model.Security_ID, htmlAttributes: new { @class = "control-label col-md-2 input-sm ", style = "text-align: right" })
+            @Html.LabelFor(model => model.Security_ID, htmlAttributes: new { @class = "control-label col-md-2 input-sm "
+                                                                          })
             <div class="col-md-10">
-                @Html.DropDownList("Security_ID", (SelectList)ViewBag.Securities_All, string.Empty, new { @class = "form-control" })
+                @Html.DropDownList("Security_ID", (SelectList)ViewBag.Securities_All, string.Empty, new
+                           {
+                               @class = "form-control" , @readonly = "readonly"
+                           })
                 @Html.ValidationMessageFor(model => model.Security_ID, "", new { @class = "text-danger" })
             </div>
         </div>   
@@ -56,5 +60,19 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/datetime")
+<script>
+
+        $(function () {
+            checkSelection();
+        });
+        function checkSelection() {
+            var selectedItem = $('#Dividend_Type').val();
+            if (selectedItem == "S" || selectedItem == "E") {
+                $("#showDivtype").hide();
+            } else  {
+                $("#showDivtype").show();
+            }
+        };
+</script> 
 }
  

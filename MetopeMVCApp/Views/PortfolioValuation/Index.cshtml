@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Metope.DAL.Portfolio_Valuation>
+
+@using GridMvc.Html
+@{
+    ViewBag.Title = "PortfolioValuations"; 
+}
+@section Styles {
+    @Styles.Render("~/Content/GridMvc")  
+  <link href="~/Content/cssNoLines.css" rel="stylesheet" />
+}
+<h2>
+    Portfolio Valuations 
+     
+</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@Html.Partial("_MsgSuccesFail", Model)
+ 
+
+<div class="code-cut">
+    @Html.Grid(Model).Named("depGrid").Columns(columns =>
+    {
+        columns.Add(c => c.Portfolio_Code)
+            .Titled("Portfolio Code").Filterable(true)
+            .SetWidth(100);
+        columns.Add(c => c.Entity_ID, true);
+         
+
+        columns.Add(c => c.Net_Asset_Value).Titled("Net Asset Value").Css("text-right").Filterable(false)
+                .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Net_Asset_Value)).Encoded(false)
+                .Sanitized(false)
+                .SetWidth(140);
+
+        columns.Add(c => c.Total_Investments).Titled("Total Investments").Css("text-right").Filterable(false)
+                .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Total_Investments)).Encoded(false)
+                .Sanitized(false)
+                .SetWidth(140);
+
+
+        columns.Add(c => c.Total_Cost).Titled("Total Cost").Css("text-right").Filterable(false)
+                .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Total_Cost)).Encoded(false)
+                .Sanitized(false)
+                .SetWidth(140); 
+        
+        
+        columns.Add()
+        .Encoded(false)
+        .Sanitized(false)
+        .SetWidth(20)
+        .RenderValueAs(c => @<u>
+            @Html.ActionLink("Edit", "Edit", "PortfolioValuation", new { EntityId = c.Entity_ID, PortfolioCode = c.Portfolio_Code }, null)
+        </u>);
+        
+        columns.Add()
+     .Encoded(false)
+     .Sanitized(false)
+     .SetWidth(20)
+     .RenderValueAs(c => @<u>
+        @Html.ActionLink("Delete", "Delete", "PortfolioValuation", new { EntityId = c.Entity_ID, PortfolioCode = c.Portfolio_Code }, null)
+    </u>);
+
+    }).WithPaging(15).Sortable(true)
+
+</div> 
+@section Scripts {  
+    @Scripts.Render("~/bundles/GridMvc")
+<script>
+    $(function () {
+        pageGrids.depGrid.onRowSelect(function (e) {
+            var myUrl2 ;
+            //here rather do full page load instead of the Ajax partial:
+            if ( "@ViewBag.Nav" != "")
+                myUrl2 = mtpApp.Urls.baseUrl + "PortfolioValuation/Edit?PortfolioCode=" + e.row.Portfolio_Code +  "&EntityId=" + e.row.Entity_ID + "&Nav=" + "@ViewBag.Nav";
+            else
+                myUrl2 = mtpApp.Urls.baseUrl + "PortfolioValuation/Edit?PortfolioCode=" + e.row.Portfolio_Code +  "&EntityId=" + e.row.Entity_ID;
+
+            window.location = myUrl2;
+        });
+    });
+</script>
+
+}
+
+
+
+
+  

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MetopeMVCApp.Models.SecurityAnalyticsIndexViewModel>
 @using GridMvc.Html
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index";@ViewBag.Nav
     List<string> _sizes = new List<string>() { "10", "20", "50", "100" }; 
 
     ViewBag.RowsPgSelected = ((SelectList)ViewBag.RowsPerPage).SelectedValue ?? _sizes[1];

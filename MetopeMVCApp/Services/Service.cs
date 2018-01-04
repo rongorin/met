@@ -24,7 +24,7 @@ namespace MetopeMVCApp.Services
 
         IQueryable<Metope.DAL.Exchange> ListExchanges();
         IQueryable<Metope.DAL.Code_Miscellaneous> ListMiscellanousTypes(string iCodeType);
-        IQueryable<Metope.DAL.Portfolio> ListPortfolios(decimal iUser);
+        IQueryable<Metope.DAL.Portfolio> ListPortfolios(decimal iUser, string iStatus);
 
         IQueryable<Metope.DAL.Party> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId);
         //IEnumerable<Country> List();
@@ -106,10 +106,10 @@ namespace MetopeMVCApp.Services
             return dbCntx.GetAll().Where(c => c.MisCode_Type == iCodeType); 
          
         }
-        public IQueryable<Metope.DAL.Portfolio> ListPortfolios(decimal iUser)
+        public IQueryable<Metope.DAL.Portfolio> ListPortfolios(decimal iUser, string iStatus)
         {
             IPortfolioRepository3 dbCntx = new PortfolioRepository3();
-            return dbCntx.GetAll().Where(c => c.Entity_ID == iUser).OrderBy(r => r.Portfolio_Name); ;
+            return dbCntx.GetAll().Where(c => c.Entity_ID == iUser && c.Portfolio_Status == iStatus).OrderBy(r => r.Portfolio_Name); ;
              
         }
         public IQueryable<Metope.DAL.Security_Detail> ListSecurities(decimal iEntity, decimal iGenericEntity, string iSecurityTypeCode = "", bool thisEntityOnly = false)

@@ -27,7 +27,7 @@ namespace MetopeMVCApp.Controllers
             IEnumerable<Security_Dividend_Split> allSplits = Enumerable.Empty<Security_Dividend_Split>();
             try
             {
-                allSplits = svc.findAll<Security_Dividend_Split>("SecurityDividendSplit");
+                allSplits = svc.findAll<Security_Dividend_Split>("SecurityDividendSplit",  ViewBag.EntityId.ToString());
           
 
                 if (allSplits == null)
@@ -109,8 +109,13 @@ namespace MetopeMVCApp.Controllers
             decimal EntityID = (decimal)ViewBag.EntityId;
 
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code");
-            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name");
-            return View();
+            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Short_Name");
+            var secDivSplit = new Security_Dividend_Split
+            {
+                Entity_ID = EntityID 
+            };
+
+            return View(secDivSplit);
         }
 
         // POST: SecurityDividendSplit/Create       this is CLIent
@@ -121,6 +126,7 @@ namespace MetopeMVCApp.Controllers
         public ActionResult Create([Bind(Include = "Dividend_Annual_Number,Dividend_Split,Entity_ID,Security_ID")] Security_Dividend_Split security_Dividend_Split)
         {
             ClientApiService<Security_Dividend_Split> svc = new ClientApiService<Security_Dividend_Split>();
+            security_Dividend_Split.Entity_ID = ViewBag.EntityId;
             try
             {
                 if (ModelState.IsValid)
@@ -131,10 +137,7 @@ namespace MetopeMVCApp.Controllers
                     bool success = svc.create(security_Dividend_Split, "SecurityDividendSplit");
 
                     if (success == true)
-                        return RedirectToAction("Index");
-
-                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-                    return View(security_Dividend_Split);
+                        return RedirectToAction("Index"); 
 
                 }
             }
@@ -148,12 +151,13 @@ namespace MetopeMVCApp.Controllers
                     sb.AppendLine(exception.Message.ToString());
                     ModelState.AddModelError(string.Empty, sb.ToString());
 
-                }
-                return View(security_Dividend_Split);
+                } 
 
             }
+            ModelState.AddModelError(string.Empty, "Server error. Please check inputted values.");
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Dividend_Split.Entity_ID);
-            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Dividend_Split.Security_ID);
+            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Short_Name", security_Dividend_Split.Security_ID);
+ 
             return View(security_Dividend_Split);
         }
 
@@ -179,7 +183,7 @@ namespace MetopeMVCApp.Controllers
                 return HttpNotFound();
             }
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", split.Entity_ID);
-            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", split.Security_ID);
+            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Short_Name", split.Security_ID);
             return View(split);
         }
 
@@ -203,7 +207,7 @@ namespace MetopeMVCApp.Controllers
                     if (success == true)
                         return RedirectToAction("Index");
 
-                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                    ModelState.AddModelError(string.Empty, "Server error. Please check inputted values.");
                     return View(security_Dividend_Split);
 
                 }
@@ -229,8 +233,9 @@ namespace MetopeMVCApp.Controllers
             //    db.SaveChanges();
             //    return RedirectToAction("Index");
             //}
+            ModelState.AddModelError(string.Empty, "Server error attempting to save. Please check input values.");
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Dividend_Split.Entity_ID);
-            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Dividend_Split.Security_ID);
+            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Short_Name", security_Dividend_Split.Security_ID);
             return View(security_Dividend_Split);
         }
 

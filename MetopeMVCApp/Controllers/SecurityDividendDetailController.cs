@@ -44,12 +44,13 @@ namespace MetopeMVCApp.Controllers
             ViewBag.RowsPerPage = new SelectList(numOfRows, "Value", "Text", numberOfRows);
   
             viewModel.SecurityDetails = db2.FindBy(r => r.Security_ID == SecurityId)
-                                                .FirstOrDefault();   
+                                                .FirstOrDefault();
             viewModel.SecurityDividendDetail = db11.GetAll().AsNoTracking()
                        .MatchCriteria(c => c.Entity_ID == EntityID)
                        .MatchCriteria(c => c.Security_ID == SecurityId)
-                     .OrderByDescending(r => r.Dividend_Seq_Number).ThenBy(n => n.Dividend_Annual_Number);
-
+                     .OrderByDescending(r => r.Dividend_Seq_Number).ThenBy(n => n.Dividend_Annual_Number)
+                     .Include(d => d.Security_Detail);
+                        
             //if (PartyCode != "")
             //    ViewBag.PartyCode = PartyCode;
 
@@ -64,7 +65,7 @@ namespace MetopeMVCApp.Controllers
         [FinancialsType]
         [CurrencyFilter]
         public ActionResult Create(decimal SecurityId)
-        {
+        { 
             var EntityID = (decimal)ViewBag.EntityId;  
             
             var security = db2.FindBy(c => c.Security_ID == SecurityId && c.Entity_ID == EntityID)
@@ -97,12 +98,14 @@ namespace MetopeMVCApp.Controllers
         public ActionResult Create([Bind(Include = "Entity_ID,Security_ID,Dividend_Seq_Number,Dividend_Annual_Number,Forecast_Dividend_Payment_Date,Dividend_Currency_Code,Actual_Dividend_Payment_Date,Actual_Last_Date_To_Register,Actual_Ex_Dividend_Date,Dividend_Split,Forecast_Dividend,Actual_Dividend,Dividend_Type,Forecast_Last_Date_to_Register,Forecast_Ex_Dividend_Date,Last_Update_Date,Last_Update_User,Financial_Year,Actual_FX_Rate,Lock_Flag,Actual_NonRecurring_Dividend")] Security_Dividend_Detail sdd)
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
+            decimal genericEntity = (decimal)ViewBag.genericEntity;
+             
             /*------------------------------------------ 
              first check if this party code is already used ! 
              ----------------------------------------*/
             Security_Dividend_Detail check = db11.FindBy(r => r.Security_ID == sdd.Security_ID &&
-                                                        r.Dividend_Seq_Number == sdd.Dividend_Seq_Number) 
-                                                 .MatchCriteria(c => c.Entity_ID == EntityID).FirstOrDefault(); 
+                                                        r.Dividend_Seq_Number == sdd.Dividend_Seq_Number)
+                                                 .MatchCriteria(c => c.Entity_ID == EntityID || c.Entity_ID == genericEntity).FirstOrDefault(); 
             if (ModelState.IsValid)
             {
                 if (check != null)
@@ -142,10 +145,11 @@ namespace MetopeMVCApp.Controllers
         public ActionResult Edit(decimal SecurityId, decimal DivSeqNo)
         {
             var EntityID = (decimal)ViewBag.EntityId;
+            var genEntity = (decimal)ViewBag.genericEntity;
 
             Security_Dividend_Detail sdd = db11.FindBy(r => r.Security_ID == SecurityId &&
                                                         r.Dividend_Seq_Number == DivSeqNo).Include(s => s.Security_Detail)
-                                                 .MatchCriteria(c => c.Entity_ID == EntityID).FirstOrDefault();
+                                                 .MatchCriteria(c => c.Entity_ID == EntityID || c.Entity_ID == genEntity).FirstOrDefault();
             if (sdd == null)
             {
                 return HttpNotFound();
@@ -156,10 +160,6 @@ namespace MetopeMVCApp.Controllers
             ViewBag.DividendSplit = sdd.Dividend_Split;
             ViewBag.DividendType = sdd.Dividend_Type;
 
-            //ViewBag.Dividend_Currency_Code = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Dividend_Detail.Dividend_Currency_Code);
-            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Dividend_Detail.Entity_ID);
-            //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Dividend_Detail.Security_ID);
-            //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Dividend_Detail.Entity_ID);
             return View(sdd);
         }
 
@@ -187,11 +187,7 @@ namespace MetopeMVCApp.Controllers
             ViewBag.DividendCurrencyCode = security_Dividend_Detail.Dividend_Currency_Code;
             ViewBag.MySysLockedList = security_Dividend_Detail.Lock_Flag;
             //ViewBag.DividendSplit = security_Dividend_Detail.Dividend_Split; 
-                
-            //ViewBag.Dividend_Currency_Code = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Dividend_Detail.Dividend_Currency_Code);
-            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Dividend_Detail.Entity_ID);
-            //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Dividend_Detail.Security_ID);
-            //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Dividend_Detail.Entity_ID);
+     
             return View(security_Dividend_Detail);
         }
 

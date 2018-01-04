@@ -69,7 +69,7 @@ namespace MetopeMVCApp.Controllers
          
         // GET: SecurityAnalytics/Create
         [AllSecuritiesFilter]
-        public ActionResult Create(int? SecurityId, string Nav)
+        public ActionResult Create(int? SecurityId, string Nav = "")
         {   
             ViewBag.EntityIdScope = ViewBag.EntityId; 
             ViewBag.SecuritiesAll = SecurityId;
@@ -125,12 +125,12 @@ namespace MetopeMVCApp.Controllers
         // GET: SecurityAnalytics/Edit/5
         [CustomEntityAuthoriseFilter]
         [AllSecuritiesFilter]
-        public ActionResult Edit(decimal EntityId, decimal SecurityId, string Nav)
+        public ActionResult Edit(decimal EntityId, decimal SecurityId, string Nav="")
         {
-            var EntityID = (decimal)ViewBag.EntityId;
+            //var EntityID = (decimal)ViewBag.EntityId;
  
             var security_Analytics = db11.FindBy(r => r.Security_ID == SecurityId  )
-                                           .MatchCriteria(c => c.Entity_ID == EntityID).FirstOrDefault();
+                                           .MatchCriteria(c => c.Entity_ID == EntityId).FirstOrDefault();
              
             if (security_Analytics == null)
             {
