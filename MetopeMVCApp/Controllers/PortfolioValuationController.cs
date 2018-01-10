@@ -32,7 +32,8 @@ namespace MetopeMVCApp.Controllers
         // GET: PortfolioValuation
         public ActionResult Index()
         {
-            var portfolio_Valuation = db.Portfolio_Valuation.Include(p => p.Entity).Include(p => p.Portfolio) ;
+            var portfolio_Valuation = db.Portfolio_Valuation.Include(p => p.Entity).Include(p => p.Portfolio)
+                                                      .OrderBy(s => s.Portfolio_Code);
             return View(portfolio_Valuation.ToList());
         }
 

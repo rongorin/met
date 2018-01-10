@@ -1,48 +1,77 @@
 ﻿@model IEnumerable<Metope.DAL.Security_Dividend_Split>
+   
 
+@using GridMvc.Html
 @{
-    ViewBag.Title = "Index";
-} 
+    ViewBag.Title = "SecurityDividendSplits";
+}
+@section Styles {
+    @Styles.Render("~/Content/GridMvc")
+    <link href="~/Content/cssNoLines.css" rel="stylesheet" />
+}
 <h2>Security Dividend Splits</h2>
-@Html.Partial("_MsgSuccesFail", Model)
 <p>
     @Html.ActionLink("Create New", "Create")
-    @*<button type="button" id="createNew" class="btn btn-secondary btn-sm">Create New</button>*@
-</p> 
+</p>
+@Html.Partial("_MsgSuccesFail", Model)
 
- <div>  
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
- </div>
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="code-cut">
+    @Html.Grid(Model).Named("depGrid").Columns(columns =>
+    {
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Dividend_Split)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Security_Detail.Short_Name)
-            </th>
-            <th>@Html.DisplayNameFor(model => model.Dividend_Annual_Number)</th>
-            <th></th>
-        </tr>
+        columns.Add(c => c.Security_ID)
+            .Titled("Security Id").Filterable(true)
+            .SetWidth(100); columns.Add(c => c.Security_Detail.Short_Name)
+            .Titled("Security Name").Filterable(true)
+            .SetWidth(60);
+         
+        columns.Add(c => c.Entity_ID, true);
+        columns.Add(c => c.Dividend_Annual_Number)
+            .Titled("Div Number").Filterable(false)
+            .SetWidth(88);
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Dividend_Split)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Security_Detail.Short_Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Dividend_Annual_Number)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { EntityId = item.Entity_ID, securityID = item.Security_ID, dividendAnnNumber = item.Dividend_Annual_Number }) |
-                    @Html.ActionLink("Details", "Details", new { EntityId = item.Entity_ID, securityID = item.Security_ID, dividendAnnNumber = item.Dividend_Annual_Number }) |
-                    @Html.ActionLink("Delete", "Delete", new { EntityId = item.Entity_ID, securityID = item.Security_ID, dividendAnnNumber = item.Dividend_Annual_Number })
-                </td>
-            </tr>
-        } 
-    </table>
+        columns.Add(c => c.Dividend_Split)
+            .Titled("Split").Filterable(false)
+            .SetWidth(88); 
+        
+        columns.Add()
+        .Encoded(false)
+        .Sanitized(false)
+        .SetWidth(20)
+        .RenderValueAs(c => @<u>
+            @Html.ActionLink("Edit", "Edit", "SecurityDividendSplit", new { EntityId = c.Entity_ID, securityID = c.Security_ID, dividendAnnNumber = c.Dividend_Annual_Number }, null)
+        </u>);
+
+        columns.Add()
+     .Encoded(false)
+     .Sanitized(false)
+     .SetWidth(20)
+     .RenderValueAs(c => @<u>
+        @Html.ActionLink("Delete", "Delete", "SecurityDividendSplit", new { EntityId = c.Entity_ID, securityID = c.Security_ID, dividendAnnNumber = c.Dividend_Annual_Number }, null)
+    </u>);
+
+    }).WithPaging(15).Sortable(true)
+
+</div>
+ @section Scripts {
+    @Scripts.Render("~/bundles/GridMvc")
+    <script>
+    $(function () {
+        pageGrids.depGrid.onRowSelect(function (e) {
+            var myUrl2 ;
+            //here rather do full page load instead of the Ajax partial:
+            if ( "@ViewBag.Nav" != "")
+                myUrl2 = mtpApp.Urls.baseUrl + "SecurityDividendSplit/Edit?securityID=" + e.row.Security_ID + "&EntityId=" + e.row.Entity_ID + "&dividendAnnNumber=" + e.row.Dividend_Annual_Number + "&Nav=" + "@ViewBag.Nav";
+            else
+                myUrl2 = mtpApp.Urls.baseUrl + "SecurityDividendSplit/Edit?securityID=" + e.row.Security_ID + "&EntityId=" + e.row.Entity_ID + "&dividendAnnNumber=" + e.row.Dividend_Annual_Number;
+
+            window.location = myUrl2;
+        });
+    });3
+    </script>
+
+}
+
+
+ 

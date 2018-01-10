@@ -17,24 +17,29 @@ namespace Metope.WebAPI.Controllers
         private MetopeDbEntities db = new MetopeDbEntities();
 
         // GET: api/SecurityDividendSplit 
-        public IHttpActionResult GetSecurity_Dividend_Split(string entityID)
+        public IHttpActionResult GetSecurity_Dividend_Split(decimal entityID)
         {
-            decimal EntityId = Convert.ToDecimal(entityID);
+            //decimal EntityId = Convert.ToDecimal(entityID);
             IEnumerable<Security_Dividend_Split> pvs = db.Security_Dividend_Split.Include(c => c.Security_Detail)
-                                                    .Where(c => c.Entity_ID == EntityId)
-                                                    .ToList();
-                               
+                                                    .Where(c => c.Entity_ID == entityID)
+                                                     .OrderBy(s => s.Security_ID).ThenBy(n => n.Dividend_Annual_Number)
+                                                    .ToList(); 
             return Ok(pvs); 
         }
          
 
         // GET: api/SecurityDividendSplit/5
-        //[HttpGet, Route("GetByID/{entityID},{securityID},{dividendAnnNumber}")]
-      
+        //[HttpGet, Route("GetByID/{entityID},{securityID},{dividendAnnNumber}")] 
         public IHttpActionResult GetSecurity_Dividend_Split(decimal entityID, decimal securityID , decimal dividendAnnNumber)
         {
-            Security_Dividend_Split security_Dividend_Split = db.Security_Dividend_Split.Include(c => c.Security_Detail).ToList()
-                                    .Find(x => x.Dividend_Annual_Number == dividendAnnNumber && x.Security_ID == securityID && x.Entity_ID == entityID);
+            Security_Dividend_Split security_Dividend_Split = db.Security_Dividend_Split.Include(c => c.Security_Detail).
+                                                                                SingleOrDefault(x => x.Dividend_Annual_Number == dividendAnnNumber
+                                                                                    && x.Entity_ID == entityID
+                                                                                    && x.Security_ID == securityID);
+
+            //this is less efficeint:
+            //Security_Dividend_Split security_Dividend_Split = db.Security_Dividend_Split.Include(c => c.Security_Detail).ToList()
+            //                        .Find(x => x.Dividend_Annual_Number == dividendAnnNumber && x.Security_ID == securityID && x.Entity_ID == entityID);
                              ;
             if (security_Dividend_Split == null)
             {
@@ -114,9 +119,13 @@ namespace Metope.WebAPI.Controllers
 
         // DELETE: api/SecurityDividendSplit/5
         [ResponseType(typeof(Security_Dividend_Split))]
-        public IHttpActionResult DeleteSecurity_Dividend_Split(decimal id)
+        public IHttpActionResult DeleteSecurity_Dividend_Split(decimal entityID, decimal securityID, decimal dividendAnnNumber)
         {
-            Security_Dividend_Split security_Dividend_Split = db.Security_Dividend_Split.Find(id);
+            Security_Dividend_Split security_Dividend_Split = db.Security_Dividend_Split.Include(c => c.Security_Detail).
+                                                                           SingleOrDefault(x => x.Dividend_Annual_Number == dividendAnnNumber
+                                                                               && x.Entity_ID == entityID
+                                                                               && x.Security_ID == securityID);
+             
             if (security_Dividend_Split == null)
             {
                 return NotFound();

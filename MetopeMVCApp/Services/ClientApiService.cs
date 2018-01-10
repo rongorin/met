@@ -17,12 +17,19 @@ namespace MetopeMVCApp.Services
         // ConfigurationManager.AppSettings["GenericEntityId"]) ; 
 
         private string BASE_URL =   ConfigurationManager.AppSettings["MetopeWebApiAddr"];
+        private string FilePath = "";
+        //this is an example of logging database functionaily:
+        private void LogInfo(string logmessage)
+        { 
+            System.IO.File.AppendAllText(FilePath, logmessage);
+        } 
 
 
         //Generic Get servie
-        public IEnumerable<T> findAll<t>(string svcEndPoint, string entityID) 
+        public IEnumerable<T> findAll<t>(string svcEndPoint, decimal entityID, string filePath) 
         {
             IEnumerable<T> pvs = null;
+            FilePath = filePath;
           
             using (var client = new HttpClient())
             {
@@ -30,6 +37,8 @@ namespace MetopeMVCApp.Services
                 //HTTP GET
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var responseTask = client.GetAsync(svcEndPoint + "?EntityID=" + entityID);
+                LogInfo("\r\n R1 base:" + BASE_URL + svcEndPoint + "?EntityID=" + entityID);
+
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -37,18 +46,20 @@ namespace MetopeMVCApp.Services
                 {
                     var readTask = result.Content.ReadAsAsync<IList<T>>();
                     readTask.Wait();
-
-                    pvs = readTask.Result;
+                    LogInfo("\r\n R1 success" + "\n");
+                     pvs = readTask.Result;
+                     LogInfo("\r\n R1 count:" + readTask.Result.Count().ToString() );
                 }
                 else //web api sent error response 
                 {
+                    LogInfo("R1 Failure return othing" + "\n");
                     //log response status h ere..
 
                     //var ex = CreateApiException(result);
                     //throw ex;
                     pvs = Enumerable.Empty<T>(); 
                 }
-            }
+            } 
             return pvs;
         }
         //public T find<T>(string svcEndPoint, decimal entityId, decimal securityId, int dividendAnnNumber)
@@ -164,8 +175,8 @@ namespace MetopeMVCApp.Services
             {
                 client.BaseAddress = new Uri(BASE_URL);
 
-                //HTTP POST
-                HttpResponseMessage resp = client.DeleteAsync(urlExtension  ).Result;
+                //HTTP POST 
+                HttpResponseMessage resp = client.DeleteAsync(urlExtension + "/Delete?EntityID=" + entityId + "&SecurityID=" + securityId + "&dividendAnnNumber=" + dividendAnnNumber).Result;
                 return resp.IsSuccessStatusCode;
 
                 //if (result.IsSuccessStatusCode)

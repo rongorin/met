@@ -11,7 +11,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h3>Dividend Split for <b> @Model.Security_Detail.Short_Name </b> dividend number <b>  @Model.Dividend_Annual_Number</b></h3>
+        <h3>Dividend Split for Security Id <b> @Model.Security_Detail.Short_Name</b> dividend number <b>  @Model.Dividend_Annual_Number</b></h3>
        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -19,13 +19,10 @@
         @Html.HiddenFor(model => model.Security_ID)
         @Html.HiddenFor(model => model.Dividend_Annual_Number)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Dividend_Split, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Dividend_Split, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Dividend_Split, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.EditorFor(model => model.Dividend_Split, "BootstrapEditDecimal8PlacesVertic")
+
+
+   
          
         @Html.Partial("_SaveButtonShow", Model)
     </div>

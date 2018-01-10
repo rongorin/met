@@ -739,6 +739,7 @@
     <Content Include="Views\SecurityDividendSplit\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimalZeroPlacesVert.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Portfolio_Valuation.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimal8PlacesVertic.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
