@@ -13,8 +13,7 @@ namespace Metope.DAL
     using System.Collections.Generic;
     using Metope.DAL.MyMetaData;
     using System.ComponentModel.DataAnnotations;
-    [MetadataType(typeof(SecurityDetailModelMetaData))]
-   
+    [MetadataType(typeof(SecurityDetailModelMetaData))] 
     
     public partial class Security_Detail
     {
@@ -30,6 +29,9 @@ namespace Metope.DAL
             this.Security_Price_History = new HashSet<Security_Price_History>();
             this.Security_Price = new HashSet<Security_Price>();
             this.Security_List = new HashSet<Security_List>();
+            this.Cash_Transactions = new HashSet<Cash_Transactions>();
+            this.Cash_Transactions1 = new HashSet<Cash_Transactions>();
+            this.Position_SOD = new HashSet<Position_SOD>();
         }
     
         public decimal Security_ID { get; set; }
@@ -108,5 +110,8 @@ namespace Metope.DAL
         public virtual ICollection<Security_Price_History> Security_Price_History { get; set; }
         public virtual ICollection<Security_Price> Security_Price { get; set; }
         public virtual ICollection<Security_List> Security_List { get; set; }
+        public virtual ICollection<Cash_Transactions> Cash_Transactions { get; set; }
+        public virtual ICollection<Cash_Transactions> Cash_Transactions1 { get; set; }
+        public virtual ICollection<Position_SOD> Position_SOD { get; set; }
     }
 }

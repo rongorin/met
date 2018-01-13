@@ -20,7 +20,6 @@ namespace Metope.DAL
         public MetopeDbEntities()
             : base("name=MetopeDbEntities")
         {
-            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -54,6 +53,8 @@ namespace Metope.DAL
         public virtual DbSet<Security_Dividend_Split> Security_Dividend_Split { get; set; }
         public virtual DbSet<Security_List_Detail> Security_List_Detail { get; set; }
         public virtual DbSet<Security_List> Security_List { get; set; }
+        public virtual DbSet<Cash_Transactions> Cash_Transactions { get; set; }
+        public virtual DbSet<Position_SOD> Position_SOD { get; set; }
     
         public virtual int sp_TestRun(Nullable<decimal> entityID)
         {

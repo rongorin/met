@@ -36,6 +36,8 @@ namespace Metope.DAL
             this.Security_Detail = new HashSet<Security_Detail>();
             this.Security_Dividend_Split = new HashSet<Security_Dividend_Split>();
             this.Security_List_Detail = new HashSet<Security_List_Detail>();
+            this.Cash_Transactions = new HashSet<Cash_Transactions>();
+            this.Position_SOD = new HashSet<Position_SOD>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -64,5 +66,7 @@ namespace Metope.DAL
         public virtual ICollection<Security_Detail> Security_Detail { get; set; }
         public virtual ICollection<Security_Dividend_Split> Security_Dividend_Split { get; set; }
         public virtual ICollection<Security_List_Detail> Security_List_Detail { get; set; }
+        public virtual ICollection<Cash_Transactions> Cash_Transactions { get; set; }
+        public virtual ICollection<Position_SOD> Position_SOD { get; set; }
     }
 }

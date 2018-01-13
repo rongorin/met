@@ -24,6 +24,32 @@
           <Property Name="ApplicationUserId" Type="nvarchar(max)" />
           <Property Name="EntityIdScope" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="Cash_Transactions">
+          <Key>
+            <PropertyRef Name="Cash_Transaction_ID" />
+          </Key>
+          <Property Name="Cash_Transaction_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Portfolio_Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Transaction_Security_ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Cash_Security_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Transaction_Source_Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Order_ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Allocation_ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Cashflow_ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Dividend_Seq_Number" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="External_ID" Type="varchar" MaxLength="50" />
+          <Property Name="Transaction_Date" Type="date" Nullable="false" />
+          <Property Name="Value_Date" Type="date" Nullable="false" />
+          <Property Name="Cash_Transaction_Type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Transaction_Amount" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Transaction_Currency_Code" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="BaseCur_Amount" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Create_User_Code" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Update_User" Type="varchar" MaxLength="30" />
+          <Property Name="Last_Update_Date" Type="datetime" />
+        </EntityType>
         <EntityType Name="Code_Miscellaneous">
           <Key>
             <PropertyRef Name="Entity_ID" />
@@ -354,6 +380,52 @@
           <Property Name="Hist_Last_Update_Date" Type="datetime" />
           <Property Name="Hist_Last_Update_User" Type="varchar" MaxLength="30" />
         </EntityType>
+        <EntityType Name="Position_SOD">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Portfolio_Code" />
+            <PropertyRef Name="Security_ID" />
+            <PropertyRef Name="Long_Short_Indicator" />
+            <PropertyRef Name="Position_Date" />
+          </Key>
+          <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Portfolio_Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Security_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Long_Short_Indicator" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Position_Date" Type="date" Nullable="false" />
+          <Property Name="Dealt_Quantity" Type="decimal" Precision="24" Scale="8" />
+          <Property Name="Unsettled_Quantity" Type="decimal" Precision="24" Scale="8" />
+          <Property Name="Settled_Quantity" Type="decimal" Precision="24" Scale="8" />
+          <Property Name="Dealt_AllIn_Mkt_Value_PriceCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_AllIn_Mkt_Value_PriceCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Settled_AllIn_Mkt_Value_PriceCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Dealt_AllIn_Mkt_Value_BaseCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_AllIn_Mkt_Value_BaseCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Settled_AllIn_Mkt_Value_BaseCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Dealt_Clean_Mkt_Value_PriceCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_Clean_Mkt_Value_PriceCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Settled_Clean_Mkt_Value_PriceCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Dealt_Clean_Mkt_Value_BaseCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_Clean_Mkt_Value_BaseCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Settled_Clean_Mkt_Value_BaseCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Dealt_Income_Mkt_Value_PriceCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_Income_Mkt_Value_PriceCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Settled_Income_Mkt_Value_PriceCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Dealt_Income_Mkt_Value_BaseCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_Income_Mkt_Value_BaseCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Settled_Income_Mkt_Value_BaseCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Exposure_BaseCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Exposure_PriceCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Average_Unit_Cost_BaseCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Average_Unit_Cost_PriceCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Pledged_Quantity" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Segregated_Quantity" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Model_Percent" Type="decimal" Precision="24" Scale="8" />
+          <Property Name="Last_Update_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Update_User" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Unsettled_Expenses_BaseCur" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_Expenses_PriceCur" Type="decimal" Precision="20" Scale="4" />
+        </EntityType>
         <EntityType Name="Security_Analytics">
           <Key>
             <PropertyRef Name="Entity_ID" />
@@ -626,6 +698,102 @@
           <Property Name="Last_Login_Time" Type="datetime" />
           <Property Name="System_Locked" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Cash_Transactions_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="Cash_Transactions" Type="Self.Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Transaction_Currency_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cash_Transactions_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="Cash_Transactions" Type="Self.Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Cash_Transactions_Portfolio' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Cash_Transactions' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Cash_Transactions_Portfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="Cash_Transactions" Type="Self.Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
+        <Association Name="FK_Cash_Transactions_Security_Detail">
+          <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="0..1" />
+          <End Role="Cash_Transactions" Type="Self.Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Transaction_Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cash_Transactions_Security_Detail1">
+          <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="1" />
+          <End Role="Cash_Transactions" Type="Self.Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Cash_Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Cash_Transactions_User' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Cash_Transactions' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Cash_Transactions_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Cash_Transactions" Type="Self.Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Cash_Transactions_User2' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Cash_Transactions' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Cash_Transactions_User2">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Cash_Transactions" Type="Self.Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Create_User_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
         <Association Name="FK_Code_Miscellaneous_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
           <End Role="Code_Miscellaneous" Type="Self.Code_Miscellaneous" Multiplicity="*" />
@@ -722,6 +890,164 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Order_Allocation_Portfolio' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Order_Allocation' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Order_Allocation_Portfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="Order_Allocation" Type="Self.Order_Allocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Principal>
+            <Dependent Role="Order_Allocation">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Order_Allocation_User' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Order_Allocation' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Order_Allocation_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order_Allocation" Type="Self.Order_Allocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Order_Allocation">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Order_Detail_Currency2' has been omitted from the storage model. Column 'Sell_Currency_Code' of table 'MetopeDbModel.Store.Order_Detail' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Order_Detail_Currency2">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Sell_Currency_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Order_Detail_Security_Type' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Order_Detail' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Order_Detail_Security_Type">
+          <End Role="Security_Type" Type="Self.Security_Type" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Type">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Security_Type_Code" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Security_Type_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Order_Detail_User' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Order_Detail' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Order_Detail_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Order_Detail_User1' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Order_Detail' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Order_Detail_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Order_Detail_User2' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Order_Detail' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Order_Detail_User2">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Trader" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Order_Detail_User3' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Order_Detail' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Order_Detail_User3">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Authorised_User1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Order_Detail_User4' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Order_Detail' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Order_Detail_User4">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Authorised_User2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Order_Detail_User5' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Order_Detail' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Order_Detail_User5">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Order_Creator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
         <Association Name="FK_Party_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="Party" Type="Self.Party" Multiplicity="*" />
@@ -830,6 +1156,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Portfolio_Currency2' has been omitted from the storage model. Column 'Portfolio_Report_Currency' of table 'MetopeDbModel.Store.Portfolio' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
         <Association Name="FK_Portfolio_Currency2">
           <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
           <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
@@ -841,7 +1169,7 @@
               <PropertyRef Name="Portfolio_Report_Currency" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>-->
         <Association Name="FK_Portfolio_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
           <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
@@ -866,6 +1194,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Portfolio_List_Portfolio' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Portfolio_List' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
         <Association Name="FK_Portfolio_List_Portfolio">
           <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
           <End Role="Portfolio_List" Type="Self.Portfolio_List" Multiplicity="*" />
@@ -879,7 +1209,9 @@
               <PropertyRef Name="Portfolio_Code" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6030: The relationship 'FK_Portfolio_User' uses the set of foreign keys '{Entity_ID,Manager}' that are partially contained in the set of primary keys '{Entity_ID,Portfolio_Code}' of the table 'Portfolio'.  The set of foreign keys must be fully contained in the set of primary keys, or fully not contained in the set of primary keys to be mapped to a model.
         <Association Name="FK_Portfolio_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
@@ -893,7 +1225,7 @@
               <PropertyRef Name="Manager" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>-->
         <Association Name="FK_Portfolio_Valuation">
           <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
           <End Role="Portfolio_Valuation" Type="Self.Portfolio_Valuation" Multiplicity="0..1" />
@@ -908,6 +1240,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Portfolio_Valuation_Entity' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Portfolio_Valuation' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
         <Association Name="FK_Portfolio_Valuation_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
           <End Role="Portfolio_Valuation" Type="Self.Portfolio_Valuation" Multiplicity="*" />
@@ -919,7 +1253,7 @@
               <PropertyRef Name="Entity_ID" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>-->
         <Association Name="FK_Portfolio_Valuation_History">
           <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
           <End Role="Portfolio_Valuation_History" Type="Self.Portfolio_Valuation_History" Multiplicity="*" />
@@ -934,6 +1268,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Portfolio_Valuation_History_Entity' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Portfolio_Valuation_History' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
         <Association Name="FK_Portfolio_Valuation_History_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
           <End Role="Portfolio_Valuation_History" Type="Self.Portfolio_Valuation_History" Multiplicity="*" />
@@ -945,7 +1281,9 @@
               <PropertyRef Name="Entity_ID" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6030: The relationship 'FK_Portfolio_Valuation_History_User' uses the set of foreign keys '{Entity_ID,Last_Update_User}' that are partially contained in the set of primary keys '{Portfolio_Code,Entity_ID,Record_Date}' of the table 'Portfolio_Valuation_History'.  The set of foreign keys must be fully contained in the set of primary keys, or fully not contained in the set of primary keys to be mapped to a model.
         <Association Name="FK_Portfolio_Valuation_History_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Portfolio_Valuation_History" Type="Self.Portfolio_Valuation_History" Multiplicity="*" />
@@ -959,7 +1297,9 @@
               <PropertyRef Name="Last_Update_User" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6030: The relationship 'FK_Portfolio_Valuation_User' uses the set of foreign keys '{Entity_ID,Last_Update_User}' that are partially contained in the set of primary keys '{Portfolio_Code,Entity_ID}' of the table 'Portfolio_Valuation'.  The set of foreign keys must be fully contained in the set of primary keys, or fully not contained in the set of primary keys to be mapped to a model.
         <Association Name="FK_Portfolio_Valuation_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Portfolio_Valuation" Type="Self.Portfolio_Valuation" Multiplicity="*" />
@@ -973,7 +1313,63 @@
               <PropertyRef Name="Last_Update_User" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>-->
+        <Association Name="FK_Position_SOD_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="Position_SOD" Type="Self.Position_SOD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Position_SOD">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Position_SOD_Portfolio' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Position_SOD' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+        <Association Name="FK_Position_SOD_Portfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="Position_SOD" Type="Self.Position_SOD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Principal>
+            <Dependent Role="Position_SOD">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
+        <Association Name="FK_Position_SOD_Security_Detail">
+          <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="1" />
+          <End Role="Position_SOD" Type="Self.Position_SOD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Position_SOD">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6030: The relationship 'FK_Position_SOD_User' uses the set of foreign keys '{Entity_ID,Last_Update_User}' that are partially contained in the set of primary keys '{Entity_ID,Portfolio_Code,Security_ID,Long_Short_Indicator,Position_Date}' of the table 'Position_SOD'.  The set of foreign keys must be fully contained in the set of primary keys, or fully not contained in the set of primary keys to be mapped to a model.
+        <Association Name="FK_Position_SOD_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Position_SOD" Type="Self.Position_SOD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Position_SOD">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
         <Association Name="FK_Security_Analytics_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
           <End Role="Security_Analytics" Type="Self.Security_Analytics" Multiplicity="*" />
@@ -1010,6 +1406,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6030: The relationship 'FK_Security_Analytics_User' uses the set of foreign keys '{Entity_ID,Last_Update_User}' that are partially contained in the set of primary keys '{Entity_ID,Security_ID}' of the table 'Security_Analytics'.  The set of foreign keys must be fully contained in the set of primary keys, or fully not contained in the set of primary keys to be mapped to a model.
         <Association Name="FK_Security_Analytics_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Security_Analytics" Type="Self.Security_Analytics" Multiplicity="*" />
@@ -1023,7 +1421,7 @@
               <PropertyRef Name="Last_Update_User" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>-->
         <Association Name="FK_Security_Detail_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="*" />
@@ -1084,6 +1482,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Security_Detail_Currency2' has been omitted from the storage model. Column 'Asset_Currency' of table 'MetopeDbModel.Store.Security_Detail' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
         <Association Name="FK_Security_Detail_Currency2">
           <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
           <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="*" />
@@ -1095,7 +1495,7 @@
               <PropertyRef Name="Asset_Currency" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>-->
         <Association Name="FK_Security_Detail_Currency3">
           <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
           <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="*" />
@@ -1144,6 +1544,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6037: Foreign key constraint 'FK_Security_Detail_Portfolio_Benchmark' has been omitted from the storage model. Column 'Entity_ID' of table 'MetopeDbModel.Store.Security_Detail' is a foreign key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
         <Association Name="FK_Security_Detail_Portfolio_Benchmark">
           <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="0..1" />
           <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="*" />
@@ -1157,7 +1559,7 @@
               <PropertyRef Name="Benchmark_Portfolio" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>-->
         <Association Name="FK_Security_Dividend_Detail_Currency_Code">
           <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
           <End Role="Security_Dividend_Detail" Type="Self.Security_Dividend_Detail" Multiplicity="*" />
@@ -1194,6 +1596,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6030: The relationship 'FK_Security_Dividend_Detail_User' uses the set of foreign keys '{Entity_ID,Last_Update_User}' that are partially contained in the set of primary keys '{Entity_ID,Security_ID,Dividend_Seq_Number}' of the table 'Security_Dividend_Detail'.  The set of foreign keys must be fully contained in the set of primary keys, or fully not contained in the set of primary keys to be mapped to a model.
         <Association Name="FK_Security_Dividend_Detail_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Security_Dividend_Detail" Type="Self.Security_Dividend_Detail" Multiplicity="*" />
@@ -1207,7 +1611,7 @@
               <PropertyRef Name="Last_Update_User" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>-->
         <Association Name="FK_Security_Dividend_Split_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
           <End Role="Security_Dividend_Split" Type="Self.Security_Dividend_Split" Multiplicity="*" />
@@ -1316,6 +1720,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6030: The relationship 'FK_Security_Price_History_User' uses the set of foreign keys '{Entity_ID,Last_Update_User}' that are partially contained in the set of primary keys '{Entity_ID,Security_ID,Price_Curr,Price_DateTime}' of the table 'Security_Price_History'.  The set of foreign keys must be fully contained in the set of primary keys, or fully not contained in the set of primary keys to be mapped to a model.
         <Association Name="FK_Security_Price_History_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Security_Price_History" Type="Self.Security_Price_History" Multiplicity="*" />
@@ -1329,7 +1735,7 @@
               <PropertyRef Name="Last_Update_User" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>-->
         <Association Name="FK_Security_Price_Security_Detail">
           <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="1" />
           <End Role="Security_Price" Type="Self.Security_Price" Multiplicity="*" />
@@ -1342,6 +1748,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6030: The relationship 'FK_Security_Price_User' uses the set of foreign keys '{Entity_ID,Last_Update_User}' that are partially contained in the set of primary keys '{Entity_ID,Security_ID,Price_Curr}' of the table 'Security_Price'.  The set of foreign keys must be fully contained in the set of primary keys, or fully not contained in the set of primary keys to be mapped to a model.
         <Association Name="FK_Security_Price_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Security_Price" Type="Self.Security_Price" Multiplicity="*" />
@@ -1355,7 +1763,23 @@
               <PropertyRef Name="Last_Update_User" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>-->
+        <!--Errors Found During Generation:
+warning 6030: The relationship 'FK_Security_SOD_User' uses the set of foreign keys '{Entity_ID,Last_Update_User}' that are partially contained in the set of primary keys '{Entity_ID,Portfolio_Code,Security_ID,Long_Short_Indicator,Position_Date}' of the table 'Position_SOD'.  The set of foreign keys must be fully contained in the set of primary keys, or fully not contained in the set of primary keys to be mapped to a model.
+        <Association Name="FK_Security_SOD_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Position_SOD" Type="Self.Position_SOD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Position_SOD">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>-->
         <Association Name="FK_Security_Type_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
           <End Role="Security_Type" Type="Self.Security_Type" Multiplicity="*" />
@@ -1404,6 +1828,7 @@
         </Function>
         <EntityContainer Name="MetopeDbModelStoreContainer">
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cash_Transactions" EntityType="Self.Cash_Transactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Code_Miscellaneous" EntityType="Self.Code_Miscellaneous" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
@@ -1419,6 +1844,7 @@
           <EntitySet Name="Portfolio_List" EntityType="Self.Portfolio_List" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolio_Valuation" EntityType="Self.Portfolio_Valuation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolio_Valuation_History" EntityType="Self.Portfolio_Valuation_History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position_SOD" EntityType="Self.Position_SOD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Analytics" EntityType="Self.Security_Analytics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Detail" EntityType="Self.Security_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Dividend_Detail" EntityType="Self.Security_Dividend_Detail" Schema="dbo" store:Type="Tables" />
@@ -1429,6 +1855,22 @@
           <EntitySet Name="Security_Price_History" EntityType="Self.Security_Price_History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Type" EntityType="Self.Security_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cash_Transactions_Currency" Association="Self.FK_Cash_Transactions_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Cash_Transactions" EntitySet="Cash_Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cash_Transactions_Entity" Association="Self.FK_Cash_Transactions_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="Cash_Transactions" EntitySet="Cash_Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cash_Transactions_Security_Detail" Association="Self.FK_Cash_Transactions_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Cash_Transactions" EntitySet="Cash_Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cash_Transactions_Security_Detail1" Association="Self.FK_Cash_Transactions_Security_Detail1">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Cash_Transactions" EntitySet="Cash_Transactions" />
+          </AssociationSet>
           <AssociationSet Name="FK_Code_Miscellaneous_Entity" Association="Self.FK_Code_Miscellaneous_Entity">
             <End Role="Entity" EntitySet="Entity" />
             <End Role="Code_Miscellaneous" EntitySet="Code_Miscellaneous" />
@@ -1497,10 +1939,6 @@
             <End Role="Currency" EntitySet="Currency" />
             <End Role="Portfolio" EntitySet="Portfolio" />
           </AssociationSet>
-          <AssociationSet Name="FK_Portfolio_Currency2" Association="Self.FK_Portfolio_Currency2">
-            <End Role="Currency" EntitySet="Currency" />
-            <End Role="Portfolio" EntitySet="Portfolio" />
-          </AssociationSet>
           <AssociationSet Name="FK_Portfolio_Entity" Association="Self.FK_Portfolio_Entity">
             <End Role="Entity" EntitySet="Entity" />
             <End Role="Portfolio" EntitySet="Portfolio" />
@@ -1509,37 +1947,21 @@
             <End Role="Entity" EntitySet="Entity" />
             <End Role="Portfolio_List" EntitySet="Portfolio_List" />
           </AssociationSet>
-          <AssociationSet Name="FK_Portfolio_List_Portfolio" Association="Self.FK_Portfolio_List_Portfolio">
-            <End Role="Portfolio" EntitySet="Portfolio" />
-            <End Role="Portfolio_List" EntitySet="Portfolio_List" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Portfolio_User" Association="Self.FK_Portfolio_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Portfolio" EntitySet="Portfolio" />
-          </AssociationSet>
           <AssociationSet Name="FK_Portfolio_Valuation" Association="Self.FK_Portfolio_Valuation">
             <End Role="Portfolio" EntitySet="Portfolio" />
-            <End Role="Portfolio_Valuation" EntitySet="Portfolio_Valuation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Portfolio_Valuation_Entity" Association="Self.FK_Portfolio_Valuation_Entity">
-            <End Role="Entity" EntitySet="Entity" />
             <End Role="Portfolio_Valuation" EntitySet="Portfolio_Valuation" />
           </AssociationSet>
           <AssociationSet Name="FK_Portfolio_Valuation_History" Association="Self.FK_Portfolio_Valuation_History">
             <End Role="Portfolio" EntitySet="Portfolio" />
             <End Role="Portfolio_Valuation_History" EntitySet="Portfolio_Valuation_History" />
           </AssociationSet>
-          <AssociationSet Name="FK_Portfolio_Valuation_History_Entity" Association="Self.FK_Portfolio_Valuation_History_Entity">
+          <AssociationSet Name="FK_Position_SOD_Entity" Association="Self.FK_Position_SOD_Entity">
             <End Role="Entity" EntitySet="Entity" />
-            <End Role="Portfolio_Valuation_History" EntitySet="Portfolio_Valuation_History" />
+            <End Role="Position_SOD" EntitySet="Position_SOD" />
           </AssociationSet>
-          <AssociationSet Name="FK_Portfolio_Valuation_History_User" Association="Self.FK_Portfolio_Valuation_History_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Portfolio_Valuation_History" EntitySet="Portfolio_Valuation_History" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Portfolio_Valuation_User" Association="Self.FK_Portfolio_Valuation_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Portfolio_Valuation" EntitySet="Portfolio_Valuation" />
+          <AssociationSet Name="FK_Position_SOD_Security_Detail" Association="Self.FK_Position_SOD_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Position_SOD" EntitySet="Position_SOD" />
           </AssociationSet>
           <AssociationSet Name="FK_Security_Analytics_Entity" Association="Self.FK_Security_Analytics_Entity">
             <End Role="Entity" EntitySet="Entity" />
@@ -1551,10 +1973,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Security_Analytics_Security_Detail2" Association="Self.FK_Security_Analytics_Security_Detail2">
             <End Role="Security_Detail" EntitySet="Security_Detail" />
-            <End Role="Security_Analytics" EntitySet="Security_Analytics" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Security_Analytics_User" Association="Self.FK_Security_Analytics_User">
-            <End Role="User" EntitySet="User" />
             <End Role="Security_Analytics" EntitySet="Security_Analytics" />
           </AssociationSet>
           <AssociationSet Name="FK_Security_Detail_Country" Association="Self.FK_Security_Detail_Country">
@@ -1577,10 +1995,6 @@
             <End Role="Currency" EntitySet="Currency" />
             <End Role="Security_Detail" EntitySet="Security_Detail" />
           </AssociationSet>
-          <AssociationSet Name="FK_Security_Detail_Currency2" Association="Self.FK_Security_Detail_Currency2">
-            <End Role="Currency" EntitySet="Currency" />
-            <End Role="Security_Detail" EntitySet="Security_Detail" />
-          </AssociationSet>
           <AssociationSet Name="FK_Security_Detail_Currency3" Association="Self.FK_Security_Detail_Currency3">
             <End Role="Currency" EntitySet="Currency" />
             <End Role="Security_Detail" EntitySet="Security_Detail" />
@@ -1597,10 +2011,6 @@
             <End Role="Exchange" EntitySet="Exchange" />
             <End Role="Security_Detail" EntitySet="Security_Detail" />
           </AssociationSet>
-          <AssociationSet Name="FK_Security_Detail_Portfolio_Benchmark" Association="Self.FK_Security_Detail_Portfolio_Benchmark">
-            <End Role="Portfolio" EntitySet="Portfolio" />
-            <End Role="Security_Detail" EntitySet="Security_Detail" />
-          </AssociationSet>
           <AssociationSet Name="FK_Security_Dividend_Detail_Currency_Code" Association="Self.FK_Security_Dividend_Detail_Currency_Code">
             <End Role="Currency" EntitySet="Currency" />
             <End Role="Security_Dividend_Detail" EntitySet="Security_Dividend_Detail" />
@@ -1611,10 +2021,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Security_Dividend_Detail_Security_Detail" Association="Self.FK_Security_Dividend_Detail_Security_Detail">
             <End Role="Security_Detail" EntitySet="Security_Detail" />
-            <End Role="Security_Dividend_Detail" EntitySet="Security_Dividend_Detail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Security_Dividend_Detail_User" Association="Self.FK_Security_Dividend_Detail_User">
-            <End Role="User" EntitySet="User" />
             <End Role="Security_Dividend_Detail" EntitySet="Security_Dividend_Detail" />
           </AssociationSet>
           <AssociationSet Name="FK_Security_Dividend_Split_Entity" Association="Self.FK_Security_Dividend_Split_Entity">
@@ -1653,16 +2059,8 @@
             <End Role="Security_Detail" EntitySet="Security_Detail" />
             <End Role="Security_Price_History" EntitySet="Security_Price_History" />
           </AssociationSet>
-          <AssociationSet Name="FK_Security_Price_History_User" Association="Self.FK_Security_Price_History_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Security_Price_History" EntitySet="Security_Price_History" />
-          </AssociationSet>
           <AssociationSet Name="FK_Security_Price_Security_Detail" Association="Self.FK_Security_Price_Security_Detail">
             <End Role="Security_Detail" EntitySet="Security_Detail" />
-            <End Role="Security_Price" EntitySet="Security_Price" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Security_Price_User" Association="Self.FK_Security_Price_User">
-            <End Role="User" EntitySet="User" />
             <End Role="Security_Price" EntitySet="Security_Price" />
           </AssociationSet>
           <AssociationSet Name="FK_Security_Type_Entity" Association="Self.FK_Security_Type_Entity">
@@ -1707,6 +2105,8 @@
           <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Entity" FromRole="Entity" ToRole="Security_Detail" />
           <NavigationProperty Name="Security_Dividend_Split" Relationship="MetopeDbModel.FK_Security_Dividend_Split_Entity" FromRole="Entity" ToRole="Security_Dividend_Split" />
           <NavigationProperty Name="Security_List_Detail" Relationship="MetopeDbModel.FK_Security_List_Detail_Entity" FromRole="Entity" ToRole="Security_List_Detail" />
+          <NavigationProperty Name="Cash_Transactions" Relationship="MetopeDbModel.FK_Cash_Transactions_Entity" FromRole="Entity" ToRole="Cash_Transactions" />
+          <NavigationProperty Name="Position_SOD" Relationship="MetopeDbModel.FK_Position_SOD_Entity" FromRole="Entity" ToRole="Position_SOD" />
           </EntityType>
         <EntityType Name="User">
           <Key>
@@ -1737,7 +2137,9 @@
           <NavigationProperty Name="Security_Analytics" Relationship="MetopeDbModel.FK_Security_Analytics_User" FromRole="User" ToRole="Security_Analytics" />
           <NavigationProperty Name="Portfolio_Valuation" Relationship="MetopeDbModel.FK_Portfolio_Valuation_User" FromRole="User" ToRole="Portfolio_Valuation" />
           <NavigationProperty Name="Portfolio_Valuation_History" Relationship="MetopeDbModel.FK_Portfolio_Valuation_History_User" FromRole="User" ToRole="Portfolio_Valuation_History" />
-        </EntityType>
+          <NavigationProperty Name="Cash_Transactions" Relationship="MetopeDbModel.FK_Cash_Transactions_User" FromRole="User" ToRole="Cash_Transactions" />
+          <NavigationProperty Name="Cash_Transactions1" Relationship="MetopeDbModel.FK_Cash_Transactions_User2" FromRole="User" ToRole="Cash_Transactions" />
+          </EntityType>
         <Association Name="FK_User_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -2065,6 +2467,44 @@
             <End Role="Security_Detail" EntitySet="Security_Detail" />
             <End Role="Security_List" EntitySet="Security_List" />
           </AssociationSet>
+          <EntitySet Name="Cash_Transactions" EntityType="MetopeDbModel.Cash_Transactions" />
+          <AssociationSet Name="FK_Cash_Transactions_Currency" Association="MetopeDbModel.FK_Cash_Transactions_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Cash_Transactions" EntitySet="Cash_Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cash_Transactions_Entity" Association="MetopeDbModel.FK_Cash_Transactions_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Cash_Transactions" EntitySet="Cash_Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cash_Transactions_Portfolio" Association="MetopeDbModel.FK_Cash_Transactions_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolios" />
+            <End Role="Cash_Transactions" EntitySet="Cash_Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cash_Transactions_Security_Detail" Association="MetopeDbModel.FK_Cash_Transactions_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Cash_Transactions" EntitySet="Cash_Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cash_Transactions_Security_Detail1" Association="MetopeDbModel.FK_Cash_Transactions_Security_Detail1">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Cash_Transactions" EntitySet="Cash_Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cash_Transactions_User" Association="MetopeDbModel.FK_Cash_Transactions_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Cash_Transactions" EntitySet="Cash_Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cash_Transactions_User2" Association="MetopeDbModel.FK_Cash_Transactions_User2">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Cash_Transactions" EntitySet="Cash_Transactions" />
+          </AssociationSet>
+          <EntitySet Name="Position_SOD" EntityType="MetopeDbModel.Position_SOD" />
+          <AssociationSet Name="FK_Position_SOD_Entity" Association="MetopeDbModel.FK_Position_SOD_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Position_SOD" EntitySet="Position_SOD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Position_SOD_Security_Detail" Association="MetopeDbModel.FK_Position_SOD_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Position_SOD" EntitySet="Position_SOD" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AspNetUser">
           <Key>
@@ -2127,6 +2567,7 @@
           <NavigationProperty Name="Security_Detail3" Relationship="MetopeDbModel.FK_Security_Detail_Currency1" FromRole="Currency" ToRole="Security_Detail" />
           <NavigationProperty Name="Security_Detail4" Relationship="MetopeDbModel.FK_Security_Detail_Currency2" FromRole="Currency" ToRole="Security_Detail" />
           <NavigationProperty Name="Security_Detail5" Relationship="MetopeDbModel.FK_Security_Detail_Currency3" FromRole="Currency" ToRole="Security_Detail" />
+          <NavigationProperty Name="Cash_Transactions" Relationship="MetopeDbModel.FK_Cash_Transactions_Currency" FromRole="Currency" ToRole="Cash_Transactions" />
           </EntityType>
         <EntityType Name="Currency_Pair">
           <Key>
@@ -2315,6 +2756,7 @@
           <NavigationProperty Name="Portfolio_Valuation" Relationship="MetopeDbModel.FK_Portfolio_Valuation" FromRole="Portfolio" ToRole="Portfolio_Valuation" />
           <NavigationProperty Name="Portfolio_Valuation_History" Relationship="MetopeDbModel.FK_Portfolio_Valuation_History" FromRole="Portfolio" ToRole="Portfolio_Valuation_History" />
           <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Portfolio_Benchmark" FromRole="Portfolio" ToRole="Security_Detail" />
+          <NavigationProperty Name="Cash_Transactions" Relationship="MetopeDbModel.FK_Cash_Transactions_Portfolio" FromRole="Portfolio" ToRole="Cash_Transactions" />
         </EntityType>
         <Association Name="FK_Portfolio_Country">
           <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
@@ -3096,6 +3538,9 @@
           <NavigationProperty Name="Security_Price_History" Relationship="MetopeDbModel.FK_Security_Price_History_Security_Detail" FromRole="Security_Detail" ToRole="Security_Price_History" />
           <NavigationProperty Name="Security_Price" Relationship="MetopeDbModel.FK_Security_Price_Security_Detail" FromRole="Security_Detail" ToRole="Security_Price" />
           <NavigationProperty Name="Security_List" Relationship="MetopeDbModel.FK_Security_List_Security_Detail" FromRole="Security_Detail" ToRole="Security_List" />
+          <NavigationProperty Name="Cash_Transactions" Relationship="MetopeDbModel.FK_Cash_Transactions_Security_Detail" FromRole="Security_Detail" ToRole="Cash_Transactions" />
+          <NavigationProperty Name="Cash_Transactions1" Relationship="MetopeDbModel.FK_Cash_Transactions_Security_Detail1" FromRole="Security_Detail" ToRole="Cash_Transactions" />
+          <NavigationProperty Name="Position_SOD" Relationship="MetopeDbModel.FK_Position_SOD_Security_Detail" FromRole="Security_Detail" ToRole="Position_SOD" />
         </EntityType>
         <EntityType Name="Security_Dividend_Split">
           <Key>
@@ -3487,6 +3932,201 @@
               <PropertyRef Name="Security_ID" />
             </Principal>
             <Dependent Role="Security_List">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cash_Transactions">
+          <Key>
+            <PropertyRef Name="Cash_Transaction_ID" />
+          </Key>
+          <Property Name="Cash_Transaction_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Portfolio_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Transaction_Security_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Cash_Security_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Transaction_Source_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Order_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Allocation_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Cashflow_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Dividend_Seq_Number" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="External_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Transaction_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Value_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Cash_Transaction_Type" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Transaction_Amount" Type="Decimal" Nullable="false" Precision="20" Scale="2" />
+          <Property Name="Transaction_Currency_Code" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="BaseCur_Amount" Type="Decimal" Nullable="false" Precision="20" Scale="2" />
+          <Property Name="Create_User_Code" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Update_Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Currency" Relationship="MetopeDbModel.FK_Cash_Transactions_Currency" FromRole="Cash_Transactions" ToRole="Currency" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Cash_Transactions_Entity" FromRole="Cash_Transactions" ToRole="Entity" />
+          <NavigationProperty Name="Portfolio" Relationship="MetopeDbModel.FK_Cash_Transactions_Portfolio" FromRole="Cash_Transactions" ToRole="Portfolio" />
+          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Cash_Transactions_Security_Detail" FromRole="Cash_Transactions" ToRole="Security_Detail" />
+          <NavigationProperty Name="Security_Detail1" Relationship="MetopeDbModel.FK_Cash_Transactions_Security_Detail1" FromRole="Cash_Transactions" ToRole="Security_Detail" />
+          <NavigationProperty Name="User" Relationship="MetopeDbModel.FK_Cash_Transactions_User" FromRole="Cash_Transactions" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="MetopeDbModel.FK_Cash_Transactions_User2" FromRole="Cash_Transactions" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Cash_Transactions_Currency">
+          <End Type="MetopeDbModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="MetopeDbModel.Cash_Transactions" Role="Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Currency_Code" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Transaction_Currency_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cash_Transactions_Entity">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Cash_Transactions" Role="Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cash_Transactions_Portfolio">
+          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="1" />
+          <End Type="MetopeDbModel.Cash_Transactions" Role="Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cash_Transactions_Security_Detail">
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Cash_Transactions" Role="Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Transaction_Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cash_Transactions_Security_Detail1">
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="1" />
+          <End Type="MetopeDbModel.Cash_Transactions" Role="Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Cash_Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cash_Transactions_User">
+          <End Type="MetopeDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Cash_Transactions" Role="Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cash_Transactions_User2">
+          <End Type="MetopeDbModel.User" Role="User" Multiplicity="1" />
+          <End Type="MetopeDbModel.Cash_Transactions" Role="Cash_Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Cash_Transactions">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Create_User_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Position_SOD">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Portfolio_Code" />
+            <PropertyRef Name="Security_ID" />
+            <PropertyRef Name="Long_Short_Indicator" />
+            <PropertyRef Name="Position_Date" />
+          </Key>
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Portfolio_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Security_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Long_Short_Indicator" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Position_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Dealt_Quantity" Type="Decimal" Precision="24" Scale="8" />
+          <Property Name="Unsettled_Quantity" Type="Decimal" Precision="24" Scale="8" />
+          <Property Name="Settled_Quantity" Type="Decimal" Precision="24" Scale="8" />
+          <Property Name="Dealt_AllIn_Mkt_Value_PriceCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_AllIn_Mkt_Value_PriceCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Settled_AllIn_Mkt_Value_PriceCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Dealt_AllIn_Mkt_Value_BaseCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_AllIn_Mkt_Value_BaseCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Settled_AllIn_Mkt_Value_BaseCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Dealt_Clean_Mkt_Value_PriceCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_Clean_Mkt_Value_PriceCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Settled_Clean_Mkt_Value_PriceCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Dealt_Clean_Mkt_Value_BaseCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_Clean_Mkt_Value_BaseCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Settled_Clean_Mkt_Value_BaseCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Dealt_Income_Mkt_Value_PriceCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_Income_Mkt_Value_PriceCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Settled_Income_Mkt_Value_PriceCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Dealt_Income_Mkt_Value_BaseCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_Income_Mkt_Value_BaseCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Settled_Income_Mkt_Value_BaseCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Exposure_BaseCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Exposure_PriceCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Average_Unit_Cost_BaseCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Average_Unit_Cost_PriceCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Pledged_Quantity" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Segregated_Quantity" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Model_Percent" Type="Decimal" Precision="24" Scale="8" />
+          <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Update_User" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Unsettled_Expenses_BaseCur" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Unsettled_Expenses_PriceCur" Type="Decimal" Precision="20" Scale="4" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Position_SOD_Entity" FromRole="Position_SOD" ToRole="Entity" />
+          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Position_SOD_Security_Detail" FromRole="Position_SOD" ToRole="Security_Detail" />
+        </EntityType>
+        <Association Name="FK_Position_SOD_Entity">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Position_SOD" Role="Position_SOD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Position_SOD">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Position_SOD_Security_Detail">
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="1" />
+          <End Type="MetopeDbModel.Position_SOD" Role="Position_SOD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Position_SOD">
               <PropertyRef Name="Security_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -4116,7 +4756,77 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Cash_Transactions">
+            <EntityTypeMapping TypeName="MetopeDbModel.Cash_Transactions">
+              <MappingFragment StoreEntitySet="Cash_Transactions">
+                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
+                <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Create_User_Code" ColumnName="Create_User_Code" />
+                <ScalarProperty Name="BaseCur_Amount" ColumnName="BaseCur_Amount" />
+                <ScalarProperty Name="Transaction_Currency_Code" ColumnName="Transaction_Currency_Code" />
+                <ScalarProperty Name="Transaction_Amount" ColumnName="Transaction_Amount" />
+                <ScalarProperty Name="Cash_Transaction_Type" ColumnName="Cash_Transaction_Type" />
+                <ScalarProperty Name="Value_Date" ColumnName="Value_Date" />
+                <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+                <ScalarProperty Name="External_ID" ColumnName="External_ID" />
+                <ScalarProperty Name="Dividend_Seq_Number" ColumnName="Dividend_Seq_Number" />
+                <ScalarProperty Name="Cashflow_ID" ColumnName="Cashflow_ID" />
+                <ScalarProperty Name="Allocation_ID" ColumnName="Allocation_ID" />
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Transaction_Source_Code" ColumnName="Transaction_Source_Code" />
+                <ScalarProperty Name="Cash_Security_ID" ColumnName="Cash_Security_ID" />
+                <ScalarProperty Name="Transaction_Security_ID" ColumnName="Transaction_Security_ID" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+                <ScalarProperty Name="Portfolio_Code" ColumnName="Portfolio_Code" />
+                <ScalarProperty Name="Cash_Transaction_ID" ColumnName="Cash_Transaction_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Position_SOD">
+            <EntityTypeMapping TypeName="MetopeDbModel.Position_SOD">
+              <MappingFragment StoreEntitySet="Position_SOD">
+                <ScalarProperty Name="Unsettled_Expenses_PriceCur" ColumnName="Unsettled_Expenses_PriceCur" />
+                <ScalarProperty Name="Unsettled_Expenses_BaseCur" ColumnName="Unsettled_Expenses_BaseCur" />
+                <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
+                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
+                <ScalarProperty Name="Model_Percent" ColumnName="Model_Percent" />
+                <ScalarProperty Name="Segregated_Quantity" ColumnName="Segregated_Quantity" />
+                <ScalarProperty Name="Pledged_Quantity" ColumnName="Pledged_Quantity" />
+                <ScalarProperty Name="Average_Unit_Cost_PriceCur" ColumnName="Average_Unit_Cost_PriceCur" />
+                <ScalarProperty Name="Average_Unit_Cost_BaseCur" ColumnName="Average_Unit_Cost_BaseCur" />
+                <ScalarProperty Name="Exposure_PriceCur" ColumnName="Exposure_PriceCur" />
+                <ScalarProperty Name="Exposure_BaseCur" ColumnName="Exposure_BaseCur" />
+                <ScalarProperty Name="Settled_Income_Mkt_Value_BaseCur" ColumnName="Settled_Income_Mkt_Value_BaseCur" />
+                <ScalarProperty Name="Unsettled_Income_Mkt_Value_BaseCur" ColumnName="Unsettled_Income_Mkt_Value_BaseCur" />
+                <ScalarProperty Name="Dealt_Income_Mkt_Value_BaseCur" ColumnName="Dealt_Income_Mkt_Value_BaseCur" />
+                <ScalarProperty Name="Settled_Income_Mkt_Value_PriceCur" ColumnName="Settled_Income_Mkt_Value_PriceCur" />
+                <ScalarProperty Name="Unsettled_Income_Mkt_Value_PriceCur" ColumnName="Unsettled_Income_Mkt_Value_PriceCur" />
+                <ScalarProperty Name="Dealt_Income_Mkt_Value_PriceCur" ColumnName="Dealt_Income_Mkt_Value_PriceCur" />
+                <ScalarProperty Name="Settled_Clean_Mkt_Value_BaseCur" ColumnName="Settled_Clean_Mkt_Value_BaseCur" />
+                <ScalarProperty Name="Unsettled_Clean_Mkt_Value_BaseCur" ColumnName="Unsettled_Clean_Mkt_Value_BaseCur" />
+                <ScalarProperty Name="Dealt_Clean_Mkt_Value_BaseCur" ColumnName="Dealt_Clean_Mkt_Value_BaseCur" />
+                <ScalarProperty Name="Settled_Clean_Mkt_Value_PriceCur" ColumnName="Settled_Clean_Mkt_Value_PriceCur" />
+                <ScalarProperty Name="Unsettled_Clean_Mkt_Value_PriceCur" ColumnName="Unsettled_Clean_Mkt_Value_PriceCur" />
+                <ScalarProperty Name="Dealt_Clean_Mkt_Value_PriceCur" ColumnName="Dealt_Clean_Mkt_Value_PriceCur" />
+                <ScalarProperty Name="Settled_AllIn_Mkt_Value_BaseCur" ColumnName="Settled_AllIn_Mkt_Value_BaseCur" />
+                <ScalarProperty Name="Unsettled_AllIn_Mkt_Value_BaseCur" ColumnName="Unsettled_AllIn_Mkt_Value_BaseCur" />
+                <ScalarProperty Name="Dealt_AllIn_Mkt_Value_BaseCur" ColumnName="Dealt_AllIn_Mkt_Value_BaseCur" />
+                <ScalarProperty Name="Settled_AllIn_Mkt_Value_PriceCur" ColumnName="Settled_AllIn_Mkt_Value_PriceCur" />
+                <ScalarProperty Name="Unsettled_AllIn_Mkt_Value_PriceCur" ColumnName="Unsettled_AllIn_Mkt_Value_PriceCur" />
+                <ScalarProperty Name="Dealt_AllIn_Mkt_Value_PriceCur" ColumnName="Dealt_AllIn_Mkt_Value_PriceCur" />
+                <ScalarProperty Name="Settled_Quantity" ColumnName="Settled_Quantity" />
+                <ScalarProperty Name="Unsettled_Quantity" ColumnName="Unsettled_Quantity" />
+                <ScalarProperty Name="Dealt_Quantity" ColumnName="Dealt_Quantity" />
+                <ScalarProperty Name="Position_Date" ColumnName="Position_Date" />
+                <ScalarProperty Name="Long_Short_Indicator" ColumnName="Long_Short_Indicator" />
+                <ScalarProperty Name="Security_ID" ColumnName="Security_ID" />
+                <ScalarProperty Name="Portfolio_Code" ColumnName="Portfolio_Code" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -4131,7 +4841,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

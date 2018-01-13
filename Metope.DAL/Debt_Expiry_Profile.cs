@@ -9,11 +9,9 @@
 
 namespace Metope.DAL
 {
-    using Metope.DAL.MyMetaData;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    [MetadataType(typeof(DebtExpiryProfileModelMetaData))]
+    
     public partial class Debt_Expiry_Profile
     {
         public string Party_Code { get; set; }

@@ -23,6 +23,8 @@ namespace Metope.DAL
             this.Security_Analytics = new HashSet<Security_Analytics>();
             this.Portfolio_Valuation = new HashSet<Portfolio_Valuation>();
             this.Portfolio_Valuation_History = new HashSet<Portfolio_Valuation_History>();
+            this.Cash_Transactions = new HashSet<Cash_Transactions>();
+            this.Cash_Transactions1 = new HashSet<Cash_Transactions>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -50,5 +52,7 @@ namespace Metope.DAL
         public virtual ICollection<Security_Analytics> Security_Analytics { get; set; }
         public virtual ICollection<Portfolio_Valuation> Portfolio_Valuation { get; set; }
         public virtual ICollection<Portfolio_Valuation_History> Portfolio_Valuation_History { get; set; }
+        public virtual ICollection<Cash_Transactions> Cash_Transactions { get; set; }
+        public virtual ICollection<Cash_Transactions> Cash_Transactions1 { get; set; }
     }
 }
