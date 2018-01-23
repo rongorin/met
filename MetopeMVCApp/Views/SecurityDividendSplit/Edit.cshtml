@@ -4,14 +4,14 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Dividend Split</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h3>Dividend Split for Security Id <b> @Model.Security_Detail.Short_Name</b> dividend number <b>  @Model.Dividend_Annual_Number</b></h3>
+        <h3> for Ticker <b> @Model.Security_Detail.Ticker</b> dividend number <b>  @Model.Dividend_Annual_Number</b></h3>
        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -28,6 +28,8 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div> 
+    @Html.ActionLink("Back to List", "Index", new { SecurityId = Model.Security_ID }, null)
+
+
 </div>

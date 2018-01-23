@@ -359,7 +359,7 @@ namespace MetopeMVCApp.Filters
 
      }
 
-     public class AllSecuritiesInclGenericFilter : ActionFilterAttribute
+     public class   AllSecuritiesInclGenericFilter : ActionFilterAttribute
      {
          //This Action filter obtains all the securities for both inScope and Generic Entitys . 
          public override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -493,7 +493,21 @@ namespace MetopeMVCApp.Filters
 						new SelectListItem { Text = "Actual", Value = "A" },
 						new SelectListItem { Text = "Forecast", Value = "F" } };
 
-             filterContext.Controller.ViewBag.Actual_Forecast_Indicator = new SelectList(fAIndicator, "Value", "Text", filterContext.Controller.ViewBag.ActualForecastIndicator); 
+             filterContext.Controller.ViewBag.Actual_Forecast_Indicator = new SelectList(fAIndicator, "Value", "Text", filterContext.Controller.ViewBag.ActualForecastIndicator);
+
+             base.OnActionExecuted(filterContext);
+         }
+
+     }
+     public class LongShortIndicatorFilter : ActionFilterAttribute
+     {
+         public override void OnActionExecuted(ActionExecutedContext filterContext)
+         {
+             List<SelectListItem> lSInd = new List<SelectListItem> {
+						new SelectListItem { Text = "Long", Value = "L" },
+						new SelectListItem { Text = "Short", Value = "S" } };
+
+             filterContext.Controller.ViewBag.Long_Short_Indicator = new SelectList(lSInd, "Value", "Text", filterContext.Controller.ViewBag.LongShortInd); 
 
              base.OnActionExecuted(filterContext);
          }

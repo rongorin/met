@@ -25,17 +25,14 @@
                     @Html.DropDownList("Portfolio_Code", null, string.Empty, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Portfolio_Code, "", new { @class = "text-danger" })
                 </div>
-            </div>
-           
-
-        
-
+            </div> 
 
         @Html.EditorForModel() 
  
     </div>
 }
-
-<div>
-    @Html.ActionLink("Go Back", "Index")
-</div>
+ 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")   @* for our datetime Picker*@
+}

@@ -17,19 +17,31 @@
         @Html.ValidationSummary(false)
         @Html.ValidationMessage("Error") 
         @Html.HiddenFor(model => model.Entity_ID)
+        @Html.HiddenFor(model => model.Security_ID)
         
         <div class="form-group">
             @Html.LabelFor(model => model.Security_ID, "Security", htmlAttributes: new { @class = "control-label col-md-2 input-sm" })
             <div class="col-md-10">
-                @Html.DropDownList("Security_ID", null, htmlAttributes: new { @class = "form-control" })
+                @*@Html.DropDownList("Security_ID", null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.DropDownList("Securities_All", null, string.Empty, new
+                           {
+                               @class = "form-control",
+                               @readonly = "readonly",
+                               disabled = "disabled"
+                           }) 
+
                 @Html.ValidationMessageFor(model => model.Security_ID, "", new { @class = "text-danger" })
             </div>
         </div> 
+          
+
         @Html.EditorFor(model => model.Dividend_Annual_Number, "BootstrapEditDecimalZeroPlacesVert")
         @Html.EditorFor(model => model.Dividend_Split, "BootstrapEditDecimalVertic") 
         @Html.Partial("_SaveButtonShow", Model) 
     </div>
 } 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", new { SecurityId = Model.Security_ID }, null)
+
+
 </div>

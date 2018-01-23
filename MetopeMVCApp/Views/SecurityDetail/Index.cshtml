@@ -142,6 +142,26 @@
     }).WithPaging(Convert.ToInt16(ViewBag.RowsPgSelected), 1, "ShowSp").Sortable(true)
     </div>
 </div>
+        @*<div class="panel-footer">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="pull-right">
+                <button type="button"
+                        class="btn btn-primary"
+                        ng-click="vm.saveClick(creditCardForm)">
+                  <i class="glyphicon glyphicon-floppy-disk"></i>
+                  &nbsp;Save
+                </button>
+                <a class="btn btn-primary"
+                   formnovalidate="formnovalidate"
+                   href="#/">
+                  <i class="glyphicon glyphicon-remove-circle"></i>
+                  &nbsp;Canceld
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>*@
 
 @section Scripts { @Scripts.Render("~/bundles/datetime")
                    @Scripts.Render("~/bundles/GridMvc") 

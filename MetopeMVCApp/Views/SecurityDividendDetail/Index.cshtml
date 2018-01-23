@@ -110,12 +110,20 @@
                 @Html.ActionLink("Back to Securities", "Index", "SecurityDetail")
             </div>
             @Html.Hidden("Security_ID", Model.SecurityDetails.Security_ID);
-
-            <div class="col-md-6 pull-right "> 
-                @Html.Partial("_StoredProcButtons", new MetopeMVCApp.Models.SPNames { SPName1 = "Update Divnd Sched only"  } ) 
+              
+            <div class="col-md-3 pull-right ">   
+                <a class="btn btn-default customWidth pull-right"
+                   href="@string.Format("./SecurityDividendSplit?SecurityId={0}", Model.SecurityDetails.Security_ID)">
+                    &nbsp;Dividend split
+                </a> 
             </div>
-        }
-    </div></div>
+            
+            <div class="col-md-3 pull-right ">
+                @Html.Partial("_StoredProcButtons", new MetopeMVCApp.Models.SPNames { SPName1 = "Update Divnd Sched only" })
+            </div> 
+        } 
+    </div>
+</div>
 @section Scripts { @Scripts.Render("~/bundles/datetime")
 @Scripts.Render("~/bundles/GridMvc")
 <script>

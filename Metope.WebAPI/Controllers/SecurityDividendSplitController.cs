@@ -17,11 +17,13 @@ namespace Metope.WebAPI.Controllers
         private MetopeDbEntities db = new MetopeDbEntities();
 
         // GET: api/SecurityDividendSplit 
-        public IHttpActionResult GetSecurity_Dividend_Split(decimal entityID)
+        public IHttpActionResult GetSecurity_Dividend_Split(decimal entityID, decimal securityID)
         {
+            db.Configuration.ProxyCreationEnabled = false;
             //decimal EntityId = Convert.ToDecimal(entityID);
             IEnumerable<Security_Dividend_Split> pvs = db.Security_Dividend_Split.Include(c => c.Security_Detail)
-                                                    .Where(c => c.Entity_ID == entityID)
+                                                    .Where(c => c.Entity_ID == entityID &&
+                                                            c.Security_ID == securityID)
                                                      .OrderBy(s => s.Security_ID).ThenBy(n => n.Dividend_Annual_Number)
                                                     .ToList(); 
             return Ok(pvs); 
@@ -32,7 +34,8 @@ namespace Metope.WebAPI.Controllers
         //[HttpGet, Route("GetByID/{entityID},{securityID},{dividendAnnNumber}")] 
         public IHttpActionResult GetSecurity_Dividend_Split(decimal entityID, decimal securityID , decimal dividendAnnNumber)
         {
-            Security_Dividend_Split security_Dividend_Split = db.Security_Dividend_Split.Include(c => c.Security_Detail).
+            db.Configuration.ProxyCreationEnabled = false;
+            Security_Dividend_Split security_Dividend_Split = db.Security_Dividend_Split.Include(c => c.Security_Detail).ToList().
                                                                                 SingleOrDefault(x => x.Dividend_Annual_Number == dividendAnnNumber
                                                                                     && x.Entity_ID == entityID
                                                                                     && x.Security_ID == securityID);

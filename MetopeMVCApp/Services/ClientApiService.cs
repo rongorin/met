@@ -26,7 +26,7 @@ namespace MetopeMVCApp.Services
 
 
         //Generic Get servie
-        public IEnumerable<T> findAll<t>(string svcEndPoint, decimal entityID, string filePath) 
+        public IEnumerable<T> findAll<t>(string svcEndPoint, decimal entityID, decimal securityId, string filePath) 
         {
             IEnumerable<T> pvs = null;
             FilePath = filePath;
@@ -36,8 +36,8 @@ namespace MetopeMVCApp.Services
                 client.BaseAddress = new Uri(BASE_URL);
                 //HTTP GET
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var responseTask = client.GetAsync(svcEndPoint + "?EntityID=" + entityID);
-                LogInfo("\r\n R1 base:" + BASE_URL + svcEndPoint + "?EntityID=" + entityID);
+                var responseTask = client.GetAsync(svcEndPoint + "?EntityID=" + entityID + "&SecurityId=" + securityId);
+                LogInfo("\r\n R1 base:" + BASE_URL + svcEndPoint + "?EntityID=" + entityID + "&SecurityId=" + securityId);
 
                 responseTask.Wait();
 

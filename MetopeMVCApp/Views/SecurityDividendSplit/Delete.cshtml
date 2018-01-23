@@ -26,7 +26,9 @@
 
         <div class="form-actions no-color">
             @Html.Partial("_DeleteButtonShow", Model)  |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back to List", "Index", new { SecurityId = Model.Security_ID }, null)
+
+
         </div>
     }
 </div>

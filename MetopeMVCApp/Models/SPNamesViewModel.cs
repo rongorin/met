@@ -9,5 +9,6 @@ namespace MetopeMVCApp.Models
     {
         public string SPName1 { get; set; }
         public string SPName2 { get; set; }
+        public string NavToSplits { get; set; }
     }
 }

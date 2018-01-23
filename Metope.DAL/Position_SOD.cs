@@ -11,6 +11,9 @@ namespace Metope.DAL
 {
     using System;
     using System.Collections.Generic;
+    using Metope.DAL.MyMetaData;
+    using System.ComponentModel.DataAnnotations;
+    [MetadataType(typeof(PositionSODModelMetatData))]
     
     public partial class Position_SOD
     {
