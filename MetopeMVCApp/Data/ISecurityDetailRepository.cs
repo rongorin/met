@@ -37,6 +37,11 @@ namespace MetopeMVCApp.Data
         IQueryable<Security_Price> GetAll(Expression<Func<Security_Price, bool>> predicate);
  
     }
+    public interface IOrderAllocationRepository : IGenericRepository<Order_Allocation>
+    {
+        IQueryable<Order_Allocation> GetAll(Expression<Func<Order_Allocation, bool>> predicate);
+
+    }
     public interface IExchangeRepository : IGenericRepository<Exchange>
     {
     }

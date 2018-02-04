@@ -84,6 +84,16 @@ namespace MetopeMVCApp.Data.Repositories
         }
 
     }
+    public class OrderAllocationRepository : GenericRepository<MetopeDbEntities, Order_Allocation>,
+                          IOrderAllocationRepository
+    {
+        public IQueryable<Order_Allocation> GetAll(Expression<Func<Order_Allocation, bool>> predicate)
+        {
+            IQueryable<Order_Allocation> query = Context.Set<Order_Allocation>().Where(predicate);
+            return query;
+        }
+
+    }
     public class ExchangeRepository : GenericRepository<MetopeDbEntities, Exchange>,
                                      IExchangeRepository
     {
