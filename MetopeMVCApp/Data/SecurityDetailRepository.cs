@@ -92,7 +92,10 @@ namespace MetopeMVCApp.Data.Repositories
             IQueryable<Order_Allocation> query = Context.Set<Order_Allocation>().Where(predicate);
             return query;
         }
-
+        public void DeleteBulk(decimal[] Ids)
+        {
+            Context.Set<Order_Allocation>().RemoveRange(Context.Order_Allocation.Where(r => Ids.Contains(r.Allocation_ID ))); 
+        } 
     }
     public class ExchangeRepository : GenericRepository<MetopeDbEntities, Exchange>,
                                      IExchangeRepository

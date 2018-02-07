@@ -40,6 +40,7 @@ namespace MetopeMVCApp.Data
     public interface IOrderAllocationRepository : IGenericRepository<Order_Allocation>
     {
         IQueryable<Order_Allocation> GetAll(Expression<Func<Order_Allocation, bool>> predicate);
+        new void DeleteBulk(decimal[] Ids);   
 
     }
     public interface IExchangeRepository : IGenericRepository<Exchange>

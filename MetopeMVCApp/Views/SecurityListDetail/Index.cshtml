@@ -25,11 +25,7 @@
 <div class="code-cut">
     @Html.Grid(Model).Named("depGrid").Columns(columns =>
     {
-    columns.Add().Titled("<input name='checkbox' type='checkbox'  id='select-all-checkbox' /> " )
-        .Encoded(false).Sanitized(false).SetWidth(30).RenderValueAs(o => Html.CheckBox("checkedAbc", false, new { name = "selectedIds", 
-                                                                    value = o.Security_List_Code, 
-                                                                    OnClick = "selectedCheckbox(this," + o.Security_List_Code + ");" }));
-             
+              
         //columns.Add().Encoded(false).Sanitized(false).SetWidth(10).RenderValueAs(o => Html.CheckBox("checked", false));
         
         columns.Add(c => c.Security_List_Code)
@@ -66,10 +62,9 @@
              @Html.ActionLink("Delete", "Delete", "SecurityListDetail", new { securityListCode = c.Security_List_Code }, null)
     </u>);
 
-    }).WithPaging(15).Sortable(true)
+    }).WithPaging(25).Sortable(true)
 
-</div>
-   <button id="buttonBulkDelete">Delete Selected</button>
+</div> 
 
 @section Scripts {  
 @Scripts.Render("~/bundles/GridMvc")
@@ -84,8 +79,7 @@
             window.location = myUrl2;
         });
     });
-     
-
+      
 </script>
 
 }
