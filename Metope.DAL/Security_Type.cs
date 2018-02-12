@@ -14,6 +14,11 @@ namespace Metope.DAL
     
     public partial class Security_Type
     {
+        public Security_Type()
+        {
+            this.Order_Detail = new HashSet<Order_Detail>();
+        }
+    
         public decimal Entity_ID { get; set; }
         public string Security_Type_Code { get; set; }
         public string Name { get; set; }
@@ -28,5 +33,6 @@ namespace Metope.DAL
         public bool System_Locked { get; set; }
     
         public virtual Entity Entity { get; set; }
+        public virtual ICollection<Order_Detail> Order_Detail { get; set; }
     }
 }

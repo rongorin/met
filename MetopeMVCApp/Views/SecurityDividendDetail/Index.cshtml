@@ -77,8 +77,7 @@
         .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Forecast_Dividend)).Encoded(false)
         .Sanitized(false)
         .SetWidth(120);
-
-        columns.Add(c => c.Security_Detail.Security_ID).Titled("Actual Dividend").Css("text-right").Filterable(false);
+         
         columns.Add(c => c.Actual_Dividend).Titled("Actual Dividend").Css("text-right").Filterable(false)
         .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Actual_Dividend)).Encoded(false)
         .Sanitized(false)

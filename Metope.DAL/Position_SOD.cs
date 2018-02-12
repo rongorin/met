@@ -11,10 +11,10 @@ namespace Metope.DAL
 {
     using System;
     using System.Collections.Generic;
+
     using Metope.DAL.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(PositionSODModelMetatData))]
-    
     public partial class Position_SOD
     {
         public decimal Entity_ID { get; set; }
@@ -57,5 +57,8 @@ namespace Metope.DAL
     
         public virtual Entity Entity { get; set; }
         public virtual Security_Detail Security_Detail { get; set; }
+        public virtual Portfolio Portfolio { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

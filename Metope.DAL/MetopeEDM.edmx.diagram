@@ -103,6 +103,30 @@
         <EntityTypeShape EntityType="MetopeDbModel.Position_SOD" Width="1.5" PointX="21.625" PointY="20.25" />
         <AssociationConnector Association="MetopeDbModel.FK_Position_SOD_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Position_SOD_Security_Detail" />
+        <EntityTypeShape EntityType="MetopeDbModel.Order_Allocation" Width="1.5" PointX="30.625" PointY="5" />
+        <EntityTypeShape EntityType="MetopeDbModel.Order_Detail" Width="1.5" PointX="25.375" PointY="1" />
+        <AssociationConnector Association="MetopeDbModel.FK_Cash_Transactions_Order_Allocation" />
+        <AssociationConnector Association="MetopeDbModel.FK_Cash_Transactions_Order_Detail" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Detail_Currency" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Detail_Currency1" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Detail_Currency2" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Allocation_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Detail_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Detail_Exchange" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Allocation_Order_Detail" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Allocation_Portfolio" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Allocation_User" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Detail_Security_Detail" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Detail_Security_Type" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Detail_User" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Detail_User1" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Detail_User2" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Detail_User3" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Detail_User4" />
+        <AssociationConnector Association="MetopeDbModel.FK_Order_Detail_User5" />
+        <AssociationConnector Association="MetopeDbModel.FK_Position_SOD_Portfolio" />
+        <AssociationConnector Association="MetopeDbModel.FK_Position_SOD_User" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_SOD_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

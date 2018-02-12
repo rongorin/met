@@ -1,420 +1,383 @@
-RC started.R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00R1 successR1 count:2RC started. 
-R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
-R1 success
-R1 count:2
-RC started. 
-R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
-R1 success
-R1 count:2
-RC started. 
+ RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=49
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=49
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=49
  R1 success
 
- R1 count:2RC started. 
+ R1 count:0RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=49
  R1 success
 
- R1 count:2RC started. 
+ R1 count:0RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=0
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=0
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=49
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00R1 Failure return othing
-RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00R1 Failure return othing
-RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00R1 Failure return othing
-RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00R1 Failure return othing
-RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00R1 Failure return othing
-RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
+ RC Exception caught.One or more errors occurred.
 
- R1 count:2RC started. 
+  RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
+ RC Exception caught.One or more errors occurred.
 
- R1 count:2RC started. 
+  RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
  R1 success
 
  R1 count:1RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45.0
  R1 success
 
  R1 count:1RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45.0
  R1 success
 
  R1 count:1RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45.0
  R1 success
 
  R1 count:1RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:1RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:1RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:1RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
  R1 success
 
  R1 count:2RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45.0
  R1 success
 
  R1 count:2RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00R1 Failure return othing
-RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00R1 Failure return othing
-RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
- R1 success
-
- R1 count:2RC started. 
-
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=46
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
  RC Exception caught.One or more errors occurred.
 
   RC Success done.RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
+ R1 success
+
+ R1 count:8RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
  R1 success
 
  R1 count:2RC started. 
 
- R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
  R1 success
 
- R1 count:2
+ R1 count:8RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=43
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
+ R1 success
+
+ R1 count:8RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
+ R1 success
+
+ R1 count:8RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
+ R1 success
+
+ R1 count:9RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44.0
+ R1 success
+
+ R1 count:9RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44.0
+ R1 success
+
+ R1 count:9RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=49
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
+ R1 success
+
+ R1 count:2RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
+ R1 success
+
+ R1 count:9RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
+ R1 success
+
+ R1 count:9RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
+ R1 success
+
+ R1 count:9RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
+ R1 success
+
+ R1 count:9RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
+ R1 success
+
+ R1 count:9RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
+ R1 success
+
+ R1 count:9RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
+ R1 success
+
+ R1 count:9RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ R1 success
+
+ R1 count:1RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48.0
+ R1 success
+
+ R1 count:1RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48.0
+ R1 success
+
+ R1 count:1RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48.0
+ R1 success
+
+ R1 count:1RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48.0
+ R1 success
+
+ R1 count:1RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48.0
+ R1 success
+
+ R1 count:1RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48.0
+ R1 success
+
+ R1 count:1RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48.0
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=49
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
+ R1 success
+
+ R1 count:2RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=49
+ R1 success
+
+ R1 count:0RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=44
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=48
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=120
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=10172
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=10172
+ R1 success
+
+ R1 count:0

@@ -36,14 +36,14 @@ namespace Metope.WebAPI.Controllers
         {
             db.Configuration.ProxyCreationEnabled = false;
             Security_Dividend_Split security_Dividend_Split = db.Security_Dividend_Split.Include(c => c.Security_Detail).ToList().
-                                                                                SingleOrDefault(x => x.Dividend_Annual_Number == dividendAnnNumber
+                                                            SingleOrDefault(x => x.Dividend_Annual_Number == dividendAnnNumber
                                                                                     && x.Entity_ID == entityID
                                                                                     && x.Security_ID == securityID);
 
             //this is less efficeint:
             //Security_Dividend_Split security_Dividend_Split = db.Security_Dividend_Split.Include(c => c.Security_Detail).ToList()
             //                        .Find(x => x.Dividend_Annual_Number == dividendAnnNumber && x.Security_ID == securityID && x.Entity_ID == entityID);
-                             ;
+                             
             if (security_Dividend_Split == null)
             {
                 return NotFound();

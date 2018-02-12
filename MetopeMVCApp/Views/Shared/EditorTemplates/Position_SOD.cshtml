@@ -1,0 +1,96 @@
+﻿@model Metope.DAL.Position_SOD
+<div class="form-group">
+    @Html.LabelFor(model => model.Security_ID, htmlAttributes: new { @class = "control-label col-md-2  input-sm " })
+    <div class="col-md-10">
+
+        @*@Html.DropDownList("Party_Code", null, string.Empty, new { @class = "form-control", style = "max-width:40%;" })*@
+        @*@Html.DropDownList("Party_Code", null, string.Empty, new { MyDisabled = "readonly", @class = "form-control" })*@
+
+        @if (ViewBag.MeDisabled == "readonly")
+        {
+            @Html.DropDownList("Security_ID", (SelectList)ViewBag.Securities_All, string.Empty, new
+                           {
+                               @class = "form-control",
+                               @readonly = "readonly",
+                               disabled = "disabled"
+                           })
+        }
+        else
+        {
+            @Html.DropDownList("Security_ID", null, string.Empty, new { @class = "form-control" })
+        }
+
+        @Html.ValidationMessageFor(model => model.Security_ID, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+@Html.EditorFor(model => model.Position_Date, "BootstrapEditDateVertic", new { MeDisabled = ViewBag.MeDisabled })
+@*@Html.EditorFor(model => model.Long_Short_Indicator, "BootstrapEditorVertic", new { MeDisabled = ViewBag.MeDisabled })*@
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Long_Short_Indicator, htmlAttributes: new { @class = "control-label col-md-2  input-sm " })
+    <div class="col-md-10">
+        @if (ViewBag.MeDisabled == "readonly")
+        {
+            @Html.DropDownList("Long_Short_Indicator", null, string.Empty, new
+                           {
+                               @class = "form-control",
+                               @readonly = "readonly",
+                               disabled = "disabled"
+                           })
+        }
+        else
+        {
+            @Html.DropDownList("Long_Short_Indicator", null, string.Empty, new { @class = "form-control" })
+        }
+
+    </div>
+</div>
+
+
+        @Html.EditorFor(model => model.Dealt_Quantity, "BootstrapEditDecimal8PlacesVertic")
+        @Html.EditorFor(model => model.Unsettled_Quantity, "BootstrapEditDecimal8PlacesVertic")
+        @Html.EditorFor(model => model.Settled_Quantity, "BootstrapEditDecimal8PlacesVertic")
+        @Html.EditorFor(model => model.Dealt_AllIn_Mkt_Value_PriceCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Unsettled_AllIn_Mkt_Value_PriceCur, "BootstrapEditDecimal4PlacesVertic")
+
+        @Html.EditorFor(model => model.Settled_AllIn_Mkt_Value_PriceCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Dealt_AllIn_Mkt_Value_BaseCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Unsettled_AllIn_Mkt_Value_BaseCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Settled_AllIn_Mkt_Value_BaseCur, "BootstrapEditDecimal4PlacesVertic")
+
+        @Html.EditorFor(model => model.Dealt_Clean_Mkt_Value_PriceCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Unsettled_Clean_Mkt_Value_PriceCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Settled_Clean_Mkt_Value_PriceCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Dealt_Clean_Mkt_Value_BaseCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Unsettled_Clean_Mkt_Value_BaseCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Settled_Clean_Mkt_Value_BaseCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Dealt_Income_Mkt_Value_PriceCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Unsettled_Income_Mkt_Value_PriceCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Settled_Income_Mkt_Value_PriceCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Dealt_Income_Mkt_Value_BaseCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Unsettled_Income_Mkt_Value_BaseCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Settled_Income_Mkt_Value_BaseCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Exposure_BaseCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Exposure_PriceCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Average_Unit_Cost_BaseCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Average_Unit_Cost_PriceCur, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Pledged_Quantity, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Segregated_Quantity, "BootstrapEditDecimal4PlacesVertic")
+        @Html.EditorFor(model => model.Model_Percent, "BootstrapEditDecimal8PlacesVertic")
+        @Html.EditorFor(model => model.Unsettled_Expenses_PriceCur, "BootstrapEditDecimal4PlacesVertic")
+
+
+
+        @*@Html.EditorFor(model => model.SWIFT_ID, "BootstrapEditorVertic")
+            @Html.EditorFor(model => model.BIC_Code, "BootstrapEditorVertic")
+            @Html.EditorFor(model => model.System_Locked, "BooleanVertic")*@
+
+        @*@Html.EditorFor(model => model.Forecast_Dividend_Payment_Date, "BootstrapEditDate")
+            @Html.EditorFor(model => model.Dividend_Split, "BootstrapEditDecimal")
+            @Html.EditorFor(model => model.Forecast_Dividend, "BootstrapEditDecimal")
+            @Html.EditorFor(model => model.Actual_Dividend, "BootstrapEditDecimal")
+            @Html.EditorFor(model => model.Dividend_Type, "BootstrapEditor")*@
+
+        @Html.Partial("_SaveButtonShow", Model)
+

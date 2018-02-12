@@ -279,6 +279,7 @@
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\ErrorpageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderAllocationController.cs" />
     <Compile Include="Controllers\PartyController.cs" />
     <Compile Include="Controllers\PartyDebtAnalysisController.cs" />
     <Compile Include="Controllers\PartyFinancialsController.cs" />
@@ -288,6 +289,7 @@
     <Compile Include="Controllers\PortfolioValuationController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\PositionSODController.cs" />
     <Compile Include="Controllers\SecurityAnalyticsController.cs" />
     <Compile Include="Controllers\SecurityDetailController.cs" />
     <Compile Include="Controllers\SecurityDividendDetailController.cs">
@@ -363,12 +365,16 @@
     <Compile Include="Models\Custom\Weather.cs" />
     <Compile Include="Models\EditSecurityListDetailVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\OrderAllocationIndexViewModel.cs" />
+    <Compile Include="Models\OrderAllocSelectionViewModel.cs" />
+    <Compile Include="Models\PositionsSODIndexViewModel.cs" />
     <Compile Include="Models\SecurityAnalyticsIndexViewModel.cs" />
     <Compile Include="Models\SecurityDetailIndexModel.cs" />
     <Compile Include="Models\SecurityDividendDetailViewModel.cs" />
     <Compile Include="Models\SecurityListDetailIndexVM.cs" />
     <Compile Include="Models\SecurityPriceEditModel.cs" />
     <Compile Include="Models\SecurityPriceIndexViewModel.cs" />
+    <Compile Include="Models\SelectOrderAllocEditorViewModel.cs" />
     <Compile Include="Models\SPNamesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -387,6 +393,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="Content\ajax-loader.gif" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrapSlate.css" />
@@ -740,6 +747,19 @@
     <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimalZeroPlacesVert.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Portfolio_Valuation.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimal8PlacesVertic.cshtml" />
+    <Content Include="Views\PositionSOD\Create.cshtml" />
+    <Content Include="Views\PositionSOD\Delete.cshtml" />
+    <Content Include="Views\PositionSOD\Details.cshtml" />
+    <Content Include="Views\PositionSOD\Edit.cshtml" />
+    <Content Include="Views\PositionSOD\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Position_SOD.cshtml" />
+    <Content Include="Views\OrderAllocation\Create.cshtml" />
+    <Content Include="Views\OrderAllocation\Delete.cshtml" />
+    <Content Include="Views\OrderAllocation\Details.cshtml" />
+    <Content Include="Views\OrderAllocation\Edit.cshtml" />
+    <Content Include="Views\OrderAllocation\Index.cshtml" />
+    <Content Include="Views\OrderAllocation\EditorTemplates\SelectOrderAllocEditorViewModel.cshtml" />
+    <Content Include="Views\OrderAllocation\IndexOld.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

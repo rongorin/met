@@ -18,6 +18,7 @@ namespace Metope.DAL
         {
             this.Security_Detail = new HashSet<Security_Detail>();
             this.Security_Detail1 = new HashSet<Security_Detail>();
+            this.Order_Detail = new HashSet<Order_Detail>();
         }
     
         public string Exchange_Code { get; set; }
@@ -32,5 +33,6 @@ namespace Metope.DAL
         public virtual Entity Entity { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail1 { get; set; }
+        public virtual ICollection<Order_Detail> Order_Detail { get; set; }
     }
 }

@@ -107,7 +107,8 @@ namespace MetopeMVCApp.Filters
             string myUserName="";  
             if ((myEntityID = (filterContext.HttpContext.Cache.Get(GetType().FullName) as string)) == null)
              {
-               UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+               UserManager<ApplicationUser> manager = 
+                        new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
                 var currentUser = manager.FindById(HttpContext.Current.User.Identity.GetUserId());
 
                 myEntityID = currentUser.EntityIdScope.ToString();

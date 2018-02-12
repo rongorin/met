@@ -26,21 +26,26 @@ namespace MetopeMVCApp.Controllers
         } 
 
         // GET: this is Client
-        public ActionResult Index()
+        public ActionResult Index(decimal securityId)
         {
             ClientApiService<Security_Dividend_Split> svc = new ClientApiService<Security_Dividend_Split>();
             IEnumerable<Security_Dividend_Split> allSplits = Enumerable.Empty<Security_Dividend_Split>();
 
             string FilePath = HttpContext.Server.MapPath("~/Data/Repositories/LoggerRepository/LoggerFile.txt");
-            decimal EntityID = (decimal)ViewBag.EntityId;
+            decimal EntityID = (decimal)ViewBag.EntityId; 
+            ViewBag.SecurityId = securityId;
             try
-            {
+            { 
                 LogInfo(FilePath, "RC started. \r\n");
-                allSplits = svc.findAll<Security_Dividend_Split>("SecurityDividendSplit", EntityID, FilePath);
-          
+                allSplits = svc.findAll<Security_Dividend_Split>("SecurityDividendSplit", EntityID, securityId, FilePath);
 
                 if (allSplits == null)
                     ModelState.AddModelError(string.Empty, "Server error occurred reading the data.");
+                else
+                {
+                    Security_Dividend_Split firsRecord = allSplits.FirstOrDefault();
+                    ViewBag.Ticker = firsRecord != null ? firsRecord.Security_Detail.Ticker :null;
+                }
 
                 return View(allSplits);
 
@@ -55,14 +60,11 @@ namespace MetopeMVCApp.Controllers
                 foreach (var exception in ex.InnerExceptions)
                 { 
                     sb.AppendLine(exception.Message.ToString());
-                    ModelState.AddModelError(string.Empty, sb.ToString()); 
-
+                    ModelState.AddModelError(string.Empty, sb.ToString());  
                 }
                 LogInfo(FilePath, "\r\n  RC Success done.");
-                return View(allSplits);
-
-            }
-
+                return View(allSplits); 
+            } 
         }
 
         // GET: http://localhost:53133/SecurityDividendSplit/Details?entityID=2&securityID=57&dividendAnnNumber=1
@@ -72,13 +74,11 @@ namespace MetopeMVCApp.Controllers
             if (entityID == null || securityID == null || dividendAnnNumber == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            ClientApiService<Security_Dividend_Split> svc = new ClientApiService<Security_Dividend_Split>();
+            } 
             Security_Dividend_Split split = new Security_Dividend_Split();
             try
-            {
-                split = svc.find<Security_Dividend_Split>("SecurityDividendSplit", entityID, securityID, dividendAnnNumber);
+            { 
+                split = GetSplitRecord(entityID, securityID, dividendAnnNumber);
 
                 if (split == null)
                     ModelState.AddModelError(string.Empty, "Server error occurred reading the data.");
@@ -116,15 +116,19 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: SecurityDividendSplit/Create
-        public ActionResult Create()
+        [AllSecuritiesInclGenericFilter]
+        public ActionResult Create(decimal SecurityId)
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
+            ViewBag.SecuritiesAll = SecurityId;
 
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code");
-            ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Short_Name");
+            //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Short_Name");
+
             var secDivSplit = new Security_Dividend_Split
             {
-                Entity_ID = EntityID 
+                Entity_ID = EntityID ,
+                Security_ID = SecurityId 
             };
 
             return View(secDivSplit);
@@ -135,6 +139,7 @@ namespace MetopeMVCApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllSecuritiesInclGenericFilter]
         public ActionResult Create([Bind(Include = "Dividend_Annual_Number,Dividend_Split,Entity_ID,Security_ID")] Security_Dividend_Split security_Dividend_Split)
         {
             ClientApiService<Security_Dividend_Split> svc = new ClientApiService<Security_Dividend_Split>();
@@ -149,9 +154,13 @@ namespace MetopeMVCApp.Controllers
                     bool success = svc.create(security_Dividend_Split, "SecurityDividendSplit");
 
                     if (success == true)
-                        return RedirectToAction("Index"); 
-
+                    {
+                        TempData.Add("ResultMessage", "new Split record for Security Id " + security_Dividend_Split.Security_ID + " created successfully!");
+                        return RedirectToAction("Index", new { SecurityId = security_Dividend_Split.Security_ID });
+ 
+                    }
                 }
+                ModelState.AddModelError(string.Empty, "Server error. Please check your inputted values.");
             }
             catch (AggregateException ex) //occurs on failure in a api client fail
             {
@@ -163,28 +172,21 @@ namespace MetopeMVCApp.Controllers
                     sb.AppendLine(exception.Message.ToString());
                     ModelState.AddModelError(string.Empty, sb.ToString());
 
-                } 
-
+                }  
             }
-            ModelState.AddModelError(string.Empty, "Server error. Please check inputted values.");
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Dividend_Split.Entity_ID);
             ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Short_Name", security_Dividend_Split.Security_ID);
+            ViewBag.SecuritiesAll = security_Dividend_Split.Security_ID;
  
             return View(security_Dividend_Split);
         }
 
         // GET: SecurityDividendSplit/Edit/5
         public ActionResult Edit(decimal entityID, decimal securityID, decimal dividendAnnNumber)
-        { 
-            if (entityID == null || securityID == null || dividendAnnNumber == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            ClientApiService<Security_Dividend_Split> svc = new ClientApiService<Security_Dividend_Split>();
-            Security_Dividend_Split split = new Security_Dividend_Split();
-       
-            split = svc.find<Security_Dividend_Split>("SecurityDividendSplit", entityID, securityID, dividendAnnNumber);
+        {  
+             
+            Security_Dividend_Split split = new Security_Dividend_Split(); 
+            split = GetSplitRecord(entityID, securityID, dividendAnnNumber);
  
             if (split == null)
             {
@@ -196,6 +198,12 @@ namespace MetopeMVCApp.Controllers
             return View(split);
         }
 
+        private Security_Dividend_Split GetSplitRecord(decimal entityID, decimal securityID, decimal dividendAnnNumber)
+        {
+            ClientApiService<Security_Dividend_Split> svc = new ClientApiService<Security_Dividend_Split>();
+            return svc.find<Security_Dividend_Split>("SecurityDividendSplit", entityID, securityID, dividendAnnNumber);
+
+        }
         // POST: SecurityDividendSplit/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -215,8 +223,8 @@ namespace MetopeMVCApp.Controllers
 
                     if (success == true)
                     {
-                        TempData.Add("ResultMessage", "Split record for Security Id \"" + security_Dividend_Split.Security_ID + "\" deleted successfully!");
-                        return RedirectToAction("Index");
+                        TempData.Add("ResultMessage", "Split record for Security Id " + security_Dividend_Split.Security_ID +" dividend number " + security_Dividend_Split.Dividend_Annual_Number+  " Edited successfully!");
+                        return RedirectToAction("Index", new { SecurityId = security_Dividend_Split.Security_ID }); 
                     }
                     ModelState.AddModelError(string.Empty, "Server error. Please check inputted values.");
                     return View(security_Dividend_Split);
@@ -256,12 +264,9 @@ namespace MetopeMVCApp.Controllers
             if (entityID == null || securityID == null || dividendAnnNumber == null) 
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            } 
-
-            ClientApiService<Security_Dividend_Split> svc = new ClientApiService<Security_Dividend_Split>();
-            Security_Dividend_Split split = new Security_Dividend_Split();
-
-            split = svc.find<Security_Dividend_Split>("SecurityDividendSplit", entityID, securityID, dividendAnnNumber);
+            }  
+            Security_Dividend_Split split = new Security_Dividend_Split(); 
+            split = GetSplitRecord(entityID, securityID, dividendAnnNumber);
              
             if (split == null)
             {
@@ -285,8 +290,8 @@ namespace MetopeMVCApp.Controllers
             else
                 TempData.Add("ResultMessage", "Failure occurred attempting to delete Split record for Security Id \"" + securityID  );
 
-             return RedirectToAction("Index");
-             
+
+            return RedirectToAction("Index", new { SecurityId = securityID });
              
         }
 

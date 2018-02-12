@@ -64,9 +64,23 @@
     }).WithPaging(50).Sortable(true)
 
 </div>
-<button type="button" id="buttonBulkDelete" class="btn btn-warning">Delete Selected
-    <span class="glyphicon glyphicon-trash"></span>
-    </button>
+
+<div class="panel-footer">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="pull-left">
+                    <button type="button" id="buttonBulkDelete" class="btn btn-warning">
+                        Delete Selected
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="divProcessing">
+    <p>Processing, . . . . . . . <img src="../../Content/ajax-loader.gif"></p>
+</div>
  
 @section Scripts {
     @Scripts.Render("~/bundles/GridMvc")
@@ -82,6 +96,9 @@
 
         }
         $(function () {
+            // Hide the "busy" Gif at load:
+            $("#divProcessing").hide();
+
             $("#select-all-checkbox").prop('checked', false);
             $("#select-all-checkbox").click(function () {
                 var status = $("#select-all-checkbox").prop('checked');
@@ -93,20 +110,27 @@
             if (confirm('Are you sure you want to delete the selected rows ?')) {
                 makeAjaxCall();
         }
-        function makeAjaxCall() {
-                var myArray = [];
-                var values = [];
+            function makeAjaxCall()
+            {
+
+            var myArray = [];
                 var checkedValues = $("input:checkbox:checked", ".grid-row").map(function () {
                     return $(this).val();
                 }).get();
+
+                // Show the "busy" Gif:
+                $("#divProcessing").show();
 
                 $.ajax({
                     type: "POST",
                     url:  mtpApp.Urls.baseUrl +'OrderAllocation/BulkDelete',
                     data: { 'myArray': checkedValues.join() },
                     dataType: 'json',
-                    success: function (response) {
-                        if (response.success) { 
+                    success: function (response) { 
+                        // Hide the "busy" gif:
+                        $("#divProcessing").hide();
+
+                        if (response.success) {
                             myNav = mtpApp.Urls.baseUrl + "OrderAllocation/" + response.responseText; // build up Index url 
                             window.location.href = myNav;
 
@@ -116,12 +140,16 @@
                     },
                     //error: function (xhr, httpStatusMessage, customErrorMessage) {
                     error: function (responseText) {
+
+                        // Hide the "busy" gif:
+                        $("#divProcessing").hide();
+
                         alert("something went awefully wrong!" + responseTexts);
                     }
                 });
             }
         });
-
+        // We want to show this while the server process is running: 
     </script>
      
 }

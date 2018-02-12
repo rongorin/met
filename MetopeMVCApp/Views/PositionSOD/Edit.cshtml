@@ -1,0 +1,42 @@
+﻿@model Metope.DAL.Position_SOD
+
+@{
+    ViewBag.Title = "Edit";
+}
+@section Styles {
+    @Styles.Render("~/Content/datetime")
+}
+<h3>
+    Edit Position for <b> @Model.Portfolio_Code </b>
+
+</h3> 
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal"> 
+          
+        <hr />
+        @Html.ValidationSummary(false)
+        @Html.ValidationMessage("Error")
+
+        @Html.HiddenFor(model => model.Entity_ID)
+
+        @Html.HiddenFor(model => model.Portfolio_Code)
+
+        @Html.HiddenFor(model => model.Security_ID)
+
+        @Html.HiddenFor(model => model.Long_Short_Indicator) 
+        @Html.HiddenFor(model => model.Position_Date)
+        @Html.EditorForModel(new { MeDisabled = "readonly" })
+        <div>
+            @Html.ActionLink("Back to List", "Index", new { PortfolioCode = Model.Portfolio_Code }, null)
+        </div>
+    </div>
+    
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+} 

@@ -25,6 +25,15 @@ namespace Metope.DAL
             this.Portfolio_Valuation_History = new HashSet<Portfolio_Valuation_History>();
             this.Cash_Transactions = new HashSet<Cash_Transactions>();
             this.Cash_Transactions1 = new HashSet<Cash_Transactions>();
+            this.Order_Allocation = new HashSet<Order_Allocation>();
+            this.Order_Detail = new HashSet<Order_Detail>();
+            this.Order_Detail1 = new HashSet<Order_Detail>();
+            this.Order_Detail2 = new HashSet<Order_Detail>();
+            this.Order_Detail3 = new HashSet<Order_Detail>();
+            this.Order_Detail4 = new HashSet<Order_Detail>();
+            this.Order_Detail5 = new HashSet<Order_Detail>();
+            this.Position_SOD = new HashSet<Position_SOD>();
+            this.Position_SOD1 = new HashSet<Position_SOD>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -54,5 +63,14 @@ namespace Metope.DAL
         public virtual ICollection<Portfolio_Valuation_History> Portfolio_Valuation_History { get; set; }
         public virtual ICollection<Cash_Transactions> Cash_Transactions { get; set; }
         public virtual ICollection<Cash_Transactions> Cash_Transactions1 { get; set; }
+        public virtual ICollection<Order_Allocation> Order_Allocation { get; set; }
+        public virtual ICollection<Order_Detail> Order_Detail { get; set; }
+        public virtual ICollection<Order_Detail> Order_Detail1 { get; set; }
+        public virtual ICollection<Order_Detail> Order_Detail2 { get; set; }
+        public virtual ICollection<Order_Detail> Order_Detail3 { get; set; }
+        public virtual ICollection<Order_Detail> Order_Detail4 { get; set; }
+        public virtual ICollection<Order_Detail> Order_Detail5 { get; set; }
+        public virtual ICollection<Position_SOD> Position_SOD { get; set; }
+        public virtual ICollection<Position_SOD> Position_SOD1 { get; set; }
     }
 }

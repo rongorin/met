@@ -55,6 +55,8 @@ namespace Metope.DAL
         public virtual DbSet<Security_List> Security_List { get; set; }
         public virtual DbSet<Cash_Transactions> Cash_Transactions { get; set; }
         public virtual DbSet<Position_SOD> Position_SOD { get; set; }
+        public virtual DbSet<Order_Allocation> Order_Allocation { get; set; }
+        public virtual DbSet<Order_Detail> Order_Detail { get; set; }
     
         public virtual int sp_TestRun(Nullable<decimal> entityID)
         {

@@ -52,11 +52,18 @@
                <td>
                    @Html.ActionLink("Edit", "Edit", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
                    @Html.ActionLink("Details", "Details", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
-                   @Html.ActionLink("Delete", "Delete", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) ||
+                   @Html.ActionLink("Delete", "Delete", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
               
+  
                    <a href="@Url.Action("Edit", "PortfolioValuation", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })">
-                   Portfolio Valuation</a>
-                </td>  
+                       <span class="badge"> Portfolio-Valuation </span></a>
+                     <a href="@Url.Action("Index", "PositionSOD", new {  PortfolioCode = item.Portfolio_Code })">
+                        <span class="badge"> Positions </span>
+                   </a>
+                   <a href="@Url.Action("Index", "PositionSOD", new {  PortfolioCode = item.Portfolio_Code })">
+                       <span class="badge"> Positions </span>
+                   </a>
+               </td>  
 
                @*<td width="5%">
                    <a href="@Url.Action("Details", "Portfolio", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })" class="icon">
