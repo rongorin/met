@@ -37,12 +37,35 @@ namespace MetopeMVCApp.Data
         IQueryable<Security_Price> GetAll(Expression<Func<Security_Price, bool>> predicate);
  
     }
+    //
+    public interface IOrderDetailRepository : IGenericRepository<Order_Detail>
+    {
+        IQueryable<Order_Detail> GetAll(Expression<Func<Order_Detail, bool>> predicate);
+       
+
+    }
     public interface IOrderAllocationRepository : IGenericRepository<Order_Allocation>
     {
         IQueryable<Order_Allocation> GetAll(Expression<Func<Order_Allocation, bool>> predicate);
         new void DeleteBulk(decimal[] Ids);   
 
     }
+    // Security Performance History
+    public interface ISecurityPerformanceHistoryRepository : IGenericRepository<Security_Performance_History>
+    {
+        IQueryable<Security_Performance_History> GetAll(Expression<Func<Security_Performance_History, bool>> predicate);
+    }
+    // Security Performance   
+    public interface ISecurityPerformanceRepository : IGenericRepository<Security_Performance>
+    {
+        IQueryable<Security_Performance> GetAll(Expression<Func<Security_Performance, bool>> predicate);
+    } // CashTransactions
+    public interface ICashTransactionsRepository : IGenericRepository<Cash_Transactions>
+    {
+        IQueryable<Cash_Transactions> GetAll(Expression<Func<Cash_Transactions, bool>> predicate);
+    }
+    // CashTransactions
+     
     public interface IExchangeRepository : IGenericRepository<Exchange>
     {
     }
@@ -57,8 +80,10 @@ namespace MetopeMVCApp.Data
 
     }
     public interface ICurrencyRepository : IGenericRepository<Currency>
-    {
-
+    { 
+    }
+    public interface IUsersRepository : IGenericRepository<User>
+    { 
     }
     public interface IPartyRepository : IGenericRepository<Party>
     {

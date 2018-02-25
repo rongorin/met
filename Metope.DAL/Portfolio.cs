@@ -14,16 +14,19 @@ namespace Metope.DAL
     using Metope.DAL.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(PortfolioModelMetatData))]
+    
     public partial class Portfolio
     {
         public Portfolio()
         {
             this.Portfolio_List = new HashSet<Portfolio_List>();
             this.Portfolio_Valuation_History = new HashSet<Portfolio_Valuation_History>();
-            this.Security_Detail = new HashSet<Security_Detail>();
-            this.Cash_Transactions = new HashSet<Cash_Transactions>();
-            this.Order_Allocation = new HashSet<Order_Allocation>();
             this.Position_SOD = new HashSet<Position_SOD>();
+            this.Cash_Transactions = new HashSet<Cash_Transactions>();
+            this.Security_Performance_History = new HashSet<Security_Performance_History>();
+            this.Security_Performance = new HashSet<Security_Performance>();
+            this.Order_Allocation = new HashSet<Order_Allocation>();
+            this.Security_Detail = new HashSet<Security_Detail>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -50,9 +53,11 @@ namespace Metope.DAL
         public virtual User User { get; set; }
         public virtual Portfolio_Valuation Portfolio_Valuation { get; set; }
         public virtual ICollection<Portfolio_Valuation_History> Portfolio_Valuation_History { get; set; }
-        public virtual ICollection<Security_Detail> Security_Detail { get; set; }
-        public virtual ICollection<Cash_Transactions> Cash_Transactions { get; set; }
-        public virtual ICollection<Order_Allocation> Order_Allocation { get; set; }
         public virtual ICollection<Position_SOD> Position_SOD { get; set; }
+        public virtual ICollection<Cash_Transactions> Cash_Transactions { get; set; }
+        public virtual ICollection<Security_Performance_History> Security_Performance_History { get; set; }
+        public virtual ICollection<Security_Performance> Security_Performance { get; set; }
+        public virtual ICollection<Order_Allocation> Order_Allocation { get; set; }
+        public virtual ICollection<Security_Detail> Security_Detail { get; set; }
     }
 }

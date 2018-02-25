@@ -1,38 +1,30 @@
-﻿@model Metope.DAL.Position_SOD
+﻿@model Metope.DAL.Security_Performance
 
 @{
     ViewBag.Title = "Create";
 }
-@section Styles {
-    @Styles.Render("~/Content/datetime")
-}
-<h2>Create Position for <b>@ViewBag.myPortfolioCode</b></h2> 
+
+<h2>Create Security Performance for <b>@ViewBag.myPortfolioCode</b></h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal"> 
+    <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(false)
         @Html.ValidationMessage("Error")
- 
+        @Html.HiddenFor(model => model.Entity_ID)
+         
         <div class="form-group">
             @Html.LabelFor(model => model.Portfolio_Code, htmlAttributes: new { @class = "control-label col-md-2 input-sm" })
             <div class="col-md-10">
                 @Html.DropDownList("Portfolio_Code", null, string.Empty, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Portfolio_Code, "", new { @class = "text-danger" })
             </div>
-        </div> 
- 
+        </div>   
         @Html.EditorForModel() 
-        <div>
-            @Html.ActionLink("Back to List", "Index", new { PortfolioCode = ViewBag.myPortfolioCode }, null)
-        </div> 
-    </div>
-} 
  
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/datetime")
-} 
+    </div>
+}
+
+ 

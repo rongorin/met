@@ -275,6 +275,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\ElmahResult.cs" />
+    <Compile Include="Controllers\CashTransactionsController.cs" />
     <Compile Include="Controllers\DebtExpiryProfileController.cs" />
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\ErrorpageController.cs" />
@@ -297,6 +298,7 @@
     </Compile>
     <Compile Include="Controllers\SecurityDividendSplitController.cs" />
     <Compile Include="Controllers\SecurityListDetailController.cs" />
+    <Compile Include="Controllers\SecurityPerformanceController.cs" />
     <Compile Include="Controllers\SecurityPriceController.cs" />
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\DebtExpiryProfileRepository.cs" />
@@ -359,6 +361,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddSecurityListDetailVM.cs" />
+    <Compile Include="Models\CashTransactionIndexViewModel.cs" />
     <Compile Include="Models\CheckBoxListItem.cs" />
     <Compile Include="Models\Custom\ApiException.cs" />
     <Compile Include="Models\Custom\MyError.cs" />
@@ -372,6 +375,7 @@
     <Compile Include="Models\SecurityDetailIndexModel.cs" />
     <Compile Include="Models\SecurityDividendDetailViewModel.cs" />
     <Compile Include="Models\SecurityListDetailIndexVM.cs" />
+    <Compile Include="Models\SecurityPerformanceIndexViewModel.cs" />
     <Compile Include="Models\SecurityPriceEditModel.cs" />
     <Compile Include="Models\SecurityPriceIndexViewModel.cs" />
     <Compile Include="Models\SelectOrderAllocEditorViewModel.cs" />
@@ -753,13 +757,25 @@
     <Content Include="Views\PositionSOD\Edit.cshtml" />
     <Content Include="Views\PositionSOD\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Position_SOD.cshtml" />
-    <Content Include="Views\OrderAllocation\Create.cshtml" />
     <Content Include="Views\OrderAllocation\Delete.cshtml" />
     <Content Include="Views\OrderAllocation\Details.cshtml" />
-    <Content Include="Views\OrderAllocation\Edit.cshtml" />
     <Content Include="Views\OrderAllocation\Index.cshtml" />
     <Content Include="Views\OrderAllocation\EditorTemplates\SelectOrderAllocEditorViewModel.cshtml" />
     <Content Include="Views\OrderAllocation\IndexOld.cshtml" />
+    <Content Include="Views\SecurityPerformance\Create.cshtml" />
+    <Content Include="Views\SecurityPerformance\Delete.cshtml" />
+    <Content Include="Views\SecurityPerformance\Details.cshtml" />
+    <Content Include="Views\SecurityPerformance\Edit.cshtml" />
+    <Content Include="Views\SecurityPerformance\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Performance.cshtml" />
+    <Content Include="Views\SecurityPerformance\SecurityPerformanceHistory.cshtml" />
+    <Content Include="Views\CashTransactions\Create.cshtml" />
+    <Content Include="Views\CashTransactions\Delete.cshtml" />
+    <Content Include="Views\CashTransactions\Details.cshtml" />
+    <Content Include="Views\CashTransactions\Edit.cshtml" />
+    <Content Include="Views\CashTransactions\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Cash_Transactions.cshtml" />
+    <Content Include="Views\CashTransactions\CashTransactionsHistory.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

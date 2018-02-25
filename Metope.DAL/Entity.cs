@@ -33,13 +33,15 @@ namespace Metope.DAL
             this.Security_Analytics = new HashSet<Security_Analytics>();
             this.Portfolio_Valuation = new HashSet<Portfolio_Valuation>();
             this.Portfolio_Valuation_History = new HashSet<Portfolio_Valuation_History>();
-            this.Security_Detail = new HashSet<Security_Detail>();
             this.Security_Dividend_Split = new HashSet<Security_Dividend_Split>();
             this.Security_List_Detail = new HashSet<Security_List_Detail>();
-            this.Cash_Transactions = new HashSet<Cash_Transactions>();
             this.Position_SOD = new HashSet<Position_SOD>();
-            this.Order_Allocation = new HashSet<Order_Allocation>();
             this.Order_Detail = new HashSet<Order_Detail>();
+            this.Cash_Transactions = new HashSet<Cash_Transactions>();
+            this.Security_Performance = new HashSet<Security_Performance>();
+            this.Security_Performance_History = new HashSet<Security_Performance_History>();
+            this.Order_Allocation = new HashSet<Order_Allocation>();
+            this.Security_Detail = new HashSet<Security_Detail>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -65,12 +67,14 @@ namespace Metope.DAL
         public virtual ICollection<Security_Analytics> Security_Analytics { get; set; }
         public virtual ICollection<Portfolio_Valuation> Portfolio_Valuation { get; set; }
         public virtual ICollection<Portfolio_Valuation_History> Portfolio_Valuation_History { get; set; }
-        public virtual ICollection<Security_Detail> Security_Detail { get; set; }
         public virtual ICollection<Security_Dividend_Split> Security_Dividend_Split { get; set; }
         public virtual ICollection<Security_List_Detail> Security_List_Detail { get; set; }
-        public virtual ICollection<Cash_Transactions> Cash_Transactions { get; set; }
         public virtual ICollection<Position_SOD> Position_SOD { get; set; }
-        public virtual ICollection<Order_Allocation> Order_Allocation { get; set; }
         public virtual ICollection<Order_Detail> Order_Detail { get; set; }
+        public virtual ICollection<Cash_Transactions> Cash_Transactions { get; set; }
+        public virtual ICollection<Security_Performance> Security_Performance { get; set; }
+        public virtual ICollection<Security_Performance_History> Security_Performance_History { get; set; }
+        public virtual ICollection<Order_Allocation> Order_Allocation { get; set; }
+        public virtual ICollection<Security_Detail> Security_Detail { get; set; }
     }
 }

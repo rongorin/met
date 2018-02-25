@@ -84,6 +84,15 @@ namespace MetopeMVCApp.Data.Repositories
         }
 
     }
+    public class OrderDetailRepository : GenericRepository<MetopeDbEntities, Order_Detail>,
+                          IOrderDetailRepository
+    {
+        public IQueryable<Order_Detail> GetAll(Expression<Func<Order_Detail, bool>> predicate)
+        {
+            IQueryable<Order_Detail> query = Context.Set<Order_Detail>().Where(predicate);
+            return query;
+        } 
+    }
     public class OrderAllocationRepository : GenericRepository<MetopeDbEntities, Order_Allocation>,
                           IOrderAllocationRepository
     {
@@ -97,6 +106,25 @@ namespace MetopeMVCApp.Data.Repositories
             Context.Set<Order_Allocation>().RemoveRange(Context.Order_Allocation.Where(r => Ids.Contains(r.Allocation_ID ))); 
         } 
     }
+    public class SecurityPerformanceRepository : GenericRepository<MetopeDbEntities, Security_Performance>,
+                          ISecurityPerformanceRepository
+    {
+        public IQueryable<Security_Performance> GetAll(Expression<Func<Security_Performance, bool>> predicate)
+        {
+            IQueryable<Security_Performance> query = Context.Set<Security_Performance>().Where(predicate);
+            return query;
+        }
+    }
+    public class CashTransactionsRepository : GenericRepository<MetopeDbEntities, Cash_Transactions>,
+                        ICashTransactionsRepository
+    {
+        public IQueryable<Cash_Transactions> GetAll(Expression<Func<Cash_Transactions, bool>> predicate)
+        {
+            IQueryable<Cash_Transactions> query = Context.Set<Cash_Transactions>().Where(predicate);
+            return query;
+        }
+    } 
+
     public class ExchangeRepository : GenericRepository<MetopeDbEntities, Exchange>,
                                      IExchangeRepository
     {
@@ -115,6 +143,10 @@ namespace MetopeMVCApp.Data.Repositories
     public class CurrencyRepository : GenericRepository<MetopeDbEntities, Currency>,
                                       ICurrencyRepository
     { 
+    }
+    public class UsersRepository : GenericRepository<MetopeDbEntities, User>,
+                                      IUsersRepository
+    {
     }
     public class CurrencyPairRepository : GenericRepository<MetopeDbEntities, Currency_Pair>,
                                   ICurrencyPairRepository

@@ -19,6 +19,7 @@ namespace MetopeMVCApp.Services
     {
         IQueryable<Metope.DAL.Country> ListCountry();
         IQueryable<Metope.DAL.Currency> ListCurrencies();
+        IQueryable<Metope.DAL.User> ListUsers(decimal iEntity);
         IQueryable<Metope.DAL.Currency_Pair> ListCurrencyPairs();
         IQueryable<Metope.DAL.Security_Type> ListSecTypeCode();
 
@@ -129,6 +130,34 @@ namespace MetopeMVCApp.Services
                   
             //return dbCntx.GetAll().Where(c => c.Entity_ID == iUser);
                 
+        } 
+        public IQueryable<Metope.DAL.User> ListUsers(decimal iEntity)
+        {
+            IUsersRepository dbCntx = new UsersRepository();
+            return dbCntx.GetAll().Where(s => s.Entity_ID == iEntity);
+        }
+
+        public IQueryable<Metope.DAL.Order_Detail> ListOrderDetail(decimal iEntity)
+        {
+            IOrderDetailRepository dbCntx;
+            dbCntx = new OrderDetailRepository();
+            var results = dbCntx.GetAll()
+                .MatchCriteria(c => c.Entity_ID == iEntity);
+
+            return results;
+             
+        }
+        public IQueryable<Metope.DAL.Order_Allocation> ListOrderAllocations(decimal iEntity )
+        {
+            IOrderAllocationRepository dbCntx;
+            dbCntx = new OrderAllocationRepository();
+            var results = dbCntx.GetAll() 
+                .MatchCriteria(c => c.Entity_ID == iEntity )
+ 
+                .OrderBy(r => r.Portfolio_Code);
+             
+             return results ;
+              
         }
         public IQueryable<Metope.DAL.Party> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId)
         {

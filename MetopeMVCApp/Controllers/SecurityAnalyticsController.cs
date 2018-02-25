@@ -104,10 +104,11 @@ namespace MetopeMVCApp.Controllers
                 { 
                      security_Analytics.Last_Update_Date = DateTime.Now;
                      security_Analytics.Last_Update_User = User.Identity.Name; 
-
-                     db.Security_Analytics.Add(security_Analytics);
-                     db.SaveChanges();
+                     
+                     db11.Add(security_Analytics);
+                     db11.Save();
                      TempData["ResultMessage"] = "Analytics for Security " + security_Analytics.Security_ID.ToString() + " created successfully!";
+  
 
                      if (navIndicator == "")
                          return RedirectToAction("Index");

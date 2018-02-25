@@ -24,14 +24,14 @@ namespace Metope.DAL
             this.Security_Price = new HashSet<Security_Price>();
             this.Security_Price_History = new HashSet<Security_Price_History>();
             this.Security_Dividend_Detail = new HashSet<Security_Dividend_Detail>();
+            this.Order_Detail = new HashSet<Order_Detail>();
+            this.Order_Detail1 = new HashSet<Order_Detail>();
+            this.Order_Detail2 = new HashSet<Order_Detail>();
+            this.Cash_Transactions = new HashSet<Cash_Transactions>();
             this.Security_Detail2 = new HashSet<Security_Detail>();
             this.Security_Detail3 = new HashSet<Security_Detail>();
             this.Security_Detail4 = new HashSet<Security_Detail>();
             this.Security_Detail5 = new HashSet<Security_Detail>();
-            this.Cash_Transactions = new HashSet<Cash_Transactions>();
-            this.Order_Detail = new HashSet<Order_Detail>();
-            this.Order_Detail1 = new HashSet<Order_Detail>();
-            this.Order_Detail2 = new HashSet<Order_Detail>();
         }
     
         public string Currency_Code { get; set; }
@@ -50,15 +50,15 @@ namespace Metope.DAL
         public virtual ICollection<Security_Price> Security_Price { get; set; }
         public virtual ICollection<Security_Price_History> Security_Price_History { get; set; }
         public virtual ICollection<Security_Dividend_Detail> Security_Dividend_Detail { get; set; }
+        public virtual ICollection<Order_Detail> Order_Detail { get; set; }
+        public virtual ICollection<Order_Detail> Order_Detail1 { get; set; }
+        public virtual ICollection<Order_Detail> Order_Detail2 { get; set; }
+        public virtual ICollection<Cash_Transactions> Cash_Transactions { get; set; }
         public virtual Security_Detail Security_Detail { get; set; }
         public virtual Security_Detail Security_Detail1 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail2 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail3 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail4 { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail5 { get; set; }
-        public virtual ICollection<Cash_Transactions> Cash_Transactions { get; set; }
-        public virtual ICollection<Order_Detail> Order_Detail { get; set; }
-        public virtual ICollection<Order_Detail> Order_Detail1 { get; set; }
-        public virtual ICollection<Order_Detail> Order_Detail2 { get; set; }
     }
 }

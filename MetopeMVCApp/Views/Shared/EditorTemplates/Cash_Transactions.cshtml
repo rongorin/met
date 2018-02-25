@@ -1,0 +1,52 @@
+﻿@model Metope.DAL.Cash_Transactions
+ 
+
+<div class="form-group">
+     @Html.LabelFor(model => model.Cash_Security_ID, htmlAttributes: new { @class = "control-label col-md-2 input-sm" })
+    <div class="col-md-10">
+        @Html.DropDownList("Cash_Security_ID", (SelectList)ViewBag.Securities_All, string.Empty, new { @class = "form-control" }) 
+        @Html.ValidationMessageFor(model => model.Cash_Security_ID, "", new { @class = "text-danger" })
+    </div>
+</div> 
+
+@Html.EditorFor(model => model.Transaction_Source_Code, "BootstrapEditorVertic") 
+ @Html.EditorFor(model => model.Transaction_Date, "BootstrapEditDateVertic")
+@Html.EditorFor(model => model.Value_Date, "BootstrapEditDateVertic")
+@Html.EditorFor(model => model.Cash_Transaction_Type, "BootstrapEditorVertic")
+@Html.EditorFor(model => model.Transaction_Amount, "BootstrapEditDecimal8PlacesVertic")
+@Html.EditorFor(model => model.BaseCur_Amount, "BootstrapEditDecimal8PlacesVertic") 
+@Html.EditorFor(model => model.External_ID, "BootstrapEditorVertic")
+@Html.EditorFor(model => model.Cashflow_ID, "BootstrapEditDecimalVertic")
+<div class="form-group">
+    @Html.LabelFor(model => model.Transaction_Currency_Code, htmlAttributes: new { @class = "control-label col-md-2  input-sm" })
+    <div class="col-md-10">
+        @Html.DropDownList("Transaction_Currency_Code", null, string.Empty,  new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Transaction_Currency_Code, "", new { @class = "text-danger" })
+    </div>
+</div> 
+ 
+<div class="form-group">
+    @Html.LabelFor(model => model.Transaction_Security_ID, "Transaction Security", htmlAttributes: new { @class = "control-label col-md-2 input-sm" })
+    <div class="col-md-10">
+        @Html.DropDownList("Transaction_Security_ID", (SelectList)ViewBag.Securities_All2, string.Empty, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Transaction_Security_ID, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Order_ID,  htmlAttributes: new { @class = "control-label col-md-2 input-sm" })
+    <div class="col-md-10">
+        @Html.DropDownList("Order_ID", null, string.Empty, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Order_ID, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Allocation_ID, htmlAttributes: new { @class = "control-label col-md-2 input-sm" })
+    <div class="col-md-10">
+        @Html.DropDownList("Allocation_ID", null, string.Empty, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Allocation_ID, "", new { @class = "text-danger" })
+    </div>
+</div> 
+@Html.EditorFor(model => model.Dividend_Seq_Number, "BootstrapEditDecimalZeroPlacesVert")
+
+

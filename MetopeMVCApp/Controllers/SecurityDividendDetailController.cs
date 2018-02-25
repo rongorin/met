@@ -125,10 +125,6 @@ namespace MetopeMVCApp.Controllers
                     return RedirectToAction("Index", new { SecurityId = sdd.Security_ID });
                 }
             } 
-            //ViewBag.Dividend_Currency_Code = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", security_Dividend_Detail.Dividend_Currency_Code);
-            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Dividend_Detail.Entity_ID);
-            //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Dividend_Detail.Security_ID);
-            //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Dividend_Detail.Entity_ID);
             ViewBag.EntityId = sdd.Entity_ID;
             var sddMaxNum = db11.GetMaxDividendSeqNo(EntityID, sdd.Security_ID) + 10;
             sddMaxNum -= (sddMaxNum % 10);  

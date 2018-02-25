@@ -2,7 +2,7 @@
  
 @using GridMvc.Html
 @{
-    ViewBag.Title = "Index";@ViewBag.Nav
+    ViewBag.Title = "Index";
     List<string> _sizes = new List<string>() { "10", "20", "50", "100" };
 
     ViewBag.RowsPgSelected = ((SelectList)ViewBag.RowsPerPage).SelectedValue ?? _sizes[3];
@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-md-2">
                     <button class="btn btn-primary btn-sm control-label" name="submit" type="submit">Submit</button> 
-                    <button class="btn btn-default btn-sm control-label" id="reset-date" type="submit">Reset</button> 
+                   
                 </div>
             </div>  
       }
@@ -141,10 +141,7 @@
             //not using this Ajax call anymore, rather server call to keep all consistent
 
         });
-        $("#reset-date").click(function (evt) {
-            evt.preventDefault();
-            $('#inputDate').val("").datepicker("update");
-        })
+         
 
     </script> 
 }

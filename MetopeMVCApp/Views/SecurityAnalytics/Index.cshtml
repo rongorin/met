@@ -93,7 +93,7 @@
         columns.Add().Encoded(false).Sanitized(false)
                 .RenderValueAs(c => @<a href="@Url.Action("SecurityAnalyticsHistory", "SecurityAnalytics", new { SecurityId = c.Security_ID, EntityId = c.Entity_ID })">
                 <span class="badge">History</span>
-            </a>); 
+            </a>).SetWidth(80); 
     }).WithPaging(Convert.ToInt16(ViewBag.RowsPgSelected) ).Sortable(true)
     </div> 
 

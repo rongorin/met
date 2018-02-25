@@ -55,10 +55,7 @@ namespace MetopeMVCApp.Controllers
         // GET: PortfolioValuation/Create
         [PortfoliosFilter]
         public ActionResult Create()
-        {
-            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code");
-            //ViewBag.Entity_ID = new SelectList(db.Portfolios, "Portfolio_Code", "Portfolio_Name");
-            //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name");
+        { 
             return View();
         }
 

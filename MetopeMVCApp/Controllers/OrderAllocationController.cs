@@ -27,13 +27,14 @@ namespace MetopeMVCApp.Controllers
 
         //  for the 'JonHattan'server side version, see commit on 2018-02-04. (see IndexOld.asp) this serverside models version  which 
         //  was based off http://johnatten.com/2014/01/05/asp-net-mvc-display-an-html-table-with-checkboxes-to-select-row-items/
-        //  is not being used. Rather used this jscrip-Ajax version. 
+        //  is not being used. Rather use this jscrip-Ajax version. 
         //
         public ActionResult Index()
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
 
-            var vwm = db11.GetAll().Include(a => a.Order_Detail).Include(a => a.Order_Detail.Security_Detail).Where(a => a.Entity_ID == EntityID)
+            var vwm = db11.GetAll().Include(a => a.Order_Detail).
+                                    Include(a => a.Order_Detail.Security_Detail).Where(a => a.Entity_ID == EntityID)
                 .Select(g => new SelectOrderAllocEditorViewModel
                     { 
                           Selected = true,

@@ -159,7 +159,64 @@ namespace MetopeMVCApp.Filters
         }
 
     }
+     
+    public class UsersFilter : ActionFilterAttribute
+    {
+        public override void OnActionExecuted(ActionExecutedContext filterContext)
+        { 
+            IQueryable<User> users;
+            if ((users = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<User>)) == null)
+            { 
+                MetopeMVCApp.Services.IServices svc = new MetopeMVCApp.Services.Services(false);
+                users = svc.ListUsers(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")));
+               
+                filterContext.HttpContext.Cache.Insert(GetType().FullName, users);
+            }
 
+            filterContext.Controller.ViewBag.Create_User_Code = new SelectList(users, "User_Code", "User_Name", filterContext.Controller.ViewBag.CreateUserCode);//  ;;
+                
+            base.OnActionExecuted(filterContext);
+        }
+
+    }
+
+    public class OrderDetailFilter : ActionFilterAttribute
+    {
+        public override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            IQueryable<Order_Detail> orderDetail;
+            if ((orderDetail = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Order_Detail>)) == null)
+            {
+                MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+
+                orderDetail = svc.ListOrderDetail(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")));
+                filterContext.HttpContext.Cache.Insert(GetType().FullName, orderDetail);
+            }
+
+            filterContext.Controller.ViewBag.Order_ID = new SelectList(orderDetail, "Order_ID", "Order_ID", filterContext.Controller.ViewBag.OrderID);  
+
+            base.OnActionExecuted(filterContext);
+        }
+    }
+
+    public class OrderAllocationFilter : ActionFilterAttribute
+    {
+        public override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            IQueryable<Order_Allocation> orderallocs;
+            if ((orderallocs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Order_Allocation >)) == null)
+            {
+                MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+
+                orderallocs = svc.ListOrderAllocations(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")));
+                filterContext.HttpContext.Cache.Insert(GetType().FullName, orderallocs);
+            }
+
+            filterContext.Controller.ViewBag.Allocation_ID = new SelectList(orderallocs, "Allocation_ID", "Allocation_ID", filterContext.Controller.ViewBag.AllocationID); // 
+         
+            base.OnActionExecuted(filterContext);
+        }
+    }
     public class CurrencyFilter : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -177,7 +234,8 @@ namespace MetopeMVCApp.Filters
             filterContext.Controller.ViewBag.Asset_Currency = new SelectList(currencies, "Currency_Code", "Currency_Name", filterContext.Controller.ViewBag.AssetCurrency); // 
             filterContext.Controller.ViewBag.Trade_Currency = new SelectList(currencies, "Currency_Code", "Currency_Name", filterContext.Controller.ViewBag.TradeCurrency); // 
             filterContext.Controller.ViewBag.Dividend_Currency_Code = new SelectList(currencies, "Currency_Code", "Currency_Name", filterContext.Controller.ViewBag.DividendCurrencyCode); // 
-
+            filterContext.Controller.ViewBag.Transaction_Currency_Code = new SelectList(currencies, "Currency_Code", "Currency_Name", filterContext.Controller.ViewBag.TransactionCurrencyCode); // 
+            
 
             //List<SelectListItem> IntsForDivSplit = new List<SelectListItem> {
             //            new SelectListItem { Text = "ACTIVE", Value = "ACTIVE" },
@@ -352,9 +410,9 @@ namespace MetopeMVCApp.Filters
                                            "", getInScopeOnly);
                  //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
-             } 
+             }
              filterContext.Controller.ViewBag.Securities_All = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll);
-                                      //ViewBag.ActionStatusId = new SelectList(repository.GetAll<ActionStatus>(), "ActionStatusId", "Name", myAction.ActionStatusId);
+           
              base.OnActionExecuted(filterContext);
          }
 
@@ -378,6 +436,10 @@ namespace MetopeMVCApp.Filters
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
              }
              filterContext.Controller.ViewBag.Securities_All = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll);
+  
+             //Securities_All2 is for Transaction_Security_ID ddl
+             filterContext.Controller.ViewBag.Securities_All2 = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll2);
+             
              //ViewBag.ActionStatusId = new SelectList(repository.GetAll<ActionStatus>(), "ActionStatusId", "Name", myAction.ActionStatusId);
              base.OnActionExecuted(filterContext);
          }

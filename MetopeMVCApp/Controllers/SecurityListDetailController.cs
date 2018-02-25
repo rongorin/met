@@ -18,7 +18,7 @@ namespace MetopeMVCApp.Controllers
     [SetAllowedEntityIdAttribute]
     public class SecurityListDetailController : Controller
     {
-        private MetopeDbEntities db = new MetopeDbEntities();
+        //private MetopeDbEntities db = new MetopeDbEntities();
         private readonly ISecurityListDetailRepository  db11;
         private readonly ISecurityListRepository db2;
         private readonly ISecurityDetailRepository db3;
@@ -273,7 +273,7 @@ namespace MetopeMVCApp.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                db11.Dispose();
             }
             base.Dispose(disposing);
         }

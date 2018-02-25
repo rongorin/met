@@ -8,7 +8,7 @@
 }
 
 
-<h3>Edit Security Analytics for SecurityId <b> @Model.Security_ID </b> </h3>
+<h3>Edit Security Analytics for SecurityId <b> @Model.Security_ID </b> </h3> 
 
 @using (Html.BeginForm())
 {
@@ -22,7 +22,7 @@
         @Html.HiddenFor(model => model.Security_ID)
 
         @Html.EditorForModel("Security_Analytics") 
-        <input type="hidden" id="navIndicator" name="navIndicator" value=@ViewBag.Nav />
+        <input type="hidden" id="navIndicator" name="navIndicator" value=@ViewBag.Nav >
     </div>
 }
 @section Scripts {

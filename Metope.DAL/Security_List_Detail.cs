@@ -14,6 +14,7 @@ namespace Metope.DAL
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityListDetailModelMetaData))]
+    
     public partial class Security_List_Detail
     {
         public decimal Entity_ID { get; set; }
@@ -23,6 +24,5 @@ namespace Metope.DAL
         public bool System_Locked { get; set; }
     
         public virtual Entity Entity { get; set; }
-
     }
 }
