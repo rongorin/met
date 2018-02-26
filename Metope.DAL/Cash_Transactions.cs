@@ -9,8 +9,12 @@
 
 namespace Metope.DAL
 {
+
     using System;
     using System.Collections.Generic;
+    using Metope.DAL.MyMetaData;
+    using System.ComponentModel.DataAnnotations;
+    [MetadataType(typeof(CashTransactionsModelMetatData))]
     
     public partial class Cash_Transactions
     {

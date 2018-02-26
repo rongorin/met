@@ -9,7 +9,14 @@
     <h3>for Portfolio @Html.DisplayFor(model => model.Portfolio_Code)</h3>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
+            @Html.DisplayNameFor(model => model.Order_Allocation.Portfolio_Code)
+        </dt> 
+        <dd>
+            @Html.DisplayFor(model => model.Order_Allocation.Portfolio_Code)
+        </dd>
+         <dt>
             @Html.DisplayNameFor(model => model.Transaction_Source_Code)
         </dt>
 
@@ -120,14 +127,7 @@
             @Html.DisplayFor(model => model.Create_Date)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Last_Update_Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Last_Update_Date)
-        </dd>
-
+  
         <dt>
             @Html.DisplayNameFor(model => model.Currency.ISO_Currency_Code)
         </dt>
@@ -135,22 +135,8 @@
         <dd>
             @Html.DisplayFor(model => model.Currency.ISO_Currency_Code)
         </dd>
+ 
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Entity.Entity_Code)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Entity.Entity_Code)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Order_Allocation.Portfolio_Code)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Order_Allocation.Portfolio_Code)
-        </dd>
 
   
     </dl>

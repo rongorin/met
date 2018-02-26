@@ -36,7 +36,7 @@ namespace MetopeMVCApp.Controllers
             ViewBag.SecurityId = securityId;
             try
             { 
-                LogInfo(FilePath, "RC started. \r\n");
+                //LogInfo(FilePath, "RC started. \r\n");
                 allSplits = svc.findAll<Security_Dividend_Split>("SecurityDividendSplit", EntityID, securityId, FilePath);
 
                 if (allSplits == null)
@@ -52,7 +52,7 @@ namespace MetopeMVCApp.Controllers
             }
             catch (AggregateException ex) //occurs on failure in a api client fail
             {
-                LogInfo(FilePath, "\r\n RC Exception caught." + ex.Message + "\n");
+               // LogInfo(FilePath, "\r\n RC Exception caught." + ex.Message + "\n");
 
                 var sb = new StringBuilder();
                 sb.AppendLine("  An Error Occurred:");
@@ -62,7 +62,7 @@ namespace MetopeMVCApp.Controllers
                     sb.AppendLine(exception.Message.ToString());
                     ModelState.AddModelError(string.Empty, sb.ToString());  
                 }
-                LogInfo(FilePath, "\r\n  RC Success done.");
+                //LogInfo(FilePath, "\r\n  RC Success done.");
                 return View(allSplits); 
             } 
         }

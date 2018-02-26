@@ -23,9 +23,10 @@ namespace MetopeMVCApp.Controllers
             db11 = iDb;
         } 
           
-        // GET: CashTransactions
+        // Retrieves the latest 50 records
         [CustomEntityAuthoriseFilter]
-        public ActionResult Index(string PortfolioCode)
+
+        public ActionResult Index(string PortfolioCode, DateTime? inputDate)
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
             ViewBag.Portfolio = PortfolioCode; 
@@ -33,10 +34,22 @@ namespace MetopeMVCApp.Controllers
             var vwm = db11.GetAll() 
                        .MatchCriteria(c => c.Entity_ID == EntityID)
                        .MatchCriteria(c => c.Portfolio_Code == PortfolioCode)
-                     .OrderByDescending(r => r.Transaction_Currency_Code).ThenBy(n => n.Portfolio_Code)
+                     .OrderByDescending(r => r.Transaction_Date) 
                      .Include(d => d.Security_Detail)
-                     .Include(d => d.Order_Detail); 
+                     .Include(d => d.Order_Detail).Take(50);
 
+            if (inputDate != null)
+            {
+                DateTime dtEqualTo = Convert.ToDateTime(inputDate);
+                vwm = vwm.Where(x => x.Transaction_Date <= dtEqualTo);
+
+                if (vwm.Any()) // if records found then populate the to-date
+                { 
+                    ViewBag.LastRecordDate = vwm.Min(p => p.Transaction_Date).ToString("dd/MM/yyyy");
+                }
+                ViewBag.UserInputDate = dtEqualTo.ToString("dd/MM/yyyy");
+            }
+             
             //var cash_Transactions = db.Cash_Transactions.Include(c => c.Currency).Include(c => c.Entity).Include(c => c.Order_Allocation).Include(c => c.Order_Detail).Include(c => c.Portfolio).Include(c => c.Security_Detail).Include(c => c.Security_Detail1).Include(c => c.User).Include(c => c.User1);
             return View(vwm.ToList());
         }
@@ -63,8 +76,7 @@ namespace MetopeMVCApp.Controllers
             }; 
 
             return View(s);
-             
-           
+              
         }
 
         // POST: CashTransactions/Create
@@ -168,7 +180,7 @@ namespace MetopeMVCApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cash_Transactions cash_Transactions = db.Cash_Transactions.Find(id);
+            Cash_Transactions cash_Transactions  = db11.Get(id);
             if (cash_Transactions == null)
             {
                 return HttpNotFound();

@@ -37,7 +37,7 @@ namespace MetopeMVCApp.Services
                 //HTTP GET
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var responseTask = client.GetAsync(svcEndPoint + "?EntityID=" + entityID + "&SecurityId=" + securityId);
-                LogInfo("\r\n R1 base:" + BASE_URL + svcEndPoint + "?EntityID=" + entityID + "&SecurityId=" + securityId);
+                //LogInfo("\r\n R1 base:" + BASE_URL + svcEndPoint + "?EntityID=" + entityID + "&SecurityId=" + securityId);
 
                 responseTask.Wait();
 
@@ -46,13 +46,13 @@ namespace MetopeMVCApp.Services
                 {
                     var readTask = result.Content.ReadAsAsync<IList<T>>();
                     readTask.Wait();
-                    LogInfo("\r\n R1 success" + "\n");
+                    //LogInfo("\r\n R1 success" + "\n");
                      pvs = readTask.Result;
-                     LogInfo("\r\n R1 count:" + readTask.Result.Count().ToString() );
+                    // LogInfo("\r\n R1 count:" + readTask.Result.Count().ToString() );
                 }
                 else //web api sent error response 
                 {
-                    LogInfo("R1 Failure return othing" + "\n");
+                   // LogInfo("R1 Failure return othing" + "\n");
                     //log response status h ere..
 
                     //var ex = CreateApiException(result);

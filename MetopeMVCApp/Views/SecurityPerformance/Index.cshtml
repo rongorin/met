@@ -75,6 +75,10 @@
     }).WithPaging(50).Sortable(true)
 
 </div>
+
+<br />
+@Html.ActionLink("Go To Portfolios List", "Index", "Portfolio", new { }, null)
+
 @section Scripts { @Scripts.Render("~/bundles/datetime")
 @Scripts.Render("~/bundles/GridMvc")
 <script>
