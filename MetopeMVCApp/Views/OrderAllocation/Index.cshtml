@@ -37,7 +37,7 @@
             .SetWidth(160);
          
         columns.Add(c => c.Transaction_Type)
-            .Titled("List Name").Filterable(true)
+            .Titled("Trans Type").Filterable(true)
             .SetWidth(170);
 
         columns.Add(c => c.Trade_Date).Titled("Trade Date").Filterable(true).SetWidth(180).Format("{0:dd MMM yyyy}");
@@ -79,7 +79,7 @@
     </div>
 
 <div id="divProcessing">
-    <p>Processing, . . . . . . . <img src="../../Content/ajax-loader.gif"></p>
+    <p>Processing, . . . . . . . <img src="~/Content/ajax-loader.gif"></p>
 </div>
  
 @section Scripts {

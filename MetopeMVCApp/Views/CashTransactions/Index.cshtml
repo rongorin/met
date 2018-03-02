@@ -90,11 +90,7 @@
         .RenderValueAs(c => @<u>
             @Html.ActionLink("Delete", "Delete", "CashTransactions", new { id = c.Cash_Transaction_ID }, null)
         </u>);
-
-        columns.Add().Encoded(false).Sanitized(false)
-                .RenderValueAs(c => @<a href="@Url.Action("CashTransactionsHistory", "CashTransactions", new { id = c.Portfolio_Code })">
-                <span class="badge">History</span>
-            </a>).SetWidth(80);
+         
     }).WithPaging(50).Sortable(true)
 
 </div> 

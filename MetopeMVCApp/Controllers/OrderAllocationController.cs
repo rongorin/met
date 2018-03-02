@@ -35,6 +35,7 @@ namespace MetopeMVCApp.Controllers
 
             var vwm = db11.GetAll().Include(a => a.Order_Detail).
                                     Include(a => a.Order_Detail.Security_Detail).Where(a => a.Entity_ID == EntityID)
+                                 .Take(300)
                 .Select(g => new SelectOrderAllocEditorViewModel
                     { 
                           Selected = true,
@@ -69,9 +70,15 @@ namespace MetopeMVCApp.Controllers
             {  
                 return Json(new { success = false, responseText = "nothing was selected!" }, JsonRequestBehavior.AllowGet); 
             }
-
-            db11.DeleteBulk(myArraydecimals);
-            db11.Save();
+            try{
+                db11.DeleteBulk(myArraydecimals);
+                db11.Save();
+            }
+            catch (DataException ex)
+            {
+                return Json(new { success = false, responseText = "An error occurred on attempting to delete!"  }, JsonRequestBehavior.AllowGet); 
+                
+            }
             TempData["ResultMessage"] = "Order Allocations " + myArray + " deleted successfully!";
 
             if (HttpContext.Request.IsAjaxRequest())

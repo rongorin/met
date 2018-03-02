@@ -20,13 +20,23 @@ namespace Metope.DAL
         public MetopeDbEntities()
             : base("name=MetopeDbEntities")
         {
+            this.SetMyCommandTimeOut(300);
+            //((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 180;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
+
         }
-    
+
+        // extended the timout for the long running Analytics sp process (activated from the SecurityDetail listing)
+        public void SetMyCommandTimeOut(int Timeout)
+        {
+            var objectContext = (this as IObjectContextAdapter).ObjectContext;
+            objectContext.CommandTimeout = Timeout;
+        }
+
         public virtual DbSet<Entity> Entities { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
