@@ -11,10 +11,10 @@ namespace Metope.DAL
 {
     using System;
     using System.Collections.Generic;
+
     using Metope.DAL.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(PortfolioModelMetatData))]
-    
     public partial class Portfolio
     {
         public Portfolio()
@@ -27,6 +27,7 @@ namespace Metope.DAL
             this.Security_Performance = new HashSet<Security_Performance>();
             this.Order_Allocation = new HashSet<Order_Allocation>();
             this.Security_Detail = new HashSet<Security_Detail>();
+            this.Security_Attribution = new HashSet<Security_Attribution>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -59,5 +60,6 @@ namespace Metope.DAL
         public virtual ICollection<Security_Performance> Security_Performance { get; set; }
         public virtual ICollection<Order_Allocation> Order_Allocation { get; set; }
         public virtual ICollection<Security_Detail> Security_Detail { get; set; }
+        public virtual ICollection<Security_Attribution> Security_Attribution { get; set; }
     }
 }
