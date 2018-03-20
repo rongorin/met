@@ -111,6 +111,12 @@ namespace MetopeMVCApp.Services
         {
             IPortfolioRepository3 dbCntx = new PortfolioRepository3();
             return dbCntx.GetAll().Where(c => c.Entity_ID == iUser && c.Portfolio_Status == iStatus).OrderBy(r => r.Portfolio_Name); ;
+
+        }
+        public IQueryable<Metope.DAL.Classification> ListClassifications(decimal iUser)
+        {
+            IClassificationRepository  dbCntx = new ClassificationRepository();
+            return dbCntx.GetAll().Where(c => c.Entity_ID == iUser ).OrderBy(r => r.Classification_Code);  
              
         }
         public IQueryable<Metope.DAL.Security_Detail> ListSecurities(decimal iEntity, decimal iGenericEntity, string iSecurityTypeCode = "", bool thisEntityOnly = false)

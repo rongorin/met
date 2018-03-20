@@ -1,0 +1,26 @@
+﻿@model Metope.DAL.Classification_Industry
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<h2>Create Industry code for Classification <b>@ViewBag.myClassificationCode</b></h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal"> 
+        <hr />
+        @Html.ValidationSummary(false)
+        @Html.ValidationMessage("Error")
+        @Html.HiddenFor(model => model.Entity_ID)
+        @Html.EditorForModel()
+
+    </div> 
+}
+
+<div> 
+    @Html.ActionLink("Back to List", "Edit", "Classifications", new { ClassificationCode = ViewBag.myClassificationCode, EntityId = Model.Entity_ID }, null)
+</div>

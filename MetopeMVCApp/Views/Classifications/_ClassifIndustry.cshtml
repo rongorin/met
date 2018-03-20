@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Metope.DAL.Classification_Industry>
+@{
+    string display = "";
+    foreach (var ind in Model)
+    {
+        display += ind.Industry_Code + " (" + ind.Description   + "), ";
+    }
+    if(display != "")
+    {
+        display = display.Remove(display.LastIndexOf(","));
+        
+    }
+}
+<span>@display</span>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Metope.DAL.Classification>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Classifications Listing</h2>
+@Html.Partial("_MsgSuccesFail", Model)
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Classification_Code)
+        </th> 
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th> 
+        <th>
+            Industries
+        </th>   
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Classification_Code, "Edit", new { ClassificationCode = item.Classification_Code, EntityId = item.Entity_ID })
+        </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        
+        <td>
+            @*Render using Partial()*@
+            @Html.Partial("_ClassifIndustry", item.Classification_Industry)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { ClassificationCode = item.Classification_Code, EntityId = item.Entity_ID }) |
+          
+            @Html.ActionLink("Delete", "Delete", new { ClassificationCode = item.Classification_Code })
+          
+        </td>
+    </tr>
+}
+
+</table>
