@@ -20,9 +20,18 @@
     }
     @if (ViewBag.UserInputDate != null)
     {
-        @:  (for date @ViewBag.UserInputdate to @ViewBag.LastRecordDate) 
+
+        if (ViewBag.UserInputDate == DateTime.Now.Date.ToString("dd/MM/yyyy"))
+        {
+            @:  (for date Today to @ViewBag.LastRecordDate) 
+        }
+        else
+        {
+            @:  (for date @ViewBag.UserInputdate to @ViewBag.LastRecordDate) 
+        }
     } 
 </h2>
+<h5>(note only the most recent 50 records are retrieved up to the selected date)</h5>
    
 @using (Html.BeginForm(null, null, new { PortfolioCode = ViewBag.Portfolio }, FormMethod.Post, new { @class = "form-horizontal" }))
 {

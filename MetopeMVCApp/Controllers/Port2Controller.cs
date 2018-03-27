@@ -103,7 +103,7 @@ namespace MetopeMVCApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(portfolio).State = EntityState.Modified;
+                db.Entry(portfolio).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

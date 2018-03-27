@@ -29,7 +29,12 @@ namespace MetopeMVCApp.Data
 
     public interface ISecurityAnalyticsRepository : IGenericRepository<Security_Analytics>
     {
-        IQueryable<Security_Analytics> GetAll(Expression<Func<Security_Analytics, bool>> predicate);
+        //IEnumerable<Security_Analytics> GetAll();
+
+    }
+    public interface ISecurityAttributionRepository : IGenericRepository<Security_Attribution>
+    {
+        IQueryable<Security_Attribution> GetAll(Expression<Func<Security_Attribution, bool>> predicate);
 
     }
     public interface ISecurityPriceRepository : IGenericRepository<Security_Price>
@@ -40,8 +45,17 @@ namespace MetopeMVCApp.Data
     //
     public interface IOrderDetailRepository : IGenericRepository<Order_Detail>
     {
-        IQueryable<Order_Detail> GetAll(Expression<Func<Order_Detail, bool>> predicate);
-       
+        IQueryable<Order_Detail> GetAll(Expression<Func<Order_Detail, bool>> predicate); 
+
+    }
+    public interface IClassificationRepository : IGenericRepository<Classification>
+    {
+        IQueryable<Classification> GetAll(Expression<Func<Classification, bool>> predicate);
+
+    }
+    public interface IClassificationIndustryRepository : IGenericRepository<Classification_Industry>
+    {
+        IQueryable<Classification_Industry> GetAll(Expression<Func<Classification_Industry, bool>> predicate);
 
     }
     public interface IOrderAllocationRepository : IGenericRepository<Order_Allocation>

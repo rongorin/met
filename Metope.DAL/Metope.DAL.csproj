@@ -86,6 +86,12 @@
     <Compile Include="Cash_Transactions.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Classification.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Classification_Industry.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Code_Miscellaneous.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
@@ -125,6 +131,8 @@
     <Compile Include="MyMetaData\CashTransactionsModelMetatData.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MyMetaData\ClassificationIndustryModelMetaData.cs" />
+    <Compile Include="MyMetaData\ClassificationModelMetaData.cs" />
     <Compile Include="MyMetaData\DebtExpiryProfileModelMetaData.cs" />
     <Compile Include="MyMetaData\MyMetadataProvider.cs" />
     <Compile Include="MyMetaData\PartyFinancialsModelMetaData.cs" />
@@ -174,6 +182,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security_Analytics.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Security_Attribution.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Security_Detail.cs">

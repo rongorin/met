@@ -181,6 +181,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -276,6 +277,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\ElmahResult.cs" />
     <Compile Include="Controllers\CashTransactionsController.cs" />
+    <Compile Include="Controllers\ClassificationIndustryController.cs" />
+    <Compile Include="Controllers\ClassificationsController.cs" />
     <Compile Include="Controllers\DebtExpiryProfileController.cs" />
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\ErrorpageController.cs" />
@@ -292,6 +295,7 @@
     </Compile>
     <Compile Include="Controllers\PositionSODController.cs" />
     <Compile Include="Controllers\SecurityAnalyticsController.cs" />
+    <Compile Include="Controllers\SecurityAttributionController.cs" />
     <Compile Include="Controllers\SecurityDetailController.cs" />
     <Compile Include="Controllers\SecurityDividendDetailController.cs">
       <SubType>Code</SubType>
@@ -363,6 +367,7 @@
     <Compile Include="Models\AddSecurityListDetailVM.cs" />
     <Compile Include="Models\CashTransactionIndexViewModel.cs" />
     <Compile Include="Models\CheckBoxListItem.cs" />
+    <Compile Include="Models\ClassificationEditViewModel.cs" />
     <Compile Include="Models\Custom\ApiException.cs" />
     <Compile Include="Models\Custom\MyError.cs" />
     <Compile Include="Models\Custom\Weather.cs" />
@@ -372,6 +377,7 @@
     <Compile Include="Models\OrderAllocSelectionViewModel.cs" />
     <Compile Include="Models\PositionsSODIndexViewModel.cs" />
     <Compile Include="Models\SecurityAnalyticsIndexViewModel.cs" />
+    <Compile Include="Models\SecurityAttributionIndexViewModel.cs" />
     <Compile Include="Models\SecurityDetailIndexModel.cs" />
     <Compile Include="Models\SecurityDividendDetailViewModel.cs" />
     <Compile Include="Models\SecurityListDetailIndexVM.cs" />
@@ -405,6 +411,9 @@
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\gridmvc.datepicker.css" />
     <Content Include="Content\gridmvc.datepicker.min.css" />
+    <Content Include="Content\img\metope-greece64.jpg" />
+    <Content Include="Content\img\Metope-images.jpg" />
+    <Content Include="Content\img\metopeParthenon.png" />
     <Content Include="Content\myCustom.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\bus-yellow-300px.png" />
@@ -776,12 +785,31 @@
     <Content Include="Views\CashTransactions\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Cash_Transactions.cshtml" />
     <Content Include="Views\CashTransactions\CashTransactionsHistory.cshtml" />
+    <Content Include="Views\SecurityAttribution\Create.cshtml" />
+    <Content Include="Views\SecurityAttribution\Delete.cshtml" />
+    <Content Include="Views\SecurityAttribution\Details.cshtml" />
+    <Content Include="Views\SecurityAttribution\Edit.cshtml" />
+    <Content Include="Views\SecurityAttribution\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Attribution.cshtml" />
+    <Content Include="Views\Classifications\Create.cshtml" />
+    <Content Include="Views\Classifications\Delete.cshtml" />
+    <Content Include="Views\Classifications\Details.cshtml" />
+    <Content Include="Views\Classifications\Edit.cshtml" />
+    <Content Include="Views\Classifications\Index.cshtml" />
+    <Content Include="Views\Classifications\_ClassifIndustry.cshtml" />
+    <Content Include="Views\ClassificationIndustry\Create.cshtml" />
+    <Content Include="Views\ClassificationIndustry\Delete.cshtml" />
+    <Content Include="Views\ClassificationIndustry\Details.cshtml" />
+    <Content Include="Views\ClassificationIndustry\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Classification_Industry.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\Persist\" />
+    <Folder Include="Data\UnitOfWork\" />
     <Folder Include="Models\MyMetaData\" />
     <Folder Include="Views\Contact\" />
     <Folder Include="Views\Errorpage\" />

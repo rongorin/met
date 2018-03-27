@@ -15,7 +15,7 @@ using MetopeMVCApp.Data;
 using System.Configuration;
 using MetopeMVCApp.Data.Repositories;
 using MetopeMVCApp.Filters;
-using MetopeMVCApp.Data.GenericRepository;
+//using MetopeMVCApp.Data.GenericRepository;
 using Metope.DAL;
 namespace MetopeMVCApp.Controllers
 {

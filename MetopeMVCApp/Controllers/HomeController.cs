@@ -45,7 +45,7 @@ namespace ASP.MetopeNspace.Controllers
         }
         public ActionResult About()
         {
-            ViewBag.Message = "General stuff.";
+            ViewBag.Message = "Location";
            
             return View();
         }

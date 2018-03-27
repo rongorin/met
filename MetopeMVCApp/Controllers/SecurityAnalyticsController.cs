@@ -8,12 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using MetopeMVCApp.Models;
 using MetopeMVCApp.Filters;
-using MetopeMVCApp.Data;
-
+using MetopeMVCApp.Data; 
 using ASP.MetopeNspace.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using MetopeMVCApp.Data.GenericRepository;
+//using MetopeMVCApp.Data.GenericRepository;
 using Metope.DAL;
 namespace MetopeMVCApp.Controllers
 {
@@ -21,15 +20,13 @@ namespace MetopeMVCApp.Controllers
     public class SecurityAnalyticsController : Controller
     {
         private readonly ISecurityAnalyticsRepository db11;
-        //private readonly ISecurityDetailRepository db2;
+    
         private List<SelectListItem> numOfRows = new List<SelectListItem> {
 						new SelectListItem { Text = "10", Value = "10" },
 						new SelectListItem { Text = "20", Value = "20" },
 						new SelectListItem { Text = "50", Value = "50" },
 						new SelectListItem { Text = "100", Value = "100" }
-			            };
-
-        private MetopeDbEntities db = new MetopeDbEntities();
+			            }; 
 
         public SecurityAnalyticsController(ISecurityAnalyticsRepository iDb)
         {
@@ -46,8 +43,8 @@ namespace MetopeMVCApp.Controllers
 
             ViewBag.RowsPerPage = new SelectList(numOfRows, "Value", "Text", numberOfRows);
 
-            var vm = db.Security_Analytics.
-                                        Include(s => s.Security_Detail). 
+            //returns iEnumerable.
+            var vm = db11.GetAll().  
                                         Select( r => new SecurityAnalyticsIndexViewModel{
                                                 Entity_ID = r.Entity_ID,
                                                 Security_ID = r.Security_ID, 
@@ -61,7 +58,7 @@ namespace MetopeMVCApp.Controllers
                                                 Total_Return_ME_3YR = r.Total_Return_ME_3YR,  
                                                 Short_Name = r.Security_Detail.Short_Name,
                                                 Ticker = r.Security_Detail.Ticker 
-                                        }).ToList(); 
+                                        }); 
             ViewBag.Nav = "";
             
             return View(vm.ToList());
@@ -212,8 +209,7 @@ namespace MetopeMVCApp.Controllers
         {
             if (disposing)
             {
-                db11.Dispose();
-                db .Dispose();
+                db11.Dispose(); 
             }
             base.Dispose(disposing);
         }

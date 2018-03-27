@@ -91,7 +91,7 @@ namespace MetopeMVCApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(entity).State = EntityState.Modified;
+                db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 TempData.Add("ResultMessage", "Entity \"" + entity.Entity_Name + "\" edited successfully!");
 

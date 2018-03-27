@@ -29,27 +29,27 @@ namespace MetopeMVCApp.Controllers
         public ActionResult Index(string PortfolioCode, DateTime? inputDate)
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
-            ViewBag.Portfolio = PortfolioCode; 
-                                    
+            ViewBag.Portfolio = PortfolioCode;
+
+            if (inputDate == null)
+            {
+                inputDate = DateTime.Now;
+            }
+            DateTime dtEqualTo = Convert.ToDateTime(inputDate);
             var vwm = db11.GetAll() 
                        .MatchCriteria(c => c.Entity_ID == EntityID)
                        .MatchCriteria(c => c.Portfolio_Code == PortfolioCode)
+                       .MatchCriteria(c => c.Transaction_Date <= dtEqualTo)
                      .OrderByDescending(r => r.Transaction_Date) 
                      .Include(d => d.Security_Detail)
                      .Include(d => d.Order_Detail).Take(50);
-
-            if (inputDate != null)
+            if (vwm.Any()) // if records found then populate the to-date
             {
-                DateTime dtEqualTo = Convert.ToDateTime(inputDate);
-                vwm = vwm.Where(x => x.Transaction_Date <= dtEqualTo);
-
-                if (vwm.Any()) // if records found then populate the to-date
-                { 
-                    ViewBag.LastRecordDate = vwm.Min(p => p.Transaction_Date).ToString("dd/MM/yyyy");
-                }
-                ViewBag.UserInputDate = dtEqualTo.ToString("dd/MM/yyyy");
+                ViewBag.LastRecordDate = vwm.Min(p => p.Transaction_Date).ToString("dd/MM/yyyy");
             }
-             
+            
+            ViewBag.UserInputDate = dtEqualTo.ToString("dd/MM/yyyy");
+              
             //var cash_Transactions = db.Cash_Transactions.Include(c => c.Currency).Include(c => c.Entity).Include(c => c.Order_Allocation).Include(c => c.Order_Detail).Include(c => c.Portfolio).Include(c => c.Security_Detail).Include(c => c.Security_Detail1).Include(c => c.User).Include(c => c.User1);
             return View(vwm.ToList());
         }

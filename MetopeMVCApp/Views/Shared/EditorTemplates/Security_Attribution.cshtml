@@ -1,0 +1,64 @@
+﻿@model Metope.DAL.Security_Attribution
+<div class="form-group">
+    @Html.LabelFor(model => model.Security_ID, htmlAttributes: new { @class = "control-label col-md-2  input-sm " })
+    <div class="col-md-10">
+
+        @if (ViewBag.MeDisabled == "readonly")
+        {
+            @Html.DropDownList("Security_ID", (SelectList)ViewBag.Securities_All, string.Empty, new
+           {
+               @class = "form-control",
+               @readonly = "readonly",
+               disabled = "disabled"
+            })
+        }
+        else
+        {
+            @Html.DropDownList("Security_ID", (SelectList)ViewBag.Securities_All, string.Empty, new { @class = "form-control" })
+        }
+
+        @Html.ValidationMessageFor(model => model.Security_ID, "", new { @class = "text-danger" })
+    </div> 
+</div>
+@Html.EditorFor(model => model.Excess_Weight_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Relative_Contribution_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Allocation_Selection_Interaction_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.StockVs_TotBenchmarkReturn_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Selection_Interaction_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Asset_Allocation_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Excess_Weight_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Relative_Contribution_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Allocation_Selection_Interaction_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Selection_Interaction_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Asset_Allocation_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Excess_Weight_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Relative_Contribution_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Allocation_Selection_Interaction_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.StockVs_TotBenchmarkReturn_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Selection_Interaction_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Asset_Allocation_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Security_Weight_Portfolio_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Security_Weight_Portfolio_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Security_Weight_Portfolio_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Security_Weight_Benchmark_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Security_Weight_Benchmark_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Security_Weight_Benchmark_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Total_Return_Security_Price_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Total_Return_Security_Price_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Total_Return_Security_Price_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.TW_Return_Portfolio_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.TW_Return_Portfolio_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.TW_Return_Portfolio_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Benchmark_Price_Performance_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Benchmark_Price_Performance_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Benchmark_Price_Performance_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+ 
+        
+<div class="col-md-offset-3 col-md-9">
+    <input type="submit" value="Save" class="btn btn-primary" />
+</div>
+
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
+</div>

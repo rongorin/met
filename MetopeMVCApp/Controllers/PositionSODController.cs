@@ -23,16 +23,15 @@ namespace MetopeMVCApp.Controllers
 						new SelectListItem { Text = "100", Value = "100" }
 			            };
         // GET: PositionSOD
-
          
 
-
         [CustomEntityAuthoriseFilter]
-        public ActionResult Index(string PortfolioCode, DateTime? inputDate, int? numberOfRows, int page = 1, string searchTerm = null, string Nav = "")
+        [CustBuildUrlActionFilter]
+        public ActionResult Index(string PortfolioCode, int? numberOfRows, string inputDateHid = "", string inputDate = "", string clickedSubmt ="", int page = 1, string searchTerm = null, string Nav = "")
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
             if (numberOfRows == null)
-                numberOfRows = 20;
+                numberOfRows = 20; 
 
             ViewBag.RowsPerPage = new SelectList(numOfRows, "Value", "Text", numberOfRows);
 
@@ -54,13 +53,17 @@ namespace MetopeMVCApp.Controllers
                                         .AsQueryable();
             //ToList(); 
 
-            if (inputDate != null)
+            if (inputDate != "")
             {
                 DateTime dtEqualTo = Convert.ToDateTime(inputDate);
                 vm = vm.Where(x => x.Position_Date == dtEqualTo);
-                ViewBag.UserInputDate = dtEqualTo.ToString("dd/MM/yyyy");
+                ViewBag.UserInputDate = dtEqualTo.ToString("yyyy/MM/dd");
             }
+            else
+                ViewBag.UserInputDate = "";
 
+           // return RedirectToActionPermanent("Index", "PositionSOD", new { PortfolioCode = PortfolioCode, inputDate = inputDate });
+ 
 
             return View(vm.ToList());
         }
@@ -70,12 +73,14 @@ namespace MetopeMVCApp.Controllers
         [LongShortIndicatorFilter]
         [PortfoliosFilter]
         [AllSecuritiesInclGenericFilter]
-        public ActionResult Create(string PortfolioCode)
+        public ActionResult Create(string PortfolioCode, string InputDate = "")
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
 
             ViewBag.myPortfolioCode = PortfolioCode;
             ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name");
+
+            ViewBag.UserInputDate = InputDate;
             return View();
         }
 
@@ -87,7 +92,8 @@ namespace MetopeMVCApp.Controllers
         [AllSecuritiesInclGenericFilter]
         [PortfoliosFilter]
         [LongShortIndicatorFilter]
-        public ActionResult Create([Bind(Include = "Entity_ID,Portfolio_Code,Security_ID,Long_Short_Indicator,Position_Date,Dealt_Quantity,Unsettled_Quantity,Settled_Quantity,Dealt_AllIn_Mkt_Value_PriceCur,Unsettled_AllIn_Mkt_Value_PriceCur,Settled_AllIn_Mkt_Value_PriceCur,Dealt_AllIn_Mkt_Value_BaseCur,Unsettled_AllIn_Mkt_Value_BaseCur,Settled_AllIn_Mkt_Value_BaseCur,Dealt_Clean_Mkt_Value_PriceCur,Unsettled_Clean_Mkt_Value_PriceCur,Settled_Clean_Mkt_Value_PriceCur,Dealt_Clean_Mkt_Value_BaseCur,Unsettled_Clean_Mkt_Value_BaseCur,Settled_Clean_Mkt_Value_BaseCur,Dealt_Income_Mkt_Value_PriceCur,Unsettled_Income_Mkt_Value_PriceCur,Settled_Income_Mkt_Value_PriceCur,Dealt_Income_Mkt_Value_BaseCur,Unsettled_Income_Mkt_Value_BaseCur,Settled_Income_Mkt_Value_BaseCur,Exposure_BaseCur,Exposure_PriceCur,Average_Unit_Cost_BaseCur,Average_Unit_Cost_PriceCur,Pledged_Quantity,Segregated_Quantity,Model_Percent,Last_Update_Date,Last_Update_User,Unsettled_Expenses_BaseCur,Unsettled_Expenses_PriceCur")] Position_SOD position_SOD)
+        public ActionResult Create([Bind(Include = "Entity_ID,Portfolio_Code,Security_ID,Long_Short_Indicator,Position_Date,Dealt_Quantity,Unsettled_Quantity,Settled_Quantity,Dealt_AllIn_Mkt_Value_PriceCur,Unsettled_AllIn_Mkt_Value_PriceCur,Settled_AllIn_Mkt_Value_PriceCur,Dealt_AllIn_Mkt_Value_BaseCur,Unsettled_AllIn_Mkt_Value_BaseCur,Settled_AllIn_Mkt_Value_BaseCur,Dealt_Clean_Mkt_Value_PriceCur,Unsettled_Clean_Mkt_Value_PriceCur,Settled_Clean_Mkt_Value_PriceCur,Dealt_Clean_Mkt_Value_BaseCur,Unsettled_Clean_Mkt_Value_BaseCur,Settled_Clean_Mkt_Value_BaseCur,Dealt_Income_Mkt_Value_PriceCur,Unsettled_Income_Mkt_Value_PriceCur,Settled_Income_Mkt_Value_PriceCur,Dealt_Income_Mkt_Value_BaseCur,Unsettled_Income_Mkt_Value_BaseCur,Settled_Income_Mkt_Value_BaseCur,Exposure_BaseCur,Exposure_PriceCur,Average_Unit_Cost_BaseCur,Average_Unit_Cost_PriceCur,Pledged_Quantity,Segregated_Quantity,Model_Percent,Last_Update_Date,Last_Update_User,Unsettled_Expenses_BaseCur,Unsettled_Expenses_PriceCur")] Position_SOD position_SOD
+                                        , string filterIndicator  )
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
             position_SOD.Entity_ID = EntityID;
@@ -108,8 +114,13 @@ namespace MetopeMVCApp.Controllers
                     position_SOD.Last_Update_Date = DateTime.Now;
                     db.Position_SOD.Add(position_SOD);
                     db.SaveChanges();
-                    TempData["ResultMessage"] = "New Position for Portfolio " + position_SOD.Portfolio_Code + "\" created successfully!";
-                    return RedirectToAction("Index", new { PortfolioCode = position_SOD.Portfolio_Code });
+                    TempData["ResultMessage"] = "New Position for Portfolio " + position_SOD.Portfolio_Code + " created successfully!";
+
+                    if (filterIndicator == "") 
+                        return RedirectToAction("Index", new { PortfolioCode = position_SOD.Portfolio_Code });
+                    else
+                        return RedirectToAction("Index", new { PortfolioCode = position_SOD.Portfolio_Code, inputDate = filterIndicator });
+                
                 }
             }
              
@@ -123,7 +134,8 @@ namespace MetopeMVCApp.Controllers
         [CustomEntityAuthoriseFilter]
         [AllSecuritiesInclGenericFilter]
         [LongShortIndicatorFilter]
-        public ActionResult Edit(string PortfolioCode, decimal EntityId, decimal SecurityId, DateTime PosDate, string LongShortInd, string Nav = "")
+        public ActionResult Edit(string PortfolioCode, decimal EntityId, decimal SecurityId, DateTime PosDate, string LongShortInd
+                                , string Nav = "", string InputDate = "")
 
         {
             if (SecurityId == null || EntityId == null || PortfolioCode == null || LongShortInd == null || PosDate == null)
@@ -138,6 +150,7 @@ namespace MetopeMVCApp.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.UserInputDate = InputDate;
             ViewBag.SecuritiesAll = position_SOD.Security_ID;
             ViewBag.LongShortInd = position_SOD.Long_Short_Indicator;
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", position_SOD.Entity_ID);
@@ -151,17 +164,22 @@ namespace MetopeMVCApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllSecuritiesInclGenericFilter]
-        public ActionResult Edit([Bind(Include = "Entity_ID,Portfolio_Code,Security_ID,Long_Short_Indicator,Position_Date,Dealt_Quantity,Unsettled_Quantity,Settled_Quantity,Dealt_AllIn_Mkt_Value_PriceCur,Unsettled_AllIn_Mkt_Value_PriceCur,Settled_AllIn_Mkt_Value_PriceCur,Dealt_AllIn_Mkt_Value_BaseCur,Unsettled_AllIn_Mkt_Value_BaseCur,Settled_AllIn_Mkt_Value_BaseCur,Dealt_Clean_Mkt_Value_PriceCur,Unsettled_Clean_Mkt_Value_PriceCur,Settled_Clean_Mkt_Value_PriceCur,Dealt_Clean_Mkt_Value_BaseCur,Unsettled_Clean_Mkt_Value_BaseCur,Settled_Clean_Mkt_Value_BaseCur,Dealt_Income_Mkt_Value_PriceCur,Unsettled_Income_Mkt_Value_PriceCur,Settled_Income_Mkt_Value_PriceCur,Dealt_Income_Mkt_Value_BaseCur,Unsettled_Income_Mkt_Value_BaseCur,Settled_Income_Mkt_Value_BaseCur,Exposure_BaseCur,Exposure_PriceCur,Average_Unit_Cost_BaseCur,Average_Unit_Cost_PriceCur,Pledged_Quantity,Segregated_Quantity,Model_Percent,Last_Update_Date,Last_Update_User,Unsettled_Expenses_BaseCur,Unsettled_Expenses_PriceCur")] Position_SOD position_SOD)
+        public ActionResult Edit([Bind(Include = "Entity_ID,Portfolio_Code,Security_ID,Long_Short_Indicator,Position_Date,Dealt_Quantity,Unsettled_Quantity,Settled_Quantity,Dealt_AllIn_Mkt_Value_PriceCur,Unsettled_AllIn_Mkt_Value_PriceCur,Settled_AllIn_Mkt_Value_PriceCur,Dealt_AllIn_Mkt_Value_BaseCur,Unsettled_AllIn_Mkt_Value_BaseCur,Settled_AllIn_Mkt_Value_BaseCur,Dealt_Clean_Mkt_Value_PriceCur,Unsettled_Clean_Mkt_Value_PriceCur,Settled_Clean_Mkt_Value_PriceCur,Dealt_Clean_Mkt_Value_BaseCur,Unsettled_Clean_Mkt_Value_BaseCur,Settled_Clean_Mkt_Value_BaseCur,Dealt_Income_Mkt_Value_PriceCur,Unsettled_Income_Mkt_Value_PriceCur,Settled_Income_Mkt_Value_PriceCur,Dealt_Income_Mkt_Value_BaseCur,Unsettled_Income_Mkt_Value_BaseCur,Settled_Income_Mkt_Value_BaseCur,Exposure_BaseCur,Exposure_PriceCur,Average_Unit_Cost_BaseCur,Average_Unit_Cost_PriceCur,Pledged_Quantity,Segregated_Quantity,Model_Percent,Last_Update_Date,Last_Update_User,Unsettled_Expenses_BaseCur,Unsettled_Expenses_PriceCur")] Position_SOD position_SOD
+                                , string filterIndicator = "")
         {
             if (ModelState.IsValid)
             {
-                db.Entry(position_SOD).State = EntityState.Modified;
+                db.Entry(position_SOD).State = System.Data.Entity.EntityState.Modified;
                 position_SOD.Last_Update_User = User.Identity.Name;
                 position_SOD.Last_Update_Date = DateTime.Now; 
                 db.SaveChanges();
                 TempData["ResultMessage"] = "Position for portfolio \"" + position_SOD.Portfolio_Code + "\" edited successfully!";
-                return RedirectToAction("Index", new { PortfolioCode = position_SOD.Portfolio_Code });
-             
+  
+                if (filterIndicator == "")
+                    return RedirectToAction("Index", new { PortfolioCode = position_SOD.Portfolio_Code });
+                else
+                    return RedirectToAction("Index", new { PortfolioCode = position_SOD.Portfolio_Code, inputDate = filterIndicator });
+                
             }
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", position_SOD.Entity_ID);
             ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", position_SOD.Security_ID);
@@ -170,7 +188,7 @@ namespace MetopeMVCApp.Controllers
 
         [CustomEntityAuthoriseFilter]
         // GET: PositionSOD/Delete/5
-        public ActionResult Delete(decimal SecurityId, decimal EntityId, string PortfolioCode, DateTime PosDate, string LongShortInd)
+        public ActionResult Delete(decimal SecurityId, decimal EntityId, string PortfolioCode, DateTime PosDate, string LongShortInd, string InputDate )
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
           
@@ -186,6 +204,7 @@ namespace MetopeMVCApp.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.UserInputDate = InputDate; 
         
             return View(position_SOD);
         }
@@ -193,7 +212,8 @@ namespace MetopeMVCApp.Controllers
         // POST: PositionSOD/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(decimal SecurityId, decimal EntityId, string PortfolioCode, DateTime PosDate, string LongShortInd)
+        public ActionResult DeleteConfirmed(decimal SecurityId, decimal EntityId, string PortfolioCode, DateTime PosDate, string LongShortInd
+                                            , string filterIndicator = "")
 
         {
             Position_SOD position_SOD = db.Position_SOD.Include(i => i.Security_Detail)
@@ -204,8 +224,12 @@ namespace MetopeMVCApp.Controllers
             db.Position_SOD.Remove(position_SOD);
             db.SaveChanges();
             TempData.Add("ResultMessage", "Position for portfolio \"" + position_SOD.Portfolio_Code + "\" deleted successfully!");
-            return RedirectToAction("Index", new { PortfolioCode = position_SOD.Portfolio_Code });
-
+ 
+            if (filterIndicator == "")
+                return RedirectToAction("Index", new { PortfolioCode = position_SOD.Portfolio_Code });
+            else
+                return RedirectToAction("Index", new { PortfolioCode = position_SOD.Portfolio_Code, inputDate = filterIndicator });
+                
         }
 
         protected override void Dispose(bool disposing)

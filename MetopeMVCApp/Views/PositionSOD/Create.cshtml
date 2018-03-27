@@ -16,6 +16,7 @@
         <hr />
         @Html.ValidationSummary(false)
         @Html.ValidationMessage("Error")
+        <input type="hidden" id="filterIndicator" name="filterIndicator" value=@ViewBag.UserInputDate> 
  
         <div class="form-group">
             @Html.LabelFor(model => model.Portfolio_Code, htmlAttributes: new { @class = "control-label col-md-2 input-sm" })
@@ -27,7 +28,7 @@
  
         @Html.EditorForModel() 
         <div>
-            @Html.ActionLink("Back to List", "Index", new { PortfolioCode = ViewBag.myPortfolioCode }, null)
+            @Html.ActionLink("Back to List", "Index", new { PortfolioCode = ViewBag.myPortfolioCode, InputDate = ViewBag.UserInputDate }, null)
         </div> 
     </div>
 } 

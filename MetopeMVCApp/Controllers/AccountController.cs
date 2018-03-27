@@ -56,7 +56,9 @@ namespace ASP.MetopeNspace.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
+                   
+                    //return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index","Home"); // send them to the Home page rather :-)
                 }
                 else
                 {

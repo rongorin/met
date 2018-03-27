@@ -65,6 +65,58 @@ namespace MetopeMVCApp.Filters
             filterContext.Controller.ViewBag.genericEntity = Convert.ToDecimal(genEntityID);  
         }
     }
+    public class CustBuildUrlActionFilter : ActionFilterAttribute
+    {   
+        //used by PositionSOD (IUser InputDate field)
+        //if the userInputDate Submit butt clicked , this filter intercepts and re-writes the Url so that
+        //correct url is shown and also the url in the mvcgrid paging is correctly build (so if user clicks
+        //  on next page, the url will be built with the inputDate param as well)
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var Url2 = filterContext.HttpContext.Request.Url;
+
+            var inpDateSubmit = GetParmValueFromUrl("inputDateHid", filterContext);  //hidden userDate  
+            //if user clicks submit date & there is not a inputValue param already in querystring, 
+            // then re-create the url with a inputValue !
+            if (!string.IsNullOrEmpty(inpDateSubmit)) 
+            {
+                //get the PortfolioCode and inputDate parms
+                var portfolioCd = GetParmValueFromUrl("PortfolioCode", filterContext); 
+                var inDate = GetParmValueFromUrl("inputDate", filterContext);
+                 
+                var urlHelper = new UrlHelper(filterContext.Controller.ControllerContext.RequestContext); 
+
+                var url2 = urlHelper.Action("Index", "PositionSOD", new { PortfolioCode = portfolioCd }, Url2.Scheme);
+                string[] Ids = { inDate };
+                url2 = String.Format("{0}&inputDate={1}", url2, HttpUtility.UrlEncode(inDate));// url2,) ;"&", Ids.Select(x => "inputDate=" + HttpUtility.UrlEncode(x.ToString())));
+      
+                filterContext.Result = new RedirectResult(url2);
+            }
+            else
+            {    // user clicks submit and empty date value in UserDate : therefore remove the inputDate param.  
+                  var subm = GetParmValueFromUrl("clickedSubmt", filterContext);  
+                  if (!string.IsNullOrEmpty(subm)) //user clicked submit
+                  {   
+                      var urlHelper = new UrlHelper(filterContext.Controller.ControllerContext.RequestContext);
+
+                      //get the PortfolioCode parm 
+                      var portfolioCd = GetParmValueFromUrl("PortfolioCode", filterContext); 
+
+                      var url2 = urlHelper.Action("Index", "PositionSOD", new { PortfolioCode = portfolioCd }, Url2.Scheme);
+        
+                      filterContext.Result = new RedirectResult(url2);
+                  } 
+            } 
+            base.OnActionExecuting(filterContext);
+        }
+        protected string GetParmValueFromUrl(string paramName, ActionExecutingContext filterCont)
+         {
+             object param = null;
+             filterCont.ActionParameters.TryGetValue(paramName, out param);
+             return param as string;
+         }
+    }
+
     public class CustomEntityAuthoriseFilter : ActionFilterAttribute
     {
         private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
@@ -348,6 +400,25 @@ namespace MetopeMVCApp.Filters
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, portfolios);
              }
              filterContext.Controller.ViewBag.Portfolio_Code = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name", filterContext.Controller.ViewBag.myPortfolioCode);
+
+             base.OnActionExecuted(filterContext);
+         }
+
+     }
+     public class ClassificationsFilter : ActionFilterAttribute
+     {
+         public override void OnActionExecuted(ActionExecutedContext filterContext)
+         {
+             IQueryable<Classification> classifications;
+             if ((classifications = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Classification>)) == null)
+             {
+                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+
+                 classifications = svc.ListClassifications(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")));
+                 //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
+                 filterContext.HttpContext.Cache.Insert(GetType().FullName, classifications);
+             }
+             filterContext.Controller.ViewBag.Classification_Code = new SelectList(classifications, "Classification_Code", "Classification_Code", filterContext.Controller.ViewBag.myClassificationCode);
 
              base.OnActionExecuted(filterContext);
          }

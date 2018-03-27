@@ -34,7 +34,7 @@ namespace MetopeMVCApp.Controllers
 			            };
 
         // GET: SecurityDividendDetail
-        public ActionResult Index(int SecurityId, int? numberOfRows, int page = 1, string searchTerm = null)
+        public ActionResult Index(decimal SecurityId, int? numberOfRows, int page = 1, string searchTerm = null)
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
             var viewModel = new SecurityDividendDetailViewModel(); 

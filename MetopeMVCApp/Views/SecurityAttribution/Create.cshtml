@@ -1,0 +1,28 @@
+﻿@model Metope.DAL.Security_Attribution
+
+@{
+    ViewBag.Title = "Create";
+} 
+
+<h2>Create Security Attribution for <b>@ViewBag.myPortfolioCode</b></h2>
+
+ @using (Html.BeginForm())
+ {
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(false)
+        @Html.ValidationMessage("Error")
+        @Html.HiddenFor(model => model.Entity_ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Portfolio_Code, htmlAttributes: new { @class = "control-label col-md-2 input-sm" })
+            <div class="col-md-10">
+                @Html.DropDownList("Portfolio_Code", null, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Portfolio_Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.EditorForModel()
+
+    </div>
+ }

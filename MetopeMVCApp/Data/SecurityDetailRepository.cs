@@ -8,6 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Transactions;
 using System.Web;
+using System.Data.Entity;
 // for this using of generic repository technique see http://www.tugberkugurlu.com/archive/generic-repository-pattern-entity-framework-asp-net-mvc-and-unit-testing-triangle
 
 namespace MetopeMVCApp.Data.Repositories
@@ -64,13 +65,27 @@ namespace MetopeMVCApp.Data.Repositories
             //return Context.sp_TestRun(iEntity);
         }
 
-    }
-    public class SecurityAnalyticsRepository : GenericRepository<MetopeDbEntities, Security_Analytics>,
-                                       ISecurityAnalyticsRepository
+    } 
+    public class SecurityAnalyticsRepository : GenericRepository<MetopeDbEntities, Security_Analytics>,  ISecurityAnalyticsRepository
     {
-        public IQueryable<Security_Analytics> GetAll(Expression<Func<Security_Analytics, bool>> predicate)
+        public IEnumerable<Security_Analytics> GetAll() //rather return an IEnumerable
         {
-            IQueryable<Security_Analytics> query = Context.Set<Security_Analytics>().Where(predicate);
+            IQueryable<Security_Analytics> query;
+            query = Context.Set<Security_Analytics>().Include(r => r.Security_Detail);
+            return query.ToList();
+        } 
+        //public IQueryable<Security_Analytics> GetAll(Expression<Func<Security_Analytics, bool>> predicate)
+        //{
+        //    IQueryable<Security_Analytics> query = Context.Set<Security_Analytics>().Where(predicate);
+        //    return query;
+        //}
+    }
+    public class SecurityAttributionRepository : GenericRepository<MetopeDbEntities, Security_Attribution>,
+                                       ISecurityAttributionRepository
+    {
+        public IQueryable<Security_Attribution> GetAll(Expression<Func<Security_Attribution, bool>> predicate)
+        {
+            IQueryable<Security_Attribution> query = Context.Set<Security_Attribution>().Where(predicate);
             return query; 
         } 
     }
@@ -105,6 +120,24 @@ namespace MetopeMVCApp.Data.Repositories
         {
             Context.Set<Order_Allocation>().RemoveRange(Context.Order_Allocation.Where(r => Ids.Contains(r.Allocation_ID ))); 
         } 
+    }
+    public class ClassificationRepository : GenericRepository<MetopeDbEntities, Classification>,
+                                       IClassificationRepository
+    {
+        public IQueryable<Classification> GetAll(Expression<Func<Classification, bool>> predicate)
+        {
+            IQueryable<Classification> query = Context.Set<Classification>().Where(predicate);
+            return query;
+        }
+    }
+    public class ClassificationIndustryRepository : GenericRepository<MetopeDbEntities, Classification_Industry>,
+                                    IClassificationIndustryRepository
+    {
+        public IQueryable<Classification_Industry> GetAll(Expression<Func<Classification_Industry, bool>> predicate)
+        {
+            IQueryable<Classification_Industry> query = Context.Set<Classification_Industry>().Where(predicate);
+            return query;
+        }
     }
     public class SecurityPerformanceRepository : GenericRepository<MetopeDbEntities, Security_Performance>,
                           ISecurityPerformanceRepository

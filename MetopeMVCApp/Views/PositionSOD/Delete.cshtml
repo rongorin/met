@@ -48,11 +48,12 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
+        <input type="hidden" id="filterIndicator" name="filterIndicator" value=@ViewBag.UserInputDate>
 
         <div class="form-actions no-color">
             @Html.Partial("_DeleteButtonShow", Model) |
 
-            @Html.ActionLink("Back to List", "Index", new { PortfolioCode = Model.Portfolio_Code }, null)
+            @Html.ActionLink("Back to List", "Index", new { PortfolioCode = Model.Portfolio_Code, InputDate =ViewBag.UserInputDate }, null)
         </div>
     }
 </div>

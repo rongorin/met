@@ -20,13 +20,13 @@
         @Html.ValidationMessageFor(model => model.Security_ID, "", new { @class = "text-danger" })
     </div>
 </div>
-@Html.EditorFor(model => model.ModDietz_Performance_Quarterly, "BootstrapEditDecimal8PlacesVertic")
-@Html.EditorFor(model => model.ModDietz_Performance_Monthly, "BootstrapEditDecimal8PlacesVertic")
-@Html.EditorFor(model => model.ModDietz_Performance_MonthToDate, "BootstrapEditDecimal8PlacesVertic")
+@Html.EditorFor(model => model.ModDietz_Performance_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.ModDietz_Performance_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.ModDietz_Performance_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
 
-@Html.EditorFor(model => model.Dietz_Performance_Quarterly, "BootstrapEditDecimal8PlacesVertic")
-@Html.EditorFor(model => model.Dietz_Performance_Monthly, "BootstrapEditDecimal8PlacesVertic")
-@Html.EditorFor(model => model.Dietz_Performance_MonthToDate, "BootstrapEditDecimal8PlacesVertic") 
+@Html.EditorFor(model => model.Dietz_Performance_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Dietz_Performance_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Dietz_Performance_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" }) 
  @Html.Partial("_SaveButtonShow", Model)
 
 <div>

@@ -6,6 +6,7 @@ using System.Web;
 
 // for this generic repository technique see http://www.tugberkugurlu.com/archive/generic-repository-pattern-entity-framework-asp-net-mvc-and-unit-testing-triangle
 
+//  the class implementing the abstract generic repository, which just delegates all calls to the associated Entity Framework DbSet :
 namespace MetopeMVCApp.Data.GenericRepository
 {
     public abstract class GenericRepository<C, T> :

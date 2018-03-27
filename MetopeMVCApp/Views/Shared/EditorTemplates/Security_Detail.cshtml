@@ -153,8 +153,7 @@
                                 </div>
                             </div>
                         </div> 
-                        @Html.EditorFor(model => model.Decimal_Precision, "BootstrapEditInt")
-
+                        @Html.EditorFor(model => model.Decimal_Precision, "BootstrapEditInt") 
 
                         @Html.EditorFor(model => model.AvePrice_Rounding, "BootstrapEditInt")
 
@@ -177,10 +176,8 @@
                             </div>
                         </div>
                     </div>
-                    @*--------------next 10 rows: -------------------------------------*@
-
-                    <div class="row">
-
+                    @*--------------next 10 rows: -------------------------------------*@ 
+                    <div class="row"> 
                         <div class="col-sm-4">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Currency_Pair_Code, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
@@ -190,8 +187,7 @@
                                       @Html.ValidationMessageFor(model => model.Currency_Pair_Code, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                        </div>
-
+                        </div> 
 
                         @Html.EditorFor(model => model.Price_Exchange, "BootstrapEditor") 
                         <div class="col-sm-4">
@@ -322,10 +318,8 @@
                     </div>
                 </div>
                 @*------------------------------------3rd TAB:-------------------------------------*@
-                <div class="tab-pane" id="identifiers">
-
-                    <div class="row">
-
+                <div class="tab-pane" id="identifiers"> 
+                    <div class="row"> 
                         @Html.EditorFor(model => model.Ticker, "BootstrapEditor")
 
                         @Html.EditorFor(model => model.Inet_ID, "BootstrapEditor")
@@ -333,8 +327,7 @@
                         @Html.EditorFor(model => model.External_Sec_ID, "BootstrapEditor")
 
                         @Html.EditorFor(model => model.Reuters_ID, "BootstrapEditor")
-                        @Html.EditorFor(model => model.ISIN, "BootstrapEditor")
-
+                        @Html.EditorFor(model => model.ISIN, "BootstrapEditor") 
                     </div> @* ---end tab row- --*@
                 </div> 
 

@@ -23,12 +23,7 @@ namespace MetopeMVCApp.Controllers
         private readonly IPortfolioValuationRepository db11;  
 
         private MetopeDbEntities db = new MetopeDbEntities(); //REMOVE this when done doing repository
-
-        //public PortfolioValuationController(IPortfolioValuationRepository iDb)
-        //{
-        //    db11 = iDb; 
-        //} 
-
+         
         // GET: PortfolioValuation
         public ActionResult Index()
         {
@@ -129,7 +124,7 @@ namespace MetopeMVCApp.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Entry(portfolio_Valuation).State = EntityState.Modified;
+                db.Entry(portfolio_Valuation).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 TempData["ResultMessage"] = "Valuation for Portfolio " + portfolio_Valuation.Portfolio_Code.ToString() + " edited successfully!";
                 return RedirectToAction("Index");
