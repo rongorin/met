@@ -13,9 +13,9 @@ namespace Metope.DAL
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    [MetadataType(typeof(SecurityDividendDetailModelMetaData))]  
-    
-    public partial class Security_Dividend_Detail
+    [MetadataType(typeof(SecurityDividendDetailModelMetaData))]
+
+    public partial class Security_Dividend_Detail : IValidatableObject
     {
         public decimal Entity_ID { get; set; }
         public decimal Security_ID { get; set; }
@@ -38,10 +38,24 @@ namespace Metope.DAL
         public Nullable<decimal> Actual_FX_Rate { get; set; }
         public Nullable<bool> Lock_Flag { get; set; }
         public Nullable<decimal> Actual_NonRecurring_Dividend { get; set; }
-    
+
         public virtual Currency Currency { get; set; }
         public virtual Entity Entity { get; set; }
         public virtual User User { get; set; }
         public virtual Security_Detail Security_Detail { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {   //if any of the actual values are filled in, then all must be filled in, otherwise fail validation
+            if (Actual_Dividend != null || Actual_Dividend_Payment_Date != null || Actual_Ex_Dividend_Date != null || Actual_Last_Date_To_Register != null)
+            {
+
+                if (Actual_Dividend == null || Actual_Dividend_Payment_Date == null || Actual_Ex_Dividend_Date == null || Actual_Last_Date_To_Register == null)
+                {
+                    yield return new ValidationResult("Must fill in all the Actual values");
+                }
+
+
+            }
+        }
     }
 }
