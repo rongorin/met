@@ -19,7 +19,7 @@ namespace Metope.DAL
         public Nullable<decimal> Dietz_Performance_Monthly { get; set; }
         public Nullable<decimal> Dietz_Performance_MonthToDate { get; set; }
         public Nullable<decimal> Dietz_Performance_Quarterly { get; set; }
-        public bool Processed_Flag { get; set; }
+        //public bool Processed_Flag { get; set; }
         public Nullable<decimal> ModDietz_Performance_Monthly { get; set; }
         public Nullable<decimal> ModDietz_Performance_MonthToDate { get; set; }
         public Nullable<decimal> ModDietz_Performance_Quarterly { get; set; }
