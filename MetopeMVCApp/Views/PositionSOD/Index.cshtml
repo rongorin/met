@@ -63,20 +63,9 @@
                 <div class="col-md-2">
                     @Html.ActionLink("Create New", "Create", new { PortfolioCode = ViewBag.Portfolio, InputDate = ViewBag.UserInputDate }, null) 
                 </div>
-            
-                <div class='col-md-2'>
-                    <div class="form-group">
-                        <div class='input-group date  datetimepickerClass' id='datetimepicker'>
-                            <input type='text' id="inputDate" class="form-control" name="inputDate" placeholder="For Date" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div> 
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-primary btn-sm control-label" name="submit" type="submit"  >Submit</button>  
-                </div>
+
+                 @Html.Partial("_UserSelectDate") 
+
             </div>  
       }
     @Html.Partial("_MsgSuccesFail", Model)

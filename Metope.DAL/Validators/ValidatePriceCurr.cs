@@ -18,8 +18,7 @@ namespace MetopeMVCApp.Validators
                                         object value, ValidationContext validationContext)  // 'value' will be the attribute
             {
                 if (value != null)  // now inspect that value
-                {
-                    
+                { 
                     var model = (Security_Dividend_Detail)validationContext.ObjectInstance;  
 
                     //now get the SecDetail record to compare the priceCurr. :

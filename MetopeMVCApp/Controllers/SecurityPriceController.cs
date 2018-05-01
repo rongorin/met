@@ -344,6 +344,7 @@ namespace MetopeMVCApp.Controllers
             if (disposing)
             {
                 db.Dispose();
+                db11.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -58,8 +58,7 @@ namespace ASP.MetopeNspace
         protected void Application_EndRequest()
         {
             MiniProfiler.Stop();
-        }
-         
+        } 
 
         protected void Application_Error(object sender, EventArgs e)
         {

@@ -1,14 +1,11 @@
-﻿@model Metope.DAL.Portfolio_Valuation
-
+﻿@model Metope.DAL.Portfolio_Valuation 
 @{
     ViewBag.Title = "Create";
 } 
 <h3>
     Create Portfolio Valuation   
 </h3> 
-
-
-
+ 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -26,11 +23,12 @@
                 </div>
             </div> 
 
-        @Html.EditorForModel() 
- 
+        @Html.EditorForModel()  
     </div>
-}
- 
+} 
+<div>
+    @Html.ActionLink("Back to List", "Index") 
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/datetime")   @* for our datetime Picker*@

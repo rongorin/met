@@ -21,7 +21,7 @@
 </h2>
 <p>
     @Html.ActionLink("Create New", "Create", new { PortfolioCode = ViewBag.Portfolio }, null)
-</p>
+</p> 
 @Html.Partial("_MsgSuccesFail", Model)
 
   
@@ -71,7 +71,7 @@
         </u>);
 
         columns.Add().Encoded(false).Sanitized(false)
-                .RenderValueAs(c => @<a href="@Url.Action("SecurityAttributionHistory", "SecurityAttribution", new { PortfolioCode = c.Portfolio_Code })">
+                .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityAttributionHistory", new { PortfolioCode = c.Portfolio_Code, SecurityId = c.Security_ID })">
                 <span class="badge">History</span>
             </a>).SetWidth(80);
     }).WithPaging(50).Sortable(true)

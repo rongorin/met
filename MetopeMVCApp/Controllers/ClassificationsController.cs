@@ -29,9 +29,9 @@ namespace MetopeMVCApp.Controllers
             decimal EntityID = (decimal)ViewBag.EntityId;
 
             var classifications = db11.GetAll().Include(c => c.Classification_Industry)
-                    .MatchCriteria(c => ( c.Entity_ID == EntityID) );
+                    .MatchCriteriaEnum(c => ( c.Entity_ID == EntityID) );
                
-            return View(classifications.ToList());
+            return View(classifications );
         }
          
 

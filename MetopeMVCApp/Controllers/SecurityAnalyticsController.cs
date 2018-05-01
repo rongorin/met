@@ -26,16 +26,13 @@ namespace MetopeMVCApp.Controllers
 						new SelectListItem { Text = "20", Value = "20" },
 						new SelectListItem { Text = "50", Value = "50" },
 						new SelectListItem { Text = "100", Value = "100" }
-			            }; 
-
+			            };  
         public SecurityAnalyticsController(ISecurityAnalyticsRepository iDb)
         {
             db11 = iDb;
-        } 
-
+        }  
         // GET: SecurityAnalytics
-        public ActionResult Index(int? numberOfRows, int page = 1, string searchTerm = null, string Nav = "")
-
+        public ActionResult Index(int? numberOfRows, int page = 1, string searchTerm = null, string Nav = "") 
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
             if (numberOfRows == null)
@@ -44,7 +41,7 @@ namespace MetopeMVCApp.Controllers
             ViewBag.RowsPerPage = new SelectList(numOfRows, "Value", "Text", numberOfRows);
 
             //returns iEnumerable.
-            var vm = db11.GetAll().  
+            var vm = db11.GetAllRecs().  
                                         Select( r => new SecurityAnalyticsIndexViewModel{
                                                 Entity_ID = r.Entity_ID,
                                                 Security_ID = r.Security_ID, 
@@ -116,10 +113,7 @@ namespace MetopeMVCApp.Controllers
              
              return View(security_Analytics);
         }
-        public ActionResult SecurityAnalyticsHistory(decimal EntityId, decimal SecurityId)
-        {
-            return View();
-        }
+       
         // GET: SecurityAnalytics/Edit/5
         [CustomEntityAuthoriseFilter]
         [AllSecuritiesFilter]

@@ -16,7 +16,7 @@ namespace MetopeMVCApp.Controllers
     public class CashTransactionsController : Controller
     {
         private readonly ICashTransactionsRepository db11;
-        private MetopeDbEntities db = new MetopeDbEntities();
+        //private MetopeDbEntities db = new MetopeDbEntities();
         
         public CashTransactionsController(ICashTransactionsRepository iDb)
         {
@@ -42,7 +42,8 @@ namespace MetopeMVCApp.Controllers
                        .MatchCriteria(c => c.Transaction_Date <= dtEqualTo)
                      .OrderByDescending(r => r.Transaction_Date) 
                      .Include(d => d.Security_Detail)
-                     .Include(d => d.Order_Detail).Take(50);
+                     .Include(d => d.Order_Detail)
+                     .Take(50);
             if (vwm.Any()) // if records found then populate the to-date
             {
                 ViewBag.LastRecordDate = vwm.Min(p => p.Transaction_Date).ToString("dd/MM/yyyy");
@@ -211,7 +212,7 @@ namespace MetopeMVCApp.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                db11.Dispose();
             }
             base.Dispose(disposing);
         }

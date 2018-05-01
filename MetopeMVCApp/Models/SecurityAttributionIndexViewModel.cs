@@ -15,5 +15,6 @@ namespace MetopeMVCApp.Models
         public Nullable<decimal> Excess_Weight_Quarterly { get; set; }
         public Nullable<decimal> Relative_Contribution_Quarterly { get; set; }
         public Nullable<decimal> Security_Weight_Portfolio_Monthly { get; set; }
+        public DateTime RecordDate { get; set; }
     }
 }

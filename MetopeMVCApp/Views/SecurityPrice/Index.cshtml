@@ -134,9 +134,9 @@
                     .Titled("Ticker").Filterable(true)
                     .SetWidth(100); 
          } 
-        columns.Add(c => c.Currency.Currency_Name)
+        columns.Add(c => c.Currency.Currency_Code)
             .Titled("Current Price Currency").Filterable(true)
-            .SetWidth(330);
+            .SetWidth(200);
 
         columns.Add(c => c.Price_Source).Css("text-right")
             .Titled("Current Price Source").Filterable(true)
@@ -191,7 +191,7 @@
   @*------------------------------------- HISTORY ------------------------------------------*@
 else
 {
-    using (Html.BeginForm("Index", "SecurityPrice", new { SecurityId = ViewBag.SecurityID, iPriceCurr = ViewBag.PriceCurr }, FormMethod.Post, new { @class = "form-horizontal" }))
+    using (Html.BeginForm("Index", "SecurityPrice", new { SecurityId = ViewBag.SecurityID, iPriceCurr = ViewBag.PriceCurr }, FormMethod.Post, new { @class = "form-horizontal", id = "TheForm" }))
     {
         <div class="row">
             <div class="col-md-7 ">
@@ -201,8 +201,12 @@ else
             <div class="col-md-5 col-right">
                 <div class="pull-right">
                     <label class=" control-label">show rows:</label>
-                    @Html.DropDownList("numberOfRows", (SelectList)ViewBag.RowsPerPage)
-                    <input type="submit" value="Update" class="btn btn-primary btn-xs" />
+                    @Html.DropDownList("numberOfRows", (SelectList)ViewBag.RowsPerPage, 
+                            new
+                             {
+                                 onchange = "document.getElementById('TheForm').submit();"
+                             })
+                    @*<input type="submit" value="Update" class="btn btn-primary btn-xs" />*@
                     @*@Html.DropDownList("numberOfRows", null, string.Empty, new { @class = "form-control" })*@
                 </div>
             </div>

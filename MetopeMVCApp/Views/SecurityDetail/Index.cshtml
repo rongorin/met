@@ -13,10 +13,7 @@
     List<string> _sizes = new List<string>() { "10", "20", "50", "100" };  
     
     ViewBag.RowsPgSelected = ((SelectList)ViewBag.RowsPerPage).SelectedValue ?? _sizes[1];
-     
-    //SelectListItem[] items = numOfRows.ToArray();
-    //SelectListItem selectedItem = items.FirstOrDefault(i => i.Value == "1")
-    //    ?? items[0]; 
+ 
 }
 @section Styles {
     @Styles.Render("~/Content/GridMvc")
@@ -55,7 +52,7 @@
     @{
         ViewBag.Title = "Index";
     }
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal", id = "TheForm" }))
     {
         <div class="row">
             <div class="col-md-7 ">
@@ -65,10 +62,14 @@
             <div class="col-md-5 col-right">
                 <div class="pull-right">
                     <label class=" control-label">show rows:</label>
-                    @Html.DropDownList("numberOfRows", (SelectList)ViewBag.RowsPerPage)
-                    <input type="submit" value="Update" class="btn btn-primary btn-xs" />
+                    @Html.DropDownList("numberOfRows", (SelectList)ViewBag.RowsPerPage,
+                        new
+                        {
+                            onchange = "document.getElementById('TheForm').submit();"
+                        })
+                    @*<input type="submit" value="Update" class="btn btn-primary btn-xs" />*@
                     @*@Html.DropDownList("numberOfRows", null, string.Empty, new { @class = "form-control" })*@
-                </div>
+                </div> 
             </div>
         </div>
 

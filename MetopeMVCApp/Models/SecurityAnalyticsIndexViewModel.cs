@@ -15,9 +15,10 @@ namespace MetopeMVCApp.Models
         public Nullable<decimal> Earnings_Forecast_Yr3 { get; set; }
         public Nullable<decimal> Total_Return_ME_1YR { get; set; }
         public Nullable<decimal> Total_Return_ME_2YR { get; set; }
-        public Nullable<decimal> Total_Return_ME_3YR { get; set; } 
+        public Nullable<decimal> Total_Return_ME_3YR { get; set; }
         public string Short_Name { get; set; }
         public string Ticker { get; set; }
+        public DateTime RecordDate { get; set; } // <--used by History
         
         //public Security_Detail SecurityDetails { get; set; }
     }

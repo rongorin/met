@@ -19,13 +19,19 @@ namespace MetopeMVCApp.Data
             return port.Where(r => searchname == null || r.Security_Name.Contains(searchname)); 
         }
 
-        public static IQueryable<T> MatchCriteria<T>(this IQueryable<T> qry, System.Linq.Expressions.Expression<Func<T, bool>> predic )
+        public static IQueryable<T> MatchCriteria<T>(this IQueryable<T> qry,
+                                                    System.Linq.Expressions.Expression<Func<T, bool>> predic )
         /*  This ensures selecting only of records where the EntityId matches the 
             user's EntityInScope, or it is the generic Entity. */
         {
             return qry.Where(predic);
         }
-
+        public static IEnumerable<T> MatchCriteriaEnum<T>(this IQueryable<T> qry,
+                                                  System.Linq.Expressions.Expression<Func<T, bool>> predic)
+        /*  same as above method, but return ienumberable */
+        {
+            return qry.Where(predic).ToList();
+        }
         public static IQueryable<Debt_Expiry_Profile> SearchPartyCodes(this IQueryable<Debt_Expiry_Profile> dep, 
                                                                string iPartyCode = "")
         {

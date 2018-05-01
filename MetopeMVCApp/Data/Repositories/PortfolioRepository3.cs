@@ -35,13 +35,16 @@ namespace MetopeMVCApp.Controllers
         } 
         public IPagedList<Portfolio> GetPortfolios(decimal iUserId, int page = 1, string searchTerm = null)
         {
-            return GetAll().Where(c => c.Entity_ID == iUserId)
+            var getPorts = GetAll().Where(c => c.Entity_ID == iUserId)
                     .SearchPortfName(searchTerm)
                 //.Where(r => searchTerm == null || r.Portfolio_Name.Contains(searchTerm))
                     .Include(p => p.Entity)
                     .Include(p => p.User)
-                    .OrderBy(s => s.Portfolio_Name)
-                    .ToPagedList(page, 10);
+                    .Include(p => p.Portfolio_Valuation)
+                    .OrderBy(s => s.Portfolio_Name);
+                     
+            var pagelist = getPorts .ToPagedList(page, 10);
+            return pagelist;
             //return DataContext.Portfolios.Where(c => c.Entity_ID == iUserId) ; 
 
             //return DataContext.Replies.Where(r => r.TopicId == topicId);

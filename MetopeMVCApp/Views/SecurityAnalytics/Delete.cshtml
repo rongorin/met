@@ -4,16 +4,26 @@
     ViewBag.Title = "Delete";
 } 
 
-<h2>Are you sure you want to delete this Security Analytic record?</h2>
+<h1>Delete Confirmation</h1>
+<h2>Are you sure you want to delete this <b>Security Analytic record</b>?</h2>
 <div>
-    <h3>for Security @Html.DisplayFor(model => model.Security_Detail.Security_Name)</h3>
+    <h3>for Security <b>@Html.DisplayFor(model => model.Security_Detail.Security_Name)</b></h3>
     <hr />
-  
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Detail.Security_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Detail.Security_Name)
+        </dd> 
+    </dl>
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

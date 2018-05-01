@@ -29,9 +29,9 @@ namespace MetopeMVCApp.Data
 
     public interface ISecurityAnalyticsRepository : IGenericRepository<Security_Analytics>
     {
-        //IEnumerable<Security_Analytics> GetAll();
+        IEnumerable<Security_Analytics> GetAllRecs();
 
-    }
+    } 
     public interface ISecurityAttributionRepository : IGenericRepository<Security_Attribution>
     {
         IQueryable<Security_Attribution> GetAll(Expression<Func<Security_Attribution, bool>> predicate);
@@ -67,7 +67,19 @@ namespace MetopeMVCApp.Data
     // Security Performance History
     public interface ISecurityPerformanceHistoryRepository : IGenericRepository<Security_Performance_History>
     {
-        IQueryable<Security_Performance_History> GetAll(Expression<Func<Security_Performance_History, bool>> predicate);
+        IEnumerable<Security_Performance_History> GetRecsTop100(Expression<Func<Security_Performance_History, bool>> predicate);
+    }
+
+    public interface ISecurityAnalyticsHistoryRepository : IGenericRepository<Security_Analytics_History>
+    {
+        IEnumerable<Security_Analytics_History> GetRecsTop100(Expression<Func<Security_Analytics_History, bool>> predicate); 
+
+    }
+     
+    public interface ISecurityAttributionHistoryRepository : IGenericRepository<Security_Attribution_History>
+    {
+        IEnumerable<Security_Attribution_History> GetRecsTop100(Expression<Func<Security_Attribution_History, bool>> predicate); 
+
     }
     // Security Performance   
     public interface ISecurityPerformanceRepository : IGenericRepository<Security_Performance>

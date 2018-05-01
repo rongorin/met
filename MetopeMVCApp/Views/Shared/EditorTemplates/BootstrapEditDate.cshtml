@@ -8,29 +8,30 @@
                         style = "max-width:100% ;text-align: right"
                     })
         <div class="col-md-7"> 
-            <div class='input-group date datetimepickerClass'> 
-    
-                    @if (ViewBag.MeDisabled == "readonly")
-                    {
-                        @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
+            <div class='input-group date datetimepickerClass '>
+
+                @if (ViewBag.MeDisabled == "readonly")
+                {
+                    @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
                             {
                                 @class = "form-control     ",
-                                 placeholder = ViewData.ModelMetadata.Watermark ,
-                                    disabled = "disabled" 
+                                placeholder = ViewData.ModelMetadata.Watermark,
+                                disabled = "disabled"
                             })
-                    }
-                    else
-                    {
-                        @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
+                }
+                else
+                {
+                    @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
                             {
-                            @class = "form-control     ",
-                            placeholder = ViewData.ModelMetadata.Watermark 
+                                @class = "form-control     ",
+                                placeholder = ViewData.ModelMetadata.Watermark
                             })
-                    } 
+                }
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
-                </span> 
+                </span>
             </div>
+
             </div> 
     </div>
 </div>

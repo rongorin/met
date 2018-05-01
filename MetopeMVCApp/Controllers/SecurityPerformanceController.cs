@@ -133,6 +133,7 @@ namespace MetopeMVCApp.Controllers
                 return HttpNotFound();
             }
             ViewBag.SecuritiesAll = sperf.Security_ID;
+
             return View(sperf);
         }
 
@@ -152,19 +153,16 @@ namespace MetopeMVCApp.Controllers
                 security_Performance.Last_Update_Date = DateTime.Now;
                 security_Performance.Last_Update_User = User.Identity.Name;
                 db11.Save();
-                TempData["ResultMessage"]= "Security Performance for \"" + security_Performance.Portfolio_Code + "\" editied successfully!"; 
-                 
-                return RedirectToAction("Index", new { PortfolioCode = security_Performance.Portfolio_Code }); 
+                TempData["ResultMessage"]= "Security Performance for \"" + security_Performance.Portfolio_Code + "\" editied successfully!";
+
+                return RedirectToAction("Index", new { PortfolioCode = security_Performance.Portfolio_Code, SecurityId = security_Performance.Security_ID });
+
             }
             ModelState.AddModelError("Error", "An error occurred trying to edit the Security Performance"); 
             ViewBag.EntityIdScope = EntityID; 
 
             return View(security_Performance);
-        }
-        public ActionResult SecurityPerformanceHistory( string PortfolioCode)
-        {
-            return View();
-        }
+        } 
         // GET: SecurityPerformance/Delete/5
         public ActionResult Delete(string  PortfolioCode, decimal SecurityId)
         {

@@ -68,3 +68,11 @@ bgimg {
   .FullpanelHeight {
      height: 100vh; 
     }
+
+  /*not using:*/
+   .myForegroundClass { 
+       color:#FAFFBD ;
+    
+   }
+    
+ 

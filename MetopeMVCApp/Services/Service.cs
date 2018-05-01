@@ -17,17 +17,17 @@ namespace MetopeMVCApp.Services
              ------------------------------------------------------------*/ 
     public interface IServices
     {
-        IQueryable<Metope.DAL.Country> ListCountry();
-        IQueryable<Metope.DAL.Currency> ListCurrencies();
-        IQueryable<Metope.DAL.User> ListUsers(decimal iEntity);
-        IQueryable<Metope.DAL.Currency_Pair> ListCurrencyPairs();
-        IQueryable<Metope.DAL.Security_Type> ListSecTypeCode();
+        IEnumerable<Metope.DAL.Country> ListCountry();
+        IEnumerable<Metope.DAL.Currency> ListCurrencies();
+        IEnumerable<Metope.DAL.User> ListUsers(decimal iEntity);
+        IEnumerable<Metope.DAL.Currency_Pair> ListCurrencyPairs();
+        IEnumerable<Metope.DAL.Security_Type> ListSecTypeCode();
 
-        IQueryable<Metope.DAL.Exchange> ListExchanges();
-        IQueryable<Metope.DAL.Code_Miscellaneous> ListMiscellanousTypes(string iCodeType);
-        IQueryable<Metope.DAL.Portfolio> ListPortfolios(decimal iUser, string iStatus);
+        IEnumerable<Metope.DAL.Exchange> ListExchanges();
+        IEnumerable<Metope.DAL.Code_Miscellaneous> ListMiscellanousTypes(string iCodeType);
+        IEnumerable<Metope.DAL.Portfolio> ListPortfolios(decimal iUser, string iStatus);
 
-        IQueryable<Metope.DAL.Party> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId);
+        IEnumerable<Metope.DAL.Party> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId);
         //IEnumerable<Country> List();
         void Dispose();
          
@@ -45,11 +45,11 @@ namespace MetopeMVCApp.Services
                  _context = new MetopeDbEntities();
         }
 
-        public IQueryable<Metope.DAL.Country> ListCountry()
+        public IEnumerable<Metope.DAL.Country> ListCountry()
         {
             ICountryRepository dbCntx = new CountryRepository();
               
-            return dbCntx.GetAll().OrderBy(s => s.Country_Name);
+            return dbCntx.GetAll().OrderBy(s => s.Country_Name).ToList();
 
             //return  _context.Countries;
              
@@ -70,29 +70,29 @@ namespace MetopeMVCApp.Services
             //     });
               
         }
-        public IQueryable<Metope.DAL.Security_Type> ListSecTypeCode()
+        public IEnumerable<Metope.DAL.Security_Type> ListSecTypeCode()
         {
             ISecurityTypesRepository dbCntx = new SecurityTypeRepository();
-            return dbCntx.GetAll().OrderBy(r => r.Security_Type_Code);  ; 
+            return dbCntx.GetAll().OrderBy(r => r.Security_Type_Code).ToList()  ; 
         }
 
-        public IQueryable<Metope.DAL.Currency> ListCurrencies()
+        public IEnumerable<Metope.DAL.Currency> ListCurrencies()
         {
             ICurrencyRepository dbCntx = new CurrencyRepository(); 
             return dbCntx.GetAll()
-                  .OrderBy(s => s.Currency_Name);
+                  .OrderBy(s => s.Currency_Name).ToList();
            // return _context.Currencies
                 //.Select(x => new SelectListItem { Text = x.Currency_Name, Value = x.Currency_Code })
                   
         }
 
-        public IQueryable<Metope.DAL.Exchange> ListExchanges()
+        public IEnumerable<Metope.DAL.Exchange> ListExchanges()
         {
           IExchangeRepository dbCntx = new  ExchangeRepository (); 
           //using (IExchangeRepository dbCntx = new  ExchangeRepository ())
        
               return dbCntx.GetAll()
-                    .OrderBy(s => s.Exchange_Name);
+                    .OrderBy(s => s.Exchange_Name).ToList();
         
             //return _context.Exchanges   
             //    //.Where(p => p.Entity_ID == 1)
@@ -100,26 +100,47 @@ namespace MetopeMVCApp.Services
             //     .OrderBy(s => s.Exchange_Name);
         }
 
-        public IQueryable<Metope.DAL.Code_Miscellaneous> ListMiscellanousTypes(string iCodeType)
+        public IEnumerable<Metope.DAL.Code_Miscellaneous> ListMiscellanousTypes(string iCodeType)
         {
 
             ICodeMiscellaneous dbCntx = new CodeMiscellaneousRepository();
-            return dbCntx.GetAll().Where(c => c.MisCode_Type == iCodeType); 
+            return dbCntx.GetAll().Where(c => c.MisCode_Type == iCodeType).ToList(); 
          
         }
-        public IQueryable<Metope.DAL.Portfolio> ListPortfolios(decimal iUser, string iStatus)
+        public IEnumerable<Metope.DAL.Portfolio> ListPortfolios(decimal iUser, string iStatus)
         {
             IPortfolioRepository3 dbCntx = new PortfolioRepository3();
-            return dbCntx.GetAll().Where(c => c.Entity_ID == iUser && c.Portfolio_Status == iStatus).OrderBy(r => r.Portfolio_Name); ;
+            return dbCntx.GetAll().Where(c => c.Entity_ID == iUser && c.Portfolio_Status == iStatus).OrderBy(r => r.Portfolio_Name)
+                .ToList() ;
 
         }
-        public IQueryable<Metope.DAL.Classification> ListClassifications(decimal iUser)
+        public IEnumerable<Metope.DAL.Classification> ListClassifications(decimal iUser)
         {
             IClassificationRepository  dbCntx = new ClassificationRepository();
-            return dbCntx.GetAll().Where(c => c.Entity_ID == iUser ).OrderBy(r => r.Classification_Code);  
+            return dbCntx.GetAll().Where(c => c.Entity_ID == iUser ).OrderBy(r => r.Classification_Code)
+                   .ToList();  
              
         }
-        public IQueryable<Metope.DAL.Security_Detail> ListSecurities(decimal iEntity, decimal iGenericEntity, string iSecurityTypeCode = "", bool thisEntityOnly = false)
+
+        public IEnumerable<Metope.DAL.Security_Detail> ListSecurities2(decimal iEntity, decimal iGenericEntity, string iSecurityTypeCode = "", bool thisEntityOnly = false)
+        {
+            ISecurityDetailRepository dbCntx;
+            dbCntx = new SecurityDetailRepository();
+            var results = dbCntx.GetAll()
+                .MatchCriteria(c => c.Entity_ID == iEntity || c.Entity_ID == iGenericEntity)
+                .MatchCriteria(c => ((iSecurityTypeCode != "") ?
+                           c.Security_Type_Code == iSecurityTypeCode : c.Security_Type_Code != ""))
+                .OrderBy(r => r.Security_Name);
+
+            if (thisEntityOnly == true)
+                return results.MatchCriteria(c => c.Entity_ID == iEntity).ToList();
+            else
+                return results.ToList();
+
+            //return dbCntx.GetAll().Where(c => c.Entity_ID == iUser);
+
+        } 
+        public IEnumerable<Metope.DAL.Security_Detail> ListSecurities (decimal iEntity, decimal iGenericEntity, string iSecurityTypeCode = "", bool thisEntityOnly = false)
         {
             ISecurityDetailRepository dbCntx  ;
             dbCntx = new  SecurityDetailRepository();
@@ -130,57 +151,59 @@ namespace MetopeMVCApp.Services
                  .OrderBy(r => r.Security_Name);
 
              if (thisEntityOnly == true)
-                 return results.MatchCriteria(c => c.Entity_ID == iEntity);
+                 return results.MatchCriteria(c => c.Entity_ID == iEntity).ToList();
              else
-                 return results;
+                 return results.ToList();
                   
             //return dbCntx.GetAll().Where(c => c.Entity_ID == iUser);
                 
-        } 
-        public IQueryable<Metope.DAL.User> ListUsers(decimal iEntity)
+        }
+        public IEnumerable<Metope.DAL.User> ListUsers(decimal iEntity)
         {
             IUsersRepository dbCntx = new UsersRepository();
-            return dbCntx.GetAll().Where(s => s.Entity_ID == iEntity);
+            return dbCntx.GetAll().Where(s => s.Entity_ID == iEntity).ToList();
         }
 
-        public IQueryable<Metope.DAL.Order_Detail> ListOrderDetail(decimal iEntity)
+        public IEnumerable<Metope.DAL.Order_Detail> ListOrderDetail(decimal iEntity)
         {
             IOrderDetailRepository dbCntx;
             dbCntx = new OrderDetailRepository();
             var results = dbCntx.GetAll()
-                .MatchCriteria(c => c.Entity_ID == iEntity);
+                .MatchCriteria(c => c.Entity_ID == iEntity).ToList();
 
             return results;
              
         }
-        public IQueryable<Metope.DAL.Order_Allocation> ListOrderAllocations(decimal iEntity )
+        public IEnumerable<Metope.DAL.Order_Allocation> ListOrderAllocations(decimal iEntity)
         {
             IOrderAllocationRepository dbCntx;
             dbCntx = new OrderAllocationRepository();
             var results = dbCntx.GetAll() 
-                .MatchCriteria(c => c.Entity_ID == iEntity )
- 
-                .OrderBy(r => r.Portfolio_Code);
+                .MatchCriteria(c => c.Entity_ID == iEntity ) 
+                .OrderBy(r => r.Portfolio_Code)
+                .ToList();
              
              return results ;
               
         }
-        public IQueryable<Metope.DAL.Party> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId)
+        public IEnumerable<Metope.DAL.Party> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId)
         {
             IPartyRepository dbCntx = new PartyRepository();
 
             return dbCntx.GetPartyValues(iEntity, iType, iGenericEntityId)
-                      .OrderBy(s => s.Party_Name);  
+                      .OrderBy(s => s.Party_Name)
+                      .ToList();  
         }
 
 
-        public IQueryable<Metope.DAL.Party> ListPartyAllIssuers(decimal iEntity, decimal iGenericEntityId)
+        public IEnumerable<Metope.DAL.Party> ListPartyAllIssuers(decimal iEntity, decimal iGenericEntityId)
         {
             IPartyRepository dbCntx = new PartyRepository();
 
             return dbCntx.GetAllPartyValues(iEntity, iGenericEntityId)    
                         .MatchCriteria( o => o.Party_Type != "CUSTODIAN")
-                        .OrderBy(s => s.Party_Name);  
+                        .OrderBy(s => s.Party_Name)
+                        .ToList();  
         }
 
 
@@ -191,10 +214,10 @@ namespace MetopeMVCApp.Services
         //            .Select(x => new SelectListItem { Text = x.Party_Name, Value = x.Party_Code }) ;
              
         //}
-        public IQueryable<Metope.DAL.Currency_Pair> ListCurrencyPairs()
+        public IEnumerable<Metope.DAL.Currency_Pair> ListCurrencyPairs()
         {
             ICurrencyPairRepository dbCntx = new CurrencyPairRepository();
-            return dbCntx.GetAll();
+            return dbCntx.GetAll().ToList();
         }
 
         public List<SelectListItem> ListTrueFalse()

@@ -23,11 +23,11 @@
 
         if (ViewBag.UserInputDate == DateTime.Now.Date.ToString("dd/MM/yyyy"))
         {
-            @:  (for date Today to @ViewBag.LastRecordDate) 
+            @:  (for date @ViewBag.LastRecordDate to Today ) 
         }
         else
         {
-            @:  (for date @ViewBag.UserInputdate to @ViewBag.LastRecordDate) 
+            @:  (for date @ViewBag.LastRecordDate to @ViewBag.UserInputdate) 
         }
     } 
 </h2>
@@ -40,24 +40,10 @@
             @Html.ActionLink("Create New", "Create", new { PortfolioCode = ViewBag.Portfolio }, null)
         </div>
 
-        <div class='col-md-2'>
-            <div class="form-group">
-                <div class='input-group date  datetimepickerClass' id='datetimepicker'>
-                    <input type='text' id="inputDate" class="form-control" name="inputDate" placeholder="For Date" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary btn-sm control-label" name="submit" type="submit">Submit</button>
+        @Html.Partial("_UserSelectDate") 
 
-        </div>
     </div>
-}
-
-
+} 
 @Html.Partial("_MsgSuccesFail", Model)
 
 <div class="code-cut">

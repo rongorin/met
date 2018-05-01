@@ -65,21 +65,22 @@ namespace MetopeMVCApp.Data.Repositories
             //return Context.sp_TestRun(iEntity);
         }
 
-    } 
-    public class SecurityAnalyticsRepository : GenericRepository<MetopeDbEntities, Security_Analytics>,  ISecurityAnalyticsRepository
+    }
+    public class SecurityAnalyticsRepository : GenericRepository<MetopeDbEntities, Security_Analytics>, ISecurityAnalyticsRepository
     {
-        public IEnumerable<Security_Analytics> GetAll() //rather return an IEnumerable
+        public IEnumerable<Security_Analytics> GetAllRecs() //rather return an IEnumerable
         {
             IQueryable<Security_Analytics> query;
             query = Context.Set<Security_Analytics>().Include(r => r.Security_Detail);
             return query.ToList();
-        } 
+        }
         //public IQueryable<Security_Analytics> GetAll(Expression<Func<Security_Analytics, bool>> predicate)
         //{
         //    IQueryable<Security_Analytics> query = Context.Set<Security_Analytics>().Where(predicate);
         //    return query;
         //}
     }
+    //SecurityAttributionRepository
     public class SecurityAttributionRepository : GenericRepository<MetopeDbEntities, Security_Attribution>,
                                        ISecurityAttributionRepository
     {
@@ -206,7 +207,9 @@ namespace MetopeMVCApp.Data.Repositories
             return Context.Set<Party>().Find(PartyCode); 
 
         } 
-    }
+    } 
+    #region Security List Detail Repository :
+     
     public class SecurityListDetailRepository : GenericRepository<MetopeDbEntities, Security_List_Detail>,
                                         ISecurityListDetailRepository
     {
@@ -282,7 +285,7 @@ namespace MetopeMVCApp.Data.Repositories
             }
         }
     } 
- 
+#endregion
 
     public class SecurityListRepository : GenericRepository<MetopeDbEntities, Security_List>,
                                         ISecurityListRepository

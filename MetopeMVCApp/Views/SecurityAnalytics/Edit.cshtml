@@ -5,11 +5,8 @@
 }
 @section Styles {
     @Styles.Render("~/Content/datetime")
-}
-
-
-<h3>Edit Security Analytics for SecurityId <b> @Model.Security_ID </b> </h3> 
-
+} 
+<h3>Edit Security Analytics for SecurityId <b> @Model.Security_ID </b> </h3>  
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

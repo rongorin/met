@@ -35,7 +35,7 @@ namespace MetopeMVCApp.Controllers
 
             var vwm = db11.GetAll().Include(a => a.Order_Detail).
                                     Include(a => a.Order_Detail.Security_Detail).Where(a => a.Entity_ID == EntityID)
-                                 .Take(300)
+                                 
                 .Select(g => new SelectOrderAllocEditorViewModel
                     { 
                           Selected = true,
@@ -53,7 +53,7 @@ namespace MetopeMVCApp.Controllers
                     }
                 )
                  .OrderByDescending(r => r.Trade_Date).ThenBy(n => n.Order_ID).ThenBy(n => n.Portfolio_Code)
-                .ToList();
+                .Take(500).ToList();
             // var order_Allocation = db.Order_Allocation.Include(o => o.Entity).Include(o => o.Order_Detail).Include(o => o.Portfolio).Include(o => o.User);
             return View(vwm);
         }

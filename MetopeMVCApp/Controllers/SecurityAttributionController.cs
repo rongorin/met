@@ -15,17 +15,14 @@ namespace MetopeMVCApp.Controllers
 {
     [SetAllowedEntityIdAttribute]
     public class SecurityAttributionController : Controller
-    {
-        private MetopeDbEntities db = new MetopeDbEntities();
+    { 
         private readonly ISecurityAttributionRepository db11;
-
-
+         
         public SecurityAttributionController(ISecurityAttributionRepository iDb)
         {
             db11 = iDb;
         } 
-
-
+         
         // GET: SecurityAttribution
         [CustomEntityAuthoriseFilter]
         public ActionResult Index(string PortfolioCode, DateTime? inputDate, int? numberOfRows, int page = 1, string searchTerm = null, string Nav = "")
@@ -34,9 +31,7 @@ namespace MetopeMVCApp.Controllers
             decimal EntityID = (decimal)ViewBag.EntityId;
              
             if (numberOfRows == null)
-                numberOfRows = 20;
-
-            //ViewBag.RowsPerPage = new SelectList(numOfRows, "Value", "Text", numberOfRows);
+                numberOfRows = 20; 
 
             ViewBag.Portfolio = PortfolioCode;
             var vwm = db11.GetAll().Include(a => a.Security_Detail)
@@ -62,8 +57,7 @@ namespace MetopeMVCApp.Controllers
 
             return View(vwm.ToList());  
         }
-         
-
+          
         // GET: 
         [PortfoliosFilter]
         [AllSecuritiesInclGenericFilter]
@@ -113,12 +107,7 @@ namespace MetopeMVCApp.Controllers
             }
             ViewBag.myPortfolioCode = security_Attribution.Portfolio_Code;
             return View(security_Attribution);
-
-            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Attribution.Entity_ID);
-            //ViewBag.Entity_ID = new SelectList(db.Portfolios, "Entity_ID", "Portfolio_Name", security_Attribution.Entity_ID);
-            //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Attribution.Security_ID);
-            //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Attribution.Entity_ID);
-            //return View(security_Attribution);
+             
         }
 
         // GET: SecurityAttribution/Edit/5
@@ -137,12 +126,7 @@ namespace MetopeMVCApp.Controllers
             }
             ViewBag.SecuritiesAll = sperf.Security_ID;
             return View(sperf);
-              
-            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_Attribution.Entity_ID);
-            //ViewBag.Entity_ID = new SelectList(db.Portfolios, "Entity_ID", "Portfolio_Name", security_Attribution.Entity_ID);
-            //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name", security_Attribution.Security_ID);
-            //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", security_Attribution.Entity_ID);
-          ;
+               
         }
 
         // POST: SecurityAttribution/Edit/5
@@ -225,7 +209,7 @@ namespace MetopeMVCApp.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                db11.Dispose();
             }
             base.Dispose(disposing);
         }

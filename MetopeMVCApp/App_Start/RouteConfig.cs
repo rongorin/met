@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using MetopeMVCApp.App_Start;
+using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace ASP.MetopeNspace
@@ -6,9 +7,11 @@ namespace ASP.MetopeNspace
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
-        {
+        {  
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.Add("UserRoute", new UserRoute());
+             
             routes.MapRoute(
                 "Admin_elmah",
                 "Admin/elmah/{type}",
@@ -19,8 +22,7 @@ namespace ASP.MetopeNspace
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-
-
+             
 
         }
     }

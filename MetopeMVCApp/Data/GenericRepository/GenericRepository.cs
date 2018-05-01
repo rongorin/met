@@ -40,6 +40,17 @@ namespace MetopeMVCApp.Data.GenericRepository
             return query;
         }
 
+        public IEnumerable<T> FindBy2(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        {
+            IQueryable<T> query = _entities.Set<T>().Where(predicate);
+            return query.ToList();
+        }
+        public bool AnyExists(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        {
+            bool exist = _entities.Set<T>().Any(predicate);
+            return exist;
+        }
+
         public virtual void Add(T entity)
         {
             _entities.Set<T>().Add(entity);

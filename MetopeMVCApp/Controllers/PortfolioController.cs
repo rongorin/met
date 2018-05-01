@@ -16,7 +16,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using MetopeMVCApp.Data; 
 using MetopeMVCApp.Filters;
 using MetopeMVCApp.Data.GenericRepository;
-using Metope.DAL;
+using Metope.DAL; 
+using PagedList;
+
 namespace MetopeMVCApp.Controllers
 {
     [SetAllowedEntityIdAttribute]
@@ -65,8 +67,41 @@ namespace MetopeMVCApp.Controllers
         public ActionResult Index(int page = 1, string searchTerm = null)
         { 
             decimal EntityID = (decimal)ViewBag.EntityId;
-            var portfolios = _repo.GetPortfolios(EntityID, page, searchTerm);
-           
+            var portfolios = _repo.GetPortfolios(EntityID, page, searchTerm)
+               .Select(g => new PortfolioIndexViewModel
+                    {
+                        Entity_ID = g.Entity_ID,
+                        Portfolio_Code = g.Portfolio_Code,
+                        Portfolio_Name = g.Portfolio_Name,
+                        Financial_Year_End = g.Financial_Year_End,
+                        Active_Flag = g.Active_Flag ,
+                        Portfolio_Valuation = g.Portfolio_Valuation
+                         //HasValuation= g.Portfolio_Valuation.Portfolio_Code 
+                        //Analytics = g => g.Wh Select(g => new SecurityDetailIndexModel
+                    })   . ToList();
+
+            //var security_detail = _repo.GetAll().Include(c => c.Security_Analytics)
+            //        .MatchCriteria(c => c.Entity_ID == EntityID || c.Entity_ID == genericId)
+
+            //        .Select(g => new SecurityDetailIndexModel
+            //        {
+            //            Security_ID = g.Security_ID,
+            //            Entity_ID = g.Entity_ID,
+            //            Security_Type_Code = g.Security_Type_Code,
+            //            Security_Name = g.Security_Name,
+            //            Current_Market_Price = g.Current_Market_Price,
+            //            Ticker = g.Ticker,
+            //            Primary_Exch = g.Primary_Exch,
+            //            Maturity_Date = g.Maturity_Date,
+            //            Security_Status = g.Security_Status,
+            //            NumberOfRows = numberOfRows,
+            //            HasAnalystics = g.Security_Analytics.Count()
+            //            //Analytics = g => g.Wh Select(g => new SecurityDetailIndexModel
+            //        })
+            //        .OrderBy(s => s.Security_Name).
+            //        ToList();
+
+
             // db.Portfolios.Where(c => c.Entity_ID == currentUser.EntityIdScope).Include(p => p.Entity).Include(p => p.User);
 
 
@@ -78,10 +113,10 @@ namespace MetopeMVCApp.Controllers
 
             if(Request.IsAjaxRequest())
             {
-                return PartialView("_Portfolios", portfolios);
+                return PartialView("_Portfolios", portfolios.ToPagedList(page, 10));
             }
             manager.Dispose();
-            return View(portfolios);
+            return View(portfolios.ToPagedList(page, 10));
         }
 
         // GET: /Portfolio/Details/ 5,'abc'

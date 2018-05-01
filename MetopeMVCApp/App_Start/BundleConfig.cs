@@ -52,13 +52,18 @@ namespace ASP.MetopeNspace
             modernizrBundle.Include("~/Scripts/modernizr-*");
             modernizrBundle.Transforms.Add(jsTransformer);
             modernizrBundle.Orderer = nullOrderer;
-            bundles.Add(modernizrBundle);
+            bundles.Add(modernizrBundle); 
 
+            //bundles.Add(new ScriptBundle("~/bundles/customDatePickerJS").Include(
+            //"~/Scripts/common/datetimepicker-init.js", 
+            //"~/Scripts/common/datetimepickerCustom.js"));
 
+             
             bundles.Add(new ScriptBundle("~/bundles/datetime").Include(
             "~/Scripts/moment*",
-            "~/Scripts/bootstrap-datetimepicker*",
+            "~/Scripts/bootstrap-datetimepicker*", 
             "~/Scripts/common/datetimepicker-init.js")); 
+
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrapWizard").Include(
             "~/Scripts/jquery.bootstrap.wizard*",

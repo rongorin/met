@@ -12,6 +12,8 @@ namespace MetopeMVCApp.Data.GenericRepository
 
         IQueryable<T> GetAll();
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
+        IEnumerable<T> FindBy2(Expression<Func<T, bool>> predicate);
+        bool AnyExists(Expression<Func<T, bool>> predicate);
         T  Get(decimal id);
         void Add(T entity);
         void Delete(T entity);

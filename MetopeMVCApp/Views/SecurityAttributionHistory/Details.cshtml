@@ -1,0 +1,346 @@
+﻿@model Metope.DAL.Security_Attribution_History
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Security_Attribution_History</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Excess_Weight_Quarterly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Excess_Weight_Quarterly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Relative_Contribution_Quarterly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Relative_Contribution_Quarterly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Allocation_Selection_Interaction_Quarterly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allocation_Selection_Interaction_Quarterly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StockVs_TotBenchmarkReturn_Quarterly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StockVs_TotBenchmarkReturn_Quarterly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Selection_Interaction_Quarterly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Selection_Interaction_Quarterly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Asset_Allocation_Quarterly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Asset_Allocation_Quarterly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Excess_Weight_Monthly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Excess_Weight_Monthly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Relative_Contribution_Monthly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Relative_Contribution_Monthly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Allocation_Selection_Interaction_Monthly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allocation_Selection_Interaction_Monthly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StockVs_TotBenchmarkReturn_Monthly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StockVs_TotBenchmarkReturn_Monthly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Selection_Interaction_Monthly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Selection_Interaction_Monthly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Asset_Allocation_Monthly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Asset_Allocation_Monthly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Excess_Weight_MonthToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Excess_Weight_MonthToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Relative_Contribution_MonthToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Relative_Contribution_MonthToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Allocation_Selection_Interaction_MonthToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allocation_Selection_Interaction_MonthToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StockVs_TotBenchmarkReturn_MonthToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StockVs_TotBenchmarkReturn_MonthToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Selection_Interaction_MonthToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Selection_Interaction_MonthToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Asset_Allocation_MonthToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Asset_Allocation_MonthToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Update_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Update_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Weight_Portfolio_Monthly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Weight_Portfolio_Monthly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Weight_Portfolio_MonthToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Weight_Portfolio_MonthToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Weight_Portfolio_Quarterly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Weight_Portfolio_Quarterly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Weight_Benchmark_Monthly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Weight_Benchmark_Monthly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Weight_Benchmark_MonthToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Weight_Benchmark_MonthToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Weight_Benchmark_Quarterly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Weight_Benchmark_Quarterly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Return_Security_Price_Monthly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Return_Security_Price_Monthly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Return_Security_Price_MonthToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Return_Security_Price_MonthToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Return_Security_Price_Quarterly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Return_Security_Price_Quarterly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TW_Return_Portfolio_Monthly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TW_Return_Portfolio_Monthly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TW_Return_Portfolio_MonthToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TW_Return_Portfolio_MonthToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TW_Return_Portfolio_Quarterly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TW_Return_Portfolio_Quarterly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Session_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Session_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hist_Last_Update_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hist_Last_Update_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hist_Last_Update_User)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hist_Last_Update_User)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Benchmark_Price_Performance_Monthly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Benchmark_Price_Performance_Monthly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Benchmark_Price_Performance_MonthToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Benchmark_Price_Performance_MonthToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Benchmark_Price_Performance_Quarterly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Benchmark_Price_Performance_Quarterly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entity.Entity_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entity.Entity_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Portfolio.Portfolio_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Portfolio.Portfolio_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Detail.Security_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Detail.Security_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.User_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.User_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

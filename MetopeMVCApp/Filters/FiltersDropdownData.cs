@@ -194,9 +194,9 @@ namespace MetopeMVCApp.Filters
     public class CountryFilter : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
-        { 
-            IQueryable<Country> countries;
-            if ((countries = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Country>)) == null)
+        {
+            IEnumerable<Country> countries;
+            if ((countries = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Country>)) == null)
             { 
                 MetopeMVCApp.Services.IServices svc = new MetopeMVCApp.Services.Services(false);
                 countries = svc.ListCountry(); 
@@ -215,9 +215,9 @@ namespace MetopeMVCApp.Filters
     public class UsersFilter : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
-        { 
-            IQueryable<User> users;
-            if ((users = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<User>)) == null)
+        {
+            IEnumerable<User> users;
+            if ((users = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<User>)) == null)
             { 
                 MetopeMVCApp.Services.IServices svc = new MetopeMVCApp.Services.Services(false);
                 users = svc.ListUsers(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")));
@@ -236,8 +236,8 @@ namespace MetopeMVCApp.Filters
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            IQueryable<Order_Detail> orderDetail;
-            if ((orderDetail = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Order_Detail>)) == null)
+            IEnumerable<Order_Detail> orderDetail;
+            if ((orderDetail = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Order_Detail>)) == null)
             {
                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
@@ -255,8 +255,8 @@ namespace MetopeMVCApp.Filters
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            IQueryable<Order_Allocation> orderallocs;
-            if ((orderallocs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Order_Allocation >)) == null)
+            IEnumerable<Order_Allocation> orderallocs;
+            if ((orderallocs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Order_Allocation>)) == null)
             {
                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
@@ -273,8 +273,8 @@ namespace MetopeMVCApp.Filters
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            IQueryable<Currency> currencies;
-            if ((currencies = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Currency>)) == null)
+            IEnumerable<Currency> currencies;
+            if ((currencies = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Currency>)) == null)
             {
                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
                     
@@ -301,9 +301,9 @@ namespace MetopeMVCApp.Filters
     public class SecurityTypesFilter : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
-        { 
-            IQueryable<Security_Type> secTypeCodes;
-            if ((secTypeCodes = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Security_Type>)) == null)
+        {
+            IEnumerable<Security_Type> secTypeCodes;
+            if ((secTypeCodes = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Security_Type>)) == null)
             {
                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
                 secTypeCodes = svc.ListSecTypeCode();
@@ -320,8 +320,8 @@ namespace MetopeMVCApp.Filters
         public override void OnActionExecuted(ActionExecutedContext  filterContext)
         {
 
-            IQueryable<Exchange> exchanges;
-            if ((exchanges = (filterContext.HttpContext.Cache.Get(GetType().FullName) as  IQueryable<Exchange>)) == null)
+            IEnumerable<Exchange> exchanges;
+            if ((exchanges = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Exchange>)) == null)
             {
                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
                 exchanges = svc.ListExchanges();
@@ -339,21 +339,21 @@ namespace MetopeMVCApp.Filters
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          {
 
-             IQueryable<Code_Miscellaneous> miscCodes;
-             IQueryable<Code_Miscellaneous> miscCodesCP;
-             IQueryable<Code_Miscellaneous> miscCodesBD;
-             IQueryable<Code_Miscellaneous> miscCodesEX;
-             IQueryable<Code_Miscellaneous> miscCodesSH; 
+             IEnumerable<Code_Miscellaneous> miscCodes;
+             IEnumerable<Code_Miscellaneous> miscCodesCP;
+             IEnumerable<Code_Miscellaneous> miscCodesBD;
+             IEnumerable<Code_Miscellaneous> miscCodesEX;
+             IEnumerable<Code_Miscellaneous> miscCodesSH; 
              if (
-                 (miscCodes = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Code_Miscellaneous>)
+                 (miscCodes = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Code_Miscellaneous>)
                  ) == null  ||
-                  (miscCodesCP = (filterContext.HttpContext.Cache.Get(GetType().FullName + "CP") as IQueryable<Code_Miscellaneous>)
+                  (miscCodesCP = (filterContext.HttpContext.Cache.Get(GetType().FullName + "CP") as IEnumerable<Code_Miscellaneous>)
                  ) == null ||
-                  (miscCodesBD = (filterContext.HttpContext.Cache.Get(GetType().FullName + "BD") as IQueryable<Code_Miscellaneous>)
+                  (miscCodesBD = (filterContext.HttpContext.Cache.Get(GetType().FullName + "BD") as IEnumerable<Code_Miscellaneous>)
                  ) == null ||
-                  (miscCodesEX = (filterContext.HttpContext.Cache.Get(GetType().FullName + "EX") as IQueryable<Code_Miscellaneous>)
+                  (miscCodesEX = (filterContext.HttpContext.Cache.Get(GetType().FullName + "EX") as IEnumerable<Code_Miscellaneous>)
                  ) == null ||
-                  (miscCodesSH = (filterContext.HttpContext.Cache.Get(GetType().FullName + "SH") as IQueryable<Code_Miscellaneous>)
+                  (miscCodesSH = (filterContext.HttpContext.Cache.Get(GetType().FullName + "SH") as IEnumerable<Code_Miscellaneous>)
                  ) == null   
                  )  
              {
@@ -390,8 +390,8 @@ namespace MetopeMVCApp.Filters
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          {
-             IQueryable<Portfolio> portfolios;
-             if ((portfolios = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Portfolio>)) == null)
+             IEnumerable<Portfolio> portfolios;
+             if ((portfolios = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Portfolio>)) == null)
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
@@ -409,8 +409,8 @@ namespace MetopeMVCApp.Filters
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          {
-             IQueryable<Classification> classifications;
-             if ((classifications = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Classification>)) == null)
+             IEnumerable<Classification> classifications;
+             if ((classifications = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Classification>)) == null)
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
@@ -428,8 +428,8 @@ namespace MetopeMVCApp.Filters
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          {
-             IQueryable<Portfolio> portfolios;
-             if ((portfolios = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Portfolio>)) == null)
+             IEnumerable<Portfolio> portfolios;
+             if ((portfolios = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Portfolio>)) == null)
              {  
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
@@ -447,8 +447,8 @@ namespace MetopeMVCApp.Filters
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          {
-             IQueryable<Security_Detail> secs;
-             if ((secs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Security_Detail>)) == null)
+             IEnumerable<Security_Detail> secs;
+             if ((secs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Security_Detail>)) == null)
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
@@ -470,8 +470,8 @@ namespace MetopeMVCApp.Filters
          //This Action filter obtains all the securities for the inscope Entity only. 
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          {
-             IQueryable<Security_Detail> secs;
-             if ((secs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Security_Detail>)) == null)
+             IEnumerable<Security_Detail> secs;
+             if ((secs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Security_Detail>)) == null)
              {
                  bool getInScopeOnly = true;
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
@@ -482,20 +482,46 @@ namespace MetopeMVCApp.Filters
                  //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
              }
-             filterContext.Controller.ViewBag.Securities_All = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll);
+             filterContext.Controller.ViewBag.Securities_All = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll); 
            
              base.OnActionExecuted(filterContext);
-         }
-
+         } 
      }
 
-     public class   AllSecuritiesInclGenericFilter : ActionFilterAttribute
+     //public class   AllSecuritiesInclGenericFilter : ActionFilterAttribute
+     //{
+     //    //This Action filter obtains all the securities for both inScope and Generic Entitys . 
+     //    public override void OnActionExecuted(ActionExecutedContext filterContext)
+     //    {
+     //        IQueryable<Security_Detail> secs;
+     //        if ((secs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Security_Detail>)) == null)
+     //        {
+     //            bool getInScopeOnly = false;
+     //            MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+
+     //            secs = svc.ListSecurities(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")),
+     //                                      Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity),
+     //                                      "", getInScopeOnly);
+     //            //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
+     //            filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
+     //        }
+     //        filterContext.Controller.ViewBag.Securities_All = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll);
+  
+     //        //Securities_All2 is for Transaction_Security_ID ddl
+     //        filterContext.Controller.ViewBag.Securities_All2 = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll2);
+             
+     //        //ViewBag.ActionStatusId = new SelectList(repository.GetAll<ActionStatus>(), "ActionStatusId", "Name", myAction.ActionStatusId);
+     //        base.OnActionExecuted(filterContext);
+     //    }
+
+     //}
+     public class AllSecuritiesInclGenericFilter : ActionFilterAttribute
      {
          //This Action filter obtains all the securities for both inScope and Generic Entitys . 
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          {
-             IQueryable<Security_Detail> secs;
-             if ((secs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Security_Detail>)) == null)
+             IEnumerable<Security_Detail> secs;
+             if ((secs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Security_Detail>)) == null)
              {
                  bool getInScopeOnly = false;
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
@@ -507,10 +533,10 @@ namespace MetopeMVCApp.Filters
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
              }
              filterContext.Controller.ViewBag.Securities_All = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll);
-  
+
              //Securities_All2 is for Transaction_Security_ID ddl
              filterContext.Controller.ViewBag.Securities_All2 = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll2);
-             
+
              //ViewBag.ActionStatusId = new SelectList(repository.GetAll<ActionStatus>(), "ActionStatusId", "Name", myAction.ActionStatusId);
              base.OnActionExecuted(filterContext);
          }
@@ -519,9 +545,9 @@ namespace MetopeMVCApp.Filters
      public class PartyFilter : ActionFilterAttribute
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
-         {   
-             IQueryable<Party> parties;
-             if ((parties = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Party>)) == null)
+         {
+             IEnumerable<Party> parties;
+             if ((parties = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Party>)) == null)
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
@@ -544,8 +570,8 @@ namespace MetopeMVCApp.Filters
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          {
-             IQueryable<Party> parties;
-             if ((parties = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Party>)) == null)
+             IEnumerable<Party> parties;
+             if ((parties = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Party>)) == null)
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
@@ -567,8 +593,8 @@ namespace MetopeMVCApp.Filters
          public override void OnActionExecuted(ActionExecutedContext filterContext)
          {
              //IEnumerable<SelectListItem> currencyPairs;
-             IQueryable<Currency_Pair> currencyPairs;
-             if ((currencyPairs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IQueryable<Currency_Pair>)) == null)
+             IEnumerable<Currency_Pair> currencyPairs;
+             if ((currencyPairs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Currency_Pair>)) == null)
              {  
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 

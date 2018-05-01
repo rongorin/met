@@ -69,10 +69,10 @@
         </u>);
 
         columns.Add().Encoded(false).Sanitized(false)
-                .RenderValueAs(c => @<a href="@Url.Action("SecurityPerformanceHistory", "SecurityPerformance", new { PortfolioCode = c.Portfolio_Code })">
-                <span class="badge">History</span>
-            </a>).SetWidth(80);
-    }).WithPaging(50).Sortable(true)
+                .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityPerformanceHistory", new { PortfolioCode = c.Portfolio_Code, SecurityId = c.Security_ID, })">
+                     <span class="badge">History</span>
+                </a>).SetWidth(80);
+                }).WithPaging(50).Sortable(true)
 
 </div>
 

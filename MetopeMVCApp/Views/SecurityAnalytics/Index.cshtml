@@ -3,8 +3,7 @@
 @{
     ViewBag.Title = "Index";
   
-    List<string> _sizes = new List<string>() { "10", "20", "50", "100" }; 
-
+    List<string> _sizes = new List<string>() { "10", "20", "50", "100" };  
     ViewBag.RowsPgSelected = ((SelectList)ViewBag.RowsPerPage).SelectedValue ?? _sizes[1];
 }
 @section Styles {
@@ -13,7 +12,7 @@
     <link href="~/Content/myButtons.css" rel="stylesheet" />
 }
 <div id="mainList">
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal", id = "TheForm" }))
     {
         <div class="row">
             <div class="col-md-7 ">
@@ -23,8 +22,11 @@
             <div class="col-md-5 col-right">
                 <div class="pull-right">
                     <label class=" control-label">show rows:</label>
-                    @Html.DropDownList("numberOfRows", (SelectList)ViewBag.RowsPerPage)
-                    <input type="submit" value="Update" class="btn btn-primary btn-xs" />
+                    @Html.DropDownList("numberOfRows", (SelectList)ViewBag.RowsPerPage,
+                        new
+                         {
+                             onchange = "document.getElementById('TheForm').submit();"
+                         }) 
                     @*@Html.DropDownList("numberOfRows", null, string.Empty, new { @class = "form-control" })*@
                 </div>
             </div>
@@ -91,7 +93,7 @@
                 </u>);
 
         columns.Add().Encoded(false).Sanitized(false)
-                .RenderValueAs(c => @<a href="@Url.Action("SecurityAnalyticsHistory", "SecurityAnalytics", new { SecurityId = c.Security_ID, EntityId = c.Entity_ID })">
+                .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityAnalyticsHistory", new { SecurityId = c.Security_ID  })">
                 <span class="badge">History</span>
             </a>).SetWidth(80); 
     }).WithPaging(Convert.ToInt16(ViewBag.RowsPgSelected) ).Sortable(true)

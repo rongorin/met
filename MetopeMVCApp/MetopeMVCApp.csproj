@@ -271,7 +271,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MVCGridConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
-    <Compile Include="bin\RouteConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -282,6 +282,9 @@
     <Compile Include="Controllers\DebtExpiryProfileController.cs" />
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\ErrorpageController.cs" />
+    <Compile Include="Controllers\HistoryControllers\SecurityAnalyticsHistoryController.cs" />
+    <Compile Include="Controllers\HistoryControllers\SecurityAttributionHistoryController.cs" />
+    <Compile Include="Controllers\HistoryControllers\SecurityPerformanceHistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderAllocationController.cs" />
     <Compile Include="Controllers\PartyController.cs" />
@@ -308,6 +311,7 @@
     <Compile Include="Data\DebtExpiryProfileRepository.cs" />
     <Compile Include="Data\GenericRepository\GenericRepository.cs" />
     <Compile Include="Data\GenericRepository\IGenericRepository.cs" />
+    <Compile Include="Data\HistoryRepositories.cs" />
     <Compile Include="Data\IPortfolioRepository3.cs" />
     <Compile Include="Data\ISecurityDetailRepository.cs" />
     <Compile Include="Data\PartyDebtAnalysisRepository.cs" />
@@ -375,6 +379,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\OrderAllocationIndexViewModel.cs" />
     <Compile Include="Models\OrderAllocSelectionViewModel.cs" />
+    <Compile Include="Models\PortfolioIndexViewModel.cs" />
     <Compile Include="Models\PositionsSODIndexViewModel.cs" />
     <Compile Include="Models\SecurityAnalyticsIndexViewModel.cs" />
     <Compile Include="Models\SecurityAttributionIndexViewModel.cs" />
@@ -399,7 +404,6 @@
     <Compile Include="Utitlity\Extensions\DropDownExtensions.cs" />
     <Compile Include="Utitlity\Extensions\ExceptionExtensions.cs" />
     <Compile Include="Utitlity\Extensions\SessionExtensions.cs" />
-    <Compile Include="Validators\ValidatePriceCurr.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
@@ -416,16 +420,12 @@
     <Content Include="Content\img\metopeParthenon.png" />
     <Content Include="Content\myCustom.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\img\bus-yellow-300px.png" />
     <Content Include="Content\img\cabin.png" />
     <Content Include="Content\img\cake.png" />
     <Content Include="Content\img\circus.png" />
-    <Content Include="Content\img\do-you-like-doughnuts300px.png" />
     <Content Include="Content\img\MetopeHome-Banner.jpg" />
     <Content Include="Content\img\Nashorn-coloured-300px.png" />
-    <Content Include="Content\img\safe.png" />
     <Content Include="Content\img\submarine.png" />
-    <Content Include="Content\img\windowwasher-300px.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -565,6 +565,7 @@
     </None>
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\common\datetimepicker-init.js" />
+    <Content Include="Scripts\common\datetimepickerCustom.js" />
     <Content Include="Scripts\common\form.js" />
     <Content Include="Scripts\common\wizard-init.js" />
     <Content Include="Scripts\gridmvc.js" />
@@ -802,12 +803,32 @@
     <Content Include="Views\ClassificationIndustry\Details.cshtml" />
     <Content Include="Views\ClassificationIndustry\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Classification_Industry.cshtml" />
+    <Content Include="Views\SecurityAnalyticsHistory\Create.cshtml" />
+    <Content Include="Views\SecurityAnalyticsHistory\Delete.cshtml" />
+    <Content Include="Views\SecurityAnalyticsHistory\Details.cshtml" />
+    <Content Include="Views\SecurityAnalyticsHistory\Edit.cshtml" />
+    <Content Include="Views\SecurityAnalyticsHistory\Index.cshtml" />
+    <Content Include="Views\SecurityAttributionHistory\Create.cshtml" />
+    <Content Include="Views\SecurityAttributionHistory\Delete.cshtml" />
+    <Content Include="Views\SecurityAttributionHistory\Details.cshtml" />
+    <Content Include="Views\SecurityAttributionHistory\Edit.cshtml" />
+    <Content Include="Views\SecurityAttributionHistory\Index.cshtml" />
+    <Content Include="Views\SecurityPerformanceHistory\Create.cshtml" />
+    <Content Include="Views\SecurityPerformanceHistory\Delete.cshtml" />
+    <Content Include="Views\SecurityPerformanceHistory\Details.cshtml" />
+    <Content Include="Views\SecurityPerformanceHistory\Edit.cshtml" />
+    <Content Include="Views\SecurityPerformanceHistory\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Analytics_History.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Attribution_History.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Performance_History.cshtml" />
+    <Content Include="Views\Shared\_UserSelectDate.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bin\" />
     <Folder Include="Data\Persist\" />
     <Folder Include="Data\UnitOfWork\" />
     <Folder Include="Models\MyMetaData\" />
