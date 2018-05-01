@@ -56,9 +56,9 @@ namespace Metope.DAL
         public Nullable<decimal> Unsettled_Expenses_PriceCur { get; set; }
     
         public virtual Entity Entity { get; set; }
-        public virtual Security_Detail Security_Detail { get; set; }
         public virtual Portfolio Portfolio { get; set; }
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
+        public virtual Security_Detail Security_Detail { get; set; }
     }
 }

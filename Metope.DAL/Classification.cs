@@ -14,12 +14,12 @@ namespace Metope.DAL
     using Metope.DAL.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(ClassificationModelMetaData))]
-    
     public partial class Classification
     {
         public Classification()
         {
             this.Classification_Industry = new HashSet<Classification_Industry>();
+            this.Security_Classification_Industry = new HashSet<Security_Classification_Industry>();
         }
     
         public string Classification_Code { get; set; }
@@ -32,5 +32,6 @@ namespace Metope.DAL
         public virtual Entity Entity { get; set; }
         public virtual ICollection<Classification_Industry> Classification_Industry { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<Security_Classification_Industry> Security_Classification_Industry { get; set; }
     }
 }

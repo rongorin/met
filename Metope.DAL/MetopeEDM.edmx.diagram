@@ -159,6 +159,19 @@
         <AssociationConnector Association="MetopeDbModel.FK_Security_Analytics_History_Security_Detail" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Analytics_History_Security_Detail2" />
         <AssociationConnector Association="MetopeDbModel.FK_Security_Analytics_History_User" />
+        <EntityTypeShape EntityType="MetopeDbModel.Portfolio_Performance" Width="1.5" PointX="9.625" PointY="20.125" />
+        <EntityTypeShape EntityType="MetopeDbModel.Portfolio_Performance_History" Width="1.5" PointX="17.625" PointY="0.75" />
+        <EntityTypeShape EntityType="MetopeDbModel.Security_Classification_Industry" Width="1.5" PointX="20.375" PointY="2.75" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Classification_Industry_Classification" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Performance_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Performance_History_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Classification_Industry_Entity" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Performance_History_Portfolio" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Performance_Portfolio" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Performance_User" />
+        <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Performance_History_User" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Classification_Industry_Security_Detail" />
+        <AssociationConnector Association="MetopeDbModel.FK_Security_Classification_Industry_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

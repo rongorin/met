@@ -517,6 +517,44 @@
           <Property Name="Portfolio_Code" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Portfolio_List_Code" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <EntityType Name="Portfolio_Performance">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Portfolio_Code" />
+          </Key>
+          <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Portfolio_Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Dietz_Performance_Monthly" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Dietz_Performance_MonthToDate" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Dietz_Performance_Quarterly" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Processed_Flag" Type="bit" Nullable="false" />
+          <Property Name="ModDietz_Performance_Monthly" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="ModDietz_Performance_MonthToDate" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="ModDietz_Performance_Quarterly" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Last_Update_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Update_User" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Portfolio_Performance_History">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Portfolio_Code" />
+          </Key>
+          <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Portfolio_Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Dietz_Performance_Monthly" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Dietz_Performance_MonthToDate" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Dietz_Performance_Quarterly" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Processed_Flag" Type="bit" Nullable="false" />
+          <Property Name="ModDietz_Performance_Monthly" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="ModDietz_Performance_MonthToDate" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="ModDietz_Performance_Quarterly" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Last_Update_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Update_User" Type="varchar" MaxLength="30" />
+          <Property Name="Record_Date" Type="datetime" Nullable="false" />
+          <Property Name="Session_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Hist_Last_Update_Date" Type="datetime" />
+          <Property Name="Hist_Last_Update_User" Type="varchar" MaxLength="30" />
+        </EntityType>
         <EntityType Name="Portfolio_Valuation">
           <Key>
             <PropertyRef Name="Portfolio_Code" />
@@ -835,6 +873,21 @@
           <Property Name="Benchmark_Price_Performance_Monthly" Type="decimal" Precision="18" Scale="9" />
           <Property Name="Benchmark_Price_Performance_MonthToDate" Type="decimal" Precision="18" Scale="9" />
           <Property Name="Benchmark_Price_Performance_Quarterly" Type="decimal" Precision="18" Scale="9" />
+        </EntityType>
+        <EntityType Name="Security_Classification_Industry">
+          <Key>
+            <PropertyRef Name="Classification_Code" />
+            <PropertyRef Name="Effective_Date" />
+            <PropertyRef Name="Industry_Code" />
+            <PropertyRef Name="Security_ID" />
+          </Key>
+          <Property Name="Classification_Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Effective_Date" Type="date" Nullable="false" />
+          <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Industry_Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Last_Update_Date" Type="datetime" />
+          <Property Name="Last_Update_User" Type="varchar" MaxLength="30" />
+          <Property Name="Security_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Security_Detail">
           <Key>
@@ -1741,6 +1794,86 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Portfolio_Performance_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="Portfolio_Performance" Type="Self.Portfolio_Performance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Portfolio_Performance">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Performance_History_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="Portfolio_Performance_History" Type="Self.Portfolio_Performance_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Portfolio_Performance_History">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Performance_History_Portfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="Portfolio_Performance_History" Type="Self.Portfolio_Performance_History" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Principal>
+            <Dependent Role="Portfolio_Performance_History">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Performance_History_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Portfolio_Performance_History" Type="Self.Portfolio_Performance_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Portfolio_Performance_History">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Performance_Portfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="Portfolio_Performance" Type="Self.Portfolio_Performance" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Principal>
+            <Dependent Role="Portfolio_Performance">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Performance_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Portfolio_Performance" Type="Self.Portfolio_Performance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Portfolio_Performance">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Portfolio_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
@@ -2086,6 +2219,58 @@
               <PropertyRef Name="User_Code" />
             </Principal>
             <Dependent Role="Security_Attribution">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Classification_Industry_Classification">
+          <End Role="Classification" Type="Self.Classification" Multiplicity="1" />
+          <End Role="Security_Classification_Industry" Type="Self.Security_Classification_Industry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classification">
+              <PropertyRef Name="Classification_Code" />
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Security_Classification_Industry">
+              <PropertyRef Name="Classification_Code" />
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Classification_Industry_Entity">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="Security_Classification_Industry" Type="Self.Security_Classification_Industry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Security_Classification_Industry">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Classification_Industry_Security_Detail">
+          <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="1" />
+          <End Role="Security_Classification_Industry" Type="Self.Security_Classification_Industry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Security_Classification_Industry">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Classification_Industry_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Security_Classification_Industry" Type="Self.Security_Classification_Industry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Security_Classification_Industry">
               <PropertyRef Name="Entity_ID" />
               <PropertyRef Name="Last_Update_User" />
             </Dependent>
@@ -2607,6 +2792,8 @@
           <EntitySet Name="Party_Financials_History" EntityType="Self.Party_Financials_History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolio" EntityType="Self.Portfolio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolio_List" EntityType="Self.Portfolio_List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Portfolio_Performance" EntityType="Self.Portfolio_Performance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Portfolio_Performance_History" EntityType="Self.Portfolio_Performance_History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolio_Valuation" EntityType="Self.Portfolio_Valuation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolio_Valuation_History" EntityType="Self.Portfolio_Valuation_History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position_SOD" EntityType="Self.Position_SOD" Schema="dbo" store:Type="Tables" />
@@ -2614,6 +2801,7 @@
           <EntitySet Name="Security_Analytics_History" EntityType="Self.Security_Analytics_History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Attribution" EntityType="Self.Security_Attribution" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Attribution_History" EntityType="Self.Security_Attribution_History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Security_Classification_Industry" EntityType="Self.Security_Classification_Industry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Detail" EntityType="Self.Security_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Dividend_Detail" EntityType="Self.Security_Dividend_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Security_Dividend_Split" EntityType="Self.Security_Dividend_Split" Schema="dbo" store:Type="Tables" />
@@ -2833,6 +3021,30 @@
             <End Role="Portfolio" EntitySet="Portfolio" />
             <End Role="Portfolio_List" EntitySet="Portfolio_List" />
           </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Performance_Entity" Association="Self.FK_Portfolio_Performance_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="Portfolio_Performance" EntitySet="Portfolio_Performance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Performance_History_Entity" Association="Self.FK_Portfolio_Performance_History_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="Portfolio_Performance_History" EntitySet="Portfolio_Performance_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Performance_History_Portfolio" Association="Self.FK_Portfolio_Performance_History_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolio" />
+            <End Role="Portfolio_Performance_History" EntitySet="Portfolio_Performance_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Performance_History_User" Association="Self.FK_Portfolio_Performance_History_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Portfolio_Performance_History" EntitySet="Portfolio_Performance_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Performance_Portfolio" Association="Self.FK_Portfolio_Performance_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolio" />
+            <End Role="Portfolio_Performance" EntitySet="Portfolio_Performance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Performance_User" Association="Self.FK_Portfolio_Performance_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Portfolio_Performance" EntitySet="Portfolio_Performance" />
+          </AssociationSet>
           <AssociationSet Name="FK_Portfolio_User" Association="Self.FK_Portfolio_User">
             <End Role="User" EntitySet="User" />
             <End Role="Portfolio" EntitySet="Portfolio" />
@@ -2940,6 +3152,22 @@
           <AssociationSet Name="FK_Security_Attribution_User" Association="Self.FK_Security_Attribution_User">
             <End Role="User" EntitySet="User" />
             <End Role="Security_Attribution" EntitySet="Security_Attribution" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Classification_Industry_Classification" Association="Self.FK_Security_Classification_Industry_Classification">
+            <End Role="Classification" EntitySet="Classification" />
+            <End Role="Security_Classification_Industry" EntitySet="Security_Classification_Industry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Classification_Industry_Entity" Association="Self.FK_Security_Classification_Industry_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="Security_Classification_Industry" EntitySet="Security_Classification_Industry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Classification_Industry_Security_Detail" Association="Self.FK_Security_Classification_Industry_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Security_Classification_Industry" EntitySet="Security_Classification_Industry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Classification_Industry_User" Association="Self.FK_Security_Classification_Industry_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Security_Classification_Industry" EntitySet="Security_Classification_Industry" />
           </AssociationSet>
           <AssociationSet Name="FK_Security_Detail_Country" Association="Self.FK_Security_Detail_Country">
             <End Role="Country" EntitySet="Country" />
@@ -3138,6 +3366,9 @@
           <NavigationProperty Name="Classification_Industry" Relationship="MetopeDbModel.FK_Classification_indusry_Entity" FromRole="Entity" ToRole="Classification_Industry" />
           <NavigationProperty Name="Security_Attribution_History" Relationship="MetopeDbModel.FK_Security_Attribution_History_Entity" FromRole="Entity" ToRole="Security_Attribution_History" />
           <NavigationProperty Name="Security_Analytics_History" Relationship="MetopeDbModel.FK_Security_Analytics_History_Entity" FromRole="Entity" ToRole="Security_Analytics_History" />
+          <NavigationProperty Name="Portfolio_Performance" Relationship="MetopeDbModel.FK_Portfolio_Performance_Entity" FromRole="Entity" ToRole="Portfolio_Performance" />
+          <NavigationProperty Name="Portfolio_Performance_History" Relationship="MetopeDbModel.FK_Portfolio_Performance_History_Entity" FromRole="Entity" ToRole="Portfolio_Performance_History" />
+          <NavigationProperty Name="Security_Classification_Industry" Relationship="MetopeDbModel.FK_Security_Classification_Industry_Entity" FromRole="Entity" ToRole="Security_Classification_Industry" />
           </EntityType>
         <EntityType Name="User">
           <Key>
@@ -3186,6 +3417,9 @@
           <NavigationProperty Name="Classification_Industry" Relationship="MetopeDbModel.FK_Classification_Industry_User" FromRole="User" ToRole="Classification_Industry" />
           <NavigationProperty Name="Security_Attribution_History" Relationship="MetopeDbModel.FK_Security_Attribution_History_User" FromRole="User" ToRole="Security_Attribution_History" />
           <NavigationProperty Name="Security_Analytics_History" Relationship="MetopeDbModel.FK_Security_Analytics_History_User" FromRole="User" ToRole="Security_Analytics_History" />
+          <NavigationProperty Name="Portfolio_Performance" Relationship="MetopeDbModel.FK_Portfolio_Performance_User" FromRole="User" ToRole="Portfolio_Performance" />
+          <NavigationProperty Name="Portfolio_Performance_History" Relationship="MetopeDbModel.FK_Portfolio_Performance_History_User" FromRole="User" ToRole="Portfolio_Performance_History" />
+          <NavigationProperty Name="Security_Classification_Industry" Relationship="MetopeDbModel.FK_Security_Classification_Industry_User" FromRole="User" ToRole="Security_Classification_Industry" />
           </EntityType>
         <Association Name="FK_User_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
@@ -3749,6 +3983,49 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Security_Analytics_History" EntitySet="Security_Analytics_History" />
           </AssociationSet>
+          <EntitySet Name="Portfolio_Performance" EntityType="MetopeDbModel.Portfolio_Performance" />
+          <EntitySet Name="Portfolio_Performance_History" EntityType="MetopeDbModel.Portfolio_Performance_History" />
+          <EntitySet Name="Security_Classification_Industry" EntityType="MetopeDbModel.Security_Classification_Industry" />
+          <AssociationSet Name="FK_Security_Classification_Industry_Classification" Association="MetopeDbModel.FK_Security_Classification_Industry_Classification">
+            <End Role="Classification" EntitySet="Classifications" />
+            <End Role="Security_Classification_Industry" EntitySet="Security_Classification_Industry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Performance_Entity" Association="MetopeDbModel.FK_Portfolio_Performance_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Portfolio_Performance" EntitySet="Portfolio_Performance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Performance_History_Entity" Association="MetopeDbModel.FK_Portfolio_Performance_History_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Portfolio_Performance_History" EntitySet="Portfolio_Performance_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Classification_Industry_Entity" Association="MetopeDbModel.FK_Security_Classification_Industry_Entity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Security_Classification_Industry" EntitySet="Security_Classification_Industry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Performance_History_Portfolio" Association="MetopeDbModel.FK_Portfolio_Performance_History_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolios" />
+            <End Role="Portfolio_Performance_History" EntitySet="Portfolio_Performance_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Performance_Portfolio" Association="MetopeDbModel.FK_Portfolio_Performance_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolios" />
+            <End Role="Portfolio_Performance" EntitySet="Portfolio_Performance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Performance_User" Association="MetopeDbModel.FK_Portfolio_Performance_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Portfolio_Performance" EntitySet="Portfolio_Performance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Performance_History_User" Association="MetopeDbModel.FK_Portfolio_Performance_History_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Portfolio_Performance_History" EntitySet="Portfolio_Performance_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Classification_Industry_Security_Detail" Association="MetopeDbModel.FK_Security_Classification_Industry_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Security_Classification_Industry" EntitySet="Security_Classification_Industry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_Classification_Industry_User" Association="MetopeDbModel.FK_Security_Classification_Industry_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Security_Classification_Industry" EntitySet="Security_Classification_Industry" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AspNetUser">
           <Key>
@@ -4012,6 +4289,8 @@
           <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Detail_Portfolio_Benchmark" FromRole="Portfolio" ToRole="Security_Detail" />
           <NavigationProperty Name="Security_Attribution" Relationship="MetopeDbModel.FK_Security_Attribution_Portfolio" FromRole="Portfolio" ToRole="Security_Attribution" />
           <NavigationProperty Name="Security_Attribution_History" Relationship="MetopeDbModel.FK_Security_Attribution_History_Portfolio" FromRole="Portfolio" ToRole="Security_Attribution_History" />
+          <NavigationProperty Name="Portfolio_Performance_History" Relationship="MetopeDbModel.FK_Portfolio_Performance_History_Portfolio" FromRole="Portfolio" ToRole="Portfolio_Performance_History" />
+          <NavigationProperty Name="Portfolio_Performance" Relationship="MetopeDbModel.FK_Portfolio_Performance_Portfolio" FromRole="Portfolio" ToRole="Portfolio_Performance" />
         </EntityType>
         <Association Name="FK_Portfolio_Country">
           <End Type="MetopeDbModel.Country" Role="Country" Multiplicity="1" />
@@ -5685,6 +5964,7 @@
           <NavigationProperty Name="Security_Attribution_History" Relationship="MetopeDbModel.FK_Security_Attribution_History_Security_Detail" FromRole="Security_Detail" ToRole="Security_Attribution_History" />
           <NavigationProperty Name="Security_Analytics_History" Relationship="MetopeDbModel.FK_Security_Analytics_History_Security_Detail" FromRole="Security_Detail" ToRole="Security_Analytics_History" />
           <NavigationProperty Name="Security_Analytics_History1" Relationship="MetopeDbModel.FK_Security_Analytics_History_Security_Detail2" FromRole="Security_Detail" ToRole="Security_Analytics_History" />
+          <NavigationProperty Name="Security_Classification_Industry" Relationship="MetopeDbModel.FK_Security_Classification_Industry_Security_Detail" FromRole="Security_Detail" ToRole="Security_Classification_Industry" />
         </EntityType>
         <Association Name="FK_Cash_Transactions_Security_Detail">
           <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="0..1" />
@@ -6127,6 +6407,7 @@
           <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Classification_Entity" FromRole="Classification" ToRole="Entity" />
           <NavigationProperty Name="Classification_Industry" Relationship="MetopeDbModel.FK_Classification_Industry_Classification" FromRole="Classification" ToRole="Classification_Industry" />
           <NavigationProperty Name="User" Relationship="MetopeDbModel.FK_Classification_User" FromRole="Classification" ToRole="User" />
+          <NavigationProperty Name="Security_Classification_Industry" Relationship="MetopeDbModel.FK_Security_Classification_Industry_Classification" FromRole="Classification" ToRole="Security_Classification_Industry" />
         </EntityType>
         <EntityType Name="Classification_Industry">
           <Key>
@@ -6436,6 +6717,201 @@
               <PropertyRef Name="User_Code" />
             </Principal>
             <Dependent Role="Security_Analytics_History">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Portfolio_Performance">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Portfolio_Code" />
+          </Key>
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Portfolio_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Dietz_Performance_Monthly" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Dietz_Performance_MonthToDate" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Dietz_Performance_Quarterly" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Processed_Flag" Type="Boolean" Nullable="false" />
+          <Property Name="ModDietz_Performance_Monthly" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="ModDietz_Performance_MonthToDate" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="ModDietz_Performance_Quarterly" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Portfolio_Performance_Entity" FromRole="Portfolio_Performance" ToRole="Entity" />
+          <NavigationProperty Name="Portfolio" Relationship="MetopeDbModel.FK_Portfolio_Performance_Portfolio" FromRole="Portfolio_Performance" ToRole="Portfolio" />
+          <NavigationProperty Name="User" Relationship="MetopeDbModel.FK_Portfolio_Performance_User" FromRole="Portfolio_Performance" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Portfolio_Performance_History">
+          <Key>
+            <PropertyRef Name="Entity_ID" />
+            <PropertyRef Name="Portfolio_Code" />
+          </Key>
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Portfolio_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Dietz_Performance_Monthly" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Dietz_Performance_MonthToDate" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Dietz_Performance_Quarterly" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Processed_Flag" Type="Boolean" Nullable="false" />
+          <Property Name="ModDietz_Performance_Monthly" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="ModDietz_Performance_MonthToDate" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="ModDietz_Performance_Quarterly" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Record_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Session_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Hist_Last_Update_Date" Type="DateTime" Precision="3" />
+          <Property Name="Hist_Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Portfolio_Performance_History_Entity" FromRole="Portfolio_Performance_History" ToRole="Entity" />
+          <NavigationProperty Name="Portfolio" Relationship="MetopeDbModel.FK_Portfolio_Performance_History_Portfolio" FromRole="Portfolio_Performance_History" ToRole="Portfolio" />
+          <NavigationProperty Name="User" Relationship="MetopeDbModel.FK_Portfolio_Performance_History_User" FromRole="Portfolio_Performance_History" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Security_Classification_Industry">
+          <Key>
+            <PropertyRef Name="Classification_Code" />
+            <PropertyRef Name="Effective_Date" />
+            <PropertyRef Name="Industry_Code" />
+            <PropertyRef Name="Security_ID" />
+          </Key>
+          <Property Name="Classification_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Effective_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Industry_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Update_Date" Type="DateTime" Precision="3" />
+          <Property Name="Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Security_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Classification" Relationship="MetopeDbModel.FK_Security_Classification_Industry_Classification" FromRole="Security_Classification_Industry" ToRole="Classification" />
+          <NavigationProperty Name="Entity" Relationship="MetopeDbModel.FK_Security_Classification_Industry_Entity" FromRole="Security_Classification_Industry" ToRole="Entity" />
+          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Security_Classification_Industry_Security_Detail" FromRole="Security_Classification_Industry" ToRole="Security_Detail" />
+          <NavigationProperty Name="User" Relationship="MetopeDbModel.FK_Security_Classification_Industry_User" FromRole="Security_Classification_Industry" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Security_Classification_Industry_Classification">
+          <End Type="MetopeDbModel.Classification" Role="Classification" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Classification_Industry" Role="Security_Classification_Industry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classification">
+              <PropertyRef Name="Classification_Code" />
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Security_Classification_Industry">
+              <PropertyRef Name="Classification_Code" />
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Performance_Entity">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Portfolio_Performance" Role="Portfolio_Performance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Portfolio_Performance">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Performance_History_Entity">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Portfolio_Performance_History" Role="Portfolio_Performance_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Portfolio_Performance_History">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Classification_Industry_Entity">
+          <End Type="MetopeDbModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Classification_Industry" Role="Security_Classification_Industry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Entity_ID" />
+            </Principal>
+            <Dependent Role="Security_Classification_Industry">
+              <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Performance_History_Portfolio">
+          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="1" />
+          <End Type="MetopeDbModel.Portfolio_Performance_History" Role="Portfolio_Performance_History" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Principal>
+            <Dependent Role="Portfolio_Performance_History">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Performance_Portfolio">
+          <End Type="MetopeDbModel.Portfolio" Role="Portfolio" Multiplicity="1" />
+          <End Type="MetopeDbModel.Portfolio_Performance" Role="Portfolio_Performance" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Principal>
+            <Dependent Role="Portfolio_Performance">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Portfolio_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Performance_User">
+          <End Type="MetopeDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Portfolio_Performance" Role="Portfolio_Performance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Portfolio_Performance">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Performance_History_User">
+          <End Type="MetopeDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Portfolio_Performance_History" Role="Portfolio_Performance_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Portfolio_Performance_History">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Classification_Industry_Security_Detail">
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="1" />
+          <End Type="MetopeDbModel.Security_Classification_Industry" Role="Security_Classification_Industry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Security_Classification_Industry">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_Classification_Industry_User">
+          <End Type="MetopeDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Security_Classification_Industry" Role="Security_Classification_Industry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Security_Classification_Industry">
               <PropertyRef Name="Entity_ID" />
               <PropertyRef Name="Last_Update_User" />
             </Dependent>
@@ -7513,6 +7989,57 @@
                 <ScalarProperty Name="Issued_Amount" ColumnName="Issued_Amount" />
                 <ScalarProperty Name="Security_ID" ColumnName="Security_ID" />
                 <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portfolio_Performance">
+            <EntityTypeMapping TypeName="MetopeDbModel.Portfolio_Performance">
+              <MappingFragment StoreEntitySet="Portfolio_Performance">
+                <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
+                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
+                <ScalarProperty Name="ModDietz_Performance_Quarterly" ColumnName="ModDietz_Performance_Quarterly" />
+                <ScalarProperty Name="ModDietz_Performance_MonthToDate" ColumnName="ModDietz_Performance_MonthToDate" />
+                <ScalarProperty Name="ModDietz_Performance_Monthly" ColumnName="ModDietz_Performance_Monthly" />
+                <ScalarProperty Name="Processed_Flag" ColumnName="Processed_Flag" />
+                <ScalarProperty Name="Dietz_Performance_Quarterly" ColumnName="Dietz_Performance_Quarterly" />
+                <ScalarProperty Name="Dietz_Performance_MonthToDate" ColumnName="Dietz_Performance_MonthToDate" />
+                <ScalarProperty Name="Dietz_Performance_Monthly" ColumnName="Dietz_Performance_Monthly" />
+                <ScalarProperty Name="Portfolio_Code" ColumnName="Portfolio_Code" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portfolio_Performance_History">
+            <EntityTypeMapping TypeName="MetopeDbModel.Portfolio_Performance_History">
+              <MappingFragment StoreEntitySet="Portfolio_Performance_History">
+                <ScalarProperty Name="Hist_Last_Update_User" ColumnName="Hist_Last_Update_User" />
+                <ScalarProperty Name="Hist_Last_Update_Date" ColumnName="Hist_Last_Update_Date" />
+                <ScalarProperty Name="Session_ID" ColumnName="Session_ID" />
+                <ScalarProperty Name="Record_Date" ColumnName="Record_Date" />
+                <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
+                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
+                <ScalarProperty Name="ModDietz_Performance_Quarterly" ColumnName="ModDietz_Performance_Quarterly" />
+                <ScalarProperty Name="ModDietz_Performance_MonthToDate" ColumnName="ModDietz_Performance_MonthToDate" />
+                <ScalarProperty Name="ModDietz_Performance_Monthly" ColumnName="ModDietz_Performance_Monthly" />
+                <ScalarProperty Name="Processed_Flag" ColumnName="Processed_Flag" />
+                <ScalarProperty Name="Dietz_Performance_Quarterly" ColumnName="Dietz_Performance_Quarterly" />
+                <ScalarProperty Name="Dietz_Performance_MonthToDate" ColumnName="Dietz_Performance_MonthToDate" />
+                <ScalarProperty Name="Dietz_Performance_Monthly" ColumnName="Dietz_Performance_Monthly" />
+                <ScalarProperty Name="Portfolio_Code" ColumnName="Portfolio_Code" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Security_Classification_Industry">
+            <EntityTypeMapping TypeName="MetopeDbModel.Security_Classification_Industry">
+              <MappingFragment StoreEntitySet="Security_Classification_Industry">
+                <ScalarProperty Name="Security_ID" ColumnName="Security_ID" />
+                <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
+                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
+                <ScalarProperty Name="Industry_Code" ColumnName="Industry_Code" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+                <ScalarProperty Name="Effective_Date" ColumnName="Effective_Date" />
+                <ScalarProperty Name="Classification_Code" ColumnName="Classification_Code" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -11,22 +11,20 @@ namespace Metope.DAL
 {
     using System;
     using System.Collections.Generic;
-    using Metope.DAL.MyMetaData;
-    using System.ComponentModel.DataAnnotations;
-    [MetadataType(typeof(ClassificationIndustryModelMetaData))]
-
-    public partial class Classification_Industry
+    
+    public partial class Security_Classification_Industry
     {
         public string Classification_Code { get; set; }
-        public string Description { get; set; }
-        public string Industry_Code { get; set; }
+        public System.DateTime Effective_Date { get; set; }
         public decimal Entity_ID { get; set; }
+        public string Industry_Code { get; set; }
         public Nullable<System.DateTime> Last_Update_Date { get; set; }
         public string Last_Update_User { get; set; }
-        public bool System_Locked { get; set; }
+        public decimal Security_ID { get; set; }
     
         public virtual Classification Classification { get; set; }
         public virtual Entity Entity { get; set; }
+        public virtual Security_Detail Security_Detail { get; set; }
         public virtual User User { get; set; }
     }
 }

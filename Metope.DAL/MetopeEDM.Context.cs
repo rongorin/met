@@ -64,6 +64,9 @@ namespace Metope.DAL
         public virtual DbSet<Classification_Industry> Classification_Industry { get; set; }
         public virtual DbSet<Security_Attribution_History> Security_Attribution_History { get; set; }
         public virtual DbSet<Security_Analytics_History> Security_Analytics_History { get; set; }
+        public virtual DbSet<Portfolio_Performance> Portfolio_Performance { get; set; }
+        public virtual DbSet<Portfolio_Performance_History> Portfolio_Performance_History { get; set; }
+        public virtual DbSet<Security_Classification_Industry> Security_Classification_Industry { get; set; }
     
         public virtual int sp_TestRun(Nullable<decimal> entityID)
         {

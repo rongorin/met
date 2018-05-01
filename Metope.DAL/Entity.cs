@@ -47,6 +47,9 @@ namespace Metope.DAL
             this.Classification_Industry = new HashSet<Classification_Industry>();
             this.Security_Attribution_History = new HashSet<Security_Attribution_History>();
             this.Security_Analytics_History = new HashSet<Security_Analytics_History>();
+            this.Portfolio_Performance = new HashSet<Portfolio_Performance>();
+            this.Portfolio_Performance_History = new HashSet<Portfolio_Performance_History>();
+            this.Security_Classification_Industry = new HashSet<Security_Classification_Industry>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -86,5 +89,8 @@ namespace Metope.DAL
         public virtual ICollection<Classification_Industry> Classification_Industry { get; set; }
         public virtual ICollection<Security_Attribution_History> Security_Attribution_History { get; set; }
         public virtual ICollection<Security_Analytics_History> Security_Analytics_History { get; set; }
+        public virtual ICollection<Portfolio_Performance> Portfolio_Performance { get; set; }
+        public virtual ICollection<Portfolio_Performance_History> Portfolio_Performance_History { get; set; }
+        public virtual ICollection<Security_Classification_Industry> Security_Classification_Industry { get; set; }
     }
 }
