@@ -20,14 +20,16 @@ namespace MetopeMVCApp.Controllers
     [SetAllowedEntityIdAttribute] 
     public class PortfolioValuationController : Controller
     { 
-        private readonly IPortfolioValuationRepository db11;  
+        //private readonly IPortfolioValuationRepository db11;  
 
         private MetopeDbEntities db = new MetopeDbEntities(); //REMOVE this when done doing repository
          
         // GET: PortfolioValuation
         public ActionResult Index()
         {
-            var portfolio_Valuation = db.Portfolio_Valuation.Include(p => p.Entity).Include(p => p.Portfolio)
+            decimal EntityID = (decimal)ViewBag.EntityId;
+
+            var portfolio_Valuation = db.Portfolio_Valuation.Where(s => s.Entity_ID == EntityID).Include(p => p.Entity).Include(p => p.Portfolio)
                                                       .OrderBy(s => s.Portfolio_Code);
             return View(portfolio_Valuation.ToList());
         }
@@ -61,8 +63,7 @@ namespace MetopeMVCApp.Controllers
         [ValidateAntiForgeryToken]
         [PortfoliosFilter]
         public ActionResult Create([Bind(Include = "Portfolio_Code,Entity_ID,Net_Asset_Value,Gross_Asset_Value,Total_Investments,Total_Cash,Liabilities,Fees,Total_Cost,NAV_Excl_Fees,Last_Update_User,Last_Update_Date")] Portfolio_Valuation portfolio_Valuation)
-        {
-
+        { 
             decimal EntityID = (decimal)ViewBag.EntityId;
             portfolio_Valuation.Entity_ID = EntityID; 
             if (ModelState.IsValid)
@@ -128,10 +129,7 @@ namespace MetopeMVCApp.Controllers
                 db.SaveChanges();
                 TempData["ResultMessage"] = "Valuation for Portfolio " + portfolio_Valuation.Portfolio_Code.ToString() + " edited successfully!";
                 return RedirectToAction("Index");
-            }
-            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", portfolio_Valuation.Entity_ID);
-            //ViewBag.Entity_ID = new SelectList(db.Portfolios, "Entity_ID", "Portfolio_Name", portfolio_Valuation.Entity_ID);
-            //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name", portfolio_Valuation.Entity_ID);
+            } 
             return View(portfolio_Valuation);
         }
 

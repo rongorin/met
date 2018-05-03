@@ -93,7 +93,7 @@ namespace MetopeMVCApp.Controllers
         [PortfoliosFilter]
         [LongShortIndicatorFilter]
         public ActionResult Create([Bind(Include = "Entity_ID,Portfolio_Code,Security_ID,Long_Short_Indicator,Position_Date,Dealt_Quantity,Unsettled_Quantity,Settled_Quantity,Dealt_AllIn_Mkt_Value_PriceCur,Unsettled_AllIn_Mkt_Value_PriceCur,Settled_AllIn_Mkt_Value_PriceCur,Dealt_AllIn_Mkt_Value_BaseCur,Unsettled_AllIn_Mkt_Value_BaseCur,Settled_AllIn_Mkt_Value_BaseCur,Dealt_Clean_Mkt_Value_PriceCur,Unsettled_Clean_Mkt_Value_PriceCur,Settled_Clean_Mkt_Value_PriceCur,Dealt_Clean_Mkt_Value_BaseCur,Unsettled_Clean_Mkt_Value_BaseCur,Settled_Clean_Mkt_Value_BaseCur,Dealt_Income_Mkt_Value_PriceCur,Unsettled_Income_Mkt_Value_PriceCur,Settled_Income_Mkt_Value_PriceCur,Dealt_Income_Mkt_Value_BaseCur,Unsettled_Income_Mkt_Value_BaseCur,Settled_Income_Mkt_Value_BaseCur,Exposure_BaseCur,Exposure_PriceCur,Average_Unit_Cost_BaseCur,Average_Unit_Cost_PriceCur,Pledged_Quantity,Segregated_Quantity,Model_Percent,Last_Update_Date,Last_Update_User,Unsettled_Expenses_BaseCur,Unsettled_Expenses_PriceCur")] Position_SOD position_SOD
-                                        , string filterIndicator  )
+                                        , string filterIndicator)
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
             position_SOD.Entity_ID = EntityID;

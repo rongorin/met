@@ -139,6 +139,7 @@
     <Compile Include="MyMetaData\PartyModelMetaData.cs" />
     <Compile Include="MyMetaData\PortfolioDebtAnalysisModelMetaData.cs" />
     <Compile Include="MyMetaData\PortfolioModelMetatData.cs" />
+    <Compile Include="MyMetaData\PortfolioPerformanceModelMetaData.cs" />
     <Compile Include="MyMetaData\PortfolioValuationModelMetatData.cs" />
     <Compile Include="MyMetaData\PositionSODModelMetatData.cs" />
     <Compile Include="MyMetaData\SecurityAnalyticsModelMetaData.cs" />

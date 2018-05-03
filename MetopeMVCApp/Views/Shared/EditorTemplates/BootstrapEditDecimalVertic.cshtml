@@ -1,12 +1,25 @@
 ﻿@model Decimal?
 
 <div class="form-group">
-    @Html.LabelFor(model => model, htmlAttributes:
+    @if (ViewBag.setLength != "Longer")
+    {
+        @Html.LabelFor(model => model, htmlAttributes:
+          new
+                 {
+                     @class = "control-label   col-md-2 input-sm",
+                     style = "max-width:100% ;text-align: right"
+                 })
+    }
+    else
+    {
+        @Html.LabelFor(model => model, htmlAttributes:
             new
             {
-                @class = "control-label   col-md-2 input-sm",
+                @class = "control-label   col-md-3 input-sm",
                 style = "max-width:100% ;text-align: right"
             })
+    }
+  
     <div class="col-md-4  ">
    @Html.TextBoxFor(model => model, "{0:n}", new
    {

@@ -66,6 +66,17 @@ namespace MetopeMVCApp.Data.Repositories
         }
 
     }
+    public class PortfolioPerformanceRepository : GenericRepository<MetopeDbEntities, Portfolio_Performance>, IPortfolioPerformanceRepository
+    {
+        public IEnumerable<Portfolio_Performance> GetAllRecs(Expression<Func<Portfolio_Performance, bool>> predicate) // return an IEnumerable
+        {
+            IQueryable<Portfolio_Performance> query;
+            query = Context.Set<Portfolio_Performance>().Include(r => r.Portfolio).Where(predicate);
+            return query.ToList();
+        }
+
+         
+    }
     public class SecurityAnalyticsRepository : GenericRepository<MetopeDbEntities, Security_Analytics>, ISecurityAnalyticsRepository
     {
         public IEnumerable<Security_Analytics> GetAllRecs() //rather return an IEnumerable

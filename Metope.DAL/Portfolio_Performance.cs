@@ -11,7 +11,9 @@ namespace Metope.DAL
 {
     using System;
     using System.Collections.Generic;
-    
+    using Metope.DAL.MyMetaData;
+    using System.ComponentModel.DataAnnotations;
+    [MetadataType(typeof(PortfolioPerformanceModelMetaData))]
     public partial class Portfolio_Performance
     {
         public decimal Entity_ID { get; set; }

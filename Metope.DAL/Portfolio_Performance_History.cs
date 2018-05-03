@@ -15,7 +15,7 @@ namespace Metope.DAL
     public partial class Portfolio_Performance_History
     {
         public decimal Entity_ID { get; set; }
-        public string Portfolio_Code { get; set; }
+        public string Portfoliow_Code { get; set; }
         public Nullable<decimal> Dietz_Performance_Monthly { get; set; }
         public Nullable<decimal> Dietz_Performance_MonthToDate { get; set; }
         public Nullable<decimal> Dietz_Performance_Quarterly { get; set; }

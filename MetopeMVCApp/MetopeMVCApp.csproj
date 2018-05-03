@@ -293,6 +293,7 @@
     <Compile Include="Controllers\PartyFinancialsHistoryController.cs" />
     <Compile Include="Controllers\Port2Controller.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
+    <Compile Include="Controllers\PortfolioPerformanceController.cs" />
     <Compile Include="Controllers\PortfolioValuationController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -822,6 +823,12 @@
     <Content Include="Views\Shared\EditorTemplates\Security_Attribution_History.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Security_Performance_History.cshtml" />
     <Content Include="Views\Shared\_UserSelectDate.cshtml" />
+    <Content Include="Views\PortfolioPerformance\Create.cshtml" />
+    <Content Include="Views\PortfolioPerformance\Delete.cshtml" />
+    <Content Include="Views\PortfolioPerformance\Details.cshtml" />
+    <Content Include="Views\PortfolioPerformance\Edit.cshtml" />
+    <Content Include="Views\PortfolioPerformance\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Portfolio_Performance.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -526,8 +526,7 @@
           <Property Name="Portfolio_Code" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Dietz_Performance_Monthly" Type="decimal" Precision="18" Scale="9" />
           <Property Name="Dietz_Performance_MonthToDate" Type="decimal" Precision="18" Scale="9" />
-          <Property Name="Dietz_Performance_Quarterly" Type="decimal" Precision="18" Scale="9" />
-          <Property Name="Processed_Flag" Type="bit" Nullable="false" />
+          <Property Name="Dietz_Performance_Quarterly" Type="decimal" Precision="18" Scale="9" /> 
           <Property Name="ModDietz_Performance_Monthly" Type="decimal" Precision="18" Scale="9" />
           <Property Name="ModDietz_Performance_MonthToDate" Type="decimal" Precision="18" Scale="9" />
           <Property Name="ModDietz_Performance_Quarterly" Type="decimal" Precision="18" Scale="9" />
@@ -6731,8 +6730,7 @@
           <Property Name="Portfolio_Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Dietz_Performance_Monthly" Type="Decimal" Precision="18" Scale="9" />
           <Property Name="Dietz_Performance_MonthToDate" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Dietz_Performance_Quarterly" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Processed_Flag" Type="Boolean" Nullable="false" />
+          <Property Name="Dietz_Performance_Quarterly" Type="Decimal" Precision="18" Scale="9" /> 
           <Property Name="ModDietz_Performance_Monthly" Type="Decimal" Precision="18" Scale="9" />
           <Property Name="ModDietz_Performance_MonthToDate" Type="Decimal" Precision="18" Scale="9" />
           <Property Name="ModDietz_Performance_Quarterly" Type="Decimal" Precision="18" Scale="9" />
@@ -7999,8 +7997,7 @@
                 <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
                 <ScalarProperty Name="ModDietz_Performance_Quarterly" ColumnName="ModDietz_Performance_Quarterly" />
                 <ScalarProperty Name="ModDietz_Performance_MonthToDate" ColumnName="ModDietz_Performance_MonthToDate" />
-                <ScalarProperty Name="ModDietz_Performance_Monthly" ColumnName="ModDietz_Performance_Monthly" />
-                <ScalarProperty Name="Processed_Flag" ColumnName="Processed_Flag" />
+                <ScalarProperty Name="ModDietz_Performance_Monthly" ColumnName="ModDietz_Performance_Monthly" /> 
                 <ScalarProperty Name="Dietz_Performance_Quarterly" ColumnName="Dietz_Performance_Quarterly" />
                 <ScalarProperty Name="Dietz_Performance_MonthToDate" ColumnName="Dietz_Performance_MonthToDate" />
                 <ScalarProperty Name="Dietz_Performance_Monthly" ColumnName="Dietz_Performance_Monthly" />

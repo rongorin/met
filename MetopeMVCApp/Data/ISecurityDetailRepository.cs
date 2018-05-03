@@ -42,6 +42,12 @@ namespace MetopeMVCApp.Data
         IQueryable<Security_Price> GetAll(Expression<Func<Security_Price, bool>> predicate);
  
     }
+
+    public interface IPortfolioPerformanceRepository : IGenericRepository<Portfolio_Performance>
+    {
+        IEnumerable<Portfolio_Performance> GetAllRecs(Expression<Func<Portfolio_Performance, bool>> predicate);
+
+    } 
     //
     public interface IOrderDetailRepository : IGenericRepository<Order_Detail>
     {
@@ -74,13 +80,18 @@ namespace MetopeMVCApp.Data
     {
         IEnumerable<Security_Analytics_History> GetRecsTop100(Expression<Func<Security_Analytics_History, bool>> predicate); 
 
-    }
-     
+    } 
     public interface ISecurityAttributionHistoryRepository : IGenericRepository<Security_Attribution_History>
     {
         IEnumerable<Security_Attribution_History> GetRecsTop100(Expression<Func<Security_Attribution_History, bool>> predicate); 
 
     }
+    public interface IPortfolioPerformanceHistoryRepository : IGenericRepository<Portfolio_Performance_History>
+    {
+        IEnumerable<Portfolio_Performance_History> GetRecsTop100(Expression<Func<Portfolio_Performance_History, bool>> predicate); 
+
+
+    } 
     // Security Performance   
     public interface ISecurityPerformanceRepository : IGenericRepository<Security_Performance>
     {
