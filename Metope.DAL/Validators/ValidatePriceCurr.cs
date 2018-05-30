@@ -15,7 +15,7 @@ namespace MetopeMVCApp.Validators
         MetopeDbEntities db = new MetopeDbEntities();
 
            protected override ValidationResult IsValid(
-                                        object value, ValidationContext validationContext)  // 'value' will be the attribute
+                                        object value , ValidationContext validationContext)  // 'value' will be the attribute
             {
                 if (value != null)  // now inspect that value
                 { 

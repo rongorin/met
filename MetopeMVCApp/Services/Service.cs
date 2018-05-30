@@ -122,6 +122,15 @@ namespace MetopeMVCApp.Services
              
         }
 
+        public IEnumerable<Metope.DAL.Classification_Industry> ListIndustries(decimal iUser, string  iClassificationCode ="")
+        {
+            IClassificationIndustryRepository dbCntx = new ClassificationIndustryRepository();
+            return dbCntx.GetAll().Where(c => c.Entity_ID == iUser &&  
+                    ((iClassificationCode != "") ? c.Classification_Code == iClassificationCode : c.Classification_Code != ""))
+                    .OrderBy(r => r.Description)
+                   .ToList();
+
+        }
         public IEnumerable<Metope.DAL.Security_Detail> ListSecurities2(decimal iEntity, decimal iGenericEntity, string iSecurityTypeCode = "", bool thisEntityOnly = false)
         {
             ISecurityDetailRepository dbCntx;
@@ -157,6 +166,24 @@ namespace MetopeMVCApp.Services
                   
             //return dbCntx.GetAll().Where(c => c.Entity_ID == iUser);
                 
+        }
+        public IEnumerable<Metope.DAL.Security_Detail> ListSecuritiesForE(decimal iEntity, decimal iGenericEntity, string iSecurityTypeCode = "", bool thisEntityOnly = false)
+        {
+            ISecurityDetailRepository dbCntx;
+            dbCntx = new SecurityDetailRepository();
+            var results = dbCntx.GetAll()
+                .MatchCriteria(c => c.Entity_ID == iEntity || c.Entity_ID == iGenericEntity)
+                .MatchCriteria(c => ((iSecurityTypeCode != "") ?
+                           c.Security_Type_Code == iSecurityTypeCode : c.Security_Type_Code != ""))
+                .OrderBy(r => r.Security_Name);
+
+            if (thisEntityOnly == true)
+                return results.MatchCriteria(c => c.Entity_ID == iEntity).ToList();
+            else
+                return results.ToList();
+
+            //return dbCntx.GetAll().Where(c => c.Entity_ID == iUser);
+
         }
         public IEnumerable<Metope.DAL.User> ListUsers(decimal iEntity)
         {
@@ -205,8 +232,7 @@ namespace MetopeMVCApp.Services
                         .OrderBy(s => s.Party_Name)
                         .ToList();  
         }
-
-
+         
         //public IEnumerable<SelectListItem> ListPartyValues(string iType, decimal iEntity, decimal iGenericEntityId)
         //{ 
         //    return _context.Parties.Where(c => c.Party_Type == iType)

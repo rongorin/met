@@ -16,7 +16,7 @@
     @using (Html.BeginForm(null, null, new { SecurityId = ViewBag.SecurityID }, FormMethod.Post, new { @class = "form-horizontal", id = "TheForm" }))
     {
         <div class="row">
-            <div class="col-md-7 ">
+                    <div class="col-md-7 ">
                 <h2>Security Analytics History for Security <b>@ViewBag.Ticker</b>
                  </h2>
                 <h3>
@@ -30,7 +30,8 @@
                     {
                         @:  (for date @ViewBag.LastRecordDate to @ViewBag.UserInputdate)
                      }
-                }</h3> 
+                }
+                </h3> 
             </div>
 
             <div class="col-md-5 col-right">

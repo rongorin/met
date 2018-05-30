@@ -282,6 +282,9 @@
     <Compile Include="Controllers\DebtExpiryProfileController.cs" />
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\ErrorpageController.cs" />
+    <Compile Include="Controllers\HistoryControllers\PortfolioPerformanceHistoryController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\HistoryControllers\SecurityAnalyticsHistoryController.cs" />
     <Compile Include="Controllers\HistoryControllers\SecurityAttributionHistoryController.cs" />
     <Compile Include="Controllers\HistoryControllers\SecurityPerformanceHistoryController.cs" />
@@ -300,6 +303,9 @@
     <Compile Include="Controllers\PositionSODController.cs" />
     <Compile Include="Controllers\SecurityAnalyticsController.cs" />
     <Compile Include="Controllers\SecurityAttributionController.cs" />
+    <Compile Include="Controllers\SecurityClassificationIndustryController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\SecurityDetailController.cs" />
     <Compile Include="Controllers\SecurityDividendDetailController.cs">
       <SubType>Code</SubType>
@@ -373,6 +379,7 @@
     <Compile Include="Models\CashTransactionIndexViewModel.cs" />
     <Compile Include="Models\CheckBoxListItem.cs" />
     <Compile Include="Models\ClassificationEditViewModel.cs" />
+    <Compile Include="Models\ClassificationIndustryDDLViewModel.cs" />
     <Compile Include="Models\Custom\ApiException.cs" />
     <Compile Include="Models\Custom\MyError.cs" />
     <Compile Include="Models\Custom\Weather.cs" />
@@ -829,6 +836,18 @@
     <Content Include="Views\PortfolioPerformance\Edit.cshtml" />
     <Content Include="Views\PortfolioPerformance\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Portfolio_Performance.cshtml" />
+    <Content Include="Views\PortfolioPerformanceHistory\Create.cshtml" />
+    <Content Include="Views\PortfolioPerformanceHistory\Delete.cshtml" />
+    <Content Include="Views\PortfolioPerformanceHistory\Details.cshtml" />
+    <Content Include="Views\PortfolioPerformanceHistory\Edit.cshtml" />
+    <Content Include="Views\PortfolioPerformanceHistory\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Portfolio_Performance_History.cshtml" />
+    <Content Include="Views\SecurityClassificationIndustry\Create.cshtml" />
+    <Content Include="Views\SecurityClassificationIndustry\Delete.cshtml" />
+    <Content Include="Views\SecurityClassificationIndustry\Details.cshtml" />
+    <Content Include="Views\SecurityClassificationIndustry\Edit.cshtml" />
+    <Content Include="Views\SecurityClassificationIndustry\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Classification_Industry.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -43,15 +43,29 @@ namespace MetopeMVCApp.Controllers
                     .Include(p => p.Portfolio_Valuation)
                     .OrderBy(s => s.Portfolio_Name);
                      
-            var pagelist = getPorts .ToPagedList(page, 10);
+            var pagelist = getPorts .ToPagedList(page, 20);
             return pagelist;
             //return DataContext.Portfolios.Where(c => c.Entity_ID == iUserId) ; 
 
             //return DataContext.Replies.Where(r => r.TopicId == topicId);
         }
 
-        public IQueryable<User> GetUsers(decimal iEntityId)
+        public IEnumerable<Portfolio> GetPortfoliosEnum(decimal iUserId, int page = 1, string searchTerm = null)
         {
+            var getPorts = GetAll().Where(c => c.Entity_ID == iUserId)
+                    .SearchPortfName(searchTerm)
+                //.Where(r => searchTerm == null || r.Portfolio_Name.Contains(searchTerm))
+                    .Include(p => p.Entity)
+                    .Include(p => p.User)
+                    .Include(p => p.Portfolio_Valuation)
+                    .OrderBy(s => s.Portfolio_Name);
+
+            var pagelist = getPorts.ToList();
+            return pagelist; 
+             
+        }
+        public IQueryable<User> GetUsers(decimal iEntityId)
+        {  
             return Context. Users.Where(r => r.Entity_ID == iEntityId); 
              
             //return DataContext.Portfolios.Where(c => c.Entity_ID == iUserId) ;   

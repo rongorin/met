@@ -67,7 +67,8 @@ namespace MetopeMVCApp.Controllers
         public ActionResult Index(int page = 1, string searchTerm = null)
         { 
             decimal EntityID = (decimal)ViewBag.EntityId;
-            var portfolios = _repo.GetPortfolios(EntityID, page, searchTerm)
+                     // var portfolios = _repo.GetPortfolios(EntityID, page, searchTerm)
+            var portfolios = _repo.GetPortfoliosEnum(EntityID, page, searchTerm)
                .Select(g => new PortfolioIndexViewModel
                     {
                         Entity_ID = g.Entity_ID,
@@ -76,44 +77,13 @@ namespace MetopeMVCApp.Controllers
                         Financial_Year_End = g.Financial_Year_End,
                         Active_Flag = g.Active_Flag ,
                         Portfolio_Valuation = g.Portfolio_Valuation
-                         //HasValuation= g.Portfolio_Valuation.Portfolio_Code 
-                        //Analytics = g => g.Wh Select(g => new SecurityDetailIndexModel
-                    })   . ToList();
-
-            //var security_detail = _repo.GetAll().Include(c => c.Security_Analytics)
-            //        .MatchCriteria(c => c.Entity_ID == EntityID || c.Entity_ID == genericId)
-
-            //        .Select(g => new SecurityDetailIndexModel
-            //        {
-            //            Security_ID = g.Security_ID,
-            //            Entity_ID = g.Entity_ID,
-            //            Security_Type_Code = g.Security_Type_Code,
-            //            Security_Name = g.Security_Name,
-            //            Current_Market_Price = g.Current_Market_Price,
-            //            Ticker = g.Ticker,
-            //            Primary_Exch = g.Primary_Exch,
-            //            Maturity_Date = g.Maturity_Date,
-            //            Security_Status = g.Security_Status,
-            //            NumberOfRows = numberOfRows,
-            //            HasAnalystics = g.Security_Analytics.Count()
-            //            //Analytics = g => g.Wh Select(g => new SecurityDetailIndexModel
-            //        })
-            //        .OrderBy(s => s.Security_Name).
-            //        ToList();
-
-
-            // db.Portfolios.Where(c => c.Entity_ID == currentUser.EntityIdScope).Include(p => p.Entity).Include(p => p.User);
-
-
-            ////return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId).Include(p => p.Entity).Include(p => p.User);
-            //// var security_detail = db.Security_Detail.Include(s => s.Country).Include(s => s.Country1).Include(s => s.Currency).Include(s => s.Currency1).Include(s => s.Currency2).Include(s => s.Currency3) ;
-
-            //var userId = User.Identity.GetUserId();
-           //var checkingAccountId = db.CheckingAccounts.Where(c => c.ApplicationUserId == userId).First().Id; 
-
+                             //HasValuation= g.Portfolio_Valuation.Portfolio_Code 
+                            //Analytics = g => g.Wh Select(g => new SecurityDetailIndexModel
+                    }). ToList();
+              
             if(Request.IsAjaxRequest())
             {
-                return PartialView("_Portfolios", portfolios.ToPagedList(page, 10));
+                return PartialView("_Portfolios", portfolios.ToPagedList(page,10));
             }
             manager.Dispose();
             return View(portfolios.ToPagedList(page, 10));

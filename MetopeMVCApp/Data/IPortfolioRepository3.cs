@@ -14,6 +14,7 @@ namespace MetopeMVCApp.Data.GenericRepository
         //IQueryable<Portfolio> GetPortfolios(decimal iEntityId, string iSearchTerm=null);
         //IQueryable<Portfolio> GetPortfolios(decimal iEntityId, string iSearchTerm = null);
         IPagedList<Portfolio> GetPortfolios(decimal iEntityId, int page = 1, string iSearchTerm = null);
+        IEnumerable<Portfolio> GetPortfoliosEnum(decimal iEntityId, int page = 1, string iSearchTerm = null);
         IList<Portfolio> GetPortfolios(decimal iEntityId);
         IQueryable<User> GetUsers(decimal iEntityId);
         Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode);

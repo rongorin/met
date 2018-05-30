@@ -47,7 +47,7 @@ namespace MetopeMVCApp.Controllers
         [PartyFilterIssr]
         [SecuritiesFilter]
         [ActualForecastIndicatoreFilter]
-        public ActionResult Create(string Nav)
+        public ActionResult Create(string Nav ="")
         { 
             var currentUser = manager.FindById(User.Identity.GetUserId());
             ViewBag.EntityIdScope = currentUser.EntityIdScope;

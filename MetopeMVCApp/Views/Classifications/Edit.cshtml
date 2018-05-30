@@ -2,8 +2,7 @@
  
 @using GridMvc.Html
 @{
-    ViewBag.Title = "Security Attribution";
-    //List<string> _sizes = new List<string>() { "10", "20", "50", "100" };
+    ViewBag.Title = "Classifications"; 
 }
 @section Styles {
     @Styles.Render("~/Content/GridMvc")
@@ -94,3 +93,6 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+@section Scripts { @Scripts.Render("~/bundles/datetime")
+@Scripts.Render("~/bundles/GridMvc")
+}

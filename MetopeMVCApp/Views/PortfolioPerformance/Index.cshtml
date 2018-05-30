@@ -2,7 +2,7 @@
 
 @using GridMvc.Html
 @{
-    ViewBag.Title = "PortfolioPerformance";
+    ViewBag.Title = "SecurityClassificationIndustry";
 }
 @section Styles {
     @Styles.Render("~/Content/GridMvc")
@@ -56,6 +56,11 @@
         @Html.ActionLink("Delete", "Delete", "PortfolioPerformance", new { EntityId = c.Entity_ID, PortfolioCode = c.Portfolio_Code }, null)
     </u>);
 
+        columns.Add().Encoded(false).Sanitized(false)
+                .RenderValueAs(c => @<a href="@Url.Action("Index", "PortfolioPerformanceHistory", new { PortfolioCode = c.Portfolio_Code })">
+                <span class="badge">History</span>
+            </a>).SetWidth(90);
+ 
     }).WithPaging(25).Sortable(true)
 
 </div>
@@ -67,9 +72,9 @@
             var myUrl2 ;
             //here rather do full page load instead of the Ajax partial:
             if ( "@ViewBag.Nav" != "")
-                myUrl2 = mtpApp.Urls.baseUrl + "PortfolioPerformance/Edit?PortfolioCode=" + e.row.Portfolio_Code +  "&EntityId=" + e.row.Entity_ID + "&Nav=" + "@ViewBag.Nav";
+                myUrl2 = mtpApp.Urls.baseUrl + "SecurityClassificationIndustry/Edit?PortfolioCode=" + e.row.Portfolio_Code +  "&EntityId=" + e.row.Entity_ID + "&Nav=" + "@ViewBag.Nav";
             else
-                myUrl2 = mtpApp.Urls.baseUrl + "PortfolioPerformance/Edit?PortfolioCode=" + e.row.Portfolio_Code + "&EntityId=" + e.row.Entity_ID;
+                myUrl2 = mtpApp.Urls.baseUrl + "SecurityClassificationIndustry/Edit?PortfolioCode=" + e.row.Portfolio_Code + "&EntityId=" + e.row.Entity_ID;
 
             window.location = myUrl2;
         });

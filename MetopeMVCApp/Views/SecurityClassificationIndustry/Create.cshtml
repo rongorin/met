@@ -1,0 +1,69 @@
+﻿ 
+@model Metope.DAL.Security_Classification_Industry
+
+@{
+    ViewBag.Title = "Create";
+}
+@section Styles {
+    @Styles.Render("~/Content/datetime")
+} 
+
+<h2>Create Security Classification Industry for Security Id <b>@Model.Security_ID.ToString()</b></h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(false)
+        @Html.ValidationMessage("Error")
+        @Html.HiddenFor(model => model.Entity_ID)
+        @Html.HiddenFor(model => model.Security_ID)
+
+        <div class="form-group"> 
+
+            @Html.EditorForModel()  
+            @Html.Partial("_SaveButtonShow", Model)
+        </div>    
+
+    </div>
+}
+@Html.ActionLink("Back to List", "Index", "SecurityClassificationIndustry", new { SecurityId = ViewBag.SecuritiesAllScope }, null)
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+
+    <script>
+        $(function () {  
+            ClassCodeClicked(); 
+        });
+        function ClassCodeClicked() {
+            $('select#ddClassification_Code').change(function () {
+                var classificationCode = $(this).val();
+                $.ajax({
+                    url: 'LoadIndustryClassifications',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        classificationCd: classificationCode
+                    }),
+                    //data: "{'classificationCd':classificationCode }",
+                    dataType: 'json',
+                    success: function (data) {
+                        $("#ddIndustry_Code").html(""); // clear before appending new list 
+                        $("#ddIndustry_Code").append(
+                                $('<option></option>').val("").html("Please select"));
+
+                        $.each(data, function (i, industry) {
+
+                            $("#ddIndustry_Code").append(
+                                $('<option></option>').val(industry.Industry_Code).html(industry.Description));
+                        });
+                    },
+                    error: function () { alert("Something went wrong getting the Industry Codes...") },
+                });
+            });
+        }
+    </script>
+}
+ 

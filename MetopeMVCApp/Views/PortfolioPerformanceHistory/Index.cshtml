@@ -1,0 +1,158 @@
+﻿@model IEnumerable<Metope.DAL.Portfolio_Performance_History> 
+@using GridMvc.Html
+@{
+    ViewBag.Title = "Index";
+
+    List<string> _sizes = new List<string>() { "10", "20", "50", "100" };
+    ViewBag.RowsPgSelected = ((SelectList)ViewBag.RowsPerPage).SelectedValue ?? _sizes[1];
+}
+@section Styles {
+    @Styles.Render("~/Content/GridMvc")
+    @Styles.Render("~/Content/datetime")
+    <link href="~/Content/cssNoLines.css" rel="stylesheet" />
+    <link href="~/Content/myButtons.css" rel="stylesheet" />
+}
+<div id="mainList">
+    @using (Html.BeginForm(null, null, new {  PortfolioCode = ViewBag.Portfolio }, FormMethod.Post, new { @class = "form-horizontal", id = "TheForm" }))
+    {
+        <div class="row">
+            <div class="col-md-9 ">
+                <h3>
+                    Portfolio Performance History
+                    @if (ViewBag.UserInputDate != null)
+                    {
+                        if (ViewBag.UserInputDate == DateTime.Now.Date.ToString("dd/MM/yyyy"))
+                        {
+                            @:  (for date  @ViewBag.LastRecordDate to Today)
+                            }
+                        else
+                        {
+                            @:  (for date @ViewBag.LastRecordDate to @ViewBag.UserInputdate)
+                            }
+                    }
+                </h3>
+                <h3>
+                    for Portfolio <b>@ViewBag.Portfolio</b> 
+                </h3>
+            </div>
+
+            <div class="col-md-3 col-right">
+                <div class="pull-right">
+                    <label class=" control-label">show rows:</label>
+                    @Html.DropDownList("numberOfRows", (SelectList)ViewBag.RowsPerPage, new
+                        {
+                            onchange = "document.getElementById('TheForm').submit();"
+                        })
+                    @*<input type="submit" value="Update" class="btn btn-primary btn-xs" />*@
+                    @*@Html.DropDownList("numberOfRows", null, string.Empty, new { @class = "form-control" })*@
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 ">
+                @Html.ActionLink("Create New", "Create", new { PortfolioCode = ViewBag.Portfolio }, null)
+            </div>
+            @Html.Partial("_UserSelectDate")
+
+            <div class="col-md-6">
+                <h5>(note only the most recent <b>100</b> records are retrieved up to the selected date)</h5>
+            </div>
+
+        </div> 
+
+     }
+     @Html.Partial("_MsgSuccesFail", Model) 
+    <div class="code-cut ">
+        @Html.Grid(Model).Named("PortfolioPerformanceGrd").Columns(columns =>
+    {
+        columns.Add(c => c.Record_Date).Titled("History Record Date").Filterable(true).SetWidth(180).Format("{0:dd MMM yyyy}");
+         
+        columns.Add(c => c.Portfolio_Code, true);
+
+        columns.Add(c => c.Dietz_Performance_Monthly)
+            .Titled("Dietz Monthly")
+            .Css("text-right").Filterable(false)
+            .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0.00##}</span>", x.Dietz_Performance_Monthly)).Encoded(false)
+            .Sanitized(false)
+            .SetWidth(120);
+
+        columns.Add(c => c.Dietz_Performance_MonthToDate)
+            .Titled("Dietz MonthToDate")
+            .Css("text-right").Filterable(false)
+            .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0.00##}</span>", x.Dietz_Performance_MonthToDate)).Encoded(false)
+            .Sanitized(false)
+            .SetWidth(120);
+
+        columns.Add(c => c.Dietz_Performance_Quarterly)
+            .Titled("Dietz Quarterly") 
+            .Css("text-right").Filterable(false)
+            .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0.00##}</span>", x.Dietz_Performance_Quarterly)).Encoded(false)
+            .Sanitized(false)
+            .SetWidth(120); 
+
+        columns.Add(c => c.ModDietz_Performance_Monthly)
+            .Titled("ModDietz Monthly") 
+            .Css("text-right").Filterable(false)
+            .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0.00##}</span>", x.ModDietz_Performance_Monthly)).Encoded(false)
+            .Sanitized(false)
+            .SetWidth(120);
+        columns.Add(c => c.ModDietz_Performance_Quarterly)
+         .Titled("ModDietz Quarterly")
+
+          .Css("text-right").Filterable(false)
+          .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0.00##}</span>", x.ModDietz_Performance_Quarterly)).Encoded(false)
+          .Sanitized(false)
+          .SetWidth(120);
+        columns.Add(c => c.ModDietz_Performance_MonthToDate)
+           .Titled("ModDietz MonthToDate") 
+          .Css("text-right").Filterable(false)
+          .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0.00##}</span>", x.ModDietz_Performance_MonthToDate)).Encoded(false)
+          .Sanitized(false)
+          .SetWidth(120);
+
+
+        columns.Add()
+        .Encoded(false)
+        .Sanitized(false)
+        .SetWidth(50)
+        .RenderValueAs(c => @<u>
+            @Html.ActionLink("Edit", "Edit", "PortfolioPerformanceHistory", new { PortfolioCode = c.Portfolio_Code, RecordDate = c.Record_Date }, null)
+        </u>);
+        columns.Add()
+        .Encoded(false)
+        .Sanitized(false)
+        .SetWidth(50)
+        .RenderValueAs(c => @<u>
+            @Html.ActionLink("Delete", "Delete", "PortfolioPerformanceHistory", new { PortfolioCode = c.Portfolio_Code, RecordDate = c.Record_Date }, null)
+        </u>);
+
+    }  ).WithPaging(Convert.ToInt16(ViewBag.RowsPgSelected)).Sortable(true)
+    </div> 
+</div>
+<br />
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Go Back", "Index", "PortfolioPerformance", new { PortfolioCode = ViewBag.Portfolio, SecurityId = ViewBag.SecurityID }, null)
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/GridMvc")
+    @Scripts.Render("~/bundles/datetime")
+    <script>
+    $(function () {
+        pageGrids.PortfolioPerformanceGrd.onRowSelect(function (e) {
+            //here rather do full page load instead of the Ajax partial:
+            // var myNav = "@ViewBag.Nav";
+            if ("@ViewBag.Nav" != "")
+                myUrl2 = mtpApp.Urls.baseUrl + "PortfolioPerformanceHistory/Edit?PortfolioCode=" + e.row.Portfolio_Code  + "&RecordDate=" + e.row.Record_Date + "&Nav=" + "@ViewBag.Nav";
+            else
+                myUrl2 = mtpApp.Urls.baseUrl + "PortfolioPerformanceHistory/Edit?PortfolioCode=" + e.row.Portfolio_Code + "&RecordDate=" + e.row.Record_Date;
+
+            window.location = myUrl2;
+        });
+        //not using Ajax call anymore, rather server call to keep all consistent
+
+    });
+    </script>
+
+}

@@ -11,6 +11,9 @@ namespace Metope.DAL
 {
     using System;
     using System.Collections.Generic;
+    using Metope.DAL.MyMetaData;
+    using System.ComponentModel.DataAnnotations;
+    [MetadataType(typeof(SecurityClassificationIndustryModelMetaData))]
     
     public partial class Security_Classification_Industry
     {

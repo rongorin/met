@@ -47,5 +47,15 @@ namespace MetopeMVCApp.Data
                 return query.ToList();
             } 
         }
+        public class PortfolioPerformanceHistoryRepository : GenericRepository<MetopeDbEntities, Portfolio_Performance_History>, IPortfolioPerformanceHistoryRepository
+        {
+            public IEnumerable<Portfolio_Performance_History> GetRecsTop100(Expression<Func<Portfolio_Performance_History, bool>> predicate)
+            { 
+                IQueryable<Portfolio_Performance_History> query;
+                query = Context.Set<Portfolio_Performance_History>().Include(r => r.Portfolio).Where(predicate)
+                                        .OrderByDescending(r => r.Record_Date).Take(100);
+                return query.ToList();
+            }
+        }
     }
 }

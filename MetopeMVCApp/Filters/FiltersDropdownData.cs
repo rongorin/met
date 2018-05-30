@@ -9,10 +9,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing; 
+using System.Web.Routing;
+using System.Web.Script.Serialization; 
  
 
 namespace MetopeMVCApp.Filters
@@ -395,7 +397,8 @@ namespace MetopeMVCApp.Filters
              {
                  MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
 
-                 portfolios = svc.ListPortfolios(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")), "ACTIVE");
+                 portfolios = svc.ListPortfolios(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")),
+                                                 "ACTIVE");
                  //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, portfolios);
              }
@@ -421,6 +424,68 @@ namespace MetopeMVCApp.Filters
              filterContext.Controller.ViewBag.Classification_Code = new SelectList(classifications, "Classification_Code", "Classification_Code", filterContext.Controller.ViewBag.myClassificationCode);
 
              base.OnActionExecuted(filterContext);
+         }
+
+     }
+
+     public class IndustryFilter : ActionFilterAttribute
+     {
+         public override void OnActionExecuted(ActionExecutedContext filterContext)
+         { 
+             // do not Cache as this ddl contents will differ onchange of the Classification ddl 
+
+             MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+
+             var industries = svc.ListIndustries(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")),
+                                                (string)filterContext.Controller.ViewBag.myClassificationCode)
+                                     .Select(a => new
+                                     {
+                                         Industry_Code = a.Industry_Code,
+                                         Description = a.Description
+                                     });  
+             filterContext.Controller.ViewBag.Industry_Code = new SelectList(industries, "Industry_Code", "Description", filterContext.Controller.ViewBag.myIndustryCode);
+              
+             base.OnActionExecuted(filterContext);
+         } 
+     } 
+
+     public class IndustryJSONFilter: ActionFilterAttribute
+     {
+         //To just re-populate the IndustryDDList on autopostback.
+         //this actionfilter just abstracts away all the code from the controller to stream off the received
+         //ClassificationCd from the Ajax call, then populates viewbag var with all the IndustryCodes for that Class.Cd
+         //
+         public override void OnActionExecuting(ActionExecutingContext filterContext)
+         {   
+             string jsonPostData = "";
+             using (var reader = new StreamReader(filterContext.HttpContext.Request.InputStream))
+             {
+                 jsonPostData = reader.ReadToEnd();
+             } 
+             //initialize everything needed to deserialize the jason received from the Request Inputstream.
+             var ser = new JavaScriptSerializer();
+             Dictionary<string, string> jsonDictionary  = new Dictionary<string,string>(); 
+             string classificationCode = string.Empty;
+
+             if (jsonPostData.Length > 0)
+             { 
+                 jsonDictionary = ser.Deserialize<Dictionary<string, string>>(jsonPostData); 
+                 classificationCode = jsonDictionary.First().Value;
+             }
+            //now get the Industyr codes for the ClassificationCode into an Anonymous object.
+            MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+
+            var industries = svc.ListIndustries(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")),
+                                            classificationCode)
+                                    .Select(a => new
+                                    {
+                                        Industry_Code = a.Industry_Code,
+                                        Description = a.Description
+                                    });  
+
+            filterContext.Controller.ViewBag.Industry_Code = industries; 
+       
+            base.OnActionExecuting(filterContext);
          }
 
      } 
@@ -465,7 +530,8 @@ namespace MetopeMVCApp.Filters
          }
 
      }
-     public class AllSecuritiesFilter : ActionFilterAttribute
+    
+      public class AllSecuritiesFilter : ActionFilterAttribute
      {
          //This Action filter obtains all the securities for the inscope Entity only. 
          public override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -483,6 +549,30 @@ namespace MetopeMVCApp.Filters
                  filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
              }
              filterContext.Controller.ViewBag.Securities_All = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll); 
+           
+             base.OnActionExecuted(filterContext);
+         } 
+     }
+
+      //for inscope entity securities only
+      public class SecuritiesForInScopeFilter : ActionFilterAttribute
+      {
+         //This Action filter obtains all the securities for the inscope Entity only. 
+         public override void OnActionExecuted(ActionExecutedContext filterContext)
+         {
+             IEnumerable<Security_Detail> secs;
+             if ((secs = (filterContext.HttpContext.Cache.Get(GetType().FullName) as IEnumerable<Security_Detail>)) == null)
+             {
+                 bool getInScopeOnly = false;
+                 MetopeMVCApp.Services.Services svc = new MetopeMVCApp.Services.Services(false);
+
+                 secs = svc.ListSecurities(Convert.ToDecimal(filterContext.HttpContext.Cache.Get("MetopeMVCApp.Filters.SetAllowedEntityIdAttribute")),
+                                           Convert.ToDecimal(filterContext.Controller.ViewBag.genericEntity),
+                                           "", getInScopeOnly);
+                 //(Convert.ToDecimal(filterContext.Controller.ViewBag.EntityIdScope));
+                 filterContext.HttpContext.Cache.Insert(GetType().FullName, secs);
+             }
+             filterContext.Controller.ViewBag.Securities_All_Scope = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAllScope); 
            
              base.OnActionExecuted(filterContext);
          } 
@@ -585,9 +675,9 @@ namespace MetopeMVCApp.Filters
  
 
              base.OnActionExecuted(filterContext);
-         }
-
+         } 
      }
+     
      public class CurrencyPairFilter : ActionFilterAttribute
      {
          public override void OnActionExecuted(ActionExecutedContext filterContext)

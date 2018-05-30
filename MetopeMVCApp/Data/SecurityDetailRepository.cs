@@ -73,9 +73,22 @@ namespace MetopeMVCApp.Data.Repositories
             IQueryable<Portfolio_Performance> query;
             query = Context.Set<Portfolio_Performance>().Include(r => r.Portfolio).Where(predicate);
             return query.ToList();
-        }
+        } 
+    }
 
-         
+    public class SecurityClassificationIndustryRepository : GenericRepository<MetopeDbEntities, Security_Classification_Industry>, ISecurityClassificationIndustryRepository
+    {
+        public IEnumerable<Security_Classification_Industry> GetAllRecs(Expression<Func<Security_Classification_Industry, bool>> predicate) // return an IEnumerable
+        {
+            IQueryable<Security_Classification_Industry> query;
+            //query = Context.Set<Security_Classification_Industry>().Include(r => r.Portfolio).Where(predicate);
+            query = Context.Set<Security_Classification_Industry>().Where(predicate)
+                                                                        .OrderBy(x => x.Security_ID)
+                                                                            .ThenByDescending(x => x.Effective_Date)
+                                                                            .ThenBy(x => x.Classification_Code);
+                                                                            
+            return query.ToList();
+        }
     }
     public class SecurityAnalyticsRepository : GenericRepository<MetopeDbEntities, Security_Analytics>, ISecurityAnalyticsRepository
     {

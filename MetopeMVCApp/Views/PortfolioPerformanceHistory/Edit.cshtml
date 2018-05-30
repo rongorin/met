@@ -1,0 +1,32 @@
+﻿@model Metope.DAL.Portfolio_Performance_History
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h3>Edit Portfolio Performance History for <b> @Model.Portfolio_Code </b> </h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal"> 
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Entity_ID)
+
+        @Html.HiddenFor(model => model.Portfolio_Code) 
+        @Html.HiddenFor(model => model.Record_Date)
+
+        @Html.EditorFor(model => model.Record_Date, "BootstrapEditDateVertic", new { MeDisabled = "readonly", setLength = "Longer" })
+ 
+        @Html.EditorForModel(new { MeDisabled = "readonly" })
+    </div>
+}
+<div>
+    @Html.ActionLink("Go Back", "Index", "PortfolioPerformanceHistory", new { PortfolioCode = Model.Portfolio_Code }, null)
+
+
+</div>
+
+

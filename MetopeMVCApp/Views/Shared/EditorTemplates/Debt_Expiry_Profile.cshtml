@@ -8,7 +8,11 @@
             @*@Html.DropDownList("Party_Code", null, string.Empty, new { MyDisabled = "readonly", @class = "form-control" })*@
             @if (ViewBag.MeDisabled == "readonly")
             {
-                @Html.DropDownList("Party_Code", null, string.Empty, new {disabled = "disabled" , @class = "form-control" })
+                @Html.DropDownList("Party_Code", null, string.Empty,
+                    new {
+                        disabled = "disabled" ,
+                        @class = "form-control" 
+                    })
             }
             else
             {

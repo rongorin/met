@@ -31,7 +31,7 @@ namespace MetopeMVCApp.Controllers
         //}
 
         
-        [ClassificationsFilter]
+       [ClassificationsFilter]
        public ActionResult Create(string ClassificationCode)
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
@@ -43,17 +43,10 @@ namespace MetopeMVCApp.Controllers
             };
 
             return View(indust);
-
-            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code");
-            //ViewBag.Entity_ID = new SelectList(db.Portfolios, "Entity_ID", "Portfolio_Name");
-            //ViewBag.Security_ID = new SelectList(db.Security_Detail, "Security_ID", "Security_Name");
-            //ViewBag.Entity_ID = new SelectList(db.Users, "Entity_ID", "User_Name");
-
+              
         }
         
-        // POST: ClassificationIndustry/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: ClassificationIndustry/Create 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ClassificationsFilter]

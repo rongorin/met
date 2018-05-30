@@ -1,12 +1,5 @@
 ﻿@model Metope.DAL.Classification_Industry
-
-@*<div class="form-group">
-    @Html.LabelFor(model => model.Classification_Code, "Classification_Code", htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.DropDownList("Classification_Code", null, htmlAttributes: new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Classification_Code, "", new { @class = "text-danger" })
-    </div>
-</div>*@
+ 
 
 <div class="form-group">
     @Html.LabelFor(model => model.Classification_Code, htmlAttributes: new { @class = "control-label col-md-2  input-sm " })
@@ -18,11 +11,11 @@
         @if (ViewBag.MeDisabled == "readonly")
         {
             @Html.DropDownList("Classification_Code", null, string.Empty, new
-                           {
-                               @class = "form-control",
-                               @readonly = "readonly",
-                               disabled = "disabled"
-                           })
+                        {
+                            @class = "form-control",
+                            @readonly = "readonly",
+                            disabled = "disabled"
+                        })
         }
         else
         {

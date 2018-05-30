@@ -126,11 +126,16 @@
                 </u>);
 
         columns.Add().Encoded(false).Sanitized(false)
+                .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityClassificationIndustry", new { SecurityId = c.Security_ID, Ticker = c.Ticker })">
+                <span class="badge">Classifications</span>
+            </a>);
+            
+        columns.Add().Encoded(false).Sanitized(false)
                 .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityPrice", new { SecurityId = c.Security_ID })">
                 <span class="badge">Price History</span>
             </a>);
         columns.Add().Encoded(false).Sanitized(false)
-                .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityDividendDetail", new { SecurityId = c.Security_ID })">
+                .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityDividendDetail", new { SecurityId = c.Security_ID})">
                 <span class="badge">Dividends</span>
             </a>);
             

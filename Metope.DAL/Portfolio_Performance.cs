@@ -14,6 +14,7 @@ namespace Metope.DAL
     using Metope.DAL.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(PortfolioPerformanceModelMetaData))]
+  
     public partial class Portfolio_Performance
     {
         public decimal Entity_ID { get; set; }
@@ -21,7 +22,6 @@ namespace Metope.DAL
         public Nullable<decimal> Dietz_Performance_Monthly { get; set; }
         public Nullable<decimal> Dietz_Performance_MonthToDate { get; set; }
         public Nullable<decimal> Dietz_Performance_Quarterly { get; set; }
-        //public bool Processed_Flag { get; set; }
         public Nullable<decimal> ModDietz_Performance_Monthly { get; set; }
         public Nullable<decimal> ModDietz_Performance_MonthToDate { get; set; }
         public Nullable<decimal> ModDietz_Performance_Quarterly { get; set; }

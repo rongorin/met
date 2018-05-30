@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Metope.DAL</RootNamespace>
-    <AssemblyName>Metope.DAL</AssemblyName>
+    <AssemblyName>`</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -143,6 +143,7 @@
     <Compile Include="MyMetaData\PortfolioValuationModelMetatData.cs" />
     <Compile Include="MyMetaData\PositionSODModelMetatData.cs" />
     <Compile Include="MyMetaData\SecurityAnalyticsModelMetaData.cs" />
+    <Compile Include="MyMetaData\SecurityClassificationIndustryModelMetaData.cs" />
     <Compile Include="MyMetaData\SecurityDetailModelMetaData.cs" />
     <Compile Include="MyMetaData\SecurityDividendDetailModelMetaData.cs" />
     <Compile Include="MyMetaData\SecurityListDetailModelMetaData.cs" />
