@@ -72,6 +72,7 @@ namespace MetopeMVCApp.Controllers
                          Entity_ID = g.Entity_ID,
                          Security_Type_Code = g.Security_Type_Code,
                          Security_Name = g.Security_Name,
+                         Short_Name = g.Short_Name,
                          Current_Market_Price = g.Current_Market_Price,
                          Ticker = g.Ticker,
                          Primary_Exch = g.Primary_Exch,

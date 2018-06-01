@@ -101,7 +101,7 @@
         columns.Add(c => c.Ticker)
             .Titled("Ticker").Filterable(true)
             .SetWidth(100);
-        columns.Add(c => c.Security_Name).Titled("Security name").Filterable(true);
+        columns.Add(c => c.Short_Name).Titled("Security name").Filterable(true);
         columns.Add(c => c.Security_ID).Titled("Security id").Filterable(true).SetWidth(0);
         // columns.Add(c => c.Security_Type_Code ).Titled("Return").Encoded(false).Sanitized(false).RenderValueAs(c => @Html.ActionLink(" ", "../LendReturns/Create", new { id = c.NumberOfRows }, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
   

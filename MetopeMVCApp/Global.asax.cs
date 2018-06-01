@@ -62,6 +62,15 @@ namespace ASP.MetopeNspace
 
         protected void Application_Error(object sender, EventArgs e)
         {
+            if (!System.Diagnostics.EventLog.SourceExists  ("ASPNETApplication"))
+            {
+                System.Diagnostics.EventLog.CreateEventSource
+                   ("ASPNETApplication", "Application");
+            }
+            System.Diagnostics.EventLog.WriteEntry
+                ("ASPNETApplication",
+                Server.GetLastError().Message);
+
             //Exception exc = Server.GetLastError();
             //Server.ClearError();
             //Response.Redirect("/Errorpage/Errormessage");

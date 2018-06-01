@@ -64,9 +64,7 @@
      .RenderValueAs(c => @<u>
         @Html.ActionLink("Delete", "Delete", "SecurityClassificationIndustry", new { EntityId = c.Entity_ID, SecurityID = c.Security_ID, EffectiveDate = c.Effective_Date, CLassificationCode = c.Classification_Code, IndustryCode = c.Industry_Code }, null)
    
-    </u>);
-
-
+    </u>); 
     }).WithPaging(25).Sortable(true)
 
 </div>

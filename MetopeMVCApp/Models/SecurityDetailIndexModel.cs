@@ -11,6 +11,7 @@ namespace MetopeMVCApp.Models
         public decimal Entity_ID { get; set; } 
         public string Security_Type_Code { get; set; }
         public string Security_Name { get; set; }
+        public string Short_Name { get; set; }
         public decimal? Current_Market_Price { get; set; }
         public string Ticker { get; set; }
         public Nullable< DateTime> Maturity_Date { get; set; }
