@@ -15,7 +15,7 @@ namespace MetopeMVCApp.Controllers
     [SetAllowedEntityIdAttribute]
     public class CashTransactionsController : Controller
     {
-        private readonly ICashTransactionsRepository db11;
+        private readonly ICashTransactionsRepository db11; //df asdf
         //private MetopeDbEntities db = new MetopeDbEntities();
         
         public CashTransactionsController(ICashTransactionsRepository iDb)
