@@ -107,46 +107,65 @@
         });
 
         $(buttonBulkDelete).click(function () {
-            if (confirm('Are you sure you want to delete the selected rows ?')) {
-                makeAjaxCall();
-        }
-            function makeAjaxCall()
-            {
+            var dialog = bootbox.dialog({
+                title: 'Confirm you are sure',
+                message: "<p>Are you sure you want to delete the selected rows?</p>",
+                buttons: {
+                    cancel: {
+                        label: "No, don't",
+                        className: 'btn-info',
+                        callback: function () {
+                            bootbox.hideAll();
+                        }
+                    }, 
+                    ok: {
+                        label: "YES!",
+                        className: 'btn-danger',
+                        callback: function () {
+                            makeAjaxCall(); 
+                        }
+                    }
+                }
+            });
+             
+
+        function makeAjaxCall()
+        {
 
             var myArray = [];
-                var checkedValues = $("input:checkbox:checked", ".grid-row").map(function () {
-                    return $(this).val();
-                }).get();
+            var checkedValues = $("input:checkbox:checked", ".grid-row").map(function () {
+                return $(this).val();
+            }).get();
 
-                // Show the "busy" Gif:
-                $("#divProcessing").show();
+            // Show the "busy" Gif:
+            $("#divProcessing").show();
 
-                $.ajax({
-                    type: "POST",
-                    url:  mtpApp.Urls.baseUrl +'OrderAllocation/BulkDelete',
-                    data: { 'myArray': checkedValues.join() },
-                    dataType: 'json',
-                    success: function (response) { 
-                        // Hide the "busy" gif:
-                        $("#divProcessing").hide();
+            $.ajax({
+                type: "POST",
+                url:  mtpApp.Urls.baseUrl +'OrderAllocation/BulkDelete',
+                data: { 'myArray': checkedValues.join() },
+                dataType: 'json',
+                success: function (response) { 
+                    // Hide the "busy" gif:
+                    $("#divProcessing").hide();
 
-                        if (response.success) {
-                            myNav = mtpApp.Urls.baseUrl + "OrderAllocation/" + response.responseText; // build up Index url 
-                            window.location.href = myNav;
+                    if (response.success) {
+                        myNav = mtpApp.Urls.baseUrl + "OrderAllocation/" + response.responseText; // build up Index url 
+                        window.location.href = myNav;
 
-                        } else {
-                            alert(response.responseText);  // the caught error
-                        }
-                    },
-                    //error: function (xhr, httpStatusMessage, customErrorMessage) {
-                    error: function (responseText) {
-
-                        // Hide the "busy" gif:
-                        $("#divProcessing").hide();
-
-                        alert("something went awefully wrong!" + responseTexts);
+                    } else {
+                        alert(response.responseText);  // the caught error
                     }
-                });
+                },
+                //error: function (xhr, httpStatusMessage, customErrorMessage) {
+                error: function (responseText) {
+
+                    // Hide the "busy" gif:
+                    $("#divProcessing").hide();
+
+                    alert("something went awefully wrong!" + responseTexts);
+                }
+            });
             }
         });
         // We want to show this while the server process is running: 

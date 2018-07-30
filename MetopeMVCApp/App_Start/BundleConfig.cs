@@ -74,7 +74,8 @@ namespace ASP.MetopeNspace
             "~/Scripts/bootstrap-datepicker.js"));  
               
             var bootstrapBundle = new ScriptBundle("~/bundles/bootstrap");
-            bootstrapBundle.Include("~/Scripts/bootstrap.js", "~/Scripts/respond.js");
+            bootstrapBundle.Include("~/Scripts/bootstrap.js", "~/Scripts/respond.js", "~/Scripts/bootbox.min.js");
+            
             bootstrapBundle.Transforms.Add(jsTransformer);
             bootstrapBundle.Orderer = nullOrderer;
             bundles.Add(bootstrapBundle);

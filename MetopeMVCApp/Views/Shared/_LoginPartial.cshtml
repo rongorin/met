@@ -17,42 +17,35 @@
         </li>
         
         <li>
-            @Html.ActionLink("Hi " + User.Identity.GetUserName() , "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink("logged in as " + User.Identity.GetUserName() , "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-   
+
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 Components
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-                <li>@Html.ActionLink("Classifications", "Index", "Classifications")</li>
-                <li>@Html.ActionLink("Portfolios", "Index", "Portfolio")</li>
-                <li>@Html.ActionLink("Portfolio Performance", "Index", "PortfolioPerformance")</li>
-                <li>@Html.ActionLink("Portfolio Valuations", "Index", "PortfolioValuation")</li>
-                
                 <li>@Html.ActionLink("Securities", "Index", "SecurityDetail")</li>
                 <li>@Html.ActionLink("Security Analytics", "Index", "SecurityAnalytics")</li>
                 <li>@Html.ActionLink("Security Prices", "Index", "SecurityPrice")</li>
                 <li>@Html.ActionLink("Security Lists", "Index", "SecurityListDetail")</li>
-                <li>@Html.ActionLink("Trades", "Index", "OrderAllocation")</li> 
+                <li>@Html.ActionLink("Classifications", "Index", "Classifications")</li>
                 <li class="divider"></li>
+                <li>@Html.ActionLink("Parties", "Index", "Party")</li>
+                <li>@Html.ActionLink("Party Financials", "Index", "PartyFinancials")</li>
+                <li>@Html.ActionLink("Party Debt Analysis", "Index", "PartyDebtAnalysis")</li>
+                <li>@Html.ActionLink("Debt Expiry Profile", "Index", "DebtExpiryProfile")</li>
+                <li class="divider"></li>
+
+                <li>@Html.ActionLink("Portfolios", "Index", "Portfolio")</li>
+                <li>@Html.ActionLink("Portfolio Performance", "Index", "PortfolioPerformance")</li>
+                <li>@Html.ActionLink("Portfolio Valuations", "Index", "PortfolioValuation")</li>
+                <li class="divider"></li> 
                 
-                <li class="dropdown-submenu">
-                    <a class="test" tabindex="-1" href="#">Party <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Parties", "Index", "Party")</li>
-                        <li>@Html.ActionLink("Party Financials", "Index", "PartyFinancials")</li>
-                        <li>@Html.ActionLink("Party Debt Analysis", "Index", "PartyDebtAnalysis")</li> 
-                        <li>@Html.ActionLink("Debt Expiry Profile", "Index", "DebtExpiryProfile")</li> 
-                        <li class="dropdown-submenu">
-                          
-                        </li>
-                    </ul>
-                </li>
-                @*<li><a href="#">Other</a></li>*@
+                <li>@Html.ActionLink("Trades", "Index", "OrderAllocation")</li>  
             </ul>
-        </li>
+        </li> 
 
 
 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
@@ -70,6 +63,4 @@ else
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink"})</li>
     </ul>
 }
-
-
  

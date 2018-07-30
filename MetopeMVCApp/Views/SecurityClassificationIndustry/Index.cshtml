@@ -37,25 +37,17 @@
         columns.Add(c => c.Security_ID, true);
         columns.Add(c => c.Entity_ID, true);
 
-        columns.Add(c => c.Classification_Code).Titled("Classification_Code") .Filterable(true)
+        columns.Add(c => c.Classification_Code).Titled("Classification Code") .Filterable(true)
                     .SetWidth(130).Sortable(true).Filterable(true); 
 
         //columns.Add(c => c.Industry_Code).Titled("Industry_Code").Css("text-right").Filterable(true)  
-        columns.Add(c => c.Industry_Code).Titled("Industry_Code").Filterable(true)  
+        columns.Add(c => c.Industry_Code).Titled("Industry Code").Filterable(true)  
                    .SetWidth(130).Sortable(true).Filterable(true);
                     
                    
         columns.Add(c => c.Effective_Date).Titled("Effective date").
                     Format("{0:d MMM yyyy}").SetWidth(130).Sortable(true).Filterable(true);
-            
-
-        columns.Add()
-        .Encoded(false)
-        .Sanitized(false)
-        .SetWidth(20)
-        .RenderValueAs(c => @<u>
-            @Html.ActionLink("Edit", "Edit", "SecurityClassificationIndustry", new { EntityId = c.Entity_ID, SecurityID = c.Security_ID, EffectiveDate = c.Effective_Date, CLassificationCode = c.Classification_Code, IndustryCode = c.Industry_Code }, null)
-        </u>);
+  
 
         columns.Add()
      .Encoded(false)
@@ -68,19 +60,11 @@
     }).WithPaging(25).Sortable(true)
 
 </div>
+<br />
+@Html.ActionLink("Back To Securities", "Index", "SecurityDetail", new { }, null)
 @section Scripts {
     @Scripts.Render("~/bundles/GridMvc")
-    <script>
-    $(function () {
-        pageGrids.depGrid.onRowSelect(function (e) {
-            var myUrl2 ;
-            //here rather do full page load instead of the Ajax partial: 
-             myUrl2 = mtpApp.Urls.baseUrl + "SecurityClassificationIndustry/Edit?SecurityID=" + e.row.Security_ID + "&EntityId=" + e.row.Entity_ID +   "&IndustryCode=" + e.row.Industry_Code + "&ClassificationCode=" + e.row.Classification_Code + "&EffectiveDate=" + e.row.Effective_Date  ;
-             
-            window.location = myUrl2;
-        });
-    });
-    </script>
+ 
 
 }
 

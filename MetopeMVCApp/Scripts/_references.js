@@ -19,3 +19,4 @@
 /// <reference path="gridmvc.lang.ru.js" />
 /// <reference path="bootstrap-datepicker.js" />
 /// <reference path="common/datetimepickercustom.js" />
+/// <reference path="bootbox.min.js" />

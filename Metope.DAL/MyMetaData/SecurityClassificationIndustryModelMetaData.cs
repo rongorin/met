@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Metope.DAL.MyMetaData
 {
+
+    [MetadataType(typeof(SecurityClassificationIndustryModelMetaData))]
+
     class SecurityClassificationIndustryModelMetaData
     {
         [Required] 

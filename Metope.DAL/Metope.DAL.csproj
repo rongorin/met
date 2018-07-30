@@ -237,6 +237,7 @@
     <Compile Include="User.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Validators\PastDate.cs" />
     <Compile Include="Validators\ValidatePriceCurr.cs" />
   </ItemGroup>
   <ItemGroup>
