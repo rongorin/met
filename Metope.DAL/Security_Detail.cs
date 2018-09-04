@@ -11,10 +11,10 @@ namespace Metope.DAL
 {
     using System;
     using System.Collections.Generic;
-
     using Metope.DAL.MyMetaData;
     using System.ComponentModel.DataAnnotations;
     [MetadataType(typeof(SecurityDetailModelMetaData))]  
+ 
     public partial class Security_Detail
     {
         public Security_Detail()
@@ -40,6 +40,7 @@ namespace Metope.DAL
             this.Security_Analytics_History = new HashSet<Security_Analytics_History>();
             this.Security_Analytics_History1 = new HashSet<Security_Analytics_History>();
             this.Security_Classification_Industry = new HashSet<Security_Classification_Industry>();
+            this.Forex_Forecast = new HashSet<Forex_Forecast>();
         }
     
         public decimal Security_ID { get; set; }
@@ -129,5 +130,6 @@ namespace Metope.DAL
         public virtual ICollection<Security_Analytics_History> Security_Analytics_History { get; set; }
         public virtual ICollection<Security_Analytics_History> Security_Analytics_History1 { get; set; }
         public virtual ICollection<Security_Classification_Industry> Security_Classification_Industry { get; set; }
+        public virtual ICollection<Forex_Forecast> Forex_Forecast { get; set; }
     }
 }
