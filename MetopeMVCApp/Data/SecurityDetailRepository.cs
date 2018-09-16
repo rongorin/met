@@ -75,7 +75,15 @@ namespace MetopeMVCApp.Data.Repositories
             return query.ToList();
         } 
     }
-
+    public class ForexForecastRepository : GenericRepository<MetopeDbEntities, Forex_Forecast>, IForexForecastRepository
+    {
+        public IEnumerable<Forex_Forecast> GetAllRecs(Expression<Func<Forex_Forecast, bool>> predicate) // return an IEnumerable
+        {
+            IQueryable<Forex_Forecast> query; 
+            query = Context.Set<Forex_Forecast>().Include(r => r.Security_Detail).Where(predicate); 
+            return query.ToList();
+        }
+    }
     public class SecurityClassificationIndustryRepository : GenericRepository<MetopeDbEntities, Security_Classification_Industry>, ISecurityClassificationIndustryRepository
     {
         public IEnumerable<Security_Classification_Industry> GetAllRecs(Expression<Func<Security_Classification_Industry, bool>> predicate) // return an IEnumerable

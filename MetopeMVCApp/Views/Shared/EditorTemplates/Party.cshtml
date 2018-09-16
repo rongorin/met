@@ -1,0 +1,21 @@
+﻿@model Metope.DAL.Party
+ 
+@Html.EditorFor(model => model.Party_Type, "BootstrapEditorVertic")
+@Html.EditorFor(model => model.Party_Name, "BootstrapEditorVertic")
+@Html.EditorFor(model => model.Financial_Year_End, "BootstrapEditDateVertic") 
+ <div class="form-group">
+    @Html.LabelFor(model => model.Country_Code, htmlAttributes: new { @class = "control-label col-md-2 input-sm ", style = "text-align: right" })
+    <div class="col-md-10">
+         @Html.DropDownList("Country_Code", null, string.Empty, new { @class = "form-control" }) 
+         @Html.ValidationMessageFor(model => model.Country_Code, "", new { @class = "text-danger" })
+    </div>
+</div> 
+@Html.EditorFor(model => model.SWIFT_ID, "BootstrapEditorVertic")
+@Html.EditorFor(model => model.BIC_Code, "BootstrapEditorVertic")
+@Html.EditorFor(model => model.System_Locked, "BooleanVertic") 
+  
+@Html.Partial("_SaveButtonShow", Model)
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

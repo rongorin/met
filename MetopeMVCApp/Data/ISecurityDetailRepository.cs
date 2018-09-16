@@ -48,7 +48,11 @@ namespace MetopeMVCApp.Data
         IEnumerable<Portfolio_Performance> GetAllRecs(Expression<Func<Portfolio_Performance, bool>> predicate);
 
     }
+    public interface IForexForecastRepository : IGenericRepository<Forex_Forecast>
+    {
+        IEnumerable<Forex_Forecast> GetAllRecs(Expression<Func<Forex_Forecast, bool>> predicate);
 
+    }
     public interface ISecurityClassificationIndustryRepository : IGenericRepository<Security_Classification_Industry>
     {
         IEnumerable<Security_Classification_Industry> GetAllRecs(Expression<Func<Security_Classification_Industry, bool>> predicate);

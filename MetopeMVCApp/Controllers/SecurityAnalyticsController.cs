@@ -113,7 +113,7 @@ namespace MetopeMVCApp.Controllers
              
              return View(security_Analytics);
         }
-       
+        
         // GET: SecurityAnalytics/Edit/5
         [CustomEntityAuthoriseFilter]
         [AllSecuritiesFilter]

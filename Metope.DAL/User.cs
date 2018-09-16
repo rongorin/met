@@ -44,6 +44,7 @@ namespace Metope.DAL
             this.Portfolio_Performance = new HashSet<Portfolio_Performance>();
             this.Security_Classification_Industry = new HashSet<Security_Classification_Industry>();
             this.Portfolio_Performance_History = new HashSet<Portfolio_Performance_History>();
+            this.Forex_Forecast = new HashSet<Forex_Forecast>();
         }
     
         public decimal Entity_ID { get; set; }
@@ -92,5 +93,6 @@ namespace Metope.DAL
         public virtual ICollection<Portfolio_Performance> Portfolio_Performance { get; set; }
         public virtual ICollection<Security_Classification_Industry> Security_Classification_Industry { get; set; }
         public virtual ICollection<Portfolio_Performance_History> Portfolio_Performance_History { get; set; }
+        public virtual ICollection<Forex_Forecast> Forex_Forecast { get; set; }
     }
 }

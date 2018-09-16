@@ -1,0 +1,1868 @@
+2018-04-30 07:56:29.6198|ERROR|ASP.MetopeNspace.MvcApplication|Error caught in Application_Error event
+, http://localhost:53133/SecurityPerformanceHistory/Index 
+ Error in: Object reference not set to an instance of an object., 
+Stack Trace:   at MetopeMVCApp.DecimalModelBinder.BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext) in c:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\DecimalModelBinder.cs:line 19
+   at System.Web.Mvc.ControllerActionInvoker.GetParameterValue(ControllerContext controllerContext, ParameterDescriptor parameterDescriptor)
+   at System.Web.Mvc.ControllerActionInvoker.GetParameterValues(ControllerContext controllerContext, ActionDescriptor actionDescriptor)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__19(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+Session: Identity name:aaaaaa IsAuthenticated:True 
+2018-04-30 07:56:39.6960|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: select cast(serverproperty('EngineEdition') as int)
+2018-04-30 07:56:39.7420|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: select cast(serverproperty('EngineEdition') as int)
+2018-04-30 07:56:40.0017|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 07:56:40.1989|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 07:56:40.3945|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 07:56:40.4155|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 07:56:40.4791|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 07:56:40.4996|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 07:56:40.5316|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: 
+SELECT Count(*)
+FROM INFORMATION_SCHEMA.TABLES AS t
+WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.AspNetRoles','dbo.AspNetUserRoles','dbo.AspNetUsers','dbo.AspNetUserClaims','dbo.AspNetUserLogins')
+    OR t.TABLE_NAME = 'EdmMetadata'
+2018-04-30 07:56:40.6262|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: 
+SELECT Count(*)
+FROM INFORMATION_SCHEMA.TABLES AS t
+WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.AspNetRoles','dbo.AspNetUserRoles','dbo.AspNetUsers','dbo.AspNetUserClaims','dbo.AspNetUserLogins')
+    OR t.TABLE_NAME = 'EdmMetadata'
+2018-04-30 07:56:40.9614|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT 
+        COUNT(1) AS [A1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [GroupBy1]
+2018-04-30 07:56:41.0910|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT 
+        COUNT(1) AS [A1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [GroupBy1]
+2018-04-30 07:56:41.1360|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[MigrationId] AS [MigrationId], 
+    [Project1].[Model] AS [Model], 
+    [Project1].[ProductVersion] AS [ProductVersion]
+    FROM ( SELECT 
+        [Extent1].[MigrationId] AS [MigrationId], 
+        [Extent1].[Model] AS [Model], 
+        [Extent1].[ProductVersion] AS [ProductVersion], 
+        1 AS [C1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[MigrationId] DESC
+2018-04-30 07:56:41.1806|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[MigrationId] AS [MigrationId], 
+    [Project1].[Model] AS [Model], 
+    [Project1].[ProductVersion] AS [ProductVersion]
+    FROM ( SELECT 
+        [Extent1].[MigrationId] AS [MigrationId], 
+        [Extent1].[Model] AS [Model], 
+        [Extent1].[ProductVersion] AS [ProductVersion], 
+        1 AS [C1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[MigrationId] DESC
+2018-04-30 07:56:41.4663|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 07:56:41.4993|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 07:56:41.6009|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 07:56:41.6214|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 07:56:41.6814|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 07:56:41.6969|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 07:56:41.7505|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 07:56:41.7685|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 07:56:41.7990|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 07:56:41.8105|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 07:56:41.8245|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 07:56:41.8360|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 07:56:41.8360|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 07:56:41.8595|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 07:56:41.8701|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 07:56:41.8806|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 07:56:41.8806|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 07:56:41.9071|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 07:56:42.2788|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-04-30 07:56:42.3324|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-04-30 08:01:31.4268|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:01:31.6890|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:01:36.2160|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Security_ID] AS [Security_ID], 
+    [Project1].[Portfolio_Code] AS [Portfolio_Code], 
+    [Project1].[ModDietz_Performance_Quarterly] AS [ModDietz_Performance_Quarterly], 
+    [Project1].[ModDietz_Performance_Monthly] AS [ModDietz_Performance_Monthly], 
+    [Project1].[ModDietz_Performance_MonthToDate] AS [ModDietz_Performance_MonthToDate], 
+    [Project1].[Ticker] AS [Ticker]
+    FROM ( SELECT 
+        [Extent1].[Security_ID] AS [Security_ID], 
+        [Extent1].[Portfolio_Code] AS [Portfolio_Code], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[ModDietz_Performance_Quarterly] AS [ModDietz_Performance_Quarterly], 
+        [Extent1].[ModDietz_Performance_Monthly] AS [ModDietz_Performance_Monthly], 
+        [Extent1].[ModDietz_Performance_MonthToDate] AS [ModDietz_Performance_MonthToDate], 
+        [Extent2].[Ticker] AS [Ticker], 
+        1 AS [C1]
+        FROM  [dbo].[Security_Performance] AS [Extent1]
+        INNER JOIN [dbo].[Security_Detail] AS [Extent2] ON [Extent1].[Security_ID] = [Extent2].[Security_ID]
+        WHERE ([Extent1].[Entity_ID] = @p__linq__0) AND ([Extent1].[Portfolio_Code] = @p__linq__1) AND ([Extent1].[Entity_ID] = @p__linq__2)
+    )  AS [Project1]
+    ORDER BY [Project1].[Security_ID] ASC
+2018-04-30 08:01:36.2930|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Security_ID] AS [Security_ID], 
+    [Project1].[Portfolio_Code] AS [Portfolio_Code], 
+    [Project1].[ModDietz_Performance_Quarterly] AS [ModDietz_Performance_Quarterly], 
+    [Project1].[ModDietz_Performance_Monthly] AS [ModDietz_Performance_Monthly], 
+    [Project1].[ModDietz_Performance_MonthToDate] AS [ModDietz_Performance_MonthToDate], 
+    [Project1].[Ticker] AS [Ticker]
+    FROM ( SELECT 
+        [Extent1].[Security_ID] AS [Security_ID], 
+        [Extent1].[Portfolio_Code] AS [Portfolio_Code], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[ModDietz_Performance_Quarterly] AS [ModDietz_Performance_Quarterly], 
+        [Extent1].[ModDietz_Performance_Monthly] AS [ModDietz_Performance_Monthly], 
+        [Extent1].[ModDietz_Performance_MonthToDate] AS [ModDietz_Performance_MonthToDate], 
+        [Extent2].[Ticker] AS [Ticker], 
+        1 AS [C1]
+        FROM  [dbo].[Security_Performance] AS [Extent1]
+        INNER JOIN [dbo].[Security_Detail] AS [Extent2] ON [Extent1].[Security_ID] = [Extent2].[Security_ID]
+        WHERE ([Extent1].[Entity_ID] = @p__linq__0) AND ([Extent1].[Portfolio_Code] = @p__linq__1) AND ([Extent1].[Entity_ID] = @p__linq__2)
+    )  AS [Project1]
+    ORDER BY [Project1].[Security_ID] ASC
+2018-04-30 08:01:36.5002|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Security_ID] AS [Security_ID], 
+    [Project1].[Portfolio_Code] AS [Portfolio_Code], 
+    [Project1].[ModDietz_Performance_Quarterly] AS [ModDietz_Performance_Quarterly], 
+    [Project1].[ModDietz_Performance_Monthly] AS [ModDietz_Performance_Monthly], 
+    [Project1].[ModDietz_Performance_MonthToDate] AS [ModDietz_Performance_MonthToDate], 
+    [Project1].[Ticker] AS [Ticker]
+    FROM ( SELECT 
+        [Extent1].[Security_ID] AS [Security_ID], 
+        [Extent1].[Portfolio_Code] AS [Portfolio_Code], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[ModDietz_Performance_Quarterly] AS [ModDietz_Performance_Quarterly], 
+        [Extent1].[ModDietz_Performance_Monthly] AS [ModDietz_Performance_Monthly], 
+        [Extent1].[ModDietz_Performance_MonthToDate] AS [ModDietz_Performance_MonthToDate], 
+        [Extent2].[Ticker] AS [Ticker], 
+        1 AS [C1]
+        FROM  [dbo].[Security_Performance] AS [Extent1]
+        INNER JOIN [dbo].[Security_Detail] AS [Extent2] ON [Extent1].[Security_ID] = [Extent2].[Security_ID]
+        WHERE ([Extent1].[Entity_ID] = @p__linq__0) AND ([Extent1].[Portfolio_Code] = @p__linq__1) AND ([Extent1].[Entity_ID] = @p__linq__2)
+    )  AS [Project1]
+    ORDER BY [Project1].[Security_ID] ASC
+2018-04-30 08:01:36.5622|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Security_ID] AS [Security_ID], 
+    [Project1].[Portfolio_Code] AS [Portfolio_Code], 
+    [Project1].[ModDietz_Performance_Quarterly] AS [ModDietz_Performance_Quarterly], 
+    [Project1].[ModDietz_Performance_Monthly] AS [ModDietz_Performance_Monthly], 
+    [Project1].[ModDietz_Performance_MonthToDate] AS [ModDietz_Performance_MonthToDate], 
+    [Project1].[Ticker] AS [Ticker]
+    FROM ( SELECT 
+        [Extent1].[Security_ID] AS [Security_ID], 
+        [Extent1].[Portfolio_Code] AS [Portfolio_Code], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[ModDietz_Performance_Quarterly] AS [ModDietz_Performance_Quarterly], 
+        [Extent1].[ModDietz_Performance_Monthly] AS [ModDietz_Performance_Monthly], 
+        [Extent1].[ModDietz_Performance_MonthToDate] AS [ModDietz_Performance_MonthToDate], 
+        [Extent2].[Ticker] AS [Ticker], 
+        1 AS [C1]
+        FROM  [dbo].[Security_Performance] AS [Extent1]
+        INNER JOIN [dbo].[Security_Detail] AS [Extent2] ON [Extent1].[Security_ID] = [Extent2].[Security_ID]
+        WHERE ([Extent1].[Entity_ID] = @p__linq__0) AND ([Extent1].[Portfolio_Code] = @p__linq__1) AND ([Extent1].[Entity_ID] = @p__linq__2)
+    )  AS [Project1]
+    ORDER BY [Project1].[Security_ID] ASC
+2018-04-30 08:01:40.1533|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:01:40.1708|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:01:40.1913|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:01:40.2168|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:01:54.6799|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:01:54.6984|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:01:56.0799|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:01:56.0959|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:01:59.2759|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:01:59.2904|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:02:20.2549|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:02:21.3927|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:02:22.4030|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE ((UPPER([Extent1].[UserName])) = (UPPER(@p__linq__0))) OR ((UPPER([Extent1].[UserName]) IS NULL) AND (UPPER(@p__linq__0) IS NULL))
+2018-04-30 08:02:22.6376|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE ((UPPER([Extent1].[UserName])) = (UPPER(@p__linq__0))) OR ((UPPER([Extent1].[UserName]) IS NULL) AND (UPPER(@p__linq__0) IS NULL))
+2018-04-30 08:02:22.7882|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:22.8933|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:22.9563|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:23.0279|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:23.1060|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:23.1715|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:23.5228|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent2].[Name] AS [Name]
+    FROM  [dbo].[AspNetUserRoles] AS [Extent1]
+    INNER JOIN [dbo].[AspNetRoles] AS [Extent2] ON [Extent1].[RoleId] = [Extent2].[Id]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:23.6143|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent2].[Name] AS [Name]
+    FROM  [dbo].[AspNetUserRoles] AS [Extent1]
+    INNER JOIN [dbo].[AspNetRoles] AS [Extent2] ON [Extent1].[RoleId] = [Extent2].[Id]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:27.9922|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:02:28.0243|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:02:28.0468|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:02:28.0743|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:02:28.1048|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:02:28.1449|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:02:28.1904|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:28.2359|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:28.2749|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:28.3330|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:28.3740|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:28.4075|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:28.4521|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:02:28.5066|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:02:28.5581|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:28.6192|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:28.6887|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:28.7268|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:28.7718|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:28.8343|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:02:28.8744|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-04-30 08:02:28.8999|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-04-30 08:02:32.0984|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:02:32.1189|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:02:32.1414|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:02:32.1614|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:13:04.7196|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[Classification_Code] AS [Classification_Code], 
+    [Project1].[Description] AS [Description], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Project1].[Last_Update_User] AS [Last_Update_User], 
+    [Project1].[System_Locked] AS [System_Locked], 
+    [Project1].[C2] AS [C2], 
+    [Project1].[Classification_Code1] AS [Classification_Code1], 
+    [Project1].[Description1] AS [Description1], 
+    [Project1].[Industry_Code] AS [Industry_Code], 
+    [Project1].[Entity_ID1] AS [Entity_ID1], 
+    [Project1].[Last_Update_Date1] AS [Last_Update_Date1], 
+    [Project1].[Last_Update_User1] AS [Last_Update_User1], 
+    [Project1].[System_Locked1] AS [System_Locked1]
+    FROM ( SELECT 
+        [Extent1].[Classification_Code] AS [Classification_Code], 
+        [Extent1].[Description] AS [Description], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+        [Extent1].[Last_Update_User] AS [Last_Update_User], 
+        [Extent1].[System_Locked] AS [System_Locked], 
+        1 AS [C1], 
+        [Extent2].[Classification_Code] AS [Classification_Code1], 
+        [Extent2].[Description] AS [Description1], 
+        [Extent2].[Industry_Code] AS [Industry_Code], 
+        [Extent2].[Entity_ID] AS [Entity_ID1], 
+        [Extent2].[Last_Update_Date] AS [Last_Update_Date1], 
+        [Extent2].[Last_Update_User] AS [Last_Update_User1], 
+        [Extent2].[System_Locked] AS [System_Locked1], 
+        CASE WHEN ([Extent2].[Classification_Code] IS NULL) THEN CAST(NULL AS int) ELSE 1 END AS [C2]
+        FROM  [dbo].[Classification] AS [Extent1]
+        LEFT OUTER JOIN [dbo].[Classification_Industry] AS [Extent2] ON ([Extent1].[Classification_Code] = [Extent2].[Classification_Code]) AND ([Extent1].[Entity_ID] = [Extent2].[Entity_ID])
+        WHERE [Extent1].[Entity_ID] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[Classification_Code] ASC, [Project1].[Entity_ID] ASC, [Project1].[C2] ASC
+2018-04-30 08:13:04.7836|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[Classification_Code] AS [Classification_Code], 
+    [Project1].[Description] AS [Description], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Project1].[Last_Update_User] AS [Last_Update_User], 
+    [Project1].[System_Locked] AS [System_Locked], 
+    [Project1].[C2] AS [C2], 
+    [Project1].[Classification_Code1] AS [Classification_Code1], 
+    [Project1].[Description1] AS [Description1], 
+    [Project1].[Industry_Code] AS [Industry_Code], 
+    [Project1].[Entity_ID1] AS [Entity_ID1], 
+    [Project1].[Last_Update_Date1] AS [Last_Update_Date1], 
+    [Project1].[Last_Update_User1] AS [Last_Update_User1], 
+    [Project1].[System_Locked1] AS [System_Locked1]
+    FROM ( SELECT 
+        [Extent1].[Classification_Code] AS [Classification_Code], 
+        [Extent1].[Description] AS [Description], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+        [Extent1].[Last_Update_User] AS [Last_Update_User], 
+        [Extent1].[System_Locked] AS [System_Locked], 
+        1 AS [C1], 
+        [Extent2].[Classification_Code] AS [Classification_Code1], 
+        [Extent2].[Description] AS [Description1], 
+        [Extent2].[Industry_Code] AS [Industry_Code], 
+        [Extent2].[Entity_ID] AS [Entity_ID1], 
+        [Extent2].[Last_Update_Date] AS [Last_Update_Date1], 
+        [Extent2].[Last_Update_User] AS [Last_Update_User1], 
+        [Extent2].[System_Locked] AS [System_Locked1], 
+        CASE WHEN ([Extent2].[Classification_Code] IS NULL) THEN CAST(NULL AS int) ELSE 1 END AS [C2]
+        FROM  [dbo].[Classification] AS [Extent1]
+        LEFT OUTER JOIN [dbo].[Classification_Industry] AS [Extent2] ON ([Extent1].[Classification_Code] = [Extent2].[Classification_Code]) AND ([Extent1].[Entity_ID] = [Extent2].[Entity_ID])
+        WHERE [Extent1].[Entity_ID] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[Classification_Code] ASC, [Project1].[Entity_ID] ASC, [Project1].[C2] ASC
+2018-04-30 08:13:07.7523|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:13:07.8163|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:13:07.8919|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:13:07.9204|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:16:35.7541|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: select cast(serverproperty('EngineEdition') as int)
+2018-04-30 08:16:35.8367|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: select cast(serverproperty('EngineEdition') as int)
+2018-04-30 08:16:38.3950|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:16:38.4891|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:16:38.6652|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:16:38.6832|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:16:38.7167|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: 
+SELECT Count(*)
+FROM INFORMATION_SCHEMA.TABLES AS t
+WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.AspNetRoles','dbo.AspNetUserRoles','dbo.AspNetUsers','dbo.AspNetUserClaims','dbo.AspNetUserLogins')
+    OR t.TABLE_NAME = 'EdmMetadata'
+2018-04-30 08:16:38.7818|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: 
+SELECT Count(*)
+FROM INFORMATION_SCHEMA.TABLES AS t
+WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.AspNetRoles','dbo.AspNetUserRoles','dbo.AspNetUsers','dbo.AspNetUserClaims','dbo.AspNetUserLogins')
+    OR t.TABLE_NAME = 'EdmMetadata'
+2018-04-30 08:16:42.1377|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT 
+        COUNT(1) AS [A1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [GroupBy1]
+2018-04-30 08:16:42.1867|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT 
+        COUNT(1) AS [A1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [GroupBy1]
+2018-04-30 08:16:42.4744|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[MigrationId] AS [MigrationId], 
+    [Project1].[Model] AS [Model], 
+    [Project1].[ProductVersion] AS [ProductVersion]
+    FROM ( SELECT 
+        [Extent1].[MigrationId] AS [MigrationId], 
+        [Extent1].[Model] AS [Model], 
+        [Extent1].[ProductVersion] AS [ProductVersion], 
+        1 AS [C1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[MigrationId] DESC
+2018-04-30 08:16:42.5074|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[MigrationId] AS [MigrationId], 
+    [Project1].[Model] AS [Model], 
+    [Project1].[ProductVersion] AS [ProductVersion]
+    FROM ( SELECT 
+        [Extent1].[MigrationId] AS [MigrationId], 
+        [Extent1].[Model] AS [Model], 
+        [Extent1].[ProductVersion] AS [ProductVersion], 
+        1 AS [C1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[MigrationId] DESC
+2018-04-30 08:16:43.4876|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:16:43.5372|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:16:43.8339|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:16:43.8589|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:16:43.9314|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:16:43.9580|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:16:44.0160|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:16:44.0445|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:16:45.4205|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[Classification_Code] AS [Classification_Code], 
+    [Project1].[Description] AS [Description], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Project1].[Last_Update_User] AS [Last_Update_User], 
+    [Project1].[System_Locked] AS [System_Locked], 
+    [Project1].[C2] AS [C2], 
+    [Project1].[Classification_Code1] AS [Classification_Code1], 
+    [Project1].[Description1] AS [Description1], 
+    [Project1].[Industry_Code] AS [Industry_Code], 
+    [Project1].[Entity_ID1] AS [Entity_ID1], 
+    [Project1].[Last_Update_Date1] AS [Last_Update_Date1], 
+    [Project1].[Last_Update_User1] AS [Last_Update_User1], 
+    [Project1].[System_Locked1] AS [System_Locked1]
+    FROM ( SELECT 
+        [Extent1].[Classification_Code] AS [Classification_Code], 
+        [Extent1].[Description] AS [Description], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+        [Extent1].[Last_Update_User] AS [Last_Update_User], 
+        [Extent1].[System_Locked] AS [System_Locked], 
+        1 AS [C1], 
+        [Extent2].[Classification_Code] AS [Classification_Code1], 
+        [Extent2].[Description] AS [Description1], 
+        [Extent2].[Industry_Code] AS [Industry_Code], 
+        [Extent2].[Entity_ID] AS [Entity_ID1], 
+        [Extent2].[Last_Update_Date] AS [Last_Update_Date1], 
+        [Extent2].[Last_Update_User] AS [Last_Update_User1], 
+        [Extent2].[System_Locked] AS [System_Locked1], 
+        CASE WHEN ([Extent2].[Classification_Code] IS NULL) THEN CAST(NULL AS int) ELSE 1 END AS [C2]
+        FROM  [dbo].[Classification] AS [Extent1]
+        LEFT OUTER JOIN [dbo].[Classification_Industry] AS [Extent2] ON ([Extent1].[Classification_Code] = [Extent2].[Classification_Code]) AND ([Extent1].[Entity_ID] = [Extent2].[Entity_ID])
+        WHERE [Extent1].[Entity_ID] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[Classification_Code] ASC, [Project1].[Entity_ID] ASC, [Project1].[C2] ASC
+2018-04-30 08:16:45.4765|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[Classification_Code] AS [Classification_Code], 
+    [Project1].[Description] AS [Description], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Project1].[Last_Update_User] AS [Last_Update_User], 
+    [Project1].[System_Locked] AS [System_Locked], 
+    [Project1].[C2] AS [C2], 
+    [Project1].[Classification_Code1] AS [Classification_Code1], 
+    [Project1].[Description1] AS [Description1], 
+    [Project1].[Industry_Code] AS [Industry_Code], 
+    [Project1].[Entity_ID1] AS [Entity_ID1], 
+    [Project1].[Last_Update_Date1] AS [Last_Update_Date1], 
+    [Project1].[Last_Update_User1] AS [Last_Update_User1], 
+    [Project1].[System_Locked1] AS [System_Locked1]
+    FROM ( SELECT 
+        [Extent1].[Classification_Code] AS [Classification_Code], 
+        [Extent1].[Description] AS [Description], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+        [Extent1].[Last_Update_User] AS [Last_Update_User], 
+        [Extent1].[System_Locked] AS [System_Locked], 
+        1 AS [C1], 
+        [Extent2].[Classification_Code] AS [Classification_Code1], 
+        [Extent2].[Description] AS [Description1], 
+        [Extent2].[Industry_Code] AS [Industry_Code], 
+        [Extent2].[Entity_ID] AS [Entity_ID1], 
+        [Extent2].[Last_Update_Date] AS [Last_Update_Date1], 
+        [Extent2].[Last_Update_User] AS [Last_Update_User1], 
+        [Extent2].[System_Locked] AS [System_Locked1], 
+        CASE WHEN ([Extent2].[Classification_Code] IS NULL) THEN CAST(NULL AS int) ELSE 1 END AS [C2]
+        FROM  [dbo].[Classification] AS [Extent1]
+        LEFT OUTER JOIN [dbo].[Classification_Industry] AS [Extent2] ON ([Extent1].[Classification_Code] = [Extent2].[Classification_Code]) AND ([Extent1].[Entity_ID] = [Extent2].[Entity_ID])
+        WHERE [Extent1].[Entity_ID] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[Classification_Code] ASC, [Project1].[Entity_ID] ASC, [Project1].[C2] ASC
+2018-04-30 08:17:01.4428|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:17:01.4779|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:17:01.5394|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:17:01.5749|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:17:01.6410|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:17:01.7536|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:17:01.8306|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:17:01.9372|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:17:01.9972|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:17:02.0458|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:17:02.0913|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:17:02.1358|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:17:02.2744|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-04-30 08:17:02.3140|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-04-30 08:19:15.0514|ERROR|ASP.MetopeNspace.MvcApplication|Error caught in Application_Error event
+, http://localhost:53133/Content/Site.less 
+ Error in: The controller for path '/Content/Site.less' was not found or does not implement IController., 
+Stack Trace:   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+Session: Identity name:aaaaaa IsAuthenticated:True 
+2018-04-30 08:19:15.0950|ERROR|ASP.MetopeNspace.MvcApplication|Error caught in Application_Error event
+,  
+ Error in: Object reference not set to an instance of an object., 
+Stack Trace:   at MetopeMVCApp.App_Start.UserRoute.GetRouteData(HttpContextBase httpContext) in c:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\App_Start\UserRoute.cs:line 32
+   at System.Web.Routing.RouteCollection.GetRouteData(HttpContextBase httpContext)
+   at System.Web.Routing.UrlRoutingModule.PostResolveRequestCache(HttpContextBase context)
+   at System.Web.Routing.UrlRoutingModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+2018-04-30 08:19:17.7329|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:19:17.8340|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:19:17.9391|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:19:17.9721|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:19:36.2735|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:19:36.4406|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:19:38.0756|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:19:38.2037|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:19:46.4972|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:19:46.6088|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:20:10.9050|ERROR|ASP.MetopeNspace.MvcApplication|Error caught in Application_Error event
+,  
+ Error in: Object reference not set to an instance of an object., 
+Stack Trace:   at MetopeMVCApp.App_Start.UserRoute.GetRouteData(HttpContextBase httpContext) in c:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\App_Start\UserRoute.cs:line 32
+   at System.Web.Routing.RouteCollection.GetRouteData(HttpContextBase httpContext)
+   at System.Web.Routing.UrlRoutingModule.PostResolveRequestCache(HttpContextBase context)
+   at System.Web.Routing.UrlRoutingModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+2018-04-30 08:20:11.0006|ERROR|ASP.MetopeNspace.MvcApplication|Error caught in Application_Error event
+, http://localhost:53133/Content/Site.less 
+ Error in: The controller for path '/Content/Site.less' was not found or does not implement IController., 
+Stack Trace:   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+Session: Identity name: IsAuthenticated:False 
+2018-04-30 08:20:26.7013|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:20:27.1472|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:20:50.8780|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:20:51.0456|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:20:51.4849|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE ((UPPER([Extent1].[UserName])) = (UPPER(@p__linq__0))) OR ((UPPER([Extent1].[UserName]) IS NULL) AND (UPPER(@p__linq__0) IS NULL))
+2018-04-30 08:20:51.5675|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE ((UPPER([Extent1].[UserName])) = (UPPER(@p__linq__0))) OR ((UPPER([Extent1].[UserName]) IS NULL) AND (UPPER(@p__linq__0) IS NULL))
+2018-04-30 08:20:51.6185|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:51.6661|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:51.7181|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:51.7621|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:51.8002|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:51.9167|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:52.3155|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent2].[Name] AS [Name]
+    FROM  [dbo].[AspNetUserRoles] AS [Extent1]
+    INNER JOIN [dbo].[AspNetRoles] AS [Extent2] ON [Extent1].[RoleId] = [Extent2].[Id]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:52.3646|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent2].[Name] AS [Name]
+    FROM  [dbo].[AspNetUserRoles] AS [Extent1]
+    INNER JOIN [dbo].[AspNetRoles] AS [Extent2] ON [Extent1].[RoleId] = [Extent2].[Id]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:56.3435|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:20:56.5542|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:20:56.8789|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:20:57.0360|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:20:57.2512|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:20:57.7970|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:20:57.9186|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:58.0332|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:58.1398|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:58.2389|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:58.3244|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:58.5010|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:58.6326|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:20:58.7162|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:20:58.7983|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:58.9138|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:59.0009|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:59.1140|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:59.2346|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:59.3036|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:20:59.3517|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-04-30 08:20:59.4207|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-04-30 08:21:04.6656|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:21:04.6841|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:21:04.7211|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:21:04.7462|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:21:17.9898|ERROR|ASP.MetopeNspace.MvcApplication|Error caught in Application_Error event
+, http://localhost:53133/Content/Site.less 
+ Error in: The controller for path '/Content/Site.less' was not found or does not implement IController., 
+Stack Trace:   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+Session: Identity name:aaaaaa IsAuthenticated:True 
+2018-04-30 08:21:18.0218|ERROR|ASP.MetopeNspace.MvcApplication|Error caught in Application_Error event
+,  
+ Error in: Object reference not set to an instance of an object., 
+Stack Trace:   at MetopeMVCApp.App_Start.UserRoute.GetRouteData(HttpContextBase httpContext) in c:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\App_Start\UserRoute.cs:line 32
+   at System.Web.Routing.RouteCollection.GetRouteData(HttpContextBase httpContext)
+   at System.Web.Routing.UrlRoutingModule.PostResolveRequestCache(HttpContextBase context)
+   at System.Web.Routing.UrlRoutingModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+2018-04-30 08:21:19.6349|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:21:19.7325|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:21:19.7816|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:21:19.8576|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:26:51.9281|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: select cast(serverproperty('EngineEdition') as int)
+2018-04-30 08:26:51.9942|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: select cast(serverproperty('EngineEdition') as int)
+2018-04-30 08:26:52.4310|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:26:52.5906|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:26:52.8878|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:26:52.9213|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:26:52.9774|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:26:53.0059|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:26:53.0730|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: 
+SELECT Count(*)
+FROM INFORMATION_SCHEMA.TABLES AS t
+WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.AspNetRoles','dbo.AspNetUserRoles','dbo.AspNetUsers','dbo.AspNetUserClaims','dbo.AspNetUserLogins')
+    OR t.TABLE_NAME = 'EdmMetadata'
+2018-04-30 08:26:53.1370|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: 
+SELECT Count(*)
+FROM INFORMATION_SCHEMA.TABLES AS t
+WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.AspNetRoles','dbo.AspNetUserRoles','dbo.AspNetUsers','dbo.AspNetUserClaims','dbo.AspNetUserLogins')
+    OR t.TABLE_NAME = 'EdmMetadata'
+2018-04-30 08:26:53.4597|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT 
+        COUNT(1) AS [A1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [GroupBy1]
+2018-04-30 08:26:53.5083|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT 
+        COUNT(1) AS [A1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [GroupBy1]
+2018-04-30 08:26:53.5633|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[MigrationId] AS [MigrationId], 
+    [Project1].[Model] AS [Model], 
+    [Project1].[ProductVersion] AS [ProductVersion]
+    FROM ( SELECT 
+        [Extent1].[MigrationId] AS [MigrationId], 
+        [Extent1].[Model] AS [Model], 
+        [Extent1].[ProductVersion] AS [ProductVersion], 
+        1 AS [C1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[MigrationId] DESC
+2018-04-30 08:26:53.6103|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[MigrationId] AS [MigrationId], 
+    [Project1].[Model] AS [Model], 
+    [Project1].[ProductVersion] AS [ProductVersion]
+    FROM ( SELECT 
+        [Extent1].[MigrationId] AS [MigrationId], 
+        [Extent1].[Model] AS [Model], 
+        [Extent1].[ProductVersion] AS [ProductVersion], 
+        1 AS [C1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[MigrationId] DESC
+2018-04-30 08:26:54.0286|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:26:54.1082|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:26:54.2468|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:26:54.2728|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:26:54.3439|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:26:54.3729|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:26:54.4319|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:26:54.4624|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:26:55.4091|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Security_ID] AS [Security_ID], 
+    [Project1].[Long_Short_Indicator] AS [Long_Short_Indicator], 
+    [Project1].[Portfolio_Code] AS [Portfolio_Code], 
+    [Project1].[Position_Date] AS [Position_Date], 
+    [Project1].[Dealt_Quantity] AS [Dealt_Quantity], 
+    [Project1].[Dealt_AllIn_Mkt_Value_BaseCur] AS [Dealt_AllIn_Mkt_Value_BaseCur], 
+    [Project1].[Ticker] AS [Ticker]
+    FROM ( SELECT 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Portfolio_Code] AS [Portfolio_Code], 
+        [Extent1].[Security_ID] AS [Security_ID], 
+        [Extent1].[Long_Short_Indicator] AS [Long_Short_Indicator], 
+        [Extent1].[Position_Date] AS [Position_Date], 
+        [Extent1].[Dealt_Quantity] AS [Dealt_Quantity], 
+        [Extent1].[Dealt_AllIn_Mkt_Value_BaseCur] AS [Dealt_AllIn_Mkt_Value_BaseCur], 
+        [Extent2].[Ticker] AS [Ticker], 
+        1 AS [C1]
+        FROM  [dbo].[Position_SOD] AS [Extent1]
+        INNER JOIN [dbo].[Security_Detail] AS [Extent2] ON [Extent1].[Security_ID] = [Extent2].[Security_ID]
+        WHERE ([Extent1].[Portfolio_Code] = @p__linq__0) AND ([Extent1].[Entity_ID] = @p__linq__1)
+    )  AS [Project1]
+    ORDER BY [Project1].[Position_Date] DESC, [Project1].[Ticker] ASC
+2018-04-30 08:26:55.4797|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Security_ID] AS [Security_ID], 
+    [Project1].[Long_Short_Indicator] AS [Long_Short_Indicator], 
+    [Project1].[Portfolio_Code] AS [Portfolio_Code], 
+    [Project1].[Position_Date] AS [Position_Date], 
+    [Project1].[Dealt_Quantity] AS [Dealt_Quantity], 
+    [Project1].[Dealt_AllIn_Mkt_Value_BaseCur] AS [Dealt_AllIn_Mkt_Value_BaseCur], 
+    [Project1].[Ticker] AS [Ticker]
+    FROM ( SELECT 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Portfolio_Code] AS [Portfolio_Code], 
+        [Extent1].[Security_ID] AS [Security_ID], 
+        [Extent1].[Long_Short_Indicator] AS [Long_Short_Indicator], 
+        [Extent1].[Position_Date] AS [Position_Date], 
+        [Extent1].[Dealt_Quantity] AS [Dealt_Quantity], 
+        [Extent1].[Dealt_AllIn_Mkt_Value_BaseCur] AS [Dealt_AllIn_Mkt_Value_BaseCur], 
+        [Extent2].[Ticker] AS [Ticker], 
+        1 AS [C1]
+        FROM  [dbo].[Position_SOD] AS [Extent1]
+        INNER JOIN [dbo].[Security_Detail] AS [Extent2] ON [Extent1].[Security_ID] = [Extent2].[Security_ID]
+        WHERE ([Extent1].[Portfolio_Code] = @p__linq__0) AND ([Extent1].[Entity_ID] = @p__linq__1)
+    )  AS [Project1]
+    ORDER BY [Project1].[Position_Date] DESC, [Project1].[Ticker] ASC
+2018-04-30 08:27:11.8579|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:27:11.8864|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:27:11.9255|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:27:11.9440|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:27:11.9675|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:27:11.9940|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:27:12.0125|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:27:12.0280|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:27:12.0485|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:27:12.0776|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:27:12.1001|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:27:12.1196|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:27:12.2452|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-04-30 08:27:12.2852|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-04-30 08:27:37.7392|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[Classification_Code] AS [Classification_Code], 
+    [Project1].[Description] AS [Description], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Project1].[Last_Update_User] AS [Last_Update_User], 
+    [Project1].[System_Locked] AS [System_Locked], 
+    [Project1].[C2] AS [C2], 
+    [Project1].[Classification_Code1] AS [Classification_Code1], 
+    [Project1].[Description1] AS [Description1], 
+    [Project1].[Industry_Code] AS [Industry_Code], 
+    [Project1].[Entity_ID1] AS [Entity_ID1], 
+    [Project1].[Last_Update_Date1] AS [Last_Update_Date1], 
+    [Project1].[Last_Update_User1] AS [Last_Update_User1], 
+    [Project1].[System_Locked1] AS [System_Locked1]
+    FROM ( SELECT 
+        [Extent1].[Classification_Code] AS [Classification_Code], 
+        [Extent1].[Description] AS [Description], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+        [Extent1].[Last_Update_User] AS [Last_Update_User], 
+        [Extent1].[System_Locked] AS [System_Locked], 
+        1 AS [C1], 
+        [Extent2].[Classification_Code] AS [Classification_Code1], 
+        [Extent2].[Description] AS [Description1], 
+        [Extent2].[Industry_Code] AS [Industry_Code], 
+        [Extent2].[Entity_ID] AS [Entity_ID1], 
+        [Extent2].[Last_Update_Date] AS [Last_Update_Date1], 
+        [Extent2].[Last_Update_User] AS [Last_Update_User1], 
+        [Extent2].[System_Locked] AS [System_Locked1], 
+        CASE WHEN ([Extent2].[Classification_Code] IS NULL) THEN CAST(NULL AS int) ELSE 1 END AS [C2]
+        FROM  [dbo].[Classification] AS [Extent1]
+        LEFT OUTER JOIN [dbo].[Classification_Industry] AS [Extent2] ON ([Extent1].[Classification_Code] = [Extent2].[Classification_Code]) AND ([Extent1].[Entity_ID] = [Extent2].[Entity_ID])
+        WHERE [Extent1].[Entity_ID] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[Classification_Code] ASC, [Project1].[Entity_ID] ASC, [Project1].[C2] ASC
+2018-04-30 08:27:37.8113|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[Classification_Code] AS [Classification_Code], 
+    [Project1].[Description] AS [Description], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Project1].[Last_Update_User] AS [Last_Update_User], 
+    [Project1].[System_Locked] AS [System_Locked], 
+    [Project1].[C2] AS [C2], 
+    [Project1].[Classification_Code1] AS [Classification_Code1], 
+    [Project1].[Description1] AS [Description1], 
+    [Project1].[Industry_Code] AS [Industry_Code], 
+    [Project1].[Entity_ID1] AS [Entity_ID1], 
+    [Project1].[Last_Update_Date1] AS [Last_Update_Date1], 
+    [Project1].[Last_Update_User1] AS [Last_Update_User1], 
+    [Project1].[System_Locked1] AS [System_Locked1]
+    FROM ( SELECT 
+        [Extent1].[Classification_Code] AS [Classification_Code], 
+        [Extent1].[Description] AS [Description], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+        [Extent1].[Last_Update_User] AS [Last_Update_User], 
+        [Extent1].[System_Locked] AS [System_Locked], 
+        1 AS [C1], 
+        [Extent2].[Classification_Code] AS [Classification_Code1], 
+        [Extent2].[Description] AS [Description1], 
+        [Extent2].[Industry_Code] AS [Industry_Code], 
+        [Extent2].[Entity_ID] AS [Entity_ID1], 
+        [Extent2].[Last_Update_Date] AS [Last_Update_Date1], 
+        [Extent2].[Last_Update_User] AS [Last_Update_User1], 
+        [Extent2].[System_Locked] AS [System_Locked1], 
+        CASE WHEN ([Extent2].[Classification_Code] IS NULL) THEN CAST(NULL AS int) ELSE 1 END AS [C2]
+        FROM  [dbo].[Classification] AS [Extent1]
+        LEFT OUTER JOIN [dbo].[Classification_Industry] AS [Extent2] ON ([Extent1].[Classification_Code] = [Extent2].[Classification_Code]) AND ([Extent1].[Entity_ID] = [Extent2].[Entity_ID])
+        WHERE [Extent1].[Entity_ID] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[Classification_Code] ASC, [Project1].[Entity_ID] ASC, [Project1].[C2] ASC
+2018-04-30 08:27:41.5545|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:27:41.7021|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:27:41.7861|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:27:41.8412|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:27:48.4051|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:27:48.9464|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:27:50.0127|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:27:50.4645|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:27:51.0640|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:27:51.2946|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:32:21.3288|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:32:21.7586|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:32:22.0013|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE ((UPPER([Extent1].[UserName])) = (UPPER(@p__linq__0))) OR ((UPPER([Extent1].[UserName]) IS NULL) AND (UPPER(@p__linq__0) IS NULL))
+2018-04-30 08:32:22.0583|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE ((UPPER([Extent1].[UserName])) = (UPPER(@p__linq__0))) OR ((UPPER([Extent1].[UserName]) IS NULL) AND (UPPER(@p__linq__0) IS NULL))
+2018-04-30 08:32:22.0984|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:22.1824|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:22.2240|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:22.2840|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:22.3215|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:22.3791|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:22.6127|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent2].[Name] AS [Name]
+    FROM  [dbo].[AspNetUserRoles] AS [Extent1]
+    INNER JOIN [dbo].[AspNetRoles] AS [Extent2] ON [Extent1].[RoleId] = [Extent2].[Id]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:22.6738|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent2].[Name] AS [Name]
+    FROM  [dbo].[AspNetUserRoles] AS [Extent1]
+    INNER JOIN [dbo].[AspNetRoles] AS [Extent2] ON [Extent1].[RoleId] = [Extent2].[Id]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:22.7984|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:32:22.8404|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:32:22.8684|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:32:22.8989|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:32:22.9355|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:32:22.9740|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:32:23.0075|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:23.0430|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:23.0706|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:23.1096|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:23.1411|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:23.1766|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:23.2247|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:32:23.2577|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-04-30 08:32:23.2852|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:23.3242|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:23.3538|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:23.4263|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:23.4518|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:23.4769|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-04-30 08:32:23.5099|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-04-30 08:32:23.5559|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-04-30 08:32:27.6837|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:32:27.6987|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:32:27.7147|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-04-30 08:32:27.7302|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'

@@ -113,6 +113,9 @@
     <Compile Include="Exchange.cs">
       <DependentUpon>MetopeEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Forex_Forecast.cs">
+      <DependentUpon>MetopeEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="MetopeEDM.Context.cs">
       <DependentUpon>MetopeEDM.Context.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -134,6 +137,7 @@
     <Compile Include="MyMetaData\ClassificationIndustryModelMetaData.cs" />
     <Compile Include="MyMetaData\ClassificationModelMetaData.cs" />
     <Compile Include="MyMetaData\DebtExpiryProfileModelMetaData.cs" />
+    <Compile Include="MyMetaData\ForexForecastModelMetaData.cs" />
     <Compile Include="MyMetaData\MyMetadataProvider.cs" />
     <Compile Include="MyMetaData\PartyFinancialsModelMetaData.cs" />
     <Compile Include="MyMetaData\PartyModelMetaData.cs" />

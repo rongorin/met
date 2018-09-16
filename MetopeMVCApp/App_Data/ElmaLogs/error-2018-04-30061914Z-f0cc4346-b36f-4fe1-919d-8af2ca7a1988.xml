@@ -1,0 +1,183 @@
+﻿<error errorId="f0cc4346-b36f-4fe1-919d-8af2ca7a1988" application="/LM/W3SVC/95/ROOT" host="R" type="System.NullReferenceException" message="Object reference not set to an instance of an object." source="MetopeMVC" detail="System.NullReferenceException: Object reference not set to an instance of an object.&#xD;&#xA;   at MetopeMVCApp.App_Start.UserRoute.GetRouteData(HttpContextBase httpContext) in c:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\App_Start\UserRoute.cs:line 32&#xD;&#xA;   at System.Web.Routing.RouteCollection.GetRouteData(HttpContextBase httpContext)&#xD;&#xA;   at System.Web.Routing.UrlRoutingModule.PostResolveRequestCache(HttpContextBase context)&#xD;&#xA;   at System.Web.Routing.UrlRoutingModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)&#xD;&#xA;   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="aaaaaa" time="2018-04-30T06:19:14.8478433Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/css,*/*;q=0.1&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, br&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-ZA,en;q=0.9&#xD;&#xA;HTTP_COOKIE:glimpsePolicy=On; glimpseOptions=%7B%22glimpsePolicy%22%3Anull%7D; ai_user=S2KRP|2018-01-10T15:21:29.881Z; __RequestVerificationToken=hbMdb1HYpSkUo8_i5OS7XgTJhXfgxp5SceIKEZMcfF0TltTayzXSxuYchKnDPEENXHK4vnGyay4aRjR9lPr3lViW63ntnHRMa3QUkYTqJjc1; ASP.NET_SessionId=r4pikbfh12jsksqrhoxhso2q; __RequestVerificationToken_L01ldG9wZUFwcA2=BJUdCH4FXDLPFajOxcr3UL5hdUhpk6QcvvM59m1USk4TB6ARP2LuzwYx75yBshd-Xu3XgidY-0mxWFtq2XifnXqIhkJZVUKj0jx490VrnvI1; .AspNet.ApplicationCookie=AammdIVE4oUqDZVaKzapXAPTlJQene1dfLeq8-s4_fXr_TBFECXuGN_MC8u4TKQyLVM_Dm4TspnARlj1uybAY6bus8fF9Ju2gE43rkaB0Qtetguj2XPKZLGgkmHmwxSRhRbRW6lU9kCyt77RWbGHU85t6hiAtTy9W6LyZyfxzsLj0FXl9JOmatRMmop_v42EW2XOeLL_iGOu_p0t8Qbt-80Bl5kdSGUlW29Zue_EZaFs95hB8io5MynNYw_EW1Nb-fP8q6bi9YRwmH8d77foRY3chLGP9rodNJOAfz0lqfPspZ1iNuDEr9L_DFW_b781Hrmlv8x1Nfz7vDb30xf8Q4Rgp7NWE7PdA3qdwtpaq4DiKEcFOOZU9mwhqE70AgjcRhFOYrfma5Z_66uTFy3Hpj8vTY4DUVVl5WccqMQK0lewWBVg8wpAKO3lzffnZ4U7SGuFkoKTD5nUo-nY_nZX7OdAylk__49IeCyA4RF3EqQ&#xD;&#xA;HTTP_HOST:localhost:53133&#xD;&#xA;HTTP_IF_NONE_MATCH:&quot;abopFycz88sMb9GP9w-beL73jWC6-EegTplVjz7PPvE1&quot;&#xD;&#xA;HTTP_REFERER:http://localhost:53133/Classifications&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Connection: keep-alive&#xD;&#xA;Accept: text/css,*/*;q=0.1&#xD;&#xA;Accept-Encoding: gzip, deflate, br&#xD;&#xA;Accept-Language: en-ZA,en;q=0.9&#xD;&#xA;Cookie: glimpsePolicy=On; glimpseOptions=%7B%22glimpsePolicy%22%3Anull%7D; ai_user=S2KRP|2018-01-10T15:21:29.881Z; __RequestVerificationToken=hbMdb1HYpSkUo8_i5OS7XgTJhXfgxp5SceIKEZMcfF0TltTayzXSxuYchKnDPEENXHK4vnGyay4aRjR9lPr3lViW63ntnHRMa3QUkYTqJjc1; ASP.NET_SessionId=r4pikbfh12jsksqrhoxhso2q; __RequestVerificationToken_L01ldG9wZUFwcA2=BJUdCH4FXDLPFajOxcr3UL5hdUhpk6QcvvM59m1USk4TB6ARP2LuzwYx75yBshd-Xu3XgidY-0mxWFtq2XifnXqIhkJZVUKj0jx490VrnvI1; .AspNet.ApplicationCookie=AammdIVE4oUqDZVaKzapXAPTlJQene1dfLeq8-s4_fXr_TBFECXuGN_MC8u4TKQyLVM_Dm4TspnARlj1uybAY6bus8fF9Ju2gE43rkaB0Qtetguj2XPKZLGgkmHmwxSRhRbRW6lU9kCyt77RWbGHU85t6hiAtTy9W6LyZyfxzsLj0FXl9JOmatRMmop_v42EW2XOeLL_iGOu_p0t8Qbt-80Bl5kdSGUlW29Zue_EZaFs95hB8io5MynNYw_EW1Nb-fP8q6bi9YRwmH8d77foRY3chLGP9rodNJOAfz0lqfPspZ1iNuDEr9L_DFW_b781Hrmlv8x1Nfz7vDb30xf8Q4Rgp7NWE7PdA3qdwtpaq4DiKEcFOOZU9mwhqE70AgjcRhFOYrfma5Z_66uTFy3Hpj8vTY4DUVVl5WccqMQK0lewWBVg8wpAKO3lzffnZ4U7SGuFkoKTD5nUo-nY_nZX7OdAylk__49IeCyA4RF3EqQ&#xD;&#xA;Host: localhost:53133&#xD;&#xA;If-None-Match: &quot;abopFycz88sMb9GP9w-beL73jWC6-EegTplVjz7PPvE1&quot;&#xD;&#xA;Referer: http://localhost:53133/Classifications&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/95/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="C:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="ApplicationCookie" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="aaaaaa" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="aaaaaa" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="aaaaaa" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="95" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/95" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/Content/bootstrap/bootstrap.less" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="C:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\Content\bootstrap\bootstrap.less" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="54699" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/Content/bootstrap/bootstrap.less" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="53133" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/8.0" />
+    </item>
+    <item name="URL">
+      <value string="/Content/bootstrap/bootstrap.less" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/css,*/*;q=0.1" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, br" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-ZA,en;q=0.9" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="glimpsePolicy=On; glimpseOptions=%7B%22glimpsePolicy%22%3Anull%7D; ai_user=S2KRP|2018-01-10T15:21:29.881Z; __RequestVerificationToken=hbMdb1HYpSkUo8_i5OS7XgTJhXfgxp5SceIKEZMcfF0TltTayzXSxuYchKnDPEENXHK4vnGyay4aRjR9lPr3lViW63ntnHRMa3QUkYTqJjc1; ASP.NET_SessionId=r4pikbfh12jsksqrhoxhso2q; __RequestVerificationToken_L01ldG9wZUFwcA2=BJUdCH4FXDLPFajOxcr3UL5hdUhpk6QcvvM59m1USk4TB6ARP2LuzwYx75yBshd-Xu3XgidY-0mxWFtq2XifnXqIhkJZVUKj0jx490VrnvI1; .AspNet.ApplicationCookie=AammdIVE4oUqDZVaKzapXAPTlJQene1dfLeq8-s4_fXr_TBFECXuGN_MC8u4TKQyLVM_Dm4TspnARlj1uybAY6bus8fF9Ju2gE43rkaB0Qtetguj2XPKZLGgkmHmwxSRhRbRW6lU9kCyt77RWbGHU85t6hiAtTy9W6LyZyfxzsLj0FXl9JOmatRMmop_v42EW2XOeLL_iGOu_p0t8Qbt-80Bl5kdSGUlW29Zue_EZaFs95hB8io5MynNYw_EW1Nb-fP8q6bi9YRwmH8d77foRY3chLGP9rodNJOAfz0lqfPspZ1iNuDEr9L_DFW_b781Hrmlv8x1Nfz7vDb30xf8Q4Rgp7NWE7PdA3qdwtpaq4DiKEcFOOZU9mwhqE70AgjcRhFOYrfma5Z_66uTFy3Hpj8vTY4DUVVl5WccqMQK0lewWBVg8wpAKO3lzffnZ4U7SGuFkoKTD5nUo-nY_nZX7OdAylk__49IeCyA4RF3EqQ" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:53133" />
+    </item>
+    <item name="HTTP_IF_NONE_MATCH">
+      <value string="&quot;abopFycz88sMb9GP9w-beL73jWC6-EegTplVjz7PPvE1&quot;" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:53133/Classifications" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36" />
+    </item>
+  </serverVariables>
+  <cookies>
+    <item name="glimpsePolicy">
+      <value string="On" />
+    </item>
+    <item name="glimpseOptions">
+      <value string="%7B%22glimpsePolicy%22%3Anull%7D" />
+    </item>
+    <item name="ai_user">
+      <value string="S2KRP|2018-01-10T15:21:29.881Z" />
+    </item>
+    <item name="__RequestVerificationToken">
+      <value string="hbMdb1HYpSkUo8_i5OS7XgTJhXfgxp5SceIKEZMcfF0TltTayzXSxuYchKnDPEENXHK4vnGyay4aRjR9lPr3lViW63ntnHRMa3QUkYTqJjc1" />
+    </item>
+    <item name="ASP.NET_SessionId">
+      <value string="r4pikbfh12jsksqrhoxhso2q" />
+    </item>
+    <item name="__RequestVerificationToken_L01ldG9wZUFwcA2">
+      <value string="BJUdCH4FXDLPFajOxcr3UL5hdUhpk6QcvvM59m1USk4TB6ARP2LuzwYx75yBshd-Xu3XgidY-0mxWFtq2XifnXqIhkJZVUKj0jx490VrnvI1" />
+    </item>
+    <item name=".AspNet.ApplicationCookie">
+      <value string="AammdIVE4oUqDZVaKzapXAPTlJQene1dfLeq8-s4_fXr_TBFECXuGN_MC8u4TKQyLVM_Dm4TspnARlj1uybAY6bus8fF9Ju2gE43rkaB0Qtetguj2XPKZLGgkmHmwxSRhRbRW6lU9kCyt77RWbGHU85t6hiAtTy9W6LyZyfxzsLj0FXl9JOmatRMmop_v42EW2XOeLL_iGOu_p0t8Qbt-80Bl5kdSGUlW29Zue_EZaFs95hB8io5MynNYw_EW1Nb-fP8q6bi9YRwmH8d77foRY3chLGP9rodNJOAfz0lqfPspZ1iNuDEr9L_DFW_b781Hrmlv8x1Nfz7vDb30xf8Q4Rgp7NWE7PdA3qdwtpaq4DiKEcFOOZU9mwhqE70AgjcRhFOYrfma5Z_66uTFy3Hpj8vTY4DUVVl5WccqMQK0lewWBVg8wpAKO3lzffnZ4U7SGuFkoKTD5nUo-nY_nZX7OdAylk__49IeCyA4RF3EqQ" />
+    </item>
+  </cookies>
+</error>

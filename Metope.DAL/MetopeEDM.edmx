@@ -156,6 +156,18 @@
           <Property Name="Exchange_Type" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="system_locked" Type="bit" />
         </EntityType>
+        <EntityType Name="Forex_Forecast">
+          <Key>
+            <PropertyRef Name="Security_ID" />
+            <PropertyRef Name="Month_Year" />
+          </Key>
+          <Property Name="Entity_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Security_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Month_Year" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Forecast_Rate" Type="decimal" Precision="20" Scale="9" />
+          <Property Name="Last_Update_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Update_User" Type="varchar" MaxLength="30" />
+        </EntityType>
         <EntityType Name="Order_Allocation">
           <Key>
             <PropertyRef Name="Allocation_ID" />
@@ -1410,6 +1422,32 @@
             </Principal>
             <Dependent Role="Exchange">
               <PropertyRef Name="Entity_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Forex_Forecast_Security_Detail">
+          <End Role="Security_Detail" Type="Self.Security_Detail" Multiplicity="1" />
+          <End Role="Forex_Forecast" Type="Self.Forex_Forecast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Forex_Forecast">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Forex_forecast_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Forex_Forecast" Type="Self.Forex_Forecast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Forex_Forecast">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2783,6 +2821,7 @@
           <EntitySet Name="Debt_Expiry_Profile" EntityType="Self.Debt_Expiry_Profile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Entity" EntityType="Self.Entity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exchange" EntityType="Self.Exchange" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Forex_Forecast" EntityType="Self.Forex_Forecast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order_Allocation" EntityType="Self.Order_Allocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Party" EntityType="Self.Party" Schema="dbo" store:Type="Tables" />
@@ -2899,6 +2938,14 @@
           <AssociationSet Name="FK_Exchange_Entity" Association="Self.FK_Exchange_Entity">
             <End Role="Entity" EntitySet="Entity" />
             <End Role="Exchange" EntitySet="Exchange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Forex_Forecast_Security_Detail" Association="Self.FK_Forex_Forecast_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Forex_Forecast" EntitySet="Forex_Forecast" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Forex_forecast_User" Association="Self.FK_Forex_forecast_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Forex_Forecast" EntitySet="Forex_Forecast" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Allocation_Entity" Association="Self.FK_Order_Allocation_Entity">
             <End Role="Entity" EntitySet="Entity" />
@@ -3419,6 +3466,7 @@
           <NavigationProperty Name="Portfolio_Performance" Relationship="MetopeDbModel.FK_Portfolio_Performance_User" FromRole="User" ToRole="Portfolio_Performance" />
           <NavigationProperty Name="Security_Classification_Industry" Relationship="MetopeDbModel.FK_Security_Classification_Industry_User" FromRole="User" ToRole="Security_Classification_Industry" />
           <NavigationProperty Name="Portfolio_Performance_History" Relationship="MetopeDbModel.FK_Portfolio_Performance_History_User" FromRole="User" ToRole="Portfolio_Performance_History" />
+          <NavigationProperty Name="Forex_Forecast" Relationship="MetopeDbModel.FK_Forex_forecast_User" FromRole="User" ToRole="Forex_Forecast" />
           </EntityType>
         <Association Name="FK_User_Entity">
           <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
@@ -4024,6 +4072,15 @@
           <AssociationSet Name="FK_Portfolio_Performance_History_User" Association="MetopeDbModel.FK_Portfolio_Performance_History_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Portfolio_Performance_History" EntitySet="Portfolio_Performance_History" />
+          </AssociationSet>
+          <EntitySet Name="Forex_Forecast" EntityType="MetopeDbModel.Forex_Forecast" />
+          <AssociationSet Name="FK_Forex_Forecast_Security_Detail" Association="MetopeDbModel.FK_Forex_Forecast_Security_Detail">
+            <End Role="Security_Detail" EntitySet="Security_Detail" />
+            <End Role="Forex_Forecast" EntitySet="Forex_Forecast" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Forex_forecast_User" Association="MetopeDbModel.FK_Forex_forecast_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Forex_Forecast" EntitySet="Forex_Forecast" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="AspNetUser">
@@ -5964,6 +6021,7 @@
           <NavigationProperty Name="Security_Analytics_History" Relationship="MetopeDbModel.FK_Security_Analytics_History_Security_Detail" FromRole="Security_Detail" ToRole="Security_Analytics_History" />
           <NavigationProperty Name="Security_Analytics_History1" Relationship="MetopeDbModel.FK_Security_Analytics_History_Security_Detail2" FromRole="Security_Detail" ToRole="Security_Analytics_History" />
           <NavigationProperty Name="Security_Classification_Industry" Relationship="MetopeDbModel.FK_Security_Classification_Industry_Security_Detail" FromRole="Security_Detail" ToRole="Security_Classification_Industry" />
+          <NavigationProperty Name="Forex_Forecast" Relationship="MetopeDbModel.FK_Forex_Forecast_Security_Detail" FromRole="Security_Detail" ToRole="Forex_Forecast" />
         </EntityType>
         <Association Name="FK_Cash_Transactions_Security_Detail">
           <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="0..1" />
@@ -6910,6 +6968,46 @@
               <PropertyRef Name="User_Code" />
             </Principal>
             <Dependent Role="Portfolio_Performance_History">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="Last_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Forex_Forecast">
+          <Key>
+            <PropertyRef Name="Security_ID" />
+            <PropertyRef Name="Month_Year" />
+          </Key>
+          <Property Name="Entity_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Security_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Month_Year" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Forecast_Rate" Type="Decimal" Precision="20" Scale="9" />
+          <Property Name="Last_Update_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Update_User" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Security_Detail" Relationship="MetopeDbModel.FK_Forex_Forecast_Security_Detail" FromRole="Forex_Forecast" ToRole="Security_Detail" />
+          <NavigationProperty Name="User" Relationship="MetopeDbModel.FK_Forex_forecast_User" FromRole="Forex_Forecast" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Forex_Forecast_Security_Detail">
+          <End Type="MetopeDbModel.Security_Detail" Role="Security_Detail" Multiplicity="1" />
+          <End Type="MetopeDbModel.Forex_Forecast" Role="Forex_Forecast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security_Detail">
+              <PropertyRef Name="Security_ID" />
+            </Principal>
+            <Dependent Role="Forex_Forecast">
+              <PropertyRef Name="Security_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Forex_forecast_User">
+          <End Type="MetopeDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MetopeDbModel.Forex_Forecast" Role="Forex_Forecast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Entity_ID" />
+              <PropertyRef Name="User_Code" />
+            </Principal>
+            <Dependent Role="Forex_Forecast">
               <PropertyRef Name="Entity_ID" />
               <PropertyRef Name="Last_Update_User" />
             </Dependent>
@@ -8035,6 +8133,18 @@
                 <ScalarProperty Name="Dietz_Performance_MonthToDate" ColumnName="Dietz_Performance_MonthToDate" />
                 <ScalarProperty Name="Dietz_Performance_Monthly" ColumnName="Dietz_Performance_Monthly" />
                 <ScalarProperty Name="Portfolio_Code" ColumnName="Portfolio_Code" />
+                <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Forex_Forecast">
+            <EntityTypeMapping TypeName="MetopeDbModel.Forex_Forecast">
+              <MappingFragment StoreEntitySet="Forex_Forecast">
+                <ScalarProperty Name="Last_Update_User" ColumnName="Last_Update_User" />
+                <ScalarProperty Name="Last_Update_Date" ColumnName="Last_Update_Date" />
+                <ScalarProperty Name="Forecast_Rate" ColumnName="Forecast_Rate" />
+                <ScalarProperty Name="Month_Year" ColumnName="Month_Year" />
+                <ScalarProperty Name="Security_ID" ColumnName="Security_ID" />
                 <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
               </MappingFragment>
             </EntityTypeMapping>

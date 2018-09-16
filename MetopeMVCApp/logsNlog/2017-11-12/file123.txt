@@ -1,0 +1,353 @@
+ 
+2017-11-12 19:16:45.5910|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 19:16:45.6790|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 19:16:45.7611|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Extent1].[Party_Code] AS [Party_Code], 
+    [Extent1].[Financials_Type] AS [Financials_Type], 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Financials_Date] AS [Financials_Date], 
+    [Extent1].[Investment_Properties] AS [Investment_Properties], 
+    [Extent1].[Other_Investments] AS [Other_Investments], 
+    [Extent1].[Total_Investments] AS [Total_Investments], 
+    [Extent1].[Weighted_Investments] AS [Weighted_Investments], 
+    [Extent1].[ST_Interest_Bearing_Debt] AS [ST_Interest_Bearing_Debt], 
+    [Extent1].[LT_Interest_Bearing_Debt] AS [LT_Interest_Bearing_Debt], 
+    [Extent1].[Total_Interest_Bearing_Borrowings] AS [Total_Interest_Bearing_Borrowings], 
+    [Extent1].[Debt_Hedged_Amount] AS [Debt_Hedged_Amount], 
+    [Extent1].[Debt_Hedged_Percent] AS [Debt_Hedged_Percent], 
+    [Extent1].[Floating_Debt_Amount] AS [Floating_Debt_Amount], 
+    [Extent1].[Floating_Debt_Percent] AS [Floating_Debt_Percent], 
+    [Extent1].[Total_Weighted_Debt_Cost] AS [Total_Weighted_Debt_Cost], 
+    [Extent1].[Capital_Markets_Debt] AS [Capital_Markets_Debt], 
+    [Extent1].[Traditional_Bank_Debt] AS [Traditional_Bank_Debt], 
+    [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Extent1].[Last_Update_User] AS [Last_Update_User]
+    FROM [dbo].[Party_Debt_Analysis] AS [Extent1]
+    WHERE ([Extent1].[Entity_ID] = @p__linq__0) AND ([Extent1].[Party_Code] = @p__linq__1) AND ([Extent1].[Financials_Type] = @p__linq__2)
+2017-11-12 19:16:45.7961|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Extent1].[Party_Code] AS [Party_Code], 
+    [Extent1].[Financials_Type] AS [Financials_Type], 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Financials_Date] AS [Financials_Date], 
+    [Extent1].[Investment_Properties] AS [Investment_Properties], 
+    [Extent1].[Other_Investments] AS [Other_Investments], 
+    [Extent1].[Total_Investments] AS [Total_Investments], 
+    [Extent1].[Weighted_Investments] AS [Weighted_Investments], 
+    [Extent1].[ST_Interest_Bearing_Debt] AS [ST_Interest_Bearing_Debt], 
+    [Extent1].[LT_Interest_Bearing_Debt] AS [LT_Interest_Bearing_Debt], 
+    [Extent1].[Total_Interest_Bearing_Borrowings] AS [Total_Interest_Bearing_Borrowings], 
+    [Extent1].[Debt_Hedged_Amount] AS [Debt_Hedged_Amount], 
+    [Extent1].[Debt_Hedged_Percent] AS [Debt_Hedged_Percent], 
+    [Extent1].[Floating_Debt_Amount] AS [Floating_Debt_Amount], 
+    [Extent1].[Floating_Debt_Percent] AS [Floating_Debt_Percent], 
+    [Extent1].[Total_Weighted_Debt_Cost] AS [Total_Weighted_Debt_Cost], 
+    [Extent1].[Capital_Markets_Debt] AS [Capital_Markets_Debt], 
+    [Extent1].[Traditional_Bank_Debt] AS [Traditional_Bank_Debt], 
+    [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Extent1].[Last_Update_User] AS [Last_Update_User]
+    FROM [dbo].[Party_Debt_Analysis] AS [Extent1]
+    WHERE ([Extent1].[Entity_ID] = @p__linq__0) AND ([Extent1].[Party_Code] = @p__linq__1) AND ([Extent1].[Financials_Type] = @p__linq__2)
+2017-11-12 19:16:45.9368|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 19:16:45.9368|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 19:16:45.9468|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 19:16:45.9468|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 21:04:13.4299|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 21:04:13.6280|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 21:04:14.0564|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[Party_Code] AS [Party_Code], 
+    [Project1].[Financials_Type] AS [Financials_Type], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Financials_Date] AS [Financials_Date], 
+    [Project1].[Investment_Properties] AS [Investment_Properties], 
+    [Project1].[Other_Investments] AS [Other_Investments], 
+    [Project1].[Total_Investments] AS [Total_Investments], 
+    [Project1].[Weighted_Investments] AS [Weighted_Investments], 
+    [Project1].[ST_Interest_Bearing_Debt] AS [ST_Interest_Bearing_Debt], 
+    [Project1].[LT_Interest_Bearing_Debt] AS [LT_Interest_Bearing_Debt], 
+    [Project1].[Total_Interest_Bearing_Borrowings] AS [Total_Interest_Bearing_Borrowings], 
+    [Project1].[Debt_Hedged_Amount] AS [Debt_Hedged_Amount], 
+    [Project1].[Debt_Hedged_Percent] AS [Debt_Hedged_Percent], 
+    [Project1].[Floating_Debt_Amount] AS [Floating_Debt_Amount], 
+    [Project1].[Floating_Debt_Percent] AS [Floating_Debt_Percent], 
+    [Project1].[Total_Weighted_Debt_Cost] AS [Total_Weighted_Debt_Cost], 
+    [Project1].[Capital_Markets_Debt] AS [Capital_Markets_Debt], 
+    [Project1].[Traditional_Bank_Debt] AS [Traditional_Bank_Debt], 
+    [Project1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Project1].[Last_Update_User] AS [Last_Update_User]
+    FROM ( SELECT 
+        [Extent1].[Party_Code] AS [Party_Code], 
+        [Extent1].[Financials_Type] AS [Financials_Type], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Financials_Date] AS [Financials_Date], 
+        [Extent1].[Investment_Properties] AS [Investment_Properties], 
+        [Extent1].[Other_Investments] AS [Other_Investments], 
+        [Extent1].[Total_Investments] AS [Total_Investments], 
+        [Extent1].[Weighted_Investments] AS [Weighted_Investments], 
+        [Extent1].[ST_Interest_Bearing_Debt] AS [ST_Interest_Bearing_Debt], 
+        [Extent1].[LT_Interest_Bearing_Debt] AS [LT_Interest_Bearing_Debt], 
+        [Extent1].[Total_Interest_Bearing_Borrowings] AS [Total_Interest_Bearing_Borrowings], 
+        [Extent1].[Debt_Hedged_Amount] AS [Debt_Hedged_Amount], 
+        [Extent1].[Debt_Hedged_Percent] AS [Debt_Hedged_Percent], 
+        [Extent1].[Floating_Debt_Amount] AS [Floating_Debt_Amount], 
+        [Extent1].[Floating_Debt_Percent] AS [Floating_Debt_Percent], 
+        [Extent1].[Total_Weighted_Debt_Cost] AS [Total_Weighted_Debt_Cost], 
+        [Extent1].[Capital_Markets_Debt] AS [Capital_Markets_Debt], 
+        [Extent1].[Traditional_Bank_Debt] AS [Traditional_Bank_Debt], 
+        [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+        [Extent1].[Last_Update_User] AS [Last_Update_User]
+        FROM [dbo].[Party_Debt_Analysis] AS [Extent1]
+        WHERE ([Extent1].[Entity_ID] = @p__linq__0) AND ((CASE WHEN ( NOT ((N'' = @p__linq__1) AND (@p__linq__1 IS NOT NULL))) THEN CASE WHEN ([Extent1].[Party_Code] = @p__linq__2) THEN cast(1 as bit) WHEN ( NOT (([Extent1].[Party_Code] = @p__linq__2) AND (0 = (CASE WHEN (@p__linq__2 IS NULL) THEN cast(1 as bit) ELSE cast(0 as bit) END)))) THEN cast(0 as bit) END WHEN ('' <> [Extent1].[Party_Code]) THEN cast(1 as bit) WHEN ('' = [Extent1].[Party_Code]) THEN cast(0 as bit) END) = 1)
+    )  AS [Project1]
+    ORDER BY [Project1].[Party_Code] ASC, [Project1].[Financials_Type] ASC
+2017-11-12 21:04:14.1235|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[Party_Code] AS [Party_Code], 
+    [Project1].[Financials_Type] AS [Financials_Type], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Financials_Date] AS [Financials_Date], 
+    [Project1].[Investment_Properties] AS [Investment_Properties], 
+    [Project1].[Other_Investments] AS [Other_Investments], 
+    [Project1].[Total_Investments] AS [Total_Investments], 
+    [Project1].[Weighted_Investments] AS [Weighted_Investments], 
+    [Project1].[ST_Interest_Bearing_Debt] AS [ST_Interest_Bearing_Debt], 
+    [Project1].[LT_Interest_Bearing_Debt] AS [LT_Interest_Bearing_Debt], 
+    [Project1].[Total_Interest_Bearing_Borrowings] AS [Total_Interest_Bearing_Borrowings], 
+    [Project1].[Debt_Hedged_Amount] AS [Debt_Hedged_Amount], 
+    [Project1].[Debt_Hedged_Percent] AS [Debt_Hedged_Percent], 
+    [Project1].[Floating_Debt_Amount] AS [Floating_Debt_Amount], 
+    [Project1].[Floating_Debt_Percent] AS [Floating_Debt_Percent], 
+    [Project1].[Total_Weighted_Debt_Cost] AS [Total_Weighted_Debt_Cost], 
+    [Project1].[Capital_Markets_Debt] AS [Capital_Markets_Debt], 
+    [Project1].[Traditional_Bank_Debt] AS [Traditional_Bank_Debt], 
+    [Project1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Project1].[Last_Update_User] AS [Last_Update_User]
+    FROM ( SELECT 
+        [Extent1].[Party_Code] AS [Party_Code], 
+        [Extent1].[Financials_Type] AS [Financials_Type], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Financials_Date] AS [Financials_Date], 
+        [Extent1].[Investment_Properties] AS [Investment_Properties], 
+        [Extent1].[Other_Investments] AS [Other_Investments], 
+        [Extent1].[Total_Investments] AS [Total_Investments], 
+        [Extent1].[Weighted_Investments] AS [Weighted_Investments], 
+        [Extent1].[ST_Interest_Bearing_Debt] AS [ST_Interest_Bearing_Debt], 
+        [Extent1].[LT_Interest_Bearing_Debt] AS [LT_Interest_Bearing_Debt], 
+        [Extent1].[Total_Interest_Bearing_Borrowings] AS [Total_Interest_Bearing_Borrowings], 
+        [Extent1].[Debt_Hedged_Amount] AS [Debt_Hedged_Amount], 
+        [Extent1].[Debt_Hedged_Percent] AS [Debt_Hedged_Percent], 
+        [Extent1].[Floating_Debt_Amount] AS [Floating_Debt_Amount], 
+        [Extent1].[Floating_Debt_Percent] AS [Floating_Debt_Percent], 
+        [Extent1].[Total_Weighted_Debt_Cost] AS [Total_Weighted_Debt_Cost], 
+        [Extent1].[Capital_Markets_Debt] AS [Capital_Markets_Debt], 
+        [Extent1].[Traditional_Bank_Debt] AS [Traditional_Bank_Debt], 
+        [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+        [Extent1].[Last_Update_User] AS [Last_Update_User]
+        FROM [dbo].[Party_Debt_Analysis] AS [Extent1]
+        WHERE ([Extent1].[Entity_ID] = @p__linq__0) AND ((CASE WHEN ( NOT ((N'' = @p__linq__1) AND (@p__linq__1 IS NOT NULL))) THEN CASE WHEN ([Extent1].[Party_Code] = @p__linq__2) THEN cast(1 as bit) WHEN ( NOT (([Extent1].[Party_Code] = @p__linq__2) AND (0 = (CASE WHEN (@p__linq__2 IS NULL) THEN cast(1 as bit) ELSE cast(0 as bit) END)))) THEN cast(0 as bit) END WHEN ('' <> [Extent1].[Party_Code]) THEN cast(1 as bit) WHEN ('' = [Extent1].[Party_Code]) THEN cast(0 as bit) END) = 1)
+    )  AS [Project1]
+    ORDER BY [Project1].[Party_Code] ASC, [Project1].[Financials_Type] ASC
+2017-11-12 21:04:14.2421|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 21:04:14.2736|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 21:04:14.2736|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 21:04:14.2736|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 21:04:14.2986|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2017-11-12 21:04:14.3146|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2017-11-12 21:04:14.3276|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2017-11-12 21:04:14.3427|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2017-11-12 21:04:14.3427|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2017-11-12 21:04:14.3577|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2017-11-12 21:04:14.3577|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2017-11-12 21:04:14.3757|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2017-11-12 21:04:14.3867|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2017-11-12 21:04:14.4047|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2017-11-12 21:04:36.3522|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 21:04:36.3787|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 21:04:36.4668|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2017-11-12 21:04:36.5049|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2017-11-12 21:04:36.5119|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2017-11-12 21:04:36.5119|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2017-11-12 21:04:36.5229|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2017-11-12 21:04:36.5229|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2017-11-12 21:04:36.5229|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2017-11-12 21:04:36.5229|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2017-11-12 21:04:36.7410|ERROR|ASP.MetopeNspace.MvcApplication|Error caught in Application_Error event
+, http://localhost:53133/Party/Edit?PartyCode=DIB&EntityId=2 
+ Error in: error in the follow: throwing err div zero!, 
+Inner Error Message:Attempted to divide by zero.
+Stack Trace:   at MetopeMVCApp.Controllers.PartyController.Edit(Party party) in c:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\Controllers\PartyController.cs:line 147
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+Session: Identity name:BluestreamAdmin1 IsAuthenticated:True 
+2017-11-12 21:04:36.8340|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 21:04:36.8340|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 21:04:36.8521|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2017-11-12 21:04:36.8521|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'

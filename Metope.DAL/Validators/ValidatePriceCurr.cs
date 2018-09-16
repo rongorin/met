@@ -10,13 +10,14 @@ namespace MetopeMVCApp.Validators
 {
     //Custom Validate .(see Scott Gu psight vid Mvc4)
 
-    public class ValidatePriceCurrAttribute :  ValidationAttribute
+    public class ValidatePriceCurrAttribute : ValidationAttribute
     {
         MetopeDbEntities db = new MetopeDbEntities();
 
            protected override ValidationResult IsValid(
                                         object value , ValidationContext validationContext)  // 'value' will be the attribute
             {
+                
                 if (value != null)  // now inspect that value
                 { 
                     var model = (Security_Dividend_Detail)validationContext.ObjectInstance;  
@@ -27,8 +28,7 @@ namespace MetopeMVCApp.Validators
                     //           where p.Security_ID == model.Security_ID 
                     //           select p; 
                     var sD = db.Security_Detail.Where(w => w.Security_ID ==  model.Security_ID ).FirstOrDefault<Security_Detail>();
-
-
+                     
                     if (sD.Price_Curr ==  Convert.ToString(value) )
                     {
                         if (model.Actual_FX_Rate != 1)

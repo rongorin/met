@@ -282,6 +282,7 @@
     <Compile Include="Controllers\DebtExpiryProfileController.cs" />
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\ErrorpageController.cs" />
+    <Compile Include="Controllers\ForexForecastController.cs" />
     <Compile Include="Controllers\HistoryControllers\PortfolioPerformanceHistoryController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -849,6 +850,12 @@
     <Content Include="Views\SecurityClassificationIndustry\Edit.cshtml" />
     <Content Include="Views\SecurityClassificationIndustry\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Security_Classification_Industry.cshtml" />
+    <Content Include="Views\ForexForecast\Create.cshtml" />
+    <Content Include="Views\ForexForecast\Delete.cshtml" />
+    <Content Include="Views\ForexForecast\Details.cshtml" />
+    <Content Include="Views\ForexForecast\Edit.cshtml" />
+    <Content Include="Views\ForexForecast\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Forex_Forecast.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

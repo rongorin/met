@@ -24,10 +24,7 @@ namespace Metope.DAL.MyMetaData
         [Display(Name = "Source Code")]
         public object Transaction_Source_Code { get; set; }
 
-        [Required]
-        //[StringLength(1, MinimumLength = 1)]
-        public object External_ID { get; set; }
-
+        
         [Required]
         public object Transaction_Date { get; set; }
 
@@ -40,25 +37,18 @@ namespace Metope.DAL.MyMetaData
         public object Allocation_ID { get; set; }
          
         [Range(0, 999999999999999)] 
-        public object Cashflow_ID { get; set; }
-
-
+        public object Cashflow_ID { get; set; } 
 
         [Required]
         [Display(Name = "Transaction Type")]
         [StringLength(30, ErrorMessage =
                      "Cash Transaction Type should be max 30 characters ")]
-        public object Cash_Transaction_Type { get; set; } 
-         
+        public object Cash_Transaction_Type { get; set; }  
 
-        [Required]
-        [Range(0, 999999999999999)]
+        [Required] 
         public object Transaction_Amount { get; set; }
-        [Required]
-        [Range(0, 999999999999999)]
+        [Required] 
         public object BaseCur_Amount { get; set; }
         
-        [Required]
-        public object Create_User_Code { get; set; }
     }
 }
