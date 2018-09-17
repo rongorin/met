@@ -1,0 +1,45 @@
+﻿@model DateTime? 
+<div class="form-group"> 
+    <div class="col-md-12">
+        <div class="form-group">
+      
+            @if (ViewBag.setLength == "Longer")
+            {
+                @Html.LabelFor(model => model, new { @class = "control-label col-md-3 input-sm" })
+
+            }
+            else
+            {
+                @Html.LabelFor(model => model, new { @class = "control-label col-md-2 input-sm" })
+
+            }
+               
+            <div class="col-md-4"> 
+                <div class='input-group date datetimepickerClass'>
+                    @if (ViewBag.MeDisabled == "readonly")
+                    {
+                        @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
+                        {
+                            @class = "form-control ", 
+                            disabled = "disabled",
+                            placeholder = ViewData.ModelMetadata.Watermark
+                        })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
+                        {
+                            @class = "form-control ", 
+                            placeholder = ViewData.ModelMetadata.Watermark
+                        })
+                    }  
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                @*    @Html.ValidationMessageFor(model => model.Inception_Date)*@ 
+            </div>
+        </div>
+    </div>
+ </div>
+ 

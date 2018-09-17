@@ -1,0 +1,27 @@
+﻿@model MetopeMVCApp.Models.AddSecurityListDetailVM
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+@using (Html.BeginForm())
+{
+    <h3> Edit the Security Listing details code <b> @Model.Security_List_Code </b> </h3>
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Entity_ID)
+
+        @Html.HiddenFor(model => model.Security_List_Code)
+
+        @Html.EditorForModel("Security_List_Detail")
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/datetime")
+
+}

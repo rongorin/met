@@ -1,0 +1,68 @@
+﻿@model MetopeMVCApp.Models.OrderAllocSelectionViewModel
+
+
+@{
+    ViewBag.Title = "Order Allocs";
+}
+
+<h2>Edit/listing</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*Add a new checkbox in its own div element:*@
+        <div>
+            <input type="checkbox" id="checkall" /><span>Check All</span>
+        </div>
+
+        @*Wrap the table element in a div named "checkboxes":*@
+        <hr />
+
+        <div id="checkboxes">
+            <table class="table">
+                <tr>
+                    <th>
+                        Select
+                    </th>
+                    <th>
+                        Port
+                    </th>
+                    <th></th>
+                </tr>
+                @Html.EditorFor(model => model.OrderAllocations)
+            </table>
+            @*Close the "checkboxes" div element:*@
+        </div>
+        <hr />
+        <br />
+        <input type="submit" name="operation" id="submit" value="Submit Selected" />
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+    function toggleChecked(status) {
+        $("#checkboxes input").each(function () {
+            $(this).prop("checked", status);
+        });
+    }
+    $(document).ready(function () {
+
+        //Set the default value of the global checkbox to true:
+        $("#checkall").prop('checked', true);
+
+        // Attach the call to toggleChecked to the
+        // click event of the global checkbox:
+        $("#checkall").click(function () {
+            var status = $("#checkall").prop('checked');
+            toggleChecked(status);
+        });
+    });
+
+
+    </script>
+}

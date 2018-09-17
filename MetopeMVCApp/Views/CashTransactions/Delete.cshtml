@@ -1,0 +1,152 @@
+﻿@model Metope.DAL.Cash_Transactions
+
+@{
+    ViewBag.Title = "Delete";
+}
+  
+<h2>Are you sure you want to Delete this Cash Transaction ?</h2>
+<div> 
+    <h3>for Portfolio @Html.DisplayFor(model => model.Portfolio_Code)</h3>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order_Allocation.Portfolio_Code)
+        </dt> 
+        <dd>
+            @Html.DisplayFor(model => model.Order_Allocation.Portfolio_Code)
+        </dd>
+         <dt>
+            @Html.DisplayNameFor(model => model.Transaction_Source_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction_Source_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order_Detail.Transaction_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order_Detail.Transaction_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Portfolio.Portfolio_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Portfolio.Portfolio_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Detail.Security_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Detail.Security_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Detail1.Security_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Detail1.Security_Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cashflow_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cashflow_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dividend_Seq_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dividend_Seq_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.External_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.External_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Value_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Value_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cash_Transaction_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cash_Transaction_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BaseCur_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BaseCur_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Create_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Create_Date)
+        </dd>
+
+  
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency.ISO_Currency_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency.ISO_Currency_Code)
+        </dd>
+ 
+
+
+  
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
+        </div>
+    }
+</div>

@@ -1,0 +1,1590 @@
+2018-09-15 14:38:10.6647|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: select cast(serverproperty('EngineEdition') as int)
+2018-09-15 14:38:10.7936|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: select cast(serverproperty('EngineEdition') as int)
+2018-09-15 14:38:14.2256|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:38:14.3366|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:38:14.5764|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:38:14.5964|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:38:14.6384|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: 
+SELECT Count(*)
+FROM INFORMATION_SCHEMA.TABLES AS t
+WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.AspNetRoles','dbo.AspNetUserRoles','dbo.AspNetUsers','dbo.AspNetUserClaims','dbo.AspNetUserLogins')
+    OR t.TABLE_NAME = 'EdmMetadata'
+2018-09-15 14:38:14.7233|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: 
+SELECT Count(*)
+FROM INFORMATION_SCHEMA.TABLES AS t
+WHERE t.TABLE_SCHEMA + '.' + t.TABLE_NAME IN ('dbo.AspNetRoles','dbo.AspNetUserRoles','dbo.AspNetUsers','dbo.AspNetUserClaims','dbo.AspNetUserLogins')
+    OR t.TABLE_NAME = 'EdmMetadata'
+2018-09-15 14:38:17.5957|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT 
+        COUNT(1) AS [A1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [GroupBy1]
+2018-09-15 14:38:17.6257|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT 
+        COUNT(1) AS [A1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [GroupBy1]
+2018-09-15 14:38:17.8795|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[MigrationId] AS [MigrationId], 
+    [Project1].[Model] AS [Model], 
+    [Project1].[ProductVersion] AS [ProductVersion]
+    FROM ( SELECT 
+        [Extent1].[MigrationId] AS [MigrationId], 
+        [Extent1].[Model] AS [Model], 
+        [Extent1].[ProductVersion] AS [ProductVersion], 
+        1 AS [C1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[MigrationId] DESC
+2018-09-15 14:38:17.8985|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Project1].[C1] AS [C1], 
+    [Project1].[MigrationId] AS [MigrationId], 
+    [Project1].[Model] AS [Model], 
+    [Project1].[ProductVersion] AS [ProductVersion]
+    FROM ( SELECT 
+        [Extent1].[MigrationId] AS [MigrationId], 
+        [Extent1].[Model] AS [Model], 
+        [Extent1].[ProductVersion] AS [ProductVersion], 
+        1 AS [C1]
+        FROM [dbo].[__MigrationHistory] AS [Extent1]
+        WHERE [Extent1].[ContextKey] = @p__linq__0
+    )  AS [Project1]
+    ORDER BY [Project1].[MigrationId] DESC
+2018-09-15 14:38:19.1228|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-09-15 14:38:19.1568|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-09-15 14:38:19.6045|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:38:19.6305|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:38:19.7025|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:38:19.7225|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:38:19.7854|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:38:19.8024|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:38:21.1187|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Extent2].[Decimal_Precision] AS [Decimal_Precision], 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Security_ID] AS [Security_ID], 
+    [Extent1].[Month_Year] AS [Month_Year], 
+    [Extent1].[Forecast_Rate] AS [Forecast_Rate], 
+    [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Extent1].[Last_Update_User] AS [Last_Update_User], 
+    [Extent2].[Security_ID] AS [Security_ID1], 
+    [Extent2].[Entity_ID] AS [Entity_ID1], 
+    [Extent2].[Security_Name] AS [Security_Name], 
+    [Extent2].[Short_Name] AS [Short_Name], 
+    [Extent2].[Primary_Exch] AS [Primary_Exch], 
+    [Extent2].[Secondary_Exch] AS [Secondary_Exch], 
+    [Extent2].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+    [Extent2].[Country_Of_Risk] AS [Country_Of_Risk], 
+    [Extent2].[Security_Type_Code] AS [Security_Type_Code], 
+    [Extent2].[Price_Multiplier] AS [Price_Multiplier], 
+    [Extent2].[Income_Frequency] AS [Income_Frequency], 
+    [Extent2].[Issuer_Code] AS [Issuer_Code], 
+    [Extent2].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+    [Extent2].[Asset_Currency] AS [Asset_Currency], 
+    [Extent2].[Min_Lot_Size] AS [Min_Lot_Size], 
+    [Extent2].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+    [Extent2].[Issue_Date] AS [Issue_Date], 
+    [Extent2].[Maturity_Date] AS [Maturity_Date], 
+    [Extent2].[Coupon_Rate] AS [Coupon_Rate], 
+    [Extent2].[Price_Exchange] AS [Price_Exchange], 
+    [Extent2].[Trade_Currency] AS [Trade_Currency], 
+    [Extent2].[Price_Curr] AS [Price_Curr], 
+    [Extent2].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+    [Extent2].[Share_Class] AS [Share_Class], 
+    [Extent2].[Current_Market_Price] AS [Current_Market_Price], 
+    [Extent2].[Index_Type] AS [Index_Type], 
+    [Extent2].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+    [Extent2].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+    [Extent2].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+    [Extent2].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+    [Extent2].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+    [Extent2].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+    [Extent2].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+    [Extent2].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+    [Extent2].[Payment_Frequency] AS [Payment_Frequency], 
+    [Extent2].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+    [Extent2].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+    [Extent2].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+    [Extent2].[Ex_Div_Period] AS [Ex_Div_Period], 
+    [Extent2].[Ticker] AS [Ticker], 
+    [Extent2].[Inet_ID] AS [Inet_ID], 
+    [Extent2].[Bloomberg_ID] AS [Bloomberg_ID], 
+    [Extent2].[External_Sec_ID] AS [External_Sec_ID], 
+    [Extent2].[Reuters_ID] AS [Reuters_ID], 
+    [Extent2].[ISIN] AS [ISIN], 
+    [Extent2].[Call_Account_Flag] AS [Call_Account_Flag], 
+    [Extent2].[System_Locked] AS [System_Locked], 
+    [Extent2].[Last_Update_User] AS [Last_Update_User1], 
+    [Extent2].[Last_Update_Date] AS [Last_Update_Date1], 
+    [Extent2].[Security_Status] AS [Security_Status], 
+    [Extent2].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+    [Extent2].[Active_flag] AS [Active_flag], 
+    [Extent2].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+    FROM  [dbo].[Forex_Forecast] AS [Extent1]
+    INNER JOIN [dbo].[Security_Detail] AS [Extent2] ON [Extent1].[Security_ID] = [Extent2].[Security_ID]
+    WHERE [Extent1].[Entity_ID] = @p__linq__0
+2018-09-15 14:38:21.1537|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Extent2].[Decimal_Precision] AS [Decimal_Precision], 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Security_ID] AS [Security_ID], 
+    [Extent1].[Month_Year] AS [Month_Year], 
+    [Extent1].[Forecast_Rate] AS [Forecast_Rate], 
+    [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Extent1].[Last_Update_User] AS [Last_Update_User], 
+    [Extent2].[Security_ID] AS [Security_ID1], 
+    [Extent2].[Entity_ID] AS [Entity_ID1], 
+    [Extent2].[Security_Name] AS [Security_Name], 
+    [Extent2].[Short_Name] AS [Short_Name], 
+    [Extent2].[Primary_Exch] AS [Primary_Exch], 
+    [Extent2].[Secondary_Exch] AS [Secondary_Exch], 
+    [Extent2].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+    [Extent2].[Country_Of_Risk] AS [Country_Of_Risk], 
+    [Extent2].[Security_Type_Code] AS [Security_Type_Code], 
+    [Extent2].[Price_Multiplier] AS [Price_Multiplier], 
+    [Extent2].[Income_Frequency] AS [Income_Frequency], 
+    [Extent2].[Issuer_Code] AS [Issuer_Code], 
+    [Extent2].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+    [Extent2].[Asset_Currency] AS [Asset_Currency], 
+    [Extent2].[Min_Lot_Size] AS [Min_Lot_Size], 
+    [Extent2].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+    [Extent2].[Issue_Date] AS [Issue_Date], 
+    [Extent2].[Maturity_Date] AS [Maturity_Date], 
+    [Extent2].[Coupon_Rate] AS [Coupon_Rate], 
+    [Extent2].[Price_Exchange] AS [Price_Exchange], 
+    [Extent2].[Trade_Currency] AS [Trade_Currency], 
+    [Extent2].[Price_Curr] AS [Price_Curr], 
+    [Extent2].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+    [Extent2].[Share_Class] AS [Share_Class], 
+    [Extent2].[Current_Market_Price] AS [Current_Market_Price], 
+    [Extent2].[Index_Type] AS [Index_Type], 
+    [Extent2].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+    [Extent2].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+    [Extent2].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+    [Extent2].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+    [Extent2].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+    [Extent2].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+    [Extent2].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+    [Extent2].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+    [Extent2].[Payment_Frequency] AS [Payment_Frequency], 
+    [Extent2].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+    [Extent2].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+    [Extent2].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+    [Extent2].[Ex_Div_Period] AS [Ex_Div_Period], 
+    [Extent2].[Ticker] AS [Ticker], 
+    [Extent2].[Inet_ID] AS [Inet_ID], 
+    [Extent2].[Bloomberg_ID] AS [Bloomberg_ID], 
+    [Extent2].[External_Sec_ID] AS [External_Sec_ID], 
+    [Extent2].[Reuters_ID] AS [Reuters_ID], 
+    [Extent2].[ISIN] AS [ISIN], 
+    [Extent2].[Call_Account_Flag] AS [Call_Account_Flag], 
+    [Extent2].[System_Locked] AS [System_Locked], 
+    [Extent2].[Last_Update_User] AS [Last_Update_User1], 
+    [Extent2].[Last_Update_Date] AS [Last_Update_Date1], 
+    [Extent2].[Security_Status] AS [Security_Status], 
+    [Extent2].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+    [Extent2].[Active_flag] AS [Active_flag], 
+    [Extent2].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+    FROM  [dbo].[Forex_Forecast] AS [Extent1]
+    INNER JOIN [dbo].[Security_Detail] AS [Extent2] ON [Extent1].[Security_ID] = [Extent2].[Security_ID]
+    WHERE [Extent1].[Entity_ID] = @p__linq__0
+2018-09-15 14:38:37.0342|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:38:37.0562|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:38:37.0952|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:38:37.1232|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:38:37.1592|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-09-15 14:38:37.1832|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-09-15 14:38:37.2201|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:38:37.2561|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:38:37.2911|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:38:37.3301|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:38:37.3600|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:38:37.4160|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:38:37.6409|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-09-15 14:38:37.6909|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-09-15 14:45:42.0722|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[Security_ID] AS [Security_ID], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Security_Name] AS [Security_Name], 
+    [Project1].[Short_Name] AS [Short_Name], 
+    [Project1].[Primary_Exch] AS [Primary_Exch], 
+    [Project1].[Secondary_Exch] AS [Secondary_Exch], 
+    [Project1].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+    [Project1].[Country_Of_Risk] AS [Country_Of_Risk], 
+    [Project1].[Security_Type_Code] AS [Security_Type_Code], 
+    [Project1].[Price_Multiplier] AS [Price_Multiplier], 
+    [Project1].[Income_Frequency] AS [Income_Frequency], 
+    [Project1].[Issuer_Code] AS [Issuer_Code], 
+    [Project1].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+    [Project1].[Asset_Currency] AS [Asset_Currency], 
+    [Project1].[Min_Lot_Size] AS [Min_Lot_Size], 
+    [Project1].[Decimal_Precision] AS [Decimal_Precision], 
+    [Project1].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+    [Project1].[Issue_Date] AS [Issue_Date], 
+    [Project1].[Maturity_Date] AS [Maturity_Date], 
+    [Project1].[Coupon_Rate] AS [Coupon_Rate], 
+    [Project1].[Price_Exchange] AS [Price_Exchange], 
+    [Project1].[Trade_Currency] AS [Trade_Currency], 
+    [Project1].[Price_Curr] AS [Price_Curr], 
+    [Project1].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+    [Project1].[Share_Class] AS [Share_Class], 
+    [Project1].[Current_Market_Price] AS [Current_Market_Price], 
+    [Project1].[Index_Type] AS [Index_Type], 
+    [Project1].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+    [Project1].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+    [Project1].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+    [Project1].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+    [Project1].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+    [Project1].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+    [Project1].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+    [Project1].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+    [Project1].[Payment_Frequency] AS [Payment_Frequency], 
+    [Project1].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+    [Project1].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+    [Project1].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+    [Project1].[Ex_Div_Period] AS [Ex_Div_Period], 
+    [Project1].[Ticker] AS [Ticker], 
+    [Project1].[Inet_ID] AS [Inet_ID], 
+    [Project1].[Bloomberg_ID] AS [Bloomberg_ID], 
+    [Project1].[External_Sec_ID] AS [External_Sec_ID], 
+    [Project1].[Reuters_ID] AS [Reuters_ID], 
+    [Project1].[ISIN] AS [ISIN], 
+    [Project1].[Call_Account_Flag] AS [Call_Account_Flag], 
+    [Project1].[System_Locked] AS [System_Locked], 
+    [Project1].[Last_Update_User] AS [Last_Update_User], 
+    [Project1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Project1].[Security_Status] AS [Security_Status], 
+    [Project1].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+    [Project1].[Active_flag] AS [Active_flag], 
+    [Project1].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+    FROM ( SELECT 
+        [Extent1].[Security_ID] AS [Security_ID], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Security_Name] AS [Security_Name], 
+        [Extent1].[Short_Name] AS [Short_Name], 
+        [Extent1].[Primary_Exch] AS [Primary_Exch], 
+        [Extent1].[Secondary_Exch] AS [Secondary_Exch], 
+        [Extent1].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+        [Extent1].[Country_Of_Risk] AS [Country_Of_Risk], 
+        [Extent1].[Security_Type_Code] AS [Security_Type_Code], 
+        [Extent1].[Price_Multiplier] AS [Price_Multiplier], 
+        [Extent1].[Income_Frequency] AS [Income_Frequency], 
+        [Extent1].[Issuer_Code] AS [Issuer_Code], 
+        [Extent1].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+        [Extent1].[Asset_Currency] AS [Asset_Currency], 
+        [Extent1].[Min_Lot_Size] AS [Min_Lot_Size], 
+        [Extent1].[Decimal_Precision] AS [Decimal_Precision], 
+        [Extent1].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+        [Extent1].[Issue_Date] AS [Issue_Date], 
+        [Extent1].[Maturity_Date] AS [Maturity_Date], 
+        [Extent1].[Coupon_Rate] AS [Coupon_Rate], 
+        [Extent1].[Price_Exchange] AS [Price_Exchange], 
+        [Extent1].[Trade_Currency] AS [Trade_Currency], 
+        [Extent1].[Price_Curr] AS [Price_Curr], 
+        [Extent1].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+        [Extent1].[Share_Class] AS [Share_Class], 
+        [Extent1].[Current_Market_Price] AS [Current_Market_Price], 
+        [Extent1].[Index_Type] AS [Index_Type], 
+        [Extent1].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+        [Extent1].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+        [Extent1].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+        [Extent1].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+        [Extent1].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+        [Extent1].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+        [Extent1].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+        [Extent1].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+        [Extent1].[Payment_Frequency] AS [Payment_Frequency], 
+        [Extent1].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+        [Extent1].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+        [Extent1].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+        [Extent1].[Ex_Div_Period] AS [Ex_Div_Period], 
+        [Extent1].[Ticker] AS [Ticker], 
+        [Extent1].[Inet_ID] AS [Inet_ID], 
+        [Extent1].[Bloomberg_ID] AS [Bloomberg_ID], 
+        [Extent1].[External_Sec_ID] AS [External_Sec_ID], 
+        [Extent1].[Reuters_ID] AS [Reuters_ID], 
+        [Extent1].[ISIN] AS [ISIN], 
+        [Extent1].[Call_Account_Flag] AS [Call_Account_Flag], 
+        [Extent1].[System_Locked] AS [System_Locked], 
+        [Extent1].[Last_Update_User] AS [Last_Update_User], 
+        [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+        [Extent1].[Security_Status] AS [Security_Status], 
+        [Extent1].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+        [Extent1].[Active_flag] AS [Active_flag], 
+        [Extent1].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+        FROM [dbo].[Security_Detail] AS [Extent1]
+        WHERE ([Extent1].[Entity_ID] IN (@p__linq__0,@p__linq__1)) AND ((CASE WHEN ( NOT ((N'' = @p__linq__2) AND (@p__linq__2 IS NOT NULL))) THEN CASE WHEN ([Extent1].[Security_Type_Code] = @p__linq__3) THEN cast(1 as bit) WHEN ( NOT (([Extent1].[Security_Type_Code] = @p__linq__3) AND (0 = (CASE WHEN (@p__linq__3 IS NULL) THEN cast(1 as bit) ELSE cast(0 as bit) END)))) THEN cast(0 as bit) END WHEN ('' <> [Extent1].[Security_Type_Code]) THEN cast(1 as bit) WHEN ('' = [Extent1].[Security_Type_Code]) THEN cast(0 as bit) END) = 1)
+    )  AS [Project1]
+    ORDER BY [Project1].[Security_Name] ASC
+2018-09-15 14:45:42.1421|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[Security_ID] AS [Security_ID], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Security_Name] AS [Security_Name], 
+    [Project1].[Short_Name] AS [Short_Name], 
+    [Project1].[Primary_Exch] AS [Primary_Exch], 
+    [Project1].[Secondary_Exch] AS [Secondary_Exch], 
+    [Project1].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+    [Project1].[Country_Of_Risk] AS [Country_Of_Risk], 
+    [Project1].[Security_Type_Code] AS [Security_Type_Code], 
+    [Project1].[Price_Multiplier] AS [Price_Multiplier], 
+    [Project1].[Income_Frequency] AS [Income_Frequency], 
+    [Project1].[Issuer_Code] AS [Issuer_Code], 
+    [Project1].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+    [Project1].[Asset_Currency] AS [Asset_Currency], 
+    [Project1].[Min_Lot_Size] AS [Min_Lot_Size], 
+    [Project1].[Decimal_Precision] AS [Decimal_Precision], 
+    [Project1].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+    [Project1].[Issue_Date] AS [Issue_Date], 
+    [Project1].[Maturity_Date] AS [Maturity_Date], 
+    [Project1].[Coupon_Rate] AS [Coupon_Rate], 
+    [Project1].[Price_Exchange] AS [Price_Exchange], 
+    [Project1].[Trade_Currency] AS [Trade_Currency], 
+    [Project1].[Price_Curr] AS [Price_Curr], 
+    [Project1].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+    [Project1].[Share_Class] AS [Share_Class], 
+    [Project1].[Current_Market_Price] AS [Current_Market_Price], 
+    [Project1].[Index_Type] AS [Index_Type], 
+    [Project1].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+    [Project1].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+    [Project1].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+    [Project1].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+    [Project1].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+    [Project1].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+    [Project1].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+    [Project1].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+    [Project1].[Payment_Frequency] AS [Payment_Frequency], 
+    [Project1].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+    [Project1].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+    [Project1].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+    [Project1].[Ex_Div_Period] AS [Ex_Div_Period], 
+    [Project1].[Ticker] AS [Ticker], 
+    [Project1].[Inet_ID] AS [Inet_ID], 
+    [Project1].[Bloomberg_ID] AS [Bloomberg_ID], 
+    [Project1].[External_Sec_ID] AS [External_Sec_ID], 
+    [Project1].[Reuters_ID] AS [Reuters_ID], 
+    [Project1].[ISIN] AS [ISIN], 
+    [Project1].[Call_Account_Flag] AS [Call_Account_Flag], 
+    [Project1].[System_Locked] AS [System_Locked], 
+    [Project1].[Last_Update_User] AS [Last_Update_User], 
+    [Project1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Project1].[Security_Status] AS [Security_Status], 
+    [Project1].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+    [Project1].[Active_flag] AS [Active_flag], 
+    [Project1].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+    FROM ( SELECT 
+        [Extent1].[Security_ID] AS [Security_ID], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Security_Name] AS [Security_Name], 
+        [Extent1].[Short_Name] AS [Short_Name], 
+        [Extent1].[Primary_Exch] AS [Primary_Exch], 
+        [Extent1].[Secondary_Exch] AS [Secondary_Exch], 
+        [Extent1].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+        [Extent1].[Country_Of_Risk] AS [Country_Of_Risk], 
+        [Extent1].[Security_Type_Code] AS [Security_Type_Code], 
+        [Extent1].[Price_Multiplier] AS [Price_Multiplier], 
+        [Extent1].[Income_Frequency] AS [Income_Frequency], 
+        [Extent1].[Issuer_Code] AS [Issuer_Code], 
+        [Extent1].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+        [Extent1].[Asset_Currency] AS [Asset_Currency], 
+        [Extent1].[Min_Lot_Size] AS [Min_Lot_Size], 
+        [Extent1].[Decimal_Precision] AS [Decimal_Precision], 
+        [Extent1].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+        [Extent1].[Issue_Date] AS [Issue_Date], 
+        [Extent1].[Maturity_Date] AS [Maturity_Date], 
+        [Extent1].[Coupon_Rate] AS [Coupon_Rate], 
+        [Extent1].[Price_Exchange] AS [Price_Exchange], 
+        [Extent1].[Trade_Currency] AS [Trade_Currency], 
+        [Extent1].[Price_Curr] AS [Price_Curr], 
+        [Extent1].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+        [Extent1].[Share_Class] AS [Share_Class], 
+        [Extent1].[Current_Market_Price] AS [Current_Market_Price], 
+        [Extent1].[Index_Type] AS [Index_Type], 
+        [Extent1].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+        [Extent1].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+        [Extent1].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+        [Extent1].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+        [Extent1].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+        [Extent1].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+        [Extent1].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+        [Extent1].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+        [Extent1].[Payment_Frequency] AS [Payment_Frequency], 
+        [Extent1].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+        [Extent1].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+        [Extent1].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+        [Extent1].[Ex_Div_Period] AS [Ex_Div_Period], 
+        [Extent1].[Ticker] AS [Ticker], 
+        [Extent1].[Inet_ID] AS [Inet_ID], 
+        [Extent1].[Bloomberg_ID] AS [Bloomberg_ID], 
+        [Extent1].[External_Sec_ID] AS [External_Sec_ID], 
+        [Extent1].[Reuters_ID] AS [Reuters_ID], 
+        [Extent1].[ISIN] AS [ISIN], 
+        [Extent1].[Call_Account_Flag] AS [Call_Account_Flag], 
+        [Extent1].[System_Locked] AS [System_Locked], 
+        [Extent1].[Last_Update_User] AS [Last_Update_User], 
+        [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+        [Extent1].[Security_Status] AS [Security_Status], 
+        [Extent1].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+        [Extent1].[Active_flag] AS [Active_flag], 
+        [Extent1].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+        FROM [dbo].[Security_Detail] AS [Extent1]
+        WHERE ([Extent1].[Entity_ID] IN (@p__linq__0,@p__linq__1)) AND ((CASE WHEN ( NOT ((N'' = @p__linq__2) AND (@p__linq__2 IS NOT NULL))) THEN CASE WHEN ([Extent1].[Security_Type_Code] = @p__linq__3) THEN cast(1 as bit) WHEN ( NOT (([Extent1].[Security_Type_Code] = @p__linq__3) AND (0 = (CASE WHEN (@p__linq__3 IS NULL) THEN cast(1 as bit) ELSE cast(0 as bit) END)))) THEN cast(0 as bit) END WHEN ('' <> [Extent1].[Security_Type_Code]) THEN cast(1 as bit) WHEN ('' = [Extent1].[Security_Type_Code]) THEN cast(0 as bit) END) = 1)
+    )  AS [Project1]
+    ORDER BY [Project1].[Security_Name] ASC
+2018-09-15 14:45:53.8834|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:45:54.0313|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:45:54.1673|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:45:54.1972|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:46:30.6452|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:46:30.7840|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:46:31.1099|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:46:31.1768|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:46:31.2918|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:46:31.3567|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:46:39.0730|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:46:39.1070|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:46:39.1880|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:46:39.2249|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:00.1036|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:00.1515|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:00.5583|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE ((UPPER([Extent1].[UserName])) = (UPPER(@p__linq__0))) OR ((UPPER([Extent1].[UserName]) IS NULL) AND (UPPER(@p__linq__0) IS NULL))
+2018-09-15 14:47:00.6063|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE ((UPPER([Extent1].[UserName])) = (UPPER(@p__linq__0))) OR ((UPPER([Extent1].[UserName]) IS NULL) AND (UPPER(@p__linq__0) IS NULL))
+2018-09-15 14:47:00.6493|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:00.6942|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:00.7312|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:00.7792|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:00.8162|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:00.8511|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:01.2539|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent2].[Name] AS [Name]
+    FROM  [dbo].[AspNetUserRoles] AS [Extent1]
+    INNER JOIN [dbo].[AspNetRoles] AS [Extent2] ON [Extent1].[RoleId] = [Extent2].[Id]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:01.3329|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent2].[Name] AS [Name]
+    FROM  [dbo].[AspNetUserRoles] AS [Extent1]
+    INNER JOIN [dbo].[AspNetRoles] AS [Extent2] ON [Extent1].[RoleId] = [Extent2].[Id]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:01.4848|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:01.5447|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:04.3300|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:04.3750|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:09.3004|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:09.3394|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:09.3754|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:09.4074|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:09.4533|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-09-15 14:47:09.5143|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-09-15 14:47:09.5473|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:09.5783|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:09.6043|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:09.6262|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:09.6622|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:09.7192|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:09.7492|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:09.7782|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:21.0553|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Extent2].[Decimal_Precision] AS [Decimal_Precision], 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Security_ID] AS [Security_ID], 
+    [Extent1].[Month_Year] AS [Month_Year], 
+    [Extent1].[Forecast_Rate] AS [Forecast_Rate], 
+    [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Extent1].[Last_Update_User] AS [Last_Update_User], 
+    [Extent2].[Security_ID] AS [Security_ID1], 
+    [Extent2].[Entity_ID] AS [Entity_ID1], 
+    [Extent2].[Security_Name] AS [Security_Name], 
+    [Extent2].[Short_Name] AS [Short_Name], 
+    [Extent2].[Primary_Exch] AS [Primary_Exch], 
+    [Extent2].[Secondary_Exch] AS [Secondary_Exch], 
+    [Extent2].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+    [Extent2].[Country_Of_Risk] AS [Country_Of_Risk], 
+    [Extent2].[Security_Type_Code] AS [Security_Type_Code], 
+    [Extent2].[Price_Multiplier] AS [Price_Multiplier], 
+    [Extent2].[Income_Frequency] AS [Income_Frequency], 
+    [Extent2].[Issuer_Code] AS [Issuer_Code], 
+    [Extent2].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+    [Extent2].[Asset_Currency] AS [Asset_Currency], 
+    [Extent2].[Min_Lot_Size] AS [Min_Lot_Size], 
+    [Extent2].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+    [Extent2].[Issue_Date] AS [Issue_Date], 
+    [Extent2].[Maturity_Date] AS [Maturity_Date], 
+    [Extent2].[Coupon_Rate] AS [Coupon_Rate], 
+    [Extent2].[Price_Exchange] AS [Price_Exchange], 
+    [Extent2].[Trade_Currency] AS [Trade_Currency], 
+    [Extent2].[Price_Curr] AS [Price_Curr], 
+    [Extent2].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+    [Extent2].[Share_Class] AS [Share_Class], 
+    [Extent2].[Current_Market_Price] AS [Current_Market_Price], 
+    [Extent2].[Index_Type] AS [Index_Type], 
+    [Extent2].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+    [Extent2].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+    [Extent2].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+    [Extent2].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+    [Extent2].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+    [Extent2].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+    [Extent2].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+    [Extent2].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+    [Extent2].[Payment_Frequency] AS [Payment_Frequency], 
+    [Extent2].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+    [Extent2].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+    [Extent2].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+    [Extent2].[Ex_Div_Period] AS [Ex_Div_Period], 
+    [Extent2].[Ticker] AS [Ticker], 
+    [Extent2].[Inet_ID] AS [Inet_ID], 
+    [Extent2].[Bloomberg_ID] AS [Bloomberg_ID], 
+    [Extent2].[External_Sec_ID] AS [External_Sec_ID], 
+    [Extent2].[Reuters_ID] AS [Reuters_ID], 
+    [Extent2].[ISIN] AS [ISIN], 
+    [Extent2].[Call_Account_Flag] AS [Call_Account_Flag], 
+    [Extent2].[System_Locked] AS [System_Locked], 
+    [Extent2].[Last_Update_User] AS [Last_Update_User1], 
+    [Extent2].[Last_Update_Date] AS [Last_Update_Date1], 
+    [Extent2].[Security_Status] AS [Security_Status], 
+    [Extent2].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+    [Extent2].[Active_flag] AS [Active_flag], 
+    [Extent2].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+    FROM  [dbo].[Forex_Forecast] AS [Extent1]
+    INNER JOIN [dbo].[Security_Detail] AS [Extent2] ON [Extent1].[Security_ID] = [Extent2].[Security_ID]
+    WHERE [Extent1].[Entity_ID] = @p__linq__0
+2018-09-15 14:47:21.1492|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Extent2].[Decimal_Precision] AS [Decimal_Precision], 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Security_ID] AS [Security_ID], 
+    [Extent1].[Month_Year] AS [Month_Year], 
+    [Extent1].[Forecast_Rate] AS [Forecast_Rate], 
+    [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Extent1].[Last_Update_User] AS [Last_Update_User], 
+    [Extent2].[Security_ID] AS [Security_ID1], 
+    [Extent2].[Entity_ID] AS [Entity_ID1], 
+    [Extent2].[Security_Name] AS [Security_Name], 
+    [Extent2].[Short_Name] AS [Short_Name], 
+    [Extent2].[Primary_Exch] AS [Primary_Exch], 
+    [Extent2].[Secondary_Exch] AS [Secondary_Exch], 
+    [Extent2].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+    [Extent2].[Country_Of_Risk] AS [Country_Of_Risk], 
+    [Extent2].[Security_Type_Code] AS [Security_Type_Code], 
+    [Extent2].[Price_Multiplier] AS [Price_Multiplier], 
+    [Extent2].[Income_Frequency] AS [Income_Frequency], 
+    [Extent2].[Issuer_Code] AS [Issuer_Code], 
+    [Extent2].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+    [Extent2].[Asset_Currency] AS [Asset_Currency], 
+    [Extent2].[Min_Lot_Size] AS [Min_Lot_Size], 
+    [Extent2].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+    [Extent2].[Issue_Date] AS [Issue_Date], 
+    [Extent2].[Maturity_Date] AS [Maturity_Date], 
+    [Extent2].[Coupon_Rate] AS [Coupon_Rate], 
+    [Extent2].[Price_Exchange] AS [Price_Exchange], 
+    [Extent2].[Trade_Currency] AS [Trade_Currency], 
+    [Extent2].[Price_Curr] AS [Price_Curr], 
+    [Extent2].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+    [Extent2].[Share_Class] AS [Share_Class], 
+    [Extent2].[Current_Market_Price] AS [Current_Market_Price], 
+    [Extent2].[Index_Type] AS [Index_Type], 
+    [Extent2].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+    [Extent2].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+    [Extent2].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+    [Extent2].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+    [Extent2].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+    [Extent2].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+    [Extent2].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+    [Extent2].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+    [Extent2].[Payment_Frequency] AS [Payment_Frequency], 
+    [Extent2].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+    [Extent2].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+    [Extent2].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+    [Extent2].[Ex_Div_Period] AS [Ex_Div_Period], 
+    [Extent2].[Ticker] AS [Ticker], 
+    [Extent2].[Inet_ID] AS [Inet_ID], 
+    [Extent2].[Bloomberg_ID] AS [Bloomberg_ID], 
+    [Extent2].[External_Sec_ID] AS [External_Sec_ID], 
+    [Extent2].[Reuters_ID] AS [Reuters_ID], 
+    [Extent2].[ISIN] AS [ISIN], 
+    [Extent2].[Call_Account_Flag] AS [Call_Account_Flag], 
+    [Extent2].[System_Locked] AS [System_Locked], 
+    [Extent2].[Last_Update_User] AS [Last_Update_User1], 
+    [Extent2].[Last_Update_Date] AS [Last_Update_Date1], 
+    [Extent2].[Security_Status] AS [Security_Status], 
+    [Extent2].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+    [Extent2].[Active_flag] AS [Active_flag], 
+    [Extent2].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+    FROM  [dbo].[Forex_Forecast] AS [Extent1]
+    INNER JOIN [dbo].[Security_Detail] AS [Extent2] ON [Extent1].[Security_ID] = [Extent2].[Security_ID]
+    WHERE [Extent1].[Entity_ID] = @p__linq__0
+2018-09-15 14:47:21.3171|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:21.4011|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:21.4420|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:21.4710|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:26.3582|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:26.5331|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:26.6880|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:26.8959|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:27.0688|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:27.2317|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:39.0614|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:39.2353|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:39.3783|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE ((UPPER([Extent1].[UserName])) = (UPPER(@p__linq__0))) OR ((UPPER([Extent1].[UserName]) IS NULL) AND (UPPER(@p__linq__0) IS NULL))
+2018-09-15 14:47:39.4202|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE ((UPPER([Extent1].[UserName])) = (UPPER(@p__linq__0))) OR ((UPPER([Extent1].[UserName]) IS NULL) AND (UPPER(@p__linq__0) IS NULL))
+2018-09-15 14:47:39.4572|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:39.4952|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:39.5352|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:39.5821|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:39.6211|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:39.6591|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:54.9106|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:54.9446|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:55.0045|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE ((UPPER([Extent1].[UserName])) = (UPPER(@p__linq__0))) OR ((UPPER([Extent1].[UserName]) IS NULL) AND (UPPER(@p__linq__0) IS NULL))
+2018-09-15 14:47:55.0395|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE ((UPPER([Extent1].[UserName])) = (UPPER(@p__linq__0))) OR ((UPPER([Extent1].[UserName]) IS NULL) AND (UPPER(@p__linq__0) IS NULL))
+2018-09-15 14:47:55.0715|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.1055|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.1304|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.1574|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.1934|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.2274|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.3683|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent2].[Name] AS [Name]
+    FROM  [dbo].[AspNetUserRoles] AS [Extent1]
+    INNER JOIN [dbo].[AspNetRoles] AS [Extent2] ON [Extent1].[RoleId] = [Extent2].[Id]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.4183|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent2].[Name] AS [Name]
+    FROM  [dbo].[AspNetUserRoles] AS [Extent1]
+    INNER JOIN [dbo].[AspNetRoles] AS [Extent2] ON [Extent1].[RoleId] = [Extent2].[Id]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.4812|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:55.5312|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:55.5732|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:55.6072|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:47:55.6412|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-09-15 14:47:55.6721|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-09-15 14:47:55.7021|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.7371|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.7741|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.8041|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.8360|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.9040|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:55.9400|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-09-15 14:47:55.9710|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[EntityIdScope] AS [EntityIdScope], 
+    [Extent1].[Email] AS [Email], 
+    [Extent1].[EmailConfirmed] AS [EmailConfirmed], 
+    [Extent1].[PasswordHash] AS [PasswordHash], 
+    [Extent1].[SecurityStamp] AS [SecurityStamp], 
+    [Extent1].[PhoneNumber] AS [PhoneNumber], 
+    [Extent1].[PhoneNumberConfirmed] AS [PhoneNumberConfirmed], 
+    [Extent1].[TwoFactorEnabled] AS [TwoFactorEnabled], 
+    [Extent1].[LockoutEndDateUtc] AS [LockoutEndDateUtc], 
+    [Extent1].[LockoutEnabled] AS [LockoutEnabled], 
+    [Extent1].[AccessFailedCount] AS [AccessFailedCount], 
+    [Extent1].[UserName] AS [UserName]
+    FROM [dbo].[AspNetUsers] AS [Extent1]
+    WHERE [Extent1].[Id] = @p0
+2018-09-15 14:47:56.0029|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:56.0319|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[ClaimType] AS [ClaimType], 
+    [Extent1].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:56.0659|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:56.0939|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[LoginProvider] AS [LoginProvider], 
+    [Extent1].[ProviderKey] AS [ProviderKey], 
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:56.1269|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:56.1579|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: True, Command Text: SELECT 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [Extent1]
+    WHERE [Extent1].[UserId] = @p__linq__0
+2018-09-15 14:47:56.1928|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-09-15 14:47:56.2308|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (2) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Entity_Code] AS [Entity_Code], 
+    [Extent1].[Entity_Name] AS [Entity_Name], 
+    [Extent1].[Import_Folder] AS [Import_Folder], 
+    [Extent1].[Export_Folder] AS [Export_Folder]
+    FROM [dbo].[Entity] AS [Extent1]
+    WHERE [Extent1].[Entity_ID] = @p0
+2018-09-15 14:48:01.3749|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:48:01.3879|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:48:01.4039|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:48:01.4189|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:48:54.7041|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Extent2].[Decimal_Precision] AS [Decimal_Precision], 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Security_ID] AS [Security_ID], 
+    [Extent1].[Month_Year] AS [Month_Year], 
+    [Extent1].[Forecast_Rate] AS [Forecast_Rate], 
+    [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Extent1].[Last_Update_User] AS [Last_Update_User], 
+    [Extent2].[Security_ID] AS [Security_ID1], 
+    [Extent2].[Entity_ID] AS [Entity_ID1], 
+    [Extent2].[Security_Name] AS [Security_Name], 
+    [Extent2].[Short_Name] AS [Short_Name], 
+    [Extent2].[Primary_Exch] AS [Primary_Exch], 
+    [Extent2].[Secondary_Exch] AS [Secondary_Exch], 
+    [Extent2].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+    [Extent2].[Country_Of_Risk] AS [Country_Of_Risk], 
+    [Extent2].[Security_Type_Code] AS [Security_Type_Code], 
+    [Extent2].[Price_Multiplier] AS [Price_Multiplier], 
+    [Extent2].[Income_Frequency] AS [Income_Frequency], 
+    [Extent2].[Issuer_Code] AS [Issuer_Code], 
+    [Extent2].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+    [Extent2].[Asset_Currency] AS [Asset_Currency], 
+    [Extent2].[Min_Lot_Size] AS [Min_Lot_Size], 
+    [Extent2].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+    [Extent2].[Issue_Date] AS [Issue_Date], 
+    [Extent2].[Maturity_Date] AS [Maturity_Date], 
+    [Extent2].[Coupon_Rate] AS [Coupon_Rate], 
+    [Extent2].[Price_Exchange] AS [Price_Exchange], 
+    [Extent2].[Trade_Currency] AS [Trade_Currency], 
+    [Extent2].[Price_Curr] AS [Price_Curr], 
+    [Extent2].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+    [Extent2].[Share_Class] AS [Share_Class], 
+    [Extent2].[Current_Market_Price] AS [Current_Market_Price], 
+    [Extent2].[Index_Type] AS [Index_Type], 
+    [Extent2].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+    [Extent2].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+    [Extent2].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+    [Extent2].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+    [Extent2].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+    [Extent2].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+    [Extent2].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+    [Extent2].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+    [Extent2].[Payment_Frequency] AS [Payment_Frequency], 
+    [Extent2].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+    [Extent2].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+    [Extent2].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+    [Extent2].[Ex_Div_Period] AS [Ex_Div_Period], 
+    [Extent2].[Ticker] AS [Ticker], 
+    [Extent2].[Inet_ID] AS [Inet_ID], 
+    [Extent2].[Bloomberg_ID] AS [Bloomberg_ID], 
+    [Extent2].[External_Sec_ID] AS [External_Sec_ID], 
+    [Extent2].[Reuters_ID] AS [Reuters_ID], 
+    [Extent2].[ISIN] AS [ISIN], 
+    [Extent2].[Call_Account_Flag] AS [Call_Account_Flag], 
+    [Extent2].[System_Locked] AS [System_Locked], 
+    [Extent2].[Last_Update_User] AS [Last_Update_User1], 
+    [Extent2].[Last_Update_Date] AS [Last_Update_Date1], 
+    [Extent2].[Security_Status] AS [Security_Status], 
+    [Extent2].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+    [Extent2].[Active_flag] AS [Active_flag], 
+    [Extent2].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+    FROM  [dbo].[Forex_Forecast] AS [Extent1]
+    INNER JOIN [dbo].[Security_Detail] AS [Extent2] ON [Extent1].[Security_ID] = [Extent2].[Security_ID]
+    WHERE [Extent1].[Entity_ID] = @p__linq__0
+2018-09-15 14:48:54.8021|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Extent2].[Decimal_Precision] AS [Decimal_Precision], 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Security_ID] AS [Security_ID], 
+    [Extent1].[Month_Year] AS [Month_Year], 
+    [Extent1].[Forecast_Rate] AS [Forecast_Rate], 
+    [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Extent1].[Last_Update_User] AS [Last_Update_User], 
+    [Extent2].[Security_ID] AS [Security_ID1], 
+    [Extent2].[Entity_ID] AS [Entity_ID1], 
+    [Extent2].[Security_Name] AS [Security_Name], 
+    [Extent2].[Short_Name] AS [Short_Name], 
+    [Extent2].[Primary_Exch] AS [Primary_Exch], 
+    [Extent2].[Secondary_Exch] AS [Secondary_Exch], 
+    [Extent2].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+    [Extent2].[Country_Of_Risk] AS [Country_Of_Risk], 
+    [Extent2].[Security_Type_Code] AS [Security_Type_Code], 
+    [Extent2].[Price_Multiplier] AS [Price_Multiplier], 
+    [Extent2].[Income_Frequency] AS [Income_Frequency], 
+    [Extent2].[Issuer_Code] AS [Issuer_Code], 
+    [Extent2].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+    [Extent2].[Asset_Currency] AS [Asset_Currency], 
+    [Extent2].[Min_Lot_Size] AS [Min_Lot_Size], 
+    [Extent2].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+    [Extent2].[Issue_Date] AS [Issue_Date], 
+    [Extent2].[Maturity_Date] AS [Maturity_Date], 
+    [Extent2].[Coupon_Rate] AS [Coupon_Rate], 
+    [Extent2].[Price_Exchange] AS [Price_Exchange], 
+    [Extent2].[Trade_Currency] AS [Trade_Currency], 
+    [Extent2].[Price_Curr] AS [Price_Curr], 
+    [Extent2].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+    [Extent2].[Share_Class] AS [Share_Class], 
+    [Extent2].[Current_Market_Price] AS [Current_Market_Price], 
+    [Extent2].[Index_Type] AS [Index_Type], 
+    [Extent2].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+    [Extent2].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+    [Extent2].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+    [Extent2].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+    [Extent2].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+    [Extent2].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+    [Extent2].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+    [Extent2].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+    [Extent2].[Payment_Frequency] AS [Payment_Frequency], 
+    [Extent2].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+    [Extent2].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+    [Extent2].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+    [Extent2].[Ex_Div_Period] AS [Ex_Div_Period], 
+    [Extent2].[Ticker] AS [Ticker], 
+    [Extent2].[Inet_ID] AS [Inet_ID], 
+    [Extent2].[Bloomberg_ID] AS [Bloomberg_ID], 
+    [Extent2].[External_Sec_ID] AS [External_Sec_ID], 
+    [Extent2].[Reuters_ID] AS [Reuters_ID], 
+    [Extent2].[ISIN] AS [ISIN], 
+    [Extent2].[Call_Account_Flag] AS [Call_Account_Flag], 
+    [Extent2].[System_Locked] AS [System_Locked], 
+    [Extent2].[Last_Update_User] AS [Last_Update_User1], 
+    [Extent2].[Last_Update_Date] AS [Last_Update_Date1], 
+    [Extent2].[Security_Status] AS [Security_Status], 
+    [Extent2].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+    [Extent2].[Active_flag] AS [Active_flag], 
+    [Extent2].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+    FROM  [dbo].[Forex_Forecast] AS [Extent1]
+    INNER JOIN [dbo].[Security_Detail] AS [Extent2] ON [Extent1].[Security_ID] = [Extent2].[Security_ID]
+    WHERE [Extent1].[Entity_ID] = @p__linq__0
+2018-09-15 14:48:54.9340|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:48:55.0729|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:48:55.1918|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:48:55.2288|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:49:00.0005|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[Security_ID] AS [Security_ID], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Security_Name] AS [Security_Name], 
+    [Project1].[Short_Name] AS [Short_Name], 
+    [Project1].[Primary_Exch] AS [Primary_Exch], 
+    [Project1].[Secondary_Exch] AS [Secondary_Exch], 
+    [Project1].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+    [Project1].[Country_Of_Risk] AS [Country_Of_Risk], 
+    [Project1].[Security_Type_Code] AS [Security_Type_Code], 
+    [Project1].[Price_Multiplier] AS [Price_Multiplier], 
+    [Project1].[Income_Frequency] AS [Income_Frequency], 
+    [Project1].[Issuer_Code] AS [Issuer_Code], 
+    [Project1].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+    [Project1].[Asset_Currency] AS [Asset_Currency], 
+    [Project1].[Min_Lot_Size] AS [Min_Lot_Size], 
+    [Project1].[Decimal_Precision] AS [Decimal_Precision], 
+    [Project1].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+    [Project1].[Issue_Date] AS [Issue_Date], 
+    [Project1].[Maturity_Date] AS [Maturity_Date], 
+    [Project1].[Coupon_Rate] AS [Coupon_Rate], 
+    [Project1].[Price_Exchange] AS [Price_Exchange], 
+    [Project1].[Trade_Currency] AS [Trade_Currency], 
+    [Project1].[Price_Curr] AS [Price_Curr], 
+    [Project1].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+    [Project1].[Share_Class] AS [Share_Class], 
+    [Project1].[Current_Market_Price] AS [Current_Market_Price], 
+    [Project1].[Index_Type] AS [Index_Type], 
+    [Project1].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+    [Project1].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+    [Project1].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+    [Project1].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+    [Project1].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+    [Project1].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+    [Project1].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+    [Project1].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+    [Project1].[Payment_Frequency] AS [Payment_Frequency], 
+    [Project1].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+    [Project1].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+    [Project1].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+    [Project1].[Ex_Div_Period] AS [Ex_Div_Period], 
+    [Project1].[Ticker] AS [Ticker], 
+    [Project1].[Inet_ID] AS [Inet_ID], 
+    [Project1].[Bloomberg_ID] AS [Bloomberg_ID], 
+    [Project1].[External_Sec_ID] AS [External_Sec_ID], 
+    [Project1].[Reuters_ID] AS [Reuters_ID], 
+    [Project1].[ISIN] AS [ISIN], 
+    [Project1].[Call_Account_Flag] AS [Call_Account_Flag], 
+    [Project1].[System_Locked] AS [System_Locked], 
+    [Project1].[Last_Update_User] AS [Last_Update_User], 
+    [Project1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Project1].[Security_Status] AS [Security_Status], 
+    [Project1].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+    [Project1].[Active_flag] AS [Active_flag], 
+    [Project1].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+    FROM ( SELECT 
+        [Extent1].[Security_ID] AS [Security_ID], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Security_Name] AS [Security_Name], 
+        [Extent1].[Short_Name] AS [Short_Name], 
+        [Extent1].[Primary_Exch] AS [Primary_Exch], 
+        [Extent1].[Secondary_Exch] AS [Secondary_Exch], 
+        [Extent1].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+        [Extent1].[Country_Of_Risk] AS [Country_Of_Risk], 
+        [Extent1].[Security_Type_Code] AS [Security_Type_Code], 
+        [Extent1].[Price_Multiplier] AS [Price_Multiplier], 
+        [Extent1].[Income_Frequency] AS [Income_Frequency], 
+        [Extent1].[Issuer_Code] AS [Issuer_Code], 
+        [Extent1].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+        [Extent1].[Asset_Currency] AS [Asset_Currency], 
+        [Extent1].[Min_Lot_Size] AS [Min_Lot_Size], 
+        [Extent1].[Decimal_Precision] AS [Decimal_Precision], 
+        [Extent1].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+        [Extent1].[Issue_Date] AS [Issue_Date], 
+        [Extent1].[Maturity_Date] AS [Maturity_Date], 
+        [Extent1].[Coupon_Rate] AS [Coupon_Rate], 
+        [Extent1].[Price_Exchange] AS [Price_Exchange], 
+        [Extent1].[Trade_Currency] AS [Trade_Currency], 
+        [Extent1].[Price_Curr] AS [Price_Curr], 
+        [Extent1].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+        [Extent1].[Share_Class] AS [Share_Class], 
+        [Extent1].[Current_Market_Price] AS [Current_Market_Price], 
+        [Extent1].[Index_Type] AS [Index_Type], 
+        [Extent1].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+        [Extent1].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+        [Extent1].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+        [Extent1].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+        [Extent1].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+        [Extent1].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+        [Extent1].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+        [Extent1].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+        [Extent1].[Payment_Frequency] AS [Payment_Frequency], 
+        [Extent1].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+        [Extent1].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+        [Extent1].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+        [Extent1].[Ex_Div_Period] AS [Ex_Div_Period], 
+        [Extent1].[Ticker] AS [Ticker], 
+        [Extent1].[Inet_ID] AS [Inet_ID], 
+        [Extent1].[Bloomberg_ID] AS [Bloomberg_ID], 
+        [Extent1].[External_Sec_ID] AS [External_Sec_ID], 
+        [Extent1].[Reuters_ID] AS [Reuters_ID], 
+        [Extent1].[ISIN] AS [ISIN], 
+        [Extent1].[Call_Account_Flag] AS [Call_Account_Flag], 
+        [Extent1].[System_Locked] AS [System_Locked], 
+        [Extent1].[Last_Update_User] AS [Last_Update_User], 
+        [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+        [Extent1].[Security_Status] AS [Security_Status], 
+        [Extent1].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+        [Extent1].[Active_flag] AS [Active_flag], 
+        [Extent1].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+        FROM [dbo].[Security_Detail] AS [Extent1]
+        WHERE ([Extent1].[Entity_ID] IN (@p__linq__0,@p__linq__1)) AND ((CASE WHEN ( NOT ((N'' = @p__linq__2) AND (@p__linq__2 IS NOT NULL))) THEN CASE WHEN ([Extent1].[Security_Type_Code] = @p__linq__3) THEN cast(1 as bit) WHEN ( NOT (([Extent1].[Security_Type_Code] = @p__linq__3) AND (0 = (CASE WHEN (@p__linq__3 IS NULL) THEN cast(1 as bit) ELSE cast(0 as bit) END)))) THEN cast(0 as bit) END WHEN ('' <> [Extent1].[Security_Type_Code]) THEN cast(1 as bit) WHEN ('' = [Extent1].[Security_Type_Code]) THEN cast(0 as bit) END) = 1)
+    )  AS [Project1]
+    ORDER BY [Project1].[Security_Name] ASC
+2018-09-15 14:49:00.1115|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT 
+    [Project1].[Security_ID] AS [Security_ID], 
+    [Project1].[Entity_ID] AS [Entity_ID], 
+    [Project1].[Security_Name] AS [Security_Name], 
+    [Project1].[Short_Name] AS [Short_Name], 
+    [Project1].[Primary_Exch] AS [Primary_Exch], 
+    [Project1].[Secondary_Exch] AS [Secondary_Exch], 
+    [Project1].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+    [Project1].[Country_Of_Risk] AS [Country_Of_Risk], 
+    [Project1].[Security_Type_Code] AS [Security_Type_Code], 
+    [Project1].[Price_Multiplier] AS [Price_Multiplier], 
+    [Project1].[Income_Frequency] AS [Income_Frequency], 
+    [Project1].[Issuer_Code] AS [Issuer_Code], 
+    [Project1].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+    [Project1].[Asset_Currency] AS [Asset_Currency], 
+    [Project1].[Min_Lot_Size] AS [Min_Lot_Size], 
+    [Project1].[Decimal_Precision] AS [Decimal_Precision], 
+    [Project1].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+    [Project1].[Issue_Date] AS [Issue_Date], 
+    [Project1].[Maturity_Date] AS [Maturity_Date], 
+    [Project1].[Coupon_Rate] AS [Coupon_Rate], 
+    [Project1].[Price_Exchange] AS [Price_Exchange], 
+    [Project1].[Trade_Currency] AS [Trade_Currency], 
+    [Project1].[Price_Curr] AS [Price_Curr], 
+    [Project1].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+    [Project1].[Share_Class] AS [Share_Class], 
+    [Project1].[Current_Market_Price] AS [Current_Market_Price], 
+    [Project1].[Index_Type] AS [Index_Type], 
+    [Project1].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+    [Project1].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+    [Project1].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+    [Project1].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+    [Project1].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+    [Project1].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+    [Project1].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+    [Project1].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+    [Project1].[Payment_Frequency] AS [Payment_Frequency], 
+    [Project1].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+    [Project1].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+    [Project1].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+    [Project1].[Ex_Div_Period] AS [Ex_Div_Period], 
+    [Project1].[Ticker] AS [Ticker], 
+    [Project1].[Inet_ID] AS [Inet_ID], 
+    [Project1].[Bloomberg_ID] AS [Bloomberg_ID], 
+    [Project1].[External_Sec_ID] AS [External_Sec_ID], 
+    [Project1].[Reuters_ID] AS [Reuters_ID], 
+    [Project1].[ISIN] AS [ISIN], 
+    [Project1].[Call_Account_Flag] AS [Call_Account_Flag], 
+    [Project1].[System_Locked] AS [System_Locked], 
+    [Project1].[Last_Update_User] AS [Last_Update_User], 
+    [Project1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Project1].[Security_Status] AS [Security_Status], 
+    [Project1].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+    [Project1].[Active_flag] AS [Active_flag], 
+    [Project1].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+    FROM ( SELECT 
+        [Extent1].[Security_ID] AS [Security_ID], 
+        [Extent1].[Entity_ID] AS [Entity_ID], 
+        [Extent1].[Security_Name] AS [Security_Name], 
+        [Extent1].[Short_Name] AS [Short_Name], 
+        [Extent1].[Primary_Exch] AS [Primary_Exch], 
+        [Extent1].[Secondary_Exch] AS [Secondary_Exch], 
+        [Extent1].[Country_Of_Domicile] AS [Country_Of_Domicile], 
+        [Extent1].[Country_Of_Risk] AS [Country_Of_Risk], 
+        [Extent1].[Security_Type_Code] AS [Security_Type_Code], 
+        [Extent1].[Price_Multiplier] AS [Price_Multiplier], 
+        [Extent1].[Income_Frequency] AS [Income_Frequency], 
+        [Extent1].[Issuer_Code] AS [Issuer_Code], 
+        [Extent1].[Ultimate_Issuer_Code] AS [Ultimate_Issuer_Code], 
+        [Extent1].[Asset_Currency] AS [Asset_Currency], 
+        [Extent1].[Min_Lot_Size] AS [Min_Lot_Size], 
+        [Extent1].[Decimal_Precision] AS [Decimal_Precision], 
+        [Extent1].[AvePrice_Rounding] AS [AvePrice_Rounding], 
+        [Extent1].[Issue_Date] AS [Issue_Date], 
+        [Extent1].[Maturity_Date] AS [Maturity_Date], 
+        [Extent1].[Coupon_Rate] AS [Coupon_Rate], 
+        [Extent1].[Price_Exchange] AS [Price_Exchange], 
+        [Extent1].[Trade_Currency] AS [Trade_Currency], 
+        [Extent1].[Price_Curr] AS [Price_Curr], 
+        [Extent1].[Currency_Pair_Code] AS [Currency_Pair_Code], 
+        [Extent1].[Share_Class] AS [Share_Class], 
+        [Extent1].[Current_Market_Price] AS [Current_Market_Price], 
+        [Extent1].[Index_Type] AS [Index_Type], 
+        [Extent1].[Clean_Price_Formula] AS [Clean_Price_Formula], 
+        [Extent1].[Accrued_Income_Price_Formula] AS [Accrued_Income_Price_Formula], 
+        [Extent1].[Odd_First_Coupon_Date] AS [Odd_First_Coupon_Date], 
+        [Extent1].[Odd_Last_Coupon_Date] AS [Odd_Last_Coupon_Date], 
+        [Extent1].[Coupon_Anniversary_Indicator] AS [Coupon_Anniversary_Indicator], 
+        [Extent1].[Track_EOM_Flag] AS [Track_EOM_Flag], 
+        [Extent1].[Next_Coupon_Date] AS [Next_Coupon_Date], 
+        [Extent1].[Previous_Coupon_Date] AS [Previous_Coupon_Date], 
+        [Extent1].[Payment_Frequency] AS [Payment_Frequency], 
+        [Extent1].[Coupon_BusDay_Adjustment] AS [Coupon_BusDay_Adjustment], 
+        [Extent1].[Next_Ex_Div_Date] AS [Next_Ex_Div_Date], 
+        [Extent1].[Ex_Div_BusDay_Adjustment] AS [Ex_Div_BusDay_Adjustment], 
+        [Extent1].[Ex_Div_Period] AS [Ex_Div_Period], 
+        [Extent1].[Ticker] AS [Ticker], 
+        [Extent1].[Inet_ID] AS [Inet_ID], 
+        [Extent1].[Bloomberg_ID] AS [Bloomberg_ID], 
+        [Extent1].[External_Sec_ID] AS [External_Sec_ID], 
+        [Extent1].[Reuters_ID] AS [Reuters_ID], 
+        [Extent1].[ISIN] AS [ISIN], 
+        [Extent1].[Call_Account_Flag] AS [Call_Account_Flag], 
+        [Extent1].[System_Locked] AS [System_Locked], 
+        [Extent1].[Last_Update_User] AS [Last_Update_User], 
+        [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+        [Extent1].[Security_Status] AS [Security_Status], 
+        [Extent1].[Benchmark_Portfolio] AS [Benchmark_Portfolio], 
+        [Extent1].[Active_flag] AS [Active_flag], 
+        [Extent1].[Dividend_FX_Security_ID] AS [Dividend_FX_Security_ID]
+        FROM [dbo].[Security_Detail] AS [Extent1]
+        WHERE ([Extent1].[Entity_ID] IN (@p__linq__0,@p__linq__1)) AND ((CASE WHEN ( NOT ((N'' = @p__linq__2) AND (@p__linq__2 IS NOT NULL))) THEN CASE WHEN ([Extent1].[Security_Type_Code] = @p__linq__3) THEN cast(1 as bit) WHEN ( NOT (([Extent1].[Security_Type_Code] = @p__linq__3) AND (0 = (CASE WHEN (@p__linq__3 IS NULL) THEN cast(1 as bit) ELSE cast(0 as bit) END)))) THEN cast(0 as bit) END WHEN ('' <> [Extent1].[Security_Type_Code]) THEN cast(1 as bit) WHEN ('' = [Extent1].[Security_Type_Code]) THEN cast(0 as bit) END) = 1)
+    )  AS [Project1]
+    ORDER BY [Project1].[Security_Name] ASC
+2018-09-15 14:49:00.2694|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:49:00.3264|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:49:00.3773|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:49:00.4263|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 14:50:51.3047|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Security_ID] AS [Security_ID], 
+    [Extent1].[Month_Year] AS [Month_Year], 
+    [Extent1].[Forecast_Rate] AS [Forecast_Rate], 
+    [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Extent1].[Last_Update_User] AS [Last_Update_User]
+    FROM [dbo].[Forex_Forecast] AS [Extent1]
+    WHERE ([Extent1].[Security_ID] = @p__linq__0) AND ([Extent1].[Entity_ID] = @p__linq__1) AND ([Extent1].[Month_Year] = @p__linq__2)
+2018-09-15 14:50:51.3536|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: SELECT TOP (1) 
+    [Extent1].[Entity_ID] AS [Entity_ID], 
+    [Extent1].[Security_ID] AS [Security_ID], 
+    [Extent1].[Month_Year] AS [Month_Year], 
+    [Extent1].[Forecast_Rate] AS [Forecast_Rate], 
+    [Extent1].[Last_Update_Date] AS [Last_Update_Date], 
+    [Extent1].[Last_Update_User] AS [Last_Update_User]
+    FROM [dbo].[Forex_Forecast] AS [Extent1]
+    WHERE ([Extent1].[Security_ID] = @p__linq__0) AND ([Extent1].[Entity_ID] = @p__linq__1) AND ([Extent1].[Month_Year] = @p__linq__2)
+2018-09-15 14:50:52.4040|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: INSERT [dbo].[Forex_Forecast]([Entity_ID], [Security_ID], [Month_Year], [Forecast_Rate], [Last_Update_Date], [Last_Update_User])
+VALUES (@0, @1, @2, @3, @4, @5)
+
+2018-09-15 14:50:52.4990|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: INSERT [dbo].[Forex_Forecast]([Entity_ID], [Security_ID], [Month_Year], [Forecast_Rate], [Last_Update_Date], [Last_Update_User])
+VALUES (@0, @1, @2, @3, @4, @5)
+
+2018-09-15 15:10:48.2489|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 15:10:48.4568|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 15:10:48.9115|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 15:10:48.9645|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 15:10:48.9994|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 15:10:49.0444|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 15:11:15.1550|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 15:11:15.1899|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 15:11:15.2569|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 15:11:15.3099|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 15:11:15.3728|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'
+2018-09-15 15:11:15.4168|INFO|MetopeMVCApp.Filters.DbInterceptors.NLogCommandInterceptor| IsAsync: False, Command Text: IF db_id(N'MetopeAzureDb') IS NOT NULL SELECT 1 ELSE SELECT Count(*) FROM sys.databases WHERE [name]=N'MetopeAzureDb'

@@ -1,0 +1,21 @@
+﻿<div class="form-group"> 
+    @if (Model == null)
+    {
+        <div class="col-md-offset-2 col-md-9"> 
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    }
+    else if (Model.Entity_ID == ViewBag.EntityId)
+    {
+        <div class="col-md-offset-2 col-md-9">   
+            <input type="submit" value="Save" class="btn btn-primary" /> 
+        </div>
+    }
+    else
+    {
+        <div class="col-md-offset-2 col-md-9">
+            <p>(Saving not allowed) </p>  
+        </div>
+    }
+    
+</div>   

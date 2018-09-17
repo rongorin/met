@@ -1,0 +1,41 @@
+﻿@model Metope.DAL.Party_Financials_History
+
+@{
+    ViewBag.Title = "Edit";
+}
+@section Styles {
+@Styles.Render("~/Content/datetime")  
+}
+
+<h3>
+    Edit Party Financials History code<b> @Model.Party_Code </b>
+    @if (Model.Actual_Forecast_Indicator == "A")
+    {   <span>(Actual)</span>  }
+    else
+    {   <span>(Forecasted)</span>  }
+
+</h3> 
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Record Date: <b>  @String.Format("{0:d MMM yyyy}", Model.Record_Date) </b></h4>
+        <hr />
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+        @Html.ValidationSummary(false)
+        @Html.ValidationMessage("Error")
+        @Html.HiddenFor(model => model.Party_Code) 
+        @Html.HiddenFor(model => model.Entity_ID) 
+        @Html.HiddenFor(model => model.Actual_Forecast_Indicator)  
+        @Html.HiddenFor(model => model.Record_Date)
+
+        @Html.EditorForModel( )
+       
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+} 

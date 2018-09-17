@@ -1,0 +1,27 @@
+﻿@model Metope.DAL.Portfolio_Performance_History 
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h1>Delete Confirmation</h1>
+<h2>Are you sure you want to delete this Portfolio Performance History record?</h2>
+<div>
+    <h4>
+        for Portfolio <b>@Html.DisplayFor(model => model.Portfolio_Code)</b> 
+    </h4>
+    <h4>
+        Record Date <b>@Html.DisplayFor(model => model.Record_Date)</b>
+    </h4>
+    <hr /> 
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
+        </div>
+    }
+</div>

@@ -1,0 +1,9 @@
+﻿ @*Use this ed template for the checkboxes in the Add of a new SecurityListDetail*@
+ @*Ref : https://www.exceptionnotfound.net/simple-checkboxlist-in-asp-net-mvc/*@
+
+@model MetopeMVCApp.Models.CheckBoxListItem    
+
+@Html.HiddenFor(x => x.ID)
+@Html.CheckBoxFor(x => x.IsChecked)
+@Html.LabelFor(x => x.IsChecked, Model.Display)
+<br />

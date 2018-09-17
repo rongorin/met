@@ -1,0 +1,178 @@
+﻿@model Metope.DAL.Security_Dividend_Detail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Security_Dividend_Detail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dividend_Annual_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dividend_Annual_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Dividend_Payment_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Dividend_Payment_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Actual_Dividend_Payment_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Actual_Dividend_Payment_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Actual_Last_Date_To_Register)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Actual_Last_Date_To_Register)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Actual_Ex_Dividend_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Actual_Ex_Dividend_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dividend_Split)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dividend_Split)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Dividend)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Dividend)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Actual_Dividend)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Actual_Dividend)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dividend_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dividend_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Last_Date_to_Register)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Last_Date_to_Register)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Ex_Dividend_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Ex_Dividend_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Update_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Update_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Financial_Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Financial_Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Actual_FX_Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Actual_FX_Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lock_Flag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lock_Flag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Actual_NonRecurring_Dividend)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Actual_NonRecurring_Dividend)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency.ISO_Currency_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency.ISO_Currency_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entity.Entity_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entity.Entity_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Detail.Security_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Detail.Security_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.User_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.User_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

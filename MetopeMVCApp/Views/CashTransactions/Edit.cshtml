@@ -1,0 +1,42 @@
+﻿@model Metope.DAL.Cash_Transactions 
+@{
+    ViewBag.Title = "Edit";
+}
+@section Styles {
+    @Styles.Render("~/Content/datetime")
+}  
+<h3>
+    Edit Cash transaction for Portfolio <b> @Model.Portfolio_Code </b>
+</h3> 
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal"> 
+        <hr />
+        @Html.ValidationSummary(false)
+        @Html.HiddenFor(model => model.Cash_Transaction_ID)
+        @Html.HiddenFor(model => model.Portfolio_Code)
+        @Html.HiddenFor(model => model.Entity_ID)
+        @Html.HiddenFor(model => model.Create_User_Code)
+
+        @Html.EditorForModel()
+         
+        @Html.Partial("_SaveButtonShow", Model)
+
+        <div>
+            @*@Html.ActionLink("Back to List", "Index")*@
+            @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
+        </div>
+
+    </div>
+}  
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+}
+
+
+
+ 

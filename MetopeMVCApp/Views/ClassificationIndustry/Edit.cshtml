@@ -1,0 +1,33 @@
+﻿@model Metope.DAL.Classification_Industry 
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>
+    Edit Classification Industry for Industry code <b> @Model.Industry_Code </b>
+</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4> (for Classification <b>@ViewBag.myClassificationCode</b>)</h4>
+        <hr />
+        @Html.ValidationSummary(false)
+        @Html.HiddenFor(model => model.Entity_ID)
+        @Html.HiddenFor(model => model.Classification_Code)
+        @Html.HiddenFor(model => model.Industry_Code)
+ 
+        @Html.EditorForModel(new { MeDisabled = "readonly" })
+
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval") 
+} 
+
+<div> 
+    @Html.ActionLink("Back to List", "Edit", "Classifications", new { ClassificationCode = ViewBag.myClassificationCode, EntityId = Model.Entity_ID }, null)  
+</div>

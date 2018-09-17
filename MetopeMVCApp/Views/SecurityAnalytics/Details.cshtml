@@ -1,0 +1,470 @@
+﻿@model Metope.Models.Security_Analytics
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Security_Analytics</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Issued_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issued_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Market_Capitalisation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Market_Capitalisation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Risk_Premium)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Risk_Premium)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exit_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exit_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Return_ME_1YR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Return_ME_1YR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Return_ME_2YR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Return_ME_2YR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Return_ME_3YR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Return_ME_3YR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Historic_Distribution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Historic_Distribution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distribution_Growth_Forecast_Yr1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distribution_Growth_Forecast_Yr1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distribution_Growth_Forecast_Yr2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distribution_Growth_Forecast_Yr2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distribution_Growth_Forecast_Yr3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distribution_Growth_Forecast_Yr3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Distribution_Yr1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Distribution_Yr1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Distribution_Yr2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Distribution_Yr2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Distribution_Yr3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Distribution_Yr3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Earnings_Growth_Compounded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Earnings_Growth_Compounded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Earnings_Forecast_Yr3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Earnings_Forecast_Yr3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Historic_Dividend_Yield_FYE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Historic_Dividend_Yield_FYE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forward_Dividend_Yield_FYE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forward_Dividend_Yield_FYE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Yr3_Forward_Dividend_Yield)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yr3_Forward_Dividend_Yield)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rolling_12M_Forward_Yield)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rolling_12M_Forward_Yield)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Historical_Earnings_FYE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Historical_Earnings_FYE)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Earnings_Forecast_Yr1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Earnings_Forecast_Yr1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Earnings_Forecast_Yr2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Earnings_Forecast_Yr2)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Historic_Dividend_Yield_Relative)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Historic_Dividend_Yield_Relative)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rolling_12M_Historic_Distribution_PriceCurr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rolling_12M_Historic_Distribution_PriceCurr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Short_Term_Market_Rerate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Short_Term_Market_Rerate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_12M_Total_Return)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_12M_Total_Return)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clean_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clean_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rolling_Dividend_Yield_Historic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rolling_Dividend_Yield_Historic)
+        </dd>
+ 
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Net_Present_Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Net_Present_Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Rolling_Custom_Income)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Rolling_Custom_Income)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Custom_Period)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Custom_Period)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rolling_12M_Historic_Distribution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rolling_12M_Historic_Distribution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rolling_12M_Forecast_Distribution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rolling_12M_Forecast_Distribution)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Yr2_Forward_Dividend_Yield)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yr2_Forward_Dividend_Yield)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exit_Yield)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exit_Yield)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount_Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount_Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distribution_Growth_Compounded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distribution_Growth_Compounded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_12MRolling_Income_Accrual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_12MRolling_Income_Accrual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rolling_12_to_24M_Forecast_Distribution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rolling_12_to_24M_Forecast_Distribution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rolling_24_to_36M_Forecast_Distribution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rolling_24_to_36M_Forecast_Distribution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Yr1_Dividend_Yield_Relative)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Yr1_Dividend_Yield_Relative)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Market_Historic_Yield)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Market_Historic_Yield)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Market_Forward_Yield)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Market_Forward_Yield)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Historic_Distribution_PriceCurr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Historic_Distribution_PriceCurr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Distribution_Yr1_PriceCurr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Distribution_Yr1_PriceCurr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Distribution_Yr2_PriceCurr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Distribution_Yr2_PriceCurr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Distribution_Yr3_PriceCurr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Distribution_Yr3_PriceCurr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rolling_12M_Forecast_Distribution_PriceCurr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rolling_12M_Forecast_Distribution_PriceCurr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rolling_12_24M_Forecast_Distribution_PriceCurr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rolling_12_24M_Forecast_Distribution_PriceCurr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rolling_24_36M_Forecast_Distribution_PriceCurr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rolling_24_36M_Forecast_Distribution_PriceCurr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distribution_Growth_Forecast_Yr4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distribution_Growth_Forecast_Yr4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Earnings_Forecast_Yr4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Earnings_Forecast_Yr4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Distribution_Yr4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Distribution_Yr4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_Distribution_Yr4_PriceCurr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_Distribution_Yr4_PriceCurr)
+        </dd>
+ 
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Detail.Security_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Detail.Security_Name)
+        </dd>
+
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

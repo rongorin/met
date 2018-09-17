@@ -1,0 +1,28 @@
+﻿ 
+@model Metope.DAL.Party_Debt_Analysis 
+<div class="form-group">
+    <div class="   col-md-12">
+        @Html.EditorFor(model => model.Financials_Date, "BootstrapEditDate")
+    </div>   
+</div>
+@Html.EditorFor(model => model.Investment_Properties, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Other_Investments, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Total_Investments, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Weighted_Investments, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.ST_Interest_Bearing_Debt, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.LT_Interest_Bearing_Debt, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Total_Interest_Bearing_Borrowings, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Debt_Hedged_Amount, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Debt_Hedged_Percent, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Floating_Debt_Amount, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Floating_Debt_Percent, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Total_Weighted_Debt_Cost, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Capital_Markets_Debt, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Traditional_Bank_Debt, "BootstrapEditDecimal")
+ 
+@Html.Partial("_SaveButtonShow", Model)
+
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
+</div>

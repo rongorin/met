@@ -1,0 +1,71 @@
+﻿@model Metope.DAL.Security_Analytics
+ 
+@Html.EditorFor(model => model.Issued_Amount, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Market_Capitalisation, "BootstrapEditDecimal")
+
+@Html.EditorFor(model => model.Risk_Premium, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Exit_Price, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Total_Return_ME_1YR, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Total_Return_ME_2YR, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Total_Return_ME_3YR, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Historic_Distribution, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Distribution_Growth_Forecast_Yr1, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Distribution_Growth_Forecast_Yr2, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Distribution_Growth_Forecast_Yr3, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Distribution_Growth_Forecast_Yr4, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Forecast_Distribution_Yr1, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Forecast_Distribution_Yr2, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Forecast_Distribution_Yr3, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Forecast_Distribution_Yr4, "BootstrapEditDecimal")
+
+@Html.EditorFor(model => model.Earnings_Growth_Compounded, "BootstrapEditDecimal6Places")
+
+@Html.EditorFor(model => model.Earnings_Forecast_Yr1, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Earnings_Forecast_Yr2, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Earnings_Forecast_Yr3, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Earnings_Forecast_Yr4, "BootstrapEditDecimal")
+
+@Html.EditorFor(model => model.Historic_Dividend_Yield_FYE, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Forward_Dividend_Yield_FYE, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Yr2_Forward_Dividend_Yield, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Yr3_Forward_Dividend_Yield, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Rolling_12M_Forward_Yield, "BootstrapEditDecimal")
+
+@Html.EditorFor(model => model.Historical_Earnings_FYE, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Historic_Dividend_Yield_Relative, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Forecast_Yr1_Dividend_Yield_Relative, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Historic_Distribution_PriceCurr, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Rolling_12M_Historic_Distribution_PriceCurr, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Short_Term_Market_Rerate, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Forecast_12M_Total_Return, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Clean_Price, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Rolling_Dividend_Yield_Historic, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Discount_Security_ID, "BootstrapEditDecimal")
+
+@Html.EditorFor(model => model.Net_Present_Value, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Forecast_Rolling_Custom_Income, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Custom_Period, "BootstrapEditDecimalZeroPlaces")
+@Html.EditorFor(model => model.Rolling_12M_Historic_Distribution, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Rolling_12M_Forecast_Distribution, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Exit_Yield, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Discount_Rate, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Distribution_Growth_Compounded, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Forecast_12MRolling_Income_Accrual, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Rolling_12_to_24M_Forecast_Distribution, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Rolling_24_to_36M_Forecast_Distribution, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Market_Historic_Yield, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Market_Forward_Yield, "BootstrapEditDecimal6Places")
+@Html.EditorFor(model => model.Forecast_Distribution_Yr1_PriceCurr, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Forecast_Distribution_Yr2_PriceCurr, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Forecast_Distribution_Yr3_PriceCurr, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Forecast_Distribution_Yr4_PriceCurr, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Rolling_12M_Forecast_Distribution_PriceCurr, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Rolling_12_24M_Forecast_Distribution_PriceCurr, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Rolling_24_36M_Forecast_Distribution_PriceCurr, "BootstrapEditDecimal")
+  
+@Html.Partial("_SaveButtonShow", Model)
+
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
+</div>

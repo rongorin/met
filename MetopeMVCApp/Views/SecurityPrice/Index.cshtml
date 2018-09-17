@@ -1,0 +1,303 @@
+﻿@*@model IEnumerable<MetopeMVCApp.Models.Security_Price>*@
+@model   MetopeMVCApp.Models.SecurityPriceIndexViewModel 
+@using GridMvc.Html
+ 
+@section Styles {
+    @Styles.Render("~/Content/GridMvc")
+    @Styles.Render("~/Content/datetime")
+}
+@{
+    ViewBag.Title = "Index";
+    List<string> _sizes = new List<string>() { "10", "20", "50", "100" };
+    ViewBag.RowsPgSelected = ((SelectList)ViewBag.RowsPerPage).SelectedValue ?? _sizes[1];
+    
+} 
+<br />   
+@Html.Partial("_MsgSuccesFail", Model)
+
+@if (Model.SecurityDetails != null)
+{
+    <container>
+        <div class="col-sm-3" > 
+                @Html.LabelFor(model => model.SecurityDetails.Ticker, htmlAttributes: new { @class = "control-label" })
+                @Model.SecurityDetails.Ticker   
+        </div> 
+        <div class="col-sm-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SecurityDetails.Security_Type_Code, htmlAttributes: new { @class = "control-label " })
+                  @Model.SecurityDetails.Security_Type_Code 
+            </div>
+        </div> 
+        <div class="col-sm-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SecurityDetails.Price_Exchange, htmlAttributes: new { @class = "control-label " })
+                @Model.SecurityDetails.Price_Exchange 
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SecurityDetails.Security_ID, htmlAttributes: new { @class = "control-label " })
+                  @Model.SecurityDetails.Security_ID
+            </div>
+        </div>
+    </container> 
+    @*<h3>
+            Security <span><b>@Model.SecurityDetails.Security_Name</b> </span>
+        </h3>*@
+    @*<container>
+        <div class="col-md-3">
+            <div class="panel panel-default ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                          Ticker: <b>@Model.SecurityDetails.Ticker</b>
+                    </h3>
+                </div> 
+            </div>
+        </div> 
+    </container>*@
+} 
+
+@*<table class="table">
+    <tr>
+        <th>AllIn Price</th>
+        <th>Clean_Price</th>
+        <th>Price Sourc</th>
+        <th>Yield_To Maturity</th>
+        <th>Discount Rate</th>
+        <th>Last UpdateDate</th>
+        <th>Record Date</th>
+        <th>Security Name</th>
+        <th></th>
+
+    </tr>
+    @foreach (var item in Model.SecurityDetails)
+    {
+        string selectedRowSD = "";
+        if (item.Security_ID == ViewBag.SecurityID )
+        {
+            selectedRowSD = "success";
+        }
+        <tr class="@selectedRowSD">
+            <td>
+                @Html.DisplayFor(modelItem => item.Ticker)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Security_Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Current_Market_Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Security_ID)
+            </td> 
+
+            <td>
+                @Html.ActionLink("Select", "Index", new { SecurityId = item.Security_ID, iEntityId = item.Entity_ID  }) |
+            </td>
+        </tr>
+    }
+
+</table> 
+
+    @*-----------------------------------------SEUCRITY PRICES : -------------------------------------------*@ 
+ 
+<div class="row">
+    <div class="col-md-7 ">
+        <h4><b>Security Prices</b></h4>
+    </div>
+
+    @if (ViewBag.SecurityID != null)
+    {
+        <div class="col-md-5 col-right">
+            <div class="pull-right">  
+                <a href="@Url.Action("Index", "SecurityPrice")" class="icon" > 
+                    <span class="badge">
+                    Go to Price listing
+                </span>
+                </a> 
+            </div>
+        </div>
+    }
+</div>
+@*@if (ViewBag.SecurityID != null)
+    {*@
+<p>
+    @Html.ActionLink("Create New", "Create", new { SecurityId = ViewBag.SecurityID }, null)
+</p> 
+<div class="code-cut"> 
+    @Html.Grid(Model.SecurityPrices).Named("ast").SetRowCssClasses(
+                    item => item.Price_Curr == ViewBag.PriceCurr ? "grid-row-selected" : string.Empty).Columns(columns =>
+    {
+         if (ViewBag.SecurityID == null) {
+                columns.Add(c => c.Security_Detail.Ticker)
+                    .Titled("Ticker").Filterable(true)
+                    .SetWidth(100); 
+         } 
+        columns.Add(c => c.Currency.Currency_Code)
+            .Titled("Current Price Currency").Filterable(true)
+            .SetWidth(200);
+
+        columns.Add(c => c.Price_Source).Css("text-right")
+            .Titled("Current Price Source").Filterable(true)
+            .SetWidth(200);
+
+        columns.Add(c => c.All_In_Price).Titled("Current All in Price").Css("text-right")
+                .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.All_In_Price)).Encoded(false)
+                 .Sanitized(false)
+                .Filterable(false).SetWidth(200);
+     
+        
+        // columns.Add(c => c.Security_Type_Code ).Titled("Return").Encoded(false).Sanitized(false).RenderValueAs(c => @Html.ActionLink(" ", "../LendReturns/Create", new { id = c.NumberOfRows }, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
+
+        //.RenderValueAs(, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
+
+        columns.Add(c => c.Clean_Price).Titled("Clean Price").Css("text-right").Filterable(false)
+                .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Clean_Price)).Encoded(false)
+                .Sanitized(false)
+                .SetWidth(210);
+        columns.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .SetWidth(60)
+                .RenderValueAs(c => @<u>
+                  @Html.ActionLink("Edit", "Edit", "SecurityPrice", new { EntityId = c.Entity_ID, SecurityId = c.Security_ID, PriceCurr = c.Price_Curr }, null
+                     )
+                </u>);
+        columns.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .SetWidth(80)
+                .RenderValueAs(c => @<u>
+                    @Html.ActionLink("Delete", "Delete", "SecurityPrice", new { EntityId = c.Entity_ID, SecurityId = c.Security_ID, PriceCurr = c.Price_Curr }, null)
+                </u>);
+
+        columns.Add(c => c.Security_ID).Titled(" ").Encoded(false).Sanitized(false)
+              .RenderValueAs(c => @<u>
+                @Html.ActionLink("History", "Index", "SecurityPrice", new { SecurityId = c.Security_ID, iPriceCurr = c.Price_Curr }
+                         ,null)
+            </u>);
+    }).WithPaging(12).Sortable(true)
+                
+</div>
+@if (Model.SecurityPriceHistory == null)
+{ 
+ <div>
+    <br />
+    @Html.ActionLink("Back to Securities", "Index", "SecurityDetail")
+
+</div>
+}
+  @*------------------------------------- HISTORY ------------------------------------------*@
+else
+{
+    using (Html.BeginForm("Index", "SecurityPrice", new { SecurityId = ViewBag.SecurityID, iPriceCurr = ViewBag.PriceCurr }, FormMethod.Post, new { @class = "form-horizontal", id = "TheForm" }))
+    {
+        <div class="row">
+            <div class="col-md-7 ">
+                <h4><b>History for selected Security Price</b></h4>
+            </div>
+
+            <div class="col-md-5 col-right">
+                <div class="pull-right">
+                    <label class=" control-label">show rows:</label>
+                    @Html.DropDownList("numberOfRows", (SelectList)ViewBag.RowsPerPage, 
+                            new
+                             {
+                                 onchange = "document.getElementById('TheForm').submit();"
+                             })
+                    @*<input type="submit" value="Update" class="btn btn-primary btn-xs" />*@
+                    @*@Html.DropDownList("numberOfRows", null, string.Empty, new { @class = "form-control" })*@
+                </div>
+            </div>
+        </div>
+    }
+    if (!Model.SecurityPriceHistory.Any())
+    {
+        <p>no price history for  @ViewBag.PriceCurr </p>
+    }
+    else
+    {
+        <div class="code-cut">
+            @Html.Grid(Model.SecurityPriceHistory).Named("ast").Columns(columns =>
+    {
+        //columns.Add(c => c.Price_DateTime).RenderValueAs(x => String.Format("<span >{0:d MMM yyyy}</span>", x.Price_DateTime)).Encoded(false)
+        //        .Sanitized(false)
+        //    .Titled("Historic Date").Filterable(true).SetWidth(230);
+
+        columns.Add(c => c.Price_DateTime).Titled("Historic Date").Format("{0:d MMM yyyy}").SetWidth(230).Sortable(true).Filterable(true);
+
+
+        columns.Add(c => c.Price_Curr)
+        .Titled("Historic Price Currency").Filterable(false)
+        .SetWidth(190);
+
+        columns.Add(c => c.All_In_Price).Titled("Historic All in Price").Css("text-right")
+                .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.All_In_Price)).Encoded(false)
+                 .Sanitized(false)
+                .Filterable(false).SetWidth(120);
+
+
+        // columns.Add(c => c.Security_Type_Code ).Titled("Return").Encoded(false).Sanitized(false).RenderValueAs(c => @Html.ActionLink(" ", "../LendReturns/Create", new { id = c.NumberOfRows }, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
+
+        //.RenderValueAs(, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
+
+        columns.Add(c => c.Clean_Price).Titled("Historic Clean Price").Css("text-right").Filterable(false)
+                .RenderValueAs(x => String.Format("<span  class=\"pull-right\">{0:0,0.00}</span>", x.Clean_Price)).Encoded(false)
+                .Sanitized(false)
+                .SetWidth(200);
+
+        columns.Add(c => c.Price_Source)
+            .Titled("Price Source").Filterable(false)
+            .SetWidth(110);
+
+        columns.Add(c => c.Yield_To_Maturity).Filterable(false)
+        .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Yield_To_Maturity)).Encoded(false)
+            .Titled("YTM").Filterable(false)
+            .SetWidth(120);
+
+        columns.Add(c => c.Discount_Rate).Titled("Discount Rate").Css("text-right").Filterable(false)
+        .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Discount_Rate)).Encoded(false)
+        .Sanitized(false)
+        .SetWidth(120);
+        columns.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .SetWidth(100)
+                .RenderValueAs(c => @<u>
+                    @Html.ActionLink("Edit", "EditHistory", "SecurityPrice", new { EntityId = c.Entity_ID, SecurityId = c.Security_ID, PriceCurr = c.Price_Curr, PriceDateTime = c.Price_DateTime }, null)
+
+                </u>);
+        columns.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .SetWidth(100)
+                .RenderValueAs(c => @<u>
+                    @Html.ActionLink("Delete", "DeleteHistory", "SecurityPrice", new { EntityId = c.Entity_ID, SecurityId = c.Security_ID, PriceCurr = c.Price_Curr, PriceDateTime = c.Price_DateTime }, null)
+                </u>);
+     }).WithPaging(Convert.ToInt16(ViewBag.RowsPgSelected)).Sortable(true) 
+        </div>
+
+    } 
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/GridMvc") 
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>      
+<script>
+        //$(function () {
+        //    pageGrids.ast.onRowSelect(function (e) {  
+        //        $.post("/SecurityPrice?SecurityId=" + e.row.Security_ID,
+        //            function (data) {
+        //            alert("aaa");
+        //            if (data.Status <= 0) {
+        //                alert(data.Message);
+        //                return;
+        //            }
+        //        });
+        //    });
+        //});
+    </script>
+ 
+
+}

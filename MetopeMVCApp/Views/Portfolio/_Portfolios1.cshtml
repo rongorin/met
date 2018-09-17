@@ -1,0 +1,110 @@
+﻿@model IPagedList<Metope.DAL.Portfolio>
+  
+
+<div id="portfolioListing">
+    <table class="table">
+       <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Portfolio_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Portfolio_Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Inception_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Financial_Year_End)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Custodian_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Active_Flag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().System_Locked)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Portfolio_Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Entity.Entity_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().User.User_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Country.Country_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Currency.ISO_Currency_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Currency1.ISO_Currency_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Currency2.ISO_Currency_Code)
+            </th>
+            <th></th>
+        </tr> 
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Portfolio_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Portfolio_Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Inception_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Financial_Year_End)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Custodian_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active_Flag)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.System_Locked)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Portfolio_Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Entity.Entity_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.User_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.Country_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Currency.ISO_Currency_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Currency1.ISO_Currency_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Currency2.ISO_Currency_Code)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
+                    @Html.ActionLink("Details", "Details", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code }) |
+                    @Html.ActionLink("Delete", "Delete", new { EntityId = item.Entity_ID, PortfolioCode = item.Portfolio_Code })
+                </td>
+            </tr>
+        }
+
+    </table>
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }) )
+    @*,PagedListRenderOptions.MinimalWithItemCountText*@
+    
+</div>

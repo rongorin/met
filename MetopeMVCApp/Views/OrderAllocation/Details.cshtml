@@ -1,0 +1,459 @@
+﻿@model Metope.DAL.Order_Allocation
+
+@{
+    ViewBag.Title = "Details";
+}
+ @section Styles
+{   
+    <style type="text/css">
+        dt {
+            min-width: 430px;
+            font-weight: bold;
+            text-align: left;
+         float: left; 
+        } 
+        dt::after {
+            content: "    ";
+            white-space: pre; 
+        }
+        dd {
+            margin: 0.5em;
+            padding: 0 0 0.5em 0;
+            text-align: left;
+        }
+    </style>
+} 
+
+<h2>Order Allocation Details</h2>
+  
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <strong>For Order Detail Nos. @Model.Order_ID</strong>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Portfolio.Portfolio_Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Portfolio.Portfolio_Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Operations_Status)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Operations_Status)
+                </dd> 
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order_Detail.Transaction_Type)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Order_Detail.Transaction_Type)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Target_Quantity)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Target_Quantity)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Target_Clean_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Target_Clean_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Target_Income_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Target_Income_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Target_AllIn_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Target_AllIn_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Target_Clean_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Target_Clean_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Target_Income_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Target_Income_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Target_AllIn_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Target_AllIn_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Execution_Quantity)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Execution_Quantity)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Place_Quantity)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Place_Quantity)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Execution_Clean_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Execution_Clean_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Execution_Income_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Execution_Income_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Execution_AllIn_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Execution_AllIn_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Execution_Clean_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Execution_Clean_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Execution_Income_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Execution_Income_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Execution_AllIn_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Execution_AllIn_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Commission_Rate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Commission_Rate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Commission_Type)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Commission_Type)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Commission_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Commission_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Commission_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Commission_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Execution_Gross_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Execution_Gross_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Execution_Gross_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Execution_Gross_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Execution_Net_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Execution_Net_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Execution_Net_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Execution_Net_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Buy_Currency_Target_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Buy_Currency_Target_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Sell_Currency_Target_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Sell_Currency_Target_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Buy_Currency_Target_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Buy_Currency_Target_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Sell_Currency_Target_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Sell_Currency_Target_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Buy_Currency_Execution_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Buy_Currency_Execution_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Sell_Currency_Execution_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Sell_Currency_Execution_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Buy_Currency_Execution_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Buy_Currency_Execution_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Sell_Currency_Execution_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Sell_Currency_Execution_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fee_Amount1_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Fee_Amount1_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fee_Amount2_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Fee_Amount2_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fee_Amount3_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Fee_Amount3_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fee_Amount4_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Fee_Amount4_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fee_Amount5_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Fee_Amount5_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fee_Amount6_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Fee_Amount6_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Tax_Amount_TradeCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Tax_Amount_TradeCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fee_Amount1_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Fee_Amount1_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fee_Amount2_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Fee_Amount2_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fee_Amount3_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Fee_Amount3_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fee_Amount4_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Fee_Amount4_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fee_Amount5_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Fee_Amount5_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fee_Amount6_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Fee_Amount6_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Tax_Amount_BaseCur)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Tax_Amount_BaseCur)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Trade_Base_FX_Rate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Trade_Base_FX_Rate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Export_Reference)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Export_Reference)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Export_Status)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Export_Status)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Allocation_Ack_Nack_Status)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Allocation_Ack_Nack_Status)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div> 
+<p> 
+    @Html.ActionLink("Back to List", "Index")
+</p>

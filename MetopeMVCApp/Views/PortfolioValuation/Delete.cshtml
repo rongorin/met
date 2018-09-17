@@ -1,0 +1,23 @@
+﻿@model Metope.DAL.Portfolio_Valuation
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete confirmation</h2>
+
+<p>
+    Are you sure you want to delete the Valuation for Portfolio <strong>@Model.Portfolio_Code</strong>? 
+</p>
+<div>
+   
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
+        </div>
+    }
+</div>

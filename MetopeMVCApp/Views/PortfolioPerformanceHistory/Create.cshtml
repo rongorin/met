@@ -1,0 +1,45 @@
+﻿@model Metope.DAL.Portfolio_Performance_History
+
+<h2>
+    Create
+</h2>
+@section Styles {
+    @Styles.Render("~/Content/datetime")
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h3>
+           Portfolio Performance History for Portfolio <b> @ViewBag.Portfolio </b>
+        </h3>
+        <hr />
+          @Html.ValidationSummary(false)
+        @Html.ValidationMessage("Error")
+        @Html.HiddenFor(model => model.Entity_ID)
+        @Html.HiddenFor(model => model.Portfolio_Code)
+
+        `<input type="hidden" id="navIndicator" name="navIndicator" value=@ViewBag.Nav />
+
+        <div class="form-group">
+            <div>
+                @Html.EditorFor(model => model.Record_Date, "BootstrapEditDateVertic")
+            </div>
+        </div>
+
+        @Html.EditorForModel()
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Go Back", "Index", "PortfolioPerformanceHistory", new { PortfolioCode = Model.Portfolio_Code }, null)
+ 
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+} 

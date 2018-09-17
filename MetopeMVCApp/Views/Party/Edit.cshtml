@@ -1,0 +1,28 @@
+﻿@model Metope.DAL.Party
+
+@{
+    ViewBag.Title = "Edit";
+}
+@section Styles {
+    @Styles.Render("~/Content/datetime")
+}
+<h3>Edit Party <b> @Model.Party_Code </b></h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal"> 
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+       
+        @Html.HiddenFor(model => model.Party_Code)
+        @Html.HiddenFor(model => model.Entity_ID)
+        @Html.EditorForModel()
+     </div> 
+}  
+ 
+@section Scripts {
+    @Scripts.Render("~/bundles/datetime")
+
+}

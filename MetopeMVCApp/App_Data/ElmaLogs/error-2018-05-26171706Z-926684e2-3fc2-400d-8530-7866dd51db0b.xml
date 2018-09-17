@@ -1,0 +1,188 @@
+﻿<error errorId="926684e2-3fc2-400d-8530-7866dd51db0b" application="/LM/W3SVC/95/ROOT" host="R" type="System.ArgumentNullException" message="Value cannot be null.&#xD;&#xA;Parameter name: items" source="System.Web.Mvc" detail="System.ArgumentNullException: Value cannot be null.&#xD;&#xA;Parameter name: items&#xD;&#xA;   at System.Web.Mvc.MultiSelectList..ctor(IEnumerable items, String dataValueField, String dataTextField, String dataGroupField, IEnumerable selectedValues, IEnumerable disabledValues, IEnumerable disabledGroups)&#xD;&#xA;   at CallSite.Target(Closure , CallSite , Type , IEnumerable`1 , String , String , Object )&#xD;&#xA;   at System.Dynamic.UpdateDelegates.UpdateAndExecute5[T0,T1,T2,T3,T4,TRet](CallSite site, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4)&#xD;&#xA;   at MetopeMVCApp.Filters.IndustryFilter.OnActionExecuted(ActionExecutedContext filterContext) in c:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\Filters\FiltersDropdownData.cs:line 446&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass46.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3f()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass46.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3f()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass46.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3f()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass46.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3f()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass46.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3f()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass46.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3f()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass33.&lt;BeginInvokeActionMethodWithFilters&gt;b__32(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass21.&lt;&gt;c__DisplayClass2b.&lt;BeginInvokeAction&gt;b__1c()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass21.&lt;BeginInvokeAction&gt;b__1e(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecuteCore&gt;b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecute&gt;b__15(IAsyncResult asyncResult, Controller controller)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;BeginProcessRequest&gt;b__5(IAsyncResult asyncResult, ProcessRequestState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="aaaaaa" time="2018-05-26T17:17:06.6400248Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:max-age=0&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, br&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-ZA,en;q=0.9&#xD;&#xA;HTTP_COOKIE:glimpsePolicy=On; glimpseOptions=%7B%22glimpsePolicy%22%3Anull%7D; ai_user=S2KRP|2018-01-10T15:21:29.881Z; __RequestVerificationToken=hO3ahKJPUzr8oj1rtFn-Cgm7klf0JKm8ZkXRyH6qUmcotFSX1v5BUNraen1RRKSY9nuUZ96N8t9V6ed9NBq1B5QIBCq3hh87E0QsVSHqNr41; .AspNet.ApplicationCookie=PRJknlxgAQjepUv6-marV3UPexnyHhxVfWcKfFHcQ1LVdgVQ7EKmW170QUIlPZiiP4rr9pW6UZmpxwH_fRzH81Q9yy4EEwzHxf8UYLcbVpQpkOnXgHYKMeJ2OXWRl-EnS1YSINCzz_wvdVWMeuWrE2WXqWC8WfYXGa07x96blhnp70qu0FChtreYkOV7rxleSbe_bnaiH93uz4VJXlAqDCK8lzpoRRXkCSibTHAlP77-OAnRCEzHqmqhjduK9ZwBFY7bLYFtMtYco-hesQzaz03TtphAXNID2dOST6gBjIqWaiiMbzY-GkxfopRusoV98svefdUWqiw5xbZWvMtXszbUFH2s7O_lkJVe95zY35jz4OsCZPcxh6NvK1Ri4bghUuisTSCsApQU2VbAHAUSKICmCvlb0sVkYA39hpC2qRtHAOx58IraWkaMNcqc_zk79afrzZz0cFAF04pllGgWf6yASNICBsAATSFz7qowpqg; ASP.NET_SessionId=2w5cogtlqjy5s4s4tyg034fq&#xD;&#xA;HTTP_HOST:localhost:53133&#xD;&#xA;HTTP_REFERER:http://localhost:53133/SecurityclassificationIndustry?SecurityId=45&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: max-age=0&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate, br&#xD;&#xA;Accept-Language: en-ZA,en;q=0.9&#xD;&#xA;Cookie: glimpsePolicy=On; glimpseOptions=%7B%22glimpsePolicy%22%3Anull%7D; ai_user=S2KRP|2018-01-10T15:21:29.881Z; __RequestVerificationToken=hO3ahKJPUzr8oj1rtFn-Cgm7klf0JKm8ZkXRyH6qUmcotFSX1v5BUNraen1RRKSY9nuUZ96N8t9V6ed9NBq1B5QIBCq3hh87E0QsVSHqNr41; .AspNet.ApplicationCookie=PRJknlxgAQjepUv6-marV3UPexnyHhxVfWcKfFHcQ1LVdgVQ7EKmW170QUIlPZiiP4rr9pW6UZmpxwH_fRzH81Q9yy4EEwzHxf8UYLcbVpQpkOnXgHYKMeJ2OXWRl-EnS1YSINCzz_wvdVWMeuWrE2WXqWC8WfYXGa07x96blhnp70qu0FChtreYkOV7rxleSbe_bnaiH93uz4VJXlAqDCK8lzpoRRXkCSibTHAlP77-OAnRCEzHqmqhjduK9ZwBFY7bLYFtMtYco-hesQzaz03TtphAXNID2dOST6gBjIqWaiiMbzY-GkxfopRusoV98svefdUWqiw5xbZWvMtXszbUFH2s7O_lkJVe95zY35jz4OsCZPcxh6NvK1Ri4bghUuisTSCsApQU2VbAHAUSKICmCvlb0sVkYA39hpC2qRtHAOx58IraWkaMNcqc_zk79afrzZz0cFAF04pllGgWf6yASNICBsAATSFz7qowpqg; ASP.NET_SessionId=2w5cogtlqjy5s4s4tyg034fq&#xD;&#xA;Host: localhost:53133&#xD;&#xA;Referer: http://localhost:53133/SecurityclassificationIndustry?SecurityId=45&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/95/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="C:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="ApplicationCookie" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="aaaaaa" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="aaaaaa" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="95" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/95" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/SecurityclassificationIndustry/Create" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="C:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\SecurityclassificationIndustry\Create" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="SecurityId=45" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="56083" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/SecurityclassificationIndustry/Create" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="53133" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/8.0" />
+    </item>
+    <item name="URL">
+      <value string="/SecurityclassificationIndustry/Create" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="max-age=0" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, br" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-ZA,en;q=0.9" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="glimpsePolicy=On; glimpseOptions=%7B%22glimpsePolicy%22%3Anull%7D; ai_user=S2KRP|2018-01-10T15:21:29.881Z; __RequestVerificationToken=hO3ahKJPUzr8oj1rtFn-Cgm7klf0JKm8ZkXRyH6qUmcotFSX1v5BUNraen1RRKSY9nuUZ96N8t9V6ed9NBq1B5QIBCq3hh87E0QsVSHqNr41; .AspNet.ApplicationCookie=PRJknlxgAQjepUv6-marV3UPexnyHhxVfWcKfFHcQ1LVdgVQ7EKmW170QUIlPZiiP4rr9pW6UZmpxwH_fRzH81Q9yy4EEwzHxf8UYLcbVpQpkOnXgHYKMeJ2OXWRl-EnS1YSINCzz_wvdVWMeuWrE2WXqWC8WfYXGa07x96blhnp70qu0FChtreYkOV7rxleSbe_bnaiH93uz4VJXlAqDCK8lzpoRRXkCSibTHAlP77-OAnRCEzHqmqhjduK9ZwBFY7bLYFtMtYco-hesQzaz03TtphAXNID2dOST6gBjIqWaiiMbzY-GkxfopRusoV98svefdUWqiw5xbZWvMtXszbUFH2s7O_lkJVe95zY35jz4OsCZPcxh6NvK1Ri4bghUuisTSCsApQU2VbAHAUSKICmCvlb0sVkYA39hpC2qRtHAOx58IraWkaMNcqc_zk79afrzZz0cFAF04pllGgWf6yASNICBsAATSFz7qowpqg; ASP.NET_SessionId=2w5cogtlqjy5s4s4tyg034fq" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:53133" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:53133/SecurityclassificationIndustry?SecurityId=45" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <queryString>
+    <item name="SecurityId">
+      <value string="45" />
+    </item>
+  </queryString>
+  <cookies>
+    <item name="glimpsePolicy">
+      <value string="On" />
+    </item>
+    <item name="glimpseOptions">
+      <value string="%7B%22glimpsePolicy%22%3Anull%7D" />
+    </item>
+    <item name="ai_user">
+      <value string="S2KRP|2018-01-10T15:21:29.881Z" />
+    </item>
+    <item name="__RequestVerificationToken">
+      <value string="hO3ahKJPUzr8oj1rtFn-Cgm7klf0JKm8ZkXRyH6qUmcotFSX1v5BUNraen1RRKSY9nuUZ96N8t9V6ed9NBq1B5QIBCq3hh87E0QsVSHqNr41" />
+    </item>
+    <item name=".AspNet.ApplicationCookie">
+      <value string="PRJknlxgAQjepUv6-marV3UPexnyHhxVfWcKfFHcQ1LVdgVQ7EKmW170QUIlPZiiP4rr9pW6UZmpxwH_fRzH81Q9yy4EEwzHxf8UYLcbVpQpkOnXgHYKMeJ2OXWRl-EnS1YSINCzz_wvdVWMeuWrE2WXqWC8WfYXGa07x96blhnp70qu0FChtreYkOV7rxleSbe_bnaiH93uz4VJXlAqDCK8lzpoRRXkCSibTHAlP77-OAnRCEzHqmqhjduK9ZwBFY7bLYFtMtYco-hesQzaz03TtphAXNID2dOST6gBjIqWaiiMbzY-GkxfopRusoV98svefdUWqiw5xbZWvMtXszbUFH2s7O_lkJVe95zY35jz4OsCZPcxh6NvK1Ri4bghUuisTSCsApQU2VbAHAUSKICmCvlb0sVkYA39hpC2qRtHAOx58IraWkaMNcqc_zk79afrzZz0cFAF04pllGgWf6yASNICBsAATSFz7qowpqg" />
+    </item>
+    <item name="ASP.NET_SessionId">
+      <value string="2w5cogtlqjy5s4s4tyg034fq" />
+    </item>
+  </cookies>
+</error>

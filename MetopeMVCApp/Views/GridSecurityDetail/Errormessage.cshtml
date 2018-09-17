@@ -1,0 +1,21 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+ 
+@{
+    ViewBag.Title = "Errormessage";
+}
+
+
+<h1 class="text-danger">An Error occurred.1</h1>
+<h2 class="text-danger">An error occurred while processing your requestttt. Contact support.</h2>
+
+@if (Model != null)
+{
+    <h3>@Model.Exception.GetType().Name  </h3>
+    <div>
+        <img id="progress" src="~/Content/img/404-AB-Failure-image.gif" />
+        <h4>@Model.Exception.ToString()  </h4>
+
+    </div>
+}
+else { <div>Model is null</div>
+}

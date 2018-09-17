@@ -1,0 +1,72 @@
+﻿ 
+@model Metope.DAL.Party_Financials
+ 
+    <div class="col-sm-4">
+        <div class="form-group ">
+            @Html.LabelFor(model => model.Security_ID, htmlAttributes: new { @class = "control-label col-md-5 input-sm" })
+            <div class="col-md-7">
+                @Html.DropDownList("Security_ID", (SelectList)ViewBag.Securities_Select, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Security_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+ 
+    @Html.EditorFor(model => model.Full_Adjusted_Share_NAV, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Financials_Date, "BootstrapEditDate") 
+    @Html.EditorFor(model => model.Enterprise_Value, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Dividend_Yield, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Net_Present_Value, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Net_Property_Income, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Vacancies_Overall, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Portfolio_Leases_Expiring, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Assumed_Ave_Escalation_Rate, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Cap_Rate_Movemt_Assump, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Reversion_Exp_Rent_Reviews, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Net_Operating_Profit, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Revenue_Growth, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Net_Property_Income_Growth, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Net_Operating_Profit_Growth, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Interest_Paid, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Interest_Paid_Growth, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Loan_To_Value, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Interest_Cover_Ratio, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Revenue, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Property_Expenses, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Property_Expenses_Growth, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Investment_Income, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Admin_Expenses, "BootstrapEditDecimal") 
+    @Html.EditorFor(model => model.Admin_Expenses_Growth, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Taxation, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Other_Income, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Distributable_Earnings, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Linked_Units_Issued, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Borrowings, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Units_Issued, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Purchases_And_Developments, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Interest_Bearing_Borrowings, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Total_Assets, "BootstrapEditDecimal") 
+    @Html.EditorFor(model => model.Current_Liabilities, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Sales, "BootstrapEditDecimal")
+    @Html.EditorFor(model => model.Property_Portfolio_Value, "BootstrapEditDecimal")  
+    @Html.EditorFor(model => model.Forecast_Distributions_Growth, "BootstrapEditDecimal")  
+
+@Html.EditorFor(model => model.OffshoreExposure_WesternEurope, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.OffshoreExposure_CEE, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.OffshoreExposure_US, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.OffshoreExposure_UK, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.OffshoreExposure_Australia, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.OffshoreExposure_Africa, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.OffshoreExposure_Other, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Sector_Retail, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Sector_Office, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Sector_Industrial, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Sector_Residential, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Sector_Other, "BootstrapEditDecimal")
+@Html.EditorFor(model => model.Sector_Offshore, "BootstrapEditDecimal") 
+
+@Html.Partial("_SaveButtonShow", Model)
+
+<div> 
+    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
+</div>

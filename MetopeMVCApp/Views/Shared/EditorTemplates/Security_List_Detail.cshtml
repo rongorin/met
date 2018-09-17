@@ -1,0 +1,19 @@
+﻿@model MetopeMVCApp.Models.AddSecurityListDetailVM
+
+@Html.EditorFor(model => model.Security_List_Name, "BootstrapEditorVertic", new { setLength = "extraLong" })
+@Html.EditorFor(model => model.Description, "BootstrapEditorVertic", new { setLength = "extraLong" }) 
+@Html.EditorFor(model => model.System_Locked, "BooleanVertic")
+<div class="form-group">
+
+    <div class="col-md-2 control-label input-sm">
+        <b>Securities</b>
+    </div>
+    <div class="col-md-10">
+        @Html.EditorFor(x => x.Secs)
+    </div>
+</div>
+@Html.Partial("_SaveButtonShow", Model)
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

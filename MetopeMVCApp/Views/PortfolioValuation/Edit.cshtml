@@ -1,0 +1,29 @@
+﻿@model Metope.DAL.Portfolio_Valuation
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h4></h4>
+<h3>Editing Valuation for Portfolio <b> @Model.Portfolio_Code </b></h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal"> 
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Portfolio_Code)
+
+        @Html.HiddenFor(model => model.Entity_ID)
+        @Html.EditorForModel()
+         
+    </div>
+} 
+
+<div>
+    @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
+
+
+</div>

@@ -1,0 +1,12 @@
+﻿@model Metope.DAL.Portfolio_Valuation 
+
+@Html.EditorFor(model => model.Net_Asset_Value, "BootstrapEditDecimalVertic")
+@Html.EditorFor(model => model.Gross_Asset_Value, "BootstrapEditDecimalVertic") 
+@Html.EditorFor(model => model.Total_Investments, "BootstrapEditDecimalVertic")
+@Html.EditorFor(model => model.Total_Cash, "BootstrapEditDecimalVertic")
+@Html.EditorFor(model => model.Liabilities, "BootstrapEditDecimalVertic")
+@Html.EditorFor(model => model.Fees, "BootstrapEditDecimalVertic")
+@Html.EditorFor(model => model.Total_Cost, "BootstrapEditDecimalVertic")
+@Html.EditorFor(model => model.NAV_Excl_Fees, "BootstrapEditDecimalVertic") 
+ @Html.Partial("_SaveButtonShow", Model)
+ 

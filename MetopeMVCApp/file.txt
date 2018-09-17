@@ -1,0 +1,1 @@
+2017-11-12 06:57:42.7237|ERROR|ASP.MetopeNspace.MvcApplication|Sample errr message

@@ -1,0 +1,130 @@
+﻿@model Metope.DAL.Security_Performance_History
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Security_Performance_History</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ModDietz_Performance_Quarterly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModDietz_Performance_Quarterly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModDietz_Performance_Monthly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModDietz_Performance_Monthly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModDietz_Performance_MonthToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModDietz_Performance_MonthToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dietz_Performance_Quarterly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dietz_Performance_Quarterly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dietz_Performance_Monthly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dietz_Performance_Monthly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dietz_Performance_MonthToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dietz_Performance_MonthToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Update_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Update_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Session_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Session_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hist_Last_Update_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hist_Last_Update_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hist_Last_Update_User)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hist_Last_Update_User)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entity.Entity_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entity.Entity_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Portfolio.Portfolio_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Portfolio.Portfolio_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.User_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.User_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Security_Detail.Security_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Security_Detail.Security_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

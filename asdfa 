@@ -1,0 +1,582 @@
+[33mcommit 647e965582360bc9d695ff9ba9b1a5824e7a4ee1[m[33m ([m[1;36mHEAD -> [m[1;32mfixFF[m[33m)[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Sep 17 14:44:59 2018 +0200
+
+    fixed FForecst
+    fixed FForecast
+
+[33mcommit d47c8e91fc1dbdfbf6c816ae43e692fba65f17b9[m[33m ([m[1;32mMerged[m[33m)[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sun Sep 16 18:50:10 2018 +0200
+
+    latest changes with FF
+
+[33mcommit f7f8318dbe5e4f72cd85a65a5321b0393a5becee[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Sep 4 11:59:27 2018 +0200
+
+    SecurityDetail change
+
+[33mcommit d816c956d543be556740ca7bf21930f352f42628[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Jul 30 09:52:19 2018 +0200
+
+    fgff
+
+[33mcommit cd52d321c75032579548799987ef07e372757290[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Jul 30 08:36:00 2018 +0200
+
+    k
+
+[33mcommit 185e330ce333bebd5375bf67cfda1fd2de0e686e[m[33m ([m[1;31morigin/Merged[m[33m)[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Fri Jun 1 14:05:52 2018 +0200
+
+    deployed SecurityClassificIndustry
+
+[33mcommit 861c260760d0ca3f16fbd31372250c00237bd7ae[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Wed May 30 18:04:18 2018 +0200
+
+    deploy SecClassifIndustry
+
+[33mcommit 0211ce0d8f0bd67e0f4564233034f2d85e500753[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu May 3 11:04:26 2018 +0200
+
+    db changes
+
+[33mcommit e5801d25cad9cab7794480015b80498922d43240[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue May 1 15:48:32 2018 +0200
+
+    db latest
+
+[33mcommit 5afcb841a9de4003ff8e4029a53dfa29fbd64e04[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue May 1 15:39:31 2018 +0200
+
+    db changes
+
+[33mcommit 4328fe1c4dfc366f94112153d2c18463b5b2ead2[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue May 1 11:04:32 2018 +0200
+
+    All history to prod
+
+[33mcommit f99192f5b07089e7525e7619754fe7cf4fb8a716[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sat Apr 7 12:07:47 2018 +0200
+
+    db Validation for SDD
+
+[33mcommit 663a21bd110a93126c1bd179b7834513012ad9ee[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Mar 27 11:07:33 2018 +0200
+
+    Lastest - b4 All History
+
+[33mcommit 2476a270e619c3f8f1e4f0432d84343a104e7f1c[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Mar 20 10:35:07 2018 +0200
+
+    Release Prod - Classifications
+
+[33mcommit d9e639f8346eda0a6fbe466d15f6796c15b1645a[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Mar 5 16:02:32 2018 +0200
+
+    commit 3xChanged model defs
+
+[33mcommit 5f74c1e210c60a409d0d6e5f816da5aeebd09b95[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Fri Mar 2 11:31:53 2018 +0200
+
+    Latest - b4 SecAttribution
+
+[33mcommit aca4c2c32887ebd51a12361da78edd73803ffd3e[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Feb 26 13:31:00 2018 +0200
+
+    Latest released fix bug
+
+[33mcommit 4a9590cab7a28e8ca0e642c5d4bf6b8f056232da[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sun Feb 25 13:41:46 2018 +0200
+
+    Released CashTran - Sec Performance
+
+[33mcommit 4fea4e81f2ce9272ddc74c6ebe19b49f234e4ff2[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Feb 12 12:27:59 2018 +0200
+
+    Latest commit - Order in DAL
+
+[33mcommit ae1638deacf157d83de976e8d5d58f794be68abe[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Wed Feb 7 16:13:51 2018 +0200
+
+    Released - Trades OrderAllocations
+
+[33mcommit 28311aae9abc01052f1a30322759151a9794339b[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sun Feb 4 18:46:13 2018 +0200
+
+    Commit OrderAlloc -ver1 using Serverside processing
+
+[33mcommit 02f942f0b160e82fbaad9bfaf147de686d7d565c[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Jan 23 17:25:56 2018 +0200
+
+    Latest deploy -PositionsSOD
+
+[33mcommit 992fe0fa0fa724c8cd655c3752b6e37902e796df[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sat Jan 13 16:45:48 2018 +0200
+
+    commit all Tables
+
+[33mcommit 45d297b90ba7af1dbc5abf85551f19870845406a[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Wed Jan 10 10:16:48 2018 +0200
+
+    Prod Release -Splits completed
+
+[33mcommit c09d7c198c5a14eb27658b36f6a75d52b73baf49[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Jan 4 14:29:55 2018 +0200
+
+    Released - SecSplits and PortValue
+
+[33mcommit f956afb9398851c93472392466a2a61bf8d6d936[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Wed Dec 27 18:21:46 2017 +0200
+
+    latest changes ReStructured-Tiered
+
+[33mcommit 20096089b44396d6798a371d70efb557676e290b[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Fri Dec 15 16:15:02 2017 +0200
+
+    add WebApi and DAL proj
+
+[33mcommit a5c747ce6922a5811ce8fef7a300e50f2554100c[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Fri Dec 15 11:26:05 2017 +0200
+
+    Latest changes
+
+[33mcommit 2811bfbb72a8cd3d34028202d266a45f04534d6d[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Nov 27 08:47:45 2017 +0200
+
+    Release with Sec-Detail-Listing
+
+[33mcommit ed8ccc942f76303ddcfb592a53d25d9ac5c12709[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sat Nov 25 15:50:50 2017 +0200
+
+    Latest for secListingDetails
+
+[33mcommit 052e736ab96ef81b2bc9cae9804776b7a76b6f89[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Nov 20 15:54:53 2017 +0200
+
+    Before introduce many to many
+
+[33mcommit 5d105687d0700a07158e458d22bb2beb469eddaa[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Nov 14 18:18:32 2017 +0200
+
+    Released with Elmah-Nlog
+
+[33mcommit 4984767a92be5c70ecc2aa4b6f06d23c6a0a4f08[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Fri Nov 3 09:14:56 2017 +0200
+
+    Latest Release
+
+[33mcommit 1419b2de5b782c86d1c46923d24dfb6a909ffece[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sun Oct 29 10:12:22 2017 +0200
+
+    Latest Release
+
+[33mcommit 9d5ad8526705acd5b22139c7510a265377619c44[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sun Oct 29 10:06:28 2017 +0200
+
+    latest Release
+
+[33mcommit 6a71eea9ab69b51e3284ed46b29b3fbfc1f38f1f[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Fri Sep 8 14:53:08 2017 +0200
+
+    To Prod - with Sec Analytics
+
+[33mcommit 60d3161bad8099ba7e1fb5faa351ad7424288ec1[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Aug 31 17:07:51 2017 +0200
+
+    Add SecurityAnalytics model
+
+[33mcommit 8dda029c0ff7a583c4992c386e8e44c50824521b[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Aug 31 16:07:03 2017 +0200
+
+    latest changes
+
+[33mcommit 9c48ffe4d51a3d68d2b78755eb60355b3c2cc686[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Aug 29 11:47:18 2017 +0200
+
+    Latest
+
+[33mcommit 445f665a1994dde5339aa7e172462450ff552381[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Aug 29 11:23:51 2017 +0200
+
+    commit small db
+
+[33mcommit fa73b878fde221f29d808acfc5d12f7976a77a0f[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Wed Aug 23 19:40:34 2017 +0200
+
+    latest changes
+
+[33mcommit 82860f9890f3f7754a453b1c2ad0effcdd960b11[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Jul 24 15:24:32 2017 +0200
+
+    Latest prod release
+
+[33mcommit e729b5d3fd2e0ddd19b36cc093f2f09131575a16[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sat Jul 22 10:44:46 2017 +0200
+
+    changes
+
+[33mcommit a6042e6780502a0fe8f210a90a2018aa500087c7[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sat Jul 15 15:32:43 2017 +0200
+
+    Latest Release-Dividends-Aimee bugfix
+
+[33mcommit 4158477732b5af2fd206b039fb2262f1e8de4c09[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sat Jul 8 09:04:40 2017 +0200
+
+    latest changes
+
+[33mcommit 792427817c7c9f2afef05b41caca76f2c20b7176[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Jul 6 11:36:32 2017 +0200
+
+    Release Pre StoreprocButtons
+
+[33mcommit 9b1d9f586ef4d3f60ad73f881ac51d5639fc2611[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Jul 6 11:35:19 2017 +0200
+
+    aaaaa
+
+[33mcommit 1ccf26792a130f1350ce1029c190a4716a2b99cf[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Jul 4 08:51:29 2017 +0200
+
+    latest additions etc
+
+[33mcommit 24b370f852acfde55159f4115764e5d3793ef125[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Jun 26 17:46:14 2017 +0200
+
+    Some more DataAnnotations
+
+[33mcommit 620cfd56559abc2ad34e15265581eaab6dad867b[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sat Jun 24 13:41:36 2017 +0200
+
+    Commit latest
+
+[33mcommit e8885a63149981933514cd89f8ee3b2436f3755b[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Wed Jun 7 15:44:12 2017 +0200
+
+    save latest to disk
+
+[33mcommit 5d03bdd264527e03255339a4589e5f29b1badea7[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue May 16 10:06:51 2017 +0200
+
+    Increase fontsize on Portfolio Edit
+
+[33mcommit f24fb583915b892d8e9608bcf2769a034f8befff[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon May 15 14:52:28 2017 +0200
+
+    Prod Release -new Party screens
+
+[33mcommit 14fddfd1507470aa7abe481258540e6e4e7a1d22[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon May 8 10:22:25 2017 +0200
+
+    before add PF & PDA
+
+[33mcommit d87df4e2041e56e8a377a2e43d95b097e0931023[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sun May 7 13:12:34 2017 +0200
+
+    Latest Release
+
+[33mcommit 14ba3883b69f2c9e3c99a6d508122879bc4920be[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sun Apr 30 18:00:36 2017 +0200
+
+    keep latestsuiff
+
+[33mcommit df30516e9c4df396479d4d1576a44a024144ea65[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Apr 27 18:52:32 2017 +0200
+
+    Latest Deploy - Screens consistency
+
+[33mcommit b49aef7ee3955cd4a4df29bc4d0eeb4c65dda419[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Mar 16 14:43:47 2017 +0200
+
+    Released - using Ajax call - Party
+
+[33mcommit 8e6929862a851781042869e5f5be131ef295d8a5[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Mar 9 16:15:41 2017 +0200
+
+    Latest
+
+[33mcommit 5af6f8c0092bd916381f6b31a211f0acfb18dae9[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sun Feb 19 09:39:14 2017 +0200
+
+    Latest small changes
+
+[33mcommit 7aa41dbb2ba7cb4c8bcb75dd7ed6acb1de900694[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sat Feb 18 09:45:37 2017 +0200
+
+    Release to Prod
+
+[33mcommit ce41a81cf27b96be994b7d638fb158208e23541e[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Feb 16 17:39:39 2017 +0200
+
+    with Old grid for PriceHistory
+
+[33mcommit 0ef8063f089bc82e8a798854bec03bd3bacbaa1b[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Feb 16 08:27:57 2017 +0200
+
+    latest changes
+
+[33mcommit 8933f1ce23facee423f1a1c5310ecae7e8cb89b3[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Feb 9 15:28:00 2017 +0200
+
+    SecurityPrices with the standard grid
+
+[33mcommit fb9ef890b64b3e27be4e6dbfeff68fb017cd84e7[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Feb 9 07:39:38 2017 +0200
+
+    1st attempt with SecurityPrice view
+
+[33mcommit 1f4e1f9b971864af2109122dda4b01daa3665473[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Feb 2 15:53:55 2017 +0200
+
+    latest
+
+[33mcommit 277ea6c28cccc865e75aa2519cd7190cf6c953bb[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Jan 31 14:36:45 2017 +0200
+
+    Latest to Prod
+
+[33mcommit 7687dd23230d2555e3fd991cdff8a68c99c9959f[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Wed Jan 25 07:45:26 2017 +0200
+
+    latest s b4 nuget update of mvc
+
+[33mcommit 52d5dda825927d2077415cf010753a33f46f345a[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sat Jan 21 14:14:40 2017 +0200
+
+    Released Prod
+
+[33mcommit 38d8d20f7516eabee8f2b73304ff52d5f33e9151[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Jan 17 20:59:32 2017 +0200
+
+    ChangesLatest
+
+[33mcommit 3472d11234faebf17ad108adf8b7a3d4f4b6a814[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Jan 17 20:57:24 2017 +0200
+
+    SaveChanges
+
+[33mcommit 2af189739475adc4026ac1ae22be74e9d755e00f[m[33m ([m[1;31morigin/ExcludesNewGrid[m[33m, [m[1;32mExcludesNewGrid[m[33m)[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Jan 17 17:55:32 2017 +0200
+
+    Latest - uptodate
+
+[33mcommit 1cdf3ffec39d739d99fb6b6483e1dd37b9fc4989[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Jan 17 17:48:02 2017 +0200
+
+    Test out BasicPaging see Summ notes
+
+[33mcommit 6a92e963142f085e1636902c86c28573567bf611[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Fri Jan 13 11:45:39 2017 +0200
+
+    undo
+
+[33mcommit 062736420d09f507f2730176753b18e71ad7407f[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Jan 12 12:38:40 2017 +0200
+
+    LatestChanges
+
+[33mcommit f4709ed051a01dab804ac00c8600b2db86d7e39c[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Jan 5 09:30:36 2017 +0200
+
+    latest changs
+
+[33mcommit 9b8a7435927bd03a1a1f00fa009e1c2df9de459e[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Dec 22 18:32:19 2016 +0200
+
+    latest changes
+
+[33mcommit 1a8dbd92a38988043870f09ad517dd61428f4fe8[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Wed Dec 7 08:53:42 2016 +0200
+
+    Fixed DI
+
+[33mcommit ed8f60bf68510d00a68b4dcf694c9f819a12d62e[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Dec 6 08:23:07 2016 +0200
+
+    problem with dep inject
+
+[33mcommit 2de87ccaba63367fe207680465f67eec74892cda[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Nov 28 14:34:34 2016 +0200
+
+    Latest-b4 Generisize the Repository
+
+[33mcommit 1785aefd21dbbfed2a87a9629de628fc6f350678[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Wed Nov 23 13:34:22 2016 +0200
+
+    Latest2 to this branch
+
+[33mcommit edf79f5f482cfe63019752659f631a8642fb42b3[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Wed Nov 16 16:10:49 2016 +0200
+
+    Commit latest changes to this brach
+
+[33mcommit 82861bed093779e0b2be98ca293522048c791430[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Nov 10 16:35:37 2016 +0200
+
+    Tests but Exclude newGrid
+
+[33mcommit 421ddea70a6635733de09dd52690dccaf4083076[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Fri Nov 4 09:17:51 2016 +0200
+
+    Latest release
+
+[33mcommit f4c47ad1b3711c0669dd8abdf5f7c0b2ce00523a[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Oct 24 15:54:31 2016 +0200
+
+    Lastest PG Changes1
+
+[33mcommit 4ee3a8ec46e5b849c6ec53a2a69fd2662a4ecbf4[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Oct 10 07:39:47 2016 +0200
+
+    Latest changes upload.
+
+[33mcommit 2c3453b1ab29fff98a0ed657265febdb32ef40aa[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Fri Sep 16 08:40:59 2016 +0200
+
+    Latest adds.
+
+[33mcommit 80291e40f8b7a939bd60dc5e9fb58a013d3436a3[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Sep 8 12:10:02 2016 +0200
+
+    LAtest changes
+
+[33mcommit 329a89529103ec6a13b80aff96cf96d8b7ebed5b[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Jul 19 14:22:14 2016 +0200
+
+    latest committ
+
+[33mcommit 3a8233eb037a283e1894ae3e8562fbc993a64381[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Thu Jun 16 17:33:10 2016 +0100
+
+    latest commit2
+
+[33mcommit abeb2bd83d57ada8804f9883e2a3a84f6cb3fff8[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue Jun 7 12:52:14 2016 +0100
+
+    the latest commit.
+
+[33mcommit c9ba5f2b9cb04d17beccb6b57f048881ca70aba9[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue May 24 08:55:09 2016 +0200
+
+    Latest commit
+
+[33mcommit d4e49e1387ae666c0de5eef63f13e9f00fbdcc92[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon May 16 16:46:57 2016 +0200
+
+    latest b4 PortfolioPartialAjaxSearch
+
+[33mcommit 862c173b1bc45c1262e49862fa8d1c53a6ada8e9[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Tue May 3 10:47:07 2016 +0200
+
+    Introduced a Navbar DDL
+
+[33mcommit f69dd5d7985d4ca36c59e2ffa02058165e6dcef9[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Wed Apr 20 15:08:59 2016 +0200
+
+    Commit latest
+
+[33mcommit d25d7f939d1819208ae19119e0562487fdc72323[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Mon Apr 18 14:08:04 2016 +0200
+
+    B4 adding Portfolios -Securities
+
+[33mcommit 5454eecbc3cdd9568a074a20adfd0eb57659cd88[m
+Author: ronald <ronald@blue-stream.co.za>
+Date:   Sat Apr 16 11:12:29 2016 +0200
+
+    myFirst Commit

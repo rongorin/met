@@ -1,0 +1,36 @@
+﻿@model Metope.DAL.Security_Analytics
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create new Security Analytic</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal"> 
+        <hr />
+        @Html.ValidationSummary(false)
+        @Html.ValidationMessage("Error")
+        <input type="hidden" id="navIndicator" name="navIndicator" value=@ViewBag.Nav />
+
+        <div class="form-group">
+             
+            @Html.LabelFor(model => model.Security_ID, htmlAttributes: new { @class = "control-label col-md-2 input-sm ", style = "text-align: right" })
+            <div class="col-md-10">
+                @Html.DropDownList("Security_ID", (SelectList)ViewBag.Securities_All, string.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Security_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>    
+
+        @Html.EditorForModel("Security_Analytics")
+  
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+}

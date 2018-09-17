@@ -1,0 +1,13 @@
+﻿@model Metope.DAL.Portfolio_Performance_History
+@Html.HiddenFor(model => model.Last_Update_Date)
+@Html.HiddenFor(model => model.Last_Update_User)
+ 
+@Html.EditorFor(model => model.Dietz_Performance_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Dietz_Performance_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.Dietz_Performance_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.ModDietz_Performance_Monthly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.ModDietz_Performance_MonthToDate, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+@Html.EditorFor(model => model.ModDietz_Performance_Quarterly, "BootstrapEditDecimal8PlacesVertic", new { setLength = "Longer" })
+ 
+@Html.Partial("_SaveButtonShow", Model)
+ 

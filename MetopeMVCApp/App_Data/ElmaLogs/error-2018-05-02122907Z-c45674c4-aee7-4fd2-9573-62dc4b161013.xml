@@ -1,0 +1,232 @@
+﻿<error errorId="c45674c4-aee7-4fd2-9573-62dc4b161013" application="/LM/W3SVC/95/ROOT" host="R" type="System.InvalidOperationException" message="The key field 'Portfolio_Code' cannot have a value of null. A non-null value is required for the key fields defined on type 'Portfolio_Performance'." source="EntityFramework" detail="System.InvalidOperationException: The key field 'Portfolio_Code' cannot have a value of null. A non-null value is required for the key fields defined on type 'Portfolio_Performance'.&#xD;&#xA;   at System.Data.Entity.Core.Objects.ObjectStateManager.CreateEntityKey(EntitySet entitySet, Object entity)&#xD;&#xA;   at System.Data.Entity.Core.Objects.ObjectContext.VerifyRootForAdd(Boolean doAttach, String entitySetName, IEntityWrapper wrappedEntity, EntityEntry existingEntry, EntitySet&amp; entitySet, Boolean&amp; isNoOperation)&#xD;&#xA;   at System.Data.Entity.Core.Objects.ObjectContext.AttachTo(String entitySetName, Object entity)&#xD;&#xA;   at System.Data.Entity.Internal.Linq.InternalSet`1.&lt;&gt;c__DisplayClassa.&lt;Attach&gt;b__9()&#xD;&#xA;   at System.Data.Entity.Internal.Linq.InternalSet`1.ActOnSet(Action action, EntityState newState, Object entity, String methodName)&#xD;&#xA;   at System.Data.Entity.Internal.Linq.InternalSet`1.Attach(Object entity)&#xD;&#xA;   at System.Data.Entity.Internal.InternalEntityEntry.set_State(EntityState value)&#xD;&#xA;   at System.Data.Entity.Infrastructure.DbEntityEntry`1.set_State(EntityState value)&#xD;&#xA;   at MetopeMVCApp.Data.GenericRepository.GenericRepository`2.Update(T entity) in c:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\Data\GenericRepository\GenericRepository.cs:line 66&#xD;&#xA;   at MetopeMVCApp.Controllers.PortfolioPerformanceController.Edit(Portfolio_Performance Portfolio_Performance, String navIndicator) in c:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\Controllers\PortfolioPerformanceController.cs:line 120&#xD;&#xA;   at lambda_method(Closure , ControllerBase , Object[] )&#xD;&#xA;   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)&#xD;&#xA;   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;BeginInvokeSynchronousActionMethod&gt;b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3d()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass46.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3f()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass46.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3f()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass46.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3f()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass46.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3f()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass33.&lt;BeginInvokeActionMethodWithFilters&gt;b__32(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass21.&lt;&gt;c__DisplayClass2b.&lt;BeginInvokeAction&gt;b__1c()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass21.&lt;BeginInvokeAction&gt;b__1e(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecuteCore&gt;b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecute&gt;b__15(IAsyncResult asyncResult, Controller controller)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;BeginProcessRequest&gt;b__5(IAsyncResult asyncResult, ProcessRequestState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="aaaaaa" time="2018-05-02T12:29:07.6174199Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:max-age=0&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_CONTENT_LENGTH:436&#xD;&#xA;HTTP_CONTENT_TYPE:application/x-www-form-urlencoded&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, br&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-ZA,en;q=0.9&#xD;&#xA;HTTP_COOKIE:glimpsePolicy=On; glimpseOptions=%7B%22glimpsePolicy%22%3Anull%7D; ai_user=S2KRP|2018-01-10T15:21:29.881Z; __RequestVerificationToken=hbMdb1HYpSkUo8_i5OS7XgTJhXfgxp5SceIKEZMcfF0TltTayzXSxuYchKnDPEENXHK4vnGyay4aRjR9lPr3lViW63ntnHRMa3QUkYTqJjc1; ASP.NET_SessionId=r4pikbfh12jsksqrhoxhso2q; __RequestVerificationToken_L01ldG9wZUFwcA2=BJUdCH4FXDLPFajOxcr3UL5hdUhpk6QcvvM59m1USk4TB6ARP2LuzwYx75yBshd-Xu3XgidY-0mxWFtq2XifnXqIhkJZVUKj0jx490VrnvI1; .AspNet.ApplicationCookie=UIMARYiyctcHg6FDZ260BIA0fPkcNyM3NbyGo87lrbY-nZc9uGcUB_VSdDp3msNFDXWq1uBlLvkUYSXvw90_pcLJPqigyPle7SOKVqFmVob3WOGIKfSFqFKwBUXE61cQ9es3Hw_gzy66jab6IHZgqEe4m8uioc_V8ohCappSzxDtKBard3A_riDxjyrBnCD04wyn-A9l-M-Pmcp4DHshHCoHeZHKqsmhJAh2QIhpYmDW9TJP_nM-4U241tIt-X-ZhTGztCOYnCS-JFQfY5vMmLabmBgTd6SHkj0OwC-Yj-pwlOhPobOfng_YMaILSaArKbwk_eXvu2cmd_n4c8WVZo7fQrUK30j-URUfc4Otzmc_LEUD2R28jVrcDN-o8BA61Qd2uDfF-Jwbmd9odqdbBTEAgSYPPMHbLBQMXLMuprAxwlzEYsk39Q2tE60PVU9zNEFlqS7g7-EeSzJEfL94_eqtHaAj2f5WC-3w2YBU51k&#xD;&#xA;HTTP_HOST:localhost:53133&#xD;&#xA;HTTP_REFERER:http://localhost:53133/PortfolioPerformance/Edit?EntityId=1&amp;PortfolioCode=0808&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36&#xD;&#xA;HTTP_ORIGIN:http://localhost:53133&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: max-age=0&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Content-Length: 436&#xD;&#xA;Content-Type: application/x-www-form-urlencoded&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate, br&#xD;&#xA;Accept-Language: en-ZA,en;q=0.9&#xD;&#xA;Cookie: glimpsePolicy=On; glimpseOptions=%7B%22glimpsePolicy%22%3Anull%7D; ai_user=S2KRP|2018-01-10T15:21:29.881Z; __RequestVerificationToken=hbMdb1HYpSkUo8_i5OS7XgTJhXfgxp5SceIKEZMcfF0TltTayzXSxuYchKnDPEENXHK4vnGyay4aRjR9lPr3lViW63ntnHRMa3QUkYTqJjc1; ASP.NET_SessionId=r4pikbfh12jsksqrhoxhso2q; __RequestVerificationToken_L01ldG9wZUFwcA2=BJUdCH4FXDLPFajOxcr3UL5hdUhpk6QcvvM59m1USk4TB6ARP2LuzwYx75yBshd-Xu3XgidY-0mxWFtq2XifnXqIhkJZVUKj0jx490VrnvI1; .AspNet.ApplicationCookie=UIMARYiyctcHg6FDZ260BIA0fPkcNyM3NbyGo87lrbY-nZc9uGcUB_VSdDp3msNFDXWq1uBlLvkUYSXvw90_pcLJPqigyPle7SOKVqFmVob3WOGIKfSFqFKwBUXE61cQ9es3Hw_gzy66jab6IHZgqEe4m8uioc_V8ohCappSzxDtKBard3A_riDxjyrBnCD04wyn-A9l-M-Pmcp4DHshHCoHeZHKqsmhJAh2QIhpYmDW9TJP_nM-4U241tIt-X-ZhTGztCOYnCS-JFQfY5vMmLabmBgTd6SHkj0OwC-Yj-pwlOhPobOfng_YMaILSaArKbwk_eXvu2cmd_n4c8WVZo7fQrUK30j-URUfc4Otzmc_LEUD2R28jVrcDN-o8BA61Qd2uDfF-Jwbmd9odqdbBTEAgSYPPMHbLBQMXLMuprAxwlzEYsk39Q2tE60PVU9zNEFlqS7g7-EeSzJEfL94_eqtHaAj2f5WC-3w2YBU51k&#xD;&#xA;Host: localhost:53133&#xD;&#xA;Referer: http://localhost:53133/PortfolioPerformance/Edit?EntityId=1&amp;PortfolioCode=0808&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36&#xD;&#xA;Origin: http://localhost:53133&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/95/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="C:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="ApplicationCookie" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="aaaaaa" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="aaaaaa" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="436" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="application/x-www-form-urlencoded" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="95" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/95" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/PortfolioPerformance/Edit" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="C:\BlueStream\Development\Metope\WebSite\MetopeMVCApp\MetopeMVCApp\PortfolioPerformance\Edit" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="EntityId=1&amp;PortfolioCode=0808" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="49506" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="POST" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/PortfolioPerformance/Edit" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="53133" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/8.0" />
+    </item>
+    <item name="URL">
+      <value string="/PortfolioPerformance/Edit" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="max-age=0" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_CONTENT_LENGTH">
+      <value string="436" />
+    </item>
+    <item name="HTTP_CONTENT_TYPE">
+      <value string="application/x-www-form-urlencoded" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, br" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-ZA,en;q=0.9" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="glimpsePolicy=On; glimpseOptions=%7B%22glimpsePolicy%22%3Anull%7D; ai_user=S2KRP|2018-01-10T15:21:29.881Z; __RequestVerificationToken=hbMdb1HYpSkUo8_i5OS7XgTJhXfgxp5SceIKEZMcfF0TltTayzXSxuYchKnDPEENXHK4vnGyay4aRjR9lPr3lViW63ntnHRMa3QUkYTqJjc1; ASP.NET_SessionId=r4pikbfh12jsksqrhoxhso2q; __RequestVerificationToken_L01ldG9wZUFwcA2=BJUdCH4FXDLPFajOxcr3UL5hdUhpk6QcvvM59m1USk4TB6ARP2LuzwYx75yBshd-Xu3XgidY-0mxWFtq2XifnXqIhkJZVUKj0jx490VrnvI1; .AspNet.ApplicationCookie=UIMARYiyctcHg6FDZ260BIA0fPkcNyM3NbyGo87lrbY-nZc9uGcUB_VSdDp3msNFDXWq1uBlLvkUYSXvw90_pcLJPqigyPle7SOKVqFmVob3WOGIKfSFqFKwBUXE61cQ9es3Hw_gzy66jab6IHZgqEe4m8uioc_V8ohCappSzxDtKBard3A_riDxjyrBnCD04wyn-A9l-M-Pmcp4DHshHCoHeZHKqsmhJAh2QIhpYmDW9TJP_nM-4U241tIt-X-ZhTGztCOYnCS-JFQfY5vMmLabmBgTd6SHkj0OwC-Yj-pwlOhPobOfng_YMaILSaArKbwk_eXvu2cmd_n4c8WVZo7fQrUK30j-URUfc4Otzmc_LEUD2R28jVrcDN-o8BA61Qd2uDfF-Jwbmd9odqdbBTEAgSYPPMHbLBQMXLMuprAxwlzEYsk39Q2tE60PVU9zNEFlqS7g7-EeSzJEfL94_eqtHaAj2f5WC-3w2YBU51k" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:53133" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:53133/PortfolioPerformance/Edit?EntityId=1&amp;PortfolioCode=0808" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36" />
+    </item>
+    <item name="HTTP_ORIGIN">
+      <value string="http://localhost:53133" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <queryString>
+    <item name="EntityId">
+      <value string="1" />
+    </item>
+    <item name="PortfolioCode">
+      <value string="0808" />
+    </item>
+  </queryString>
+  <form>
+    <item name="__RequestVerificationToken">
+      <value string="0iMnsvPy-Z-PTTmO_-skkSJzC6kmjrz8gVM2DQEJY4gvxilkxqre9Npmeiy4AUIzSQ43TlKwtC-JhiLodNlqY_GlQWcYrbDvyrIX0kZcHHSOOfY-waP_ZRaNDkyjQpL_WZE8Z5aYi9uMk6xaB5tW1g2" />
+    </item>
+    <item name="Entity_ID">
+      <value string="1" />
+    </item>
+    <item name="Portfolio_Code">
+      <value string="0808" />
+    </item>
+    <item name="Dietz_Performance_MonthToDate">
+      <value string="334.02234" />
+    </item>
+    <item name="Dietz_Performance_Monthly">
+      <value string="22.01111" />
+    </item>
+    <item name="Dietz_Performance_Quarterly">
+      <value string="44.00" />
+    </item>
+    <item name="ModDietz_Performance_Monthly">
+      <value string="556.00" />
+    </item>
+    <item name="ModDietz_Performance_MonthToDate">
+      <value string="6.00" />
+    </item>
+    <item name="ModDietz_Performance_Quarterly">
+      <value string="777.0023456" />
+    </item>
+  </form>
+  <cookies>
+    <item name="glimpsePolicy">
+      <value string="On" />
+    </item>
+    <item name="glimpseOptions">
+      <value string="%7B%22glimpsePolicy%22%3Anull%7D" />
+    </item>
+    <item name="ai_user">
+      <value string="S2KRP|2018-01-10T15:21:29.881Z" />
+    </item>
+    <item name="__RequestVerificationToken">
+      <value string="hbMdb1HYpSkUo8_i5OS7XgTJhXfgxp5SceIKEZMcfF0TltTayzXSxuYchKnDPEENXHK4vnGyay4aRjR9lPr3lViW63ntnHRMa3QUkYTqJjc1" />
+    </item>
+    <item name="ASP.NET_SessionId">
+      <value string="r4pikbfh12jsksqrhoxhso2q" />
+    </item>
+    <item name="__RequestVerificationToken_L01ldG9wZUFwcA2">
+      <value string="BJUdCH4FXDLPFajOxcr3UL5hdUhpk6QcvvM59m1USk4TB6ARP2LuzwYx75yBshd-Xu3XgidY-0mxWFtq2XifnXqIhkJZVUKj0jx490VrnvI1" />
+    </item>
+    <item name=".AspNet.ApplicationCookie">
+      <value string="UIMARYiyctcHg6FDZ260BIA0fPkcNyM3NbyGo87lrbY-nZc9uGcUB_VSdDp3msNFDXWq1uBlLvkUYSXvw90_pcLJPqigyPle7SOKVqFmVob3WOGIKfSFqFKwBUXE61cQ9es3Hw_gzy66jab6IHZgqEe4m8uioc_V8ohCappSzxDtKBard3A_riDxjyrBnCD04wyn-A9l-M-Pmcp4DHshHCoHeZHKqsmhJAh2QIhpYmDW9TJP_nM-4U241tIt-X-ZhTGztCOYnCS-JFQfY5vMmLabmBgTd6SHkj0OwC-Yj-pwlOhPobOfng_YMaILSaArKbwk_eXvu2cmd_n4c8WVZo7fQrUK30j-URUfc4Otzmc_LEUD2R28jVrcDN-o8BA61Qd2uDfF-Jwbmd9odqdbBTEAgSYPPMHbLBQMXLMuprAxwlzEYsk39Q2tE60PVU9zNEFlqS7g7-EeSzJEfL94_eqtHaAj2f5WC-3w2YBU51k" />
+    </item>
+  </cookies>
+</error>

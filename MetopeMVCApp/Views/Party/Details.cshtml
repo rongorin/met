@@ -1,0 +1,67 @@
+﻿@model Metope.DAL.Party
+
+@{
+    ViewBag.Title = "Details";
+}
+ 
+<div>
+    <h2> 
+        Details
+    </h2>
+ 
+    <dl class="dl-vertical">
+        <dt><b>
+         @Html.DisplayNameFor(model => model.Party_Name)</b>
+    </dt>
+
+        <dd> 
+            @Html.DisplayFor(model => model.Party_Name)
+        </dd>
+ 
+        <dt><b>
+            @Html.DisplayNameFor(model => model.BIC_Code)</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BIC_Code)
+        </dd>
+
+        <dt><b>
+           Country Name</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Country_Name)
+        </dd>
+        <dt>
+            <b>
+                @Html.DisplayNameFor(model => model.Financial_Year_End)
+            </b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Financial_Year_End)
+        </dd>
+        @if (!Model.SWIFT_ID.IsEmpty())
+        {
+
+            <dt>
+                <b>
+                    @Html.DisplayNameFor(model => model.SWIFT_ID)
+                </b>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SWIFT_ID)
+            </dd>
+
+        }
+        
+       
+         
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit Party", "Edit", new { EntityId = Model.Entity_ID, PartyCode = Model.Party_Code }, new { @class = "btn btn-primary" }) 
+ 
+</p>

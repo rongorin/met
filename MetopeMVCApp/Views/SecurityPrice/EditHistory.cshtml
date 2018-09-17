@@ -1,0 +1,124 @@
+﻿@model Metope.DAL.Security_Price_History
+
+@{
+    ViewBag.Title = "EditHistory";
+}
+
+<h4></h4>
+<h3>Edit History Price for @if(@Model.Security_Detail != null)   {<b> @Model.Security_Detail.Security_Name </b>}  
+    @if (@Model.Security_Detail == null)
+         {<b> Security Id @Model.Security_ID </b>}   </h3>
+ 
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Price Currency <b>  @Model.Price_Curr</b> Price Date: <b> @String.Format("{0:d MMM yyyy}", Model.Price_DateTime)</b></h4>
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Entity_ID) 
+        @Html.HiddenFor(model => model.Security_ID)
+        @Html.HiddenFor(model => model.Price_DateTime) 
+        @Html.HiddenFor(model => model.Price_Curr) 
+        @Html.HiddenFor(model => model.Security_Detail.Security_Name) 
+        <div class="form-group"> 
+            @Html.LabelFor(model => model.Price_Source, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Price_Source, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group"> 
+            @Html.LabelFor(model => model.All_In_Price, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9"> 
+                @Html.TextBoxFor(model => model.All_In_Price, "{0:0.##########}", new
+                {
+                    @class = "form-control col-md-3",
+                    placeholder = ViewData.ModelMetadata.Watermark
+                })
+                @Html.ValidationMessageFor(model => model.All_In_Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+        <div class="form-group">
+            @Html.LabelFor(model => model.Clean_Price, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9"> 
+                @Html.TextBoxFor(model => model.Clean_Price, "{0:0.##########}", new
+                {   @class = "form-control col-md-3",
+                    placeholder = ViewData.ModelMetadata.Watermark })
+                @Html.ValidationMessageFor(model => model.Clean_Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Accrued_Income_Price, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(model => model.Accrued_Income_Price, "{0:0.##########}", new
+                {   @class = "form-control col-md-3",
+                    placeholder = ViewData.ModelMetadata.Watermark })
+                @Html.ValidationMessageFor(model => model.Accrued_Income_Price, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+        @*@Html.EditorFor(model => model.Discount_Rate, "BootstrapEditDecimal")*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Discount_Rate, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9"> 
+                @Html.TextBoxFor(model => model.Discount_Rate, "{0:0.##########}", new
+                {
+                    @class = "form-control col-md-3",
+                    placeholder = ViewData.ModelMetadata.Watermark  
+                })
+                @Html.ValidationMessageFor(model => model.Discount_Rate, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+        <div class="form-group">
+            @Html.LabelFor(model => model.Yield_To_Maturity, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(model => model.Yield_To_Maturity, "{0:0.##########}", new
+                {
+                    @class = "form-control col-md-3",
+                    placeholder = ViewData.ModelMetadata.Watermark
+                })
+                @Html.ValidationMessageFor(model => model.Yield_To_Maturity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Issued_Amount, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(model => model.Issued_Amount, "{0:0.##########}", new
+                {
+                    @class = "form-control col-md-3",
+                    placeholder = ViewData.ModelMetadata.Watermark
+                })
+                @Html.ValidationMessageFor(model => model.Issued_Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Free_Float_Issued_Amount, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(model => model.Free_Float_Issued_Amount, "{0:0.##########}", new
+                {
+                    @class = "form-control col-md-3",
+                    placeholder = ViewData.ModelMetadata.Watermark
+                })
+                @Html.ValidationMessageFor(model => model.Free_Float_Issued_Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Free_Float_Issued_Amount, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Free_Float_Issued_Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Free_Float_Issued_Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @Html.Partial("_SaveButtonShow", Model)
+    </div>
+}   
+<div class="col-md-offset-1 ">
+    @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
+
+
+</div>

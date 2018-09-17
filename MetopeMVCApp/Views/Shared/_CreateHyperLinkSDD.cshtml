@@ -1,0 +1,22 @@
+﻿<div class="form-group"> 
+ @* -------------- this is NOT generic. Used by security Div Detail view.-------------*@  
+  @if (Model == null)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create", new { SecurityId = Model.SecurityDetails.Security_ID, Nav = @ViewBag.Nav }, null)
+        </p>
+    }
+  else if (Model.SecurityDetails.Entity_ID == ViewBag.genericEntity ||
+           Model.SecurityDetails.Entity_ID == ViewBag.EntityId)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create", new { SecurityId = Model.SecurityDetails.Security_ID,  Nav = @ViewBag.Nav }, null)
+        </p>
+  
+    }
+  else
+  {
+        <p>(Create not allowed)</p> 
+
+  } 
+</div>   

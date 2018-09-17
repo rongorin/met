@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+} 
+<div class="row">
+    <div class="col-md-3 col-md-push-9" >
+      
+        <div id="order-content" > 
+        </div>
+    </div>
+    <div class="col-md-9 col-md-pull-3" >
+        @RenderBody()
+    </div>
+</div>
+
+
+@*<div class="container">
+    <div class="row">
+        <div class="col-md-9 col-sm-8">
+            @RenderBody()
+        </div>
+        <div class="col-md-3 col-sm-4" id="sidebar">
+            <div id="fixedSidebar" data-spy="affix">
+                @Html.Partial("_Sidebar")
+            </div>
+        </div>
+    </div>
+</div>*@
+@section Scripts{
+    <script type="text/javascript">
+        function adjustSidebarWidth() {
+            var width = $("#sidebar").width();
+            $("#fixedSidebar").width(width);
+        }
+
+        $(document).ready(function () {
+            adjustSidebarWidth();
+            $(window).resize(function () {
+                adjustSidebarWidth();
+            });
+        });
+    </script>
+@RenderSection("styles", false)
+    @RenderSection("Scripts", false)
+}

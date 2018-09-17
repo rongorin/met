@@ -1,0 +1,15 @@
+ RC started. 
+
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
+ RC Exception caught.One or more errors occurred.
+
+  RC Success done.RC started. 
+
+ R1 base:http://localhost:54179/api/SecurityDividendSplit?EntityID=1.00&SecurityId=45
+ R1 success
+
+ R1 count:2

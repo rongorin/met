@@ -1,0 +1,17 @@
+﻿@model MetopeMVCApp.Models.SelectOrderAllocEditorViewModel
+<tr>
+    <td style="text-align:center">
+        @Html.CheckBoxFor(model => model.Selected)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.Portfolio_Code)
+    </td>
+    <td>
+        @Html.HiddenFor(model => model.Allocation_ID)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Allocation_ID }) |
+        @Html.ActionLink("Details", "Details", new { id = Model.Allocation_ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Allocation_ID })
+    </td>
+</tr>
