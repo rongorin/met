@@ -17,8 +17,8 @@ namespace Metope.DAL.MyMetaData
         public object Security_ID { get; set; }
 
         [Required]
-        [MaxLength(6, ErrorMessage = "Value for {0} must be 6 numbers in format yyyymm")]
-        [MinLength(6, ErrorMessage = "Value for {0} must be 6 numbers in format yyyymm")]
+        [MaxLength(6, ErrorMessage = "Value for {0} must be 5 or 6  numbers")]
+        [MinLength(5, ErrorMessage = "Value for {0} must be 5 or 6 numbers")]
         //[RegularExpression("[0-999]{1,}", ErrorMessage = "Value for {0} must be an integer")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Value for {0} must be numeric")]
         public object Month_Year {get;set;}

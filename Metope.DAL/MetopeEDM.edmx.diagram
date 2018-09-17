@@ -172,7 +172,7 @@
         <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Performance_History_Entity" />
         <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Performance_History_Portfolio" />
         <AssociationConnector Association="MetopeDbModel.FK_Portfolio_Performance_History_User" />
-        <EntityTypeShape EntityType="MetopeDbModel.Forex_Forecast" Width="1.5" PointX="15" PointY="27.625" />
+        <EntityTypeShape EntityType="MetopeDbModel.Forex_Forecast" Width="1.5" PointX="15" PointY="28.125" />
         <AssociationConnector Association="MetopeDbModel.FK_Forex_Forecast_Security_Detail" />
         <AssociationConnector Association="MetopeDbModel.FK_Forex_forecast_User" />
         </Diagram>

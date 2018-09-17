@@ -9,12 +9,12 @@
 
 namespace Metope.DAL
 {
-    using Metope.DAL.MyMetaData;
     using System;
-    using System.Collections.Generic;
+    using Metope.DAL.MyMetaData;
     using System.ComponentModel.DataAnnotations;
-
+    using System.Collections.Generic;
     [MetadataType(typeof(ForexForecastModelMetaData))]
+     
     public partial class Forex_Forecast
     {
         public decimal Entity_ID { get; set; }

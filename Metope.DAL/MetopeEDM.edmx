@@ -158,6 +158,7 @@
         </EntityType>
         <EntityType Name="Forex_Forecast">
           <Key>
+            <PropertyRef Name="Entity_ID" />
             <PropertyRef Name="Security_ID" />
             <PropertyRef Name="Month_Year" />
           </Key>
@@ -6975,6 +6976,7 @@
         </Association>
         <EntityType Name="Forex_Forecast">
           <Key>
+            <PropertyRef Name="Entity_ID" />
             <PropertyRef Name="Security_ID" />
             <PropertyRef Name="Month_Year" />
           </Key>
