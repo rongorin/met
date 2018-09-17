@@ -1,4 +1,4 @@
-﻿@model MetopeMVCApp.Models.Security_Detail
+﻿@model Metope.DAL.Security_Detail
 
 @{
     ViewBag.Title = "Edit";
@@ -8,19 +8,17 @@
 }
 
  <h4></h4>
- <h3>Editing  Security <b>  @Model.Short_Name </b></h3>
-
-     
+ <h3>Editing  Security  <b>  @Model.Short_Name </b></h3>  
         @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
         {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal"> 
-                @Html.ValidationSummary(true)
+                @Html.ValidationSummary(false)
                 @Html.HiddenFor(model => model.Security_ID)
                 @Html.HiddenFor(model => model.Entity_ID)
 
-                @Html.EditorForModel(new { PreviousYearCount = 10, NextYearCount = 10 })
+                @Html.EditorForModel( )
             </div>
         }
     

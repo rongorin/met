@@ -13,411 +13,228 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using PagedList;
 using MetopeMVCApp.Data;
 using System.Configuration;
+using MetopeMVCApp.Data.Repositories;
+using MetopeMVCApp.Filters;
+//using MetopeMVCApp.Data.GenericRepository;
+using Metope.DAL;
 namespace MetopeMVCApp.Controllers
 {
+    [SetAllowedEntityIdAttribute]
     public class SecurityDetailController : Controller
-    { 
-        private MetopeDbEntities db = new MetopeDbEntities();
-        private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-        private IEnumerable<Code_Miscellaneous> AllCodeMisc;
-         
-                  
+    {
+        //private IMetopeDbEntities db11;  
+     
+        private readonly ISecurityDetailRepository db11 ; 
+  
+ 
+        public SecurityDetailController(ISecurityDetailRepository iDb)
+        {
+            db11 = iDb; 
+        } 
         //public SecurityDetailController() 
         //{
         //    this._repo = new SecurityDetailController(new MetopeDbEntities());
-        //}
-
+        //} 
         //public SecurityDetailController(IPortfolioRepository repo)
         //{
         //    _repo = repo;
         //}
-
-
-        // GET: /SecurityDetail/ 
-        public ActionResult Index(int page=1, string searchTerm=null)  
+        private List<SelectListItem> numOfRows = new List<SelectListItem> {
+						new SelectListItem { Text = "10", Value = "10" },
+						new SelectListItem { Text = "20", Value = "20" },
+						new SelectListItem { Text = "50", Value = "50" },
+						new SelectListItem { Text = "100", Value = "100" }
+			            };
+        //this is an example of logging database functionaily:
+        private void LogInfo(string logmessage)
         {
-           // var security_detail = db.Security_Detail.Include(s => s.Country).Include(s => s.Country1).Include(s => s.Currency).Include(s => s.Currency1).Include(s => s.Currency2).Include(s => s.Currency3).Include(s => s.Currency_Pair).Include(s => s.Entity).Include(s => s.Exchange).Include(s => s.Exchange1).Include(s => s.Security_Type);
-            //var security_detail = db.Security_Detail;
-            var security_detail = db.Security_Detail
-                     .Where(r => searchTerm == null || r.Security_Name.Contains(searchTerm))
-                     //.Include(s => s.Country).Include(s => s.Country1)  
-                     .OrderBy(s => s.Security_Name)
-                     .ToPagedList(page, 12); 
+            string FilePath = HttpContext.Server.MapPath("~/Data/Repositories/LoggerRepository/LoggerFile.txt");
+            System.IO.File.AppendAllText(FilePath, logmessage);
+        } 
 
+        [LogAttribuite]  
+        public ActionResult Index(int? numberOfRows, int page = 1, string searchTerm = null)
+        {
+            var EntityID = (decimal)ViewBag.EntityId;
+            var genericId = (decimal)ViewBag.genericEntity;
+            if (numberOfRows == null) 
+                numberOfRows = 20;
+
+            ViewBag.RowsPerPage = new SelectList(numOfRows, "Value", "Text", numberOfRows);
+
+
+                var security_detail = db11.GetAll().Include(c => c.Security_Analytics)
+                     .MatchCriteria(c => c.Entity_ID == EntityID || c.Entity_ID == genericId)
+
+                     .Select(g => new SecurityDetailIndexModel
+                     {
+                         Security_ID = g.Security_ID,
+                         Entity_ID = g.Entity_ID,
+                         Security_Type_Code = g.Security_Type_Code,
+                         Security_Name = g.Security_Name,
+                         Short_Name = g.Short_Name,
+                         Current_Market_Price = g.Current_Market_Price,
+                         Ticker = g.Ticker,
+                         Primary_Exch = g.Primary_Exch,
+                         Maturity_Date = g.Maturity_Date,
+                         Security_Status = g.Security_Status,
+                         NumberOfRows = numberOfRows,
+                         HasAnalystics = g.Security_Analytics.Count()
+                         //Analytics = g => g.Wh Select(g => new SecurityDetailIndexModel
+                     })
+                     .OrderBy(s => s.Security_Name).
+                     ToList();
+
+           
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_Securities", security_detail);
+                return View(security_detail);
+                //return PartialView("_Securities", security_detail);
 
             }
             return View(security_detail);
-        }
+        } 
 
-        // GET: /SecurityDetail/Details/5
-
-        public ActionResult HistoryUnderConstruction(decimal id)
-        {
-            return View();
-
-        }
-        public ActionResult Details(decimal id)
-        { 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            //Security_Detail security_detail = db.Security_Detail.Find(id);
-
-            Security_Detail security_detail = db.Security_Detail.Include(s => s.Currency).
-                                                Include(s => s.Currency1).Include(s => s.Currency2).
-                                                Include(s => s.Currency3).
-                                                Include(s => s.Currency_Pair).Include(s => s.Country).
-                                                Include(s => s.Country1)
-                     .Where(s => s.Security_ID == id)
-                     .FirstOrDefault<Security_Detail>();
-
-
-            db.Entry(security_detail).Reference(p => p.Country).Load();
-
-
-            if (security_detail == null)
-            {
-                return HttpNotFound();
-            }
-            return View(security_detail);
-        }
-
-        // GET: /SecurityDetail/Create
+         
+        [CountryFilter]     
+        [SecuritiesFilter]
+        [SecurityTypesFilter]
+        [CurrencyFilter] 
+        [ExchangesFilter]
+        [CodeMiscellaneousFilter]
+        [BenchmarkPortfolioFilter]
+        [PartyFilter]
+        [CurrencyPairFilter]
+        [TrueFalseFilter]
         public ActionResult Create()
         {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-
-            PopulateAllCodeMisc();
-
-            ViewBag.Country_Of_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name");
-            ViewBag.Country_Of_Risk = new SelectList(db.Countries, "Country_Code", "Country_Name");
-            ViewBag.Security_Type_Code = new SelectList(db.Security_Type, "Security_Type_Code", "Name");
-            //ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name");
-
-            ViewBag.Primary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name" );
-            ViewBag.Secondary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name");
-
-            //all Misc types:
-            ViewBag.Accrued_Income_Price_Formula = new SelectList(GetCodeMiscType("IPFORM"), "MisCode", "MisCode_Description");
-            ViewBag.Clean_Price_Formula = new SelectList(GetCodeMiscType("CPFORM"), "MisCode", "MisCode_Description");
-            ViewBag.Coupon_BusDay_Adjustment = new SelectList(GetCodeMiscType("BDAYADJ"), "MisCode", "MisCode_Description");
-            ViewBag.Ex_Div_Period = new SelectList(GetCodeMiscType("EXDPERIOD"), "MisCode", "MisCode_Description");
-            ViewBag.Share_Class = new SelectList(GetCodeMiscType("SHRCLASS"), "MisCode", "MisCode_Description");
-
-            IPortfolioRepository PortfolioRepo = new PortfolioRepository(db);
-            var portfolios = PortfolioRepo.GetPortfolios(currentUser.EntityIdScope);
-            ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name" ); 
-
-            decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
-            PartyRepository myPartyRepos = new PartyRepository(db);
-            var parties = myPartyRepos.GetPartyValues(currentUser.EntityIdScope, "CORPORATE", refGenericEntity);
-            ViewBag.Issuer_Code = new SelectList(parties, "Party_Code", "Party_Name" );
-            ViewBag.Ultimate_Issuer_Code = new SelectList(parties, "Party_Code", "Party_Name" );
-
-               
-            ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name");
-            ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name");
-            ViewBag.Trade_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name");
-            ViewBag.Currency_Pair_Code = new SelectList(db.Currency_Pair, "Currency_Pair_Code", "Currency_Pair_Code");
-            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code");
-
-            var selectListItems = new List<SelectListItem>();
-            selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
-            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
-            ViewBag.MyTrackEOMFlagList = new SelectList(selectListItems, "Value", "Text");
-            ViewBag.MyCallAccountFgList = new SelectList(selectListItems, "Value", "Text");
-            ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text");
-
-            return View();
+            ViewBag.EntityIdScope = ViewBag.EntityId;  
+            return View(); 
         }
 
         // POST: /SecurityDetail/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Security_ID,Entity_ID,Security_Name,Short_Name,Primary_Exch,Secondary_Exch,Country_Of_Domicile,Country_Of_Risk,Security_Type_Code,Price_Multiplier,Income_Frequency,Issuer_Code,Ultimate_Issuer_Code,Asset_Currency,Min_Lot_Size,Decimal_Precision,AvePrice_Rounding,Issue_Date,Maturity_Date,Coupon_Rate,Price_Exchange,Trade_Currency,Price_Curr,Currency_Pair_Code,Share_Class,Current_Market_Price,Index_Type,Clean_Price_Formula,Accrued_Income_Price_Formula,Odd_First_Coupon_Date,Odd_Last_Coupon_Date,Coupon_Anniversary_Indicator,Track_EOM_Flag,Next_Coupon_Date,Previous_Coupon_Date,Payment_Frequency,Coupon_BusDay_Adjustment,Next_Ex_Div_Date,Ex_Div_BusDay_Adjustment,Ex_Div_Period,Ticker,Inet_ID,Bloomberg_ID,External_Sec_ID,Reuters_ID,ISIN,Call_Account_Flag,System_Locked,Benchmark_Portfolio")] Security_Detail security_detail)
+        [SecuritiesFilter]
+        [CountryFilter]
+        [SecurityTypesFilter]
+        [CurrencyFilter] 
+        [ExchangesFilter]
+        [CodeMiscellaneousFilter]
+        [BenchmarkPortfolioFilter]
+         [PartyFilter]
+        [CurrencyPairFilter] 
+        [TrueFalseFilter]
+        public ActionResult Create([Bind(Include = "Security_Name,Short_Name,Primary_Exch,Secondary_Exch,Country_Of_Domicile,Country_Of_Risk,Security_Type_Code,Price_Multiplier,Income_Frequency,Issuer_Code,Ultimate_Issuer_Code,Asset_Currency,Min_Lot_Size,Decimal_Precision,AvePrice_Rounding,Issue_Date,Maturity_Date,Coupon_Rate,Price_Exchange,Trade_Currency,Price_Curr,Currency_Pair_Code,Share_Class,Current_Market_Price,Index_Type,Clean_Price_Formula,Accrued_Income_Price_Formula,Odd_First_Coupon_Date,Odd_Last_Coupon_Date,Coupon_Anniversary_Indicator,Track_EOM_Flag,Next_Coupon_Date,Previous_Coupon_Date,Payment_Frequency,Coupon_BusDay_Adjustment,Next_Ex_Div_Date,Ex_Div_BusDay_Adjustment,Ex_Div_Period,Ticker,Inet_ID,Bloomberg_ID,External_Sec_ID,Reuters_ID,ISIN,Call_Account_Flag,Security_Status,System_Locked, Benchmark_Portfolio")] Security_Detail security_detail)
         {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
+            decimal EntityID = (decimal)ViewBag.EntityId;
 
+            security_detail.Entity_ID = EntityID; 
             if (ModelState.IsValid)
             {
-
-                security_detail.Entity_ID = currentUser.EntityIdScope;
                 security_detail.Last_Update_Date = DateTime.Now;
                 security_detail.Last_Update_User = User.Identity.Name; 
 
-                db.Security_Detail.Add(security_detail);
-                db.SaveChanges();
+                db11.Add(security_detail);
+                db11.Save();
                 TempData.Add("ResultMessage", "new Security \"" + security_detail.Security_Name + "\" created successfully!");
-
+ 
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("Error", "An error occurred trying to add a Security");
-
-            PopulateAllCodeMisc();
-
-            ViewBag.Country_Of_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Domicile);
-            ViewBag.Country_Of_Risk = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Risk);
-            //ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Asset_Currency);
-            ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Price_Curr);
-            ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Asset_Currency);
-            ViewBag.Trade_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Trade_Currency);
-            ViewBag.Currency_Pair_Code = new SelectList(db.Currency_Pair, "Currency_Pair_Code", "Base_Currency_Code", security_detail.Currency_Pair_Code);
-          
-
-             //all Misc types:
-            ViewBag.Accrued_Income_Price_Formula = new SelectList(GetCodeMiscType("IPFORM"), "MisCode", "MisCode_Description", security_detail.Accrued_Income_Price_Formula);
-            ViewBag.Clean_Price_Formula = new SelectList(GetCodeMiscType("CPFORM"), "MisCode", "MisCode_Description", security_detail.Clean_Price_Formula);
-            ViewBag.Coupon_BusDay_Adjustment = new SelectList(GetCodeMiscType("BDAYADJ"), "MisCode", "MisCode_Description", security_detail.Coupon_BusDay_Adjustment);
-            ViewBag.Ex_Div_Period = new SelectList(GetCodeMiscType("EXDPERIOD"), "MisCode", "MisCode_Description", security_detail.Ex_Div_Period);
-            ViewBag.Share_Class = new SelectList(GetCodeMiscType("SHRCLASS"), "MisCode", "MisCode_Description", security_detail.Share_Class);
-
-            decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
- 
-            PartyRepository myPartyRepos = new PartyRepository(db);
-            var parties = myPartyRepos.GetPartyValues(currentUser.EntityIdScope, "CORPORATE", refGenericEntity);
-            ViewBag.Issuer_Code = new SelectList(parties, "Party_Code", "Party_Name", security_detail.Issuer_Code);
-            ViewBag.Ultimate_Issuer_Code = new SelectList(parties, "Party_Code", "Party_Name", security_detail.Ultimate_Issuer_Code);
-
-            IPortfolioRepository PortfolioRepo = new PortfolioRepository(db);
-            var portfolios = PortfolioRepo.GetPortfolios(currentUser.EntityIdScope);
-            ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name",security_detail.Benchmark_Portfolio); 
-             
-            ViewBag.Primary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name", security_detail.Primary_Exch);
-            ViewBag.Secondary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name", security_detail.Secondary_Exch);
-            
-            ViewBag.Security_Type_Code = new SelectList(db.Security_Type, "Security_Type_Code", "Name", security_detail.Security_Type_Code);
-              
-            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_detail.Entity_ID);
-                
-            var selectListItems = new List<SelectListItem>();
-            selectListItems.Add(new SelectListItem { Text =  "True", Value = bool.TrueString });
-            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
-            ViewBag.MyTrackEOMFlagList = new SelectList(selectListItems, "Value", "Text");
-            ViewBag.MyCallAccountFgList = new SelectList(selectListItems, "Value", "Text" );
-            ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text");
-        
+            ViewBag.EntityIdScope = EntityID;  
             return View(security_detail);
         }
 
-
-        public IEnumerable<Code_Miscellaneous> GetCodeMiscellVals (string iCodeType)
-        {
-            //IEnumerable<Code_Miscellaneous> results= db.Code_Miscellaneous ; 
-            return db.Code_Miscellaneous.Where(r => r.MisCode_Type == iCodeType).ToList();
-        }
-         
-        private void PopulateAllCodeMisc()
-        {
-            AllCodeMisc = db.Code_Miscellaneous.ToList();
-        }
-
-        private IEnumerable<Code_Miscellaneous> GetCodeMiscType(string iCodeType)
-        {
-            return AllCodeMisc
-                          .Where(c => c.MisCode_Type == iCodeType).ToList(); 
-                     
-        }
-         
-
-        //// GET: /SecurityDetail/Edit/5
-        //public ActionResult Edit(decimal id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Security_Detail security_detail = db.Security_Detail.Find(id);
-        //    if (security_detail == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.Country_Of_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Domicile);
-        //    ViewBag.Country_Of_Risk = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Risk);
-        //    //ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Asset_Currency);
-        //    ViewBag.Issuer_Code = new SelectList(db.Parties.ToList(), "Party_Code", "Party_Name", security_detail.Issuer_Code);
-        //    ViewBag.Ultimate_Issuer_Code = new SelectList(db.Parties.ToList(), "Party_Code", "Party_Name", security_detail.Ultimate_Issuer_Code);
-
-        //    ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Price_Curr);
-        //    ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Asset_Currency);
-        //    ViewBag.Trade_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Trade_Currency);
-        //    ViewBag.Currency_Pair_Code = new SelectList(db.Currency_Pair, "Currency_Pair_Code", "Currency_Pair_Code", security_detail.Currency_Pair_Code);
-        //    ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_detail.Entity_ID);
-            
-        //    var selectListItems = new List<SelectListItem>();
-        //    selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
-        //    selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
-        //    ViewBag.MyTrackEOMFlagList = new SelectList(selectListItems, "Value", "Text", security_detail.Track_EOM_Flag);
-        //    ViewBag.MyCallAccountFgList = new SelectList(selectListItems, "Value", "Text", security_detail.Call_Account_Flag);
-        //    ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", security_detail.System_Locked);
-
-        //    return View(security_detail);
-        //}
-
-        //// GET: 
-        //public ActionResult Edit2(decimal id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Security_Detail security_detail = db.Security_Detail.Find(id);
-        //    if (security_detail == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.Country_Of_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Domicile);
-        //    ViewBag.Country_Of_Risk = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Risk);
-        //    //ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Asset_Currency);
-        //    ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Price_Curr);
-        //    ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Asset_Currency);
-        //    ViewBag.Trade_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Trade_Currency);
-        //    ViewBag.Currency_Pair_Code = new SelectList(db.Currency_Pair, "Currency_Pair_Code", "Currency_Pair_Code", security_detail.Currency_Pair_Code);
-        //    ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_detail.Entity_ID);
-
-        //    var selectListItems = new List<SelectListItem>();
-        //    selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
-        //    selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
-        //    ViewBag.MyTrackEOMFlagList = new SelectList(selectListItems, "Value", "Text", security_detail.Track_EOM_Flag);
-        //    ViewBag.MyCallAccountFgList = new SelectList(selectListItems, "Value", "Text", security_detail.Call_Account_Flag);
-        //    ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", security_detail.System_Locked);
-
-        //    return View(security_detail);
-
-        //}
+        [SecuritiesFilter]
+        [CountryFilter] 
+        [TrueFalseFilter]
+        [SecurityTypesFilter]
+        [ExchangesFilter]
+        [CurrencyFilter]  
+        [CodeMiscellaneousFilter]
+        [BenchmarkPortfolioFilter]
+        [PartyFilter]
+        [CurrencyPairFilter] 
         public ActionResult Edit(decimal id)
         {
-             
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                Security_Detail security_detail = db.Security_Detail.Find(id);
+                var EntityID = (decimal)ViewBag.EntityId;    
+                ViewBag.EntityIdScope = ViewBag.EntityId;
+
+                Security_Detail security_detail = db11.FindBy(r => r.Security_ID == id)
+                                    //.MatchCriteria(c => c.Entity_ID == EntityID)
+                                    .FirstOrDefault(); 
                 if (security_detail == null)
                 {
                     return HttpNotFound();
-                }
-                var currentUser = manager.FindById(User.Identity.GetUserId());
+                } 
+                // [CountriesFilter] :
+                ViewBag.DividendFXSecurityID = security_detail.Dividend_FX_Security_ID;
+                ViewBag.RecordCountryOfDomicile = security_detail.Country_Of_Domicile;
 
+                ViewBag.RecordCountryOfRisk = security_detail.Country_Of_Risk;
+                // [CurrencyFilter]:
+                ViewBag.PriceCurr = security_detail.Price_Curr;
+                ViewBag.AssetCurrency = security_detail.Asset_Currency;
+                ViewBag.TradeCurrency = security_detail.Trade_Currency;
+                // SecurityTypesFilter:
+                ViewBag.SecurityTypeCode = security_detail.Security_Type_Code; 
+                 // Exchange
+                ViewBag.PrimaryExch  = security_detail.Primary_Exch;
+                ViewBag.SecondaryExch = security_detail.Secondary_Exch; 
+                // Party
+                ViewBag.IssuerCode = security_detail.Issuer_Code;
+                ViewBag.UltimateIssuerCode = security_detail.Ultimate_Issuer_Code;
 
-                PopulateAllCodeMisc();
+                ViewBag.BenchmarkPortfolio = security_detail.Benchmark_Portfolio;
 
-                ViewBag.Country_Of_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Domicile);
-                ViewBag.Country_Of_Risk = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Risk);
-                //ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Asset_Currency);
-      
-        
+                ViewBag.CurrencyPairCode = security_detail.Currency_Pair_Code;
 
-                ViewBag.Primary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name", security_detail.Primary_Exch);
-                ViewBag.Secondary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name", security_detail.Secondary_Exch);
-                
-                ViewBag.Security_Type_Code = new SelectList(db.Security_Type.ToList(), "Security_Type_Code", "Name", security_detail.Security_Type_Code);
+                ViewBag.MyTrackEOMFlagList =  security_detail.Track_EOM_Flag;
+                ViewBag.MyCallAccountFgList = security_detail.Call_Account_Flag;
+                ViewBag.MySysLockedList = security_detail.System_Locked;
+                ViewBag.MySecurityStatus = security_detail.Security_Status;
 
-                ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Price_Curr);
-                ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Asset_Currency);
-                ViewBag.Trade_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Trade_Currency);
-                ViewBag.Currency_Pair_Code = new SelectList(db.Currency_Pair, "Currency_Pair_Code", "Currency_Pair_Code", security_detail.Currency_Pair_Code);
-                ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_detail.Entity_ID);
-            
-                //all Misc types:
-                ViewBag.Accrued_Income_Price_Formula = new SelectList(GetCodeMiscType("IPFORM"), "MisCode", "MisCode_Description", security_detail.Accrued_Income_Price_Formula);
-                ViewBag.Clean_Price_Formula = new SelectList(GetCodeMiscType("CPFORM"), "MisCode", "MisCode_Description", security_detail.Clean_Price_Formula);
-                ViewBag.Coupon_BusDay_Adjustment = new SelectList(GetCodeMiscType("BDAYADJ"), "MisCode", "MisCode_Description", security_detail.Coupon_BusDay_Adjustment);
-                ViewBag.Ex_Div_Period = new SelectList(GetCodeMiscType("EXDPERIOD"), "MisCode", "MisCode_Description", security_detail.Ex_Div_Period);
-                ViewBag.Share_Class = new SelectList(GetCodeMiscType("SHRCLASS"), "MisCode", "MisCode_Description", security_detail.Share_Class);
-
-                IPortfolioRepository PortfolioRepo = new PortfolioRepository(db);
-                var portfolios = PortfolioRepo.GetPortfolios(currentUser.EntityIdScope);
-                ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name", security_detail.Benchmark_Portfolio);
-              
-                //load the Party codes to get the issuer DDL:
-                decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
-                PartyRepository myPartyRepos = new PartyRepository(db);
-                var parties = myPartyRepos.GetPartyValues(currentUser.EntityIdScope, "CORPORATE", refGenericEntity);
-                ViewBag.Issuer_Code = new SelectList(parties, "Party_Code", "Party_Name", security_detail.Issuer_Code);
-                ViewBag.Ultimate_Issuer_Code = new SelectList(parties, "Party_Code", "Party_Name", security_detail.Ultimate_Issuer_Code);
-
-                var selectListItems = new List<SelectListItem>();
-                selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
-                selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
-                ViewBag.MyTrackEOMFlagList = new SelectList(selectListItems, "Value", "Text", security_detail.Track_EOM_Flag);
-                ViewBag.MyCallAccountFgList = new SelectList(selectListItems, "Value", "Text", security_detail.Call_Account_Flag);
-                ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", security_detail.System_Locked);
-
-                return View(security_detail);
-
+                ViewBag.ExDivPeriod = security_detail.Ex_Div_Period;
+                ViewBag.AccruedIncomePriceFormula = security_detail.Accrued_Income_Price_Formula;
+                ViewBag.ShareClass = security_detail.Share_Class;
+                ViewBag.CouponBusDayAdjustment = security_detail.Coupon_BusDay_Adjustment;
+                ViewBag.CleanPriceFormula = security_detail.Clean_Price_Formula;
+   
+                return View(security_detail); 
         }
-    
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Security_ID,Entity_ID,Security_Name,Short_Name,Primary_Exch,Secondary_Exch,Country_Of_Domicile,Country_Of_Risk,Security_Type_Code,Price_Multiplier,Income_Frequency,Issuer_Code,Ultimate_Issuer_Code,Asset_Currency,Min_Lot_Size,Decimal_Precision,AvePrice_Rounding,Issue_Date,Maturity_Date,Coupon_Rate,Price_Exchange,Trade_Currency,Price_Curr,Currency_Pair_Code,Share_Class,Current_Market_Price,Index_Type,Clean_Price_Formula,Accrued_Income_Price_Formula,Odd_First_Coupon_Date,Odd_Last_Coupon_Date,Coupon_Anniversary_Indicator,Track_EOM_Flag,Next_Coupon_Date,Previous_Coupon_Date,Payment_Frequency,Coupon_BusDay_Adjustment,Next_Ex_Div_Date,Ex_Div_BusDay_Adjustment,Ex_Div_Period,Ticker,Inet_ID,Bloomberg_ID,External_Sec_ID,Reuters_ID,ISIN,Call_Account_Flag,System_Locked,Last_Update_User,Last_Update_Date,Benchmark_Portfolio")] Security_Detail security_detail)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
+        [HttpPost] 
+         [SecuritiesFilter]
+         [ValidateAntiForgeryToken]
+         [CountryFilter]
+         [SecurityTypesFilter]
+         [PartyFilter]
+         [CodeMiscellaneousFilter]
+         [BenchmarkPortfolioFilter]
+         [CurrencyFilter]               
+         [CurrencyPairFilter]  
+         [ExchangesFilter] 
+        [TrueFalseFilter]
+        public ActionResult Edit([Bind(Include = "Security_ID,Entity_ID,Security_Name,Short_Name,Primary_Exch,Secondary_Exch,Country_Of_Domicile,Country_Of_Risk,Security_Type_Code,Price_Multiplier,Income_Frequency,Issuer_Code,Ultimate_Issuer_Code,Asset_Currency,Min_Lot_Size,Decimal_Precision,AvePrice_Rounding,Issue_Date,Maturity_Date,Coupon_Rate,Price_Exchange,Trade_Currency,Price_Curr,Currency_Pair_Code,Share_Class,Current_Market_Price,Index_Type,Clean_Price_Formula,Accrued_Income_Price_Formula,Odd_First_Coupon_Date,Odd_Last_Coupon_Date,Coupon_Anniversary_Indicator,Track_EOM_Flag,Next_Coupon_Date,Previous_Coupon_Date,Payment_Frequency,Coupon_BusDay_Adjustment,Next_Ex_Div_Date,Ex_Div_BusDay_Adjustment,Ex_Div_Period,Ticker,Inet_ID,Bloomberg_ID,External_Sec_ID,Reuters_ID,ISIN,Call_Account_Flag,System_Locked,Security_Status,Last_Update_User,Last_Update_Date,Benchmark_Portfolio,Dividend_FX_Security_ID")] 
+                                                        Security_Detail security_detail)
+         {
+            var EntityID = (decimal)ViewBag.EntityId;   
             
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) 
             {
-                db.Entry(security_detail).State = EntityState.Modified;
-
-                security_detail.Entity_ID = currentUser.EntityIdScope;
+                db11.Update(security_detail); //sets the modified status 
                 security_detail.Last_Update_Date = DateTime.Now;
                 security_detail.Last_Update_User = User.Identity.Name; 
-                db.SaveChanges();
+                db11.Save();
                 TempData.Add("ResultMessage", "Security \"" + security_detail.Security_Name + "\" editied successfully!");
 
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("Error", "An error occurred trying to edit the Security");
-
-            PopulateAllCodeMisc();
-
-            ViewBag.Country_Of_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Domicile);
-            ViewBag.Country_Of_Risk = new SelectList(db.Countries, "Country_Code", "Country_Name", security_detail.Country_Of_Risk);
-            //ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Asset_Currency);
-            ViewBag.Price_Curr = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Price_Curr);
-            ViewBag.Asset_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Asset_Currency);
-            ViewBag.Trade_Currency = new SelectList(db.Currencies, "Currency_Code", "Currency_Name", security_detail.Trade_Currency);
-            ViewBag.Currency_Pair_Code = new SelectList(db.Currency_Pair, "Currency_Pair_Code", "Base_Currency_Code", security_detail.Currency_Pair_Code);
-
-            ViewBag.Issuer_Code = new SelectList(db.Parties.ToList(), "Party_Code", "Party_Name", security_detail.Issuer_Code);
-            ViewBag.Ultimate_Issuer_Code = new SelectList(db.Parties.ToList(), "Party_Code", "Party_Name", security_detail.Ultimate_Issuer_Code);
-
-            ViewBag.Primary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name", security_detail.Primary_Exch);
-            ViewBag.Secondary_Exch = new SelectList(db.Exchanges.ToList(), "Exchange_Code", "Exchange_Name", security_detail.Secondary_Exch);
-
-            ViewBag.Security_Type_Code = new SelectList(db.Security_Type.ToList(), "Security_Type_Code", "Name", security_detail.Security_Type_Code);
-
-            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", security_detail.Entity_ID);
-
-            //all Misc types:
-            ViewBag.Accrued_Income_Price_Formula = new SelectList(GetCodeMiscType("IPFORM"), "MisCode", "MisCode_Description", security_detail.Accrued_Income_Price_Formula);
-            ViewBag.Clean_Price_Formula = new SelectList(GetCodeMiscType("CPFORM"), "MisCode", "MisCode_Description", security_detail.Clean_Price_Formula);
-            ViewBag.Coupon_BusDay_Adjustment = new SelectList(GetCodeMiscType("BDAYADJ"), "MisCode", "MisCode_Description", security_detail.Coupon_BusDay_Adjustment);
-            ViewBag.Ex_Div_Period = new SelectList(GetCodeMiscType("EXDPERIOD"), "MisCode", "MisCode_Description", security_detail.Ex_Div_Period);
-            ViewBag.Share_Class = new SelectList(GetCodeMiscType("SHRCLASS"), "MisCode", "MisCode_Description", security_detail.Share_Class);
-
-            IPortfolioRepository PortfolioRepo = new PortfolioRepository(db);
-            var portfolios = PortfolioRepo.GetPortfolios(currentUser.EntityIdScope);
-            ViewBag.Benchmark_Portfolio = new SelectList(portfolios, "Portfolio_Code", "Portfolio_Name", security_detail.Benchmark_Portfolio);
-
-            //load the Party codes to get the issuer DDL:
-            decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]);
-            PartyRepository myPartyRepos = new PartyRepository(db);
-            var parties = myPartyRepos.GetPartyValues(currentUser.EntityIdScope, "CORPORATE", refGenericEntity);
-            ViewBag.Issuer_Code = new SelectList(parties, "Party_Code", "Party_Name", security_detail.Issuer_Code);
- 
-              
-            var selectListItems = new List<SelectListItem>();
-            selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
-            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
-            ViewBag.MyTrackEOMFlagList = new SelectList(selectListItems, "Value", "Text", security_detail.Track_EOM_Flag);
-            ViewBag.MyCallAccountFgList = new SelectList(selectListItems, "Value", "Text", security_detail.Call_Account_Flag);
-            ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", security_detail.System_Locked);
-
+            ViewBag.EntityIdScope = EntityID; 
             return View(security_detail);
          
        
@@ -429,7 +246,7 @@ namespace MetopeMVCApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Security_Detail security_detail = db.Security_Detail.Find(id);
+            Security_Detail security_detail = db11.Get(id);
             if (security_detail == null)
             {
                 return HttpNotFound();
@@ -441,20 +258,44 @@ namespace MetopeMVCApp.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(decimal id)
-        {  
-            Security_Detail security_detail = db.Security_Detail.Find(id);
-            db.Security_Detail.Remove(security_detail);
-            db.SaveChanges();
+        { 
+            Security_Detail security_detail = db11.Get(id);
+
+            db11.Delete (security_detail);
+            db11.Save ();
+            TempData.Add("ResultMessage", "Security \"" + security_detail.Security_Name + "\" Deleted successfully!");
             return RedirectToAction("Index");
+        }
+
+        //Run stored procs
+        public ActionResult RunSp( string command, string Security_name)
+        {
+            var spResult = "";
+            if (command == "Update Divnd Sched only (All Sec)")
+                spResult = db11.RunGenerateDividendsSp((decimal)ViewBag.EntityId, null, null, null, GetTheUser().UserName);
+
+            if (command == "Update Sec Analytics (All Sec)")
+                spResult = db11.RunSecAnalyticBatchsetSp((decimal)ViewBag.EntityId, null, null, "DRSANAL", GetTheUser().UserName);
+  
+            TempData.Add("ResultMessage", String.Format("{0} results: {1} ", command,   spResult.ToString()));
+            return RedirectToAction("Index" );
+        }
+        private ApplicationUser GetTheUser()
+        {
+            UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
+            return manager.FindById(User.Identity.GetUserId());
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                db11.Dispose();
             }
             base.Dispose(disposing);
         }
+
+        
     }
 }

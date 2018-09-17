@@ -1,4 +1,46 @@
-﻿@model IEnumerable<MetopeMVCApp.Models.Security_Detail>
+﻿@model IEnumerable<MetopeMVCApp.Models.SecurityDetailIndexModel>
+@*@model IEnumerable<MetopeMVCApp.Models.Security_Detail>*@ 
+@using GridMvc.Html
+@{
+    ViewBag.Title = "GridSecurityDetail";
+    
+     //List<SelectListItem> numOfRows = new List<SelectListItem> {
+    //                   new SelectListItem { Text = "10", Value = "10" },
+     //                   new SelectListItem { Text = "20", Value = "20" },
+    //                   new SelectListItem { Text = "50", Value = "50" }		
+    //                   new SelectListItem { Text = "50", Value = "100" }		
+     //                   }; 
+    List<string> _sizes = new List<string>() { "10", "20", "50", "100" };  
+    
+    ViewBag.RowsPgSelected = ((SelectList)ViewBag.RowsPerPage).SelectedValue ?? _sizes[1];
+ 
+}
+@section Styles {
+    @Styles.Render("~/Content/GridMvc")
+    @Styles.Render("~/Content/datetime")
+    <link href="~/Content/cssNoLines.css" rel="stylesheet" />
+    <link href="~/Content/myButtons.css" rel="stylesheet" />
+}
+@helper CustomRenderingOfColumn(MetopeMVCApp.Models.SecurityDetailIndexModel c)
+{
+    if (c.HasAnalystics > 0)
+    { 
+    <text>
+        <a href="@Url.Action("Edit", "SecurityAnalytics", new { SecurityId = c.Security_ID, EntityId = c.Entity_ID, Nav = 1 })">
+            <span class="badge">Analytics</span>
+        </a>
+    </text>
+    }
+    else
+    {
+    <text> 
+        <a href="@Url.Action("Create", "SecurityAnalytics", new { SecurityId = c.Security_ID, EntityId = c.Entity_ID, Nav = 1 })">
+            <span class="badge">Analytics (create)</span>
+        </a>
+    </text> 
+    }
+}
+ 
 @helper Truncate(string input, int length)
 {
     if (input.Length <= length)
@@ -6,59 +48,128 @@
     else { @input.Substring(0, length)<text>...</text>
     }
 }
+<div id="mainList">
+    @{
+        ViewBag.Title = "Index";
+    }
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal", id = "TheForm" }))
+    {
+        <div class="row">
+            <div class="col-md-7 ">
+                <h3>Securities Listing</h3>
+            </div>
 
-@{
-    ViewBag.Title = "Index";
-}
- 
-<div class="row">
-    <div class="col-md-8">
-        <h3>Securities Listing</h3>
+            <div class="col-md-5 col-right">
+                <div class="pull-right">
+                    <label class=" control-label">show rows:</label>
+                    @Html.DropDownList("numberOfRows", (SelectList)ViewBag.RowsPerPage,
+                        new
+                        {
+                            onchange = "document.getElementById('TheForm').submit();"
+                        })
+                    @*<input type="submit" value="Update" class="btn btn-primary btn-xs" />*@
+                    @*@Html.DropDownList("numberOfRows", null, string.Empty, new { @class = "form-control" })*@
+                </div> 
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 ">
+                @Html.ActionLink("Create New", "Create")
+            </div>
+        </div>
+    }
+    @*@using (Ajax.BeginForm("Index", new AjaxOptions { UpdateTargetId = "GridTst" }))
+        {
+            <input type="submit" value="Update" />
+        }
+        <div id="GridTst">
+            @{
+                Html.RenderPartial("GridTst", Model);
+            }
+        </div>*@
+     
+    @Html.Partial("_MsgSuccesFail", Model)
+    <div class="code-cut">
+        @Html.Grid(Model).Named("securityDetails").Columns(columns =>
+    {
+
+        //hides column, but use this in js:
+        columns.Add(c => c.Entity_ID, true);
+        columns.Add(c => c.HasAnalystics, true); 
+            
+        columns.Add(c => c.Ticker)
+            .Titled("Ticker").Filterable(true)
+            .SetWidth(100);
+        columns.Add(c => c.Short_Name).Titled("Security name").Filterable(true);
+        columns.Add(c => c.Security_ID).Titled("Security id").Filterable(true).SetWidth(0);
+        // columns.Add(c => c.Security_Type_Code ).Titled("Return").Encoded(false).Sanitized(false).RenderValueAs(c => @Html.ActionLink(" ", "../LendReturns/Create", new { id = c.NumberOfRows }, new { @class = "btn btn-success glyphicon glyphicon-share-alt" }));
+  
+        columns.Add(c => c.Current_Market_Price).Titled("Current Market Price").Filterable(false)
+                .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Current_Market_Price)).Encoded(false)
+                .Sanitized(false)
+                .SetWidth(140);
+        columns.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .SetWidth(60)
+                .RenderValueAs(c => @<u>
+                    @Html.ActionLink("Edit", "Edit", "SecurityDetail", new { id = c.Security_ID }, null)
+                </u>);
+
+        columns.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .SetWidth(80)
+                .RenderValueAs(c => @<u>
+                    @Html.ActionLink("Delete", "Delete", "SecurityDetail", new { id = c.Security_ID }, null)
+                </u>);
+
+        columns.Add().Encoded(false).Sanitized(false)
+                .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityClassificationIndustry", new { SecurityId = c.Security_ID, Ticker = c.Ticker })">
+                <span class="badge">Classifications</span>
+            </a>);
+            
+        columns.Add().Encoded(false).Sanitized(false)
+                .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityPrice", new { SecurityId = c.Security_ID })">
+                <span class="badge">Price History</span>
+            </a>);
+        columns.Add().Encoded(false).Sanitized(false)
+                .RenderValueAs(c => @<a href="@Url.Action("Index", "SecurityDividendDetail", new { SecurityId = c.Security_ID})">
+                <span class="badge">Dividends</span>
+            </a>);
+            
+        columns.Add().Encoded(false).Sanitized(false) 
+                .RenderValueAs( c => CustomRenderingOfColumn(c)); 
+         
+        @*columns.Add().Encoded(false).Sanitized(false)
+                .RenderValueAs(c => @<a class="label label-primary" data-popover-content="#popover-@c.Security_ID" href="/categories/@c.Security_ID">@c.HasAnalystics</a>);*@
+
+    }).WithPaging(Convert.ToInt16(ViewBag.RowsPgSelected), 1, "ShowSp").Sortable(true)
     </div>
+</div>
+        @*<div class="panel-footer">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="pull-right">
+                <button type="button"
+                        class="btn btn-primary"
+                        ng-click="vm.saveClick(creditCardForm)">
+                  <i class="glyphicon glyphicon-floppy-disk"></i>
+                  &nbsp;Save
+                </button>
+                <a class="btn btn-primary"
+                   formnovalidate="formnovalidate"
+                   href="#/">
+                  <i class="glyphicon glyphicon-remove-circle"></i>
+                  &nbsp;Canceld
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>*@
 
-    <div class="col-md-4 "> 
-        <div>
-            <form class='form-inline' role='form' id='SearchForm' style="margin-top: 15px">
-                <input type='text' class='form-control input-sm' id='search-text' placeholder='Enter search text'>
-        
-                <button type='submit' class='btn btn-success btn-sm' id='search-btn'>Search</button>
-            </form>
-        </div> 
-
-    </div>
-</div> 
-@if (TempData["ResultMessage"] != null)
-{
-    <div class="alert alert-success alert-dismissable">
-        <button class="close" data-dismiss="alert">&times;</button>
-        @TempData["ResultMessage"]
-    </div>
-}
-@if (TempData["FailMsg"] != null)
-{
-    <div class="alert alert-danger alert-dismissable">
-        <button class="close" data-dismiss="alert">&times;</button>
-        @TempData["FailMsg"]
-    </div>
-} 
- @Html.Partial("_Securities", Model)
-
-@section Scripts {
-    <script type='text/javascript'>
-
-        var mySearchingUrl = mtpApp.Urls.baseUrl + "SecurityDetail/Index";
-        $(function () {
-            $('#SearchForm').submit(function (event) {
-                event.preventDefault();
-                var form = $(this).parent("form");
-                console.log('test log');
-                var mySearchTerm = $('#search-text').val();
-                $.get(mySearchingUrl, { page: 1, searchTerm: mySearchTerm })
-                    .success(function (data) {
-                        $('#securitiesListing').html(data);
-                    });
-            });
-        });
-
-    </script>
+@section Scripts { @Scripts.Render("~/bundles/datetime")
+                   @Scripts.Render("~/bundles/GridMvc") 
+     
 }

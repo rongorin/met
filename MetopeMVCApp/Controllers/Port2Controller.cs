@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MetopeMVCApp.Models;
-
+using Metope.DAL;
 
 //            this is to   try out using a few TABS in the View
 namespace MetopeMVCApp.Controllers
@@ -103,7 +103,7 @@ namespace MetopeMVCApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(portfolio).State = EntityState.Modified;
+                db.Entry(portfolio).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

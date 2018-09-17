@@ -1,19 +1,18 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
+﻿@model MetopeMVCApp.Models.Custom.MyError
+
 
 @{
-    ViewBag.Title = "Error";
-}
- 
-
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request. Contact support.</h2>
-@if (Model != null)
-{
-    <h3>@Model.Exception.GetType().Name  </h3> 
- <div>
-     <img id="progress" src="~/Content/img/404-AB-Failure-image.gif" />
-     <h4>@Model.Exception.ToString()  </h4>
-
- </div>
+    ViewBag.Title = Model.StatusCode;
 }
 
+<h1 class="error">@Model.StatusCode</h1>
+<h3 class="text-danger">An error occurred whilst processing your request. Contact support.</h3>
+@Model.StatusDescription. (@Model.DateTime)<br />
+
+
+@Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer }) 
+<div>
+    <img id="progress" src="~/Content/img/404-AB-Failure-image.gif" />
+    @Model.Message<br />
+
+</div>

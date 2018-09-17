@@ -9,17 +9,22 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using ASP.MetopeNspace.Models;
+using System.Collections;
+using System.Web.Caching;
+using StructureMap; 
 
 namespace ASP.MetopeNspace.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+
+        private readonly UserManager<IdentityUser> _userManager;
+
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
         }
-
         public AccountController(UserManager<ApplicationUser> userManager)
         {
             UserManager = userManager;
@@ -45,19 +50,21 @@ namespace ASP.MetopeNspace.Controllers
         {
             if (ModelState.IsValid)
             {
+                RemoveContextItems(); //remove item that are cached in the context. ie entityid etc
+
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
+                   
                     return RedirectToLocal(returnUrl);
+                    //return RedirectToAction("Index","Home"); // send them to the Home page rather :-)
                 }
                 else
                 {
                     ModelState.AddModelError("", "Invalid username or password.");
                 }
-            }
-
-            // If we got this far, something failed, redisplay form
+            }   
             return View(model);
         }
 
@@ -66,7 +73,7 @@ namespace ASP.MetopeNspace.Controllers
        // [AllowAnonymous]
         [Authorize(Roles = "Admin")] 
         public ActionResult Register()
-        {
+        { 
             return View();
         }
 
@@ -121,6 +128,7 @@ namespace ASP.MetopeNspace.Controllers
         // GET: /Account/Manage
         public ActionResult Manage(ManageMessageId? message)
         {
+  
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -290,12 +298,18 @@ namespace ASP.MetopeNspace.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public ActionResult LogOff( )
         {
-            AuthenticationManager.SignOut();
+            /*----------------------------------------------
+            on signing out , i remove all the cached dropdown items.
+            HttpContext oc = System.Web.HttpContext.Current;
+            ----------------------------------------------*/
+            RemoveContextItems();
+
+            AuthenticationManager.SignOut(); 
             return RedirectToAction("Index", "Home");
         }
-
+    
         //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
@@ -348,8 +362,15 @@ namespace ASP.MetopeNspace.Controllers
                 ModelState.AddModelError("", error);
             }
         }
-
-        private bool HasPassword()
+        private void RemoveContextItems()
+        {
+            HttpContext oc = System.Web.HttpContext.Current;
+            foreach (var c in oc.Cache)
+            {
+                oc.Cache.Remove(((DictionaryEntry)c).Key.ToString());
+            } 
+        }
+        private bool HasPassword() 
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
             if (user != null)

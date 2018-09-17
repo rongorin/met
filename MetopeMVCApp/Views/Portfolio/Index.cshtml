@@ -1,8 +1,8 @@
-﻿@model IPagedList<MetopeMVCApp.Models.Portfolio> 
-@{
+﻿@model IPagedList<MetopeMVCApp.Models.PortfolioIndexViewModel> 
+@{  
     ViewBag.Title = "Index"; 
 }
- 
+  
 <div class="row">
     <div class="col-md-8">
         <h3>Portfolios Listing</h3>
@@ -35,25 +35,11 @@
                 </h3>
 
             }
-                *@
-
+                *@ 
      </div>
-    </div>
+    </div> 
+@Html.Partial("_MsgSuccesFail", Model)
 
-    @if (TempData["ResultMessage"] != null)
-    {
-        <div class="alert alert-success alert-dismissable">
-            <button class="close" data-dismiss="alert">&times;</button>
-            @TempData["ResultMessage"]
-        </div>
-    } 
-    @if (TempData["FailMsg"] != null)
-    {
-        <div class="alert alert-danger alert-dismissable">
-            <button class="close" data-dismiss="alert">&times;</button>
-            @TempData["FailMsg"]
-        </div>
-    } 
 @Html.Partial("_Portfolios", Model)
 
 @section Scripts {
@@ -71,8 +57,7 @@
                     $('#portfolioListing').html(data);
                 });
         });
-    }); 
- 
+    });  
 
 </script>
 

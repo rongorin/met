@@ -7,16 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MetopeMVCApp.Models;
+using Metope.DAL;
 
 namespace MetopeMVCApp.Controllers
 {
-     [Authorize(Roles = "Admin")]
+     [Authorize(Roles = "Admin")] 
     public class EntityController : Controller
     {
 
         private MetopeDbEntities db = new MetopeDbEntities();
 
-        // GET: /Entity/
+        // GET: /Entity/ 
         public ActionResult Index()
         {
 
@@ -90,7 +91,7 @@ namespace MetopeMVCApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(entity).State = EntityState.Modified;
+                db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 TempData.Add("ResultMessage", "Entity \"" + entity.Entity_Name + "\" edited successfully!");
 

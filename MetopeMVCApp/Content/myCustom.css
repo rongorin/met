@@ -21,6 +21,18 @@ textarea {
     max-width: 200px;
 }
 
+/*not being used:  */
+.login-bg { 
+ background-image: url('../Content/img/metope-greece64.jpg');
+}
+
+/*not being used:  */
+bgimg { 
+    background-image: url('../Content/img/metope-greece64.jpg');
+    background-color: #FF6600;
+    width: 100%;
+    height: auto;
+}
  /*!   -- puts the paging at the bottom of the page fixed, so it doesnt scroll. not using.
  #foot{
     position:fixed !important;
@@ -56,3 +68,10 @@ textarea {
   .FullpanelHeight {
      height: 100vh; 
     }
+
+  /*not using:*/
+   .myForegroundClass { 
+       color:#FAFFBD ;
+    
+   }
+     

@@ -24,7 +24,9 @@ namespace ASP.MetopeNspace
 
             bundles.Add(new StyleBundle("~/Content/datetime").Include(
             "~/Content/bootstrap-datetimepicker*"));
-
+           
+            bundles.Add(new StyleBundle("~/Content/GridMvc").Include(
+                "~/Content/Gridmvc.*"));
             //var cssBundle2= new StyleBundle("~/bundles/cssCustom");
             //cssBundle2.Include("~/Content/Site.less", "~/Content/Template/myCustom.css");
             //cssBundle2.Transforms.Add(cssTransformer);
@@ -50,20 +52,30 @@ namespace ASP.MetopeNspace
             modernizrBundle.Include("~/Scripts/modernizr-*");
             modernizrBundle.Transforms.Add(jsTransformer);
             modernizrBundle.Orderer = nullOrderer;
-            bundles.Add(modernizrBundle);
+            bundles.Add(modernizrBundle); 
 
+            //bundles.Add(new ScriptBundle("~/bundles/customDatePickerJS").Include(
+            //"~/Scripts/common/datetimepicker-init.js", 
+            //"~/Scripts/common/datetimepickerCustom.js"));
 
+             
             bundles.Add(new ScriptBundle("~/bundles/datetime").Include(
             "~/Scripts/moment*",
-            "~/Scripts/bootstrap-datetimepicker*",
+            "~/Scripts/bootstrap-datetimepicker*", 
             "~/Scripts/common/datetimepicker-init.js")); 
+
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrapWizard").Include(
             "~/Scripts/jquery.bootstrap.wizard*",
-            "~/Scripts/common/wizard-init.js"));  
+            "~/Scripts/common/wizard-init.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/GridMvc").Include(
+            "~/Scripts/gridmvc.min.js",
+            "~/Scripts/bootstrap-datepicker.js"));  
+              
             var bootstrapBundle = new ScriptBundle("~/bundles/bootstrap");
-            bootstrapBundle.Include("~/Scripts/bootstrap.js", "~/Scripts/respond.js");
+            bootstrapBundle.Include("~/Scripts/bootstrap.js", "~/Scripts/respond.js", "~/Scripts/bootbox.min.js");
+            
             bootstrapBundle.Transforms.Add(jsTransformer);
             bootstrapBundle.Orderer = nullOrderer;
             bundles.Add(bootstrapBundle);

@@ -4,14 +4,15 @@ using System.Linq;
 using System.Web;
 using MetopeMVCApp.Models;
 using PagedList;
+using MetopeMVCApp.Data.Repositories;
 namespace MetopeMVCApp.Data
 {
-    public interface IPortfolioRepository
+    public interface IPortfolioRepository 
     {
         //IQueryable<Portfolio> GetPortfolios(decimal iEntityId, string iSearchTerm=null);
         //IQueryable<Portfolio> GetPortfolios(decimal iEntityId, string iSearchTerm = null);
         IPagedList<Portfolio> GetPortfolios(decimal iEntityId, int page = 1, string iSearchTerm = null);
-        IList<Portfolio> GetPortfolios(decimal iEntityId );
+        IList<Portfolio> GetPortfolios(decimal iEntityId );  
         IQueryable<User> GetUsers(decimal iEntityId);
         Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode);
         Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode, bool IncludeUser);

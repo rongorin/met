@@ -7,28 +7,37 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MetopeMVCApp.Models;
-using System.Configuration;
-
+using System.Configuration; 
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using Microsoft.AspNet.Identity;
 using ASP.MetopeNspace.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
-
-using MetopeMVCApp.Data;
-using PagedList;
+using Microsoft.AspNet.Identity.EntityFramework; 
+using MetopeMVCApp.Data; 
 using MetopeMVCApp.Filters;
-
+using MetopeMVCApp.Data.GenericRepository;
+using Metope.DAL; 
+using PagedList;
 
 namespace MetopeMVCApp.Controllers
 {
+    [SetAllowedEntityIdAttribute]
     public class PortfolioController : Controller
     { 
         //private PortfolioRepository _repo = new PortfolioRepository( );
-        private readonly IPortfolioRepository _repo; 
 
         private MetopeDbEntities db = new MetopeDbEntities(); //REMOVE this when done doing repository
-        private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        private UserManager<ApplicationUser> manager = 
+                    new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
+        //using  proper DI : only one constructor 
+
+        private readonly IPortfolioRepository3 _repo;
+
+        public PortfolioController(IPortfolioRepository3 repo)
+        {
+            _repo = repo;
+        }
 
         // need parameterless constructor. This is poor mans constructor Dependency Injection (DI)/ 
         // so this just passes in an implementation of the IPortfolioRep interface (which is the parm required by the constructor)
@@ -39,68 +48,55 @@ namespace MetopeMVCApp.Controllers
                 //  }
                 //  public FeaturedAccommodationController(IAccommodationService accommodationService)
                 //  { 
-                //  }
-
+                //  } 
         // Inversion of Control (IoC) like ninject or similar. http://stackoverflow.com/questions/12605445/mvc-no-parameterless-constructor-defined-for-this-object
-        public PortfolioController()
-            : this(new PortfolioRepository(new MetopeDbEntities())) 
-        {
-        }
+        //public PortfolioController()
+        //    : this(new PortfolioRepository(new MetopeDbEntities())) 
+        //{
+        //    GetUserId = () => User.Identity.GetUserId();
+        //}
           
         //public PortfolioController() 
         //{
         //    this._repo = new PortfolioRepository(new MetopeDbEntities());
         //}
 
-        //use this when doing the proper DI :
-        public PortfolioController(IPortfolioRepository repo)
-        {
-            _repo = repo;
-        }
-
-        // GET: /Portfolio/
-        public ActionResult Index(int page=1, string searchTerm=null)
+  
+        public Func<string> GetUserId; //For testing 
+         
+        public ActionResult Index(int page = 1, string searchTerm = null)
         { 
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            var portfolios = _repo.GetPortfolios(currentUser.EntityIdScope, page, searchTerm); 
-
-            // db.Portfolios.Where(c => c.Entity_ID == currentUser.EntityIdScope).Include(p => p.Entity).Include(p => p.User);
-
-
-            ////return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId).Include(p => p.Entity).Include(p => p.User);
-            //// var security_detail = db.Security_Detail.Include(s => s.Country).Include(s => s.Country1).Include(s => s.Currency).Include(s => s.Currency1).Include(s => s.Currency2).Include(s => s.Currency3) ;
-
-            //var userId = User.Identity.GetUserId();
-           //var checkingAccountId = db.CheckingAccounts.Where(c => c.ApplicationUserId == userId).First().Id; 
-
+            decimal EntityID = (decimal)ViewBag.EntityId;
+                     // var portfolios = _repo.GetPortfolios(EntityID, page, searchTerm)
+            var portfolios = _repo.GetPortfoliosEnum(EntityID, page, searchTerm)
+               .Select(g => new PortfolioIndexViewModel
+                    {
+                        Entity_ID = g.Entity_ID,
+                        Portfolio_Code = g.Portfolio_Code,
+                        Portfolio_Name = g.Portfolio_Name,
+                        Financial_Year_End = g.Financial_Year_End,
+                        Active_Flag = g.Active_Flag ,
+                        Portfolio_Valuation = g.Portfolio_Valuation
+                             //HasValuation= g.Portfolio_Valuation.Portfolio_Code 
+                            //Analytics = g => g.Wh Select(g => new SecurityDetailIndexModel
+                    }). ToList();
+              
             if(Request.IsAjaxRequest())
             {
-                return PartialView("_Portfolios", portfolios);
+                return PartialView("_Portfolios", portfolios.ToPagedList(page,10));
             }
             manager.Dispose();
-            return View(portfolios);
+            return View(portfolios.ToPagedList(page, 10));
         }
 
         // GET: /Portfolio/Details/ 5,'abc'
+        [CustomEntityAuthoriseFilter] 
         public ActionResult Details(decimal EntityId, string PortfolioCode)
-        { 
-            var currentUser = manager.FindById(User.Identity.GetUserId()); 
-             
-            if (EntityId == null || PortfolioCode == null) 
-            { 
-                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            } 
-            if (currentUser.EntityIdScope != EntityId)
-            {
-
-                throw new Exception("Not Acceptable");
-                //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-            } 
+        {  
             Portfolio portfolio = null;
             try
             {
-                portfolio = _repo.GetPortfolioById(EntityId, PortfolioCode);
-          
+                portfolio = _repo.GetPortfolioById(EntityId, PortfolioCode); 
             }
             catch { 
             }
@@ -112,12 +108,11 @@ namespace MetopeMVCApp.Controllers
         } 
         // GET: /Portfolio/Create 
        
-        [LogAttribuite]
+        [LogAttribuite] 
         public ActionResult Create()
         {  
             var currentUser = manager.FindById(User.Identity.GetUserId());
-  
-            ViewBag.Entity_ID  =  new SelectList(db.Entities, "Entity_ID", "Entity_Code");
+   
             ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name");
             ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
@@ -134,10 +129,10 @@ namespace MetopeMVCApp.Controllers
 
             var portfolio = new Portfolio
             {
-                Inception_Date =  DateTime.Now 
+                Inception_Date =  DateTime.Now ,
+                Entity_ID =  currentUser.EntityIdScope    
             };
-
-            ViewBag.entityId = currentUser.EntityIdScope;
+             
             return View(portfolio);
         }
 
@@ -145,7 +140,7 @@ namespace MetopeMVCApp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] 
         public ActionResult Create([Bind(Include = "Portfolio_Code,Portfolio_Name,Manager,Portfolio_Type,Portfolio_Base_Currency,PortfolIo_Domicile,Portfolio_Report_Currency,Inception_Date,Financial_Year_End, Portfolio_Status ,Custodian_Code,Active_Flag,System_Locked")] Portfolio portfolio)
         {
             var currentUser = manager.FindById(User.Identity.GetUserId()); 
@@ -164,75 +159,54 @@ namespace MetopeMVCApp.Controllers
             }
 
             if ( ModelState.IsValid)
-            {   
+            {
                 _repo.CreatePortfolio(portfolio);
-                _repo.Save();
+                _repo.Save ();
                 TempData.Add("ResultMessage", "new portfolio \"" + portfolio.Portfolio_Name + "\" code:\"" + portfolio.Portfolio_Code + "\" created successfully!");
            
                 return RedirectToAction("Index"); 
-            } 
+            }
 
-            //ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", portfolio.Entity_ID) 
-            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code");
-            ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name");
-            ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
-            ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
-            ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name");
-            ViewBag.Portfolio_Types = new SelectList(GetCodeMiscellVals("PORTTYP"), "MisCode", "MisCode_Description");
-            ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode_Description");
-            ViewBag.Custodians = new SelectList(GetPartyValues(currentUser.EntityIdScope), "Party_Code", "Party_Name");
-
-
-            var selectListItems = new List<SelectListItem>();
-            selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
-            selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
-            ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text");
-            ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text");
-             
-
+            //ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name");
+            //ViewBag.Portfolio_Base_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
+            //ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code");
+            //ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name");
+            //ViewBag.Portfolio_Types = new SelectList(GetCodeMiscellVals("PORTTYP"), "MisCode", "MisCode_Description");
+            //ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode_Description");
+            //ViewBag.Custodians = new SelectList(GetPartyValues(currentUser.EntityIdScope), "Party_Code", "Party_Name");
+            //var selectListItems = new List<SelectListItem>();
+            //selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
+            //selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString });
+            //ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text");
+            //ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text");
+              
             return View(portfolio);
         }
 
         // GET: /Portfolio/Edit/5
+        [CustomEntityAuthoriseFilter]
         public ActionResult Edit(decimal EntityId, string PortfolioCode)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-
-
-            if (EntityId == null || PortfolioCode == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            } 
-
-            if (currentUser.EntityIdScope != EntityId)
-            {
-                throw new Exception("Forbidden");
-              //throw new HttpException((int)System.Net.HttpStatusCode.Forbidden, "Forbidden");
-                 //return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-            }
+        { 
             Portfolio portfolio = _repo.GetPortfolioById(EntityId, PortfolioCode);
 
             if (portfolio == null)
-            {
+            { 
                 return HttpNotFound();
-            } 
-            
-            ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", portfolio.Entity_ID);
+            }  
             ViewBag.PortfolioBaseCurrency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Report_Currency);
             ViewBag.PortfolIo_Domicile = new SelectList(db.Countries, "Country_Code", "Country_Name", portfolio.PortfolIo_Domicile);
             ViewBag.Portfolio_Types = new SelectList(GetCodeMiscellVals("PORTTYP"), "MisCode", "MisCode_Description", portfolio.Portfolio_Type);
-            ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode_Description", portfolio.Portfolio_Status); 
-            ViewBag.Custodians = new SelectList(GetPartyValues(currentUser.EntityIdScope), "Party_Code", "Party_Name", portfolio.Custodian_Code);
-
-
+            ViewBag.PortfolioStatus = new SelectList(GetCodeMiscellVals("PFSTATUS"), "MisCode", "MisCode_Description", portfolio.Portfolio_Status);
+            ViewBag.Custodians = new SelectList(GetPartyValues(EntityId), "Party_Code", "Party_Name", portfolio.Custodian_Code);
+             
             var selectListItems = new List<SelectListItem>();
             selectListItems.Add(new SelectListItem { Text = "True", Value = bool.TrueString });
             selectListItems.Add(new SelectListItem { Text = "False", Value = bool.FalseString }); 
             ViewBag.MyActiveFlagList = new SelectList(selectListItems, "Value", "Text", portfolio.Active_Flag);
             ViewBag.MySysLockedList = new SelectList(selectListItems, "Value", "Text", portfolio.System_Locked);
 
-            ViewBag.managers = new SelectList(LoadManagers(currentUser.EntityIdScope), "User_Code", "User_Name", portfolio.Manager);
+            ViewBag.managers = new SelectList(LoadManagers(EntityId), "User_Code", "User_Name", portfolio.Manager);
 
             return View(portfolio);
         }
@@ -259,10 +233,10 @@ namespace MetopeMVCApp.Controllers
                     _repo.UpdatePortfolio(portfolio); // this is  EntityState.Modified;
                     _repo.Save();
                     TempData.Add("ResultMessage", "Portfolio \"" + portfolio.Portfolio_Name + "\" editied successfully!");
-                    return RedirectToAction("Index");
-               
+                    return RedirectToAction("Index"); 
                 }
             }
+
             ViewBag.Entity_ID = new SelectList(db.Entities, "Entity_ID", "Entity_Code", portfolio.Entity_ID);
             ViewBag.PortfolioBaseCurrency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Base_Currency);
             ViewBag.Portfolio_Report_Currency = new SelectList(db.Currencies, "Currency_Code", "ISO_Currency_Code", portfolio.Portfolio_Report_Currency);
@@ -282,14 +256,9 @@ namespace MetopeMVCApp.Controllers
         }
 
         // GET: /Portfolio/Delete/5
+        [CustomEntityAuthoriseFilter]
         public ActionResult Delete(decimal EntityId, string PortfolioCode)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-
-            if (EntityId == null || PortfolioCode == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+        { 
             Portfolio portfolio = _repo.GetPortfolioById(EntityId, PortfolioCode);  
             if (portfolio == null)
             {
@@ -301,13 +270,9 @@ namespace MetopeMVCApp.Controllers
         // POST: /Portfolio/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomEntityAuthoriseFilter]
         public ActionResult DeleteConfirmed(decimal EntityId, string PortfolioCode)
-        {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-             
-            if (currentUser.EntityIdScope != EntityId) 
-                return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //user manipulated querystring!
-
+        {  
             Portfolio portfolio = _repo.GetPortfolioById(EntityId, PortfolioCode); //db.Portfolios.Find(EntityId, PortfolioCode);
          
             _repo.DeletePortfolio(EntityId, PortfolioCode);
@@ -327,13 +292,14 @@ namespace MetopeMVCApp.Controllers
             return _repo.GetCodeMiscVals(iSettings);
 
         }
-        public IQueryable<Party> GetPartyValues(decimal iEntityId)
+         public IQueryable<Party> GetPartyValues(decimal iEntityId)
         {
             decimal refGenericEntity = Convert.ToDecimal(ConfigurationManager.AppSettings["GenericEntityId"]); 
             //return db.Users.Where(r => r.Entity_ID == iEntityId);
             return _repo.GetPartyValues(iEntityId, "CUSTODIAN", refGenericEntity);
 
         } 
+ 
         protected override void Dispose(bool disposing)
         {
             if (disposing)

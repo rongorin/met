@@ -1,0 +1,79 @@
+﻿@model IPagedList<Metope.DAL.Portfolio> 
+@{
+    ViewBag.Title = "Index"; 
+}
+ 
+<div class="row">
+    <div class="col-md-8">
+        <h3>Portfolio Listing</h3>
+    </div>
+
+    <div class="col-md-4 "> 
+        @* @section  Sidebar {     >> Not using this partial view as it isnt responsive when resizing browser
+           @Html.Partial("_SidebarSearch",null )
+        }*@
+        <div > 
+            <form class='form-inline' role='form' id='SearchForm' style="margin-top: 15px">
+                <input type='text' class='form-control input-sm' id='search-text' placeholder='Enter search text'>
+                <button type='submit' class='btn btn-success btn-sm' id='search-btn'>Search</button>
+            </form>
+        </div >
+
+                @*using (Ajax.BeginForm(
+             new AjaxOptions
+             {
+                 HttpMethod = "get",
+                 InsertionMode = InsertionMode.Replace,
+
+                 UpdateTargetId = "portfolioListing"
+             }))
+            {
+
+                <h3>
+                    <input type="search" name="searchTerm" class="btn btn-default" placeholder="Search" />
+                    <input type="submit" name="Search by Port name" value="Search" class="btn btn-default" />
+                </h3>
+
+            }
+                *@
+
+     </div>
+    </div>
+
+    @if (TempData["ResultMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissable">
+            <button class="close" data-dismiss="alert">&times;</button>
+            @TempData["ResultMessage"]
+        </div>
+    } 
+    @if (TempData["FailMsg"] != null)
+    {
+        <div class="alert alert-danger alert-dismissable">
+            <button class="close" data-dismiss="alert">&times;</button>
+            @TempData["FailMsg"]
+        </div>
+    } 
+@Html.Partial("_Portfolios", Model)
+
+@section Scripts {
+  <script type='text/javascript'>
+  
+    var mySearchingUrl = mtpApp.Urls.baseUrl + "Portfolio/Index";
+    $(function () {
+        $('#SearchForm').submit(function (event) {
+            event.preventDefault();
+            var form = $(this).parent("form");
+            console.log('test log' );
+            var mySearchTerm = $('#search-text').val();
+            $.get(mySearchingUrl, { page: 1, searchTerm: mySearchTerm })
+                .success(function (data) {
+                    $('#portfolioListing').html(data);
+                });
+        });
+    }); 
+ 
+
+</script>
+
+}

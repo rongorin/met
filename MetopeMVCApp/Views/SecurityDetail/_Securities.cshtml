@@ -1,4 +1,6 @@
-﻿@model IPagedList<MetopeMVCApp.Models.Security_Detail>
+﻿
+@model IPagedList<MetopeMVCApp.Models.SecurityDetailIndexModel>
+@*@model IPagedList<Metope.DAL.Security_Detail>*@
 @helper Truncate(string input, int length)
 {
     if (input.Length <= length)
@@ -11,8 +13,7 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-    <table class="table table-condensed table-striped">
-
+    <table class="table table-condensed table-striped"> 
         @if (!Model.Any())
         {
             <h3>Sorry!</h3>

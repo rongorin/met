@@ -1,31 +1,38 @@
 ﻿ @model DateTime?
 <div class="col-sm-4">
-    <div class="form-group">
-
-        @Html.LabelFor(model => model, htmlAttributes:
+    <div class="form-group"> 
+        @Html.LabelFor(model => model,htmlAttributes:
                     new
                     {
                         @class = "control-label col-md-5 input-sm",
                         style = "max-width:100% ;text-align: right"
                     })
-        <div class="col-md-7">
- 
+        <div class="col-md-7"> 
+            <div class='input-group date datetimepickerClass '>
 
-            <div class='input-group date datetimepickerClass'>
-
-                @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
-                    {
-                        @class = "form-control     ",
-                        placeholder = ViewData.ModelMetadata.Watermark 
-                    })
+                @if (ViewBag.MeDisabled == "readonly")
+                {
+                    @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
+                            {
+                                @class = "form-control     ",
+                                placeholder = ViewData.ModelMetadata.Watermark,
+                                disabled = "disabled"
+                            })
+                }
+                else
+                {
+                    @Html.TextBoxFor(model => model, "{0:yyyy-MM-dd}", new
+                            {
+                                @class = "form-control     ",
+                                placeholder = ViewData.ModelMetadata.Watermark
+                            })
+                }
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
-                @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })
-
-            </div>
             </div>
 
+            </div> 
     </div>
 </div>
 

@@ -5,28 +5,29 @@ using System.Linq;
 using System.Web; 
 using System.Data.Entity ;
 using PagedList;
+using MetopeMVCApp.Data.Repositories;
 namespace MetopeMVCApp.Data
 {
-    public class PortfolioRepository : IPortfolioRepository, IDisposable
+    public class PortfolioRepository  :   IPortfolioRepository, IDisposable
     {
         MetopeDbEntities _ctx;
          
         public PortfolioRepository(MetopeDbEntities contxt) //created new consturctor
-        { 
+        {       
             _ctx = contxt;  //_ctx = new MetopeDbEntities();
         }
         public IList<Portfolio> GetPortfolios(decimal iUserId )
         {
-          return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) 
+          return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId )
                   .ToList(); 
         }
+
         public IPagedList<Portfolio> GetPortfolios(decimal iUserId, int page = 1, string searchTerm = null)
         {
             return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId)
-                    .SearchName(searchTerm)
+                    .SearchPortfName(searchTerm)
                     //.Where(r => searchTerm == null || r.Portfolio_Name.Contains(searchTerm))
-                    .Include(p => p.Entity)
-
+                    .Include(p => p.Entity) 
                     .Include(p => p.User)
                     .OrderBy(s => s.Portfolio_Name)
                     .ToPagedList(page, 10);
@@ -38,9 +39,7 @@ namespace MetopeMVCApp.Data
         public IQueryable<User> GetUsers(decimal iEntityId)
         {
             return _ctx.Users.Where(r => r.Entity_ID == iEntityId);
-            //return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) ; 
-
-                
+            //return _ctx.Portfolios.Where(c => c.Entity_ID == iUserId) ;   
             //return _ctx.Replies.Where(r => r.TopicId == topicId);
         }
 
@@ -58,6 +57,7 @@ namespace MetopeMVCApp.Data
         {
             return _ctx.Portfolios.Find(EntityId, PortfolioCode);     
         }
+
         public Portfolio GetPortfolioById(decimal EntityId, string PortfolioCode, bool IncludeUser)
         {
             Portfolio myPrt = _ctx.Portfolios.Find(EntityId, PortfolioCode); 

@@ -1,11 +1,12 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Contact";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Various info.</p>
-
+<div id="myweather">
+    <p> The current weather for <span id="cityname"></span> is <span id="description"></span> with a temperature of <span id="temp"></span>°C</p>
+</div>
 					  <!-- Google Map -->
 <div class="gmap">
     <div class="padd">
@@ -14,3 +15,24 @@
     </div>
 
 </div> 
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(function () {  
+                $.get("@Url.Action("GetWeather","Home")") 
+                   .success(function (response) {
+                       $('#myweather').show(); 
+                       $("#cityname").text(response.name); 
+                       var temperat = Math.round(10 * (response.main.temp )) / 10;
+                       $("#temp").text(temperat);
+                       $("#humidity").text(response.main.humidity);
+                       $("#description").text(response.weather[0].description);
+                       console.log(response);
+                   })
+                     .error(function (response) {
+                         $('#myweather').hide();  
+                     });   
+                });
+            });
+    </script>
+}

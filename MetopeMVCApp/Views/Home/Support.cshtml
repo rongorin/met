@@ -1,9 +1,18 @@
 ﻿@{
     ViewBag.Title = "Support";
+} 
+<h2>@ViewBag.Title.</h2> 
+<br />
+ 
+@if (User.IsInRole("Admin"))
+{
+    <address>
+        <strong> View the @Html.ActionLink("Error logs", "Index", "Elmah") </strong>
+</address>
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+
+ 
  
 <address>
-    <strong>contact Paul Gio </strong> <br /> 
+    <strong>email: <a href='mailto:support@intuitivedigital.co.za'>support@intuitivedigital.co.za</a></strong> <br />
 </address>

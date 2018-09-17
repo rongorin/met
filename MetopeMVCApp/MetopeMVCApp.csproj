@@ -12,11 +12,12 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MetopeMVCApp</RootNamespace>
-    <AssemblyName>ASP.NET_MVC5_Bootstrap3_3_4_LESS</AssemblyName>
+    <AssemblyName>MetopeMVC</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -53,12 +54,24 @@
       <HintPath>..\packages\BundleTransformer.Less.1.9.54\lib\net40\BundleTransformer.Less.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elmah.Io.Client, Version=2.0.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.io.client.2.0.24\lib\net40\Elmah.Io.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GridMvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JavaScriptEngineSwitcher.Core, Version=1.2.4.0, Culture=neutral, PublicKeyToken=c608b2a8cc9e4472, processorArchitecture=MSIL">
@@ -118,12 +131,32 @@
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MiniProfiler, Version=3.2.0.157, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniProfiler.3.2.0.157\lib\net40\MiniProfiler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MiniProfiler.EntityFramework6, Version=3.0.11.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniProfiler.EF6.3.0.11\lib\net40\MiniProfiler.EntityFramework6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MsieJavaScriptEngine, Version=1.5.3.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
       <HintPath>..\packages\MsieJavaScriptEngine.1.5.3\lib\net40\MsieJavaScriptEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MVCGrid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MVCGrid.Net.1.0.0.60\lib\net40\MVCGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
@@ -134,8 +167,21 @@
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="StructureMap, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.3.1.1.134\lib\net40\StructureMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap.Net4, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.3.1.1.134\lib\net40\StructureMap.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.web.3.1.0.133\lib\net40\StructureMap.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -143,6 +189,7 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -161,9 +208,9 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -202,6 +249,10 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -209,7 +260,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -218,24 +269,83 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="bin\RouteConfig.cs" />
+    <Compile Include="App_Start\MVCGridConfig.cs" />
+    <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Admin\ElmahResult.cs" />
+    <Compile Include="Controllers\CashTransactionsController.cs" />
+    <Compile Include="Controllers\ClassificationIndustryController.cs" />
+    <Compile Include="Controllers\ClassificationsController.cs" />
+    <Compile Include="Controllers\DebtExpiryProfileController.cs" />
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\ErrorpageController.cs" />
+    <Compile Include="Controllers\ForexForecastController.cs" />
+    <Compile Include="Controllers\HistoryControllers\PortfolioPerformanceHistoryController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\HistoryControllers\SecurityAnalyticsHistoryController.cs" />
+    <Compile Include="Controllers\HistoryControllers\SecurityAttributionHistoryController.cs" />
+    <Compile Include="Controllers\HistoryControllers\SecurityPerformanceHistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderAllocationController.cs" />
+    <Compile Include="Controllers\PartyController.cs" />
+    <Compile Include="Controllers\PartyDebtAnalysisController.cs" />
+    <Compile Include="Controllers\PartyFinancialsController.cs" />
+    <Compile Include="Controllers\PartyFinancialsHistoryController.cs" />
     <Compile Include="Controllers\Port2Controller.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
-    <Compile Include="Controllers\PortfolioTestPanelController.cs" />
+    <Compile Include="Controllers\PortfolioPerformanceController.cs" />
+    <Compile Include="Controllers\PortfolioValuationController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\PositionSODController.cs" />
+    <Compile Include="Controllers\SecurityAnalyticsController.cs" />
+    <Compile Include="Controllers\SecurityAttributionController.cs" />
+    <Compile Include="Controllers\SecurityClassificationIndustryController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\SecurityDetailController.cs" />
+    <Compile Include="Controllers\SecurityDividendDetailController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\SecurityDividendSplitController.cs" />
+    <Compile Include="Controllers\SecurityListDetailController.cs" />
+    <Compile Include="Controllers\SecurityPerformanceController.cs" />
+    <Compile Include="Controllers\SecurityPriceController.cs" />
     <Compile Include="Data\Constants.cs" />
-    <Compile Include="Data\IPortfolioRepository.cs" />
-    <Compile Include="Data\PartyRepository.cs" />
-    <Compile Include="Data\PortfolioRepository.cs" />
-    <Compile Include="Data\PortfolioQueryableExtensions.cs" />
+    <Compile Include="Data\DebtExpiryProfileRepository.cs" />
+    <Compile Include="Data\GenericRepository\GenericRepository.cs" />
+    <Compile Include="Data\GenericRepository\IGenericRepository.cs" />
+    <Compile Include="Data\HistoryRepositories.cs" />
+    <Compile Include="Data\IPortfolioRepository3.cs" />
+    <Compile Include="Data\ISecurityDetailRepository.cs" />
+    <Compile Include="Data\PartyDebtAnalysisRepository.cs" />
+    <Compile Include="Data\PartyFinancialsHistoryRepository.cs" />
+    <Compile Include="Data\PartyFinancialsRepository.cs" />
+    <Compile Include="Data\TablesQueryableExtensions.cs" />
+    <Compile Include="Data\Repositories\IDisposedTracker.cs" />
+    <Compile Include="Data\Repositories\PortfolioRepository3.cs" />
+    <Compile Include="Data\SecurityDetailRepository.cs" />
     <Compile Include="DecimalModelBinder.cs" />
+    <Compile Include="DependencyResolution\ControllerConvention.cs" />
+    <Compile Include="DependencyResolution\DefaultRegistry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DependencyResolution\IoC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
+    <Compile Include="DependencyResolution\StructureMapScopeModule.cs" />
+    <Compile Include="Filters\CustomAuthoriseEntityFilter.cs" />
+    <Compile Include="Filters\CustomEntityAuthoriseFilter.cs" />
+    <Compile Include="Filters\DbInterceptors\NLogCommandInterceptor.cs" />
+    <Compile Include="Filters\FiltersDropdownData.cs" />
+    <Compile Include="Filters\ImportModelStateFromTempDataAttribute.cs" />
     <Compile Include="Filters\LogAttribuite.cs" />
+    <Compile Include="Filters\ModelStateTempDataTransfer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -266,69 +376,38 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AspNetUser.cs">
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Code_Miscellaneous.cs">
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Country.cs">
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Currency.cs">
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Currency_Pair.cs">
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entity.cs">
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Exchange.cs">
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\AddSecurityListDetailVM.cs" />
+    <Compile Include="Models\CashTransactionIndexViewModel.cs" />
+    <Compile Include="Models\CheckBoxListItem.cs" />
+    <Compile Include="Models\ClassificationEditViewModel.cs" />
+    <Compile Include="Models\ClassificationIndustryDDLViewModel.cs" />
+    <Compile Include="Models\Custom\ApiException.cs" />
+    <Compile Include="Models\Custom\MyError.cs" />
+    <Compile Include="Models\Custom\Weather.cs" />
+    <Compile Include="Models\EditSecurityListDetailVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\MetopeEDM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MetopeEDM.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MetopeEDM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MetopeEDM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MetopeEDM.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MyMetaData\PortfolioModelMetatData.cs" />
-    <Compile Include="Models\MyMetaData\SecurityDetailModelMetaData.cs" />
-    <Compile Include="Models\Party.cs">
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Portfolio.cs">
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Portfolio_List.cs">
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Security_Detail.cs">
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Security_Type.cs">
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>MetopeEDM.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\OrderAllocationIndexViewModel.cs" />
+    <Compile Include="Models\OrderAllocSelectionViewModel.cs" />
+    <Compile Include="Models\PortfolioIndexViewModel.cs" />
+    <Compile Include="Models\PositionsSODIndexViewModel.cs" />
+    <Compile Include="Models\SecurityAnalyticsIndexViewModel.cs" />
+    <Compile Include="Models\SecurityAttributionIndexViewModel.cs" />
+    <Compile Include="Models\SecurityDetailIndexModel.cs" />
+    <Compile Include="Models\SecurityDividendDetailViewModel.cs" />
+    <Compile Include="Models\SecurityListDetailIndexVM.cs" />
+    <Compile Include="Models\SecurityPerformanceIndexViewModel.cs" />
+    <Compile Include="Models\SecurityPriceEditModel.cs" />
+    <Compile Include="Models\SecurityPriceIndexViewModel.cs" />
+    <Compile Include="Models\SelectOrderAllocEditorViewModel.cs" />
+    <Compile Include="Models\SPNamesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\ClientApiService.cs" />
+    <Compile Include="Services\Service.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utitlity\Extensions\DateTimeExtensions.cs" />
     <Compile Include="Utitlity\Extensions\DropDownExtensions.cs" />
@@ -336,21 +415,26 @@
     <Compile Include="Utitlity\Extensions\SessionExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="Content\ajax-loader.gif" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrapSlate.css" />
+    <Content Include="Content\cssNoLines.css" />
+    <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\gridmvc.datepicker.css" />
+    <Content Include="Content\gridmvc.datepicker.min.css" />
+    <Content Include="Content\img\metope-greece64.jpg" />
+    <Content Include="Content\img\Metope-images.jpg" />
+    <Content Include="Content\img\metopeParthenon.png" />
     <Content Include="Content\myCustom.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\img\bus-yellow-300px.png" />
     <Content Include="Content\img\cabin.png" />
     <Content Include="Content\img\cake.png" />
     <Content Include="Content\img\circus.png" />
-    <Content Include="Content\img\do-you-like-doughnuts300px.png" />
     <Content Include="Content\img\MetopeHome-Banner.jpg" />
     <Content Include="Content\img\Nashorn-coloured-300px.png" />
-    <Content Include="Content\img\safe.png" />
     <Content Include="Content\img\submarine.png" />
-    <Content Include="Content\img\windowwasher-300px.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -393,6 +477,8 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\myButtons.css" />
+    <Content Include="Data\Repositories\LoggerRepository\LoggerFile.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.less" />
@@ -470,29 +556,16 @@
     <Content Include="Content\bootstrap\bootstrap.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
+    <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\MetopeEDM.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MetopeEDM.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\MetopeEDM.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MetopeEDM.edmx</DependentUpon>
-      <LastGenOutput>MetopeEDM.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\MetopeEDM.edmx.diagram">
-      <DependentUpon>MetopeEDM.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\MetopeEDM.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MetopeEDM.edmx</DependentUpon>
-      <LastGenOutput>MetopeEDM.cs</LastGenOutput>
-    </Content>
     <Content Include="App_Start\CodeTemplates\EFModelFromDatabase\EntityType.cs.t4" />
     <Content Include="App_Start\CodeTemplates\EFModelFromDatabase\Context.cs.t4" />
+    <Content Include="App_Code\RGHelpers.cshtml" />
+    <Content Include="Grid.mvc.readme" />
     <None Include="Properties\PublishProfiles\Local IIS deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Properties\PublishProfiles\Web Localhost Deploy.pubxml" />
@@ -502,8 +575,12 @@
     </None>
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\common\datetimepicker-init.js" />
+    <Content Include="Scripts\common\datetimepickerCustom.js" />
     <Content Include="Scripts\common\form.js" />
     <Content Include="Scripts\common\wizard-init.js" />
+    <Content Include="Scripts\gridmvc.js" />
+    <Content Include="Scripts\gridmvc.lang.ru.js" />
+    <Content Include="Scripts\gridmvc.min.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
@@ -530,6 +607,16 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\PortfolioValuation\Create.cshtml" />
+    <Content Include="Views\PortfolioValuation\Delete.cshtml" />
+    <Content Include="Views\PortfolioValuation\Details.cshtml" />
+    <Content Include="Views\PortfolioValuation\Edit.cshtml" />
+    <Content Include="Views\PortfolioValuation\Index.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Create.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Delete.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Details.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Edit.cshtml" />
+    <Content Include="Views\SecurityDividendDetail\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -552,7 +639,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Errorxxx.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -579,7 +666,6 @@
     <Content Include="Views\SecurityDetail\Create.cshtml" />
     <Content Include="Views\SecurityDetail\Delete.cshtml" />
     <Content Include="Views\SecurityDetail\Details.cshtml" />
-    <Content Include="Views\SecurityDetail\EditOld.cshtml" />
     <Content Include="Views\SecurityDetail\Index.cshtml" />
     <Content Include="Views\Portfolio\_Portfolios1.cshtml" />
     <Content Include="Views\Portfolio\_Portfolios.cshtml" />
@@ -597,18 +683,191 @@
     <Content Include="Views\Shared\EditorTemplates\Portfolio.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
     <Content Include="Views\SecurityDetail\_Securities.cshtml" />
-    <Content Include="Views\Port2\Create.cshtml" />
-    <Content Include="Views\SecurityDetail\HistoryUnderConstruction.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Security_Detail2.cshtml" />
+    <Content Include="Views\SecurityAnalytics\SecurityAnalyticsHistory.cshtml" />
     <Content Include="Views\PortfolioTestPanel\Edit.cshtml" />
-    <Content Include="Views\SecurityDetail\EditBup.cshtml" />
     <Content Include="Views\Home\Support.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\GridSecurityDetail\Edit.cshtml" />
+    <Content Include="Views\GridSecurityDetail\Index.cshtml" />
+    <Content Include="Views\Shared\_GridPager.cshtml" />
+    <Content Include="Views\Shared\_Grid.cshtml" />
+    <Content Include="Views\Party\Create.cshtml" />
+    <Content Include="Views\Party\Delete.cshtml" />
+    <Content Include="Views\Party\Details.cshtml" />
+    <Content Include="Views\Party\Edit.cshtml" />
+    <Content Include="Views\Party\Index.cshtml" />
+    <Content Include="Views\Shared\_MsgSuccesFail.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Party.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Views\SecurityPrice\Create.cshtml" />
+    <Content Include="Views\SecurityPrice\Delete.cshtml" />
+    <Content Include="Views\SecurityPrice\Details.cshtml" />
+    <Content Include="Views\SecurityPrice\Edit.cshtml" />
+    <Content Include="Views\SecurityPrice\Index.cshtml" />
+    <Content Include="Views\SecurityPrice\EditHistory.cshtml" />
+    <Content Include="Views\SecurityPrice\DeleteHistory.cshtml" />
+    <Content Include="Views\Shared\_LayoutWithSidebar.cshtml" />
+    <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDateVertic.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditorVertic.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BooleanVertic.cshtml" />
+    <Content Include="Views\PartyDebtAnalysis\Create.cshtml" />
+    <Content Include="Views\PartyDebtAnalysis\Delete.cshtml" />
+    <Content Include="Views\PartyDebtAnalysis\Details.cshtml" />
+    <Content Include="Views\PartyDebtAnalysis\Edit.cshtml" />
+    <Content Include="Views\PartyDebtAnalysis\Index.cshtml" />
+    <Content Include="Views\PartyFinancials\Create.cshtml" />
+    <Content Include="Views\PartyFinancials\Delete.cshtml" />
+    <Content Include="Views\PartyFinancials\Details.cshtml" />
+    <Content Include="Views\PartyFinancials\Edit.cshtml" />
+    <Content Include="Views\PartyFinancials\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Party_Debt_Analysis.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Party_Financials.cshtml" />
+    <Content Include="Views\DebtExpiryProfile\Create.cshtml" />
+    <Content Include="Views\DebtExpiryProfile\Delete.cshtml" />
+    <Content Include="Views\DebtExpiryProfile\Edit.cshtml" />
+    <Content Include="Views\DebtExpiryProfile\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Debt_Expiry_Profile.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimalVertic.cshtml" />
+    <Content Include="Views\PartyFinancialsHistory\Delete.cshtml" />
+    <Content Include="Views\PartyFinancialsHistory\Details.cshtml" />
+    <Content Include="Views\PartyFinancialsHistory\Edit.cshtml" />
+    <Content Include="Views\PartyFinancialsHistory\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Party_Financials_History.cshtml" />
+    <Content Include="Views\Shared\_SaveButtonShow.cshtml" />
+    <Content Include="Views\Shared\_DeleteButtonShow.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Dividend_Detail.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditSmallIntVert.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Dividend_DetailVert.cshtml" />
+    <Content Include="Views\Shared\_CreateHyperLinkSDD.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditIntVertic.cshtml" />
+    <Content Include="Views\Shared\_StoredProcButtons.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimal4PlacesVertic.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimal6Places.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Analytics.cshtml" />
+    <Content Include="Views\SecurityAnalytics\Create.cshtml" />
+    <Content Include="Views\SecurityAnalytics\Delete.cshtml" />
+    <Content Include="Views\SecurityAnalytics\Details.cshtml" />
+    <Content Include="Views\SecurityAnalytics\Edit.cshtml" />
+    <Content Include="Views\SecurityAnalytics\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimalZeroPlaces.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimal6PlacesVertic.cshtml" />
+    <Content Include="Views\Party\Trouble.cshtml" />
+    <Content Include="Views\GridSecurityDetail\Errormessage.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\SecurityListDetail\Create.cshtml" />
+    <Content Include="Views\SecurityListDetail\Delete.cshtml" />
+    <Content Include="Views\SecurityListDetail\Details.cshtml" />
+    <Content Include="Views\SecurityListDetail\Edit.cshtml" />
+    <Content Include="Views\SecurityListDetail\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CheckBoxListItem.cshtml" />
+    <Content Include="Views\Shared\_SecurityList.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_List_Detail.cshtml" />
+    <Content Include="Views\SecurityDividendSplit\Create.cshtml" />
+    <Content Include="Views\SecurityDividendSplit\Delete.cshtml" />
+    <Content Include="Views\SecurityDividendSplit\Details.cshtml" />
+    <Content Include="Views\SecurityDividendSplit\Edit.cshtml" />
+    <Content Include="Views\SecurityDividendSplit\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimalZeroPlacesVert.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Portfolio_Valuation.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BootstrapEditDecimal8PlacesVertic.cshtml" />
+    <Content Include="Views\PositionSOD\Create.cshtml" />
+    <Content Include="Views\PositionSOD\Delete.cshtml" />
+    <Content Include="Views\PositionSOD\Details.cshtml" />
+    <Content Include="Views\PositionSOD\Edit.cshtml" />
+    <Content Include="Views\PositionSOD\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Position_SOD.cshtml" />
+    <Content Include="Views\OrderAllocation\Delete.cshtml" />
+    <Content Include="Views\OrderAllocation\Details.cshtml" />
+    <Content Include="Views\OrderAllocation\Index.cshtml" />
+    <Content Include="Views\OrderAllocation\EditorTemplates\SelectOrderAllocEditorViewModel.cshtml" />
+    <Content Include="Views\OrderAllocation\IndexOld.cshtml" />
+    <Content Include="Views\SecurityPerformance\Create.cshtml" />
+    <Content Include="Views\SecurityPerformance\Delete.cshtml" />
+    <Content Include="Views\SecurityPerformance\Details.cshtml" />
+    <Content Include="Views\SecurityPerformance\Edit.cshtml" />
+    <Content Include="Views\SecurityPerformance\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Performance.cshtml" />
+    <Content Include="Views\SecurityPerformance\SecurityPerformanceHistory.cshtml" />
+    <Content Include="Views\CashTransactions\Create.cshtml" />
+    <Content Include="Views\CashTransactions\Delete.cshtml" />
+    <Content Include="Views\CashTransactions\Details.cshtml" />
+    <Content Include="Views\CashTransactions\Edit.cshtml" />
+    <Content Include="Views\CashTransactions\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Cash_Transactions.cshtml" />
+    <Content Include="Views\CashTransactions\CashTransactionsHistory.cshtml" />
+    <Content Include="Views\SecurityAttribution\Create.cshtml" />
+    <Content Include="Views\SecurityAttribution\Delete.cshtml" />
+    <Content Include="Views\SecurityAttribution\Details.cshtml" />
+    <Content Include="Views\SecurityAttribution\Edit.cshtml" />
+    <Content Include="Views\SecurityAttribution\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Attribution.cshtml" />
+    <Content Include="Views\Classifications\Create.cshtml" />
+    <Content Include="Views\Classifications\Delete.cshtml" />
+    <Content Include="Views\Classifications\Details.cshtml" />
+    <Content Include="Views\Classifications\Edit.cshtml" />
+    <Content Include="Views\Classifications\Index.cshtml" />
+    <Content Include="Views\Classifications\_ClassifIndustry.cshtml" />
+    <Content Include="Views\ClassificationIndustry\Create.cshtml" />
+    <Content Include="Views\ClassificationIndustry\Delete.cshtml" />
+    <Content Include="Views\ClassificationIndustry\Details.cshtml" />
+    <Content Include="Views\ClassificationIndustry\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Classification_Industry.cshtml" />
+    <Content Include="Views\SecurityAnalyticsHistory\Create.cshtml" />
+    <Content Include="Views\SecurityAnalyticsHistory\Delete.cshtml" />
+    <Content Include="Views\SecurityAnalyticsHistory\Details.cshtml" />
+    <Content Include="Views\SecurityAnalyticsHistory\Edit.cshtml" />
+    <Content Include="Views\SecurityAnalyticsHistory\Index.cshtml" />
+    <Content Include="Views\SecurityAttributionHistory\Create.cshtml" />
+    <Content Include="Views\SecurityAttributionHistory\Delete.cshtml" />
+    <Content Include="Views\SecurityAttributionHistory\Details.cshtml" />
+    <Content Include="Views\SecurityAttributionHistory\Edit.cshtml" />
+    <Content Include="Views\SecurityAttributionHistory\Index.cshtml" />
+    <Content Include="Views\SecurityPerformanceHistory\Create.cshtml" />
+    <Content Include="Views\SecurityPerformanceHistory\Delete.cshtml" />
+    <Content Include="Views\SecurityPerformanceHistory\Details.cshtml" />
+    <Content Include="Views\SecurityPerformanceHistory\Edit.cshtml" />
+    <Content Include="Views\SecurityPerformanceHistory\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Analytics_History.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Attribution_History.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Performance_History.cshtml" />
+    <Content Include="Views\Shared\_UserSelectDate.cshtml" />
+    <Content Include="Views\PortfolioPerformance\Create.cshtml" />
+    <Content Include="Views\PortfolioPerformance\Delete.cshtml" />
+    <Content Include="Views\PortfolioPerformance\Details.cshtml" />
+    <Content Include="Views\PortfolioPerformance\Edit.cshtml" />
+    <Content Include="Views\PortfolioPerformance\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Portfolio_Performance.cshtml" />
+    <Content Include="Views\PortfolioPerformanceHistory\Create.cshtml" />
+    <Content Include="Views\PortfolioPerformanceHistory\Delete.cshtml" />
+    <Content Include="Views\PortfolioPerformanceHistory\Details.cshtml" />
+    <Content Include="Views\PortfolioPerformanceHistory\Edit.cshtml" />
+    <Content Include="Views\PortfolioPerformanceHistory\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Portfolio_Performance_History.cshtml" />
+    <Content Include="Views\SecurityClassificationIndustry\Create.cshtml" />
+    <Content Include="Views\SecurityClassificationIndustry\Delete.cshtml" />
+    <Content Include="Views\SecurityClassificationIndustry\Details.cshtml" />
+    <Content Include="Views\SecurityClassificationIndustry\Edit.cshtml" />
+    <Content Include="Views\SecurityClassificationIndustry\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Security_Classification_Industry.cshtml" />
+    <Content Include="Views\ForexForecast\Create.cshtml" />
+    <Content Include="Views\ForexForecast\Delete.cshtml" />
+    <Content Include="Views\ForexForecast\Details.cshtml" />
+    <Content Include="Views\ForexForecast\Edit.cshtml" />
+    <Content Include="Views\ForexForecast\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Forex_Forecast.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bin\" />
+    <Folder Include="Data\Persist\" />
+    <Folder Include="Data\UnitOfWork\" />
+    <Folder Include="Models\MyMetaData\" />
+    <Folder Include="Views\Contact\" />
+    <Folder Include="Views\Errorpage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -636,6 +895,12 @@
     <EmbeddedResource Include="Migrations\201605071108389_Init3.resx">
       <DependentUpon>201605071108389_Init3.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Metope.DAL\Metope.DAL.csproj">
+      <Project>{68c48d83-179f-4049-aaa8-a42991b04f5f}</Project>
+      <Name>Metope.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

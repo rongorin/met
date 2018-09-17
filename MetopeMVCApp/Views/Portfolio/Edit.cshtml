@@ -1,5 +1,5 @@
 ﻿ 
-@model MetopeMVCApp.Models.Portfolio
+@model Metope.DAL.Portfolio
 
 @{
     ViewBag.Title = "Edit";
@@ -8,7 +8,7 @@
     @Styles.Render("~/Content/datetime")
 }
 <h4></h4>
-<h3>Editing  Security <b>  @Model.Portfolio_Name </b></h3>
+<h3>Editing Portfolio <b> @Model.Portfolio_Name </b></h3>
 <hr />
 
 @*<div class="panel panel-primary ">
@@ -27,16 +27,8 @@
                 @Html.HiddenFor(model => model.Portfolio_Code)
                 @Html.EditorForModel()
             </div>
-        }
-   
- 
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
- 
-@section Scripts {
- 
+        }   
+@section Scripts { 
     @Scripts.Render("~/bundles/datetime")
 }
 

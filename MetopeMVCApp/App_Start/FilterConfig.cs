@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using MetopeMVCApp.Filters;
+using System.Web.Mvc;
 
 namespace ASP.MetopeNspace
 {
@@ -7,7 +8,8 @@ namespace ASP.MetopeNspace
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new AuthorizeAttribute());
-            filters.Add(new HandleErrorAttribute()); 
+            filters.Add(new HandleErrorAttribute());
+            filters.Add(new SetGenericEntityAttribute()); 
         }
     }
 }

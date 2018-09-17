@@ -1,0 +1,47 @@
+﻿@model Metope.DAL.Forex_Forecast
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Forex Forecast</h2>
+
+@{
+    ViewBag.Title = "Edit";
+}
+@section Styles {
+    @Styles.Render("~/Content/datetime")
+}
+<h3>
+   for <b> @Model.Security_Detail.Short_Name </b> Month-Year <b> @Model.Month_Year</b>
+</h3>
+@using (Html.BeginForm())   
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(false)
+        @Html.ValidationMessage("Error")
+
+        @Html.HiddenFor(model => model.Entity_ID)
+        @Html.HiddenFor(model => model.Month_Year) 
+        @Html.HiddenFor(model => model.Security_ID) 
+         
+        @Html.EditorForModel(new { MeDisabled = "readonly" })
+         
+        <div>
+            @Html.ActionLink("Back to List", "Index", new { SecurityId = Model.Security_ID }, null)
+        </div>
+    </div>
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetime")
+}
+
+ 
+
+ 
