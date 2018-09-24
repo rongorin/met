@@ -16,14 +16,12 @@ namespace Metope.DAL.MyMetaData
         [Display(Name = "Security")]
         public object Security_ID { get; set; }
 
-        [Required]
-        [MaxLength(6, ErrorMessage = "Value for {0} must be 5 or 6  numbers")]
-        [MinLength(5, ErrorMessage = "Value for {0} must be 5 or 6 numbers")]
         //[RegularExpression("[0-999]{1,}", ErrorMessage = "Value for {0} must be an integer")]
+        [Required]
+        [MaxLength(6, ErrorMessage = "Value for {0} must be in format mmyyyy")]
+        [MinLength(6, ErrorMessage = "Value for {0} must be in format mmyyyy")] 
         [RegularExpression("^[0-9]*$", ErrorMessage = "Value for {0} must be numeric")]
-        public object Month_Year {get;set;}
-
-   //     [Range(0, 99.999999, ErrorMessage = "Value for {0} must be less than 100")]
+        public object Month_Year {get;set;} 
  
 
     }

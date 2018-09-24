@@ -15,7 +15,7 @@ namespace Metope.DAL
     using System.Collections.Generic;
     [MetadataType(typeof(ForexForecastModelMetaData))]
      
-    public partial class Forex_Forecast
+    public partial class Forex_Forecast : IValidatableObject
     {
         public decimal Entity_ID { get; set; }
         public decimal Security_ID { get; set; }
@@ -25,6 +25,16 @@ namespace Metope.DAL
         public string Last_Update_User { get; set; }
     
         public virtual Security_Detail Security_Detail { get; set; }
-        public virtual User User { get; set; }
+        public virtual User User { get; set; } 
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {   // 
+            int month = int.Parse(Month_Year.Substring(0,2));
+            if (month > 12 ) 
+                    yield return new ValidationResult("Invalid month entered");
+
+            int yyyy = int.Parse(Month_Year.Substring(2, 4)); 
+            if (Math.Abs(yyyy - DateTime.Now.Year) > 90)
+                yield return new ValidationResult("Invalid year entered. Out of range!");
+        }
     }
 }
