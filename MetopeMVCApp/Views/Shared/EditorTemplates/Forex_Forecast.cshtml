@@ -8,17 +8,17 @@
 
         @if (ViewBag.MeDisabled == "readonly")
         {
-            @Html.DropDownList("Security_ID", (SelectList)ViewBag.Securities_All, string.Empty, new
+            @Html.DropDownList("Security_ID", (SelectList)ViewBag.Dividend_FX_Security_ID, string.Empty, new
                            {
                                @class = "form-control",
                                @readonly = "readonly",
                                disabled = "disabled"
                            })
         }
-        else
+        else 
         {
             // @Html.DropDownList("Security_ID", null, string.Empty, new { @class = "form-control" })
-             @Html.DropDownList("Security_ID", (SelectList)ViewBag.Securities_All, string.Empty, new { @class = "form-control" })
+             @Html.DropDownList("Security_ID", (SelectList)ViewBag.Dividend_FX_Security_ID, string.Empty, new { @class = "form-control" })
         }
 
         @Html.ValidationMessageFor(model => model.Security_ID, "", new { @class = "text-danger" })

@@ -114,6 +114,7 @@ namespace MetopeMVCApp.Controllers
                 }
                 else
                 {
+                    sdd.Dividend_Annual_Number = SetAnnualDivNum(sdd.Dividend_Annual_Number, sdd.Dividend_Type);
                     sdd.Entity_ID = EntityID;
                     sdd.Last_Update_Date = DateTime.Now;
                     sdd.Last_Update_User = User.Identity.Name;
@@ -174,8 +175,9 @@ namespace MetopeMVCApp.Controllers
                 db11.Update(security_Dividend_Detail); //sets the modified status 
                 security_Dividend_Detail.Last_Update_Date = DateTime.Now;
                 security_Dividend_Detail.Last_Update_User = User.Identity.Name;
-                if (security_Dividend_Detail.Dividend_Type == "E" || security_Dividend_Detail.Dividend_Type == "S")
-                    security_Dividend_Detail.Dividend_Annual_Number = null; 
+                security_Dividend_Detail.Dividend_Annual_Number = SetAnnualDivNum(security_Dividend_Detail.Dividend_Annual_Number,
+                                                                                  security_Dividend_Detail.Dividend_Type);
+
                 db11.Save();
                 TempData["ResultMessage"] = "Dividend number " + security_Dividend_Detail.Dividend_Seq_Number.ToString() + " edited successfully!";
                 return RedirectToAction("Index", new { SecurityId = security_Dividend_Detail.Security_ID });     
@@ -229,8 +231,8 @@ namespace MetopeMVCApp.Controllers
         public ActionResult RunSp(decimal Security_Id, string command, string Security_name)
         {
             var spResult ="";
-             
-             if (command == "Update Divnd Sched only")
+
+            if (command == "Generate New F/casts")
                  spResult = db11.RunGenerateDividendsSp((decimal)ViewBag.EntityId, Security_Id, null, null, GetTheUser().UserName);
 
             if (spResult == null)
@@ -240,6 +242,15 @@ namespace MetopeMVCApp.Controllers
             return RedirectToAction("Index", null, new { SecurityId = Security_Id });   
         }
 
+        //force in null for the div annual number if divtype is S or E
+        private int? SetAnnualDivNum(int? DividendAnnualNo, string DivType)
+        {
+        if (DivType == "I" || DivType=="F")
+            return DividendAnnualNo;
+        else
+            return null;
+
+        }
         private ApplicationUser GetTheUser()
         {
             UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));

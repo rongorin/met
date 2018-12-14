@@ -21,18 +21,19 @@
     @Html.Grid(Model).Named("depGrid").Columns(columns =>
     {
         columns.Add(c => c.Security_Detail.Short_Name).Titled("Security ").Filterable(true);
-         
+
         columns.Add(c => c.Month_Year) .Titled("Month-Year").Filterable(true)
-            .SetWidth(150);  
+            .SetWidth(150) 
+             .RenderValueAs(o => o.Month_Year.ToString().Substring(0, o.Month_Year.Length - 4) + "-" + o.Month_Year.ToString().Substring(2, o.Month_Year.Length-2  ));
+        
         columns.Add(c => c.Forecast_Rate).Titled("Forecast Rate").Css("text-right").Filterable(false)
            .RenderValueAs(x => String.Format("<span class=\"pull-right\">{0:0,0.00}</span>", x.Forecast_Rate)).Encoded(false)
            .Sanitized(false)
            .SetWidth(150);
-        
-        
+         
         columns.Add(c => c.Entity_ID, true);
         columns.Add(c => c.Security_ID, true);
-
+         
         columns.Add()
                   .Encoded(false)
                   .Sanitized(false)
@@ -55,15 +56,6 @@
 @section Scripts {
     @Scripts.Render("~/bundles/GridMvc")
     <script>
-    $(function () {
-        pageGrids.depGrid.onRowSelect(function (e) {
-            var myUrl2 ;
-            //here rather do full page load instead of the Ajax partial: 
-           myUrl2 = mtpApp.Urls.baseUrl + "ForexForecast/Edit?SecurityId=" + e.row.Security_ID + "&MonthYear=" + e.row.Month_Year + "&EntityId=" + e.row.Entity_ID;
-         
-            window.location = myUrl2;
-        });
-    });
     </script>
 
 }

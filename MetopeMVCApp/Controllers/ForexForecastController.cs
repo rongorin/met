@@ -31,11 +31,10 @@ namespace MetopeMVCApp.Controllers
                     .OrderBy(X => X.Security_ID).ThenByDescending(x=> x.Month_Year);
 
             return View(vm);
-        }
-
+        } 
          
         // GET: ForexForecast/Create
-        [AllSecuritiesInclGenericFilter]
+        [SecuritiesFilter]
         public ActionResult Create( string Nav = "")
         {   
             decimal EntityID = (decimal)ViewBag.EntityId;
@@ -52,7 +51,7 @@ namespace MetopeMVCApp.Controllers
         // POST: ForexForecast/Create 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AllSecuritiesInclGenericFilter]
+        [SecuritiesFilter] 
         public ActionResult Create([Bind(Include = "Entity_ID,Security_ID,Month_Year,Forecast_Rate,Last_Update_Date,Last_Update_User")] 
                                     Forex_Forecast forex_Forecast,  string navIndicator = "")
         {
@@ -93,7 +92,7 @@ namespace MetopeMVCApp.Controllers
 
         // GET: ForexForecast/Edit/5
         [CustomEntityAuthoriseFilter]
-        [AllSecuritiesInclGenericFilter]
+        [SecuritiesFilter]
         public ActionResult Edit(decimal EntityId, decimal SecurityId, string MonthYear)
         {
             Forex_Forecast ff = db11.FindBy(r => r.Entity_ID == EntityId && r.Security_ID == SecurityId &&
@@ -104,13 +103,13 @@ namespace MetopeMVCApp.Controllers
                 return HttpNotFound();
             }
              
-            ViewBag.SecuritiesAll = ff.Security_ID;
+            ViewBag.SecuritiesAll   = ff.Security_ID;
 
             //if (Request.IsAjaxRequest())
             //{
             //    return View(party);
             //}
-            ViewBag.SecuritiesAll = ff.Security_ID;
+            ViewBag.DividendFXSecurityID = ff.Security_ID;
             return View(ff); 
         } 
 
@@ -120,7 +119,7 @@ namespace MetopeMVCApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AllSecuritiesInclGenericFilter]
+        [SecuritiesFilter]
         public ActionResult Edit([Bind(Include = "Entity_ID,Security_ID,Month_Year,Forecast_Rate,Last_Update_Date,Last_Update_User")] Forex_Forecast forex_Forecast)
         {
             var EntityID = (decimal)ViewBag.EntityId;

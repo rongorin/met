@@ -67,6 +67,12 @@
         columns.Add(c => c.Financial_Year)
             .Titled("Financial Year").Filterable(true)
             .SetWidth(120);
+        
+        columns.Add(c => c.Dividend_Annual_Number)
+            .Titled("Annual Num").Filterable(true).Filterable(false)
+        .RenderValueAs(x => String.Format("<span class=\"center\">{0:0 }</span>", x.Dividend_Annual_Number)).Encoded(false)
+        .Sanitized(false)
+        .SetWidth(120); 
         //hides column, but use this in js:    PrCur = c.Security_Detail.Price_Curr, 
         columns.Add(c => c.Entity_ID, true);
          
@@ -118,7 +124,7 @@
             </div>
             
             <div class="col-md-3 pull-right ">
-                @Html.Partial("_StoredProcButtons", new MetopeMVCApp.Models.SPNames { SPName1 = "Update Divnd Sched only" })
+                @Html.Partial("_StoredProcButtons", new MetopeMVCApp.Models.SPNames { SPName1 = "Generate New F/casts" })
             </div> 
         } 
     </div>

@@ -6,7 +6,16 @@
 @section Styles {
     @Styles.Render("~/Content/datetime")
 } 
-<h3>Edit Security Analytics for SecurityId <b> @Model.Security_ID </b> </h3>  
+<h3>Edit Security Analytics for 
+    @if (Model.Security_Detail != null)
+    {
+        @: Security <b> @Model.Security_Detail.Security_Name </b> 
+    }
+    else
+    {
+        @: Security Id <b> @Model.Security_ID </b> 
+    }
+    </h3>  
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

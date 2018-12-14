@@ -62,7 +62,8 @@ namespace Metope.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (securityID != security_Dividend_Split.Security_ID || dividendAnnNumber != security_Dividend_Split.Dividend_Annual_Number)
+            if (securityID != security_Dividend_Split.Security_ID || 
+                dividendAnnNumber != security_Dividend_Split.Dividend_Annual_Number)
             {
                 return BadRequest();
             }

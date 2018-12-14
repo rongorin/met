@@ -626,7 +626,7 @@ namespace MetopeMVCApp.Filters
 
              //Securities_All2 is for Transaction_Security_ID ddl
              filterContext.Controller.ViewBag.Securities_All2 = new SelectList(secs, "Security_ID", "Security_Name", filterContext.Controller.ViewBag.SecuritiesAll2);
-
+              
              //ViewBag.ActionStatusId = new SelectList(repository.GetAll<ActionStatus>(), "ActionStatusId", "Name", myAction.ActionStatusId);
              base.OnActionExecuted(filterContext);
          }

@@ -29,12 +29,12 @@ namespace Metope.DAL
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {   // 
             int month = int.Parse(Month_Year.Substring(0,2));
-            if (month > 12 ) 
-                    yield return new ValidationResult("Invalid month entered");
+            if (month > 12 || month == 0) 
+                    yield return new ValidationResult("Invalid month entered"); 
 
             int yyyy = int.Parse(Month_Year.Substring(2, 4)); 
             if (Math.Abs(yyyy - DateTime.Now.Year) > 90)
-                yield return new ValidationResult("Invalid year entered. Out of range!");
+                yield return new ValidationResult("Invalid year entered. Out of range!"); 
         }
-    }
+    } 
 }

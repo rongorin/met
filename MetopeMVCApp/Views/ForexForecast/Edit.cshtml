@@ -13,9 +13,10 @@
     @Styles.Render("~/Content/datetime")
 }
 <h3>
-   for <b> @Model.Security_Detail.Short_Name </b> Month-Year <b> @Model.Month_Year</b>
+   for <b> @Model.Security_Detail.Short_Name </b> month-year <b>@System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat.GetMonthName(Convert.ToInt32(@Model.Month_Year.ToString().Substring(0, Convert.ToInt32(@Model.Month_Year.Length) - 4)))  @Model.Month_Year.ToString().Substring(2, Convert.ToInt32(@Model.Month_Year.Length) - 2)  </b>
 </h3>
-@using (Html.BeginForm())   
+@using (Html.BeginForm())
+      //RenderValueAs(o => o.Month_Year.ToString().Substring(0, o.Month_Year.Length - 4) + "-" + o.Month_Year.ToString().Substring(2, o.Month_Year.Length-2  ));
 {
     @Html.AntiForgeryToken()
 

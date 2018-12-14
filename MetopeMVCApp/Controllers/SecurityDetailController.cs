@@ -271,7 +271,7 @@ namespace MetopeMVCApp.Controllers
         public ActionResult RunSp( string command, string Security_name)
         {
             var spResult = "";
-            if (command == "Update Divnd Sched only (All Sec)")
+            if (command == "Generate New F/casts (All Secs)")
                 spResult = db11.RunGenerateDividendsSp((decimal)ViewBag.EntityId, null, null, null, GetTheUser().UserName);
 
             if (command == "Update Sec Analytics (All Sec)")
