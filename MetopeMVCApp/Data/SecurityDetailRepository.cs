@@ -90,7 +90,7 @@ namespace MetopeMVCApp.Data.Repositories
         {
             IQueryable<Security_Classification_Industry> query;
             //query = Context.Set<Security_Classification_Industry>().Include(r => r.Portfolio).Where(predicate);
-            query = Context.Set<Security_Classification_Industry>().Where(predicate)
+            query = Context.Set<Security_Classification_Industry>().Where(predicate).Include(r => r.Security_Detail)
                                                                         .OrderBy(x => x.Security_ID)
                                                                             .ThenByDescending(x => x.Effective_Date)
                                                                             .ThenBy(x => x.Classification_Code);

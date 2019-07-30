@@ -15,7 +15,7 @@ namespace MetopeMVCApp.Controllers
     [SetAllowedEntityIdAttribute]
     public class ForexForecastController : Controller
     {
-        private MetopeDbEntities db = new MetopeDbEntities();
+        //private MetopeDbEntities db = new MetopeDbEntities();
         private readonly IForexForecastRepository db11;
 
         public ForexForecastController(IForexForecastRepository iDb)
@@ -179,7 +179,7 @@ namespace MetopeMVCApp.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                db11.Dispose();
             }
             base.Dispose(disposing);
         }

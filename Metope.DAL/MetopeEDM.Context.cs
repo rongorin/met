@@ -20,6 +20,8 @@ namespace Metope.DAL
         public MetopeDbEntities()
             : base("name=MetopeDbEntities")
         {
+            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 0;
+            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

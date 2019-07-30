@@ -30,7 +30,7 @@ namespace ASP.MetopeNspace
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
+            MvcHandler.DisableMvcResponseHeader = true; 
             DbInterception.Add(new NLogCommandInterceptor()); //my custom Commmand
 
             ModelBinders.Binders.Add(typeof(decimal?), new MetopeMVCApp.DecimalModelBinder());
