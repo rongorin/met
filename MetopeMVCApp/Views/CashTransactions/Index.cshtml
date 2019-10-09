@@ -1,5 +1,5 @@
-﻿@model IEnumerable<Metope.DAL.Cash_Transactions>
-
+﻿@*@model IEnumerable<Metope.DAL.Cash_Transactions>*@
+@model IEnumerable<MetopeMVCApp.Models.CashTransactionIndexViewModel>
 @using GridMvc.Html
 @{
     ViewBag.Title = "Cash transactions";
@@ -57,7 +57,7 @@
             .SetWidth(90); 
         //columns.Add().Encoded(false).Sanitized(false).SetWidth(10).RenderValueAs(o => Html.CheckBox("checked", false));
 
-        columns.Add(c => c.Security_Detail1.Ticker )
+        columns.Add(c => c.Ticker )
             .Titled("Cash Security (ticker)").Filterable(true)
             .SetWidth(90); 
         

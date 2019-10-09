@@ -12,7 +12,9 @@ namespace MetopeMVCApp.Models
         public decimal Entity_ID { get; set; }
         public Nullable<decimal> Transaction_Security_ID { get; set; }
         public decimal Cash_Security_ID { get; set; }
-        public string Transaction_Source_Code { get; set; } 
+        public string Transaction_Source_Code { get; set; }
+        public string Ticker { get; set; } 
+
         public System.DateTime Transaction_Date { get; set; }
         public System.DateTime Value_Date { get; set; }
         public string Cash_Transaction_Type { get; set; }

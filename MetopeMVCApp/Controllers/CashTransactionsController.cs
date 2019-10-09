@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Metope.DAL;
 using MetopeMVCApp.Data;
 using MetopeMVCApp.Filters;
+using MetopeMVCApp.Models;
 
 namespace MetopeMVCApp.Controllers
 {
@@ -43,6 +44,20 @@ namespace MetopeMVCApp.Controllers
                      .OrderByDescending(r => r.Transaction_Date) 
                      .Include(d => d.Security_Detail)
                      .Include(d => d.Order_Detail)
+                     .Select(g => new CashTransactionIndexViewModel
+                          {
+                              Transaction_Security_ID = g.Transaction_Security_ID,
+                              Entity_ID = g.Entity_ID,
+                              Cash_Transaction_ID = g.Cash_Transaction_ID,
+                              Cash_Security_ID = g.Cash_Security_ID,
+                              Transaction_Source_Code = g.Transaction_Source_Code,
+                              Ticker = g.Security_Detail.Ticker,
+                              Value_Date = g.Value_Date,
+                              Transaction_Date = g.Transaction_Date,
+                              Cash_Transaction_Type = g.Cash_Transaction_Type,
+                              Transaction_Currency_Code = g.Transaction_Currency_Code,
+                              BaseCur_Amount = g.BaseCur_Amount  
+                          })
                      .Take(50);
             if (vwm.Any()) // if records found then populate the to-date
             {
