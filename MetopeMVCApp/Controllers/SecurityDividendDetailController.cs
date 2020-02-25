@@ -33,7 +33,7 @@ namespace MetopeMVCApp.Controllers
 						new SelectListItem { Text = "100", Value = "100" }
 			            };
 
-        // GET: SecurityDividendDetail
+        // GET:  
         public ActionResult Index(decimal SecurityId, int? numberOfRows, int page = 1, string searchTerm = null)
         {
             decimal EntityID = (decimal)ViewBag.EntityId;
@@ -49,13 +49,8 @@ namespace MetopeMVCApp.Controllers
                        .MatchCriteria(c => c.Entity_ID == EntityID)
                        .MatchCriteria(c => c.Security_ID == SecurityId)
                      .OrderByDescending(r => r.Dividend_Seq_Number).ThenBy(n => n.Dividend_Annual_Number)
-                     .Include(d => d.Security_Detail);
-                        
-            //if (PartyCode != "")
-            //    ViewBag.PartyCode = PartyCode;
-
-            //ViewBag.Nav = Nav;
-
+                     .Include(d => d.Security_Detail); 
+     
             return View(viewModel ); 
              
         }
@@ -199,9 +194,7 @@ namespace MetopeMVCApp.Controllers
             if (sdd == null)
             {
                 return HttpNotFound();
-            }
-            //ViewBag.Nav = Nav;
-
+            } 
             return View(sdd); 
              
         }
@@ -245,11 +238,10 @@ namespace MetopeMVCApp.Controllers
         //force in null for the div annual number if divtype is S or E
         private int? SetAnnualDivNum(int? DividendAnnualNo, string DivType)
         {
-        if (DivType == "I" || DivType=="F")
-            return DividendAnnualNo;
-        else
-            return null;
-
+            if (DivType == "I" || DivType=="F")
+                return DividendAnnualNo;
+            else
+                return null; 
         }
         private ApplicationUser GetTheUser()
         {

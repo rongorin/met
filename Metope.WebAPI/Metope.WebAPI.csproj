@@ -14,8 +14,8 @@
     <RootNamespace>Metope.WebAPI</RootNamespace>
     <AssemblyName>Metope.WebAPI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <MvcBuildViews>true</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
