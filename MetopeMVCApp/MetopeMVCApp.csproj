@@ -374,6 +374,10 @@
     <Compile Include="Migrations\201605071108389_Init3.Designer.cs">
       <DependentUpon>201605071108389_Init3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011240922560_new Passord Expiry identity.cs" />
+    <Compile Include="Migrations\202011240922560_new Passord Expiry identity.Designer.cs">
+      <DependentUpon>202011240922560_new Passord Expiry identity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddSecurityListDetailVM.cs" />
@@ -409,6 +413,7 @@
     <Compile Include="Services\ClientApiService.cs" />
     <Compile Include="Services\Service.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utitlity\Extensions\ApplicationUserManager.cs" />
     <Compile Include="Utitlity\Extensions\DateTimeExtensions.cs" />
     <Compile Include="Utitlity\Extensions\DropDownExtensions.cs" />
     <Compile Include="Utitlity\Extensions\ExceptionExtensions.cs" />
@@ -856,6 +861,8 @@
     <Content Include="Views\ForexForecast\Edit.cshtml" />
     <Content Include="Views\ForexForecast\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Forex_Forecast.cshtml" />
+    <Content Include="Views\Account\LoginFirst.cshtml" />
+    <Content Include="Views\Account\LoginNext.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -894,6 +901,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605071108389_Init3.resx">
       <DependentUpon>201605071108389_Init3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011240922560_new Passord Expiry identity.resx">
+      <DependentUpon>202011240922560_new Passord Expiry identity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

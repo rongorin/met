@@ -17,11 +17,13 @@ namespace ASP.MetopeNspace.Models
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,100}$",
+                 ErrorMessage = "Require at least 1 upper, 1 lower, 1 number and 1 special char.")]  
+          [DataType(DataType.Password)]
         [Display(Name = "New password")]
-        public string NewPassword { get; set; }
-
+       
+        public string NewPassword { get; set; } 
+       
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
@@ -42,7 +44,14 @@ namespace ASP.MetopeNspace.Models
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
-
+    //used for first login page - username only. probably wont implement this
+    public class LoginFirstViewModel
+    {
+        [Required]
+        [Display(Name = "User name")]
+        public string UserName { get; set; } 
+        
+    }
     public class RegisterViewModel
     {
         [Required]
@@ -50,7 +59,7 @@ namespace ASP.MetopeNspace.Models
         public string UserName { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

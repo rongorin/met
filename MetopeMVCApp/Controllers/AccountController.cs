@@ -11,7 +11,8 @@ using Microsoft.Owin.Security;
 using ASP.MetopeNspace.Models;
 using System.Collections;
 using System.Web.Caching;
-using StructureMap; 
+using StructureMap;
+using System.Configuration; 
 
 namespace ASP.MetopeNspace.Controllers
 {
@@ -20,6 +21,8 @@ namespace ASP.MetopeNspace.Controllers
     {
 
         private readonly UserManager<IdentityUser> _userManager;
+        private static readonly int PasswordExpireDays = Convert.ToInt32(ConfigurationManager.AppSettings["PasswordExpireDays"]);
+
 
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
@@ -40,32 +43,66 @@ namespace ASP.MetopeNspace.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
+            // POST: /Account/Login
+        [HttpPost]
+        [AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> LoginFirst(LoginFirstViewModel model, string returnUrl)
+        { 
+            if (!ModelState.IsValid)
+            {
+                return View("Login",model);
+            }
+            ViewBag.username = model.UserName;
+
+            return RedirectToAction("LoginNext", new ManageUserViewModel { });
+
+        }
+
+
+        [AllowAnonymous]
+        public ActionResult LoginNext(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
 
         //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> LoginNext(LoginViewModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
-            {
-                RemoveContextItems(); //remove item that are cached in the context. ie entityid etc
+            if (!ModelState.IsValid)
+            { 
+                return View(model);
+            }
+           
+            RemoveContextItems(); //remove item that are cached in the context. ie entityid etc
 
-                var user = await UserManager.FindAsync(model.UserName, model.Password);
-                if (user != null)
+            //adapt for password expiry: stackoverflow.com/questions/29039537/how-to-setup-password-expiration-using-asp-net-identity-framework
+            var user = await UserManager.FindAsync(model.UserName, model.Password);
+            
+            if (user != null)
+            {
+                await SignInAsync(user, model.RememberMe);
+
+                if (user.LastPasswordChangedDate.AddDays(PasswordExpireDays) < DateTime.UtcNow)
                 {
-                    await SignInAsync(user, model.RememberMe);
-                   
-                    return RedirectToLocal(returnUrl);
-                    //return RedirectToAction("Index","Home"); // send them to the Home page rather :-)
+                    return RedirectToAction("Manage", new ManageUserViewModel { });
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid username or password.");
-                }
-            }   
+
+                return RedirectToLocal(returnUrl);
+                //return RedirectToAction("Index","Home"); // send them to the Home page rather :-)
+            }
+            else
+            {
+                ModelState.AddModelError("", "Invalid username or password.");
+            }
+
             return View(model);
+           
         }
 
         //
@@ -93,6 +130,7 @@ namespace ASP.MetopeNspace.Controllers
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
+                     
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -155,7 +193,16 @@ namespace ASP.MetopeNspace.Controllers
                 {
                     IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
-                    {
+                    { 
+                        var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                        if (user != null)
+                        {
+                            user.LastPasswordChangedDate = DateTime.UtcNow;
+                            await UserManager.UpdateAsync(user);
+                             
+                            await SignInAsync(user, isPersistent: false );
+                        }
+
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
                     else
