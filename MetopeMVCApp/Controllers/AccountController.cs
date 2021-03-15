@@ -17,23 +17,27 @@ using System.Configuration;
 namespace ASP.MetopeNspace.Controllers
 {
     [Authorize]
+   // [SslRequest]
     public class AccountController : Controller
-    {
-
-        private readonly UserManager<IdentityUser> _userManager;
+    { 
+        //private readonly UserManager<IdentityUser> _userManager;
         private static readonly int PasswordExpireDays = Convert.ToInt32(ConfigurationManager.AppSettings["PasswordExpireDays"]);
 
 
         public AccountController()
-            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
+              : this( new UserStore<ApplicationUser>(new ApplicationDbContext()))
+            // : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
         }
-        public AccountController(UserManager<ApplicationUser> userManager)
+        public AccountController(UserStore<ApplicationUser> userManager)
         {
-            UserManager = userManager;
+            store = userManager;
+            UserManager = new UserManager<ApplicationUser>(store);
+           // UserManager.UserLockoutEnabledByDefault = true; 
         }
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
+        public UserStore<ApplicationUser> store { get; private set; }
 
         //
         // GET: /Account/Login
@@ -43,67 +47,205 @@ namespace ASP.MetopeNspace.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-            // POST: /Account/Login
-        [HttpPost]
-        [AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        public async Task<ActionResult> LoginFirst(LoginFirstViewModel model, string returnUrl)
-        { 
-            if (!ModelState.IsValid)
-            {
-                return View("Login",model);
-            }
-            ViewBag.username = model.UserName;
-
-            return RedirectToAction("LoginNext", new ManageUserViewModel { });
-
-        }
-
-
-        [AllowAnonymous]
-        public ActionResult LoginNext(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
-        }
-
-        //
-        // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> LoginNext(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
-            { 
-                return View(model);
-            }
-           
-            RemoveContextItems(); //remove item that are cached in the context. ie entityid etc
-
-            //adapt for password expiry: stackoverflow.com/questions/29039537/how-to-setup-password-expiration-using-asp-net-identity-framework
-            var user = await UserManager.FindAsync(model.UserName, model.Password);
-            
-            if (user != null)
+            if (ModelState.IsValid)
             {
-                await SignInAsync(user, model.RememberMe);
 
-                if (user.LastPasswordChangedDate.AddDays(PasswordExpireDays) < DateTime.UtcNow)
+   
+                var user = await UserManager.FindByNameAsync(model.UserName);
+                //throw new ArgumentNullException("Model"); 
+                if (user != null)
                 {
-                    return RedirectToAction("Manage", new ManageUserViewModel { });
+                    //// var checkIfUsernamePasswordValid = await UserManager.FindAsync(model.Email,model.Password);
+ 
+                    //var checkIfUsernamePasswordValid = UserManager.PasswordHasher.VerifyHashedPassword(user.PasswordHash, model.Password);
+                    var validCredentials = await UserManager.FindAsync(model.UserName, model.Password);
+                
+                    //*******************************************************
+                    // Check if user is locked out due to invalid login attempts,
+                    // If they are inform them
+                    //*******************************************************
+
+                    if (await UserManager.IsLockedOutAsync(user.Id))
+                    {
+                        ModelState.AddModelError("", string.Format("Your account has been locked out for {0} minutes due to {1} invalid login attempts.", ConfigurationManager.AppSettings["DefaultAccountLockoutTimeSpan"], ConfigurationManager.AppSettings["MaxFailedAccessAttemptsBeforeLockout"]));
+                    }
+                     //*******************************************************
+                    // Count number of failed login attempts and display to user
+                    // Before locking them out
+                    //*******************************************************
+
+                    //else if (await UserManager.GetLockoutEnabledAsync(user.Id) && Convert.ToBoolean(checkIfUsernamePasswordValid) != true)
+                    else if (await UserManager.GetLockoutEnabledAsync(user.Id) && validCredentials == null)
+                    { 
+                       // await UserManager.AccessFailedAsync(user.Id);
+
+                        string message; 
+                        if (await UserManager.IsLockedOutAsync(user.Id))
+                        {
+                            message = string.Format("Your account has been locked out for {0} minutes due to {1} invalid login attempts.", ConfigurationManager.AppSettings["DefaultAccountLockoutTimeSpan"], ConfigurationManager.AppSettings["MaxFailedAccessAttemptsBeforeLockout"]);
+                        }
+                        else
+                        {
+                            user.AccessFailedCount++;   
+                            //var ctx = store.Context;  
+                            //await ctx.SaveChangesAsync();
+                            int accessFailedCount = await UserManager.GetAccessFailedCountAsync(user.Id);
+                
+                            int attemptsLeft = Convert.ToInt32(ConfigurationManager.AppSettings["MaxFailedAccessAttemptsBeforeLockout"]) - accessFailedCount;
+                           
+                            if (attemptsLeft < 1)
+                            {
+                                user.LockoutEndDateUtc = DateTime.UtcNow.AddMinutes(Convert.ToInt32(ConfigurationManager.AppSettings["DefaultAccountLockoutTimeSpan"]));
+                                user.AccessFailedCount = 0;
+                                message = string.Format("Invalid user/password. You are locked out for {1} minutes.", attemptsLeft, ConfigurationManager.AppSettings["DefaultAccountLockoutTimeSpan"]);
+                            }
+                            else
+                                message = string.Format("Invalid user/password. You have {0} more attempt(s) before your account is locked out.", attemptsLeft);
+
+
+                            IdentityResult result = await UserManager.UpdateAsync(user); 
+                        }
+
+                        ModelState.AddModelError("", message);
+                    }
+                    else if (validCredentials == null)
+                    {
+                        ModelState.AddModelError("", "Invalid credentials. Please try again.");
+                    } 
+                    else
+                    {
+                        //await UserManager.AccessFailedAsync(user.Id);
+                        await SignInAsync(user, model.RememberMe);
+
+                        // If user get login correct before lock out reset failed count
+                        await UserManager.ResetAccessFailedCountAsync(user.Id);
+
+                        if (user.LastPasswordChangedDate.AddDays(PasswordExpireDays) < DateTime.UtcNow)
+                        {
+                            return RedirectToAction("Manage", new ManageUserViewModel { });
+                        }
+                        return RedirectToLocal(returnUrl);
+                    }
                 }
-
-                return RedirectToLocal(returnUrl);
-                //return RedirectToAction("Index","Home"); // send them to the Home page rather :-)
+                else
+                {
+                    ModelState.AddModelError("", string.Format("Sorry we cannot find your email address."));
+                    return View();
+                }
             }
-            else
-            {
-                ModelState.AddModelError("", "Invalid username or password.");
-            }
-
             return View(model);
-           
         }
+
+
+//        UserManager<User> userManager = new UserManager<User>(new UserStore());
+
+//if (userManager.SupportsUserLockout && userManager.IsLockedOut(userId))
+//    return;
+
+//var user = userManager.FindById(userId);
+//if (userManager.CheckPassword(user, password))
+//{
+//    if (userManager.SupportsUserLockout && userManager.GetAccessFailedCount(userId) > 0)
+//    {
+//        userManager.ResetAccessFailedCount(userId);
+//    }
+
+//    // Authenticate user
+//}
+//else
+//{
+//    if (userManager.SupportsUserLockout && userManager.GetLockoutEnabled(userId))
+//    {
+//        userManager.AccessFailed(userId);
+//    }
+//}
+
+        //
+        // POST: /Account/Login
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Loginxx(LoginViewModel model, string returnUrl)
+        //{
+        //    if (!ModelState.IsValid)
+        //    { 
+        //        return View(model);
+        //    }
+
+        //   //  RemoveContextItems(); //remove item that are cached in the context. ie entityid etc
+
+        //    // find user by username first
+        //    var user = await UserManager.FindByNameAsync(model.UserName);
+ 
+
+          
+        //    if (user != null)
+        //    {
+        //        //adapt for password expiry: stackoverflow.com/questions/29039537/how-to-setup-password-expiration-using-asp-net-identity-framework
+        //        //var user = await UserManager.FindAsync(model.UserName, model.Password);
+        //        var validCredentials = await UserManager.FindAsync(model.UserName, model.Password);
+
+        //        if (await UserManager.IsLockedOutAsync(user.Id))
+        //        {
+        //            ModelState.AddModelError("", string.Format("Your account has been locked out for {0} minutes due to multiple failed login attempts.", ConfigurationManager.AppSettings["DefaultAccountLockoutTimeSpan"].ToString()));
+        //        }
+        //        else if (await UserManager.GetLockoutEnabledAsync(user.Id) && validCredentials == null)
+        //        {
+        //            // Record the failure which also may cause the user to be locked out
+        //            await UserManager.AccessFailedAsync(user.Id);
+                     
+
+        //            string message;
+
+        //            if (await UserManager.IsLockedOutAsync(user.Id))
+        //            {
+        //                message = string.Format("Your account has been locked out for {0} minutes due to multiple failed login attempts.", ConfigurationManager.AppSettings["DefaultAccountLockoutTimeSpan"].ToString());
+        //            }
+        //            else
+        //            {
+
+        //                int accessFailedCount = await UserManager.GetAccessFailedCountAsync(user.Id);
+
+                 
+
+        //                int attemptsLeft =
+        //                    Convert.ToInt32(
+        //                        ConfigurationManager.AppSettings["MaxFailedAccessAttemptsBeforeLockout"].ToString()) -
+        //                    accessFailedCount;
+
+        //                message = string.Format(
+        //                    "Invalid credentials. You have {0} more attempt(s) before your account gets locked out.", attemptsLeft);
+        //            } 
+        //            ModelState.AddModelError("", message);
+        //        }
+        //        else if (validCredentials == null)
+        //        {
+        //            ModelState.AddModelError("", "Invalid credentials. Please try again.");
+        //        } 
+        //        else
+        //        {
+        //            await SignInAsync(user, model.RememberMe);
+        //            await UserManager.ResetAccessFailedCountAsync(user.Id); //clear out token
+
+        //            if (user.LastPasswordChangedDate.AddDays(PasswordExpireDays) < DateTime.UtcNow)
+        //            {
+        //                return RedirectToAction("Manage", new ManageUserViewModel { });
+        //            }
+
+        //            return RedirectToLocal(returnUrl); 
+        //        }   
+        //    } 
+
+           
+
+        //    return View(model);
+           
+        //}
 
         //
         // GET: /Account/Register
@@ -125,11 +267,11 @@ namespace ASP.MetopeNspace.Controllers
             if (ModelState.IsValid)
             {
                 //RG: IMPORTANT remove the model.EntityIdScope below from being posted  
-                var user = new ApplicationUser() { UserName = model.UserName, EntityIdScope = model.EntityIdScope };
+                var user = new ApplicationUser() { UserName = model.UserName, EntityIdScope = model.EntityIdScope, IsEnabled = true};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInAsync(user, isPersistent: false);
+                    //await SignInAsync(user, isPersistent: false);
                      
                     return RedirectToAction("Index", "Home");
                 }

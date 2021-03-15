@@ -763,6 +763,7 @@ namespace MetopeMVCApp.Filters
          }
           
      }
+    
      // get clever with loading the model in tempData http://benfoster.io/blog/automatic-modelstate-validation-in-aspnet-mvc
      //public class ValidateModelStateAttribute : ActionFilterAttribute
      //{
@@ -783,4 +784,17 @@ namespace MetopeMVCApp.Filters
      //    }
      //}            
      
+}
+public class SslRequest : RequireHttpsAttribute
+{
+    public override void OnAuthorization(AuthorizationContext authContext)
+    {
+        var CheckLocal = authContext.RequestContext.HttpContext.Request.IsLocal;
+        var CheckSecureConn = authContext.RequestContext.HttpContext.Request.IsSecureConnection;
+        //Bypass check for debugging environments  
+        if ( !CheckLocal && !CheckSecureConn)
+        {
+            HandleNonHttpsRequest(authContext);
+        }
+    }
 }

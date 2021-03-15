@@ -8,6 +8,7 @@ namespace ASP.MetopeNspace.Models
     {
         public decimal EntityIdScope  { get; set; }
         public DateTime LastPasswordChangedDate { get; set; }
+        public bool? IsEnabled { get; set; }
     } 
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

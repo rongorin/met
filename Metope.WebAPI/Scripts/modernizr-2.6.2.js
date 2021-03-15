@@ -15,9 +15,7 @@
  *
  * Includes matchMedia polyfill; Copyright (c) 2010 Filament Group, Inc; http://opensource.org/licenses/MIT
  *
- * Includes material adapted from ES5-shim https://github.com/kriskowal/es5-shim/blob/master/es5-shim.js; Copyright 2009-2012 by contributors; http://opensource.org/licenses/MIT
- *
- * Includes material from css-support; Copyright (c) 2005-2012 Diego Perini; https://github.com/dperini/css-support/blob/master/LICENSE
+  * Includes material from css-support; Copyright (c) 2005-2012 Diego Perini; https://github.com/dperini/css-support/blob/master/LICENSE
  *
  * NUGET: END LICENSE TEXT */
 
@@ -75,8 +73,7 @@ window.Modernizr = (function( window, document, undefined ) {
     /*>>smile*/
 
     toString = {}.toString,
-
-    // TODO :: make the prefixes more granular
+     
     /*>>prefixes*/
     // List of property values to set for css tests. See ticket #21
     prefixes = ' -webkit- -moz- -o- -ms- '.split(' '),
@@ -171,10 +168,7 @@ window.Modernizr = (function( window, document, undefined ) {
     },
     /*>>teststyles*/
 
-    /*>>mq*/
-    // adapted from matchMedia polyfill
-    // by Scott Jehl and Paul Irish
-    // gist.github.com/786768
+    /*>>mq*/ 
     testMediaQuery = function( mq ) {
 
       var matchMedia = window.matchMedia || window.msMatchMedia;
@@ -244,8 +238,7 @@ window.Modernizr = (function( window, document, undefined ) {
       return isEventSupported;
     })(),
     /*>>hasevent*/
-
-    // TODO :: Add flag for hasownprop ? didn't last time
+     
 
     // hasOwnProperty shim by kangax needed for Safari 2.0 support
     _hasOwnProperty = ({}).hasOwnProperty, hasOwnProp;
@@ -261,9 +254,7 @@ window.Modernizr = (function( window, document, undefined ) {
       };
     }
 
-    // Adapted from ES5-shim https://github.com/kriskowal/es5-shim/blob/master/es5-shim.js
-    // es5.github.com/#x15.3.4.5
-
+   
     if (!Function.prototype.bind) {
       Function.prototype.bind = function bind(that) {
 
@@ -364,8 +355,7 @@ window.Modernizr = (function( window, document, undefined ) {
         return false;
     }
     /*>>testprop*/
-
-    // TODO :: add testDOMProps
+     
     /**
      * testDOMProps is a generic DOM property test; if a browser supports
      *   a certain property, it won't return undefined for it.
@@ -511,16 +501,14 @@ window.Modernizr = (function( window, document, undefined ) {
     tests['websqldatabase'] = function() {
       return !!window.openDatabase;
     };
-
-    // Vendors had inconsistent prefixing with the experimental Indexed DB:
+     
     // - Webkit's implementation is accessible through webkitIndexedDB
     // - Firefox shipped moz_indexedDB before FF4b9, but since then has been mozIndexedDB
     // For speed, we don't test the legacy (and beta-only) indexedDB
     tests['indexedDB'] = function() {
       return !!testPropsAll("indexedDB", window);
     };
-
-    // documentMode logic from YUI to filter out IE8 Compat Mode
+     
     //   which false positives.
     tests['hashchange'] = function() {
       return isEventSupported('hashchange', window) && (document.documentMode === undefined || document.documentMode > 7);
@@ -653,7 +641,7 @@ window.Modernizr = (function( window, document, undefined ) {
             str3 = 'linear-gradient(left top,#9f9, white);';
 
         setCss(
-             // legacy webkit syntax (FIXME: remove when syntax not in use anymore)
+         
               (str1 + '-webkit- '.split(' ').join(str2 + str1) +
              // standard syntax             // trailing 'background-image:'
               prefixes.join(str3 + str1)).slice(0, -str1.length)
@@ -682,9 +670,7 @@ window.Modernizr = (function( window, document, undefined ) {
         //   some conditions. As a result, Webkit typically recognizes the syntax but
         //   will sometimes throw a false positive, thus we must do a more thorough check:
         if ( ret && 'webkitPerspective' in docElement.style ) {
-
-          // Webkit allows this media query to succeed only if the feature is enabled.
-          // `@media (transform-3d),(-webkit-transform-3d){ ... }`
+             
           injectElementWithStyles('@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}', function( node, rule ) {
             ret = node.offsetLeft === 9 && node.offsetHeight === 3;
           });
@@ -739,9 +725,7 @@ window.Modernizr = (function( window, document, undefined ) {
     // We're using the Boolean constructor here, so that we can extend the value
     // e.g.  Modernizr.video     // true
     //       Modernizr.video.ogg // 'probably'
-    //
-    // Codec values from : github.com/NielsLeenheer/html5test/blob/9106a8/index.html#L845
-    //                     thx to NielsLeenheer and zcorpan
+    // 
 
     // Note: in some older browsers, "no" was a return value instead of empty string.
     //   It was live in FF3.5.0 and 3.5.1, but fixed in 3.5.2
@@ -750,8 +734,7 @@ window.Modernizr = (function( window, document, undefined ) {
     tests['video'] = function() {
         var elem = document.createElement('video'),
             bool = false;
-
-        // IE9 Running on Windows Server SKU can cause an exception to be thrown, bug #224
+         
         try {
             if ( bool = !!elem.canPlayType ) {
                 bool      = new Boolean(bool);
@@ -961,13 +944,9 @@ window.Modernizr = (function( window, document, undefined ) {
 
 
 
-    // Run through all tests and detect their support in the current UA.
-    // todo: hypothetically we could be doing an array of tests and use a basic loop here.
+    // Run through all tests and detect their support in the current UA. 
     for ( var feature in tests ) {
-        if ( hasOwnProp(tests, feature) ) {
-            // run the test, throw the return value into the Modernizr,
-            //   then based on that boolean, define an appropriate className
-            //   and push it into an array of classes we'll join later.
+        if ( hasOwnProp(tests, feature) ) { 
             featureName  = feature.toLowerCase();
             Modernizr[featureName] = tests[feature]();
 
@@ -982,12 +961,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
 
     /**
-     * addTest allows the user to define their own feature tests
-     * the result will be added onto the Modernizr object,
-     * as well as an appropriate className set on the html element
-     *
-     * @param feature - String naming the feature
-     * @param test - Function returning true if feature is supported, false if not
+ 
      */
      Modernizr.addTest = function ( feature, test ) {
        if ( typeof feature == 'object' ) {
@@ -1329,15 +1303,7 @@ window.Modernizr = (function( window, document, undefined ) {
     Modernizr._cssomPrefixes  = cssomPrefixes;
     /*>>domprefixes*/
 
-    /*>>mq*/
-    // Modernizr.mq tests a given media query, live against the current state of the window
-    // A few important notes:
-    //   * If a browser does not support media queries at all (eg. oldIE) the mq() will always return false
-    //   * A max-width or orientation query will be evaluated against the current state, which may change later.
-    //   * You must specify values. Eg. If you are testing support for the min-width media query use:
-    //       Modernizr.mq('(min-width:0)')
-    // usage:
-    // Modernizr.mq('only screen and (max-width:768)')
+ 
     Modernizr.mq            = testMediaQuery;
     /*>>mq*/
 
@@ -1403,8 +1369,7 @@ window.Modernizr = (function( window, document, undefined ) {
     /*>>prefixed*/
 
 
-    /*>>cssclasses*/
-    // Remove "no-js" class from <html> element, if it exists:
+    /*>>cssclasses*/ 
     docElement.className = docElement.className.replace(/(^|\s)no-js(\s|$)/, '$1$2') +
 
                             // Add the new classes to the <html> element.
